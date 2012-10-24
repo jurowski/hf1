@@ -1,0 +1,5 @@
+drwxr-xr-x    2 jurowsk1 jurowsk1     4096 Sep 25 16:12 .
+drwxr-xr-x   13 jurowsk1 jurowsk1     4096 Sep 25 16:12 ..
+-rw-r--r--    1 jurowsk1 jurowsk1        6 Sep 25 16:12 hello.html.erb
+-rw-r--r--    1 jurowsk1 jurowsk1       19 Sep 25 16:12 multipart.text.html.erb
+-rw-r--r--    1 jurowsk1 jurowsk1       20 Sep 25 16:12 multipart.text.plain.erb

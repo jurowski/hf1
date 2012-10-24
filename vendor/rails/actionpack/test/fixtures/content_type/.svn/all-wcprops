@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/habitforge/!svn/ver/2/trunk/vendor/rails/actionpack/test/fixtures/content_type
+END
+render_default_for_rhtml.rhtml
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/svn/habitforge/!svn/ver/2/trunk/vendor/rails/actionpack/test/fixtures/content_type/render_default_for_rhtml.rhtml
+END
+render_default_for_rjs.rjs
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/svn/habitforge/!svn/ver/2/trunk/vendor/rails/actionpack/test/fixtures/content_type/render_default_for_rjs.rjs
+END
+.listing
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/habitforge/!svn/ver/2/trunk/vendor/rails/actionpack/test/fixtures/content_type/.listing
+END
+render_default_content_types_for_respond_to.rhtml
+K 25
+svn:wc:ra_dav:version-url
+V 133
+/svn/habitforge/!svn/ver/2/trunk/vendor/rails/actionpack/test/fixtures/content_type/render_default_content_types_for_respond_to.rhtml
+END
+render_default_for_rxml.rxml
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/svn/habitforge/!svn/ver/2/trunk/vendor/rails/actionpack/test/fixtures/content_type/render_default_for_rxml.rxml
+END

@@ -1,0 +1,2 @@
+module Promotion1sHelper
+end

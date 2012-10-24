@@ -1,0 +1,13 @@
+<p>
+  <b>Tag:</b>
+  <%=h @quotetags.tag_id %>
+</p>
+
+<p>
+  <b>Quote:</b>
+  <%=h @quotetags.quote_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_quotetags_path(@quotetags) %> |
+<%= link_to 'Back', quotetags_path %>

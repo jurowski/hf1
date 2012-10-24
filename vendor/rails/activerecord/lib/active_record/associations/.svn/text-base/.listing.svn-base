@@ -1,0 +1,11 @@
+drwxr-xr-x    2 jurowsk1 jurowsk1     4096 Sep 25 16:12 .
+drwxr-xr-x    7 jurowsk1 jurowsk1     4096 Sep 25 16:12 ..
+-rw-r--r--    1 jurowsk1 jurowsk1    15855 Sep 25 16:12 association_collection.rb
+-rw-r--r--    1 jurowsk1 jurowsk1     9767 Sep 25 16:12 association_proxy.rb
+-rw-r--r--    1 jurowsk1 jurowsk1     1823 Sep 25 16:12 belongs_to_association.rb
+-rw-r--r--    1 jurowsk1 jurowsk1     1500 Sep 25 16:12 belongs_to_polymorphic_association.rb
+-rw-r--r--    1 jurowsk1 jurowsk1     5333 Sep 25 16:12 has_and_belongs_to_many_association.rb
+-rw-r--r--    1 jurowsk1 jurowsk1     5024 Sep 25 16:12 has_many_association.rb
+-rw-r--r--    1 jurowsk1 jurowsk1    10876 Sep 25 16:12 has_many_through_association.rb
+-rw-r--r--    1 jurowsk1 jurowsk1     4045 Sep 25 16:12 has_one_association.rb
+-rw-r--r--    1 jurowsk1 jurowsk1      799 Sep 25 16:12 has_one_through_association.rb

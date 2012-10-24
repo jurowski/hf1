@@ -1,0 +1,42 @@
+<% if @goal.category.to_s != "" %>
+<h2>Who succeeded in the '<%= @goal.category.to_s %>' category yesterday?*</h2>
+<%
+begin
+
+  dnow = get_dnow
+  dyesterday = dnow - 1
+  d2daysago = dnow - 2
+  ######
+
+  @goals = Goal.find(:all, :conditions => "category = '#{@goal.category.to_s}' and publish = '1' and daysstraight <> '9999' and laststatus = 'yes' and (laststatusdate = '#{dyesterday}' or laststatusdate = '#{d2daysago}')", :order => "daysstraight desc")
+  if @goals.size == 0 
+  else 
+    @goals.each do |goal| 
+      if goal.category != nil 
+        %>    
+        &nbsp &nbsp <strong><a href="/cheers/<%= @goal.id %>/shared?shared_u=<%= goal.user.id %>"<% if current_user == nil %> target="_blank"<% end %>><%= goal.user.first_name %></a></strong>, for 
+        <%= goal.response_question %>
+        <% 
+        if goal.daysstraight > 1 
+        %>
+          <strong><%= goal.daysstraight %></strong> days straight.              
+        <% 
+        end  
+        %>
+        <br>  
+        <% 
+      end 
+    end 
+  end 
+rescue
+%>
+  <br>
+  <p>Something went wrong. Go back to the <a href="http://habitforge.com">home page</a> and try again, or <a href="mailto:support@habitforge.com">Contact Support</a></p>
+<%
+end
+%>
+<br>
+<p>
+<hr>
+*("private" goals in this category are not shown)
+<% end %>

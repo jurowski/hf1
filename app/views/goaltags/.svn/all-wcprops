@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svn/habitforge/!svn/ver/240/trunk/app/views/goaltags
+END
+edit.html.erb
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/habitforge/!svn/ver/240/trunk/app/views/goaltags/edit.html.erb
+END
+index.html.erb
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/habitforge/!svn/ver/240/trunk/app/views/goaltags/index.html.erb
+END
+new.html.erb
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/habitforge/!svn/ver/240/trunk/app/views/goaltags/new.html.erb
+END
+show.html.erb
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/habitforge/!svn/ver/240/trunk/app/views/goaltags/show.html.erb
+END

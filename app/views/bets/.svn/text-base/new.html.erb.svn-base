@@ -1,0 +1,39 @@
+<h1>New bet</h1>
+
+<% form_for(@bet) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :credits %><br />
+    <%= f.text_field :credits %>
+  </p>
+  <p>
+    <%= f.label :start_date %><br />
+    <%= f.date_select :start_date %>
+  </p>
+  <p>
+    <%= f.label :end_date %><br />
+    <%= f.date_select :end_date %>
+  </p>
+  <p>
+    <%= f.label :success_rate %><br />
+    <%= f.text_field :success_rate %>
+  </p>
+  <p>
+    <%= f.label :donated_amount %><br />
+    <%= f.text_field :donated_amount %>
+  </p>
+  <p>
+    <%= f.label :donation_date %><br />
+    <%= f.date_select :donation_date %>
+  </p>
+  <p>
+    <%= f.label :active_yn %><br />
+    <%= f.text_field :active_yn %>
+  </p>
+  <p>
+    <%= f.submit 'Create' %>
+  </p>
+<% end %>
+
+<%= link_to 'Back', bets_path %>

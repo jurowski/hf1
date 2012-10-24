@@ -1,0 +1,16 @@
+drwxr-xr-x   11 jurowsk1 jurowsk1     4096 Sep 25 16:12 .
+drwxr-xr-x    8 jurowsk1 jurowsk1     4096 Sep 25 16:12 ..
+-rw-r--r--    1 jurowsk1 jurowsk1   109302 Sep 25 16:12 CHANGELOG
+-rw-r--r--    1 jurowsk1 jurowsk1     1072 Sep 25 16:12 MIT-LICENSE
+-rw-r--r--    1 jurowsk1 jurowsk1    10011 Sep 25 16:12 README
+-rw-r--r--    1 jurowsk1 jurowsk1    12874 Sep 25 16:12 Rakefile
+drwxr-xr-x    3 jurowsk1 jurowsk1     4096 Sep 25 16:12 bin
+drwxr-xr-x    3 jurowsk1 jurowsk1     4096 Sep 25 16:12 builtin
+drwxr-xr-x    5 jurowsk1 jurowsk1     4096 Sep 25 16:12 configs
+drwxr-xr-x    2 jurowsk1 jurowsk1     4096 Sep 25 16:12 dispatches
+drwxr-xr-x    2 jurowsk1 jurowsk1     4096 Sep 25 16:12 doc
+drwxr-xr-x    2 jurowsk1 jurowsk1     4096 Sep 25 16:12 environments
+-rwxr-xr-x    1 jurowsk1 jurowsk1      307 Sep 25 16:12 fresh_rakefile
+drwxr-xr-x    2 jurowsk1 jurowsk1     4096 Sep 25 16:12 helpers
+drwxr-xr-x    4 jurowsk1 jurowsk1     4096 Sep 25 16:12 html
+drwxr-xr-x    6 jurowsk1 jurowsk1     4096 Sep 25 16:12 lib

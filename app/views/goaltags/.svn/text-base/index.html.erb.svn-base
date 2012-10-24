@@ -1,0 +1,22 @@
+<h1>Listing goaltags</h1>
+
+<table>
+  <tr>
+    <th>Title</th>
+    <th>Tag</th>
+  </tr>
+
+<% @goaltags.each do |goaltag| %>
+  <tr>
+    <td><%=h goaltag.goaltemplate.title %></td>
+    <td><%=h goaltag.tag.name %></td>
+    <td><%= link_to 'Show', goaltag %></td>
+    <td><%= link_to 'Edit', edit_goaltag_path(goaltag) %></td>
+    <td><%= link_to 'Destroy', goaltag, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New goaltag', new_goaltag_path %>

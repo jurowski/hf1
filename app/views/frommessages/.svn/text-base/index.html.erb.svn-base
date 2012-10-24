@@ -1,0 +1,60 @@
+<h2>Messages I've Sent</h2><a href="/tomessages">View my inbox messages</a>
+<p />
+<p />
+
+
+<table border=0>
+
+<% if @frommessages == nil %>
+    No Sent Items.
+<% else %>
+
+    <% @frommessages.each do |frommessage| %>
+        <%
+        @to_user = User.find(:first, :conditions => "id = '#{frommessage.to_id}'")
+        if @to_user != nil
+        %>
+            <tr>
+            <td nowrap>
+              <%= link_to '<img src="/images/close_32.png" height="20px" alt="Delete" border="0" />', frommessage, :confirm => 'Delete this message?', :method => :delete %>
+              &nbsp &nbsp 
+              <a href= "/tomessages/new?to_id=<%= @to_user.id %>" class="button">Send a New Message to <%= @to_user.first_name %></a>
+              &nbsp &nbsp 
+            </td>
+
+            <% if frommessage.unread == 1 %>
+                <td>
+                &nbsp &nbsp &nbsp &nbsp</td>
+                <td><strong><%= link_to frommessage.subject, frommessage %></strong></td>
+            <% else %>
+                <td>
+                &nbsp &nbsp &nbsp &nbsp</td>
+                <td><%= link_to frommessage.subject, frommessage %></td>
+            <% end %>
+            </tr>
+        <% 
+        else
+            to_user_first_name = "(This person removed their account.)"
+        %>
+            <tr>
+            <td><%= link_to '<img src="/images/close_32.png" height="20px" alt="Delete" border="0" />', frommessage, :confirm => 'Delete this message?', :method => :delete %>
+            &nbsp &nbsp 
+            </td>
+            <% if frommessage.unread == 1 %>
+                <td><strong><%=h to_user_first_name %></strong>
+                &nbsp &nbsp &nbsp &nbsp</td>
+                <td><strong><%= link_to frommessage.subject, frommessage %></strong></td>
+            <% else %>
+                <td><%= to_user_first_name %>
+                &nbsp &nbsp &nbsp &nbsp</td>
+                <td><%= link_to frommessage.subject, frommessage %></td>
+            <% end %>
+            </tr>
+        <%
+        end
+        %>
+    <% end %>
+    </table>
+
+<% end %>
+<br />

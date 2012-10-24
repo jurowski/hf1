@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/habitforge/!svn/ver/2/trunk/vendor/rails/actionmailer/test/fixtures/layouts
+END
+.listing
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/habitforge/!svn/ver/2/trunk/vendor/rails/actionmailer/test/fixtures/layouts/.listing
+END
+auto_layout_mailer.html.erb
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svn/habitforge/!svn/ver/2/trunk/vendor/rails/actionmailer/test/fixtures/layouts/auto_layout_mailer.html.erb
+END
+auto_layout_mailer.text.erb
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svn/habitforge/!svn/ver/2/trunk/vendor/rails/actionmailer/test/fixtures/layouts/auto_layout_mailer.text.erb
+END
+spam.html.erb
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/habitforge/!svn/ver/2/trunk/vendor/rails/actionmailer/test/fixtures/layouts/spam.html.erb
+END

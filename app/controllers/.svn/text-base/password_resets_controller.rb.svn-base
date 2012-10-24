@@ -1,0 +1,103 @@
+class PasswordResetsController < ApplicationController
+#before_filter :load_user_using_perishable_token, :only => [:edit, :update] 
+#<img src="http://www.binarylogic.com/wp-includes/images/smilies/icon_surprised.gif" alt=":o" class="wp-smiley"> 
+
+  
+before_filter :load_user_using_perishable_token, :only => [:edit, :update]  
+#before_filter :load_user_using_perishable_token, <img src="http://www.binarylogic.com/wp-includes/images/smilies/icon_surprised.gif" alt=":o" class="wp-smiley">, only => [:edit, :update]  
+
+#http://localhost:3000/password_resets/new
+#http://localhost:3000/password_resets/h2zkwDrqmbC4bCpU6W5f/edit
+before_filter :require_no_user
+  def new  
+    render  
+  end  
+
+  def edit  
+    #render
+    @user = User.find(:first, :conditions => "perishable_token = '#{params[:id]}'")
+    #@user = User.find(params[:id])
+    #@user = User.find(params[:perishable_token])
+    #@user = User.find_using_perishable_token(params[:id])  
+    unless @user  
+      flash[:notice] = "We're sorry, but we could not locate your account. " +  
+      "If you are having issues try copying and pasting the URL " +  
+      "from your email into your browser or restarting the " +  
+      "reset password process."  
+      #redirect_to root_url  
+    end  
+    
+    #render  
+    render :action => :edit  
+  end
+
+  def update  
+    ##@user = User.find(params[:perishable_token])
+    #@user = User.find(:first, :conditions => "perishable_token = '#{params[:perishable_token]}'")
+    #@user.password = params[:user][:password]  
+    #@user.password_confirmation = params[:user][:password_confirmation]  
+    #if @user.save  
+    #  flash[:notice] = "Password successfully updated"  
+    #  redirect_to account_url  
+    #else  
+    #  render :action => :edit  
+    #end  
+
+    @user = User.find(:first, :conditions => "perishable_token = '#{params[:id]}'")
+    if @user
+        if params[:user][:password] and params[:user][:password_confirmation]
+            @user.password = params[:user][:password]  
+            @user.password_confirmation = params[:user][:password_confirmation]  
+            if @user.save  
+              flash[:notice] = "Password successfully updated"  
+              redirect_to account_url  
+            else  
+              render :action => :edit  
+            end        
+        else
+            flash[:notice] = "There was a problem updating your password. Please contact support@habitforge.com and ask for it to be manually reset."  
+            render :action => :edit  
+        end
+    else
+        flash[:notice] = "User not found or token expired."  
+        render :action => :edit  
+    end
+  end
+      
+  def create  
+    @user = User.find_by_email(params[:email])  
+    if @user  
+
+      if session[:sponsor] == "clearworth"
+        Notifier.deliver_password_reset_instructions_clearworth(@user) # sends the email
+      elsif session[:sponsor] == "forittobe"
+        Notifier.deliver_password_reset_instructions_forittobe(@user) # sends the email
+      elsif session[:sponsor] == "marriagereminders"
+        Notifier.deliver_password_reset_instructions_marriagereminders(@user) # sends the email
+      else
+        Notifier.deliver_password_reset_instructions(@user) # sends the email
+      end
+
+      flash[:notice] = "Instructions to reset your password have been emailed to you. " +  
+      "Please check your email."  
+      #redirect_to root_url  
+    else  
+      flash[:notice] = "No user was found with that email address"  
+      session[:flash_notice] = "No user was found with that email address<br />"
+      render :action => :new  
+    end  
+  end
+  
+  private  
+  def load_user_using_perishable_token  
+    @user = User.find_using_perishable_token(params[:id])  
+    unless @user  
+      flash[:notice] = "We're sorry, but we could not locate your account. " +  
+      "If you are having issues try copying and pasting the URL " +  
+      "from your email into your browser or restarting the " +  
+      "reset password process."  
+      #redirect_to root_url 
+    end  
+  end
+  
+end

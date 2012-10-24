@@ -1,0 +1,57 @@
+<% 
+#begin
+%>
+
+  <%
+  ### GET DATE NOW ###
+  jump_forward_days = 0  
+  dnow = get_dnow + jump_forward_days
+  dyesterday = dnow - 1
+  ######
+
+  counter = 1
+  @my_hold_goals.each do |goal|
+    counter = counter + 1
+    if counter%2 == 0
+      bg = "CCCCCC"
+    else
+      bg = "FFFFFF"
+    end
+
+    ### instead of daysgoneby = dnow - goal.start,
+    ### calculate, instead the number of checkpoints that have been created
+    @checkpoints_gone_by = Checkpoint.find(:all, :conditions => "goal_id = '#{goal.id}' and checkin_date >= '#{goal.start}'")
+    daysgoneby = @checkpoints_gone_by.size
+
+    #### START GOAL BOX
+    ### instead of daysgoneby = dnow - goal.start,
+    ### calculate, instead the number of checkpoints that have been created
+    @checkpoints_gone_by = Checkpoint.find(:all, :conditions => "goal_id = '#{goal.id}' and checkin_date >= '#{goal.start}'")
+    daysgoneby = @checkpoints_gone_by.size
+
+    ###daysleft = goal.stop - dnow
+    daysleft = 21 - daysgoneby
+
+    @checkpoints = Checkpoint.find(:all, :conditions => "goal_id = '#{goal.id}'")
+    totalsize = @checkpoints.size
+
+    %>
+    <DIV style="border-radius:20px;-moz-border-radius:20px;border-width:none;border-color:#eeeeee;background-color:#ffffff;border-style:solid;padding:10px 10px 10px 10px;width:870px;">
+      <h3>
+      <%= link_to "..." + goal.title, edit_goal_path(goal) %> 
+      </h3>
+    </div>
+
+    <% #################   END GOAL BOX ############### %>
+    
+  <% end %>
+<%
+#rescue
+#  <br>
+#  <p><font color=red>Something went wrong. Go back to the <a href="http://habitforge.com">home page</a> and try again, or <a href="mailto:support@habitforge.com">Contact Support</a></font></p>
+#  </div>
+
+%>
+<%
+#end
+%>

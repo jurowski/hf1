@@ -1,0 +1,31 @@
+<html>
+<head>
+  <base href="http://habitforge.com/"/>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"> 
+</head>
+<body>
+<p>
+Hi <%= @user.first_name %>.
+<br>
+<br>Your HabitForge Supporting Membership Will Expire on <%= @user.kill_ads_until.strftime("%b %d, %Y") %>.
+<br>
+<br>(Supporting Members are able to work on unlimited active habits, ad-free!)
+<br>
+<br>If you'd like to renew your subscription, you can extend it now either by logging into your account at http://habitforge.com , or by clicking the link below!
+<br>
+<br>
+<br><a href="http://habitforge.myshopify.com/collections/frontpage/products/habitforge-supporting-membership-1-year?ref=<%= @user.id.to_s %>" class="button">Extend 1 Year, Just $9.95!</a>
+<br>
+<br>
+<br>Thanks for your continued support, and best of luck with your goals!
+<br>
+<br>Sandon Jurowski
+<br>HabitForge Creator
+<br>http://habitforge.com
+<br>
+<br>
+<br>
+<br>Questions? Email support@habitforge.com
+<br>
+</body>
+</html>

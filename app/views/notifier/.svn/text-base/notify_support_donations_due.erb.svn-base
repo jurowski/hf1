@@ -1,0 +1,7 @@
+<% if @number_of_bets_due > 0 %>
+    There are <%= @number_of_bets_due %> donations due!
+    Make sure to update the "donated_amount" field in bets when done.
+    Also, send a receipt to the end user(s).
+<% else %>
+    Off the hook today... no checks to write to charity.
+<% end %>

@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/habitforge/!svn/ver/2/trunk/vendor/rails/activesupport/lib/active_support/vendor/i18n-0.1.3
+END
+i18n.gemspec
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/svn/habitforge/!svn/ver/2/trunk/vendor/rails/activesupport/lib/active_support/vendor/i18n-0.1.3/i18n.gemspec
+END
+Rakefile
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/habitforge/!svn/ver/2/trunk/vendor/rails/activesupport/lib/active_support/vendor/i18n-0.1.3/Rakefile
+END
+.listing
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/habitforge/!svn/ver/2/trunk/vendor/rails/activesupport/lib/active_support/vendor/i18n-0.1.3/.listing
+END
+MIT-LICENSE
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svn/habitforge/!svn/ver/2/trunk/vendor/rails/activesupport/lib/active_support/vendor/i18n-0.1.3/MIT-LICENSE
+END
+README.textile
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/svn/habitforge/!svn/ver/2/trunk/vendor/rails/activesupport/lib/active_support/vendor/i18n-0.1.3/README.textile
+END

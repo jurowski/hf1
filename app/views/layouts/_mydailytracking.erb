@@ -1,0 +1,111 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+    <meta name="keywords" content="My Daily Tracking, habit, learning habit, mydeailytracking, mydailytracking learning habit" />
+    <meta name="description" content="Free web app from mydailytracking that emails you daily asking you a yes or no question about whether you followed through on a habit you want to establish (exercising daily, drinking 8 glasses of water, cutting caffeine intake). If you say "yes" for 21 days in a row, you've done it. Skip a day, and start over at day 1. Invite friends to keep you accountable." />
+    <%= stylesheet_link_tag 'mydailytracking' %>
+    <%= javascript_include_tag :defaults %>
+    <title>MyDailyTracking</title>
+  </head>
+  <body>
+   <div id="page">
+	<!-- #start header -->
+   	<div id="header">
+		<!-- #start menu -->
+    	<div id="menu">
+    		<ul>
+  				<li><a href="#">Home</a></li>
+				<li>|</li>
+  				<li><a href="#">Account Settings</a></li>
+				<li>|</li>
+  				<li><a href="#">Login</a></li>
+  				<br/>
+				<img src="images/mydailytracking/facebook.png" width="32" height="32" class="imgRight"></a>
+				<img src="images/mydailytracking/twitter.png" width="32" height="32" class="imgRight"></a>
+				<img src="images/mydailytracking/linkedin.png" width="32" height="32" class="imgRight"></a>
+			</ul>
+		</div>
+  		<!-- #end menu -->
+	</div>
+   <!-- #end header --> 		
+    <% if @cn == "user_sessions" and @ca == "new" %> 
+      
+    <% end %> 
+    <h1>Welcome Fritz!</h1>
+	<div class="primaryPod443L">
+	  <h1><a href="#">Daily Goal Checklist</a> | <a href="#">Monitor Your Progress</a></h1>
+	  <div class="padPod">
+	  <ul>
+	    <li>One</li>
+		<li>2</li>
+		<li>Tres</li>
+		<li>D.</li>
+	  </ul>
+	  </div>
+	</div>
+	<div class="primaryPod442R">
+	  <h1>Inspiration from MyDailyTracking</h1>
+	  <div class="padPod">
+		<h2>Post #32</h2>
+	  	<p>This is just some rambling text the represents the long, long post that this blog will one day have on this page.</p>
+		<p>This is just some rambling text the represents the long, long post that this blog will one day have on this page. This is just some rambling text the represents the long, long post that this blog will one day have on this page. This is just some rambling text the represents the long, long post that this blog will one day have on this page. This is just some rambling text the represents the long, long post that this blog will one day have on this page.</p>
+		<p>This is just some rambling text the represents the long, long post that this blog will one day have on this page. <a href="#">Read the rest of this post...</a></p>
+		<p></p>
+		<p><a href="#">Older Posts</a></p>
+	  </div>
+	</div>
+	<div class="primaryPod443L">
+	  <h1>Create a New Goal</h1>
+	  <div class="padPod">
+	  <ul>
+	    <li>One</li>
+		<li>2</li>
+		<li>Tres</li>
+		<li>D.</li>
+	  </ul>
+	  </div>
+	</div>
+      <% if session[:current_user_is_admin] == true and (params[:impersonate] or session[:impersonate]) %>
+        <br><a href="users?impersonate=3>">Become Admin Again</a>
+      <% end %>
+
+      <% if !current_user %>
+        <%
+        if @cn == "user_sessions" and @ca == "new" and params[:skip_intro] != "1"
+        %>
+
+        <% end %>
+      <% end %> 
+      <% if @cn == "user_sessions" and @ca == "new" and !params[:skip_intro] %>
+      <% else %>
+      	<div class="entry" style="padding:10px 10px 10px 10px";>
+            <br>
+            <br>
+      		  <%= yield %>          
+            <br>
+      	</div>
+      <% end %>
+  </div>
+    <!-- #end page --> 
+    
+
+    <div id="footer">
+      <p>&copy; 2010 <a href="http://www.mydailytracking.com/" target="_blank">mydailytracking.com</a></p>
+    </div>
+
+    <script type="text/javascript">
+      var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+      document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+
+    <script type="text/javascript">
+      try {
+        var pageTracker = _gat._getTracker("UA-10841267-1");
+        pageTracker._trackPageview();
+        } catch(err) {}
+    </script>
+
+  </body>
+</html>

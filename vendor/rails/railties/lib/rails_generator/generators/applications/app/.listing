@@ -1,0 +1,6 @@
+drwxr-xr-x    3 jurowsk1 jurowsk1     4096 Sep 25 16:12 .
+drwxr-xr-x    3 jurowsk1 jurowsk1     4096 Sep 25 16:12 ..
+-rw-r--r--    1 jurowsk1 jurowsk1      329 Sep 25 16:12 USAGE
+-rw-r--r--    1 jurowsk1 jurowsk1     8354 Sep 25 16:12 app_generator.rb
+drwxr-xr-x    2 jurowsk1 jurowsk1     4096 Sep 25 16:12 scm
+-rw-r--r--    1 jurowsk1 jurowsk1    11158 Sep 25 16:12 template_runner.rb

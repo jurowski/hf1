@@ -1,0 +1,12 @@
+<h1>Editing promotion1</h1>
+
+<% form_for(@promotion1) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @promotion1 %> |
+<%= link_to 'Back', promotion1s_path %>

@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/habitforge/!svn/ver/2/trunk/vendor/plugins/authlogic-2.1.1/lib/authlogic/authenticates_many
+END
+.listing
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/habitforge/!svn/ver/2/trunk/vendor/plugins/authlogic-2.1.1/lib/authlogic/authenticates_many/.listing
+END
+base.rb
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/habitforge/!svn/ver/2/trunk/vendor/plugins/authlogic-2.1.1/lib/authlogic/authenticates_many/base.rb
+END
+association.rb
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/svn/habitforge/!svn/ver/2/trunk/vendor/plugins/authlogic-2.1.1/lib/authlogic/authenticates_many/association.rb
+END

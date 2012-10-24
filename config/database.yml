@@ -1,0 +1,51 @@
+# SQLite version 3.x
+#   gem install sqlite3-ruby (not necessary on OS X Leopard)
+development:
+  adapter: mysql
+  encoding: utf8
+  reconnect: true
+  pool: 5
+<% if `uname -n`.strip == 'adv.adventurino.com' %>
+  database: jurowsk1_adventurinodev
+  username: jurowsk1_jurowsk
+  password: abcd1234
+  socket: /var/lib/mysql/mysql.sock    ### adventurino.com VPS
+<% elsif `uname -n`.strip == 'gns499aa.joyent.us' %>
+  database: habitforge_dev
+  username: habitforge_dev
+  password: makeitg00d
+  socket: /tmp/mysql.sock
+<% else %>
+  database: jurowsk1_adventurinodev
+  username: jurowsk1_jurowsk
+  password: abcd1234
+  socket: /private/tmp/mysql.sock ### osx local laptop
+<% end%>
+
+## SQLite version 3.x
+##   gem install sqlite3-ruby (not necessary on OS X Leopard)
+#development:
+#adapter: sqlite3
+#database: db/development.sqlite3
+#pool: 5
+#timeout: 5000
+
+# Warning: The database defined as "test" will be erased and
+# re-generated from your development database when you run "rake".
+# Do not set this db to the same as development or production.
+test:
+  adapter: sqlite3
+  database: db/test.sqlite3
+  pool: 5
+  timeout: 5000
+
+production:
+  adapter: mysql
+  encoding: utf8
+  reconnect: true
+  database: jurowsk1_adventurinodev
+  pool: 5
+  username: jurowsk1_jurowsk
+  password: abcd1234
+  socket: /var/lib/mysql/mysql.sock    ### adventurino.com VPS
+  #socket: /private/tmp/mysql.sock ### osx local laptop

@@ -1,0 +1,159 @@
+<h2>Who succeeded yesterday?</h2>
+<%
+begin
+
+  dnow = get_dnow
+  dyesterday = dnow - 1
+  d2daysago = dnow - 2
+
+
+
+  @arr = Array.new
+  @arr.push(["Exercise"])
+  @arr.push(["Diet, Healthy Foods and Water"])
+  @arr.push(["Learning, Studying, Practice and Education"])
+  @arr.push(["Smoking"])
+  @arr.push(["Spirituality, Meditation and Prayer"])
+  @arr.push(["Drawing and Painting"])
+  @arr.push(["Music"])
+  @arr.push(["Photography"])
+  @arr.push(["Reading"])
+  @arr.push(["Writing"])
+  @arr.push(["Brush"])
+  @arr.push(["Career"])
+  @arr.push(["Cleaning and Organizing"])
+  @arr.push(["Drinking"])
+  @arr.push(["Drugs"])
+  @arr.push(["Early to Bed, Early to Rise"])
+  @arr.push(["Family"])
+  @arr.push(["Financial"])
+  @arr.push(["Floss"])
+  @arr.push(["Focus"]) 
+  @arr.push(["Gratitude"]) 
+  @arr.push(["Happiness"]) 
+  @arr.push(["Love"]) 
+  @arr.push(["Planning"])
+  @arr.push(["Positive Thought"])  
+  @arr.push(["Productivity"])
+  @arr.push(["Relationships"])
+  @arr.push(["Other"])
+  @arr.push(["None"])
+
+  @arr.each do |val|
+  %>
+    <%
+    @goals = Goal.find(:all, :conditions => "publish = '1' and daysstraight <> '9999' and laststatus = 'yes' and (laststatusdate = '#{dyesterday}' or laststatusdate = '#{d2daysago}')", :order => "daysstraight desc")
+    <% 
+    if @goals.size == 0 
+    %>
+    <% 
+    else 
+    %>
+      <% 
+      foundone = 0
+      @goals.each do |goal| 
+      if goal.category != nil %>
+        <% 
+        if goal.category.to_s == val.to_s %>
+        <%
+          foundone = foundone + 1 
+          if foundone == 1
+            %>
+            <br><h3><%= goal.category %></h3>
+            <%
+          end
+          %>    
+
+          &nbsp &nbsp <strong><a href="/cheers/1/shared?shared_u=<%= goal.user.id %>"><%= goal.user.first_name %></a></strong>, for 
+          <%= goal.response_question %>
+          <% 
+          if goal.daysstraight > 1 
+          %>
+            <strong><%= goal.daysstraight %></strong> days straight.              
+          <% 
+          end  
+          %>
+          <br>  
+        <% 
+        end 
+        %>
+      <% 
+      end 
+      %>
+      <%
+      if val.to_s == "None" and goal.category.to_s == ""
+        %>
+        <%
+        foundone = foundone + 1 
+        if foundone == 1
+          %>
+          <br><h3>Not yet categorized</h3>
+          <%
+        end
+        %>
+        &nbsp &nbsp <strong><a href="/goals/1/shared?shared_u=<%= goal.user.id %>" target="_blank"><%= goal.user.first_name %></a></strong>, for 
+        <%= goal.response_question %>
+        <% 
+        if goal.daysstraight > 1 
+        %>
+          <strong><%= goal.daysstraight %></strong> days straight.              
+        <% 
+        end  
+        %>          
+        <br> 
+        <%
+      end
+    end 
+    %>
+  <% 
+  end 
+  %>
+
+
+
+<%
+end
+%>
+  <br>
+
+  <% #@checkpoints = Checkpoint.find(:all, :conditions => "status = 'yes' and checkin_date = '#{dyesterday}'") %>
+  <% @goals = Goal.find(:all, :conditions => "publish = '0' and laststatus = 'yes' and (laststatusdate = '#{dyesterday}' or laststatusdate = '#{d2daysago}')") %>
+  
+  <% if @goals.size == 0 %>
+  <% else %>
+
+    <i>...and to those who achieved their private goals: </i>
+    <br />
+      <img src='/images/img08.jpg'>		
+    <% 
+    @userArray = Array.new
+    @goals.each do |goal| 
+        @userArray.push([goal.user.first_name])
+        %><strong><% #goal.user.first_name %></strong>
+    <% end %>
+    <%
+    @userArray = @userArray.uniq
+    @userArray.length.times do |i|
+      %>
+      <%= @userArray[i]%>
+      <%
+      if i < @userArray.length - 1
+        %>, 
+        <%
+      end
+    end
+    %>
+  <% end %>
+  <br />
+  <br>
+  <br>
+  <br>
+
+<%
+rescue
+%>
+  <br>
+  <p>Something went wrong. Go back to the <a href="<%= server_root_url %>">home page</a> and try again, or <a href="mailto:support@habitforge.com">Contact Support</a></p>
+<%
+end
+%>

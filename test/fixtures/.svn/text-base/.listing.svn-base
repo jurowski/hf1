@@ -1,0 +1,9 @@
+drwxr-xr-x    3 jurowsk1 jurowsk1     4096 Dec  3 13:51 .
+drwxr-xr-x    7 jurowsk1 jurowsk1     4096 Sep 25 16:02 ..
+-rw-r--r--    1 jurowsk1 jurowsk1      203 Sep 25 16:11 checkpoints.yml
+-rw-r--r--    1 jurowsk1 jurowsk1      147 Sep 25 16:11 cheers.yml
+-rw-r--r--    1 jurowsk1 jurowsk1      211 Dec  3 13:51 failedcheckpoints.yml
+-rw-r--r--    1 jurowsk1 jurowsk1      439 Sep 25 16:11 goals.yml
+drwxr-xr-x    2 jurowsk1 jurowsk1     4096 Sep 25 16:11 notifier
+-rw-r--r--    1 jurowsk1 jurowsk1      405 Dec  2 16:09 stats.yml
+-rw-r--r--    1 jurowsk1 jurowsk1      295 Sep 25 16:11 users.yml

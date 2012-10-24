@@ -1,0 +1,10 @@
+drwxr-xr-x    3 jurowsk1 jurowsk1     4096 Dec  3 13:51 .
+drwxr-xr-x    7 jurowsk1 jurowsk1     4096 Sep 25 16:02 ..
+-rw-r--r--    1 jurowsk1 jurowsk1      157 Sep 25 16:11 checkpoint_test.rb
+-rw-r--r--    1 jurowsk1 jurowsk1      152 Sep 25 16:11 cheer_test.rb
+-rw-r--r--    1 jurowsk1 jurowsk1      163 Dec  3 13:51 failedcheckpoint_test.rb
+-rw-r--r--    1 jurowsk1 jurowsk1      151 Sep 25 16:11 goal_test.rb
+drwxr-xr-x    2 jurowsk1 jurowsk1     4096 Dec  3 13:51 helpers
+-rw-r--r--    1 jurowsk1 jurowsk1      153 Sep 25 16:11 notifier_test.rb
+-rw-r--r--    1 jurowsk1 jurowsk1      151 Dec  2 16:09 stat_test.rb
+-rw-r--r--    1 jurowsk1 jurowsk1      151 Sep 25 16:11 user_test.rb

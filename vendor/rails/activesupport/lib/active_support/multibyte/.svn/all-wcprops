@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/habitforge/!svn/ver/2/trunk/vendor/rails/activesupport/lib/active_support/multibyte
+END
+chars.rb
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/habitforge/!svn/ver/2/trunk/vendor/rails/activesupport/lib/active_support/multibyte/chars.rb
+END
+exceptions.rb
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/habitforge/!svn/ver/2/trunk/vendor/rails/activesupport/lib/active_support/multibyte/exceptions.rb
+END
+.listing
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/habitforge/!svn/ver/2/trunk/vendor/rails/activesupport/lib/active_support/multibyte/.listing
+END
+unicode_database.rb
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svn/habitforge/!svn/ver/2/trunk/vendor/rails/activesupport/lib/active_support/multibyte/unicode_database.rb
+END

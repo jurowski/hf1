@@ -1,0 +1,305 @@
+<%
+### GET DATE NOW ###
+jump_forward_days = 0
+tnow = Time.now
+tnow_Y = tnow.strftime("%Y").to_i #year, 4 digits
+tnow_m = tnow.strftime("%m").to_i #month of the year
+tnow_d = tnow.strftime("%d").to_i #day of the month
+tnow_H = tnow.strftime("%H").to_i #hour (24-hour format)
+tnow_M = tnow.strftime("%M").to_i #minute of the hour
+#puts tnow_Y + tnow_m + tnow_d  
+#puts "Current timestamp is #{tnow.to_s}"
+dnow = Date.new(tnow_Y, tnow_m, tnow_d) + jump_forward_days
+######
+
+%>
+<h2>My Coaching Settings</h2>
+<DIV style="border-radius:20px;-moz-border-radius:20px;border-width:medium;border-color:#eeeeee;background-color:#ffffff;border-style:solid;padding:10px 10px 10px 10px;width:600px;">
+    <h4>Max number of clients I want to have at once:</h4>
+    <p>
+    <%= link_to '<img src="/images/pencil_32.png" height="20px" alt="Edit" />Edit', edit_coach_path(@coach) %>
+      <%=h @coach.client_count_limit %>
+    </p>
+
+    <h4>Display this text when advertising my services as an "Extra Accountability Mentor":</h4>
+    <p>
+    <%= link_to '<img src="/images/pencil_32.png" height="20px" alt="Edit" />Edit', edit_coach_path(@coach) %>
+      <%=h @coach.blurb %>
+    </p>
+    <h4>Categories I am willing to be a mentor for:</h4>
+    <p>
+      <%=h @coach.categories %>
+      <br>
+      (If you would like to modify these categories, send an email to <a href="mailto:support@habitforge.com">support@habitforge.com</a>)
+    </p>
+</div>
+
+<br>
+<br>
+<%
+coach_number_of_goals = 0
+coachgoals = Coachgoal.find(:all, :conditions => "coach_id = '#{@coach.id}' and is_active = '1'")
+if coachgoals.size > 0
+    coach_number_of_goals = coachgoals.size
+end
+%>
+<h2>Active Client Goals (<%=h coach_number_of_goals %>)</h2>
+<p>
+<%
+if coachgoals.size > 0
+
+    for coachgoal in coachgoals
+
+        goal = coachgoal.goal
+
+        if goal == nil
+            %>
+            <DIV style="border-radius:20px;-moz-border-radius:20px;border-width:medium;border-color:#eeeeee;background-color:#ffffff;border-style:solid;padding:10px 10px 10px 10px;width:600px;">
+                <h4><%=h coachgoal.user.first_name %> Deleted their "<%= coachgoal.goal_name %>" goal.</h4>
+
+                <% if coachgoal.week_4_email_sent_date != nil and coachgoal.week_4_email_sent_date <= dnow %>
+                    <p>
+                    You've fulfilled your obligation to send 4 check-in emails re: this goal.
+                    <br>
+                    <% if coachgoal.coach_was_paid_out_on_date != nil and coachgoal.coach_was_paid_out_on_date <= dnow %>
+                        <% if coachgoal.coach_was_paid_out_amount != nil %>
+                            HabitForge sent payment of $<%= coachgoal.coach_was_paid_out_amount %> on <%= coachgoal.coach_was_paid_out_on_date %>.
+                        <% end %>                    
+                    <% else %>
+                        <% if coachgoal.amount_client_paid_split_to_coach != nil %>
+                            HabitForge will be sending you a payment of $<%= coachgoal.amount_client_paid_split_to_coach %> soon.
+                        <% end %>                    
+                    <% end %>
+                    </p>
+                    <p>
+                    If you wish, you may <a class="button" href="/tomessages/new?to_id=<%= coachgoal.user.id %>">Send a message to <%=h coachgoal.user.first_name %></a> 
+                    </p>
+                <% else %>
+                    <br>
+                    The user deleted this goal prematurely. Your Week #<%= get_next_week_number(coachgoal) %> check-in message was due <%= get_next_send_date(coachgoal) %>.
+                    <% if coachgoal.amount_client_paid_split_to_coach != nil %>
+                        <p>
+                        You'll still be paid $<%= coachgoal.amount_client_paid_split_to_coach %>.
+                        </p>
+                    <% end %>
+                    <p>
+                    If you wish, you may <a class="button" href="/tomessages/new?to_id=<%= coachgoal.user.id %>">Send a message to <%=h coachgoal.user.first_name %></a> 
+                    </p>
+                <% end %>
+            </div>
+            <%
+        else
+            daysgoneby = dnow - goal.start
+            daysleft = goal.stop - dnow
+            @checkpoints = Checkpoint.find(:all, :conditions => "goal_id = '#{goal.id}'")
+            totalsize = @checkpoints.size
+
+            %>
+            <DIV style="border-radius:20px;-moz-border-radius:20px;border-width:medium;border-color:#eeeeee;background-color:#ffffff;border-style:solid;padding:10px 10px 10px 10px;width:600px;">
+                <h4><%=h goal.user.first_name %>'s Progress with "<%= goal.title %>"</h4>
+
+
+                <% if coachgoal.week_4_email_sent_date != nil and coachgoal.week_4_email_sent_date <= dnow %>
+                    <p>
+                    You've fulfilled your obligation to send 4 check-in emails re: this goal.
+                    <br>
+                    <% if coachgoal.coach_was_paid_out_on_date != nil and coachgoal.coach_was_paid_out_on_date <= dnow %>
+                        <% if coachgoal.coach_was_paid_out_amount != nil %>
+                            HabitForge sent payment of $<%= coachgoal.coach_was_paid_out_amount %> on <%= coachgoal.coach_was_paid_out_on_date %>.
+                        <% end %>                    
+                    <% else %>
+                        <% if coachgoal.amount_client_paid_split_to_coach != nil %>
+                            HabitForge will be sending you a payment of $<%= coachgoal.amount_client_paid_split_to_coach %> soon.
+                        <% end %>                    
+                    <% end %>
+                    </p>
+                <% else %>
+                    <% if coachgoal.amount_client_paid_split_to_coach != nil %>
+                        <p>
+                        Once you've sent 4 weekly check-in emails to <%=h goal.user.first_name %>, you'll earn $<%= coachgoal.amount_client_paid_split_to_coach %>
+                        </p>
+                    <% end %>                    
+                    <% if dnow >= get_next_send_date(coachgoal) %>
+                        <a class="button" href="/tomessages/new?to_id=<%= goal.user.id %>&coachgoal_id=<%=coachgoal.id%>&coach_week_number=<%= get_next_week_number(coachgoal) %>">Send Official Week #<%= get_next_week_number(coachgoal) %> check-in message!</a> (due <%= get_next_send_date(coachgoal).to_s %> or later)
+                        <br>
+                        <a class="button" href="/tomessages/new?to_id=<%= goal.user.id %>">Send an unofficial message</a>
+                    <% else %>
+                        <p>
+                        <%=h goal.user.first_name %> is not expecting your Week #<%= get_next_week_number(coachgoal) %> check-in message until <%= get_next_send_date(coachgoal) %>.
+                        <br>
+                        <a class="button" href="/tomessages/new?to_id=<%= goal.user.id %>">Send an unofficial message (won't be registerd as a weekly check-in message)</a>
+                        </p>
+                    <% end %>
+                <% end %>
+
+
+
+
+                <p>
+                <%
+                if goal.status == "hold"
+                  %>
+                  <img src="/images/ring_buttons_hold.png" alt="On Hold" width = 75/>
+                  <%    
+                end
+                %>
+                <br>
+                <%
+                if goal.status == "start"
+                  %>
+                  <img src="/images/ring_buttons<%= daysgoneby %>.png" alt="" width = 75/>
+                  <%
+                end
+                %>
+
+                <div id="show_me_<%=goal.id %>">
+                <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+
+                <% 
+                if goal.status == "start"
+                  ### If we've established the goal, ask if they want it monitored
+                  if goal.established_on > goal.start
+                  %>
+                    <b>Habit Established!
+                    <br>  
+                  <%
+                  else
+                    if daysleft < 1
+                    %>
+                      <b>21 day period lapsed, but we didn't get all of the responses
+                      <br>
+                    <%
+                    end
+                    %>
+                    <% #<b>In progress</b> %>
+                    <br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <%=h goal.start %> -->  <%=h goal.stop %> (<%= @checkpoints.size %> checkpoints)
+                    <br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <%= daysgoneby %> days down, 
+                    <%= daysleft %> days to go!
+                    (
+                    <% if daysgoneby > 0 %>
+                      <%= (((daysgoneby + 0.0)/(daysgoneby + daysleft))*100).floor %>        
+                    <% else %>
+                      0
+                    <% end %>
+                    % done)
+                    <%
+
+                    @checkpoints_missing = Checkpoint.find(:all, :conditions => "goal_id = '#{goal.id}' and checkin_date >= '#{goal.start}' and checkin_date <= '#{goal.stop}' and status = 'email sent'")
+                    if @checkpoints_missing.size > 0
+                    %>        
+                      <br>
+                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                      <b>There are <%= @checkpoints_missing.size %> checkpoint(s) that we're missing responses for.
+                    <%
+                    end
+                    %>
+                  <%
+                  end
+                end
+                %>  
+
+                <%
+                if goal.status == "hold"
+                %>
+                  <b>On Hold</b>
+                <%
+                end
+                %>
+
+                <%
+                if goal.status == "monitor"
+                %>
+                  <b>Monitoring from <%=h goal.start %> through <%=h goal.stop %></b>
+
+                  <% if totalsize > 0 %>
+                    <%
+                    @no = Checkpoint.find(:all, :conditions => "status = 'no' and goal_id = '#{goal.id}'")
+                    %>
+                    <% no_percent = (((@no.size + 0.0) / totalsize)*100).floor  %>
+                    <br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    Success Rate: 
+                    <%
+                    @yes = Checkpoint.find(:all, :conditions => "status = 'yes' and goal_id = '#{goal.id}'")
+                    %>
+                    <% yes_percent = (((@yes.size + 0.0) / totalsize)*100).floor %>
+                    <%= yes_percent%>% (<%= @yes.size %> yes, 
+
+                    <%= @no.size %> no, 
+                    <%
+                    @missing = Checkpoint.find(:all, :conditions => "status = 'email sent' and goal_id = '#{goal.id}'")
+                    %>
+                    <% 
+                    # Convert these Ints into Floats by adding 0.0
+                    missing = @missing.size + 0.0
+                    total = totalsize + 0.0
+                    missing_percent = ((missing / total)*100).floor
+                    %>
+                    <%= @missing.size %> no reply of 
+                    <%= totalsize %> Past Checkpoints )
+                    <% #missing_percent %>
+
+                  <% else %>
+                    <br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    no stats yet
+                  <% end %>
+
+                <%
+                end
+                %>
+
+                <br />
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+                <%
+                @my_checkpoints = Checkpoint.find(:all, :conditions => "goal_id = '#{goal.id}'") 
+                if @my_checkpoints.size == 0
+                %>
+                  <p>No Checkpoints Yet</p>
+                <%
+                else
+                %>
+                  <%= link_to_function ("All Checkpoints") {
+                   |page| page.visual_effect :toggle_appear, "checkpoints_for_goal_#{goal.id}" 
+                  } 
+                  %>
+
+                  <div id="checkpoints_for_goal_<%=goal.id %>" style="display:none;">
+
+                  <%
+                  @my_checkpoints.each do |checkpoint| %>
+                      <%
+                      if checkpoint.checkin_date == goal.start
+                      %>
+                        <hr>Start of 21 days<hr>
+                      <%
+                      end
+                      %>
+                      <br>
+                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                      <%=h checkpoint.checkin_date.strftime("%a, %b %d, %Y") %>
+                      <b><%=h checkpoint.status %></b>
+                  <% end %>
+                  </div>
+                <%
+                end
+                %>
+                <p>
+                </div>
+            </div>
+            <br>
+            <br>
+            <%
+
+        end
+    end
+end
+%>
+</p>

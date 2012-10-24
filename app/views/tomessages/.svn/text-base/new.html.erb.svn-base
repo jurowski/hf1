@@ -1,0 +1,55 @@
+<% form_for(@tomessage) do |f| %>
+  <%= f.error_messages %>
+
+
+
+<!-- START If a coach is sending an official weekly check-in message -->
+<% if params[:coachgoal_id] and params[:coach_week_number] %>
+    <h1>Official Week #<%= params[:coach_week_number] %> Check-In Message</h1>
+    <p><a href="/tomessages/new?to_id=<%= @to_user.id %>">Oops, I meant to send as an unofficial message.</a></p>
+    <input type=hidden name="coachgoal_id" value="<%= params[:coachgoal_id] %>">
+    <input type=hidden name="coach_week_number" value="<%= params[:coach_week_number] %>">
+<% end %>
+<!-- END If a coach is sending an official weekly check-in message -->
+
+<% if params[:replying_to_message_id] %>
+
+    <h1>Replying to <%= @to_user.first_name %></h1>
+
+
+      <p>
+        <%= f.label :subject %><br />
+        <% if @replying_to_message.subject.starts_with? 're: ' %>
+            <%= f.text_field(:subject, :size => "80", :value => @replying_to_message.subject) %>
+        <% else %>
+            <%= f.text_field(:subject, :size => "80", :value => "re: #{@replying_to_message.subject}") %>
+        <% end %>
+      </p>
+      <p>
+        <%= f.label :body %><br />
+        <%= f.text_area(:body, :size => "80x20", :value => "\r\n\r\n\r\n______________________________________________\r\nOn #{@replying_to_message.created_at.to_s}, #{@to_user.first_name} wrote:\r\n\r\n#{@replying_to_message.body}") %>
+      </p>
+      <p>
+    
+<% else %>
+    <h1>New message to <%= @to_user.first_name %></h1>
+
+      <p>
+        <%= f.label :subject %><br />
+        <%= f.text_field(:subject, :size => "80") %>
+      </p>
+      <p>
+        <%= f.label :body %><br />
+        <%= f.text_area(:body, :size => "80x20") %>
+      </p>
+      <p>
+
+<% end %>
+
+
+    <input type=hidden name="to_id" value="<%= params[:to_id] %>">
+    <%= f.submit 'Send' %>
+  </p>
+<% end %>
+
+<p><%= link_to 'Cancel', '/goals' %></p>

@@ -1,0 +1,38 @@
+<p>
+  <b>Checkin date:</b>
+  <%=h @expiredcheckpoint.checkin_date %>
+</p>
+
+<p>
+  <b>Checkin time:</b>
+  <%=h @expiredcheckpoint.checkin_time %>
+</p>
+
+<p>
+  <b>Status:</b>
+  <%=h @expiredcheckpoint.status %>
+</p>
+
+<p>
+  <b>Goal:</b>
+  <%=h @expiredcheckpoint.goal_id %>
+</p>
+
+<p>
+  <b>Created at:</b>
+  <%=h @expiredcheckpoint.created_at %>
+</p>
+
+<p>
+  <b>Updated at:</b>
+  <%=h @expiredcheckpoint.updated_at %>
+</p>
+
+<p>
+  <b>Comment:</b>
+  <%=h @expiredcheckpoint.comment %>
+</p>
+
+
+<%= link_to 'Edit', edit_expiredcheckpoint_path(@expiredcheckpoint) %> |
+<%= link_to 'Back', expiredcheckpoints_path %>

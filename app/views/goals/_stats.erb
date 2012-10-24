@@ -1,0 +1,22 @@
+<!-- START STATS Section -->   
+
+
+<!-- tried but kept getting stale results: 
+    @goal.get_latest_stats_badge 
+    and 
+    @goal.get_latest_stats_badge_details 
+-->
+<%= @goal.stats_image %>
+<%= @goal.stats_output %>
+
+<% if session[:refresh_stats] == true %>
+    <p>
+    <a href="/goals">Click to "Refresh Stats"</a>
+    </p>
+    <% session[:refresh_stats] = false %>
+<% end %>
+
+<p />
+
+
+<!-- END STATS Section -->    

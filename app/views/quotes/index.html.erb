@@ -1,0 +1,76 @@
+<h1>Listing quotes</h1>
+
+
+<%
+
+### GET DATE NOW ###
+jump_forward_days = 0
+
+tnow = Time.now
+tnow_Y = tnow.strftime("%Y").to_i #year, 4 digits
+tnow_m = tnow.strftime("%m").to_i #month of the year
+tnow_d = tnow.strftime("%d").to_i #day of the month
+tnow_H = tnow.strftime("%H").to_i #hour (24-hour format)
+tnow_M = tnow.strftime("%M").to_i #minute of the hour
+#puts tnow_Y + tnow_m + tnow_d  
+puts "Current timestamp is #{tnow.to_s}"
+dnow = Date.new(tnow_Y, tnow_m, tnow_d) + jump_forward_days
+dyesterday = dnow - 1
+######
+
+%>
+
+
+
+
+
+<% #110206 is a jurowski@gmail.com checkpoint.id number that can be used for testing%>
+
+<%
+#### TESTING
+####@checkpoint = Checkpoint.find('110206')
+%>
+
+<br>
+<br>
+<p>
+<%
+#/generate scaffold quote thought:text author:string last_used:date priority:boolean
+
+daily_quote = ""
+quote = Quote.find(:first, :conditions => "last_used = '#{dnow}'")
+if quote
+  daily_quote = quote.thought
+else
+  daily_quote = "nothing yet"
+  quote = Quote.find(:first, :order => "last_used ASC")
+  quote.last_used = dnow
+  quote.save
+  daily_quote = quote.thought
+end
+%>
+<strong>Quote of the day:<%= daily_quote %></strong>
+<table>
+  <tr>
+    <th>Thought</th>
+    <th>Author</th>
+    <th>Last used</th>
+    <th>Priority</th>
+  </tr>
+
+<% @quotes.each do |quote| %>
+  <tr>
+    <td><%=h quote.thought %></td>
+    <td><%=h quote.author %></td>
+    <td><%=h quote.last_used %></td>
+    <td><%=h quote.priority %></td>
+    <td><%= link_to 'Show', quote %></td>
+    <td><%= link_to 'Edit', edit_quote_path(quote) %></td>
+    <td><%= link_to 'Destroy', quote, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New quote', new_quote_path %>

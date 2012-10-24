@@ -1,0 +1,6 @@
+drwxr-xr-x    2 jurowsk1 jurowsk1     4096 Sep 25 16:12 .
+drwxr-xr-x    3 jurowsk1 jurowsk1     4096 Sep 25 16:12 ..
+-rw-r--r--    1 jurowsk1 jurowsk1      384 Sep 25 16:12 fixtures.yml
+-rw-r--r--    1 jurowsk1 jurowsk1      354 Sep 25 16:12 migration.rb
+-rw-r--r--    1 jurowsk1 jurowsk1      155 Sep 25 16:12 model.rb
+-rw-r--r--    1 jurowsk1 jurowsk1      164 Sep 25 16:12 unit_test.rb

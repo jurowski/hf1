@@ -1,0 +1,11 @@
+<div class="the_date">
+    <div class="date_month">
+        <%= @badge_date.strftime("%b").to_s %>
+    </div>
+    <div class="date_day_of_week">
+        <%= @badge_date.strftime("%A").to_s %>
+    </div>
+    <div class="date_day_of_month">
+        <%= @badge_date.strftime("%d").to_s %>
+    </div>
+</div>

@@ -1,0 +1,13 @@
+
+EXAMPLE:
+
+      if `uname -n`.strip == 'adv.adventurino.com'
+        #### HABITFORGE SETTINGS ON VPS
+        @server_root_url = "http://habitforge.com"
+      elsif `uname -n`.strip == 'gns499aa.joyent.us'
+        #### DEV SETTINGS ON HABITFORGE VPS
+        @server_root_url = "http://dev.habitforge.com"
+      else
+        #### SETTINGS FOR DEV LAPTOP
+        @server_root_url = "http://localhost:3000"
+      end

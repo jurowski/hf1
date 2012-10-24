@@ -1,0 +1,9 @@
+drwxr-xr-x    6 jurowsk1 jurowsk1     4096 Dec  8 01:22 .
+drwxr-xr-x   13 jurowsk1 jurowsk1     4096 Dec  2 16:15 ..
+-rw-r--r--    1 jurowsk1 jurowsk1       82 Sep 25 16:02 .htaccess
+-rw-r--r--    1 jurowsk1 jurowsk1     3208 Dec  3 05:44 UNUSEDemail_checkpoints.rb
+drwxr-xr-x    2 jurowsk1 jurowsk1     4096 Dec  3 13:51 controllers
+drwxr-xr-x    2 jurowsk1 jurowsk1     4096 Dec  3 13:51 helpers
+drwxr-xr-x    2 jurowsk1 jurowsk1     4096 Dec  3 14:57 models
+-rw-r--r--    1 jurowsk1 jurowsk1     6417 Dec  8 07:21 update_stats.rb
+drwxr-xr-x   12 jurowsk1 jurowsk1     4096 Dec  3 13:51 views

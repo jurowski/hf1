@@ -1,0 +1,19 @@
+<%= @coachgoal.user.first_name %>, thanks so much for signing up for Weekly Check-Ins with a HabitForge Mentor!
+
+At the end of each week, for the next 4 weeks, <%= @coachgoal.coach.user.first_name %> will check in on your progress and email you a personal message to help motivate you to sticking with your goal of "<%= @coachgoal.goal.title %>".
+
+You also now have a year of creating unlimited goals in HabitForge, ad-free.
+
+(If you already were a Supporting Member, your membership has been extended to expire 1 year from today.)
+
+
+Keep working to build positive habits!
+
+Sandon Jurowski
+HabitForge Creator
+http://habitforge.com
+
+
+
+Questions? Email support@habitforge.com
+

@@ -1,0 +1,23 @@
+
+<p>
+  <br>
+  <br>
+  <% if @to_user != nil %>
+      <a href= "/tomessages/new?to_id=<%= @to_user.id %>" class="button">Send a New Message to <%= @to_user.first_name %></a>
+      <br>
+      <br>
+      <b>Sent To:</b> <%= @to_user.first_name %>
+  <% else %>
+      <b>Sent To:</b> (This person removed their account.)
+  <% end %>
+  <br>
+
+  <b>Subject:</b>
+  <%=h @frommessage.subject %>
+</p>
+
+<p>
+  <%= @frommessage.body.gsub("\n", "<br>") %>
+</p>
+
+<p><%= link_to '<-- Back to my Sent Messages', frommessages_path %></p>

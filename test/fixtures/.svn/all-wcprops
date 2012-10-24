@@ -1,0 +1,113 @@
+K 25
+svn:wc:ra_dav:version-url
+V 47
+/svn/habitforge/!svn/ver/52/trunk/test/fixtures
+END
+failedcheckpoints.yml
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/habitforge/!svn/ver/2/trunk/test/fixtures/failedcheckpoints.yml
+END
+quotes.yml
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/habitforge/!svn/ver/2/trunk/test/fixtures/quotes.yml
+END
+betpayees.yml
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/habitforge/!svn/ver/2/trunk/test/fixtures/betpayees.yml
+END
+.listing
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/habitforge/!svn/ver/2/trunk/test/fixtures/.listing
+END
+promotion1s.yml
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/habitforge/!svn/ver/2/trunk/test/fixtures/promotion1s.yml
+END
+frommessages.yml
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/habitforge/!svn/ver/2/trunk/test/fixtures/frommessages.yml
+END
+expiredcheckpoints.yml
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/habitforge/!svn/ver/2/trunk/test/fixtures/expiredcheckpoints.yml
+END
+bets.yml
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/habitforge/!svn/ver/2/trunk/test/fixtures/bets.yml
+END
+stats.yml
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/habitforge/!svn/ver/2/trunk/test/fixtures/stats.yml
+END
+users.yml
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/habitforge/!svn/ver/2/trunk/test/fixtures/users.yml
+END
+coachgoals.yml
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/habitforge/!svn/ver/52/trunk/test/fixtures/coachgoals.yml
+END
+goals.yml
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/habitforge/!svn/ver/2/trunk/test/fixtures/goals.yml
+END
+coaches.yml
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/habitforge/!svn/ver/52/trunk/test/fixtures/coaches.yml
+END
+cheers.yml
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/habitforge/!svn/ver/2/trunk/test/fixtures/cheers.yml
+END
+teams.yml
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/habitforge/!svn/ver/2/trunk/test/fixtures/teams.yml
+END
+checkpoints.yml
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/habitforge/!svn/ver/2/trunk/test/fixtures/checkpoints.yml
+END
+tomessages.yml
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/habitforge/!svn/ver/2/trunk/test/fixtures/tomessages.yml
+END
+teamgoals.yml
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/habitforge/!svn/ver/2/trunk/test/fixtures/teamgoals.yml
+END

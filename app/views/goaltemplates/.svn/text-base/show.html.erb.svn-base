@@ -1,0 +1,13 @@
+<p>
+  <b>Title:</b>
+  <%=h @goaltemplate.title %>
+</p>
+
+<p>
+  <b>Category:</b>
+  <%=h @goaltemplate.category %>
+</p>
+
+
+<%= link_to 'Edit', edit_goaltemplate_path(@goaltemplate) %> |
+<%= link_to 'Back', goaltemplates_path %>

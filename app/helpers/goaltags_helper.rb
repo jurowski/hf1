@@ -1,0 +1,2 @@
+module GoaltagsHelper
+end

@@ -1,0 +1,6 @@
+drwxr-xr-x    2 jurowsk1 jurowsk1     4096 Sep 25 16:12 .
+drwxr-xr-x   11 jurowsk1 jurowsk1     4096 Sep 25 16:12 ..
+-rw-r--r--    1 jurowsk1 jurowsk1      186 Sep 25 16:12 config.ru
+-rwxr-xr-x    1 jurowsk1 jurowsk1      859 Sep 25 16:12 dispatch.fcgi
+-rwxr-xr-x    1 jurowsk1 jurowsk1      478 Sep 25 16:12 dispatch.rb
+-rwxr-xr-x    1 jurowsk1 jurowsk1     2752 Sep 25 16:12 gateway.cgi

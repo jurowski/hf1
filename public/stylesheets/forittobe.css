@@ -1,0 +1,376 @@
+@charset "utf-8";
+body { margin:0; padding:0; width:100%;}
+html { padding:0; margin:0;}
+
+a { color: #000;font-style:none; }
+a:visited { color: #666; }
+
+/* main */
+.main {width:100%; padding:0; margin:0 auto; background:#ffffff;}
+.resize { width:985px; margin:0 auto;}
+
+/********** header **********/
+.header { background:url(images/header_bg.gif) top repeat-x; padding:0; margin:0 auto; }
+
+.block_header {margin:0 auto; width:982px; padding:0; border-bottom:0px solid #3b3b3b;}
+/* logo */
+.logo { float:left; padding:0; margin:0; width:206px;}
+
+.big {font-size: 350%; color: #fff; font-style:italic;}
+
+
+/* menu */	
+
+/*
+.menu { float:right; padding:30px 0 0 0; margin:0; width:380px;}
+.menu ul {  padding:0; margin:0; list-style:none; border:0;}
+.menu ul li { float:left; margin:0; padding:1px 1px 0 0; border:0;}
+
+.menu ul li a { float:left; margin:0; padding:15px 10px; color:#909090; font:bold 120% Arial, Helvetica, sans-serif; text-decoration:none;}
+.menu ul li a:hover { color:#000000;}
+.menu ul li .current_page_item { color:#336699; font:bold 150% Arial, Helvetica, sans-serif; text-decoration:none;}
+*/
+.menu {
+    font:bold 150% Arial, Helvetica, sans-serif;
+}
+
+.menu ul {
+	float: left;
+	margin-left: 300px;
+	list-style: none;
+	line-height: 100%;
+}
+
+.menu li {
+	float: left;
+}
+
+.menu a {
+	width: 100px;
+	margin-left: 35px;
+	text-decoration: none;
+	text-align: center;
+	color: #909090;
+	border: none;
+}
+
+.menu a:hover, .menu .current_page_item a {
+	text-decoration: none;
+}
+
+.menu .current_page_item a {
+	padding-left: 0;
+	color: #336699;
+}
+
+/*top_sup*/
+.top_sup { padding:0; margin:0; background:#000;}
+.top_sup_resize { width:982px; margin:0 auto; padding:0;}
+.top_sup_resize p { font:normal 11px Arial, Helvetica, sans-serif; color:#4d4d4d; padding:5px; margin:0; line-height:1.8em;}
+.top_sup_resize span { font: normal 12px Arial, Helvetica, sans-serif; color:#9f9f9f;}
+.top_sup_resize2 { width:982px; margin:0 auto; padding:20px 0;}
+.top_sup_resize2 h2 { font: normal 32px Arial, Helvetica, sans-serif; color:#fff; padding:0 0 0 20px; margin:0; width:200px; float:left;}
+.top_sup_resize2 p { width:540px; float:right; text-align:left; font:normal 11px Arial, Helvetica, sans-serif; color:#4d4d4d; padding:5px; margin:0; line-height:1.8em;}
+/* search */
+.search { padding:10px 0 0 0; margin:0; float:right; width:180px;}
+.search form { display:block; float:right; padding:5px 0;}
+.search span { display:block; float:left; background: url(images/search_bg.gif) left top no-repeat; width:114px; padding:0 5px; height:34px;}
+.search form .keywords { line-height:14px; float:left; border:0; width:114px; padding:5px 0; height:14px; background:none; margin:0; font:normal 14px Arial, Helvetica, sans-serif; color:#9c9c9c;}
+.search form .button { float:left; margin:0; padding:0;}
+/********** slider **********/
+.slider_top {background:#efefef; margin:0 auto; padding:15px 0 0 0; height:300px;}
+/*header_text*/
+.header_text { margin:0 auto; padding:0; width:982px;}
+/********** block index **********/
+.body { background: #f1f1f1;}
+.body_resize { width:982px; margin:0 auto; padding:0;}
+.body h2 { font:normal 30px Arial, Helvetica, sans-serif; color:#2a2a2a; padding:15px 5px; margin:0; border-bottom:0px solid #e1e1e1;}
+.body p { font:normal 12px Arial, Helvetica, sans-serif; color:#5f5f5f; padding:10px 5px; margin:0; line-height:1.8em;}
+.body p span { color:#a4a4a4; font: normal 11px Arial, Helvetica, sans-serif;}
+.body p.bodrded { border:0px solid #ebebeb; margin:5px 0; padding:10px 0;}
+.body ul { list-style:none; margin:10px auto; padding:0;}
+.body li { padding:5px 20px; margin:0; background:url(images/ul_li.gif) left no-repeat; font: normal 12px Arial, Helvetica, sans-serif; color:#5c5c5c;}
+.body a { color:#1286a2; text-decoration:underline;}
+.body a.bold { color:#fff; font:bold 11px Arial, Helvetica, sans-serif; background:#000; margin:0; padding:3px 5px; float:left; text-decoration:none;}
+.body img { float:left; margin:15px 15px 15px 0; padding:0;}
+.body img.port { float:left; margin:10px 15px; padding:0;}
+.full  { width:952px; float:left; margin:0; padding:10px 15px;} 
+.left  { width:310px; float:left; margin:0; padding:0px 0px;color:#336699;} 
+.left2  { width:700px; float:left; margin:0; padding:10px 15px;color:#336699;} 
+.right  { width:600px; float:right; margin:0; padding:10px 10px 10px 15px;} 
+.right2  { width:600px; left:800px; position:absolute; float:right; margin:0; padding:10px 10px 10px 15px;color:#336699;} 
+.blog { width:270px; margin:10px auto; padding:10px 10px; border:0px solid #eaeaea; background:#f7f7f7;color:#336699;} 
+.blog2 { width:700px; margin:10px auto; padding:10px 10px; border:0px solid #eaeaea; background:#fff;color:#336699;} 
+
+/********** contact form **********/
+#contactform { margin:0; padding:5px 10px;}
+#contactform * { color:#F00;}
+#contactform ol { margin:0; padding:0; list-style:none;}
+#contactform li { margin:0; padding:0; background:none; border:none; display:block;}
+#contactform li.buttons { margin:5px 0 5px 0;}
+#contactform label { margin:0; width:110px; display:block; padding:10px 0; color:#5f5f5f; font: bold 12px Arial, Helvetica, sans-serif; text-transform:capitalize; float:left;}
+#contactform label span { color:#F00;}
+#contactform input.text { width:440px; border:0px solid #dcdcdc; margin:10px 0; padding:5px 2px; height:16px; background:#fff; float:left;}
+#contactform textarea { width:440px; border:0px solid #dcdcdc; margin:10px 0; padding:2px; background:#fff; float:left;}
+#contactform li.buttons input { padding:3px 0 3px 110px; margin:0; border:0; color:#FFF; float:left;}
+p.response { text-align:center; color:#F00; font: normal 11px  Georgia, "Times New Roman", Times, serif; line-height:1.8em; width:auto;}
+/********** footer **********/
+.footer { margin:0; padding:10px 0 0 0; background:#e8e8e8; border-top:0px solid #d9d9d9; }
+.footer_resize { margin:0 auto; padding:10px 0; width:980px;}
+.footer ul { margin:0; padding:20px 10px 10px 10px; list-style:none; float:left;}
+.footer img { display:inline; margin:5px 10px; padding:0;}
+.footer ul li { margin:0; padding:0 10px; float:left;}
+.footer p { margin:0; padding:20px 20px 10px 20px; float:right; color:#6d6d6d; font:normal 12px Arial, Helvetica, sans-serif; line-height:1.8em;}
+.footer a { color:#6d6d6d; font:bold 12px  Arial, Helvetica, sans-serif; text-decoration:none; line-height:1.8em;}
+.footer a:hover { text-decoration:underline;}
+
+p.clr, .clr { clear:both; padding:0; margin:0; background:none;}
+li.bg, .bg { clear:both; border-top:0px solid #e2e2e2; padding:0; margin:10px 0; background:none; line-height:0;}
+
+
+
+/* SGJ ...from original Rails CSS */
+/* Validation Error Styling */
+.fieldWithErrors {
+  padding: 1px;
+  background-color: red;
+/*  display: table;*/
+}
+
+#errorExplanation {
+  width: 400px;
+  border: 1px solid red;
+  padding: 7px;
+  padding-bottom: 12px;
+  margin-bottom: 20px;
+  background-color: #f0f0f0;
+}
+
+#errorExplanation h2 {
+  text-align: left;
+  font-weight: bold;
+  padding: 5px 5px 5px 15px;
+  font-size: 12px;
+  margin: -7px;
+  background-color: #c00;
+  color: #fff;
+}
+
+#errorExplanation p {
+  color: #333;
+  margin-bottom: 0;
+  padding: 5px;
+
+}
+
+#errorExplanation li {
+  list-style:none;
+  list-style-image:none;
+}
+
+/*  SGJ CUSTOM  */
+
+.the_date {
+display:block;
+text-align: center;
+float:left;
+font-family: Arial, Helvetica, sans-serif;
+background: url(/images/calendar_icons/silver-white1_75.png) no-repeat;
+width:60px;
+height:60px;
+}
+
+.date_day_of_week {
+display:block;
+font-size: .6em;
+margin:-9px;
+padding:1.2em;
+font-weight: bold;
+text-align:center;
+}
+
+.date_month {
+display:block;
+font-size: .8em;
+margin:2px;
+padding:0;
+font-weight: bold;
+text-align:center;
+}
+
+
+.date_day_of_month {
+display:block;
+font-size:1.5em;
+margin:-15px;
+padding:0em 0 0em 5;
+text-align: center;
+}
+
+
+
+
+
+
+.the_date_checkin {
+text-align: center;
+font-family: Arial, Helvetica, sans-serif;
+background: url(/images/calendar_icons/bluegray_75.png) no-repeat;
+width:60px;
+height:60px;
+}
+
+.date_day_of_week_checkin {
+display:block;
+font-size: .6em;
+margin:-9px;
+padding:1.2em;
+font-weight: bold;
+text-align:center;
+}
+
+.date_month_checkin {
+display:block;
+font-size: .8em;
+margin:2px;
+padding:0;
+font-weight: bold;
+text-align:center;
+}
+
+
+.date_day_of_month_checkin {
+display:block;
+font-size:1.5em;
+margin:-15px;
+padding:0em 0 0em 5;
+text-align: center;
+}
+
+
+
+
+
+
+
+
+div.date_goal_list {
+border-radius:20px;
+-moz-border-radius:20px;
+border-width:medium;
+border-style:none;
+border-color:#eeeeee;
+background-color:#ffffff;
+padding:10px;
+margin:0px;
+width:800px;
+}
+
+div.until_midnight {
+margin-top: -25px;
+margin-left: 105px;
+
+}
+
+div.until_midnight_tomorrow {
+margin-top: -25px;
+margin-left: 105px;
+
+}
+
+div.other_future_habits {
+margin-top: -25px;
+margin-left: 10px;
+
+}
+
+
+div.div_habit {
+border-radius:20px;
+-moz-border-radius:20px;
+border-width:thin;
+border-style:solid;
+border-color:#eeeeee;
+background-color:#ffffff;
+padding:10px;
+margin-left: 50px;
+width:700px;
+}
+
+
+div.div_stats {
+margin-top: 0px;
+margin-left: 50px;
+
+}
+
+div.div_team {
+margin-top: 0px;
+margin-left: 50px;
+
+}
+
+
+
+div.spinner_overlay {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: url(/images/ajax-loader_2.gif) center center no-repeat;
+    /* 
+    background: rgba(0,0,0,.5) url(/images/ajax-loader.gif) center center no-repeat;
+    background: black url(/images/ajax-loader.gif) center center no-repeat;
+    opacity: .5;    
+    */
+}
+/* LIGHT BOX
+http://www.emanueleferonato.com/2007/08/22/create-a-lightbox-effect-only-with-css-no-javascript-needed/
+*/
+.black_overlay{
+	position: absolute;
+	top: 0%;
+	left: 0%;
+	width: 100%;
+	height: 100%;
+	background-color: black;
+	z-index:1001;
+	-moz-opacity: 0.8;
+	opacity:.80;
+	filter: alpha(opacity=80);
+}
+.white_content {
+	position: absolute;
+	top: 20%;
+	left: 25%;
+	width: 50%;
+	height: 500px;
+	padding: 16px;
+	border: 16px solid black;
+	background-color: white;
+	z-index:1002;
+	overflow: auto;
+}
+.div_close_button {
+	position: absolute;
+	top: 18%;
+	left: 76%;
+	width: 55%;
+	height: 55%;
+	padding: 16px;
+	z-index:1003;
+	overflow: auto;
+}
+/* END LIGHT BOX
+*/
+
+div.stats_badge {
+border-radius:20px;
+-moz-border-radius:20px;
+border-width:medium;
+border-style:solid;
+border-color:#eeeeee;
+background-color:#ffffff;
+padding:10px;
+margin:0px;
+width:350px;
+}

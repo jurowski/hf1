@@ -1,0 +1,203 @@
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/svn/habitforge/!svn/ver/256/trunk/app/views/layouts
+END
+teams.html.erb
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/habitforge/!svn/ver/2/trunk/app/views/layouts/teams.html.erb
+END
+tomessages.html.erb
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/habitforge/!svn/ver/2/trunk/app/views/layouts/tomessages.html.erb
+END
+.listing
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/habitforge/!svn/ver/2/trunk/app/views/layouts/.listing
+END
+failedcheckpoints.html.erb
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/habitforge/!svn/ver/2/trunk/app/views/layouts/failedcheckpoints.html.erb
+END
+quotes.html.erb
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/habitforge/!svn/ver/2/trunk/app/views/layouts/quotes.html.erb
+END
+betpayees.html.erb
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/habitforge/!svn/ver/2/trunk/app/views/layouts/betpayees.html.erb
+END
+frommessages.html.erb
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/habitforge/!svn/ver/2/trunk/app/views/layouts/frommessages.html.erb
+END
+expiredcheckpoints.html.erb
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/habitforge/!svn/ver/2/trunk/app/views/layouts/expiredcheckpoints.html.erb
+END
+_marriagereminders.erb
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/habitforge/!svn/ver/2/trunk/app/views/layouts/_marriagereminders.erb
+END
+bets.html.erb
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/habitforge/!svn/ver/2/trunk/app/views/layouts/bets.html.erb
+END
+tags.html.erb
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/habitforge/!svn/ver/240/trunk/app/views/layouts/tags.html.erb
+END
+goaltemplates.html.erb
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/habitforge/!svn/ver/240/trunk/app/views/layouts/goaltemplates.html.erb
+END
+goaltags.html.erb
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/habitforge/!svn/ver/240/trunk/app/views/layouts/goaltags.html.erb
+END
+coachgoals.html.erb
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/habitforge/!svn/ver/52/trunk/app/views/layouts/coachgoals.html.erb
+END
+_habitforge.erb_old
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/habitforge/!svn/ver/2/trunk/app/views/layouts/_habitforge.erb_old
+END
+coaches.html.erb
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/habitforge/!svn/ver/52/trunk/app/views/layouts/coaches.html.erb
+END
+goals.html.erb
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/habitforge/!svn/ver/2/trunk/app/views/layouts/goals.html.erb
+END
+_habitforge.erb
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/habitforge/!svn/ver/256/trunk/app/views/layouts/_habitforge.erb
+END
+_clearworth.erb
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/habitforge/!svn/ver/192/trunk/app/views/layouts/_clearworth.erb
+END
+affiliates.html.erb
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/habitforge/!svn/ver/171/trunk/app/views/layouts/affiliates.html.erb
+END
+cheers.html.erb
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/habitforge/!svn/ver/2/trunk/app/views/layouts/cheers.html.erb
+END
+_reengagefocus.erb
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/habitforge/!svn/ver/2/trunk/app/views/layouts/_reengagefocus.erb
+END
+checkpoints.html.erb
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/habitforge/!svn/ver/2/trunk/app/views/layouts/checkpoints.html.erb
+END
+teamgoals.html.erb
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/habitforge/!svn/ver/2/trunk/app/views/layouts/teamgoals.html.erb
+END
+_eathealthy.erb
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/habitforge/!svn/ver/2/trunk/app/views/layouts/_eathealthy.erb
+END
+_mydailytracking.erb
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/habitforge/!svn/ver/2/trunk/app/views/layouts/_mydailytracking.erb
+END
+_forittobe.erb
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/habitforge/!svn/ver/192/trunk/app/views/layouts/_forittobe.erb
+END
+promotion1s.html.erb
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/habitforge/!svn/ver/2/trunk/app/views/layouts/promotion1s.html.erb
+END
+stats.html.erb
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/habitforge/!svn/ver/2/trunk/app/views/layouts/stats.html.erb
+END
+users.html.erb
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/habitforge/!svn/ver/2/trunk/app/views/layouts/users.html.erb
+END
+top.html.erb
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/habitforge/!svn/ver/2/trunk/app/views/layouts/top.html.erb
+END
+applicationOLD.html.erb
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/habitforge/!svn/ver/2/trunk/app/views/layouts/applicationOLD.html.erb
+END
+application.html.erb
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/habitforge/!svn/ver/192/trunk/app/views/layouts/application.html.erb
+END

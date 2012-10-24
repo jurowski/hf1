@@ -1,0 +1,26 @@
+<p>
+  <b>Name:</b>
+  <%=h @betpayee.name %>
+</p>
+
+<p>
+  <b>Url:</b>
+  <%=h @betpayee.url %>
+</p>
+
+<p>
+  <b>Totaldonated:</b>
+  <%=h @betpayee.totaldonated %>
+</p>
+<p>
+  <b>Product ID:</b>
+  <%=h @betpayee.product_id %>
+</p>
+<p>
+  <b>Image:</b>
+  <img src="/causes/<%= @betpayee.image_path %>" border=0 />
+</p>
+
+
+<%= link_to 'Edit', edit_betpayee_path(@betpayee) %> |
+<%= link_to 'Back', betpayees_path %>

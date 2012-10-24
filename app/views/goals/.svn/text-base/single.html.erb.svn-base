@@ -1,0 +1,98 @@
+
+  <p>
+  <a href="/goals"><-- Back</a>
+  </p>
+  <p>
+<DIV style="border-radius:20px;-moz-border-radius:20px;border-width:medium;border-color:#eeeeee;background-color:#eeeeee;border-style:solid;padding:10px 10px 10px 10px;width:870px;">
+  <h2>Daily Checkpoints for "<%= @goal.title %>"</h2>
+</div>
+
+  <%
+  if @goal.checkpoints_asc.size == 0
+  %>
+  <strong> No Checkpoints Yet </strong>
+  <%
+  else
+  %>
+
+    <p><strong>Current "Day 1": <%= @goal.start.strftime("%a, %b %d, %Y") %></p>
+    <%
+    @goal.checkpoints_asc.each do |checkpoint| %>
+        <%
+        if checkpoint.checkin_date == @goal.start
+        %>
+            <DIV style="border-radius:20px;-moz-border-radius:20px;border-width:medium;border-color:#eeeeee;background-color:#fffff;border-style:solid;padding:10px 10px 10px 10px;margin:10px 10px 10px 10px;width:610px;">
+            Start of <%= @goal.days_to_form_a_habit %> days
+            </div>
+        <%
+        end
+        %>
+      
+        <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <% #link_to 'Edit', edit_checkpoint_path(checkpoint) %>
+
+        <% if checkpoint.status != "yes" and checkpoint.status != "no" %>
+            <img src="/images/error_button.png" alt="Unsure" width = 25/>
+        <% end %>
+        <% if checkpoint.status == "no" %>
+            <img src="/images/star_off16.png" alt="No" width = 25/>
+        <% end %>
+        <% if checkpoint.status == "yes" %>
+            <img src="/images/star_16.png" alt="Yes" width = 25/>
+        <% end %>
+
+        <b><%=h checkpoint.status %></b>
+        
+        • 
+        
+        (
+        <% if checkpoint.checkin_date == @goal.user.dtoday %>
+            Today, 
+        <% end %>
+        <% if checkpoint.checkin_date == @goal.user.dyesterday %>
+            Yesterday, 
+        <% end %>
+        <%=h checkpoint.checkin_date.strftime("%a, %b %d, %Y") %>)
+
+        •
+
+        <% if checkpoint.status != "yes" and checkpoint.status != "no" %>
+          <a href="<%= server_root_url %>/goals/single/<%= checkpoint.goal.id %>?update_checkpoint_status=yes&date=<%= checkpoint.checkin_date %>"><font color=red>Yes?</font></a>
+          <a href="<%= server_root_url %>/goals/single/<%= checkpoint.goal.id %>?update_checkpoint_status=no&date=<%= checkpoint.checkin_date %>"><font color=red>No?</font></a>
+        <% end %>
+
+        <% if checkpoint.status == "no" %>
+          <a href="<%= server_root_url %>/goals/single/<%= checkpoint.goal.id %>?update_checkpoint_status=yes&date=<%= checkpoint.checkin_date %>"><font color=red>Change Answer to a "Yes"</font></a>
+        <% end %>
+
+        <% if checkpoint.status == "yes" %>
+          <a href="<%= server_root_url %>/goals/single/<%= checkpoint.goal.id %>?update_checkpoint_status=no&date=<%= checkpoint.checkin_date %>"><font color=red>Change Answer to a "No"</font></a>
+        <% end %>
+
+        •
+
+        <% if checkpoint.comment == nil or checkpoint.comment == "" %>
+            <%= link_to "Add a Note", edit_checkpoint_path(checkpoint.id)  %>            
+        <% else %>
+            <%= link_to checkpoint.comment, edit_checkpoint_path(checkpoint.id)  %>            
+        <% end %>
+
+    <% end %>
+
+
+
+
+  <%
+  end
+
+
+  %>
+
+  <p>
+  <a href="/goals"><-- Back</a>
+  <br>
+
+  </div>
+  <br>
+

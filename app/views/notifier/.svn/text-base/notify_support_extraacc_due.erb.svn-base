@@ -1,0 +1,6 @@
+<% if @number_of_extraacc_due > 0 %>
+    There are <%= @number_of_extraacc_due %> people who need emails sent to them!
+    Make sure to update the user.coach_follow_next date (+7) (and user.coach_follow_yn if needed) fields when done.
+<% else %>
+    Off the hook today... no Extra Accountability emails to send to clients.
+<% end %>

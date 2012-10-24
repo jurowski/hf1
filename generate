@@ -1,0 +1,1617 @@
+Script started on Mon 24 Sep 2012 03:28:39 PM CDT
+root@adv [/habitforge/current]# cd script/
+root@adv [/habitforge/current/script]# cd script/mongrel_rails cluster::restart -C /home/juurowsk1/etc/rails_apps/habitforge/current/config/mongrel_cluster.yml[A[22Pvim _habitforge.erb
+[K[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cmongrel_rails cluster::restart -C /home/juurowsk1/etc/rails_apps/habitforge/current/config/mongrel_cluster.yml[Acd script/[K
+[K[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Kcd script/mongrel_rails cluster::restart -C /home/juurowsk1/etc/rails_apps/habitforge/current/config/mongrel_cluster.yml[Acd script/[K
+[K[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Kgenerate migration AddPromocomebackToUser s
+bash: generate: command not found
+root@adv [/habitforge/current/script]# generate migration AddPromocomebackToUserss[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C.generate migration AddPromocomebackToUsers[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C
+
+bash: .generate: command not found
+root@adv [/habitforge/current/script]# ls
+[0m[01;34m.[0m/   [01;32mabout[0m*    [01;32mdbconsole[0m*  [01;32mgenerate[0m*  [0m.listing[0m      [01;32mplugin[0m*  [01;32mserver[0m*
+[01;34m..[0m/  [01;32mconsole[0m*  [01;32mdestroy[0m*    [0m.htaccess[0m  [01;34mperformance[0m/  [01;32mrunner[0m*  [01;34m.svn[0m/
+[mroot@adv [/habitforge/current/script]# ls.generate migration AddPromocomebackToUserrs[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cls[K
+[K[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Kcd ..
+root@adv [/habitforge/current]# cd ..[3Plscd ..[Ke[Kscript/generate migration AddPromocomebackToUser s
+      exists  db/migrate
+      create  db/migrate/20120924202931_add_promocomeback_to_users.rb
+root@adv [/habitforge/current]# cd db/migrate/
+root@adv [/habitforge/current/db/migrate]# vim 2012092420293
+[?1049h[?1h=[1;24r[?12;25h[?12l[?25h[27m[m[H[2J[?25l[24;1H"2012092420293" [New File][>c[2;1H[94m~                                                                               [3;1H~                                                                               [4;1H~                                                                               [5;1H~                                                                               [6;1H~                                                                               [7;1H~                                                                               [8;1H~                                                                               [9;1H~                                                                               [10;1H~                                                                               [11;1H~                                                                               [12;1H~                                                                               [13;1H~                                                                               [14;1H~                                                                               [15;1H~                                                                               [16;1H~                                                                               [17;1H~                                                                               [18;1H~                                                                               [19;1H~                                                                               [20;1H~                                                                               [21;1H~                                                                               [22;1H~                                                                               [23;1H~                                                                               [m[24;63H0,0-1         All[1;1H[?12l[?25h[?25l[24;1H[K[24;1H:[?12l[?25hq[?25l:q[?12l[?25h[?25l[24;1H[K[24;1H[?1l>[?12l[?25h[?1049lroot@adv [/habitforge/current/db/migrate]# vim 20120924202931_add_promocomeback_tto_users.rb 
+[?1049h[?1h=[1;24r[?12;25h[?12l[?25h[27m[m[H[2J[?25l[24;1H"20120924202931_add_promocomeback_to_users.rb" "20120924202931_add_promocomeback_to_users.rb" 7L, 103C[>c[1;1H[35mclass [m[32mAddPromocomebackToUsers[m < [36mActiveRecord[m::[36mMigration[m
+  [35mdef [m[36mself.up[m
+  [35mend
+
+[m  [35mdef [m[36mself.down[m
+  [35mend
+end[m
+[94m~                                                                               [9;1H~                                                                               [10;1H~                                                                               [11;1H~                                                                               [12;1H~                                                                               [13;1H~                                                                               [14;1H~                                                                               [15;1H~                                                                               [16;1H~                                                                               [17;1H~                                                                               [18;1H~                                                                               [19;1H~                                                                               [20;1H~                                                                               [21;1H~                                                                               [22;1H~                                                                               [23;1H~                                                                               [m[24;63H1,1           All[1;1H[?12l[?25h[?25l[24;63H2,1           All[2;1H[?12l[?25h[?25l[24;63H3,1           All[3;1H[?12l[?25h[?25l[24;63H2,1           All[2;1H[?12l[?25h[?25l[24;63H2,2           All[2;2H[?12l[?25h[?25l[24;63H2,3           All[2;3H[?12l[?25h[?25l[24;63H3,3           All[3;3H[?12l[?25h[?25l[24;63H3,2           All[3;2H[?12l[?25h[?25l[24;63H3,1           All[3;1H[?12l[?25h[?25l[24;1H[1m-- INSERT --[m[24;13H[K[24;63H3,1           All[3;1H[?12l[?25h[?25l[4;23r[4;1H[L[1;24r[3;3H[K[4;3H[35mend[m[24;1H[1m-- INSERT --[m[24;63H[K[24;63H4,1           All[4;1H[?12l[?25h[?25l[24;63H3,1           All[3;1H[?12l[?25h[?25l[24;63H3,2           All[3;2H[?12l[?25h[?25l[24;63H3,3           All[3;3H[?12l[?25h[?25l[24;63H3,4           All[3;4H[?12l[?25h[?25l[24;63H3,5           All[3;5H[?12l[?25h[?25la[24;63H3,6           All[3;6H[?12l[?25h[?25ld[24;63H3,7           All[3;7H[?12l[?25h[?25ld[24;63H3,8           All[3;8H[?12l[?25h[?25l_[24;63H3,9           All[3;9H[?12l[?25h[?25lc[24;63H3,10          All[3;10H[?12l[?25h[?25lo[24;63H3,11          All[3;11H[?12l[?25h[?25ll[24;63H3,12          All[3;12H[?12l[?25h[?25lu[24;63H3,13          All[3;13H[?12l[?25h[?25lm[24;63H3,14          All[3;14H[?12l[?25h[?25ln[24;63H3,15          All[3;15H[?12l[?25h[?25l[24;63H3,16          All[3;16H[?12l[?25h[?25l:[24;63H3,17          All[3;17H[?12l[?25h[?25l[36m:u[m[24;63H3,18          All[3;18H[?12l[?25h[?25l[36ms[m[24;63H3,19          All[3;19H[?12l[?25h[?25l[36me[m[24;63H3,20          All[3;20H[?12l[?25h[?25l[36mr[m[24;63H3,21          All[3;21H[?12l[?25h[?25l[36ms[m[24;63H3,22          All[3;22H[?12l[?25h[?25l,[24;63H3,23          All[3;23H[?12l[?25h[?25l[24;63H3,24          All[3;24H[?12l[?25h[?25l:[24;63H3,25          All[3;25H[?12l[?25h[?25l[36m:p[m[24;63H3,26          All[3;26H[?12l[?25h[?25l[36mr[m[24;63H3,27          All[3;27H[?12l[?25h[?25l[36mo[m[24;63H3,28          All[3;28H[?12l[?25h[?25l[36mm[m[24;63H3,29          All[3;29H[?12l[?25h[?25l[36mo[m[24;63H3,30          All[3;30H[?12l[?25h[?25l[36m_[m[24;63H3,31          All[3;31H[?12l[?25h[?25l[36mc[m[24;63H3,32          All[3;32H[?12l[?25h[?25l[36mo[m[24;63H3,33          All[3;33H[?12l[?25h[?25l[36mm[m[24;63H3,34          All[3;34H[?12l[?25h[?25l[36me[m[24;63H3,35          All[3;35H[?12l[?25h[?25l[36mb[m[24;63H3,36          All[3;36H[?12l[?25h[?25l[36ma[m[24;63H3,37          All[3;37H[?12l[?25h[?25l[36mc[m[24;63H3,38          All[3;38H[?12l[?25h[?25l[36mk[m[24;63H3,39          All[3;39H[?12l[?25h[?25l[36m_[m[24;63H3,40          All[3;40H[?12l[?25h[?25l[36ml[m[24;63H3,41          All[3;41H[?12l[?25h[?25l[36ma[m[24;63H3,42          All[3;42H[?12l[?25h[?25l[36ms[m[24;63H3,43          All[3;43H[?12l[?25h[?25l[36mt[m[24;63H3,44          All[3;44H[?12l[?25h[?25l[36m_[m[24;63H3,45          All[3;45H[?12l[?25h[?25l[36ms[m[24;63H3,46          All[3;46H[?12l[?25h[?25l[36me[m[24;63H3,47          All[3;47H[?12l[?25h[?25l[36mt[m[24;63H3,48          All[3;48H[?12l[?25h[?25l[36mn[m[24;63H3,49          All[3;49H[?12l[?25h[?25l[3;48H[K[24;63H3,48          All[3;48H[?12l[?25h[?25l[3;47H[K[24;63H3,47          All[3;47H[?12l[?25h[?25l[36mn[m[24;63H3,48          All[3;48H[?12l[?25h[?25l[36mt[m[24;63H3,49          All[3;49H[?12l[?25h[?25l,[24;63H3,50          All[3;50H[?12l[?25h[?25l[24;63H3,51          All[3;51H[?12l[?25h[?25l:[24;63H3,52          All[3;52H[?12l[?25h[?25l[36m:d[m[24;63H3,53          All[3;53H[?12l[?25h[?25l[36ma[m[24;63H3,54          All[3;54H[?12l[?25h[?25l[36mt[m[24;63H3,55          All[3;55H[?12l[?25h[?25l[36me[m[24;63H3,56          All[3;56H[?12l[?25h[?25l[24;63H3,55          All[3;55H[?12l[?25h[?25l[24;63H3,54          All[3;54H[?12l[?25h[?25l[24;63H3,55          All[3;55H[?12l[?25h[?25l[24;63H3,56          All[3;56H[?12l[?25h[?25l[4;23r[4;1H[L[1;24r[24;1H[1m-- INSERT --[m[24;63H[K[24;63H4,1           All[4;1H[?12l[?25h[?25l[24;63H4,2           All[4;2H[?12l[?25h[?25l[24;63H4,3           All[4;3H[?12l[?25h[?25l[24;63H4,4           All[4;4H[?12l[?25h[?25l[24;63H4,5           All[4;5H[?12l[?25h[?25la[24;63H4,6           All[4;6H[?12l[?25h[?25ld[24;63H4,7           All[4;7H[?12l[?25h[?25ld[24;63H4,8           All[4;8H[?12l[?25h[?25l_[24;63H4,9           All[4;9H[?12l[?25h[?25lc[24;63H4,10          All[4;10H[?12l[?25h[?25lo[24;63H4,11          All[4;11H[?12l[?25h[?25ll[24;63H4,12          All[4;12H[?12l[?25h[?25lu[24;63H4,13          All[4;13H[?12l[?25h[?25lm[24;63H4,14          All[4;14H[?12l[?25h[?25ln[24;63H4,15          All[4;15H[?12l[?25h[?25l[24;63H4,16          All[4;16H[?12l[?25h[?25l:[24;63H4,17          All[4;17H[?12l[?25h[?25l[36m:u[m[24;63H4,18          All[4;18H[?12l[?25h[?25l[36ms[m[24;63H4,19          All[4;19H[?12l[?25h[?25l[36me[m[24;63H4,20          All[4;20H[?12l[?25h[?25l[36mr[m[24;63H4,21          All[4;21H[?12l[?25h[?25l[36ms[m[24;63H4,22          All[4;22H[?12l[?25h[?25l,[24;63H4,23          All[4;23H[?12l[?25h[?25l[24;63H4,24          All[4;24H[?12l[?25h[?25l:[24;63H4,25          All[4;25H[?12l[?25h[?25l[36m:p[m[24;63H4,26          All[4;26H[?12l[?25h[?25l[36mr[m[24;63H4,27          All[4;27H[?12l[?25h[?25l[36mo[m[24;63H4,28          All[4;28H[?12l[?25h[?25l[36mm[m[24;63H4,29          All[4;29H[?12l[?25h[?25l[36mo[m[24;63H4,30          All[4;30H[?12l[?25h[?25l[36m_[m[24;63H4,31          All[4;31H[?12l[?25h[?25l[36mc[m[24;63H4,32          All[4;32H[?12l[?25h[?25l[36mo[m[24;63H4,33          All[4;33H[?12l[?25h[?25l[36mm[m[24;63H4,34          All[4;34H[?12l[?25h[?25l[36me[m[24;63H4,35          All[4;35H[?12l[?25h[?25l[36mb[m[24;63H4,36          All[4;36H[?12l[?25h[?25l[36ma[m[24;63H4,37          All[4;37H[?12l[?25h[?25l[36mc[m[24;63H4,38          All[4;38H[?12l[?25h[?25l[36mk[m[24;63H4,39          All[4;39H[?12l[?25h[?25l[36m_[m[24;63H4,40          All[4;40H[?12l[?25h[?25l[36mt[m[24;63H4,41          All[4;41H[?12l[?25h[?25l[36mo[m[24;63H4,42          All[4;42H[?12l[?25h[?25l[36mk[m[24;63H4,43          All[4;43H[?12l[?25h[?25l[36me[m[24;63H4,44          All[4;44H[?12l[?25h[?25l[36mn[m[24;63H4,45          All[4;45H[?12l[?25h[?25l,[24;63H4,46          All[4;46H[?12l[?25h[?25l[24;63H4,47          All[4;47H[?12l[?25h[?25l:[24;63H4,48          All[4;48H[?12l[?25h[?25l[36m:s[m[24;63H4,49          All[4;49H[?12l[?25h[?25l[36mt[m[24;63H4,50          All[4;50H[?12l[?25h[?25l[36mr[m[24;63H4,51          All[4;51H[?12l[?25h[?25l[36mi[m[24;63H4,52          All[4;52H[?12l[?25h[?25l[36mn[m[24;63H4,53          All[4;53H[?12l[?25h[?25l[36mg[m[24;63H4,54          All[4;54H[?12l[?25h[?25l[24;63H5,6           All[5;6H[?12l[?25h[?25l[24;63H6,1           All[6;1H[?12l[?25h[?25l[24;63H7,16          All[7;16H[?12l[?25h[?25l[8;23r[8;1H[L[1;24r[24;1H[1m-- INSERT --[m[24;63H[K[24;63H8,1           All[8;1H[?12l[?25h[?25l[24;63H8,2           All[8;2H[?12l[?25h[?25l[24;63H8,3           All[8;3H[?12l[?25h[?25l[24;63H8,4           All[8;4H[?12l[?25h[?25l[24;63H8,5           All[8;5H[?12l[?25h[?25lr[24;63H8,6           All[8;6H[?12l[?25h[?25le[24;63H8,7           All[8;7H[?12l[?25h[?25lm[24;63H8,8           All[8;8H[?12l[?25h[?25lo[24;63H8,9           All[8;9H[?12l[?25h[?25lv[24;63H8,10          All[8;10H[?12l[?25h[?25le[24;63H8,11          All[8;11H[?12l[?25h[?25l_[24;63H8,12          All[8;12H[?12l[?25h[?25lc[24;63H8,13          All[8;13H[?12l[?25h[?25lo[24;63H8,14          All[8;14H[?12l[?25h[?25ll[24;63H8,15          All[8;15H[?12l[?25h[?25lu[24;63H8,16          All[8;16H[?12l[?25h[?25lm[24;63H8,17          All[8;17H[?12l[?25h[?25ln[24;63H8,18          All[8;18H[?12l[?25h[?25l,[24;63H8,19          All[8;19H[?12l[?25h[?25l[24;63H8,20          All[8;20H[?12l[?25h[?25l:[24;63H8,21          All[8;21H[?12l[?25h[?25l[36m:u[m[24;63H8,22          All[8;22H[?12l[?25h[?25l[36ms[m[24;63H8,23          All[8;23H[?12l[?25h[?25l[36me[m[24;63H8,24          All[8;24H[?12l[?25h[?25l[36mr[m[24;63H8,25          All[8;25H[?12l[?25h[?25l[36ms[m[24;63H8,26          All[8;26H[?12l[?25h[?25l,[24;63H8,27          All[8;27H[?12l[?25h[?25l[24;63H8,28          All[8;28H[?12l[?25h[?25l:[24;63H8,29          All[8;29H[?12l[?25h[?25l[36m:p[m[24;63H8,30          All[8;30H[?12l[?25h[?25l[36mr[m[24;63H8,31          All[8;31H[?12l[?25h[?25l[36mo[m[24;63H8,32          All[8;32H[?12l[?25h[?25l[36mm[m[24;63H8,33          All[8;33H[?12l[?25h[?25l[36mo[m[24;63H8,34          All[8;34H[?12l[?25h[?25l[36m_[m[24;63H8,35          All[8;35H[?12l[?25h[?25l[36mc[m[24;63H8,36          All[8;36H[?12l[?25h[?25l[36mo[m[24;63H8,37          All[8;37H[?12l[?25h[?25l[36mm[m[24;63H8,38          All[8;38H[?12l[?25h[?25l[36me[m[24;63H8,39          All[8;39H[?12l[?25h[?25l[36mb[m[24;63H8,40          All[8;40H[?12l[?25h[?25l[36ma[m[24;63H8,41          All[8;41H[?12l[?25h[?25l[36mc[m[24;63H8,42          All[8;42H[?12l[?25h[?25l[36mk[m[24;63H8,43          All[8;43H[?12l[?25h[?25l[36m_[m[24;63H8,44          All[8;44H[?12l[?25h[?25l[36ml[m[24;63H8,45          All[8;45H[?12l[?25h[?25l[36ma[m[24;63H8,46          All[8;46H[?12l[?25h[?25l[36ms[m[24;63H8,47          All[8;47H[?12l[?25h[?25l[36mt[m[24;63H8,48          All[8;48H[?12l[?25h[?25l[36m_[m[24;63H8,49          All[8;49H[?12l[?25h[?25l[36ms[m[24;63H8,50          All[8;50H[?12l[?25h[?25l[36me[m[24;63H8,51          All[8;51H[?12l[?25h[?25l[36mt[m[24;63H8,52          All[8;52H[?12l[?25h[?25l[36mn[m[24;63H8,53          All[8;53H[?12l[?25h[?25l[8;52H[K[24;63H8,52          All[8;52H[?12l[?25h[?25l[8;51H[K[24;63H8,51          All[8;51H[?12l[?25h[?25l[36mn[m[24;63H8,52          All[8;52H[?12l[?25h[?25l[36mt[m[24;63H8,53          All[8;53H[?12l[?25h[?25l[9;23r[9;1H[L[1;24r[24;1H[1m-- INSERT --[m[24;63H[K[24;63H9,1           All[9;1H[?12l[?25h[?25l[24;63H9,2           All[9;2H[?12l[?25h[?25l[24;63H9,3           All[9;3H[?12l[?25h[?25l[24;63H9,4           All[9;4H[?12l[?25h[?25l[24;63H9,5           All[9;5H[?12l[?25h[?25lr[24;63H9,6           All[9;6H[?12l[?25h[?25le[24;63H9,7           All[9;7H[?12l[?25h[?25lm[24;63H9,8           All[9;8H[?12l[?25h[?25lo[24;63H9,9           All[9;9H[?12l[?25h[?25lv[24;63H9,10          All[9;10H[?12l[?25h[?25le[24;63H9,11          All[9;11H[?12l[?25h[?25l_[24;63H9,12          All[9;12H[?12l[?25h[?25lc[24;63H9,13          All[9;13H[?12l[?25h[?25lo[24;63H9,14          All[9;14H[?12l[?25h[?25ll[24;63H9,15          All[9;15H[?12l[?25h[?25lu[24;63H9,16          All[9;16H[?12l[?25h[?25lm[24;63H9,17          All[9;17H[?12l[?25h[?25ln[24;63H9,18          All[9;18H[?12l[?25h[?25l,[24;63H9,19          All[9;19H[?12l[?25h[?25l[24;63H9,20          All[9;20H[?12l[?25h[?25l:[24;63H9,21          All[9;21H[?12l[?25h[?25l[36m:u[m[24;63H9,22          All[9;22H[?12l[?25h[?25l[36ms[m[24;63H9,23          All[9;23H[?12l[?25h[?25l[36me[m[24;63H9,24          All[9;24H[?12l[?25h[?25l[36mr[m[24;63H9,25          All[9;25H[?12l[?25h[?25l[36ms[m[24;63H9,26          All[9;26H[?12l[?25h[?25l,[24;63H9,27          All[9;27H[?12l[?25h[?25l[24;63H9,28          All[9;28H[?12l[?25h[?25lp[24;63H9,29          All[9;29H[?12l[?25h[?25l[9;28H[K[24;63H9,28          All[9;28H[?12l[?25h[?25l:[24;63H9,29          All[9;29H[?12l[?25h[?25l[36m:p[m[24;63H9,30          All[9;30H[?12l[?25h[?25l[36mr[m[24;63H9,31          All[9;31H[?12l[?25h[?25l[36mo[m[24;63H9,32          All[9;32H[?12l[?25h[?25l[36mm[m[24;63H9,33          All[9;33H[?12l[?25h[?25l[36mo[m[24;63H9,34          All[9;34H[?12l[?25h[?25l[36m_[m[24;63H9,35          All[9;35H[?12l[?25h[?25l[36mc[m[24;63H9,36          All[9;36H[?12l[?25h[?25l[36mo[m[24;63H9,37          All[9;37H[?12l[?25h[?25l[36mm[m[24;63H9,38          All[9;38H[?12l[?25h[?25l[36me[m[24;63H9,39          All[9;39H[?12l[?25h[?25l[36mb[m[24;63H9,40          All[9;40H[?12l[?25h[?25l[36ma[m[24;63H9,41          All[9;41H[?12l[?25h[?25l[36mc[m[24;63H9,42          All[9;42H[?12l[?25h[?25l[36mk[m[24;63H9,43          All[9;43H[?12l[?25h[?25l[36m_[m[24;63H9,44          All[9;44H[?12l[?25h[?25l[36ml[m[24;63H9,45          All[9;45H[?12l[?25h[?25l[36ma[m[24;63H9,46          All[9;46H[?12l[?25h[?25l[36ms[m[24;63H9,47          All[9;47H[?12l[?25h[?25l[36mt[m[24;63H9,48          All[9;48H[?12l[?25h[?25l[36m_[m[24;63H9,49          All[9;49H[?12l[?25h[?25l[9;48H[K[24;63H9,48          All[9;48H[?12l[?25h[?25l[9;47H[K[24;63H9,47          All[9;47H[?12l[?25h[?25l[9;46H[K[24;63H9,46          All[9;46H[?12l[?25h[?25l[9;45H[K[24;63H9,45          All[9;45H[?12l[?25h[?25l[9;44H[K[24;63H9,44          All[9;44H[?12l[?25h[?25l[36mt[m[24;63H9,45          All[9;45H[?12l[?25h[?25l[36mo[m[24;63H9,46          All[9;46H[?12l[?25h[?25l[36mk[m[24;63H9,47          All[9;47H[?12l[?25h[?25l[36me[m[24;63H9,48          All[9;48H[?12l[?25h[?25l[36mn[m[24;63H9,49          All[9;49H[?12l[?25h[24;1H[K[9;48H[?25l[24;63H9,48          All[9;48H[?12l[?25h[?25l[24;63H[K[24;1H:[?12l[?25hw[?25l:w[?12l[?25hq[?25l:wq[?12l[?25h[?25l"20120924202931_add_promocomeback_to_users.rb" <20924202931_add_promocomeback_to_users.rb" 11L, 315C written
+[?1l>[?12l[?25h[?1049lroot@adv [/habitforge/current/db/migrate]# vim 20120924202931_add_promocomeback_tto_users.rb [A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[K
+[K[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[3Pcd db/migrate/script/generate migration AddPromocomeebackToUsers[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Ccd ..[K
+[K[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[3Plscd ..script/generate migration AddPromocomeebackToUsers[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Ccd ..[K
+[K[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[3Pls.generate migration AddPromocomebackTooUsers[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cgenerate migration AddPromocomebackToU[1Psers[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Ccd script/[K
+[K[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cmongrel_rails cluster::restart -C /homme/jurowsk1/etc/rails_apps/habitforge/current/config/mongrel_cluster.yml[Acd script/[K
+[K[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cgenerate migration AddPromocomebackToUUsers[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Ccd script/[K
+[K[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cmongrel_rails cluster::restart -C /homme/jurowsk1/etc/rails_apps/habitforge/current/config/mongrel_cluster.yml
+stopping port 12003
+stopping port 12004
+starting port 12003
+starting port 12004
+root@adv [/habitforge/current/db/migrate]# RAILS_ENV=production rake db:migrate: redo VERSION=20120924202931
+(in /home/jurowsk1/etc/rails_apps/habitforge/releases/20120304121728)
+rake aborted!
+./db/migrate//20120924202931_add_promocomeback_to_users.rb:8: syntax error, unexpected ',', expecting tCOLON2 or '[' or '.'
+    remove_column, :users, :promo_comeback_last_sent
+                          ^
+./db/migrate//20120924202931_add_promocomeback_to_users.rb:9: syntax error, unexpected ',', expecting tCOLON2 or '[' or '.'
+    remove_column, :users, :promo_comeback_token
+                          ^
+
+(See full trace by running task with --trace)
+root@adv [/habitforge/current/db/migrate]# RAILS_ENV=production rake db:migrate:rredo VERSION=20120924202931[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cmongrel_rails cluster::restart -C /hom[C/jurowsk1/etc/rails_apps/habitforge/current/config/mongrel_cluster.yml[Avim 20120924202931_add_promocomeback_to_users.rb [K[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[K
+[K[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C1_add_promocomeback_tto_users.rb 
+[?1049h[?1h=[1;24r[?12;25h[?12l[?25h[27m[m[H[2J[?25l[24;1H"20120924202931_add_promocomeback_to_users.rb" "20120924202931_add_promocomeback_to_users.rb" 11L, 315C[>c[1;1H[35mclass [m[32mAddPromocomebackToUsers[m < [36mActiveRecord[m::[36mMigration[m
+  [35mdef [m[36mself.up[m
+    add_column [36m:users[m, [36m:promo_comeback_last_sent[m, [36m:date[m
+    add_column [36m:users[m, [36m:promo_comeback_token[m, [36m:string[m
+  [35mend
+
+[m  [35mdef [m[36mself.down[m
+    remove_column, [36m:users[m, [36m:promo_comeback_last_sent[m
+    remove_column, [36m:users[m, [36m:promo_comeback_token[m
+  [35mend
+end[m
+[94m~                                                                               [13;1H~                                                                               [14;1H~                                                                               [15;1H~                                                                               [16;1H~                                                                               [17;1H~                                                                               [18;1H~                                                                               [19;1H~                                                                               [20;1H~                                                                               [21;1H~                                                                               [22;1H~                                                                               [23;1H~                                                                               [m[24;63H9,5           All[9;5H[?12l[?25h[?25l[24;63H8,5           All[8;5H[?12l[?25h[?25l[24;63H8,6           All[8;6H[?12l[?25h[?25l[24;63H8,7           All[8;7H[?12l[?25h[?25l[24;63H8,8           All[8;8H[?12l[?25h[?25l[24;63H8,9           All[8;9H[?12l[?25h[?25l[24;63H8,10          All[8;10H[?12l[?25h[?25l[24;63H8,11          All[8;11H[?12l[?25h[?25l[24;63H8,12          All[8;12H[?12l[?25h[?25l[24;63H8,13          All[8;13H[?12l[?25h[?25l[24;63H8,14          All[8;14H[?12l[?25h[?25l[24;63H8,15          All[8;15H[?12l[?25h[?25l[24;63H8,16          All[8;16H[?12l[?25h[?25l[24;63H8,17          All[8;17H[?12l[?25h[?25l[24;63H8,18          All[8;18H[?12l[?25h[?25l [36m:users[m, [36m:promo_comeback_last_sent[m[8;52H[K[8;18H[?12l[?25h[?25l[24;63H9,18          All[9;18H[?12l[?25h[?25l [36m:users[m, [36m:promo_comeback_token[m[9;48H[K[9;18H[?12l[?25h[?25l[24;1H[K[24;1H:[?12l[?25hw[?25l:w[?12l[?25hq[?25l:wq[?12l[?25h[?25l"20120924202931_add_promocomeback_to_users.rb" <20924202931_add_promocomeback_to_users.rb" 11L, 313C written
+[?1l>[?12l[?25h[?1049lroot@adv [/habitforge/current/db/migrate]# vim 20120924202931_add_promocomeback_tto_users.rb [A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[CRAILS_ENV=production rake db:migrate:redo VERSION=20120924202931
+(in /home/jurowsk1/etc/rails_apps/habitforge/releases/20120304121728)
+==  AddPromocomebackToUsers: migrating ========================================
+-- add_column(:users, :promo_comeback_last_sent, :date)
+   -> 17.2884s
+-- add_column(:users, :promo_comeback_token, :string)
+   -> 11.8785s
+==  AddPromocomebackToUsers: migrated (29.1676s) ==============================
+
+root@adv [/habitforge/current/db/migrate]# RAILS_ENV=production rake db:migrate:rredo VERSION=20120924202931[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cvim 20120924202931_add_promocomeback_t[15Po_users.rb [A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[CRAILS_ENV=production rake db:migrate:redo VERSION=20120924202931[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cmongrel_rails cluster::restart -C /hom[C/jurowsk1/etc/rails_apps/habitforge/current/config/mongrel_cluster.yml[Avim 20120924202931_add_promocomeback_to_users.rb [K[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[K
+[K[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C1_add_promocomeback_tto_users.rb [A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cmongrel_rails cluster::restart -C /home/jurowsk1/etc/rails_apps/habitforge/current/config/mongrel_cluster.yml
+stopping port 12003
+stopping port 12004
+starting port 12003
+starting port 12004
+root@adv [/habitforge/current/db/migrate]# RAILS_ENV=production /usr/bin/ruby /h ome/jurowsk1/etc/rails_apps/habitforge/current/script/runner /home/jurowsk1/etc/ rails_apps/habitforge/current/app/po[Kro[K[K[Kupdate_po[Kromotion
+update_promotion1s.rb          update_promotion_come_back.rb
+root@adv [/habitforge/current/db/migrate]# RAILS_ENV=production /usr/bin/ruby /hoome/jurowsk1/etc/rails_apps/habitforge/current/script/runner /home/jurowsk1/etc/rrails_apps/habitforge/current/app/update_promotion_come_back.rb [K
+Max emails to send per hour = 100
+start er up
+Current timestamp is Mon Sep 24 16:12:56 -0500 2012
+/home/jurowsk1/etc/rails_apps/habitforge/current/app/update_promotion_come_back.rb:100: undefined method `*' for Thu, 26 Jul 2012:Date (NoMethodError)
+	from /usr/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `eval'
+	from /home/jurowsk1/etc/rails_apps/habitforge/releases/20120304121728/vendor/rails/railties/lib/commands/runner.rb:46
+	from /usr/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+	from /usr/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `require'
+	from /home/jurowsk1/etc/rails_apps/habitforge/current/script/runner:3
+root@adv [/habitforge/current/db/migrate]# [Kroot@adv [/habitforge/current/db/migrate]# [Kroot@adv [/habitforge/current/db/migrate]# [Kroot@adv [/habitforge/current/db/migrate]# [Kroot@adv [/habitforge/current/db/migrate]# [Kroot@adv [/habitforge/current/db/migrate]# [Kroot@adv [/habitforge/current/db/migrate]# [Kroot@adv [/habitforge/current/db/migrate]# [Kroot@adv [/habitforge/current/db/migrate]# [Kroot@adv [/habitforge/current/db/migrate]# [Kroot@adv [/habitforge/current/db/migrate]# [Kroot@adv [/habitforge/current/db/migrate]# [Kroot@adv [/habitforge/current/db/migrate]# [Kroot@adv [/habitforge/current/db/migrate]# [Kroot@adv [/habitforge/current/db/migrate]# [Kroot@adv [/habitforge/current/db/migrate]# [Kroot@adv [/habitforge/current/db/migrate]# [Kroot@adv [/habitforge/current/db/migrate]# [Kroot@adv [/habitforge/current/db/migrate]# [Kroot@adv [/habitforge/current/db/migrate]# [Kroot@adv [/habitforge/current/db/migrate]# [Kroot@adv [/habitforge/current/db/migrate]# [Kroot@adv [/habitforge/current/db/migrate]# [Kroot@adv [/habitforge/current/db/migrate]# [Kroot@adv [/habitforge/current/db/migrate]# [Kroot@adv [/habitforge/current/db/migrate]# [Kroot@adv [/habitforge/current/db/migrate]# [Kroot@adv [/habitforge/current/db/migrate]# [Kroot@adv [/habitforge/current/db/migrate]# [Kroot@adv [/habitforge/current/db/migrate]# [Kroot@adv [/habitforge/current/db/migrate]# [Kroot@adv [/habitforge/current/db/migrate]# [Kroot@adv [/habitforge/current/db/migrate]# [Kroot@adv [/habitforge/current/db/migrate]# [Kroot@adv [/habitforge/current/db/migrate]# RAILS_ENV=production /usr/bin/ruby /home/jurowsk1/etc/rails_apps/habitforge/current/script/runner /home/jurowsk1/etc/rails_apps/haabitforge/current/app/update_promotion_come_back.rb
+Max emails to send per hour = 100
+start er up
+Current timestamp is Mon Sep 24 16:14:00 -0500 2012
+counter = 0
+user.updated_at = Mon Sep 24 21:13:08 UTC 2012
+months_ago_2 = Wed Mar 28 16:14:00 -0500 2012
+token = efg4zthq
+jurowski@gmail.com is going to get an email
+Current timestamp is Mon Sep 24 16:14:00 -0500 2012
+jurowski@gmail.com was sent the promo_comeback email
+end of script
+root@adv [/habitforge/current/db/migrate]# RAILS_ENV=production /usr/bin/ruby /home/jurowsk1/etc/rails_apps/habitforge/current/script/runner /home/jurowsk1/etc/rails_apps/haabitforge/current/app/update_promotion_come_back.rb[A[20Pmongrel_rails cluster::restart -C /home/jurowsk1/etc/rails_apps/habitforge/current/config/mongrel_cluster.yml
+[K[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[45PRAILS_ENV=production rake db:migrate:redo VERSION=20120924202931[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cmongrel_rails cluster::restart -C /home/jurowsk1/etc/rails_apps/habitforge/current/config/mongrel_cluster.yml
+stopping port 12003
+stopping port 12004
+starting port 12003
+starting port 12004
+root@adv [/habitforge/current/db/migrate]# mongrel_rails cluster::restart -C /home/jurowsk1/etc/rails_apps/habitforge/current/config/mongrel_cluster.yml[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[CRAILS_ENV=production /usr/bin/ruby /home/jurowsk1/etc/rails_apps/habitforge/current/script/runner /home/jurowsk1/etc/rails_apps/haabitforge/current/app/update_promotion_come_back.rb
+Max emails to send per hour = 100
+start er up
+Current timestamp is Mon Sep 24 16:41:06 -0500 2012
+counter = 0
+user.updated_at = Mon Sep 24 21:37:26 UTC 2012
+months_ago_2 = Wed Mar 28 16:41:06 -0500 2012
+token = h5u5d3l3
+jurowski@gmail.com is going to get an email
+Current timestamp is Mon Sep 24 16:41:06 -0500 2012
+jurowski@gmail.com was sent the promo_comeback email
+end of script
+root@adv [/habitforge/current/db/migrate]# RAILS_ENV=production /usr/bin/ruby /home/jurowsk1/etc/rails_apps/habitforge/current/script/runner /home/jurowsk1/etc/rails_apps/haabitforge/current/app/update_promotion_come_back.rb[A[20Pmongrel_rails cluster::restart -C /home/jurowsk1/etc/rails_apps/habitforge/current/config/mongrel_cluster.yml
+[K[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C
+stopping port 12003
+stopping port 12004
+already started port 12003
+starting port 12004
+root@adv [/habitforge/current/db/migrate]# mongrel_rails cluster::restart -C /home/jurowsk1/etc/rails_apps/habitforge/current/config/mongrel_cluster.yml
+already stopped port 12003
+stopping port 12004
+starting port 12003
+starting port 12004
+root@adv [/habitforge/current/db/migrate]# mongrel_rails cluster::restart -C /home/jurowsk1/etc/rails_apps/habitforge/current/config/mongrel_cluster.yml
+stopping port 12003
+stopping port 12004
+starting port 12003
+starting port 12004
+root@adv [/habitforge/current/db/migrate]# mongrel_rails cluster::restart -C /home/jurowsk1/etc/rails_apps/habitforge/current/config/mongrel_cluster.yml[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[CRAILS_ENV=production /usr/bin/ruby /home/jurowsk1/etc/rails_apps/habitforge/current/script/runner /home/jurowsk1/etc/rails_apps/haabitforge/current/app/update_promotion_come_back.rb
+Max emails to send per hour = 100
+start er up
+Current timestamp is Mon Sep 24 16:55:04 -0500 2012
+counter = 0
+user.updated_at = Mon Sep 24 21:53:37 UTC 2012
+months_ago_2 = Wed Mar 28 16:55:04 -0500 2012
+token = j8sz1qdt
+jurowski@gmail.com is going to get an email
+Current timestamp is Mon Sep 24 16:55:04 -0500 2012
+jurowski@gmail.com was sent the promo_comeback email
+end of script
+root@adv [/habitforge/current/db/migrate]# RAILS_ENV=production /usr/bin/ruby /home/jurowsk1/etc/rails_apps/habitforge/current/script/runner /home/jurowsk1/etc/rails_apps/haabitforge/current/app/update_promotion_come_back.rb[A[20Pmongrel_rails cluster::restart -C /home/jurowsk1/etc/rails_apps/habitforge/current/config/mongrel_cluster.yml
+[K[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C
+stopping port 12003
+stopping port 12004
+starting port 12003
+^[[Astarting port 12004
+root@adv [/habitforge/current/db/migrate]# mongrel_rails cluster::restart -C /home/jurowsk1/etc/rails_apps/habitforge/current/config/mongrel_cluster.yml[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[CRAILS_ENV=production /usr/bin/ruby /home/jurowsk1/etc/rails_apps/habitforge/current/script/runner /home/jurowsk1/etc/rails_apps/haabitforge/current/app/update_promotion_come_back.rb
+Max emails to send per hour = 100
+start er up
+Current timestamp is Mon Sep 24 16:57:15 -0500 2012
+end of script
+root@adv [/habitforge/current/db/migrate]# RAILS_ENV=production /usr/bin/ruby /home/jurowsk1/etc/rails_apps/habitforge/current/script/runner /home/jurowsk1/etc/rails_apps/haabitforge/current/app/update_promotion_come_back.rb
+Max emails to send per hour = 100
+start er up
+Current timestamp is Mon Sep 24 16:58:27 -0500 2012
+looking for user_conditions: sponsor = 'habitforge' and unsubscribed_from_promo_emails <> 1 and promo_comeback_last_sent IS NULL and update_number_active_goals = 0 and updated_at < 'Wed Mar 28 16:58:27 -0500 2012'
+found 0
+end of script
+root@adv [/habitforge/current/db/migrate]# RAILS_ENV=production /usr/bin/ruby /home/jurowsk1/etc/rails_apps/habitforge/current/script/runner /home/jurowsk1/etc/rails_apps/haabitforge/current/app/update_promotion_come_back.rb
+Max emails to send per hour = 100
+start er up
+Current timestamp is Mon Sep 24 16:59:45 -0500 2012
+looking for user_conditions: sponsor = 'habitforge' and unsubscribed_from_promo_emails <> 1 and promo_comeback_last_sent IS NULL and update_number_active_goals = 0 and updated_at < '2012-03-28'
+found 0
+end of script
+root@adv [/habitforge/current/db/migrate]# RAILS_ENV=production /usr/bin/ruby /home/jurowsk1/etc/rails_apps/habitforge/current/script/runner /home/jurowsk1/etc/rails_apps/haabitforge/current/app/update_promotion_come_back.rb
+Max emails to send per hour = 100
+start er up
+Current timestamp is Mon Sep 24 17:01:11 -0500 2012
+looking for user_conditions: sponsor = 'habitforge' and unsubscribed_from_promo_emails <> 1 and promo_comeback_last_sent IS NULL and update_number_active_goals = 0
+found 0
+end of script
+root@adv [/habitforge/current/db/migrate]# RAILS_ENV=production /usr/bin/ruby /home/jurowsk1/etc/rails_apps/habitforge/current/script/runner /home/jurowsk1/etc/rails_apps/haabitforge/current/app/update_promotion_come_back.rb
+Max emails to send per hour = 100
+start er up
+Current timestamp is Mon Sep 24 17:02:06 -0500 2012
+looking for user_conditions: sponsor = 'habitforge' and unsubscribed_from_promo_emails != '1' and promo_comeback_last_sent IS NULL and update_number_active_goals = '0'
+found 0
+end of script
+root@adv [/habitforge/current/db/migrate]# RAILS_ENV=production /usr/bin/ruby /home/jurowsk1/etc/rails_apps/habitforge/current/script/runner /home/jurowsk1/etc/rails_apps/haabitforge/current/app/update_promotion_come_back.rb
+Max emails to send per hour = 100
+start er up
+Current timestamp is Mon Sep 24 17:02:45 -0500 2012
+looking for user_conditions: sponsor = 'habitforge' and unsubscribed_from_promo_emails != '1' and promo_comeback_last_sent IS NULL and update_number_active_goals = '0'
+found 0
+end of script
+root@adv [/habitforge/current/db/migrate]# RAILS_ENV=production /usr/bin/ruby /home/jurowsk1/etc/rails_apps/habitforge/current/script/runner /home/jurowsk1/etc/rails_apps/haabitforge/current/app/update_promotion_come_back.rb
+Max emails to send per hour = 100
+start er up
+Current timestamp is Mon Sep 24 17:04:08 -0500 2012
+looking for user_conditions: sponsor = 'habitforge' and unsubscribed_from_promo_emails <> '1' and promo_comeback_last_sent = 'null' and update_number_active_goals = '0'
+found 0 (limiting to 100)
+end of script
+root@adv [/habitforge/current/db/migrate]# RAILS_ENV=production /usr/bin/ruby /home/jurowsk1/etc/rails_apps/habitforge/current/script/runner /home/jurowsk1/etc/rails_apps/haabitforge/current/app/update_promotion_come_back.rb
+Max emails to send per hour = 100
+start er up
+Current timestamp is Mon Sep 24 17:06:53 -0500 2012
+looking for user_conditions: sponsor = 'habitforge' and unsubscribed_from_promo_emails is null and promo_comeback_last_sent is null  and update_number_active_goals = '0'
+found 100 (limiting to 100)
+counter = 0
+user.updated_at = Mon Sep 24 21:43:03 UTC 2012
+months_ago_2 = Wed Mar 28 17:06:53 -0500 2012
+token = 5u4wt35o
+jurowski2@gmail.com is going to get an email
+Current timestamp is Mon Sep 24 17:06:53 -0500 2012
+jurowski2@gmail.com was sent the promo_comeback email
+counter = 1
+user.updated_at = Mon Sep 24 21:10:04 UTC 2012
+months_ago_2 = Wed Mar 28 17:06:53 -0500 2012
+token = a15mfmxz
+protosseidig@yahoo.com is going to get an email
+Current timestamp is Mon Sep 24 17:06:53 -0500 2012
+protosseidig@yahoo.com was sent the promo_comeback email
+counter = 2
+user.updated_at = Mon Sep 24 21:10:04 UTC 2012
+months_ago_2 = Wed Mar 28 17:06:53 -0500 2012
+token = 96ic6w7z
+amanda_davria@yahoo.com is going to get an email
+Current timestamp is Mon Sep 24 17:06:54 -0500 2012
+amanda_davria@yahoo.com was sent the promo_comeback email
+counter = 3
+user.updated_at = Mon Sep 24 21:10:04 UTC 2012
+months_ago_2 = Wed Mar 28 17:06:53 -0500 2012
+token = opcpanzk
+daedalus_vii@hotmail.com is going to get an email
+Current timestamp is Mon Sep 24 17:06:54 -0500 2012
+daedalus_vii@hotmail.com was sent the promo_comeback email
+counter = 4
+user.updated_at = Mon Sep 24 21:10:04 UTC 2012
+months_ago_2 = Wed Mar 28 17:06:53 -0500 2012
+token = zhp1v5tt
+mikesvobo@aol.com is going to get an email
+Current timestamp is Mon Sep 24 17:06:54 -0500 2012
+mikesvobo@aol.com was sent the promo_comeback email
+counter = 5
+user.updated_at = Mon Sep 24 21:10:04 UTC 2012
+months_ago_2 = Wed Mar 28 17:06:53 -0500 2012
+token = fm42ljed
+gordalice@gmail.com is going to get an email
+Current timestamp is Mon Sep 24 17:06:54 -0500 2012
+gordalice@gmail.com was sent the promo_comeback email
+counter = 6
+user.updated_at = Mon Sep 24 21:10:04 UTC 2012
+months_ago_2 = Wed Mar 28 17:06:53 -0500 2012
+token = b8ts37ip
+Brittneywarren1688@gmail.com is going to get an email
+Current timestamp is Mon Sep 24 17:06:54 -0500 2012
+Brittneywarren1688@gmail.com was sent the promo_comeback email
+counter = 7
+user.updated_at = Mon Sep 24 21:10:04 UTC 2012
+months_ago_2 = Wed Mar 28 17:06:53 -0500 2012
+token = a1q44xrd
+darling.naget@gmail.com is going to get an email
+Current timestamp is Mon Sep 24 17:06:54 -0500 2012
+darling.naget@gmail.com was sent the promo_comeback email
+counter = 8
+user.updated_at = Mon Sep 24 21:10:04 UTC 2012
+months_ago_2 = Wed Mar 28 17:06:53 -0500 2012
+token = gekigyfu
+josephcote27@gmail.com is going to get an email
+Current timestamp is Mon Sep 24 17:06:54 -0500 2012
+josephcote27@gmail.com was sent the promo_comeback email
+counter = 9
+user.updated_at = Mon Sep 24 21:10:04 UTC 2012
+months_ago_2 = Wed Mar 28 17:06:53 -0500 2012
+token = j7uv5xob
+aiorrison@gmail.com is going to get an email
+Current timestamp is Mon Sep 24 17:06:55 -0500 2012
+aiorrison@gmail.com was sent the promo_comeback email
+counter = 10
+user.updated_at = Mon Sep 24 21:10:04 UTC 2012
+months_ago_2 = Wed Mar 28 17:06:53 -0500 2012
+token = 7be5pz92
+sheljea@gmail.com is going to get an email
+Current timestamp is Mon Sep 24 17:06:55 -0500 2012
+sheljea@gmail.com was sent the promo_comeback email
+counter = 11
+user.updated_at = Mon Sep 24 21:10:04 UTC 2012
+months_ago_2 = Wed Mar 28 17:06:53 -0500 2012
+token = b7h374oj
+vbergenthal@gmail.com is going to get an email
+Current timestamp is Mon Sep 24 17:06:55 -0500 2012
+vbergenthal@gmail.com was sent the promo_comeback email
+counter = 12
+user.updated_at = Mon Sep 24 21:10:04 UTC 2012
+months_ago_2 = Wed Mar 28 17:06:53 -0500 2012
+token = 8524rgg5
+macdougall.alexandra@gmail.com is going to get an email
+Current timestamp is Mon Sep 24 17:06:55 -0500 2012
+macdougall.alexandra@gmail.com was sent the promo_comeback email
+counter = 13
+user.updated_at = Mon Sep 24 21:10:04 UTC 2012
+months_ago_2 = Wed Mar 28 17:06:53 -0500 2012
+token = ltzv5fob
+zachzins@hotmail.com is going to get an email
+Current timestamp is Mon Sep 24 17:06:55 -0500 2012
+zachzins@hotmail.com was sent the promo_comeback email
+counter = 14
+user.updated_at = Mon Sep 24 21:10:04 UTC 2012
+months_ago_2 = Wed Mar 28 17:06:53 -0500 2012
+token = s5y5tfv8
+pook88lover@gmail.com is going to get an email
+Current timestamp is Mon Sep 24 17:06:55 -0500 2012
+pook88lover@gmail.com was sent the promo_comeback email
+counter = 15
+user.updated_at = Mon Sep 24 21:10:04 UTC 2012
+months_ago_2 = Wed Mar 28 17:06:53 -0500 2012
+token = 2q3riy3j
+vicehpm@yaho.com is going to get an email
+Current timestamp is Mon Sep 24 17:06:56 -0500 2012
+vicehpm@yaho.com was sent the promo_comeback email
+counter = 16
+user.updated_at = Mon Sep 24 21:10:04 UTC 2012
+months_ago_2 = Wed Mar 28 17:06:53 -0500 2012
+token = t5hcwkxe
+warmlikesunshine@yahoo.com is going to get an email
+Current timestamp is Mon Sep 24 17:06:56 -0500 2012
+warmlikesunshine@yahoo.com was sent the promo_comeback email
+counter = 17
+user.updated_at = Mon Sep 24 21:10:04 UTC 2012
+months_ago_2 = Wed Mar 28 17:06:53 -0500 2012
+token = e0g82zu3
+sandmansandito@gmail.com is going to get an email
+Current timestamp is Mon Sep 24 17:06:56 -0500 2012
+sandmansandito@gmail.com was sent the promo_comeback email
+counter = 18
+user.updated_at = Mon Sep 24 21:10:04 UTC 2012
+months_ago_2 = Wed Mar 28 17:06:53 -0500 2012
+token = linwq0no
+kellieannm@gmail.com is going to get an email
+Current timestamp is Mon Sep 24 17:06:56 -0500 2012
+kellieannm@gmail.com was sent the promo_comeback email
+counter = 19
+user.updated_at = Mon Sep 24 21:10:04 UTC 2012
+months_ago_2 = Wed Mar 28 17:06:53 -0500 2012
+token = n4hkr60
+monique@labrysweb.com is going to get an email
+Current timestamp is Mon Sep 24 17:06:56 -0500 2012
+monique@labrysweb.com was sent the promo_comeback email
+counter = 20
+user.updated_at = Mon Sep 24 21:10:04 UTC 2012
+months_ago_2 = Wed Mar 28 17:06:53 -0500 2012
+token = 5lgp77dl
+robbrittan@gmail.com is going to get an email
+Current timestamp is Mon Sep 24 17:06:57 -0500 2012
+robbrittan@gmail.com was sent the promo_comeback email
+counter = 21
+user.updated_at = Mon Sep 24 21:10:04 UTC 2012
+months_ago_2 = Wed Mar 28 17:06:53 -0500 2012
+token = us2d4vce
+aesc@yahoo.com is going to get an email
+Current timestamp is Mon Sep 24 17:06:57 -0500 2012
+aesc@yahoo.com was sent the promo_comeback email
+counter = 22
+user.updated_at = Mon Sep 24 21:10:04 UTC 2012
+months_ago_2 = Wed Mar 28 17:06:53 -0500 2012
+token = n79xn1ct
+micah.james@yahoo.com is going to get an email
+Current timestamp is Mon Sep 24 17:06:57 -0500 2012
+micah.james@yahoo.com was sent the promo_comeback email
+counter = 23
+user.updated_at = Mon Sep 24 21:10:04 UTC 2012
+months_ago_2 = Wed Mar 28 17:06:53 -0500 2012
+token = jaxgvu6r
+aadel.khandaker@gmail.com is going to get an email
+Current timestamp is Mon Sep 24 17:06:57 -0500 2012
+aadel.khandaker@gmail.com was sent the promo_comeback email
+counter = 24
+user.updated_at = Mon Sep 24 21:10:04 UTC 2012
+months_ago_2 = Wed Mar 28 17:06:53 -0500 2012
+token = 3lpvv6f5
+redds9@gmail.com is going to get an email
+Current timestamp is Mon Sep 24 17:06:57 -0500 2012
+redds9@gmail.com was sent the promo_comeback email
+counter = 25
+user.updated_at = Mon Sep 24 21:10:04 UTC 2012
+months_ago_2 = Wed Mar 28 17:06:53 -0500 2012
+token = xccmcl6u
+chocochan007@aim.com is going to get an email
+Current timestamp is Mon Sep 24 17:06:57 -0500 2012
+chocochan007@aim.com was sent the promo_comeback email
+counter = 26
+user.updated_at = Mon Sep 24 21:10:04 UTC 2012
+months_ago_2 = Wed Mar 28 17:06:53 -0500 2012
+token = k5qqqw37
+kyle.emile@gmail.com is going to get an email
+Current timestamp is Mon Sep 24 17:06:57 -0500 2012
+kyle.emile@gmail.com was sent the promo_comeback email
+counter = 27
+user.updated_at = Mon Sep 24 21:10:04 UTC 2012
+months_ago_2 = Wed Mar 28 17:06:53 -0500 2012
+token = 2whsmo5u
+ericruelle@gmail.com is going to get an email
+Current timestamp is Mon Sep 24 17:06:58 -0500 2012
+ericruelle@gmail.com was sent the promo_comeback email
+counter = 28
+user.updated_at = Mon Sep 24 21:10:04 UTC 2012
+months_ago_2 = Wed Mar 28 17:06:53 -0500 2012
+token = 4ckndh04
+steveford@gmail.com is going to get an email
+Current timestamp is Mon Sep 24 17:06:58 -0500 2012
+steveford@gmail.com was sent the promo_comeback email
+counter = 29
+user.updated_at = Mon Sep 24 21:10:04 UTC 2012
+months_ago_2 = Wed Mar 28 17:06:53 -0500 2012
+token = 481i5842
+matthewschwer@gmail.com is going to get an email
+Current timestamp is Mon Sep 24 17:06:58 -0500 2012
+matthewschwer@gmail.com was sent the promo_comeback email
+counter = 30
+user.updated_at = Mon Sep 24 21:10:04 UTC 2012
+months_ago_2 = Wed Mar 28 17:06:53 -0500 2012
+token = 3d67ml86
+kali.bowden@yahoo.com is going to get an email
+Current timestamp is Mon Sep 24 17:06:58 -0500 2012
+kali.bowden@yahoo.com was sent the promo_comeback email
+counter = 31
+user.updated_at = Mon Sep 24 21:10:04 UTC 2012
+months_ago_2 = Wed Mar 28 17:06:53 -0500 2012
+token = skts7v5i
+psci7@hotmail.com is going to get an email
+Current timestamp is Mon Sep 24 17:06:58 -0500 2012
+psci7@hotmail.com was sent the promo_comeback email
+counter = 32
+user.updated_at = Mon Sep 24 21:10:04 UTC 2012
+months_ago_2 = Wed Mar 28 17:06:53 -0500 2012
+token = luiac2f9
+pixiedustermo@yahoo.com is going to get an email
+Current timestamp is Mon Sep 24 17:06:58 -0500 2012
+pixiedustermo@yahoo.com was sent the promo_comeback email
+counter = 33
+user.updated_at = Mon Sep 24 21:10:04 UTC 2012
+months_ago_2 = Wed Mar 28 17:06:53 -0500 2012
+token = hdsr5yaz
+reconcyle@gmail.com is going to get an email
+Current timestamp is Mon Sep 24 17:06:58 -0500 2012
+reconcyle@gmail.com was sent the promo_comeback email
+counter = 34
+user.updated_at = Mon Sep 24 21:10:04 UTC 2012
+months_ago_2 = Wed Mar 28 17:06:53 -0500 2012
+token = o0kewnl6
+ieatreese88@yahoo.com is going to get an email
+Current timestamp is Mon Sep 24 17:06:59 -0500 2012
+ieatreese88@yahoo.com was sent the promo_comeback email
+counter = 35
+user.updated_at = Mon Sep 24 21:10:04 UTC 2012
+months_ago_2 = Wed Mar 28 17:06:53 -0500 2012
+token = 54hke1mm
+jurowskitest@gmail.com is going to get an email
+Current timestamp is Mon Sep 24 17:06:59 -0500 2012
+jurowskitest@gmail.com was sent the promo_comeback email
+counter = 36
+user.updated_at = Mon Sep 24 21:10:04 UTC 2012
+months_ago_2 = Wed Mar 28 17:06:53 -0500 2012
+token = 1102tahh
+habitforge@ryanschwartz.net is going to get an email
+Current timestamp is Mon Sep 24 17:06:59 -0500 2012
+habitforge@ryanschwartz.net was sent the promo_comeback email
+counter = 37
+user.updated_at = Mon Sep 24 21:10:04 UTC 2012
+months_ago_2 = Wed Mar 28 17:06:53 -0500 2012
+token = ip613jo5
+aperrone@umd.edu is going to get an email
+Current timestamp is Mon Sep 24 17:06:59 -0500 2012
+aperrone@umd.edu was sent the promo_comeback email
+counter = 38
+user.updated_at = Mon Sep 24 21:10:04 UTC 2012
+months_ago_2 = Wed Mar 28 17:06:53 -0500 2012
+token = 7ptc03zh
+sharper3@mac.com is going to get an email
+Current timestamp is Mon Sep 24 17:06:59 -0500 2012
+sharper3@mac.com was sent the promo_comeback email
+counter = 39
+user.updated_at = Mon Sep 24 21:10:04 UTC 2012
+months_ago_2 = Wed Mar 28 17:06:53 -0500 2012
+token = d75t5vim
+jlynnsma@yahoo.com is going to get an email
+Current timestamp is Mon Sep 24 17:06:59 -0500 2012
+jlynnsma@yahoo.com was sent the promo_comeback email
+counter = 40
+user.updated_at = Mon Sep 24 21:10:04 UTC 2012
+months_ago_2 = Wed Mar 28 17:06:53 -0500 2012
+token = c5du0q8r
+mbraun@uwhealth.org is going to get an email
+Current timestamp is Mon Sep 24 17:07:00 -0500 2012
+mbraun@uwhealth.org was sent the promo_comeback email
+counter = 41
+user.updated_at = Mon Sep 24 21:10:04 UTC 2012
+months_ago_2 = Wed Mar 28 17:06:53 -0500 2012
+token = qisw4bk3
+kollerca@gmail.com is going to get an email
+Current timestamp is Mon Sep 24 17:07:00 -0500 2012
+kollerca@gmail.com was sent the promo_comeback email
+counter = 42
+user.updated_at = Mon Sep 24 21:10:04 UTC 2012
+months_ago_2 = Wed Mar 28 17:06:53 -0500 2012
+token = v2paauk3
+djmatthews1980@comcast.net is going to get an email
+Current timestamp is Mon Sep 24 17:07:00 -0500 2012
+djmatthews1980@comcast.net was sent the promo_comeback email
+counter = 43
+user.updated_at = Mon Sep 24 21:10:04 UTC 2012
+months_ago_2 = Wed Mar 28 17:06:53 -0500 2012
+token = 9s63969c
+christi.newberry483@gmail.com is going to get an email
+Current timestamp is Mon Sep 24 17:07:00 -0500 2012
+christi.newberry483@gmail.com was sent the promo_comeback email
+counter = 44
+user.updated_at = Mon Sep 24 21:10:04 UTC 2012
+months_ago_2 = Wed Mar 28 17:06:53 -0500 2012
+token = 18s0zjlt
+teresa_b_franco@eagles.ewu.edu is going to get an email
+Current timestamp is Mon Sep 24 17:07:00 -0500 2012
+teresa_b_franco@eagles.ewu.edu was sent the promo_comeback email
+counter = 45
+user.updated_at = Mon Sep 24 21:10:04 UTC 2012
+months_ago_2 = Wed Mar 28 17:06:53 -0500 2012
+token = ffng5azs
+bluejellybean@gmail.com is going to get an email
+Current timestamp is Mon Sep 24 17:07:00 -0500 2012
+bluejellybean@gmail.com was sent the promo_comeback email
+counter = 46
+user.updated_at = Mon Sep 24 21:10:04 UTC 2012
+months_ago_2 = Wed Mar 28 17:06:53 -0500 2012
+token = ppr04wdz
+fagnana@clarkson.edu is going to get an email
+Current timestamp is Mon Sep 24 17:07:01 -0500 2012
+fagnana@clarkson.edu was sent the promo_comeback email
+counter = 47
+user.updated_at = Mon Sep 24 21:10:04 UTC 2012
+months_ago_2 = Wed Mar 28 17:06:53 -0500 2012
+token = 84i7p8ug
+alda_cami@yahoo.com is going to get an email
+Current timestamp is Mon Sep 24 17:07:01 -0500 2012
+alda_cami@yahoo.com was sent the promo_comeback email
+counter = 48
+user.updated_at = Mon Sep 24 21:10:04 UTC 2012
+months_ago_2 = Wed Mar 28 17:06:53 -0500 2012
+token = 3986g630
+masoul_02@ymail.com is going to get an email
+Current timestamp is Mon Sep 24 17:07:01 -0500 2012
+masoul_02@ymail.com was sent the promo_comeback email
+counter = 49
+user.updated_at = Mon Sep 24 21:10:04 UTC 2012
+months_ago_2 = Wed Mar 28 17:06:53 -0500 2012
+token = slbfisd7
+nar1018@uncw.edu is going to get an email
+Current timestamp is Mon Sep 24 17:07:01 -0500 2012
+nar1018@uncw.edu was sent the promo_comeback email
+counter = 50
+user.updated_at = Mon Sep 24 21:10:04 UTC 2012
+months_ago_2 = Wed Mar 28 17:06:53 -0500 2012
+token = bxd13h8p
+Chad_evans@mail.com is going to get an email
+Current timestamp is Mon Sep 24 17:07:01 -0500 2012
+Chad_evans@mail.com was sent the promo_comeback email
+counter = 51
+user.updated_at = Mon Sep 24 21:10:04 UTC 2012
+months_ago_2 = Wed Mar 28 17:06:53 -0500 2012
+token = s37w3nm4
+travis.sredzinski@yahoo.com is going to get an email
+Current timestamp is Mon Sep 24 17:07:01 -0500 2012
+travis.sredzinski@yahoo.com was sent the promo_comeback email
+counter = 52
+user.updated_at = Mon Sep 24 21:10:04 UTC 2012
+months_ago_2 = Wed Mar 28 17:06:53 -0500 2012
+token = 1p623f2x
+j.lebel@hotmail.com is going to get an email
+Current timestamp is Mon Sep 24 17:07:01 -0500 2012
+j.lebel@hotmail.com was sent the promo_comeback email
+counter = 53
+user.updated_at = Mon Sep 24 21:10:04 UTC 2012
+months_ago_2 = Wed Mar 28 17:06:53 -0500 2012
+token = rhar7dv2
+berkeleycomete@gmail.com is going to get an email
+Current timestamp is Mon Sep 24 17:07:02 -0500 2012
+berkeleycomete@gmail.com was sent the promo_comeback email
+counter = 54
+user.updated_at = Mon Sep 24 21:10:04 UTC 2012
+months_ago_2 = Wed Mar 28 17:06:53 -0500 2012
+token = z1ghcte4
+jtadk2@yahoo.com is going to get an email
+Current timestamp is Mon Sep 24 17:07:02 -0500 2012
+jtadk2@yahoo.com was sent the promo_comeback email
+counter = 55
+user.updated_at = Mon Sep 24 21:10:04 UTC 2012
+months_ago_2 = Wed Mar 28 17:06:53 -0500 2012
+token = cfl9be8i
+dpropheter@yahoo.com is going to get an email
+Current timestamp is Mon Sep 24 17:07:02 -0500 2012
+dpropheter@yahoo.com was sent the promo_comeback email
+counter = 56
+user.updated_at = Mon Sep 24 21:10:04 UTC 2012
+months_ago_2 = Wed Mar 28 17:06:53 -0500 2012
+token = 6vgpyswo
+leonard@bepainfree.net is going to get an email
+Current timestamp is Mon Sep 24 17:07:02 -0500 2012
+leonard@bepainfree.net was sent the promo_comeback email
+counter = 57
+user.updated_at = Mon Sep 24 21:10:04 UTC 2012
+months_ago_2 = Wed Mar 28 17:06:53 -0500 2012
+token = 7s1r3sq8
+tanyaballantyne@hotmail.co.uk is going to get an email
+Current timestamp is Mon Sep 24 17:07:02 -0500 2012
+tanyaballantyne@hotmail.co.uk was sent the promo_comeback email
+counter = 58
+user.updated_at = Mon Sep 24 21:10:04 UTC 2012
+months_ago_2 = Wed Mar 28 17:06:53 -0500 2012
+token = dxkjr4rt
+radioboyee@yahoo.com is going to get an email
+Current timestamp is Mon Sep 24 17:07:02 -0500 2012
+radioboyee@yahoo.com was sent the promo_comeback email
+counter = 59
+user.updated_at = Mon Sep 24 21:10:04 UTC 2012
+months_ago_2 = Wed Mar 28 17:06:53 -0500 2012
+token = c63pqcct
+bel7@case.edu is going to get an email
+Current timestamp is Mon Sep 24 17:07:03 -0500 2012
+bel7@case.edu was sent the promo_comeback email
+counter = 60
+user.updated_at = Mon Sep 24 21:10:04 UTC 2012
+months_ago_2 = Wed Mar 28 17:06:53 -0500 2012
+token = x6b2fyqo
+madisonarbuckle@gmail.com is going to get an email
+Current timestamp is Mon Sep 24 17:07:03 -0500 2012
+madisonarbuckle@gmail.com was sent the promo_comeback email
+counter = 61
+user.updated_at = Mon Sep 24 21:10:04 UTC 2012
+months_ago_2 = Wed Mar 28 17:06:53 -0500 2012
+token = r4xklmz6
+angelofdarkness_forever@hotmail.com is going to get an email
+Current timestamp is Mon Sep 24 17:07:03 -0500 2012
+angelofdarkness_forever@hotmail.com was sent the promo_comeback email
+counter = 62
+user.updated_at = Mon Sep 24 21:10:04 UTC 2012
+months_ago_2 = Wed Mar 28 17:06:53 -0500 2012
+token = 8no40ont
+rhyami@gmail.com is going to get an email
+Current timestamp is Mon Sep 24 17:07:03 -0500 2012
+rhyami@gmail.com was sent the promo_comeback email
+counter = 63
+user.updated_at = Mon Sep 24 21:10:04 UTC 2012
+months_ago_2 = Wed Mar 28 17:06:53 -0500 2012
+token = fe7dx80f
+samuel.bodin@hotmail.com is going to get an email
+Current timestamp is Mon Sep 24 17:07:03 -0500 2012
+samuel.bodin@hotmail.com was sent the promo_comeback email
+counter = 64
+user.updated_at = Mon Sep 24 21:10:04 UTC 2012
+months_ago_2 = Wed Mar 28 17:06:53 -0500 2012
+token = vmir7bms
+matahari_j@yahoo.com is going to get an email
+Current timestamp is Mon Sep 24 17:07:03 -0500 2012
+matahari_j@yahoo.com was sent the promo_comeback email
+counter = 65
+user.updated_at = Mon Sep 24 21:10:04 UTC 2012
+months_ago_2 = Wed Mar 28 17:06:53 -0500 2012
+token = 8ddg1rdq
+adir.miller@gmail.com is going to get an email
+Current timestamp is Mon Sep 24 17:07:04 -0500 2012
+adir.miller@gmail.com was sent the promo_comeback email
+counter = 66
+user.updated_at = Mon Sep 24 21:10:04 UTC 2012
+months_ago_2 = Wed Mar 28 17:06:53 -0500 2012
+token = 26nmpb3o
+thereisno13thst@aol.com is going to get an email
+Current timestamp is Mon Sep 24 17:07:04 -0500 2012
+thereisno13thst@aol.com was sent the promo_comeback email
+counter = 67
+user.updated_at = Mon Sep 24 21:10:04 UTC 2012
+months_ago_2 = Wed Mar 28 17:06:53 -0500 2012
+token = 2i7qpmi6
+kellilyn.duffy@gmail.com is going to get an email
+Current timestamp is Mon Sep 24 17:07:04 -0500 2012
+kellilyn.duffy@gmail.com was sent the promo_comeback email
+counter = 68
+user.updated_at = Mon Sep 24 21:10:04 UTC 2012
+months_ago_2 = Wed Mar 28 17:06:53 -0500 2012
+token = ffgnwcy3
+luciddreams90@live.com is going to get an email
+Current timestamp is Mon Sep 24 17:07:04 -0500 2012
+luciddreams90@live.com was sent the promo_comeback email
+counter = 69
+user.updated_at = Mon Sep 24 21:10:04 UTC 2012
+months_ago_2 = Wed Mar 28 17:06:53 -0500 2012
+token = d2ecomm4
+ishwar1620@gmail.com is going to get an email
+Current timestamp is Mon Sep 24 17:07:04 -0500 2012
+ishwar1620@gmail.com was sent the promo_comeback email
+counter = 70
+user.updated_at = Mon Sep 24 21:10:04 UTC 2012
+months_ago_2 = Wed Mar 28 17:06:53 -0500 2012
+token = mykvgj79
+kathrynmbarney@gmail.com is going to get an email
+Current timestamp is Mon Sep 24 17:07:04 -0500 2012
+kathrynmbarney@gmail.com was sent the promo_comeback email
+counter = 71
+user.updated_at = Mon Sep 24 21:10:04 UTC 2012
+months_ago_2 = Wed Mar 28 17:06:53 -0500 2012
+token = 8wgymtvj
+finlaywallace@hotmail.com is going to get an email
+Current timestamp is Mon Sep 24 17:07:04 -0500 2012
+finlaywallace@hotmail.com was sent the promo_comeback email
+counter = 72
+user.updated_at = Mon Sep 24 21:10:04 UTC 2012
+months_ago_2 = Wed Mar 28 17:06:53 -0500 2012
+token = jhwsvxyk
+canning85@gmail.com is going to get an email
+Current timestamp is Mon Sep 24 17:07:05 -0500 2012
+canning85@gmail.com was sent the promo_comeback email
+counter = 73
+user.updated_at = Mon Sep 24 21:10:04 UTC 2012
+months_ago_2 = Wed Mar 28 17:06:53 -0500 2012
+token = 9d6c6k2m
+rhe3@uwo.ca is going to get an email
+Current timestamp is Mon Sep 24 17:07:05 -0500 2012
+rhe3@uwo.ca was sent the promo_comeback email
+counter = 74
+user.updated_at = Mon Sep 24 21:10:04 UTC 2012
+months_ago_2 = Wed Mar 28 17:06:53 -0500 2012
+token = 6gop98xo
+christina.niculescu@gmail.com is going to get an email
+Current timestamp is Mon Sep 24 17:07:05 -0500 2012
+christina.niculescu@gmail.com was sent the promo_comeback email
+counter = 75
+user.updated_at = Mon Sep 24 21:10:04 UTC 2012
+months_ago_2 = Wed Mar 28 17:06:53 -0500 2012
+token = uf6346xy
+tjipto@gmail.com is going to get an email
+Current timestamp is Mon Sep 24 17:07:05 -0500 2012
+tjipto@gmail.com was sent the promo_comeback email
+counter = 76
+user.updated_at = Mon Sep 24 21:10:04 UTC 2012
+months_ago_2 = Wed Mar 28 17:06:53 -0500 2012
+token = rn2ljdl9
+rkhan008@gmail.com is going to get an email
+Current timestamp is Mon Sep 24 17:07:05 -0500 2012
+rkhan008@gmail.com was sent the promo_comeback email
+counter = 77
+user.updated_at = Mon Sep 24 21:10:04 UTC 2012
+months_ago_2 = Wed Mar 28 17:06:53 -0500 2012
+token = c9ktv9f8
+rileyp92@gmail.com is going to get an email
+Current timestamp is Mon Sep 24 17:07:05 -0500 2012
+rileyp92@gmail.com was sent the promo_comeback email
+counter = 78
+user.updated_at = Mon Sep 24 21:10:04 UTC 2012
+months_ago_2 = Wed Mar 28 17:06:53 -0500 2012
+token = lnwbvwgf
+dylan.smith@student.uq.edu.au is going to get an email
+Current timestamp is Mon Sep 24 17:07:05 -0500 2012
+dylan.smith@student.uq.edu.au was sent the promo_comeback email
+counter = 79
+user.updated_at = Mon Sep 24 21:10:04 UTC 2012
+months_ago_2 = Wed Mar 28 17:06:53 -0500 2012
+token = 9i1clf0u
+shannon.heibler@gmail.com is going to get an email
+Current timestamp is Mon Sep 24 17:07:06 -0500 2012
+shannon.heibler@gmail.com was sent the promo_comeback email
+counter = 80
+user.updated_at = Mon Sep 24 21:10:04 UTC 2012
+months_ago_2 = Wed Mar 28 17:06:53 -0500 2012
+token = tw11jzlv
+brendaturner@live.com is going to get an email
+Current timestamp is Mon Sep 24 17:07:06 -0500 2012
+brendaturner@live.com was sent the promo_comeback email
+counter = 81
+user.updated_at = Mon Sep 24 21:10:04 UTC 2012
+months_ago_2 = Wed Mar 28 17:06:53 -0500 2012
+token = bmzmocwq
+conno.connolly@gmail.com is going to get an email
+Current timestamp is Mon Sep 24 17:07:06 -0500 2012
+conno.connolly@gmail.com was sent the promo_comeback email
+counter = 82
+user.updated_at = Mon Sep 24 21:10:04 UTC 2012
+months_ago_2 = Wed Mar 28 17:06:53 -0500 2012
+token = pkqgjyzd
+xxx_mjwendt@pediatrics.wisc.edu is going to get an email
+Current timestamp is Mon Sep 24 17:07:06 -0500 2012
+xxx_mjwendt@pediatrics.wisc.edu was sent the promo_comeback email
+counter = 83
+user.updated_at = Mon Sep 24 21:10:04 UTC 2012
+months_ago_2 = Wed Mar 28 17:06:53 -0500 2012
+token = z06n6smf
+corban@email.unc.edu is going to get an email
+Current timestamp is Mon Sep 24 17:07:06 -0500 2012
+corban@email.unc.edu was sent the promo_comeback email
+counter = 84
+user.updated_at = Mon Sep 24 21:10:04 UTC 2012
+months_ago_2 = Wed Mar 28 17:06:53 -0500 2012
+token = hgq909cz
+sunderwood100@g.rwu.edu is going to get an email
+Current timestamp is Mon Sep 24 17:07:06 -0500 2012
+sunderwood100@g.rwu.edu was sent the promo_comeback email
+counter = 85
+user.updated_at = Mon Sep 24 21:10:04 UTC 2012
+months_ago_2 = Wed Mar 28 17:06:53 -0500 2012
+token = 6lb1hz4u
+frank@yahoo.com is going to get an email
+Current timestamp is Mon Sep 24 17:07:06 -0500 2012
+frank@yahoo.com was sent the promo_comeback email
+counter = 86
+user.updated_at = Mon Sep 24 21:10:04 UTC 2012
+months_ago_2 = Wed Mar 28 17:06:53 -0500 2012
+token = t9b67vzm
+fabalu@hotmail.co.uk is going to get an email
+Current timestamp is Mon Sep 24 17:07:07 -0500 2012
+fabalu@hotmail.co.uk was sent the promo_comeback email
+counter = 87
+user.updated_at = Mon Sep 24 21:10:04 UTC 2012
+months_ago_2 = Wed Mar 28 17:06:53 -0500 2012
+token = moflj9jv
+ruslan_101@hotmail.com is going to get an email
+Current timestamp is Mon Sep 24 17:07:07 -0500 2012
+ruslan_101@hotmail.com was sent the promo_comeback email
+counter = 88
+user.updated_at = Mon Sep 24 21:10:04 UTC 2012
+months_ago_2 = Wed Mar 28 17:06:53 -0500 2012
+token = 7ncgbcwg
+outis@live.com is going to get an email
+Current timestamp is Mon Sep 24 17:07:07 -0500 2012
+outis@live.com was sent the promo_comeback email
+counter = 89
+user.updated_at = Mon Sep 24 21:10:04 UTC 2012
+months_ago_2 = Wed Mar 28 17:06:53 -0500 2012
+token = 359lq5ie
+fixy5@hotmail.com is going to get an email
+Current timestamp is Mon Sep 24 17:07:07 -0500 2012
+fixy5@hotmail.com was sent the promo_comeback email
+counter = 90
+user.updated_at = Mon Sep 24 21:10:04 UTC 2012
+months_ago_2 = Wed Mar 28 17:06:53 -0500 2012
+token = c9u050sn
+megan.frost@hope.edu is going to get an email
+Current timestamp is Mon Sep 24 17:07:07 -0500 2012
+megan.frost@hope.edu was sent the promo_comeback email
+counter = 91
+user.updated_at = Mon Sep 24 21:10:04 UTC 2012
+months_ago_2 = Wed Mar 28 17:06:53 -0500 2012
+token = oacs79mc
+lfcepeda@hotmail.com is going to get an email
+Current timestamp is Mon Sep 24 17:07:07 -0500 2012
+lfcepeda@hotmail.com was sent the promo_comeback email
+counter = 92
+user.updated_at = Mon Sep 24 21:10:04 UTC 2012
+months_ago_2 = Wed Mar 28 17:06:53 -0500 2012
+token = typzmt99
+gigiyamster@gmail.com is going to get an email
+Current timestamp is Mon Sep 24 17:07:08 -0500 2012
+gigiyamster@gmail.com was sent the promo_comeback email
+counter = 93
+user.updated_at = Mon Sep 24 21:10:04 UTC 2012
+months_ago_2 = Wed Mar 28 17:06:53 -0500 2012
+token = gyig8opb
+Patrickthopkins@gmail.com is going to get an email
+Current timestamp is Mon Sep 24 17:07:08 -0500 2012
+Patrickthopkins@gmail.com was sent the promo_comeback email
+counter = 94
+user.updated_at = Mon Sep 24 21:10:04 UTC 2012
+months_ago_2 = Wed Mar 28 17:06:53 -0500 2012
+token = ws1nxkx7
+Yeswak717@gmail.com is going to get an email
+Current timestamp is Mon Sep 24 17:07:08 -0500 2012
+Yeswak717@gmail.com was sent the promo_comeback email
+counter = 95
+user.updated_at = Mon Sep 24 21:10:04 UTC 2012
+months_ago_2 = Wed Mar 28 17:06:53 -0500 2012
+token = yxv5thf0
+ellegates01@yahoo.com is going to get an email
+Current timestamp is Mon Sep 24 17:07:08 -0500 2012
+ellegates01@yahoo.com was sent the promo_comeback email
+counter = 96
+user.updated_at = Mon Sep 24 21:10:04 UTC 2012
+months_ago_2 = Wed Mar 28 17:06:53 -0500 2012
+token = sc7rqtzf
+lemstroker@sbcglobal.net is going to get an email
+Current timestamp is Mon Sep 24 17:07:08 -0500 2012
+lemstroker@sbcglobal.net was sent the promo_comeback email
+counter = 97
+user.updated_at = Mon Sep 24 21:10:04 UTC 2012
+months_ago_2 = Wed Mar 28 17:06:53 -0500 2012
+token = hwdzadpl
+epo2ep@virginia.edu is going to get an email
+Current timestamp is Mon Sep 24 17:07:08 -0500 2012
+epo2ep@virginia.edu was sent the promo_comeback email
+counter = 98
+user.updated_at = Mon Sep 24 21:10:04 UTC 2012
+months_ago_2 = Wed Mar 28 17:06:53 -0500 2012
+token = cyrhr6u4
+sashaj904@gmail.com is going to get an email
+Current timestamp is Mon Sep 24 17:07:08 -0500 2012
+sashaj904@gmail.com was sent the promo_comeback email
+counter = 99
+user.updated_at = Mon Sep 24 21:10:04 UTC 2012
+months_ago_2 = Wed Mar 28 17:06:53 -0500 2012
+token = 3ctfp8jd
+one_future_marine@yahoo.com is going to get an email
+Current timestamp is Mon Sep 24 17:07:09 -0500 2012
+one_future_marine@yahoo.com was sent the promo_comeback email
+end of script
+root@adv [/habitforge/current/db/migrate]# RAILS_ENV=production /usr/bin/ruby /home/jurowsk1/etc/rails_apps/habitforge/current/script/runner /home/jurowsk1/etc/rails_apps/haabitforge/current/app/update_promotion_come_back.rb[A[20Pmongrel_rails cluster::restart -C /home/jurowsk1/etc/rails_apps/habitforge/current/config/mongrel_cluster.yml
+[K[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[CRAILS_ENV=production /usr/bin/ruby /home/jurowsk1/etc/rails_apps/habitforge/current/script/runner /home/jurowsk1/etc/rails_apps/haabitforge/current/app/update_promotion_come_back.rb[A[20Pmongrel_rails cluster::restart -C /home/jurowsk1/etc/rails_apps/habitforge/current/config/mongrel_cluster.yml
+[K[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C
+stopping port 12003
+stopping port 12004
+starting port 12003
+starting port 12004
+root@adv [/habitforge/current/db/migrate]# mongrel_rails cluster::restart -C /home/jurowsk1/etc/rails_apps/habitforge/current/config/mongrel_cluster.yml[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[CRAILS_ENV=production /usr/bin/ruby /home/jurowsk1/etc/rails_apps/habitforge/current/script/runner /home/jurowsk1/etc/rails_apps/haabitforge/current/app/update_promotion_come_back.rb
+Max emails to send per hour = 100
+start er up
+Current timestamp is Mon Sep 24 17:10:07 -0500 2012
+looking for user_conditions: sponsor = 'habitforge' and unsubscribed_from_promo_emails is null and promo_comeback_last_sent is null  and update_number_active_goals = '0'
+found 100 (limiting to 100)
+counter = 0
+user.updated_at = Mon Sep 24 21:10:04 UTC 2012
+months_ago_2 = Wed Mar 28 17:10:07 -0500 2012
+token = xvocjwwd
+lagrinewich1@hotmail.com is going to get an email
+Current timestamp is Mon Sep 24 17:10:07 -0500 2012
+lagrinewich1@hotmail.com was sent the promo_comeback email
+counter = 1
+user.updated_at = Mon Sep 24 21:10:04 UTC 2012
+months_ago_2 = Wed Mar 28 17:10:07 -0500 2012
+token = 76gsj6vv
+pizzaliza@hotmail.com is going to get an email
+Current timestamp is Mon Sep 24 17:10:07 -0500 2012
+pizzaliza@hotmail.com was sent the promo_comeback email
+counter = 2
+user.updated_at = Mon Sep 24 21:10:04 UTC 2012
+months_ago_2 = Wed Mar 28 17:10:07 -0500 2012
+token = 4w1gz2yj
+landretta@themastersschool.com is going to get an email
+Current timestamp is Mon Sep 24 17:10:07 -0500 2012
+landretta@themastersschool.com was sent the promo_comeback email
+counter = 3
+user.updated_at = Mon Sep 24 21:10:04 UTC 2012
+months_ago_2 = Wed Mar 28 17:10:07 -0500 2012
+token = c9wmmehd
+gwendolyn_turner@marymount.edu is going to get an email
+Current timestamp is Mon Sep 24 17:10:07 -0500 2012
+gwendolyn_turner@marymount.edu was sent the promo_comeback email
+counter = 4
+user.updated_at = Mon Sep 24 21:10:04 UTC 2012
+months_ago_2 = Wed Mar 28 17:10:07 -0500 2012
+token = eep6txsg
+marissa.knell927@gmail.com is going to get an email
+Current timestamp is Mon Sep 24 17:10:08 -0500 2012
+marissa.knell927@gmail.com was sent the promo_comeback email
+counter = 5
+user.updated_at = Mon Sep 24 21:10:04 UTC 2012
+months_ago_2 = Wed Mar 28 17:10:07 -0500 2012
+token = boxcyad0
+sarahbear_72891@hotmail.com is going to get an email
+Current timestamp is Mon Sep 24 17:10:08 -0500 2012
+sarahbear_72891@hotmail.com was sent the promo_comeback email
+counter = 6
+user.updated_at = Mon Sep 24 21:10:04 UTC 2012
+months_ago_2 = Wed Mar 28 17:10:07 -0500 2012
+token = xc3iead
+allyritchie@hotmail.com is going to get an email
+Current timestamp is Mon Sep 24 17:10:08 -0500 2012
+allyritchie@hotmail.com was sent the promo_comeback email
+counter = 7
+user.updated_at = Mon Sep 24 21:10:04 UTC 2012
+months_ago_2 = Wed Mar 28 17:10:07 -0500 2012
+token = glvq3e5x
+lbreslav@wesleyan.edu is going to get an email
+Current timestamp is Mon Sep 24 17:10:08 -0500 2012
+lbreslav@wesleyan.edu was sent the promo_comeback email
+counter = 8
+user.updated_at = Mon Sep 24 21:10:04 UTC 2012
+months_ago_2 = Wed Mar 28 17:10:07 -0500 2012
+token = vk72y911
+taodonoghue@eiu.edu is going to get an email
+Current timestamp is Mon Sep 24 17:10:08 -0500 2012
+taodonoghue@eiu.edu was sent the promo_comeback email
+counter = 9
+user.updated_at = Mon Sep 24 21:10:05 UTC 2012
+months_ago_2 = Wed Mar 28 17:10:07 -0500 2012
+token = zm505wy2
+evycze@wpi.edu is going to get an email
+Current timestamp is Mon Sep 24 17:10:09 -0500 2012
+evycze@wpi.edu was sent the promo_comeback email
+counter = 10
+user.updated_at = Mon Sep 24 21:10:05 UTC 2012
+months_ago_2 = Wed Mar 28 17:10:07 -0500 2012
+token = c7i4copw
+MyOwnRaven@hotmail.com is going to get an email
+Current timestamp is Mon Sep 24 17:10:09 -0500 2012
+MyOwnRaven@hotmail.com was sent the promo_comeback email
+counter = 11
+user.updated_at = Mon Sep 24 21:10:05 UTC 2012
+months_ago_2 = Wed Mar 28 17:10:07 -0500 2012
+token = fnc0ikz4
+katie.berka@gmail.com is going to get an email
+Current timestamp is Mon Sep 24 17:10:09 -0500 2012
+katie.berka@gmail.com was sent the promo_comeback email
+counter = 12
+user.updated_at = Mon Sep 24 21:10:05 UTC 2012
+months_ago_2 = Wed Mar 28 17:10:07 -0500 2012
+token = gomjud53
+brro0701@stcloudstate.edu is going to get an email
+Current timestamp is Mon Sep 24 17:10:09 -0500 2012
+brro0701@stcloudstate.edu was sent the promo_comeback email
+counter = 13
+user.updated_at = Mon Sep 24 21:10:05 UTC 2012
+months_ago_2 = Wed Mar 28 17:10:07 -0500 2012
+token = s9mw9aq0
+rlunceford@peii.com is going to get an email
+Current timestamp is Mon Sep 24 17:10:09 -0500 2012
+rlunceford@peii.com was sent the promo_comeback email
+counter = 14
+user.updated_at = Mon Sep 24 21:10:05 UTC 2012
+months_ago_2 = Wed Mar 28 17:10:07 -0500 2012
+token = 4oimmbqu
+edgarc12@mail.wlu.edu is going to get an email
+Current timestamp is Mon Sep 24 17:10:09 -0500 2012
+edgarc12@mail.wlu.edu was sent the promo_comeback email
+counter = 15
+user.updated_at = Mon Sep 24 21:10:05 UTC 2012
+months_ago_2 = Wed Mar 28 17:10:07 -0500 2012
+token = a4xv89s3
+seguram1@mail.montclair.edu is going to get an email
+Current timestamp is Mon Sep 24 17:10:09 -0500 2012
+seguram1@mail.montclair.edu was sent the promo_comeback email
+counter = 16
+user.updated_at = Mon Sep 24 21:10:05 UTC 2012
+months_ago_2 = Wed Mar 28 17:10:07 -0500 2012
+token = ogzgfl9n
+chrisjstevens@hotmail.co.uk is going to get an email
+Current timestamp is Mon Sep 24 17:10:10 -0500 2012
+chrisjstevens@hotmail.co.uk was sent the promo_comeback email
+counter = 17
+user.updated_at = Mon Sep 24 21:10:05 UTC 2012
+months_ago_2 = Wed Mar 28 17:10:07 -0500 2012
+token = mc6jotht
+aaronvonflatern@gmail.com is going to get an email
+Current timestamp is Mon Sep 24 17:10:10 -0500 2012
+aaronvonflatern@gmail.com was sent the promo_comeback email
+counter = 18
+user.updated_at = Mon Sep 24 21:10:05 UTC 2012
+months_ago_2 = Wed Mar 28 17:10:07 -0500 2012
+token = ddyee98j
+tina.yazdi@utoronto.ca is going to get an email
+Current timestamp is Mon Sep 24 17:10:10 -0500 2012
+tina.yazdi@utoronto.ca was sent the promo_comeback email
+counter = 19
+user.updated_at = Mon Sep 24 21:10:05 UTC 2012
+months_ago_2 = Wed Mar 28 17:10:07 -0500 2012
+token = mqzl1r1h
+kristycrabtree@yahoo.com is going to get an email
+Current timestamp is Mon Sep 24 17:10:11 -0500 2012
+kristycrabtree@yahoo.com was sent the promo_comeback email
+counter = 20
+user.updated_at = Mon Sep 24 21:10:05 UTC 2012
+months_ago_2 = Wed Mar 28 17:10:07 -0500 2012
+token = ekh6wkh2
+sz11151@gmail.com is going to get an email
+Current timestamp is Mon Sep 24 17:10:11 -0500 2012
+sz11151@gmail.com was sent the promo_comeback email
+counter = 21
+user.updated_at = Mon Sep 24 21:10:05 UTC 2012
+months_ago_2 = Wed Mar 28 17:10:07 -0500 2012
+token = 7l23bwtk
+lushonhorn@hotmail.com is going to get an email
+Current timestamp is Mon Sep 24 17:10:11 -0500 2012
+lushonhorn@hotmail.com was sent the promo_comeback email
+counter = 22
+user.updated_at = Mon Sep 24 21:10:05 UTC 2012
+months_ago_2 = Wed Mar 28 17:10:07 -0500 2012
+token = ai34tdhw
+pasiphae@hotmail.com is going to get an email
+Current timestamp is Mon Sep 24 17:10:11 -0500 2012
+pasiphae@hotmail.com was sent the promo_comeback email
+counter = 23
+user.updated_at = Mon Sep 24 21:10:05 UTC 2012
+months_ago_2 = Wed Mar 28 17:10:07 -0500 2012
+token = bh0f91eo
+justintbrannon@myspace.com is going to get an email
+Current timestamp is Mon Sep 24 17:10:11 -0500 2012
+justintbrannon@myspace.com was sent the promo_comeback email
+counter = 24
+user.updated_at = Mon Sep 24 21:10:05 UTC 2012
+months_ago_2 = Wed Mar 28 17:10:07 -0500 2012
+token = zs6u0r6v
+Sarahepstein90@gmail.com is going to get an email
+Current timestamp is Mon Sep 24 17:10:11 -0500 2012
+Sarahepstein90@gmail.com was sent the promo_comeback email
+counter = 25
+user.updated_at = Mon Sep 24 21:10:05 UTC 2012
+months_ago_2 = Wed Mar 28 17:10:07 -0500 2012
+token = pz16nbge
+alexisjoibright@aol.com is going to get an email
+Current timestamp is Mon Sep 24 17:10:11 -0500 2012
+alexisjoibright@aol.com was sent the promo_comeback email
+counter = 26
+user.updated_at = Mon Sep 24 21:10:05 UTC 2012
+months_ago_2 = Wed Mar 28 17:10:07 -0500 2012
+token = a7z1edf5
+error5005@gmail.com is going to get an email
+Current timestamp is Mon Sep 24 17:10:12 -0500 2012
+error5005@gmail.com was sent the promo_comeback email
+counter = 27
+user.updated_at = Mon Sep 24 21:10:05 UTC 2012
+months_ago_2 = Wed Mar 28 17:10:07 -0500 2012
+token = wwngjyuv
+danbew@gmail.com is going to get an email
+Current timestamp is Mon Sep 24 17:10:12 -0500 2012
+danbew@gmail.com was sent the promo_comeback email
+counter = 28
+user.updated_at = Mon Sep 24 21:10:05 UTC 2012
+months_ago_2 = Wed Mar 28 17:10:07 -0500 2012
+token = 5yw4ss12
+xxx.nguyen@gmail.com is going to get an email
+Current timestamp is Mon Sep 24 17:10:12 -0500 2012
+xxx.nguyen@gmail.com was sent the promo_comeback email
+counter = 29
+user.updated_at = Mon Sep 24 21:10:05 UTC 2012
+months_ago_2 = Wed Mar 28 17:10:07 -0500 2012
+token = wiecfub0
+grang710@googlemail.com is going to get an email
+Current timestamp is Mon Sep 24 17:10:12 -0500 2012
+grang710@googlemail.com was sent the promo_comeback email
+counter = 30
+user.updated_at = Mon Sep 24 21:10:05 UTC 2012
+months_ago_2 = Wed Mar 28 17:10:07 -0500 2012
+token = wv03gaqv
+beldon.nick@gmail.com is going to get an email
+Current timestamp is Mon Sep 24 17:10:12 -0500 2012
+beldon.nick@gmail.com was sent the promo_comeback email
+counter = 31
+user.updated_at = Mon Sep 24 21:10:05 UTC 2012
+months_ago_2 = Wed Mar 28 17:10:07 -0500 2012
+token = b2gfypao
+dboyer87@gmail.com is going to get an email
+Current timestamp is Mon Sep 24 17:10:12 -0500 2012
+dboyer87@gmail.com was sent the promo_comeback email
+counter = 32
+user.updated_at = Mon Sep 24 21:10:05 UTC 2012
+months_ago_2 = Wed Mar 28 17:10:07 -0500 2012
+token = emb734uu
+jhiller3@kent.edu is going to get an email
+Current timestamp is Mon Sep 24 17:10:12 -0500 2012
+jhiller3@kent.edu was sent the promo_comeback email
+counter = 33
+user.updated_at = Mon Sep 24 21:10:05 UTC 2012
+months_ago_2 = Wed Mar 28 17:10:07 -0500 2012
+token = 7e45njua
+atd@gmail.com is going to get an email
+Current timestamp is Mon Sep 24 17:10:12 -0500 2012
+atd@gmail.com was sent the promo_comeback email
+counter = 34
+user.updated_at = Mon Sep 24 21:10:05 UTC 2012
+months_ago_2 = Wed Mar 28 17:10:07 -0500 2012
+token = uuqpza6h
+travy35@yahoo.com is going to get an email
+Current timestamp is Mon Sep 24 17:10:13 -0500 2012
+travy35@yahoo.com was sent the promo_comeback email
+counter = 35
+user.updated_at = Mon Sep 24 21:10:05 UTC 2012
+months_ago_2 = Wed Mar 28 17:10:07 -0500 2012
+token = e09d4vdp
+marti3000@gmail.com is going to get an email
+Current timestamp is Mon Sep 24 17:10:13 -0500 2012
+marti3000@gmail.com was sent the promo_comeback email
+counter = 36
+user.updated_at = Mon Sep 24 21:10:05 UTC 2012
+months_ago_2 = Wed Mar 28 17:10:07 -0500 2012
+token = 60ule3bn
+pakpoom.s@gmail.com is going to get an email
+Current timestamp is Mon Sep 24 17:10:13 -0500 2012
+pakpoom.s@gmail.com was sent the promo_comeback email
+counter = 37
+user.updated_at = Mon Sep 24 21:10:05 UTC 2012
+months_ago_2 = Wed Mar 28 17:10:07 -0500 2012
+token = b0pwpqln
+bsloan@iastate.edu is going to get an email
+Current timestamp is Mon Sep 24 17:10:13 -0500 2012
+bsloan@iastate.edu was sent the promo_comeback email
+counter = 38
+user.updated_at = Mon Sep 24 21:10:05 UTC 2012
+months_ago_2 = Wed Mar 28 17:10:07 -0500 2012
+token = wdedtlzb
+jlrossy54@live.com is going to get an email
+Current timestamp is Mon Sep 24 17:10:13 -0500 2012
+jlrossy54@live.com was sent the promo_comeback email
+counter = 39
+user.updated_at = Mon Sep 24 21:10:05 UTC 2012
+months_ago_2 = Wed Mar 28 17:10:07 -0500 2012
+token = okpekfao
+mtownsend@md.metrocast.net is going to get an email
+Current timestamp is Mon Sep 24 17:10:13 -0500 2012
+mtownsend@md.metrocast.net was sent the promo_comeback email
+counter = 40
+user.updated_at = Mon Sep 24 21:10:05 UTC 2012
+months_ago_2 = Wed Mar 28 17:10:07 -0500 2012
+token = 4oak7ag4
+matthew@scenestreamvideo.com is going to get an email
+Current timestamp is Mon Sep 24 17:10:13 -0500 2012
+matthew@scenestreamvideo.com was sent the promo_comeback email
+counter = 41
+user.updated_at = Mon Sep 24 21:10:05 UTC 2012
+months_ago_2 = Wed Mar 28 17:10:07 -0500 2012
+token = kh9w0ips
+cyberman@gmail.com is going to get an email
+Current timestamp is Mon Sep 24 17:10:14 -0500 2012
+cyberman@gmail.com was sent the promo_comeback email
+counter = 42
+user.updated_at = Mon Sep 24 21:10:05 UTC 2012
+months_ago_2 = Wed Mar 28 17:10:07 -0500 2012
+token = s7vip2wi
+gmodos1@gmail.com is going to get an email
+Current timestamp is Mon Sep 24 17:10:14 -0500 2012
+gmodos1@gmail.com was sent the promo_comeback email
+counter = 43
+user.updated_at = Mon Sep 24 21:10:05 UTC 2012
+months_ago_2 = Wed Mar 28 17:10:07 -0500 2012
+token = ltywotfm
+zbirge@gmail.com is going to get an email
+Current timestamp is Mon Sep 24 17:10:14 -0500 2012
+zbirge@gmail.com was sent the promo_comeback email
+counter = 44
+user.updated_at = Mon Sep 24 21:10:05 UTC 2012
+months_ago_2 = Wed Mar 28 17:10:07 -0500 2012
+token = kr3lkjlg
+alex.j.eastwood@gmail.com is going to get an email
+Current timestamp is Mon Sep 24 17:10:14 -0500 2012
+alex.j.eastwood@gmail.com was sent the promo_comeback email
+counter = 45
+user.updated_at = Mon Sep 24 21:10:05 UTC 2012
+months_ago_2 = Wed Mar 28 17:10:07 -0500 2012
+token = ifembg1b
+feedmarykate24@yahoo.com is going to get an email
+Current timestamp is Mon Sep 24 17:10:14 -0500 2012
+feedmarykate24@yahoo.com was sent the promo_comeback email
+counter = 46
+user.updated_at = Mon Sep 24 21:10:05 UTC 2012
+months_ago_2 = Wed Mar 28 17:10:07 -0500 2012
+token = thpj8guj
+dwilk016@gmail.com is going to get an email
+Current timestamp is Mon Sep 24 17:10:14 -0500 2012
+dwilk016@gmail.com was sent the promo_comeback email
+counter = 47
+user.updated_at = Mon Sep 24 21:10:05 UTC 2012
+months_ago_2 = Wed Mar 28 17:10:07 -0500 2012
+token = ona39p7z
+johncbradbury@yahoo.com is going to get an email
+Current timestamp is Mon Sep 24 17:10:14 -0500 2012
+johncbradbury@yahoo.com was sent the promo_comeback email
+counter = 48
+user.updated_at = Mon Sep 24 21:10:05 UTC 2012
+months_ago_2 = Wed Mar 28 17:10:07 -0500 2012
+token = zd2076aw
+jessarose@comcast.net is going to get an email
+Current timestamp is Mon Sep 24 17:10:15 -0500 2012
+jessarose@comcast.net was sent the promo_comeback email
+counter = 49
+user.updated_at = Mon Sep 24 21:10:05 UTC 2012
+months_ago_2 = Wed Mar 28 17:10:07 -0500 2012
+token = jkndusb0
+jamierichsmith@gmail.com is going to get an email
+Current timestamp is Mon Sep 24 17:10:15 -0500 2012
+jamierichsmith@gmail.com was sent the promo_comeback email
+counter = 50
+user.updated_at = Mon Sep 24 21:10:05 UTC 2012
+months_ago_2 = Wed Mar 28 17:10:07 -0500 2012
+token = tiosmcb8
+d_emyx@hotmail.com is going to get an email
+Current timestamp is Mon Sep 24 17:10:15 -0500 2012
+d_emyx@hotmail.com was sent the promo_comeback email
+counter = 51
+user.updated_at = Mon Sep 24 21:10:05 UTC 2012
+months_ago_2 = Wed Mar 28 17:10:07 -0500 2012
+token = uuc6na3b
+indiscise@hotmail.com is going to get an email
+Current timestamp is Mon Sep 24 17:10:15 -0500 2012
+indiscise@hotmail.com was sent the promo_comeback email
+counter = 52
+user.updated_at = Mon Sep 24 21:10:05 UTC 2012
+months_ago_2 = Wed Mar 28 17:10:07 -0500 2012
+token = fzil9yww
+KrakenKaos@gmail.com is going to get an email
+Current timestamp is Mon Sep 24 17:10:16 -0500 2012
+KrakenKaos@gmail.com was sent the promo_comeback email
+counter = 53
+user.updated_at = Mon Sep 24 21:10:05 UTC 2012
+months_ago_2 = Wed Mar 28 17:10:07 -0500 2012
+token = jsw6ddft
+causeofdeath16@aol.com is going to get an email
+Current timestamp is Mon Sep 24 17:10:16 -0500 2012
+causeofdeath16@aol.com was sent the promo_comeback email
+counter = 54
+user.updated_at = Mon Sep 24 21:10:05 UTC 2012
+months_ago_2 = Wed Mar 28 17:10:07 -0500 2012
+token = jz0jzesx
+mastersonfour@verizon.net is going to get an email
+Current timestamp is Mon Sep 24 17:10:16 -0500 2012
+mastersonfour@verizon.net was sent the promo_comeback email
+counter = 55
+user.updated_at = Mon Sep 24 21:10:05 UTC 2012
+months_ago_2 = Wed Mar 28 17:10:07 -0500 2012
+token = ufz567fq
+catalin.stefan@yahoo.com is going to get an email
+Current timestamp is Mon Sep 24 17:10:16 -0500 2012
+catalin.stefan@yahoo.com was sent the promo_comeback email
+counter = 56
+user.updated_at = Mon Sep 24 21:10:05 UTC 2012
+months_ago_2 = Wed Mar 28 17:10:07 -0500 2012
+token = 65j21euo
+joyful_mighty_mo@yahoo.com is going to get an email
+Current timestamp is Mon Sep 24 17:10:16 -0500 2012
+joyful_mighty_mo@yahoo.com was sent the promo_comeback email
+counter = 57
+user.updated_at = Mon Sep 24 21:10:05 UTC 2012
+months_ago_2 = Wed Mar 28 17:10:07 -0500 2012
+token = apgxmf7z
+rockapotamus.now@hotmail.co.uk is going to get an email
+Current timestamp is Mon Sep 24 17:10:17 -0500 2012
+rockapotamus.now@hotmail.co.uk was sent the promo_comeback email
+counter = 58
+user.updated_at = Mon Sep 24 21:10:05 UTC 2012
+months_ago_2 = Wed Mar 28 17:10:07 -0500 2012
+token = 1r9lerdk
+ccolbert4@yahoo.com is going to get an email
+Current timestamp is Mon Sep 24 17:10:17 -0500 2012
+ccolbert4@yahoo.com was sent the promo_comeback email
+counter = 59
+user.updated_at = Mon Sep 24 21:10:05 UTC 2012
+months_ago_2 = Wed Mar 28 17:10:07 -0500 2012
+token = wtv0b2gg
+Tara.Katzman@gmail.com is going to get an email
+Current timestamp is Mon Sep 24 17:10:17 -0500 2012
+Tara.Katzman@gmail.com was sent the promo_comeback email
+counter = 60
+user.updated_at = Mon Sep 24 21:10:05 UTC 2012
+months_ago_2 = Wed Mar 28 17:10:07 -0500 2012
+token = kb4nemyl
+rheanamartin@gmail.com is going to get an email
+Current timestamp is Mon Sep 24 17:10:17 -0500 2012
+rheanamartin@gmail.com was sent the promo_comeback email
+counter = 61
+user.updated_at = Mon Sep 24 21:10:05 UTC 2012
+months_ago_2 = Wed Mar 28 17:10:07 -0500 2012
+token = rvx8im4u
+flutterby7_7@yahoo.com is going to get an email
+Current timestamp is Mon Sep 24 17:10:17 -0500 2012
+flutterby7_7@yahoo.com was sent the promo_comeback email
+counter = 62
+user.updated_at = Mon Sep 24 21:10:05 UTC 2012
+months_ago_2 = Wed Mar 28 17:10:07 -0500 2012
+token = v33scejn
+grenald@msn.com is going to get an email
+Current timestamp is Mon Sep 24 17:10:18 -0500 2012
+grenald@msn.com was sent the promo_comeback email
+counter = 63
+user.updated_at = Mon Sep 24 21:10:05 UTC 2012
+months_ago_2 = Wed Mar 28 17:10:07 -0500 2012
+token = sjbzb4di
+mattksplat89@aol.com is going to get an email
+Current timestamp is Mon Sep 24 17:10:18 -0500 2012
+mattksplat89@aol.com was sent the promo_comeback email
+counter = 64
+user.updated_at = Mon Sep 24 21:10:05 UTC 2012
+months_ago_2 = Wed Mar 28 17:10:07 -0500 2012
+token = z8dkad9l
+becauseigothigh@rocketmail.com is going to get an email
+Current timestamp is Mon Sep 24 17:10:18 -0500 2012
+becauseigothigh@rocketmail.com was sent the promo_comeback email
+counter = 65
+user.updated_at = Mon Sep 24 21:10:05 UTC 2012
+months_ago_2 = Wed Mar 28 17:10:07 -0500 2012
+token = 74rpfryt
+feket005@d.umn.edu is going to get an email
+Current timestamp is Mon Sep 24 17:10:18 -0500 2012
+feket005@d.umn.edu was sent the promo_comeback email
+counter = 66
+user.updated_at = Mon Sep 24 21:10:05 UTC 2012
+months_ago_2 = Wed Mar 28 17:10:07 -0500 2012
+token = y2ebe2vy
+imdk86@hotmail.com is going to get an email
+Current timestamp is Mon Sep 24 17:10:21 -0500 2012
+imdk86@hotmail.com was sent the promo_comeback email
+counter = 67
+user.updated_at = Mon Sep 24 21:10:05 UTC 2012
+months_ago_2 = Wed Mar 28 17:10:07 -0500 2012
+token = uk2w33n4
+theoretically.pink@gmail.com is going to get an email
+Current timestamp is Mon Sep 24 17:10:23 -0500 2012
+theoretically.pink@gmail.com was sent the promo_comeback email
+counter = 68
+user.updated_at = Mon Sep 24 21:10:05 UTC 2012
+months_ago_2 = Wed Mar 28 17:10:07 -0500 2012
+token = bkd3rei3
+hcaelxxam@gmail.com is going to get an email
+Current timestamp is Mon Sep 24 17:10:23 -0500 2012
+hcaelxxam@gmail.com was sent the promo_comeback email
+counter = 69
+user.updated_at = Mon Sep 24 21:10:05 UTC 2012
+months_ago_2 = Wed Mar 28 17:10:07 -0500 2012
+token = 436aco16
+yeedav08@yahoo.com is going to get an email
+Current timestamp is Mon Sep 24 17:10:24 -0500 2012
+yeedav08@yahoo.com was sent the promo_comeback email
+counter = 70
+user.updated_at = Mon Sep 24 21:10:05 UTC 2012
+months_ago_2 = Wed Mar 28 17:10:07 -0500 2012
+token = e9dhu9p5
+eirvin.k@gmail.com is going to get an email
+Current timestamp is Mon Sep 24 17:10:24 -0500 2012
+eirvin.k@gmail.com was sent the promo_comeback email
+counter = 71
+user.updated_at = Mon Sep 24 21:10:05 UTC 2012
+months_ago_2 = Wed Mar 28 17:10:07 -0500 2012
+token = w5cuyfx2
+tekwar@yahoo.com is going to get an email
+Current timestamp is Mon Sep 24 17:10:25 -0500 2012
+tekwar@yahoo.com was sent the promo_comeback email
+counter = 72
+user.updated_at = Mon Sep 24 21:10:05 UTC 2012
+months_ago_2 = Wed Mar 28 17:10:07 -0500 2012
+token = bkyx57mn
+isaac_spurs@yahoo.com is going to get an email
+Current timestamp is Mon Sep 24 17:10:26 -0500 2012
+isaac_spurs@yahoo.com was sent the promo_comeback email
+counter = 73
+user.updated_at = Mon Sep 24 21:10:05 UTC 2012
+months_ago_2 = Wed Mar 28 17:10:07 -0500 2012
+token = x6qx1fto
+lucas.w.j.wilson@gmail.com is going to get an email
+Current timestamp is Mon Sep 24 17:10:27 -0500 2012
+lucas.w.j.wilson@gmail.com was sent the promo_comeback email
+counter = 74
+user.updated_at = Mon Sep 24 21:10:05 UTC 2012
+months_ago_2 = Wed Mar 28 17:10:07 -0500 2012
+token = egcx9eih
+kxking200@aol.com is going to get an email
+Current timestamp is Mon Sep 24 17:10:29 -0500 2012
+kxking200@aol.com was sent the promo_comeback email
+counter = 75
+user.updated_at = Mon Sep 24 21:10:05 UTC 2012
+months_ago_2 = Wed Mar 28 17:10:07 -0500 2012
+token = vl28zl3z
+jjgrob@gmail.com is going to get an email
+Current timestamp is Mon Sep 24 17:10:29 -0500 2012
+jjgrob@gmail.com was sent the promo_comeback email
+counter = 76
+user.updated_at = Mon Sep 24 21:10:05 UTC 2012
+months_ago_2 = Wed Mar 28 17:10:07 -0500 2012
+token = farzc34b
+jdweseman@csbsju.edu is going to get an email
+Current timestamp is Mon Sep 24 17:10:29 -0500 2012
+jdweseman@csbsju.edu was sent the promo_comeback email
+counter = 77
+user.updated_at = Mon Sep 24 21:10:05 UTC 2012
+months_ago_2 = Wed Mar 28 17:10:07 -0500 2012
+token = z5scwswk
+Jones1114@gmail.com is going to get an email
+Current timestamp is Mon Sep 24 17:10:30 -0500 2012
+Jones1114@gmail.com was sent the promo_comeback email
+counter = 78
+user.updated_at = Mon Sep 24 21:10:05 UTC 2012
+months_ago_2 = Wed Mar 28 17:10:07 -0500 2012
+token = 7tdjgivu
+risk78550@hotmail.com is going to get an email
+Current timestamp is Mon Sep 24 17:10:30 -0500 2012
+risk78550@hotmail.com was sent the promo_comeback email
+counter = 79
+user.updated_at = Mon Sep 24 21:10:05 UTC 2012
+months_ago_2 = Wed Mar 28 17:10:07 -0500 2012
+token = px9yhehv
+Cindyloo202@gmail.com is going to get an email
+Current timestamp is Mon Sep 24 17:10:30 -0500 2012
+Cindyloo202@gmail.com was sent the promo_comeback email
+counter = 80
+user.updated_at = Mon Sep 24 21:10:05 UTC 2012
+months_ago_2 = Wed Mar 28 17:10:07 -0500 2012
+token = vcbmcsd0
+rmywin6@msn.com is going to get an email
+Current timestamp is Mon Sep 24 17:10:30 -0500 2012
+rmywin6@msn.com was sent the promo_comeback email
+counter = 81
+user.updated_at = Mon Sep 24 21:10:05 UTC 2012
+months_ago_2 = Wed Mar 28 17:10:07 -0500 2012
+token = 8z6amrfg
+aromanodumas@gmail.com is going to get an email
+Current timestamp is Mon Sep 24 17:10:30 -0500 2012
+aromanodumas@gmail.com was sent the promo_comeback email
+counter = 82
+user.updated_at = Mon Sep 24 21:10:05 UTC 2012
+months_ago_2 = Wed Mar 28 17:10:07 -0500 2012
+token = 5s09cgwx
+timothy_grg@yahoo.com is going to get an email
+Current timestamp is Mon Sep 24 17:10:34 -0500 2012
+timothy_grg@yahoo.com was sent the promo_comeback email
+counter = 83
+user.updated_at = Mon Sep 24 21:10:05 UTC 2012
+months_ago_2 = Wed Mar 28 17:10:07 -0500 2012
+token = v00aptt1
+pinksticky_ness@hotmail.com is going to get an email
+Current timestamp is Mon Sep 24 17:10:35 -0500 2012
+pinksticky_ness@hotmail.com was sent the promo_comeback email
+counter = 84
+user.updated_at = Mon Sep 24 21:10:05 UTC 2012
+months_ago_2 = Wed Mar 28 17:10:07 -0500 2012
+token = d4bkll33
+cmcdonald08@winona.edu is going to get an email
+Current timestamp is Mon Sep 24 17:10:38 -0500 2012
+cmcdonald08@winona.edu was sent the promo_comeback email
+counter = 85
+user.updated_at = Mon Sep 24 21:10:05 UTC 2012
+months_ago_2 = Wed Mar 28 17:10:07 -0500 2012
+token = rfkrt6i4
+jesterr1971@yahoo.com is going to get an email
+Current timestamp is Mon Sep 24 17:10:38 -0500 2012
+jesterr1971@yahoo.com was sent the promo_comeback email
+counter = 86
+user.updated_at = Mon Sep 24 21:10:05 UTC 2012
+months_ago_2 = Wed Mar 28 17:10:07 -0500 2012
+token = mbpqhrju
+graskewicz@gmail.com is going to get an email
+Current timestamp is Mon Sep 24 17:10:39 -0500 2012
+graskewicz@gmail.com was sent the promo_comeback email
+counter = 87
+user.updated_at = Mon Sep 24 21:10:05 UTC 2012
+months_ago_2 = Wed Mar 28 17:10:07 -0500 2012
+token = sekr4it9
+alyse8@gmail.com is going to get an email
+Current timestamp is Mon Sep 24 17:10:40 -0500 2012
+alyse8@gmail.com was sent the promo_comeback email
+counter = 88
+user.updated_at = Mon Sep 24 21:10:05 UTC 2012
+months_ago_2 = Wed Mar 28 17:10:07 -0500 2012
+token = 1fgzhjng
+philbrown05843@yahoo.com is going to get an email
+Current timestamp is Mon Sep 24 17:10:40 -0500 2012
+philbrown05843@yahoo.com was sent the promo_comeback email
+counter = 89
+user.updated_at = Mon Sep 24 21:10:05 UTC 2012
+months_ago_2 = Wed Mar 28 17:10:07 -0500 2012
+token = la9vhfde
+lemc6125@hotmail.com is going to get an email
+Current timestamp is Mon Sep 24 17:10:40 -0500 2012
+lemc6125@hotmail.com was sent the promo_comeback email
+counter = 90
+user.updated_at = Mon Sep 24 21:10:05 UTC 2012
+months_ago_2 = Wed Mar 28 17:10:07 -0500 2012
+token = 6b9flpwi
+isaira_20@hotmail.com is going to get an email
+Current timestamp is Mon Sep 24 17:10:42 -0500 2012
+isaira_20@hotmail.com was sent the promo_comeback email
+counter = 91
+user.updated_at = Mon Sep 24 21:10:05 UTC 2012
+months_ago_2 = Wed Mar 28 17:10:07 -0500 2012
+token = ck7ybn79
+music_writer0711@yahoo.com is going to get an email
+Current timestamp is Mon Sep 24 17:10:43 -0500 2012
+music_writer0711@yahoo.com was sent the promo_comeback email
+counter = 92
+user.updated_at = Mon Sep 24 21:10:05 UTC 2012
+months_ago_2 = Wed Mar 28 17:10:07 -0500 2012
+token = v487gobj
+abigail.mack.dean@gmail.com is going to get an email
+Current timestamp is Mon Sep 24 17:10:43 -0500 2012
+abigail.mack.dean@gmail.com was sent the promo_comeback email
+counter = 93
+user.updated_at = Mon Sep 24 21:10:05 UTC 2012
+months_ago_2 = Wed Mar 28 17:10:07 -0500 2012
+token = 7haqpghy
+goulds10@mail.wlu.edu is going to get an email
+Current timestamp is Mon Sep 24 17:10:43 -0500 2012
+goulds10@mail.wlu.edu was sent the promo_comeback email
+counter = 94
+user.updated_at = Mon Sep 24 21:10:05 UTC 2012
+months_ago_2 = Wed Mar 28 17:10:07 -0500 2012
+token = gr2zgh7z
+zabatso2003@hotmail.com is going to get an email
+Current timestamp is Mon Sep 24 17:10:44 -0500 2012
+zabatso2003@hotmail.com was sent the promo_comeback email
+counter = 95
+user.updated_at = Mon Sep 24 21:10:05 UTC 2012
+months_ago_2 = Wed Mar 28 17:10:07 -0500 2012
+token = ysr6md8q
+ciniminirolls@yahoo.com is going to get an email
+Current timestamp is Mon Sep 24 17:10:45 -0500 2012
+ciniminirolls@yahoo.com was sent the promo_comeback email
+counter = 96
+user.updated_at = Mon Sep 24 21:10:05 UTC 2012
+months_ago_2 = Wed Mar 28 17:10:07 -0500 2012
+token = 4pmab88v
+MarkDouglasWarren@gmail.com is going to get an email
+Current timestamp is Mon Sep 24 17:10:46 -0500 2012
+MarkDouglasWarren@gmail.com was sent the promo_comeback email
+counter = 97
+user.updated_at = Mon Sep 24 21:10:05 UTC 2012
+months_ago_2 = Wed Mar 28 17:10:07 -0500 2012
+token = k1803fy8
+rebeccan_05@hotmail.com is going to get an email
+Current timestamp is Mon Sep 24 17:10:47 -0500 2012
+rebeccan_05@hotmail.com was sent the promo_comeback email
+counter = 98
+user.updated_at = Mon Sep 24 21:10:05 UTC 2012
+months_ago_2 = Wed Mar 28 17:10:07 -0500 2012
+token = 5d5wztmx
+brcgor@gmail.com is going to get an email
+Current timestamp is Mon Sep 24 17:10:47 -0500 2012
+brcgor@gmail.com was sent the promo_comeback email
+counter =

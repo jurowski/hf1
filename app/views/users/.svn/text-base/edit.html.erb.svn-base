@@ -1,0 +1,28 @@
+<%
+if current_user.first_name == "Admin" && current_user.email == "jurowski2@gmail.com" 
+  current_user_is_admin = true
+else
+  current_user_is_admin = false
+end
+%>  
+<% if current_user_is_admin %>
+  <h1>Edit Account</h1>
+  <% form_for @user do |f| %>
+    <%= f.error_messages %>
+    <%= render :partial => "form", :object => f %>
+    <%= f.submit "Save Changes" %>
+  <% end %>
+<% end %>
+
+<% if !current_user_is_admin %>
+  <h1>Edit My Account</h1>
+  <% form_for @user, :url => account_path do |f| %>
+    <%= f.error_messages %>
+    <%= render :partial => "form", :object => f %>
+    <br>
+    <br>
+    <%= f.submit "Save Changes" %>
+  <% end %>
+<% end %>
+
+<%= link_to "Cancel Editing", account_path %>

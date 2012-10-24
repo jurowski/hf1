@@ -1,0 +1,10 @@
+drwxr-xr-x    9 jurowsk1 jurowsk1     4096 Sep 25 16:12 .
+drwxr-xr-x    5 jurowsk1 jurowsk1     4096 Sep 25 16:12 ..
+drwxr-xr-x    2 jurowsk1 jurowsk1     4096 Sep 25 16:12 assets
+drwxr-xr-x    3 jurowsk1 jurowsk1     4096 Sep 25 16:12 cases
+-rw-r--r--    1 jurowsk1 jurowsk1      225 Sep 25 16:12 config.rb
+drwxr-xr-x   18 jurowsk1 jurowsk1     4096 Sep 25 16:12 connections
+drwxr-xr-x    6 jurowsk1 jurowsk1     4096 Sep 25 16:12 fixtures
+drwxr-xr-x    9 jurowsk1 jurowsk1     4096 Sep 25 16:12 migrations
+drwxr-xr-x    2 jurowsk1 jurowsk1     4096 Sep 25 16:12 models
+drwxr-xr-x    2 jurowsk1 jurowsk1     4096 Sep 25 16:12 schema

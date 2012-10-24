@@ -1,0 +1,15 @@
+drwxr-xr-x    2 jurowsk1 jurowsk1     4096 Sep 25 16:12 .
+drwxr-xr-x    3 jurowsk1 jurowsk1     4096 Sep 25 16:12 ..
+-rw-r--r--    1 jurowsk1 jurowsk1      606 Sep 25 16:12 date.rb
+-rw-r--r--    1 jurowsk1 jurowsk1      669 Sep 25 16:12 date_time.rb
+-rw-r--r--    1 jurowsk1 jurowsk1      411 Sep 25 16:12 enumerable.rb
+-rw-r--r--    1 jurowsk1 jurowsk1       77 Sep 25 16:12 false_class.rb
+-rw-r--r--    1 jurowsk1 jurowsk1     1737 Sep 25 16:12 hash.rb
+-rw-r--r--    1 jurowsk1 jurowsk1       74 Sep 25 16:12 nil_class.rb
+-rw-r--r--    1 jurowsk1 jurowsk1       71 Sep 25 16:12 numeric.rb
+-rw-r--r--    1 jurowsk1 jurowsk1      195 Sep 25 16:12 object.rb
+-rw-r--r--    1 jurowsk1 jurowsk1       73 Sep 25 16:12 regexp.rb
+-rw-r--r--    1 jurowsk1 jurowsk1      934 Sep 25 16:12 string.rb
+-rw-r--r--    1 jurowsk1 jurowsk1      106 Sep 25 16:12 symbol.rb
+-rw-r--r--    1 jurowsk1 jurowsk1      674 Sep 25 16:12 time.rb
+-rw-r--r--    1 jurowsk1 jurowsk1       75 Sep 25 16:12 true_class.rb

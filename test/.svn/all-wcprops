@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 38
+/svn/habitforge/!svn/ver/52/trunk/test
+END
+test_helper.rb
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/svn/habitforge/!svn/ver/2/trunk/test/test_helper.rb
+END
+.listing
+K 25
+svn:wc:ra_dav:version-url
+V 46
+/svn/habitforge/!svn/ver/2/trunk/test/.listing
+END
+.htaccess
+K 25
+svn:wc:ra_dav:version-url
+V 47
+/svn/habitforge/!svn/ver/2/trunk/test/.htaccess
+END

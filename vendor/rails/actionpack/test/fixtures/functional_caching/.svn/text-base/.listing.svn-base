@@ -1,0 +1,10 @@
+drwxr-xr-x    2 jurowsk1 jurowsk1     4096 Sep 25 16:12 .
+drwxr-xr-x   29 jurowsk1 jurowsk1     4096 Sep 25 16:12 ..
+-rw-r--r--    1 jurowsk1 jurowsk1       54 Sep 25 16:12 _partial.erb
+-rw-r--r--    1 jurowsk1 jurowsk1       48 Sep 25 16:12 formatted_fragment_cached.html.erb
+-rw-r--r--    1 jurowsk1 jurowsk1      158 Sep 25 16:12 formatted_fragment_cached.js.rjs
+-rw-r--r--    1 jurowsk1 jurowsk1       53 Sep 25 16:12 formatted_fragment_cached.xml.builder
+-rw-r--r--    1 jurowsk1 jurowsk1       56 Sep 25 16:12 fragment_cached.html.erb
+-rw-r--r--    1 jurowsk1 jurowsk1       35 Sep 25 16:12 html_fragment_cached_with_partial.html.erb
+-rw-r--r--    1 jurowsk1 jurowsk1       90 Sep 25 16:12 inline_fragment_cached.html.erb
+-rw-r--r--    1 jurowsk1 jurowsk1       50 Sep 25 16:12 js_fragment_cached_with_partial.js.rjs

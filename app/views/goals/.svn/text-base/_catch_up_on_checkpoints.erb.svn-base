@@ -1,0 +1,128 @@
+
+<% if @goal.date_next_to_take_action == @goal.user.dtoday %>
+    <% if @goal.get_daily_status_for(@goal.user.dtoday) != "yes" and @goal.get_daily_status_for(@goal.user.dtoday) != "no" %>
+        <DIV style="background-color:#FFF9F4;">
+        <p>
+         	
+         &nbsp  &nbsp Done for today? &nbsp
+                <%= link_to_remote 'I Already Succeeded Today!', :url => {:controller => "goals", :action => "index"}, :with => "'goal_id=#{@goal.id.to_s}&date=#{@goal.user.dtoday.to_s}&update_checkpoint_status=yes&e0=#{@goal.user.email[0]}&f0=#{@goal.user.first_name[0]}&u=#{@goal.user.id}'", :method => :put %>
+                &nbsp or &nbsp
+                <%= link_to_remote "I Didn't do this today.", :url => {:controller => "goals", :action => "index"}, :with => "'goal_id=#{@goal.id.to_s}&date=#{@goal.user.dtoday.to_s}&update_checkpoint_status=no&e0=#{@goal.user.email[0]}&f0=#{@goal.user.first_name[0]}&u=#{@goal.user.id}'", :method => :put %>
+        </p>
+        </div>
+    <% end %>
+<% end %>
+
+<%
+if @goal.has_unanswered_checkpoints
+    total_missing = @goal.number_of_checkpoints_missing_after_start_date
+    max_at_once = 5
+    counter = 0
+    just_yesterday = false
+    catch_up_phrase = "Let's catch up! So we can get your stats, did you succeed on these days?"
+    if total_missing == 1
+        status_yesterday = @goal.get_daily_status_for(@goal.user.dyesterday)
+        if status_yesterday != "yes" and status_yesterday != "no"
+            just_yesterday = true
+            catch_up_phrase = "Did you succeed yesterday "
+        else
+            catch_up_phrase = "Did you succeed on "
+        end
+    end
+    %>    
+
+
+    <div style="padding:5px;margin:10px;">
+
+    <%
+    if total_missing == 1
+        %>
+        <div class="notice">
+        <center>
+        <h4>
+        <%= catch_up_phrase %>
+        <%
+        for checkpoint in @goal.checkpoints_missing_after_start_date
+            @checkin_date = checkpoint.checkin_date
+            if just_yesterday
+                %> 
+                (<%= @checkin_date.strftime("%A").to_s %>) ?
+                <%
+            else
+                %> 
+                <%= @checkin_date.strftime("%A, %b. %d").to_s %> ?
+                <%
+            end
+            %>
+            <h2><%= link_to_remote 'Yes', :url => {:controller => "goals", :action => "index"}, :with => "'goal_id=#{@goal.id.to_s}&date=#{@checkin_date}&update_checkpoint_status=yes&e0=#{@goal.user.email[0]}&f0=#{@goal.user.first_name[0]}&u=#{@goal.user.id}'", :method => :put %>
+            &nbsp • &nbsp
+            <%= link_to_remote "No", :url => {:controller => "goals", :action => "index"}, :with => "'goal_id=#{@goal.id.to_s}&date=#{@checkin_date}&update_checkpoint_status=no&e0=#{@goal.user.email[0]}&f0=#{@goal.user.first_name[0]}&u=#{@goal.user.id}'", :method => :put %>
+            </h2>
+            <%
+        end
+        %>
+        </h4>
+        </center>
+        </div>
+        <%
+    else
+        %>
+        <div class="notice">
+        <center>
+        <h4><%= catch_up_phrase %>
+        <% if @goal.checkpoints_missing_after_start_date.size > max_at_once %>
+            <br>(showing <%= max_at_once %> of <%= @goal.checkpoints_missing_after_start_date.size %>)
+        <% end %>
+        </h4>
+        <table>
+        <tr>
+        <%
+        for checkpoint in @goal.checkpoints_missing_after_start_date
+            counter = counter + 1
+            @checkin_date = checkpoint.checkin_date
+            %>
+            <td>
+                <div class="the_date_checkin">
+                    <div class="date_month_checkin">
+                        <%= @checkin_date.strftime("%b").to_s %>
+                    </div>
+                    <div class="date_day_of_week_checkin">
+                        <%= @checkin_date.strftime("%A").to_s %>
+                    </div>
+                    <div class="date_day_of_month_checkin">
+                        <%= @checkin_date.strftime("%d").to_s %>
+                    </div>
+                </div>
+                <p>
+                &nbsp 
+
+                <!-- 
+                SWEET DOCUMENTATION!!!
+                http://railsbrain.com/api/rails-2.3.2/doc/index.html?a=M002467&name=link_to_remote
+                re: multiple ":with" params:
+                http://firstruby.wordpress.com/2008/11/03/remote_function-or-link_to_remote-with-multiple-parameters-in-ruby-on-rails/
+                -->
+                <%= link_to_remote 'Yes', :url => {:controller => "goals", :action => "index"}, :with => "'goal_id=#{@goal.id.to_s}&date=#{@checkin_date.to_s}&update_checkpoint_status=yes'", :method => :put %>
+                &nbsp
+                <%= link_to_remote 'No', :url => {:controller => "goals", :action => "index"}, :with => "'goal_id=#{@goal.id.to_s}&date=#{@checkin_date.to_s}&update_checkpoint_status=no'", :method => :put %>
+                </p>
+            &nbsp
+            </td>
+            <%
+            if counter >= max_at_once
+                break
+            end
+        end
+        %>
+        </tr>
+        </table>
+        </center>
+        </div>
+        <%
+    end
+    %>
+    </div>
+    
+    <%
+end
+%>

@@ -1,0 +1,53 @@
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/svn/habitforge/!svn/ver/259/trunk/app/views/users
+END
+edit.html.erb
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/habitforge/!svn/ver/2/trunk/app/views/users/edit.html.erb
+END
+index.html.erb
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/habitforge/!svn/ver/2/trunk/app/views/users/index.html.erb
+END
+tell_a_friend.html.erb
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/habitforge/!svn/ver/2/trunk/app/views/users/tell_a_friend.html.erb
+END
+_alluserssharedhabits.erb
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/habitforge/!svn/ver/2/trunk/app/views/users/_alluserssharedhabits.erb
+END
+new.html.erb
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/habitforge/!svn/ver/259/trunk/app/views/users/new.html.erb
+END
+.listing
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/habitforge/!svn/ver/2/trunk/app/views/users/.listing
+END
+_form.erb
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/habitforge/!svn/ver/2/trunk/app/views/users/_form.erb
+END
+show.html.erb
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/habitforge/!svn/ver/237/trunk/app/views/users/show.html.erb
+END

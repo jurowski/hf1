@@ -1,0 +1,3 @@
+<%= @coachgoal.user.first_name %> ( <%= @coachgoal.user.email %> ) signed up for Weekly Checkins, but there's no coach!!!
+
+coachgoal_id = <%= @coachgoal.id %>

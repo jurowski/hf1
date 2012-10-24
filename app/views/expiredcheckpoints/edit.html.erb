@@ -1,0 +1,40 @@
+<h1>Editing expiredcheckpoint</h1>
+
+<% form_for(@expiredcheckpoint) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :checkin_date %><br />
+    <%= f.date_select :checkin_date %>
+  </p>
+  <p>
+    <%= f.label :checkin_time %><br />
+    <%= f.datetime_select :checkin_time %>
+  </p>
+  <p>
+    <%= f.label :status %><br />
+    <%= f.text_field :status %>
+  </p>
+  <p>
+    <%= f.label :goal_id %><br />
+    <%= f.text_field :goal_id %>
+  </p>
+  <p>
+    <%= f.label :created_at %><br />
+    <%= f.datetime_select :created_at %>
+  </p>
+  <p>
+    <%= f.label :updated_at %><br />
+    <%= f.datetime_select :updated_at %>
+  </p>
+  <p>
+    <%= f.label :comment %><br />
+    <%= f.text_area :comment %>
+  </p>
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @expiredcheckpoint %> |
+<%= link_to 'Back', expiredcheckpoints_path %>

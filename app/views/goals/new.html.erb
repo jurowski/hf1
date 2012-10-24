@@ -1,0 +1,15 @@
+<h3>...a start of something new</h3>
+
+<% form_for(@goal) do |f| %>
+    <%= f.error_messages %>
+
+
+    <%= render :partial => "form", :object => f %>
+
+
+    <p>
+    <%= f.submit 'Create' %>
+    </p>
+<% end %>
+
+<p><%= link_to 'Back', goals_path %></p>

@@ -1,0 +1,15 @@
+drwxr-xr-x    2 jurowsk1 jurowsk1     4096 Sep 25 16:12 .
+drwxr-xr-x    6 jurowsk1 jurowsk1     4096 Sep 25 16:12 ..
+-rw-r--r--    1 jurowsk1 jurowsk1      553 Sep 25 16:12 annotations.rake
+-rw-r--r--    1 jurowsk1 jurowsk1    18029 Sep 25 16:12 databases.rake
+-rw-r--r--    1 jurowsk1 jurowsk1     4033 Sep 25 16:12 documentation.rake
+-rw-r--r--    1 jurowsk1 jurowsk1     5341 Sep 25 16:12 framework.rake
+-rw-r--r--    1 jurowsk1 jurowsk1     1676 Sep 25 16:12 gems.rake
+-rw-r--r--    1 jurowsk1 jurowsk1      204 Sep 25 16:12 log.rake
+-rw-r--r--    1 jurowsk1 jurowsk1      244 Sep 25 16:12 middleware.rake
+-rw-r--r--    1 jurowsk1 jurowsk1     2202 Sep 25 16:12 misc.rake
+-rw-r--r--    1 jurowsk1 jurowsk1      308 Sep 25 16:12 rails.rb
+-rw-r--r--    1 jurowsk1 jurowsk1      897 Sep 25 16:12 routes.rake
+-rw-r--r--    1 jurowsk1 jurowsk1      588 Sep 25 16:12 statistics.rake
+-rw-r--r--    1 jurowsk1 jurowsk1     4860 Sep 25 16:12 testing.rake
+-rw-r--r--    1 jurowsk1 jurowsk1      923 Sep 25 16:12 tmp.rake

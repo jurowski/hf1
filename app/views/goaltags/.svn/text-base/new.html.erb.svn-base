@@ -1,0 +1,24 @@
+<h1>Add a tag to a goal template:</h1>
+
+<% form_for(@goaltag) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%
+    @arr = arr_goaltemplates  
+    %>
+    Goal Template: <%= f.select(:goaltemplate_id, @arr)%>
+
+  </p>
+  <p>
+    <%
+    @arr = arr_tags  
+    %>
+    Tag: <%= f.select(:tag_id, @arr)%>
+  </p>
+  <p>
+    <%= f.submit 'Create' %>
+  </p>
+<% end %>
+
+<%= link_to 'Back', goaltags_path %>

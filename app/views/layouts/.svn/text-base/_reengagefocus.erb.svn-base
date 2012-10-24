@@ -1,0 +1,166 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+    <meta name="keywords" content="Reengage Focus, habit, learning habit, reengagefocus, reengagefocus learning habit" />
+    <meta name="description" content="Free web app from reengagefocus that emails you daily asking you a yes or no question about whether you followed through on a habit you want to establish (exercising daily, drinking 8 glasses of water, cutting caffeine intake). If you say "yes" for 21 days in a row, you've done it. Skip a day, and start over at day 1. Invite friend to keep you accountable." />
+    <LINK REL="SHORTCUT ICON" HREF="/images/NONE.ico">
+    <%= stylesheet_link_tag 'reengagefocus' %>
+    <%= javascript_include_tag :defaults %>
+    <title>reEngage Focus</title>
+  </head>
+  <body>    
+  <% if @cn == "user_sessions" and @ca == "new" %> 
+    <div id="header">
+  <% else %>
+    <div id="header2">
+	<% end %>
+      <!-- #start menu -->
+    	<div id="menu">
+    		<ul>	
+  			  <% if !current_user %>
+  				<li 
+  					<% if @cn == "user_sessions" and @ca == "new" and !params[:skip_intro] %> 
+  						class="current_page_item" 
+  					<% end %>
+  				>
+  				  <%= link_to "Intro", new_user_session_path %>
+  				</li>
+  				<li 
+  					<% if @cn == "users" and @ca == "new" %> 
+  						class="current_page_item" 
+  					<% end %>
+  				>
+  				  <%= link_to "Sign Up Free", new_user_path %>
+  				</li>
+  				<li
+  					<% if @cn == "user_sessions" and @ca == "new" and params[:skip_intro] %> 
+  						class="current_page_item" 
+  					<% end %>
+  				>
+  				  <%= link_to "Log In", new_user_session_path + "?skip_intro=1" %></li>
+  		      <% else %>
+  			  <li 
+  					<% if @cn == "goals" or @cn == "checkpoints" %> 
+  						class="current_page_item" 
+  					<% end %>
+  				><%= link_to 'My Habits', '/goals' %></li>
+  			    <li 
+  					<% if @cn == "cheers" %> 
+  						class="current_page_item" 
+  					<% end %>
+  				><%= link_to 'Friends', '/cheers' %></li>
+  			    <li 
+  					<% if @cn == "users" and @ca == "show" %> 
+  						class="current_page_item" 
+  					<% end %>
+  				>
+  					<%= link_to "My Account", account_path %>
+  				</li>
+        	<% if current_user %>
+                <li><%= link_to "Logout", user_session_path, :method => :delete %></li>  			    
+          <% end %>
+			    <%
+			    if current_user.first_name == "Admin" && current_user.email == "jurowski2@gmail.com" 
+			      current_user_is_admin = true
+			    else
+			      current_user_is_admin = false
+			    end
+			    %>
+			    <% if current_user_is_admin %>
+			      <li><%= link_to 'Users', '/users' %></li>
+			      <li><%= link_to 'New user', new_account_path %></li>
+			      <%= pluralize User.logged_in.count, "user" %> currently logged in<br /> 
+			      <!-- This based on last_request_at, if they were active < 10 minutes they are logged in -->
+			    <% end %>
+			    <% #"Current Page: " + @cn + "/" + @ca 	%>
+			  <% end %>
+  		</ul>
+  	</div>
+  	<!-- #end menu -->
+    <% if @cn == "user_sessions" and @ca == "new" %> 
+      <div class="VEPart">
+        <div class="VEShadow" style=" -ms-filter:'progid:DXImageTransform.Microsoft.Alpha(Opacity=25)';filter:progid:DXImageTransform.Microsoft.Alpha(opacity=25);
+          -moz-opacity:0.25; opacity: 0.25; -moz-border-radius: 7px; -webkit-border-radius: 7px;"> </div>
+        <div class="VEContent" style="-moz-border-radius: 7px; -webkit-border-radius: 7px; padding:5px 5px 5px 5px;"> 
+      	<div class="hpage_bg">
+          <span class="h_title">
+          <h4><font color=darkred>1. </font>Decide</h4></span>
+          <div class="h_contnt">
+            <p><font color=#333333>If you could do one thing every day that would change your life for the better, what would it be?</font></p>
+          </div>
+          <span class="h_title">
+          <h4><font color=darkred>2. </font>Act</h4></span>
+          <div class="h_contnt">	
+            <p><font color=#333333>Each morning we'll email you to check in. Simply report on yesterday's success by clicking <strong>Yes</strong> or <strong>No</strong>.</font>
+          </div>		
+          <span class="h_title">
+          <h4><font color=darkred>3. </font>Follow Through</h4></span>
+          <div class="h_contnt">
+            <p><font color=#333333>Succeed for <strong>21 days</strong> until the new habit is forged. Skip a day and the clock starts over.</font></p>
+          </div>
+          </div>
+        </div>
+      </div>
+      <div class="VEPart2">
+        <div class="VEShadow2" style=" -ms-filter:'progid:DXImageTransform.Microsoft.Alpha(Opacity=75)';filter:progid:DXImageTransform.Microsoft.Alpha(opacity=75);
+          -moz-opacity:0.75; opacity: 0.75; -moz-border-radius: 7px; -webkit-border-radius: 7px;"> 
+          <br>
+          <a href="/users/new"><h1><font color=#371015>Start Now... It's Free!</font></h1></a>
+        </div>
+      </div>
+    <% end %>
+    </div>
+    <!-- #end header -->  
+    
+      	
+    <DIV id="page">
+      <% if session[:current_user_is_admin] == true and (params[:impersonate] or session[:impersonate]) %>
+        <br><a href="users?impersonate=3>">Become Admin Again</a>
+      <% end %>
+
+      <% if !current_user %>
+        <%
+        if @cn == "user_sessions" and @ca == "new" and params[:skip_intro] != "1"
+        %>
+          <h1 class="page_title">It takes 21 days to forge a habit</h1>
+        	<table width="95%" align="center">
+        		<tr>
+        			<td width="40%"><a href="/images/reengagefocus/checkpoint.png" target="_blank"><img src='/images/reengagefocus/checkpoint.png' border="0" width="350"></a></td>
+            	<td width="60%"><a href="/images/reengagefocus/success.png" target="_blank"><img src='/images/reengagefocus/success.png' border="0" width="525"></a></td>
+        		</tr>
+        	</table>
+        <% end %>
+      <% end %> 
+      <% if @cn == "user_sessions" and @ca == "new" and !params[:skip_intro] %>
+      <% else %>
+      	<div class="entry" style="padding:10px 10px 10px 10px";>
+            <br>
+            <br>
+      		  <%= yield %>          
+            <br>
+      	</div>
+      <% end %>
+    </div>
+    <!-- #end page --> 
+    
+
+    <div id="footer">
+      <p>&copy; 2010 <a href="http://www.reengagefocus.com/" target="_blank">reengagefocus.com</a></p>
+    </div>
+
+    <script type="text/javascript">
+      var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+      document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+
+    <script type="text/javascript">
+      try {
+        var pageTracker = _gat._getTracker("UA-10841267-1");
+        pageTracker._trackPageview();
+        } catch(err) {}
+    </script>
+
+  </body>
+</html>

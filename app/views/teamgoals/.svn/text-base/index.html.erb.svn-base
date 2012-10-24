@@ -1,0 +1,30 @@
+<h1>Listing teamgoals</h1>
+
+<table>
+  <tr>
+    <th>Team</th>
+    <th>Goal</th>
+    <th>Rating</th>
+    <th>Qty kickoff votes</th>
+    <th>Active</th>
+    <th>Suspend</th>
+  </tr>
+
+<% @teamgoals.each do |teamgoal| %>
+  <tr>
+    <td><%=h teamgoal.team_id %></td>
+    <td><%=h teamgoal.goal_id %></td>
+    <td><%=h teamgoal.rating %></td>
+    <td><%=h teamgoal.qty_kickoff_votes %></td>
+    <td><%=h teamgoal.active %></td>
+    <td><%=h teamgoal.suspend %></td>
+    <td><%= link_to 'Show', teamgoal %></td>
+    <td><%= link_to 'Edit', edit_teamgoal_path(teamgoal) %></td>
+    <td><%= link_to 'Destroy', teamgoal, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New teamgoal', new_teamgoal_path %>

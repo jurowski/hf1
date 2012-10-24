@@ -1,0 +1,137 @@
+10
+
+dir
+263
+http://svn.habitforge.com/svn/habitforge/trunk/app/views
+http://svn.habitforge.com/svn/habitforge
+
+
+
+2012-03-04T12:16:27.072717Z
+263
+svn
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+897a839e-bbe6-11e0-8b5a-4b7c83fe1726
+
+notifier
+dir
+
+failedcheckpoints
+dir
+
+quotes
+dir
+
+betpayees
+dir
+
+password_resets
+dir
+
+.listing
+file
+
+
+
+
+2011-09-19T05:45:29.000000Z
+7c0061096a84d9d7c775d0f69825525b
+2011-08-01T04:14:27.872775Z
+2
+svn
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+791
+
+promotion1s
+dir
+
+frommessages
+dir
+
+expiredcheckpoints
+dir
+
+bets
+dir
+
+tags
+dir
+
+stats
+dir
+
+layouts
+dir
+
+goaltags
+dir
+
+users
+dir
+
+goaltemplates
+dir
+
+coachgoals
+dir
+
+user_sessions
+dir
+
+goals
+dir
+
+coaches
+dir
+
+affiliates
+dir
+
+cheers
+dir
+
+teams
+dir
+
+checkpoints
+dir
+
+tomessages
+dir
+
+teamgoals
+dir
+

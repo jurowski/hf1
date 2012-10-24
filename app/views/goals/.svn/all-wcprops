@@ -1,0 +1,185 @@
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/svn/habitforge/!svn/ver/263/trunk/app/views/goals
+END
+extend_time.html.erb
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/habitforge/!svn/ver/2/trunk/app/views/goals/extend_time.html.erb
+END
+go.html.erb
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/habitforge/!svn/ver/2/trunk/app/views/goals/go.html.erb
+END
+view_goal_creation_email.html.erb
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/habitforge/!svn/ver/2/trunk/app/views/goals/view_goal_creation_email.html.erb
+END
+index.html.erb
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/habitforge/!svn/ver/263/trunk/app/views/goals/index.html.erb
+END
+_catch_up_on_checkpoints.erb
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/habitforge/!svn/ver/216/trunk/app/views/goals/_catch_up_on_checkpoints.erb
+END
+_coach.erb
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/habitforge/!svn/ver/199/trunk/app/views/goals/_coach.erb
+END
+invite_a_friend_to_track.html.erb
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/habitforge/!svn/ver/2/trunk/app/views/goals/invite_a_friend_to_track.html.erb
+END
+autoupdate.html.erb
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/habitforge/!svn/ver/129/trunk/app/views/goals/autoupdate.html.erb
+END
+_watchers.erb
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/habitforge/!svn/ver/192/trunk/app/views/goals/_watchers.erb
+END
+_habits_hold.erb
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/habitforge/!svn/ver/141/trunk/app/views/goals/_habits_hold.erb
+END
+_upgrade_advertisement.erb
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/habitforge/!svn/ver/237/trunk/app/views/goals/_upgrade_advertisement.erb
+END
+.listing
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/habitforge/!svn/ver/2/trunk/app/views/goals/.listing
+END
+_habits_established.erb
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/habitforge/!svn/ver/49/trunk/app/views/goals/_habits_established.erb
+END
+_habits_monitor.erb
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/habitforge/!svn/ver/182/trunk/app/views/goals/_habits_monitor.erb
+END
+show.html.erb
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/habitforge/!svn/ver/2/trunk/app/views/goals/show.html.erb
+END
+_fire.erb
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/habitforge/!svn/ver/192/trunk/app/views/goals/_fire.erb
+END
+single.html.erb
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/habitforge/!svn/ver/192/trunk/app/views/goals/single.html.erb
+END
+index.html.erb_20120123
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/habitforge/!svn/ver/190/trunk/app/views/goals/index.html.erb_20120123
+END
+_team.erb
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/habitforge/!svn/ver/199/trunk/app/views/goals/_team.erb
+END
+_habits_start.erb
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/habitforge/!svn/ver/182/trunk/app/views/goals/_habits_start.erb
+END
+edit.html.erb
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/habitforge/!svn/ver/44/trunk/app/views/goals/edit.html.erb
+END
+hold.html.erb
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/habitforge/!svn/ver/2/trunk/app/views/goals/hold.html.erb
+END
+_options.erb
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/habitforge/!svn/ver/216/trunk/app/views/goals/_options.erb
+END
+new.html.erb
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/habitforge/!svn/ver/2/trunk/app/views/goals/new.html.erb
+END
+_stats.erb
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/habitforge/!svn/ver/230/trunk/app/views/goals/_stats.erb
+END
+index.rjs
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/habitforge/!svn/ver/193/trunk/app/views/goals/index.rjs
+END
+_date_badge.erb
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/habitforge/!svn/ver/190/trunk/app/views/goals/_date_badge.erb
+END
+_form.erb
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/habitforge/!svn/ver/241/trunk/app/views/goals/_form.erb
+END
+_date_badge_catchup.erb
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/habitforge/!svn/ver/192/trunk/app/views/goals/_date_badge_catchup.erb
+END
+sharelinks.html.erb
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/habitforge/!svn/ver/2/trunk/app/views/goals/sharelinks.html.erb
+END

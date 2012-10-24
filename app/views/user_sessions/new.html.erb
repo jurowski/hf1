@@ -1,0 +1,85 @@
+  <h2>Login</h2>
+  <br>
+
+      <% form_for @user_session, :url => user_session_path do |f| %>
+        <%= f.error_messages %>
+        <table cellpadding=0 cellspacing=0 border=0>
+        <tr>
+        <td valign=center nowrap>
+
+        Email: &nbsp
+        </td>
+        <td valign=top nowrap>
+        <%= f.text_field :email, :size => 20 %>
+        </td>
+        <td valign=center nowrap>
+        &nbsp&nbsp Password: &nbsp
+        </td>
+        <td valign=top nowrap>
+        <%= f.password_field :password, :size => 20 %>
+        <% #f.check_box :remember_me %><%= f.label :remember_me %><br />
+        </td>
+        <td valign=top nowrap>
+        <%= f.submit "Login" %>
+        </td>
+        </tr>
+        </table>
+
+
+        <%
+        ##### Used when we're not logged in but we want to do something...
+        ##### This way we'll be re-directed to the login screen, then to the place we wanted to be
+        if params[:after_login_cn]
+        %>
+            <input type=hidden name="after_login_cn" value="<%=params[:after_login_cn]%>"
+
+            <%
+            if params[:after_login_ca]
+            %>
+                <input type=hidden name="after_login_ca" value="<%=params[:after_login_ca]%>"
+            <%
+            end
+            %>
+
+
+            <%
+            if params[:after_login_param_1_name]
+            %>
+                <input type=hidden name="after_login_param_1_name" value="<%=params[:after_login_param_1_name]%>"
+                <input type=hidden name="after_login_param_1_val" value="<%=params[:after_login_param_1_val]%>"
+            <%
+            end
+            %>
+
+            <%
+            if params[:after_login_param_2_name]
+            %>
+                <input type=hidden name="after_login_param_2_name" value="<%=params[:after_login_param_2_name]%>"
+                <input type=hidden name="after_login_param_2_val" value="<%=params[:after_login_param_2_val]%>"
+            <%
+            end
+            %>
+
+
+            <%
+            if params[:after_login_id]
+            %>
+                <input type=hidden name="after_login_id" value="<%=params[:after_login_id]%>"
+            <%
+            end
+            %>
+
+
+        <%
+        end
+        %>
+
+
+      <% end %>
+      <p>
+      <%= link_to "Forgot Password", "/password_resets/new" %>
+      &nbsp;&nbsp;
+      <%= link_to "Need an Account", new_user_path %></li>
+      </p>
+
+

@@ -1,0 +1,17 @@
+drwxr-xr-x    2 jurowsk1 jurowsk1     4096 Sep 25 16:12 .
+drwxr-xr-x   13 jurowsk1 jurowsk1     4096 Sep 25 16:12 ..
+-rw-r--r--    1 jurowsk1 jurowsk1        9 Sep 25 16:12 _subtemplate.text.plain.erb
+-rw-r--r--    1 jurowsk1 jurowsk1       35 Sep 25 16:12 body_ivar.erb
+-rw-r--r--    1 jurowsk1 jurowsk1       54 Sep 25 16:12 custom_templating_extension.text.html.haml
+-rw-r--r--    1 jurowsk1 jurowsk1       54 Sep 25 16:12 custom_templating_extension.text.plain.haml
+-rw-r--r--    1 jurowsk1 jurowsk1       55 Sep 25 16:12 implicitly_multipart_example.ignored.erb
+-rw-r--r--    1 jurowsk1 jurowsk1       55 Sep 25 16:12 implicitly_multipart_example.rhtml.bak
+-rw-r--r--    1 jurowsk1 jurowsk1      200 Sep 25 16:12 implicitly_multipart_example.text.html.erb
+-rw-r--r--    1 jurowsk1 jurowsk1      200 Sep 25 16:12 implicitly_multipart_example.text.html.erb~
+-rw-r--r--    1 jurowsk1 jurowsk1       66 Sep 25 16:12 implicitly_multipart_example.text.plain.erb
+-rw-r--r--    1 jurowsk1 jurowsk1       26 Sep 25 16:12 implicitly_multipart_example.text.yaml.erb
+-rw-r--r--    1 jurowsk1 jurowsk1       47 Sep 25 16:12 included_subtemplate.text.plain.erb
+-rw-r--r--    1 jurowsk1 jurowsk1       22 Sep 25 16:12 rxml_template.builder
+-rw-r--r--    1 jurowsk1 jurowsk1       22 Sep 25 16:12 rxml_template.rxml
+-rw-r--r--    1 jurowsk1 jurowsk1       36 Sep 25 16:12 signed_up.html.erb
+-rw-r--r--    1 jurowsk1 jurowsk1      136 Sep 25 16:12 signed_up_with_url.erb

@@ -1,0 +1,7 @@
+drwxr-xr-x    2 jurowsk1 jurowsk1     4096 Sep 25 16:12 .
+drwxr-xr-x    9 jurowsk1 jurowsk1     4096 Sep 25 16:12 ..
+-rw-r--r--    1 jurowsk1 jurowsk1      486 Sep 25 16:12 mysql_specific_schema.rb
+-rw-r--r--    1 jurowsk1 jurowsk1     2685 Sep 25 16:12 postgresql_specific_schema.rb
+-rw-r--r--    1 jurowsk1 jurowsk1    12357 Sep 25 16:12 schema.rb
+-rw-r--r--    1 jurowsk1 jurowsk1      151 Sep 25 16:12 schema2.rb
+-rw-r--r--    1 jurowsk1 jurowsk1      630 Sep 25 16:12 sqlite_specific_schema.rb

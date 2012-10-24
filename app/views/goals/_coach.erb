@@ -1,0 +1,297 @@
+<!--  
+START 
+"Coach"
+(per goal, and uses "@goal" for reference)
+-->
+
+<div id="coach_<%= @goal.id %>" style="display:none;">      
+
+
+<%
+if @goal != nil and @goal.category !=nil
+
+    ### If doing a test coaching for this goal
+    if params[:test_free_coaching] == "1" and params[:goal_id] == @goal.id.to_s
+        ### <a href="/goals?test_free_coaching=1&goal_id=2342342&coach_id=23423423"></a>
+        goal = Goal.find(:first, :conditions => "id = #{params[:goal_id]}")
+        user = current_user
+        xml_payments = 16
+        xml_coach_id = params[:coach_id]
+        ###################################################
+        ####### START COPIED FROM HOOKS CONTROLLER ########
+        ###
+        ###
+    
+    
+        ### Create a new coachgoal
+        coachgoal = Coachgoal.new()
+
+        coach = Coach.find(:first, :conditions => "id = #{xml_coach_id}")
+        if coach != nil
+            logger.info 'TEST COACHING:we have our coach.'
+            coachgoal.coach_id = coach.id
+
+            if coach.client_count_cumulative == nil
+                coach.client_count_cumulative = 1
+            else
+                coach.client_count_cumulative = coach.client_count_cumulative + 1
+            end
+
+            if coach.client_count_active == nil
+                coach.client_count_active = 1
+            else
+                coach.client_count_active = coach.client_count_active + 1
+            end
+
+            coach.save
+            logger.info 'TEST COACHING: Coach record saved.'
+        
+            cheer = Cheer.new()
+            cheer.email = coach.user.email
+            cheer.goal_id = goal.id
+            cheer.save
+            logger.info 'TEST COACHING: Cheer record saved.'
+
+        else
+            logger.info 'TEST COACHING: WE DO NOT HAVE A COACH.'
+            ### We don't seem to have an available coach 
+            ### (it didn't come through, or is invalid, and/or none is available now)
+            coachgoal.coach_id = 0        
+        end
+
+        dnow = get_dnow
+    
+        coachgoal.goal_id = goal.id
+        coachgoal.goal_name = goal.title
+        coachgoal.user_id = user.id
+        coachgoal.user_email = user.email
+        coachgoal.user_first_name = user.first_name
+        coachgoal.amount_client_paid_total = 0.0 + xml_payments.to_i
+        coachgoal.amount_client_paid_split_to_site = coachgoal.amount_client_paid_total/2
+        coachgoal.amount_client_paid_split_to_coach = coachgoal.amount_client_paid_total/2
+        coachgoal.week_1_email_due_date = dnow + 7
+        coachgoal.week_2_email_due_date = dnow + 14
+        coachgoal.week_3_email_due_date = dnow + 21
+        coachgoal.week_4_email_due_date = dnow + 28
+        coachgoal.is_active = 1
+        coachgoal.save
+    
+        ### Update Goal Record
+        goal.is_coached = 1
+        goal.coachgoal_id = coachgoal.id
+        goal.save
+
+
+         ### if user.payments == nil
+         ###     user.payments = 0.0
+         ### end
+         ### ### Look for Issues here with the BigInteger type via xml
+         ### user.payments = user.payments + xml_payments.to_i
+         ### 
+         ### user.last_donation_date = dnow
+
+         ### if user.save
+         ###     logger.info 'TEST COACH SUCCESS upgrading user account for ' + user.email
+         ### else 
+         ###     logger.info 'TEST COACH ERROR upgrading user account for ' + user.email
+         ### end
+         ### Send email to user and CC support w/ thank you and upgrade info
+         logger.info 'TEST COACH ATTEMPTING TO Send email to user and CC support w/ Weekly Check-in and upgrade info'
+         Notifier.deliver_user_extraacc_upgrade_notification(coachgoal) # sends the email             
+
+         if coachgoal.coach_id == 0
+             logger.info 'TEST COACH ATTEMPTING TO Send email to support re: no coach'
+             Notifier.deliver_support_coachgoal_missing_coach_notification(coachgoal) # sends the email             
+         else
+             logger.info 'TEST COACH ATTEMPTING TO Send email to coach w/ instructions'
+             Notifier.deliver_coach_coachgoal_notification(coachgoal) # sends the email             
+         end
+
+        ###
+        ###
+        ####### END COPIED FROM HOOKS CONTROLLER ########
+        ###################################################
+
+    end
+
+    logger.debug 'SGJ COACHING: __________________________'
+    logger.debug 'SGJ COACHING: Goal ID: ' + @goal.id.to_s + '; Category: = ' + @goal.category.to_s + '; Title: = ' + @goal.title.to_s
+
+
+    ####### PSEUDOCODE
+    ###  User Goal View
+    ###    If Being Coached Already (goal.is_coached != nil and goal.is_coached == 1)
+    ###      show "being coached by" details from coachgoal record
+    ###    else
+    ###      available_coaches = coach.find all where coach.is_willing_to_work = 1 and  coach.client_count_active < coach.client_count_limit and coach.categories contains  goal.category
+    ###      if available_coaches != nil and available_coaches.size > 0
+    ###        randomly choose one from available_coaches
+    ###        put link to sign up for (shopify generic coaching item) but w/ that coach's blurb (pass coach_id so it comes back to the hook)
+    ###      else
+    ###        No Coaching Available, say nothing
+
+    ### IF being coached already
+    if @goal.is_coached != nil and @goal.is_coached == 1
+        logger.debug 'SGJ COACHING:being coached.'
+
+        ### show "being coached by" details from coachgoal record
+        coachgoal = Coachgoal.find(:first, :conditions => "goal_id = #{@goal.id}")
+        if coachgoal != nil
+            #### Advertise the chosen coach
+            ad_title = "#{coachgoal.coach.user.first_name} will be in touch on or around #{get_next_send_date(coachgoal).strftime("%A, %B %d")}!"
+            %>         
+
+            <div class="grid_9 omega">
+                <DIV style="border-radius:20px;-moz-border-radius:20px;border-width:none;border-color:#eeeeee;background-color:#fffff;border-style:solid;padding:10px 10px 10px 10px;margin:10px 10px 10px 10px;width:610px;">
+                    <img src="/images/User-Files-icon.png" height="30px" />
+
+                     <%= link_to_function ("#{ad_title}") {
+                     |page| page.visual_effect :toggle_appear, "coach_details#{@goal.id}" 
+                    } 
+                    %>
+                    <div id="coach_details<%= @goal.id %>" style="display:none;">
+                        <p>
+                            <% if coachgoal.coach.blurb != nil %>
+                                <table border=0 cellpadding="3" cellspacing="3" width="100%">
+                                    <tr>
+                                      <td valign=center>
+                                        &nbsp                                                                                          
+                                        <img src="/images/User-Files-icon.png" height="100px" />
+                                      </td>
+                                      <td valign=top>
+                                        <p><%= coachgoal.coach.blurb %></p>
+                                        <p>
+                                        <p>At the end of each week, for 4 weeks, <%= coachgoal.coach.user.first_name %> will be checking your stats, view your progress and email you to help keep you motivated and working toward your goals!
+                                        </p>
+                                      </td>
+                                    </tr>
+                                </table>
+                            <% end %>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <%
+        end
+
+    else
+        logger.debug 'SGJ COACHING:not being coached. Look for available coaches'
+
+        ### see if any coaches are available, period
+        available_coaches = Coach.find(:all, :conditions => "is_willing_to_work = 1 and (client_count_active < client_count_limit )")
+        if available_coaches != nil and available_coaches.size > 0
+            logger.debug 'SGJ COACHING:found available coach(es).'
+
+            ### see if any available coaches specialize in this goal's category
+            arr_for_hire = Array.new
+            for coach in available_coaches
+                if coach.categories.include? @goal.category
+                    ### found one, add it to array of "for hire" coaches
+                    arr_for_hire.push([coach.id])
+                end
+            end
+            if arr_for_hire.size > 0
+                logger.debug 'SGJ COACHING:found coach(es) for this category.'
+            
+                chosen_coach_id = 0
+                chosen_coach = Coach.new
+            
+                ### We have at least one coach for hire
+                if arr_for_hire.size == 1
+                    logger.debug 'SGJ COACHING:found just one coach for this category.'
+
+                    ### We just have one to choose
+                    chosen_coach_id = arr_for_hire[0]
+                    #chosen_coach = arr_for_hire[0]
+                else
+                    logger.debug 'SGJ COACHING:found multiple coaches for this category.'
+
+                    ### We have more than one, let's randomly choose one!
+                    random_user_number = 0
+                    random_user_number = rand(arr_for_hire.size) + 0 #between 0 and arr_for_hire.size
+                    chosen_coach_id = arr_for_hire[random_user_number]
+                    #chosen_coach = arr_for_hire[random_user_number]
+                end
+            
+                chosen_coach = Coach.find(:first, :conditions => "id = #{chosen_coach_id}")
+                if chosen_coach != nil
+                    logger.debug 'SGJ COACHING:advertise the chosen coach.'
+
+                    #### Advertise the chosen coach
+                    ad_title = "(Who's #{chosen_coach.user.first_name}?)"
+                    %>
+                    <div class="grid_9 omega">
+                        <DIV style="border-radius:20px;-moz-border-radius:20px;border-width:none;border-color:#eeeeee;background-color:#fffff;border-style:solid;padding:10px 10px 10px 10px;margin:10px 10px 10px 10px;width:610px;">
+                            <img src="/images/User-Files-icon.png" height="30px" />
+                             In Your Corner: Have <%= chosen_coach.user.first_name %> check in with you weekly! <%= link_to_function ("#{ad_title}") {
+                             |page| page.visual_effect :toggle_appear, "coach_details#{@goal.id}" 
+                            } 
+                            %>
+                            <div id="coach_details<%= @goal.id %>" style="display:none;">
+                                <p>
+                                    <% if chosen_coach.blurb != nil %>
+                                        <%
+                                        ref_params = "t-coach_u-#{@goal.user.id.to_s}_g-#{@goal.id.to_s}_c-#{chosen_coach.user.id.to_s}"
+                                        %>
+                                        <table border=0 cellpadding="3" cellspacing="3" width="100%">
+                                            <tr>
+                                              <td valign=center>
+                                                &nbsp                                                                                          
+                                                <a href="https://habitforge.myshopify.com/collections/frontpage/products/extra-accountability-4-weekly-checkins-with-a-mentor?ref=<%=ref_params%>">
+                                                    <img src="/images/User-Files-icon.png" height="100px" />
+                                                </a>
+                                              </td>
+                                              <td valign=top>
+                                                <p><%= chosen_coach.blurb %></p>
+                                                <p>
+                                                <p>At the end of each week, for the next 4 weeks, <%= chosen_coach.user.first_name %> will check your stats, view your progress and email you to help keep you motivated and working toward your goals!
+                                                </p>
+                                                <p><b><span><font color="red">Limited Time: Also includes 1-year Supporting Membership!</font></span></b><br /></p>
+                                                <p><i>(If you're already a Supporting Member, your membership will be extended for an additional year.)</i></p>
+
+                                                <p>
+                                                <h3>
+                                                    <a href="https://habitforge.myshopify.com/collections/frontpage/products/extra-accountability-4-weekly-checkins-with-a-mentor?ref=<%=ref_params%>" class="button">
+                                                        $16.00
+                                                    </a>
+                                                </h3>
+                                                <a href="/goals?test_free_coaching=1&goal_id=<%= @goal.id %>&coach_id=<%= chosen_coach.id %>">
+                                                </a>
+                                                </p>
+                                              </td>
+                                            </tr>
+                                        </table>
+
+
+                                    <% end %>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <%
+                end ### end Advertise Chosen Coach
+            end ### end Whether we have coaches available for this category
+        else
+            %>
+            <p>Sorry, there are no coaches available for this goal's category at this time.</p>
+            <%
+        end ### end Whether we have coaches available at the moment, for any category
+
+    end
+end
+%>
+
+<p />
+
+
+</div>
+
+
+
+
+
+
+<!--  
+END 
+Coach
+-->

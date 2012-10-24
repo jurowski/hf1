@@ -1,0 +1,70 @@
+<h1>Listing bets</h1>
+
+<table>
+  <tr>
+
+    <th>Wager</th>
+    <th>Charity Site</th>
+    <th>Charity</th>
+    <th>Email</th>
+    <th>First Name</th>
+    <th>Last Name</th>
+    <th>User ID</th>
+    <th>Goal ID</th>
+
+    <th>Credits</th>
+    <th>Start date</th>
+    <th>End date</th>
+    <th>Success rate</th>
+    <th>Donated amount</th>
+    <th>Donation date</th>
+    <th>Active yn</th>
+  </tr>
+
+<% @bets.each do |bet| %>
+  <tr>
+
+    <td><%=h bet.wager %></td>
+    <td><%=h bet.betpayee.url %></td>
+    <td><%=h bet.betpayee.name %></td>
+    
+        <% if bet.goal != nil %>
+            <td>
+            <%=h bet.goal.user.email %>
+            </td>
+            <td><%=h bet.goal.user.first_name %></td>
+            <td><%=h bet.goal.user.last_name %></td>
+            <td><%=h bet.goal.user.id %></td>
+        <% else %>
+            <td>
+            goal was removed
+            </td>
+            <td>
+            goal was removed
+            </td>
+            <td>
+            goal was removed
+            </td>
+            <td>
+            goal was removed
+            </td>
+        <% end %>
+
+    <td><%=h bet.goal_id %></td>
+    <td><%=h bet.credits %></td>
+    <td><%=h bet.start_date %></td>
+    <td><%=h bet.end_date %></td>
+    <td><%=h bet.success_rate %></td>
+    <td><%=h bet.donated_amount %></td>
+    <td><%=h bet.donation_date %></td>
+    <td><%=h bet.active_yn %></td>
+    <td><%= link_to 'Show', bet %></td>
+    <td><%= link_to 'Edit', edit_bet_path(bet) %></td>
+    <td><%= link_to 'Destroy', bet, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New bet', new_bet_path %>

@@ -1,0 +1,23 @@
+<p>
+  <b>Thought:</b>
+  <%=h @quote.thought %>
+</p>
+
+<p>
+  <b>Author:</b>
+  <%=h @quote.author %>
+</p>
+
+<p>
+  <b>Last used:</b>
+  <%=h @quote.last_used %>
+</p>
+
+<p>
+  <b>Priority:</b>
+  <%=h @quote.priority %>
+</p>
+
+
+<%= link_to 'Edit', edit_quote_path(@quote) %> |
+<%= link_to 'Back', quotes_path %>

@@ -1,0 +1,17 @@
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/habitforge/!svn/ver/2/trunk/vendor/rails/activesupport/lib/active_support/core_ext/base64
+END
+.listing
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/habitforge/!svn/ver/2/trunk/vendor/rails/activesupport/lib/active_support/core_ext/base64/.listing
+END
+encoding.rb
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/habitforge/!svn/ver/2/trunk/vendor/rails/activesupport/lib/active_support/core_ext/base64/encoding.rb
+END

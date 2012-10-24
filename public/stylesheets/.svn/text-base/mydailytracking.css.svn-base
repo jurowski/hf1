@@ -1,0 +1,393 @@
+@charset "utf-8";
+/*
+Design by Free CSS Templates
+http://www.freecsstemplates.org
+Released for free under a Creative Commons Attribution 2.5 License
+*/
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, font, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+caption, tbody, tfoot, thead, tr, th, td {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	outline: 0;
+	font-size: 97%;
+	vertical-align: baseline;
+	background: transparent;
+}
+
+html {
+    height: 100%;
+}
+
+body {
+	background-color: #edfaf3;
+	margin:0;
+	height: 100%;
+}
+
+body, th, td, input, textarea {
+	color:#000000;
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+	font-size:12px;
+}
+	
+textarea {
+	font-weight:bold;
+}	
+
+h1, h2, h3 {
+	color: #000000;
+}
+
+h1 {
+	font-size: 21px;
+	margin-left: 20px;
+	padding-bottom: 5px;
+}
+
+h2 {
+	font-size: 18px;
+}
+
+h3 {
+	font-size: 14px;
+}
+
+h4 {
+	font-size: 12px;
+}
+
+h5{
+	font-size:11px;
+}
+
+h6{
+	font-size:10px;
+}
+
+p, ul, ol {
+	font-size:13px;
+}
+
+ul, ol {
+	margin-left:36px;
+	line-height:20px;
+	margin-bottom:4px;
+}
+
+blockquote{
+	margin-left:36px;
+	margin-right:36px;
+	}
+
+a {
+	color:#371015;
+	text-decoration:underline;
+}
+
+a:hover {
+	border: none;
+}
+
+h1 a, h2 a, h3 a {
+	border:none;
+	color:#333333;
+	text-decoration:underline;;
+}
+
+h1 a:hover, h2 a:hover, h3 a:hover{
+	background:none;
+	color:#371015;
+}
+
+hr{
+	display:none;
+}
+
+/* Images */
+
+.imgLeft {
+	margin-right:10px;
+	margin-bottom: 10px;
+	float: left;
+}
+.imgRight {
+	margin-left:10px;
+	margin-bottom: 10px;
+	float: right;
+}
+
+
+/* Validation Error Styling */
+
+.fieldWithErrors {
+  padding: 1px;
+  background-color: red;
+  display: table;
+}
+
+#errorExplanation {
+  width: 400px;
+  border: 2px solid red;
+  padding: 7px;
+  padding-bottom: 12px;
+  margin-bottom: 20px;
+  background-color: #f0f0f0;
+}
+
+#errorExplanation h2 {
+  text-align: left;
+  font-weight: bold;
+  padding: 5px 5px 5px 15px;
+  font-size: 12px;
+  margin: -7px;
+  background-color: #c00;
+  color: #fff;
+}
+
+#errorExplanation p {
+  color: #333;
+  margin-bottom: 0;
+  padding: 5px;
+}
+
+
+/* Logo */
+
+#logo{
+	background:url(images/mydailytracking/header.jpg) no-repeat left top;
+	height:283px;
+	margin:0 auto;
+	width:960px;
+	border-bottom: #e1e3e2 9px solid;
+	position:relative;
+	}
+
+#logo h1, #logo p {
+	margin: 0;
+	padding: 0;
+	font-family: Georgia, "Times New Roman", Times, serif;
+}
+
+#logo h1 {
+	letter-spacing: -1px;
+	text-transform: lowercase;
+	font-size: 40px;
+}
+
+#logo h1 a {
+	color: #CCCCCC;
+}
+
+#logo p {
+	margin: -30px 0px 0px 0px;
+	padding: 12px 0 0 0px;
+	font: normal 19px Georgia, "Times New Roman", Times, serif;
+	color: #C5E8FF;
+} 
+
+#logo a {
+	border: none;
+	background: none;
+	text-decoration: none;
+	color: #C5E8FF;
+}
+
+
+/* Header */
+
+#header {
+	background: url(/images/mydailytracking/header.jpg) no-repeat;
+	height:107px;
+	margin:0 auto;
+	position:relative;
+	padding-bottom: 15px;
+}
+
+
+/* Menu */
+
+#menu {
+	height: 107px;
+	background: url(/images/mydailytracking/logo.png) no-repeat left top;
+	padding-top: 5px;
+	font-weight:bold;
+	color: #ffffff;
+}
+
+#menu ul {
+	float: right;
+	margin-right: 25px;
+	list-style: none;
+}
+
+#menu li {
+	float: left;
+	display: block;
+	margin-left: 5px;
+	text-align: center;
+	border: none;
+}
+
+#menu a {
+	text-decoration: none;
+	color: #ffffff;
+}
+
+#menu a:hover, #menu .current_page_item a {
+	text-decoration: underline;
+}
+
+#menu .current_page_item a {
+	padding-left: 0;
+	color: #cc3300;
+}
+
+
+/* Content Area */
+
+#page {
+	width: 960px; /*942*/
+	height: 600px;
+	margin: 0px auto;
+	background-color: #ffffff;
+}
+
+
+/* PODS!!!! */
+
+div.primaryPod443L {
+	float: left;
+	border: 1px solid #791815;
+	background: #eae6cd;
+	width: 443px;
+	padding-bottom:10px;
+	margin-left: 20px;
+	margin-top: 20px;
+}
+
+div.primaryPod443L a {
+	text-decoration: none;
+	color: #ffffff;
+}
+
+div.primaryPod443L a:hover, #menu .current_page_item a {
+	text-decoration: underline;
+}
+
+div.primaryPod443L .current_page_item a {
+	text-decoration: underline;
+}
+
+div.primaryPod443L h1 {
+	font-size:13px;
+	letter-spacing: 0px;
+	color: #ffffff;
+	background-color: #791815;
+	width: 443px;
+	line-height: 24px;
+	text-indent: 10px;
+	margin: 0px 0px 10px 0px;
+	font-family:Arial, Helvetica, sans-serif;
+	padding:6px 0px 6px 0px;
+}
+
+div.primaryPod443L p{
+	padding: 4px 10px 4px 10px;
+}
+
+div.primaryPod442R {
+	float: right;
+	border: 1px solid #791815;
+	background: #eae6cd;
+	width: 442px;
+	padding-bottom:10px;
+	margin-right: 20px;
+	margin-top: 20px;
+}
+
+div.primaryPod442R a {
+	text-decoration: none;
+	color: #ffffff;
+}
+
+div.primaryPod442R a:hover, #menu .current_page_item a {
+	text-decoration: underline;
+}
+
+div.primaryPod442R .current_page_item a {
+	text-decoration: underline;
+}
+
+div.primaryPod442R h1 {
+	font-size:13px;
+	letter-spacing: 0px;
+	color: #ffffff;
+	background-color: #791815;
+	width: 443px;
+	line-height: 24px;
+	text-indent: 10px;
+	margin: 0px 0px 10px 0px;
+	font-family:Arial, Helvetica, sans-serif;
+	padding:6px 0px 6px 0px;
+}
+
+div.primaryPod442R p{
+	padding: 4px 10px 4px 10px;
+}
+
+div.padPod {
+	padding:0px;
+}
+
+div.padPod h2 {
+	font-size:13px;
+	line-height: 24px;
+	text-indent: 10px;
+	margin: 0px 0px 10px 0px;
+	font-family:Arial, Helvetica, sans-serif;
+}
+
+div.padPod a {
+	color: #000000;
+	text-decoration: underline;
+}
+
+div.padPodGoo {
+	padding:20px;
+}
+
+
+/* Footer */
+
+#footer {
+	background-color: #eae6cd;
+	height: 30px;
+	margin: 0 auto;
+	padding: 0px 0 15px 0;
+	font-family: Arial, Helvetica, sans-serif;
+	width: 960px;
+}
+
+#footer p {
+	font-weight:bold;
+	margin: 0;
+	line-height: normal;
+	font-size: 12px;
+	text-align: center;
+	padding-top: 15px;
+	color: #000000;
+}
+
+#footer a {
+	font-weight:bold;
+	text-decoration: none;
+	color: #000000;
+}

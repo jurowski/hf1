@@ -1,0 +1,20 @@
+<h1>Editing goaltemplate</h1>
+
+<% form_for(@goaltemplate) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :title %><br />
+    <%= f.text_field :title %>
+  </p>
+  <p>
+    <%= f.label :category %><br />
+    <%= f.text_field :category %>
+  </p>
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @goaltemplate %> |
+<%= link_to 'Back', goaltemplates_path %>

@@ -1,0 +1,47 @@
+<html>
+<head>
+<base href="http://habitforge.com/"/>
+ <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head>
+<body>
+
+
+<p>
+<%= @to_user.first_name %>,
+
+<br>
+<br><%= @push_message %>
+
+<br><br>I really need you to succeed with <%= @slacker_goal.title %>! If you report a success during the next 48 hours, I will earn 10 SupportPoints to apply toward a free Supporting Membership for myself or a friend!
+<br>
+<br>Best of luck today!
+<br>--<%= @from_user.first_name %> <%= @from_user.last_name %> (I sent this via HabitForge.com)
+</p>
+<br>
+<br>
+<br>
+<br>
+
+         <table align=center border="0" cellspacing="0" cellpadding="0">
+             <tr>
+                <td align="center">
+                 <p>
+                 You are receiving this message because <%= @from_user.first_name %> was asked to give you a "push" since you haven't checked in with a "yes" these past few days.
+                   <br>
+                 You won't get more than <%= @slacker_goal.pushes_allowed_per_day %> of these per day. To no longer allow HabitForge members to "push" you, or to manage other aspects of this goal or of your account, log into <a href="http://habitforge.com">http://habitforge.com</a>
+                   </p>
+
+                </td>
+             </tr>
+             <tr>
+                <td align="center">
+                   <p>
+                   Questions? Email <a href="mailto:support@habitforge.com">support@habitforge.com</a>
+                   </p>
+
+                </td>
+             </tr>
+           </table>
+
+</body>
+</html>

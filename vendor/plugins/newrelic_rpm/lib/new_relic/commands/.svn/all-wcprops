@@ -1,0 +1,17 @@
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/habitforge/!svn/ver/2/trunk/vendor/plugins/newrelic_rpm/lib/new_relic/commands
+END
+deployments.rb
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/habitforge/!svn/ver/2/trunk/vendor/plugins/newrelic_rpm/lib/new_relic/commands/deployments.rb
+END
+new_relic_commands.rb
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/habitforge/!svn/ver/2/trunk/vendor/plugins/newrelic_rpm/lib/new_relic/commands/new_relic_commands.rb
+END

@@ -1,0 +1,7 @@
+drwxr-xr-x    2 jurowsk1 jurowsk1     4096 Sep 25 16:12 .
+drwxr-xr-x   22 jurowsk1 jurowsk1     4096 Sep 25 16:12 ..
+-rw-r--r--    1 jurowsk1 jurowsk1      462 Sep 25 16:12 conversions.rb
+-rw-r--r--    1 jurowsk1 jurowsk1     2485 Sep 25 16:12 extending.rb
+-rw-r--r--    1 jurowsk1 jurowsk1     2202 Sep 25 16:12 instance_variables.rb
+-rw-r--r--    1 jurowsk1 jurowsk1      291 Sep 25 16:12 metaclass.rb
+-rw-r--r--    1 jurowsk1 jurowsk1     2934 Sep 25 16:12 misc.rb

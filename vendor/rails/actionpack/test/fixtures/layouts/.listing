@@ -1,0 +1,11 @@
+drwxr-xr-x    2 jurowsk1 jurowsk1     4096 Sep 25 16:12 .
+drwxr-xr-x   29 jurowsk1 jurowsk1     4096 Sep 25 16:12 ..
+-rw-r--r--    1 jurowsk1 jurowsk1       80 Sep 25 16:12 _column.html.erb
+-rw-r--r--    1 jurowsk1 jurowsk1      263 Sep 25 16:12 block_with_layout.erb
+-rw-r--r--    1 jurowsk1 jurowsk1       47 Sep 25 16:12 builder.builder
+-rw-r--r--    1 jurowsk1 jurowsk1       40 Sep 25 16:12 default_html.html.erb
+-rw-r--r--    1 jurowsk1 jurowsk1      257 Sep 25 16:12 partial_with_layout.erb
+-rw-r--r--    1 jurowsk1 jurowsk1       66 Sep 25 16:12 standard.erb
+-rw-r--r--    1 jurowsk1 jurowsk1       78 Sep 25 16:12 talk_from_action.erb
+-rw-r--r--    1 jurowsk1 jurowsk1       17 Sep 25 16:12 xhr.html.erb
+-rw-r--r--    1 jurowsk1 jurowsk1       48 Sep 25 16:12 yield.erb

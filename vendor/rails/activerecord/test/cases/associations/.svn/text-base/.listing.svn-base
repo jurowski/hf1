@@ -1,0 +1,17 @@
+drwxr-xr-x    2 jurowsk1 jurowsk1     4096 Sep 25 16:12 .
+drwxr-xr-x    3 jurowsk1 jurowsk1     4096 Sep 25 16:12 ..
+-rw-r--r--    1 jurowsk1 jurowsk1    10644 Sep 25 16:12 belongs_to_associations_test.rb
+-rw-r--r--    1 jurowsk1 jurowsk1     7161 Sep 25 16:12 callbacks_test.rb
+-rw-r--r--    1 jurowsk1 jurowsk1     6054 Sep 25 16:12 cascaded_eager_loading_test.rb
+-rw-r--r--    1 jurowsk1 jurowsk1     1018 Sep 25 16:12 eager_load_includes_full_sti_class_test.rb
+-rw-r--r--    1 jurowsk1 jurowsk1     3959 Sep 25 16:12 eager_load_nested_include_test.rb
+-rw-r--r--    1 jurowsk1 jurowsk1     4245 Sep 25 16:12 eager_singularization_test.rb
+-rw-r--r--    1 jurowsk1 jurowsk1    36242 Sep 25 16:12 eager_test.rb
+-rw-r--r--    1 jurowsk1 jurowsk1     2654 Sep 25 16:12 extension_test.rb
+-rw-r--r--    1 jurowsk1 jurowsk1    30320 Sep 25 16:12 has_and_belongs_to_many_associations_test.rb
+-rw-r--r--    1 jurowsk1 jurowsk1    39162 Sep 25 16:12 has_many_associations_test.rb
+-rw-r--r--    1 jurowsk1 jurowsk1     8654 Sep 25 16:12 has_many_through_associations_test.rb
+-rw-r--r--    1 jurowsk1 jurowsk1     9409 Sep 25 16:12 has_one_associations_test.rb
+-rw-r--r--    1 jurowsk1 jurowsk1     6887 Sep 25 16:12 has_one_through_associations_test.rb
+-rw-r--r--    1 jurowsk1 jurowsk1     4290 Sep 25 16:12 inner_join_association_test.rb
+-rw-r--r--    1 jurowsk1 jurowsk1    26916 Sep 25 16:12 join_model_test.rb

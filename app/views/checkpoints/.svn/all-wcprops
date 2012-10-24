@@ -1,0 +1,77 @@
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/habitforge/!svn/ver/192/trunk/app/views/checkpoints
+END
+edit.html.erb
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/habitforge/!svn/ver/192/trunk/app/views/checkpoints/edit.html.erb
+END
+autoupdatemultiple.html.erb
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/habitforge/!svn/ver/192/trunk/app/views/checkpoints/autoupdatemultiple.html.erb
+END
+index.html.erb
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/habitforge/!svn/ver/2/trunk/app/views/checkpoints/index.html.erb
+END
+_priordaycategorywinners.erb
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/habitforge/!svn/ver/2/trunk/app/views/checkpoints/_priordaycategorywinners.erb
+END
+new.html.erb
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/habitforge/!svn/ver/177/trunk/app/views/checkpoints/new.html.erb
+END
+view_checkpoint_single_email.html.erb
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/habitforge/!svn/ver/2/trunk/app/views/checkpoints/view_checkpoint_single_email.html.erb
+END
+_priordaywinners.erb
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/habitforge/!svn/ver/2/trunk/app/views/checkpoints/_priordaywinners.erb
+END
+autoupdate.html.erb
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/habitforge/!svn/ver/192/trunk/app/views/checkpoints/autoupdate.html.erb
+END
+_priordaycategorywinnersgoal.erb
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/habitforge/!svn/ver/2/trunk/app/views/checkpoints/_priordaycategorywinnersgoal.erb
+END
+.listing
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/habitforge/!svn/ver/2/trunk/app/views/checkpoints/.listing
+END
+show.html.erb
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/habitforge/!svn/ver/2/trunk/app/views/checkpoints/show.html.erb
+END
+view_checkpoint_multiple_email.html.erb
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/habitforge/!svn/ver/2/trunk/app/views/checkpoints/view_checkpoint_multiple_email.html.erb
+END

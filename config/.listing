@@ -1,0 +1,11 @@
+drwxr-xr-x    5 jurowsk1 jurowsk1     4096 Oct 16 12:02 .
+drwxr-xr-x   13 jurowsk1 jurowsk1     4096 Dec  2 16:15 ..
+-rw-r--r--    1 jurowsk1 jurowsk1       82 Sep 25 19:09 .htaccess
+-rwxr-xr-x    1 jurowsk1 jurowsk1     2795 Sep 25 16:12 boot.rb
+-rwxr-xr-x    1 jurowsk1 jurowsk1      749 Oct 16 17:36 database.yml
+-rwxr-xr-x    1 jurowsk1 jurowsk1      538 Sep 25 16:12 database.yml_20090925
+-rwxr-xr-x    1 jurowsk1 jurowsk1     2167 Oct 16 17:59 environment.rb
+drwxr-xr-x    2 jurowsk1 jurowsk1     4096 Sep 25 16:02 environments
+drwxr-xr-x    2 jurowsk1 jurowsk1     4096 Sep 25 21:25 initializers
+drwxr-xr-x    2 jurowsk1 jurowsk1     4096 Sep 25 16:02 locales
+-rwxr-xr-x    1 jurowsk1 jurowsk1     2442 Dec  3 13:51 routes.rb

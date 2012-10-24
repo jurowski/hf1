@@ -1,0 +1,20 @@
+<h1>Editing goaltag</h1>
+
+<% form_for(@goaltag) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :goaltemplate_id %><br />
+    <%= f.text_field :goaltemplate_id %>
+  </p>
+  <p>
+    <%= f.label :tag_id %><br />
+    <%= f.text_field :tag_id %>
+  </p>
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @goaltag %> |
+<%= link_to 'Back', goaltags_path %>

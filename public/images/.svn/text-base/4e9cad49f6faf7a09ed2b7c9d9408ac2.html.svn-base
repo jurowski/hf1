@@ -1,0 +1,1068 @@
+<html><head><title>Request-log-analyzer report</title><style type="text/css">
+        body {
+        	font: normal 11px auto "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
+        	color: #4f6b72;
+        	background: #E6EAE9;
+        	padding-left:20px;
+        	padding-top:20px;
+        	padding-bottom:20px;
+        }
+
+        a {
+        	color: #c75f3e;
+        }
+
+        .color_bar {
+          border: 1px solid;
+          height:10px;
+        	background: #CAE8EA;
+        }
+
+        #mytable {
+        	width: 700px;
+        	padding: 0;
+        	margin: 0;
+        	padding-bottom:10px;
+        }
+
+        caption {
+        	padding: 0 0 5px 0;
+        	width: 700px;	
+        	font: italic 11px "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
+        	text-align: right;
+        }
+
+        th {
+        	font: bold 11px "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
+        	color: #4f6b72;
+        	border-right: 1px solid #C1DAD7;
+        	border-bottom: 1px solid #C1DAD7;
+        	border-top: 1px solid #C1DAD7;
+        	letter-spacing: 2px;
+        	text-transform: uppercase;
+        	text-align: left;
+        	padding: 6px 6px 6px 12px;
+        	background: #CAE8EA url(images/bg_header.jpg) no-repeat;
+        }
+
+        td {
+        	font: bold 11px "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
+        	border-right: 1px solid #C1DAD7;
+        	border-bottom: 1px solid #C1DAD7;
+        	background: #fff;
+        	padding: 6px 6px 6px 12px;
+        	color: #4f6b72;
+        }
+
+        td.alt {
+        	background: #F5FAFA;
+        	color: #797268;
+        }
+        </style></head><body><h1>Request-log-analyzer summary report</h1><p>Version 1.6.0 - written by Willem van Bergen and Bart ten Brinke</p><h2>Request summary</h2>
+<table cellspacing="0" id="mytable"><tr><td class="alt">Parsed lines:</td>
+<td class="alt">341926</td></tr><tr><td>Skipped lines:</td>
+<td>1</td></tr><tr><td class="alt">Parsed requests:</td>
+<td class="alt">170965</td></tr><tr><td>Skipped requests:</td>
+<td>0</td></tr><tr><td class="alt">Warnings:</td>
+<td class="alt">no_current_request: 1, teaser_check_failed: 1</td></tr></table>
+<table cellspacing="0" id="mytable"><tr><td class="alt">First request:</td>
+<td class="alt">2009-10-16 11:50:11</td></tr><tr><td>Last request:</td>
+<td>2010-01-11 15:04:03</td></tr><tr><td class="alt">Total time analyzed:</td>
+<td class="alt">88 days</td></tr></table><h2>Request distribution per hour</h2>
+<table cellspacing="0" id="mytable"><tr><td class="alt">  0:00</td>
+<td class="alt">59 hits/day</td>
+<td class="alt"><div class='color_bar' style="width:5px;"/></td></tr><tr><td>  1:00</td>
+<td>62 hits/day</td>
+<td><div class='color_bar' style="width:6px;"/></td></tr><tr><td class="alt">  2:00</td>
+<td class="alt">64 hits/day</td>
+<td class="alt"><div class='color_bar' style="width:6px;"/></td></tr><tr><td>  3:00</td>
+<td>67 hits/day</td>
+<td><div class='color_bar' style="width:6px;"/></td></tr><tr><td class="alt">  4:00</td>
+<td class="alt">65 hits/day</td>
+<td class="alt"><div class='color_bar' style="width:6px;"/></td></tr><tr><td>  5:00</td>
+<td>77 hits/day</td>
+<td><div class='color_bar' style="width:7px;"/></td></tr><tr><td class="alt">  6:00</td>
+<td class="alt">93 hits/day</td>
+<td class="alt"><div class='color_bar' style="width:9px;"/></td></tr><tr><td>  7:00</td>
+<td>112 hits/day</td>
+<td><div class='color_bar' style="width:11px;"/></td></tr><tr><td class="alt">  8:00</td>
+<td class="alt">131 hits/day</td>
+<td class="alt"><div class='color_bar' style="width:13px;"/></td></tr><tr><td>  9:00</td>
+<td>114 hits/day</td>
+<td><div class='color_bar' style="width:11px;"/></td></tr><tr><td class="alt"> 10:00</td>
+<td class="alt">138 hits/day</td>
+<td class="alt"><div class='color_bar' style="width:14px;"/></td></tr><tr><td> 11:00</td>
+<td>120 hits/day</td>
+<td><div class='color_bar' style="width:12px;"/></td></tr><tr><td class="alt"> 12:00</td>
+<td class="alt">95 hits/day</td>
+<td class="alt"><div class='color_bar' style="width:9px;"/></td></tr><tr><td> 13:00</td>
+<td>84 hits/day</td>
+<td><div class='color_bar' style="width:8px;"/></td></tr><tr><td class="alt"> 14:00</td>
+<td class="alt">74 hits/day</td>
+<td class="alt"><div class='color_bar' style="width:7px;"/></td></tr><tr><td> 15:00</td>
+<td>96 hits/day</td>
+<td><div class='color_bar' style="width:9px;"/></td></tr><tr><td class="alt"> 16:00</td>
+<td class="alt">75 hits/day</td>
+<td class="alt"><div class='color_bar' style="width:7px;"/></td></tr><tr><td> 17:00</td>
+<td>83 hits/day</td>
+<td><div class='color_bar' style="width:8px;"/></td></tr><tr><td class="alt"> 18:00</td>
+<td class="alt">66 hits/day</td>
+<td class="alt"><div class='color_bar' style="width:6px;"/></td></tr><tr><td> 19:00</td>
+<td>73 hits/day</td>
+<td><div class='color_bar' style="width:7px;"/></td></tr><tr><td class="alt"> 20:00</td>
+<td class="alt">70 hits/day</td>
+<td class="alt"><div class='color_bar' style="width:7px;"/></td></tr><tr><td> 21:00</td>
+<td>58 hits/day</td>
+<td><div class='color_bar' style="width:5px;"/></td></tr><tr><td class="alt"> 22:00</td>
+<td class="alt">50 hits/day</td>
+<td class="alt"><div class='color_bar' style="width:4px;"/></td></tr><tr><td> 23:00</td>
+<td>50 hits/day</td>
+<td><div class='color_bar' style="width:5px;"/></td></tr></table><h2>Most requested</h2>
+<table cellspacing="0" id="mytable"><tr><td class="alt">CheckpointsController#autoupdate.html [GET]</td>
+<td class="alt">47944 hits</td>
+<td class="alt">28.0%</td>
+<td class="alt"><div class='color_bar' style="width:56px;"/></td></tr><tr><td>UserSessionsController#new.html [GET]</td>
+<td>35376 hits</td>
+<td>20.7%</td>
+<td><div class='color_bar' style="width:41px;"/></td></tr><tr><td class="alt">CheckpointsController#autoupdatemultiple.html [GET]</td>
+<td class="alt">17813 hits</td>
+<td class="alt">10.4%</td>
+<td class="alt"><div class='color_bar' style="width:20px;"/></td></tr><tr><td>GoalsController#index.html [GET]</td>
+<td>12185 hits</td>
+<td>7.1%</td>
+<td><div class='color_bar' style="width:14px;"/></td></tr><tr><td class="alt">GoalsController#new.html [GET]</td>
+<td class="alt">7727 hits</td>
+<td class="alt">4.5%</td>
+<td class="alt"><div class='color_bar' style="width:9px;"/></td></tr><tr><td>GoalsController#create.html [POST]</td>
+<td>6624 hits</td>
+<td>3.9%</td>
+<td><div class='color_bar' style="width:7px;"/></td></tr><tr><td class="alt">UsersController#new.html [GET]</td>
+<td class="alt">5986 hits</td>
+<td class="alt">3.5%</td>
+<td class="alt"><div class='color_bar' style="width:7px;"/></td></tr><tr><td>GoalsController#single.html [GET]</td>
+<td>5034 hits</td>
+<td>2.9%</td>
+<td><div class='color_bar' style="width:5px;"/></td></tr><tr><td class="alt">UsersController#create.html [POST]</td>
+<td class="alt">4440 hits</td>
+<td class="alt">2.6%</td>
+<td class="alt"><div class='color_bar' style="width:5px;"/></td></tr><tr><td>GoalsController#invite_a_friend_to_track.html [GET]</td>
+<td>3510 hits</td>
+<td>2.1%</td>
+<td><div class='color_bar' style="width:4px;"/></td></tr><tr><td class="alt">UserSessionsController#create.html [POST]</td>
+<td class="alt">2934 hits</td>
+<td class="alt">1.7%</td>
+<td class="alt"><div class='color_bar' style="width:3px;"/></td></tr><tr><td>UsersController#show.html [GET]</td>
+<td>2859 hits</td>
+<td>1.7%</td>
+<td><div class='color_bar' style="width:3px;"/></td></tr><tr><td class="alt">GoalsController#edit.html [GET]</td>
+<td class="alt">2365 hits</td>
+<td class="alt">1.4%</td>
+<td class="alt"><div class='color_bar' style="width:2px;"/></td></tr><tr><td>CheckpointsController#autoupdatemultiple.html [POST]</td>
+<td>2274 hits</td>
+<td>1.3%</td>
+<td><div class='color_bar' style="width:2px;"/></td></tr><tr><td class="alt">ApplicationController#index.html [GET]</td>
+<td class="alt">1983 hits</td>
+<td class="alt">1.2%</td>
+<td class="alt"><div class='color_bar' style="width:2px;"/></td></tr><tr><td>CheersController#index.html [GET]</td>
+<td>1844 hits</td>
+<td>1.1%</td>
+<td><div class='color_bar' style="width:2px;"/></td></tr><tr><td class="alt">UsersController#tell_a_friend.html [GET]</td>
+<td class="alt">1734 hits</td>
+<td class="alt">1.0%</td>
+<td class="alt"><div class='color_bar' style="width:2px;"/></td></tr><tr><td>CheckpointsController#update.html [PUT]</td>
+<td>1140 hits</td>
+<td>0.7%</td>
+<td><div class='color_bar' style="width:1px;"/></td></tr><tr><td class="alt">UserSessionsController#destroy.html [DELETE]</td>
+<td class="alt">1017 hits</td>
+<td class="alt">0.6%</td>
+<td class="alt"><div class='color_bar' style="width:1px;"/></td></tr><tr><td>GoalsController#update.html [PUT]</td>
+<td>972 hits</td>
+<td>0.6%</td>
+<td><div class='color_bar' style="width:1px;"/></td></tr></table><h2>HTTP methods</h2>
+<table cellspacing="0" id="mytable"><tr><td class="alt">GET</td>
+<td class="alt">150665 hits</td>
+<td class="alt">88.1%</td>
+<td class="alt"><div class='color_bar' style="width:176px;"/></td></tr><tr><td>POST</td>
+<td>16335 hits</td>
+<td>9.6%</td>
+<td><div class='color_bar' style="width:19px;"/></td></tr><tr><td class="alt">PUT</td>
+<td class="alt">2351 hits</td>
+<td class="alt">1.4%</td>
+<td class="alt"><div class='color_bar' style="width:2px;"/></td></tr><tr><td>DELETE</td>
+<td>1401 hits</td>
+<td>0.8%</td>
+<td><div class='color_bar' style="width:1px;"/></td></tr><tr><td class="alt">OPTIONS</td>
+<td class="alt">213 hits</td>
+<td class="alt">0.1%</td>
+<td class="alt"><div class='color_bar' style="width:0px;"/></td></tr></table><h2>HTTP statuses returned</h2>
+<table cellspacing="0" id="mytable"><tr><td class="alt">200</td>
+<td class="alt">148158 hits</td>
+<td class="alt">91.0%</td>
+<td class="alt"><div class='color_bar' style="width:181px;"/></td></tr><tr><td>302</td>
+<td>14704 hits</td>
+<td>9.0%</td>
+<td><div class='color_bar' style="width:18px;"/></td></tr></table><h2>Rails action cache hits</h2>
+<table cellspacing="0" id="mytable"><tr><td class="alt">No hit</td>
+<td class="alt">170965 hits</td>
+<td class="alt">100.0%</td>
+<td class="alt"><div class='color_bar' style="width:200px;"/></td></tr></table><br/>
+<table cellspacing="0" id="mytable"><tr><th>Request duration - by sum</th>
+<th>Hits</th>
+<th>Sum</th>
+<th>Mean</th>
+<th>StdDev</th>
+<th>Min</th>
+<th>Max</th></tr><tr><td class="alt">CheckpointsController#autoupdate.html [GET]</td>
+<td class="alt">47904</td>
+<td class="alt">21h57m03s</td>
+<td class="alt">1.65s</td>
+<td class="alt">1.68s</td>
+<td class="alt">0.01s</td>
+<td class="alt">49.84s</td></tr><tr><td>CheckpointsController#autoupdatemultiple.html [GET]</td>
+<td>17789</td>
+<td>4h52m09s</td>
+<td>0.99s</td>
+<td>1.38s</td>
+<td>0.00s</td>
+<td>34.05s</td></tr><tr><td class="alt">GoalsController#index.html [GET]</td>
+<td class="alt">12183</td>
+<td class="alt">4h45m34s</td>
+<td class="alt">1.41s</td>
+<td class="alt">1.64s</td>
+<td class="alt">0.00s</td>
+<td class="alt">28.77s</td></tr><tr><td>GoalsController#create.html [POST]</td>
+<td>6594</td>
+<td>4h35m35s</td>
+<td>2.51s</td>
+<td>3.30s</td>
+<td>0.00s</td>
+<td>38.95s</td></tr><tr><td class="alt">CheckpointsController#autoupdatemultiple.html [POST]</td>
+<td class="alt">2274</td>
+<td class="alt">4h09m34s</td>
+<td class="alt">6.58s</td>
+<td class="alt">4.22s</td>
+<td class="alt">0.04s</td>
+<td class="alt">36.75s</td></tr><tr><td>CheersController#index.html [GET]</td>
+<td>1844</td>
+<td>1h49m23s</td>
+<td>3.56s</td>
+<td>3.53s</td>
+<td>0.00s</td>
+<td>34.10s</td></tr><tr><td class="alt">GoalsController#new.html [GET]</td>
+<td class="alt">7727</td>
+<td class="alt">1h25m47s</td>
+<td class="alt">0.67s</td>
+<td class="alt">1.79s</td>
+<td class="alt">0.00s</td>
+<td class="alt">22.46s</td></tr><tr><td>GoalsController#single.html [GET]</td>
+<td>3058</td>
+<td>38m24s</td>
+<td>0.75s</td>
+<td>0.92s</td>
+<td>0.00s</td>
+<td>17.86s</td></tr><tr><td class="alt">CheersController#shared.html [GET]</td>
+<td class="alt">906</td>
+<td class="alt">33m16s</td>
+<td class="alt">2.20s</td>
+<td class="alt">2.86s</td>
+<td class="alt">0.00s</td>
+<td class="alt">50.61s</td></tr><tr><td>UserSessionsController#create.html [POST]</td>
+<td>2934</td>
+<td>29m03s</td>
+<td>0.59s</td>
+<td>1.61s</td>
+<td>0.00s</td>
+<td>19.30s</td></tr><tr><td class="alt">UsersController#show.html [GET]</td>
+<td class="alt">2859</td>
+<td class="alt">21m14s</td>
+<td class="alt">0.45s</td>
+<td class="alt">1.42s</td>
+<td class="alt">0.00s</td>
+<td class="alt">17.12s</td></tr><tr><td>UserSessionsController#new.html [GET]</td>
+<td>35376</td>
+<td>20m37s</td>
+<td>0.03s</td>
+<td>0.47s</td>
+<td>0.00s</td>
+<td>26.69s</td></tr><tr><td class="alt">GoalsController#update.html [PUT]</td>
+<td class="alt">971</td>
+<td class="alt">19m30s</td>
+<td class="alt">1.20s</td>
+<td class="alt">1.64s</td>
+<td class="alt">0.00s</td>
+<td class="alt">16.77s</td></tr><tr><td>GoalsController#invite_a_friend_to_track.html [GET]</td>
+<td>818</td>
+<td>12m21s</td>
+<td>0.91s</td>
+<td>1.94s</td>
+<td>0.00s</td>
+<td>17.16s</td></tr><tr><td class="alt">UsersController#create.html [POST]</td>
+<td class="alt">4440</td>
+<td class="alt">11m30s</td>
+<td class="alt">0.16s</td>
+<td class="alt">0.60s</td>
+<td class="alt">0.02s</td>
+<td class="alt">21.99s</td></tr><tr><td>UsersController#tell_a_friend.html [GET]</td>
+<td>791</td>
+<td>9m34s</td>
+<td>0.73s</td>
+<td>1.71s</td>
+<td>0.01s</td>
+<td>17.13s</td></tr><tr><td class="alt">GoalsController#edit.html [GET]</td>
+<td class="alt">2301</td>
+<td class="alt">8m34s</td>
+<td class="alt">0.22s</td>
+<td class="alt">1.01s</td>
+<td class="alt">0.00s</td>
+<td class="alt">15.62s</td></tr><tr><td>UserSessionsController#destroy.html [DELETE]</td>
+<td>1017</td>
+<td>7m14s</td>
+<td>0.43s</td>
+<td>1.39s</td>
+<td>0.00s</td>
+<td>12.62s</td></tr><tr><td class="alt">GoalsController#hold.html [GET]</td>
+<td class="alt">884</td>
+<td class="alt">6m32s</td>
+<td class="alt">0.44s</td>
+<td class="alt">1.43s</td>
+<td class="alt">0.00s</td>
+<td class="alt">21.70s</td></tr><tr><td>CheckpointsController#update.html [PUT]</td>
+<td>1140</td>
+<td>5m43s</td>
+<td>0.30s</td>
+<td>0.98s</td>
+<td>0.00s</td>
+<td>27.69s</td></tr></table><br/>
+<table cellspacing="0" id="mytable"><tr><th>Request duration - by mean</th>
+<th>Hits</th>
+<th>Sum</th>
+<th>Mean</th>
+<th>StdDev</th>
+<th>Min</th>
+<th>Max</th></tr><tr><td class="alt">UsersController#index.html [GET]</td>
+<td class="alt">5</td>
+<td class="alt">35.23s</td>
+<td class="alt">7.05s</td>
+<td class="alt">9.65s</td>
+<td class="alt">0.00s</td>
+<td class="alt">18.16s</td></tr><tr><td>CheckpointsController#autoupdatemultiple.html [POST]</td>
+<td>2274</td>
+<td>4h09m34s</td>
+<td>6.58s</td>
+<td>4.22s</td>
+<td>0.04s</td>
+<td>36.75s</td></tr><tr><td class="alt">CheckpointsController#index.html [GET]</td>
+<td class="alt">4</td>
+<td class="alt">26.09s</td>
+<td class="alt">6.52s</td>
+<td class="alt">11.69s</td>
+<td class="alt">0.00s</td>
+<td class="alt">24.00s</td></tr><tr><td>CheckpointsController#autoupdatemultipleradio.html [GET]</td>
+<td>5</td>
+<td>26.16s</td>
+<td>5.23s</td>
+<td>3.39s</td>
+<td>0.02s</td>
+<td>8.04s</td></tr><tr><td class="alt">CheersController#index.html [GET]</td>
+<td class="alt">1844</td>
+<td class="alt">1h49m23s</td>
+<td class="alt">3.56s</td>
+<td class="alt">3.53s</td>
+<td class="alt">0.00s</td>
+<td class="alt">34.10s</td></tr><tr><td>GoalsController#create.html [POST]</td>
+<td>6594</td>
+<td>4h35m35s</td>
+<td>2.51s</td>
+<td>3.30s</td>
+<td>0.00s</td>
+<td>38.95s</td></tr><tr><td class="alt">CheersController#shared.html [GET]</td>
+<td class="alt">906</td>
+<td class="alt">33m16s</td>
+<td class="alt">2.20s</td>
+<td class="alt">2.86s</td>
+<td class="alt">0.00s</td>
+<td class="alt">50.61s</td></tr><tr><td>CheckpointsController#autoupdate.html [GET]</td>
+<td>47904</td>
+<td>21h57m03s</td>
+<td>1.65s</td>
+<td>1.68s</td>
+<td>0.01s</td>
+<td>49.84s</td></tr><tr><td class="alt">PasswordResetsController#create.html [POST]</td>
+<td class="alt">60</td>
+<td class="alt">1m36s</td>
+<td class="alt">1.59s</td>
+<td class="alt">1.57s</td>
+<td class="alt">0.00s</td>
+<td class="alt">7.90s</td></tr><tr><td>GoalsController#index.html [GET]</td>
+<td>12183</td>
+<td>4h45m34s</td>
+<td>1.41s</td>
+<td>1.64s</td>
+<td>0.00s</td>
+<td>28.77s</td></tr><tr><td class="alt">GoalsController#update.html [PUT]</td>
+<td class="alt">971</td>
+<td class="alt">19m30s</td>
+<td class="alt">1.20s</td>
+<td class="alt">1.64s</td>
+<td class="alt">0.00s</td>
+<td class="alt">16.77s</td></tr><tr><td>CheckpointsController#autoupdatemultiple.html [GET]</td>
+<td>17789</td>
+<td>4h52m09s</td>
+<td>0.99s</td>
+<td>1.38s</td>
+<td>0.00s</td>
+<td>34.05s</td></tr><tr><td class="alt">GoalsController#invite_a_friend_to_track.html [GET]</td>
+<td class="alt">818</td>
+<td class="alt">12m21s</td>
+<td class="alt">0.91s</td>
+<td class="alt">1.94s</td>
+<td class="alt">0.00s</td>
+<td class="alt">17.16s</td></tr><tr><td>PasswordResetsController#update.html [PUT]</td>
+<td>29</td>
+<td>23.32s</td>
+<td>0.80s</td>
+<td>2.31s</td>
+<td>0.02s</td>
+<td>8.64s</td></tr><tr><td class="alt">GoalsController#single.html [GET]</td>
+<td class="alt">3058</td>
+<td class="alt">38m24s</td>
+<td class="alt">0.75s</td>
+<td class="alt">0.92s</td>
+<td class="alt">0.00s</td>
+<td class="alt">17.86s</td></tr><tr><td>UsersController#tell_a_friend.html [GET]</td>
+<td>791</td>
+<td>9m34s</td>
+<td>0.73s</td>
+<td>1.71s</td>
+<td>0.01s</td>
+<td>17.13s</td></tr><tr><td class="alt">GoalsController#new.html [GET]</td>
+<td class="alt">7727</td>
+<td class="alt">1h25m47s</td>
+<td class="alt">0.67s</td>
+<td class="alt">1.79s</td>
+<td class="alt">0.00s</td>
+<td class="alt">22.46s</td></tr><tr><td>UsersController#update.html [PUT]</td>
+<td>205</td>
+<td>2m11s</td>
+<td>0.64s</td>
+<td>1.50s</td>
+<td>0.01s</td>
+<td>8.59s</td></tr><tr><td class="alt">UserSessionsController#create.html [POST]</td>
+<td class="alt">2934</td>
+<td class="alt">29m03s</td>
+<td class="alt">0.59s</td>
+<td class="alt">1.61s</td>
+<td class="alt">0.00s</td>
+<td class="alt">19.30s</td></tr><tr><td>CheersController#show.html [GET]</td>
+<td>211</td>
+<td>1m35s</td>
+<td>0.45s</td>
+<td>1.03s</td>
+<td>0.00s</td>
+<td>7.49s</td></tr></table><br/>
+<table cellspacing="0" id="mytable"><tr><th>View rendering time - by sum</th>
+<th>Hits</th>
+<th>Sum</th>
+<th>Mean</th>
+<th>StdDev</th>
+<th>Min</th>
+<th>Max</th></tr><tr><td class="alt">CheckpointsController#autoupdate.html [GET]</td>
+<td class="alt">47904</td>
+<td class="alt">1h35m18s</td>
+<td class="alt">0.12s</td>
+<td class="alt">0.28s</td>
+<td class="alt">0.00s</td>
+<td class="alt">16.68s</td></tr><tr><td>CheersController#index.html [GET]</td>
+<td>1802</td>
+<td>58m21s</td>
+<td>1.94s</td>
+<td>1.05s</td>
+<td>0.47s</td>
+<td>10.80s</td></tr><tr><td class="alt">CheckpointsController#autoupdatemultiple.html [GET]</td>
+<td class="alt">17789</td>
+<td class="alt">9m13s</td>
+<td class="alt">0.03s</td>
+<td class="alt">0.40s</td>
+<td class="alt">0.00s</td>
+<td class="alt">26.62s</td></tr><tr><td>UserSessionsController#new.html [GET]</td>
+<td>34190</td>
+<td>6m19s</td>
+<td>0.01s</td>
+<td>0.28s</td>
+<td>0.00s</td>
+<td>22.74s</td></tr><tr><td class="alt">UsersController#tell_a_friend.html [GET]</td>
+<td class="alt">791</td>
+<td class="alt">5m14s</td>
+<td class="alt">0.40s</td>
+<td class="alt">1.29s</td>
+<td class="alt">0.01s</td>
+<td class="alt">17.13s</td></tr><tr><td>CheckpointsController#autoupdatemultiple.html [POST]</td>
+<td>2274</td>
+<td>5m13s</td>
+<td>0.14s</td>
+<td>0.22s</td>
+<td>0.02s</td>
+<td>4.80s</td></tr><tr><td class="alt">GoalsController#invite_a_friend_to_track.html [GET]</td>
+<td class="alt">782</td>
+<td class="alt">5m07s</td>
+<td class="alt">0.39s</td>
+<td class="alt">1.24s</td>
+<td class="alt">0.00s</td>
+<td class="alt">17.15s</td></tr><tr><td>GoalsController#index.html [GET]</td>
+<td>10541</td>
+<td>2m27s</td>
+<td>0.01s</td>
+<td>0.06s</td>
+<td>0.00s</td>
+<td>3.41s</td></tr><tr><td class="alt">GoalsController#create.html [POST]</td>
+<td class="alt">6593</td>
+<td class="alt">2m06s</td>
+<td class="alt">0.02s</td>
+<td class="alt">0.19s</td>
+<td class="alt">0.00s</td>
+<td class="alt">10.86s</td></tr><tr><td>UsersController#new.html [GET]</td>
+<td>5986</td>
+<td>2m02s</td>
+<td>0.02s</td>
+<td>0.21s</td>
+<td>0.01s</td>
+<td>12.09s</td></tr><tr><td class="alt">GoalsController#single.html [GET]</td>
+<td class="alt">2862</td>
+<td class="alt">1m33s</td>
+<td class="alt">0.03s</td>
+<td class="alt">0.32s</td>
+<td class="alt">0.00s</td>
+<td class="alt">16.82s</td></tr><tr><td>CheersController#shared.html [GET]</td>
+<td>906</td>
+<td>1m16s</td>
+<td>0.08s</td>
+<td>0.81s</td>
+<td>0.00s</td>
+<td>19.61s</td></tr><tr><td class="alt">GoalsController#new.html [GET]</td>
+<td class="alt">7414</td>
+<td class="alt">1m08s</td>
+<td class="alt">0.01s</td>
+<td class="alt">0.04s</td>
+<td class="alt">0.00s</td>
+<td class="alt">1.75s</td></tr><tr><td>UsersController#index.html [GET]</td>
+<td>2</td>
+<td>29.65s</td>
+<td>14.82s</td>
+<td>2.35s</td>
+<td>13.16s</td>
+<td>16.49s</td></tr><tr><td class="alt">GoalsController#update.html [PUT]</td>
+<td class="alt">944</td>
+<td class="alt">16.89s</td>
+<td class="alt">0.02s</td>
+<td class="alt">0.04s</td>
+<td class="alt">0.00s</td>
+<td class="alt">0.39s</td></tr><tr><td>GoalsController#edit.html [GET]</td>
+<td>1348</td>
+<td>16.19s</td>
+<td>0.01s</td>
+<td>0.05s</td>
+<td>0.00s</td>
+<td>1.32s</td></tr><tr><td class="alt">UsersController#create.html [POST]</td>
+<td class="alt">476</td>
+<td class="alt">14.24s</td>
+<td class="alt">0.03s</td>
+<td class="alt">0.29s</td>
+<td class="alt">0.01s</td>
+<td class="alt">6.30s</td></tr><tr><td>UsersController#show.html [GET]</td>
+<td>2659</td>
+<td>12.36s</td>
+<td>0.00s</td>
+<td>0.04s</td>
+<td>0.00s</td>
+<td>1.67s</td></tr><tr><td class="alt">PasswordResetsController#new.html [GET]</td>
+<td class="alt">330</td>
+<td class="alt">10.21s</td>
+<td class="alt">0.03s</td>
+<td class="alt">0.50s</td>
+<td class="alt">0.00s</td>
+<td class="alt">9.07s</td></tr><tr><td>GoalsController#hold.html [GET]</td>
+<td>823</td>
+<td>7.40s</td>
+<td>0.01s</td>
+<td>0.03s</td>
+<td>0.00s</td>
+<td>0.42s</td></tr></table><br/>
+<table cellspacing="0" id="mytable"><tr><th>View rendering time - by mean</th>
+<th>Hits</th>
+<th>Sum</th>
+<th>Mean</th>
+<th>StdDev</th>
+<th>Min</th>
+<th>Max</th></tr><tr><td class="alt">UsersController#index.html [GET]</td>
+<td class="alt">2</td>
+<td class="alt">29.65s</td>
+<td class="alt">14.82s</td>
+<td class="alt">2.35s</td>
+<td class="alt">13.16s</td>
+<td class="alt">16.49s</td></tr><tr><td>CheersController#index.html [GET]</td>
+<td>1802</td>
+<td>58m21s</td>
+<td>1.94s</td>
+<td>1.05s</td>
+<td>0.47s</td>
+<td>10.80s</td></tr><tr><td class="alt">CheckpointsController#index.html [GET]</td>
+<td class="alt">2</td>
+<td class="alt">1.93s</td>
+<td class="alt">0.97s</td>
+<td class="alt">1.35s</td>
+<td class="alt">0.01s</td>
+<td class="alt">1.92s</td></tr><tr><td>UsersController#tell_a_friend.html [GET]</td>
+<td>791</td>
+<td>5m14s</td>
+<td>0.40s</td>
+<td>1.29s</td>
+<td>0.01s</td>
+<td>17.13s</td></tr><tr><td class="alt">GoalsController#invite_a_friend_to_track.html [GET]</td>
+<td class="alt">782</td>
+<td class="alt">5m07s</td>
+<td class="alt">0.39s</td>
+<td class="alt">1.24s</td>
+<td class="alt">0.00s</td>
+<td class="alt">17.15s</td></tr><tr><td>CheckpointsController#autoupdatemultiple.html [POST]</td>
+<td>2274</td>
+<td>5m13s</td>
+<td>0.14s</td>
+<td>0.22s</td>
+<td>0.02s</td>
+<td>4.80s</td></tr><tr><td class="alt">CheckpointsController#autoupdatemultipleradio.html [GET]</td>
+<td class="alt">5</td>
+<td class="alt">0.67s</td>
+<td class="alt">0.13s</td>
+<td class="alt">0.11s</td>
+<td class="alt">0.01s</td>
+<td class="alt">0.22s</td></tr><tr><td>CheckpointsController#autoupdate.html [GET]</td>
+<td>47904</td>
+<td>1h35m18s</td>
+<td>0.12s</td>
+<td>0.28s</td>
+<td>0.00s</td>
+<td>16.68s</td></tr><tr><td class="alt">CheersController#shared.html [GET]</td>
+<td class="alt">906</td>
+<td class="alt">1m16s</td>
+<td class="alt">0.08s</td>
+<td class="alt">0.81s</td>
+<td class="alt">0.00s</td>
+<td class="alt">19.61s</td></tr><tr><td>GoalsController#single.html [GET]</td>
+<td>2862</td>
+<td>1m33s</td>
+<td>0.03s</td>
+<td>0.32s</td>
+<td>0.00s</td>
+<td>16.82s</td></tr><tr><td class="alt">CheckpointsController#autoupdatemultiple.html [GET]</td>
+<td class="alt">17789</td>
+<td class="alt">9m13s</td>
+<td class="alt">0.03s</td>
+<td class="alt">0.40s</td>
+<td class="alt">0.00s</td>
+<td class="alt">26.62s</td></tr><tr><td>PasswordResetsController#new.html [GET]</td>
+<td>330</td>
+<td>10.21s</td>
+<td>0.03s</td>
+<td>0.50s</td>
+<td>0.00s</td>
+<td>9.07s</td></tr><tr><td class="alt">PasswordResetsController#edit.html [GET]</td>
+<td class="alt">51</td>
+<td class="alt">1.54s</td>
+<td class="alt">0.03s</td>
+<td class="alt">0.17s</td>
+<td class="alt">0.00s</td>
+<td class="alt">1.18s</td></tr><tr><td>UsersController#create.html [POST]</td>
+<td>476</td>
+<td>14.24s</td>
+<td>0.03s</td>
+<td>0.29s</td>
+<td>0.01s</td>
+<td>6.30s</td></tr><tr><td class="alt">UsersController#new.html [GET]</td>
+<td class="alt">5986</td>
+<td class="alt">2m02s</td>
+<td class="alt">0.02s</td>
+<td class="alt">0.21s</td>
+<td class="alt">0.01s</td>
+<td class="alt">12.09s</td></tr><tr><td>GoalsController#create.html [POST]</td>
+<td>6593</td>
+<td>2m06s</td>
+<td>0.02s</td>
+<td>0.19s</td>
+<td>0.00s</td>
+<td>10.86s</td></tr><tr><td class="alt">GoalsController#update.html [PUT]</td>
+<td class="alt">944</td>
+<td class="alt">16.89s</td>
+<td class="alt">0.02s</td>
+<td class="alt">0.04s</td>
+<td class="alt">0.00s</td>
+<td class="alt">0.39s</td></tr><tr><td>UsersController#edit.html [GET]</td>
+<td>421</td>
+<td>6.33s</td>
+<td>0.02s</td>
+<td>0.03s</td>
+<td>0.01s</td>
+<td>0.33s</td></tr><tr><td class="alt">UsersController#update.html [PUT]</td>
+<td class="alt">86</td>
+<td class="alt">1.23s</td>
+<td class="alt">0.01s</td>
+<td class="alt">0.02s</td>
+<td class="alt">0.01s</td>
+<td class="alt">0.12s</td></tr><tr><td>CheersController#show.html [GET]</td>
+<td>125</td>
+<td>1.79s</td>
+<td>0.01s</td>
+<td>0.04s</td>
+<td>0.00s</td>
+<td>0.25s</td></tr></table><br/>
+<table cellspacing="0" id="mytable"><tr><th>Database time - by sum</th>
+<th>Hits</th>
+<th>Sum</th>
+<th>Mean</th>
+<th>StdDev</th>
+<th>Min</th>
+<th>Max</th></tr><tr><td class="alt">CheckpointsController#autoupdate.html [GET]</td>
+<td class="alt">47904</td>
+<td class="alt">20h01m48s</td>
+<td class="alt">1.51s</td>
+<td class="alt">1.66s</td>
+<td class="alt">0.00s</td>
+<td class="alt">49.78s</td></tr><tr><td>CheckpointsController#autoupdatemultiple.html [GET]</td>
+<td>17789</td>
+<td>4h42m44s</td>
+<td>0.95s</td>
+<td>1.32s</td>
+<td>0.00s</td>
+<td>34.04s</td></tr><tr><td class="alt">CheckpointsController#autoupdatemultiple.html [POST]</td>
+<td class="alt">2274</td>
+<td class="alt">4h04m20s</td>
+<td class="alt">6.45s</td>
+<td class="alt">4.16s</td>
+<td class="alt">0.00s</td>
+<td class="alt">36.19s</td></tr><tr><td>GoalsController#index.html [GET]</td>
+<td>12183</td>
+<td>3h03m05s</td>
+<td>0.90s</td>
+<td>1.57s</td>
+<td>0.00s</td>
+<td>28.20s</td></tr><tr><td class="alt">GoalsController#create.html [POST]</td>
+<td class="alt">6594</td>
+<td class="alt">2h47m36s</td>
+<td class="alt">1.52s</td>
+<td class="alt">2.29s</td>
+<td class="alt">0.00s</td>
+<td class="alt">28.34s</td></tr><tr><td>GoalsController#new.html [GET]</td>
+<td>7727</td>
+<td>1h23m19s</td>
+<td>0.65s</td>
+<td>1.79s</td>
+<td>0.00s</td>
+<td>22.44s</td></tr><tr><td class="alt">CheersController#index.html [GET]</td>
+<td class="alt">1844</td>
+<td class="alt">50m44s</td>
+<td class="alt">1.65s</td>
+<td class="alt">3.09s</td>
+<td class="alt">0.00s</td>
+<td class="alt">30.90s</td></tr><tr><td>GoalsController#single.html [GET]</td>
+<td>3058</td>
+<td>36m35s</td>
+<td>0.72s</td>
+<td>0.84s</td>
+<td>0.00s</td>
+<td>11.55s</td></tr><tr><td class="alt">CheersController#shared.html [GET]</td>
+<td class="alt">906</td>
+<td class="alt">31m59s</td>
+<td class="alt">2.12s</td>
+<td class="alt">2.73s</td>
+<td class="alt">0.00s</td>
+<td class="alt">50.55s</td></tr><tr><td>UserSessionsController#create.html [POST]</td>
+<td>2934</td>
+<td>28m25s</td>
+<td>0.58s</td>
+<td>1.61s</td>
+<td>0.00s</td>
+<td>19.30s</td></tr><tr><td class="alt">UsersController#show.html [GET]</td>
+<td class="alt">2859</td>
+<td class="alt">20m37s</td>
+<td class="alt">0.43s</td>
+<td class="alt">1.42s</td>
+<td class="alt">0.00s</td>
+<td class="alt">17.11s</td></tr><tr><td>GoalsController#update.html [PUT]</td>
+<td>971</td>
+<td>18m57s</td>
+<td>1.17s</td>
+<td>1.64s</td>
+<td>0.00s</td>
+<td>16.74s</td></tr><tr><td class="alt">UserSessionsController#new.html [GET]</td>
+<td class="alt">35376</td>
+<td class="alt">13m02s</td>
+<td class="alt">0.02s</td>
+<td class="alt">0.39s</td>
+<td class="alt">0.00s</td>
+<td class="alt">26.69s</td></tr><tr><td>UsersController#create.html [POST]</td>
+<td>4440</td>
+<td>9m37s</td>
+<td>0.13s</td>
+<td>0.59s</td>
+<td>0.01s</td>
+<td>21.98s</td></tr><tr><td class="alt">GoalsController#edit.html [GET]</td>
+<td class="alt">2301</td>
+<td class="alt">8m02s</td>
+<td class="alt">0.21s</td>
+<td class="alt">1.00s</td>
+<td class="alt">0.00s</td>
+<td class="alt">15.55s</td></tr><tr><td>GoalsController#invite_a_friend_to_track.html [GET]</td>
+<td>818</td>
+<td>7m14s</td>
+<td>0.53s</td>
+<td>1.60s</td>
+<td>0.00s</td>
+<td>15.57s</td></tr><tr><td class="alt">UserSessionsController#destroy.html [DELETE]</td>
+<td class="alt">1017</td>
+<td class="alt">7m04s</td>
+<td class="alt">0.42s</td>
+<td class="alt">1.39s</td>
+<td class="alt">0.00s</td>
+<td class="alt">12.62s</td></tr><tr><td>GoalsController#hold.html [GET]</td>
+<td>884</td>
+<td>6m19s</td>
+<td>0.43s</td>
+<td>1.43s</td>
+<td>0.00s</td>
+<td>21.70s</td></tr><tr><td class="alt">CheckpointsController#update.html [PUT]</td>
+<td class="alt">1140</td>
+<td class="alt">5m33s</td>
+<td class="alt">0.29s</td>
+<td class="alt">0.98s</td>
+<td class="alt">0.00s</td>
+<td class="alt">27.68s</td></tr><tr><td>UsersController#tell_a_friend.html [GET]</td>
+<td>791</td>
+<td>4m20s</td>
+<td>0.33s</td>
+<td>1.20s</td>
+<td>0.00s</td>
+<td>10.51s</td></tr></table><br/>
+<table cellspacing="0" id="mytable"><tr><th>Database time - by mean</th>
+<th>Hits</th>
+<th>Sum</th>
+<th>Mean</th>
+<th>StdDev</th>
+<th>Min</th>
+<th>Max</th></tr><tr><td class="alt">CheckpointsController#autoupdatemultiple.html [POST]</td>
+<td class="alt">2274</td>
+<td class="alt">4h04m20s</td>
+<td class="alt">6.45s</td>
+<td class="alt">4.16s</td>
+<td class="alt">0.00s</td>
+<td class="alt">36.19s</td></tr><tr><td>CheckpointsController#autoupdatemultipleradio.html [GET]</td>
+<td>5</td>
+<td>25.48s</td>
+<td>5.10s</td>
+<td>3.30s</td>
+<td>0.00s</td>
+<td>7.82s</td></tr><tr><td class="alt">CheckpointsController#index.html [GET]</td>
+<td class="alt">4</td>
+<td class="alt">13.82s</td>
+<td class="alt">3.45s</td>
+<td class="alt">6.86s</td>
+<td class="alt">0.00s</td>
+<td class="alt">13.74s</td></tr><tr><td>CheersController#shared.html [GET]</td>
+<td>906</td>
+<td>31m59s</td>
+<td>2.12s</td>
+<td>2.73s</td>
+<td>0.00s</td>
+<td>50.55s</td></tr><tr><td class="alt">CheersController#index.html [GET]</td>
+<td class="alt">1844</td>
+<td class="alt">50m44s</td>
+<td class="alt">1.65s</td>
+<td class="alt">3.09s</td>
+<td class="alt">0.00s</td>
+<td class="alt">30.90s</td></tr><tr><td>GoalsController#create.html [POST]</td>
+<td>6594</td>
+<td>2h47m36s</td>
+<td>1.52s</td>
+<td>2.29s</td>
+<td>0.00s</td>
+<td>28.34s</td></tr><tr><td class="alt">CheckpointsController#autoupdate.html [GET]</td>
+<td class="alt">47904</td>
+<td class="alt">20h01m48s</td>
+<td class="alt">1.51s</td>
+<td class="alt">1.66s</td>
+<td class="alt">0.00s</td>
+<td class="alt">49.78s</td></tr><tr><td>GoalsController#update.html [PUT]</td>
+<td>971</td>
+<td>18m57s</td>
+<td>1.17s</td>
+<td>1.64s</td>
+<td>0.00s</td>
+<td>16.74s</td></tr><tr><td class="alt">CheckpointsController#autoupdatemultiple.html [GET]</td>
+<td class="alt">17789</td>
+<td class="alt">4h42m44s</td>
+<td class="alt">0.95s</td>
+<td class="alt">1.32s</td>
+<td class="alt">0.00s</td>
+<td class="alt">34.04s</td></tr><tr><td>UsersController#index.html [GET]</td>
+<td>5</td>
+<td>4.76s</td>
+<td>0.95s</td>
+<td>1.99s</td>
+<td>0.00s</td>
+<td>4.51s</td></tr><tr><td class="alt">GoalsController#index.html [GET]</td>
+<td class="alt">12183</td>
+<td class="alt">3h03m05s</td>
+<td class="alt">0.90s</td>
+<td class="alt">1.57s</td>
+<td class="alt">0.00s</td>
+<td class="alt">28.20s</td></tr><tr><td>PasswordResetsController#update.html [PUT]</td>
+<td>29</td>
+<td>23.03s</td>
+<td>0.79s</td>
+<td>2.31s</td>
+<td>0.01s</td>
+<td>8.63s</td></tr><tr><td class="alt">GoalsController#single.html [GET]</td>
+<td class="alt">3058</td>
+<td class="alt">36m35s</td>
+<td class="alt">0.72s</td>
+<td class="alt">0.84s</td>
+<td class="alt">0.00s</td>
+<td class="alt">11.55s</td></tr><tr><td>GoalsController#new.html [GET]</td>
+<td>7727</td>
+<td>1h23m19s</td>
+<td>0.65s</td>
+<td>1.79s</td>
+<td>0.00s</td>
+<td>22.44s</td></tr><tr><td class="alt">UsersController#update.html [PUT]</td>
+<td class="alt">205</td>
+<td class="alt">2m07s</td>
+<td class="alt">0.62s</td>
+<td class="alt">1.50s</td>
+<td class="alt">0.00s</td>
+<td class="alt">8.57s</td></tr><tr><td>UserSessionsController#create.html [POST]</td>
+<td>2934</td>
+<td>28m25s</td>
+<td>0.58s</td>
+<td>1.61s</td>
+<td>0.00s</td>
+<td>19.30s</td></tr><tr><td class="alt">GoalsController#invite_a_friend_to_track.html [GET]</td>
+<td class="alt">818</td>
+<td class="alt">7m14s</td>
+<td class="alt">0.53s</td>
+<td class="alt">1.60s</td>
+<td class="alt">0.00s</td>
+<td class="alt">15.57s</td></tr><tr><td>UsersController#show.html [GET]</td>
+<td>2859</td>
+<td>20m37s</td>
+<td>0.43s</td>
+<td>1.42s</td>
+<td>0.00s</td>
+<td>17.11s</td></tr><tr><td class="alt">CheersController#show.html [GET]</td>
+<td class="alt">211</td>
+<td class="alt">1m31s</td>
+<td class="alt">0.43s</td>
+<td class="alt">1.03s</td>
+<td class="alt">0.00s</td>
+<td class="alt">7.48s</td></tr><tr><td>GoalsController#hold.html [GET]</td>
+<td>884</td>
+<td>6m19s</td>
+<td>0.43s</td>
+<td>1.43s</td>
+<td>0.00s</td>
+<td>21.70s</td></tr></table><h2>Process blockers (> 1 sec duration)</h2>
+<table cellspacing="0" id="mytable"><tr><td class="alt">CheckpointsController#autoupdate.html [GET]</td>
+<td class="alt">35303 hits</td>
+<td class="alt">60.6%</td>
+<td class="alt"><div class='color_bar' style="width:121px;"/></td></tr><tr><td>GoalsController#index.html [GET]</td>
+<td>5804 hits</td>
+<td>10.0%</td>
+<td><div class='color_bar' style="width:19px;"/></td></tr><tr><td class="alt">CheckpointsController#autoupdatemultiple.html [GET]</td>
+<td class="alt">4959 hits</td>
+<td class="alt">8.5%</td>
+<td class="alt"><div class='color_bar' style="width:17px;"/></td></tr><tr><td>GoalsController#create.html [POST]</td>
+<td>3476 hits</td>
+<td>6.0%</td>
+<td><div class='color_bar' style="width:11px;"/></td></tr><tr><td class="alt">CheckpointsController#autoupdatemultiple.html [POST]</td>
+<td class="alt">2252 hits</td>
+<td class="alt">3.9%</td>
+<td class="alt"><div class='color_bar' style="width:7px;"/></td></tr><tr><td>CheersController#index.html [GET]</td>
+<td>1678 hits</td>
+<td>2.9%</td>
+<td><div class='color_bar' style="width:5px;"/></td></tr><tr><td class="alt">GoalsController#new.html [GET]</td>
+<td class="alt">1153 hits</td>
+<td class="alt">2.0%</td>
+<td class="alt"><div class='color_bar' style="width:3px;"/></td></tr><tr><td>GoalsController#single.html [GET]</td>
+<td>829 hits</td>
+<td>1.4%</td>
+<td><div class='color_bar' style="width:2px;"/></td></tr><tr><td class="alt">CheersController#shared.html [GET]</td>
+<td class="alt">596 hits</td>
+<td class="alt">1.0%</td>
+<td class="alt"><div class='color_bar' style="width:2px;"/></td></tr><tr><td>UserSessionsController#create.html [POST]</td>
+<td>391 hits</td>
+<td>0.7%</td>
+<td><div class='color_bar' style="width:1px;"/></td></tr><tr><td class="alt">GoalsController#update.html [PUT]</td>
+<td class="alt">352 hits</td>
+<td class="alt">0.6%</td>
+<td class="alt"><div class='color_bar' style="width:1px;"/></td></tr><tr><td>UsersController#show.html [GET]</td>
+<td>304 hits</td>
+<td>0.5%</td>
+<td><div class='color_bar' style="width:1px;"/></td></tr><tr><td class="alt">UserSessionsController#new.html [GET]</td>
+<td class="alt">202 hits</td>
+<td class="alt">0.3%</td>
+<td class="alt"><div class='color_bar' style="width:0px;"/></td></tr><tr><td>GoalsController#invite_a_friend_to_track.html [GET]</td>
+<td>186 hits</td>
+<td>0.3%</td>
+<td><div class='color_bar' style="width:0px;"/></td></tr><tr><td class="alt">UsersController#tell_a_friend.html [GET]</td>
+<td class="alt">140 hits</td>
+<td class="alt">0.2%</td>
+<td class="alt"><div class='color_bar' style="width:0px;"/></td></tr><tr><td>GoalsController#hold.html [GET]</td>
+<td>114 hits</td>
+<td>0.2%</td>
+<td><div class='color_bar' style="width:0px;"/></td></tr><tr><td class="alt">GoalsController#edit.html [GET]</td>
+<td class="alt">114 hits</td>
+<td class="alt">0.2%</td>
+<td class="alt"><div class='color_bar' style="width:0px;"/></td></tr><tr><td>UserSessionsController#destroy.html [DELETE]</td>
+<td>98 hits</td>
+<td>0.2%</td>
+<td><div class='color_bar' style="width:0px;"/></td></tr><tr><td class="alt">UsersController#create.html [POST]</td>
+<td class="alt">67 hits</td>
+<td class="alt">0.1%</td>
+<td class="alt"><div class='color_bar' style="width:0px;"/></td></tr><tr><td>UsersController#edit.html [GET]</td>
+<td>35 hits</td>
+<td>0.1%</td>
+<td><div class='color_bar' style="width:0px;"/></td></tr></table><h2>Failed requests</h2>
+<table cellspacing="0" id="mytable"><tr><td class="alt">ActionView::TemplateError</td>
+<td class="alt">5751 hits</td>
+<td class="alt">71.0%</td>
+<td class="alt"><div class='color_bar' style="width:142px;"/></td></tr><tr><td>ActionController::RoutingError</td>
+<td>1983 hits</td>
+<td>24.5%</td>
+<td><div class='color_bar' style="width:48px;"/></td></tr><tr><td class="alt">ActionController::UnknownAction</td>
+<td class="alt">217 hits</td>
+<td class="alt">2.7%</td>
+<td class="alt"><div class='color_bar' style="width:5px;"/></td></tr><tr><td>NameError</td>
+<td>71 hits</td>
+<td>0.9%</td>
+<td><div class='color_bar' style="width:1px;"/></td></tr><tr><td class="alt">ActiveRecord::RecordNotFound</td>
+<td class="alt">57 hits</td>
+<td class="alt">0.7%</td>
+<td class="alt"><div class='color_bar' style="width:1px;"/></td></tr><tr><td>ActionView::MissingTemplate</td>
+<td>11 hits</td>
+<td>0.1%</td>
+<td><div class='color_bar' style="width:0px;"/></td></tr><tr><td class="alt">NoMethodError</td>
+<td class="alt">3 hits</td>
+<td class="alt">0.0%</td>
+<td class="alt"><div class='color_bar' style="width:0px;"/></td></tr><tr><td>Timeout::Error</td>
+<td>2 hits</td>
+<td>0.0%</td>
+<td><div class='color_bar' style="width:0px;"/></td></tr><tr><td class="alt">ActiveRecord::StatementInvalid</td>
+<td class="alt">2 hits</td>
+<td class="alt">0.0%</td>
+<td class="alt"><div class='color_bar' style="width:0px;"/></td></tr><tr><td>Mongrel::TimeoutError</td>
+<td>1 hits</td>
+<td>0.0%</td>
+<td><div class='color_bar' style="width:0px;"/></td></tr></table><h2>Parse warnings</h2>
+Parsable lines were encountered without a header line before it. It<br/>
+could be that logging is not setup correctly for your application.<br/>
+Visit this website for logging configuration tips:<br/>
+<a href="http://github.com/wvanbergen/request-log-analyzer/wikis/configure-logging">http://github.com/wvanbergen/request-log-analyzer/wikis/configure-logging</a><br/>
+<br/>
+<hr /><h2>Thanks for using request-log-analyzer</h2><p>For more information please visit the <a href="http://github.com/wvanbergen/request-log-analyzer">Request-log-analyzer website</a></p><p>If you need an expert who can analyze your application, mail to <a href="mailto:contact@railsdoctors.com">contact@railsdoctors.com</a> or visit us at <a href="http://railsdoctors.com">http://railsdoctors.com</a>.</p></body></html>

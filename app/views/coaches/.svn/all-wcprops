@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/svn/habitforge/!svn/ver/137/trunk/app/views/coaches
+END
+edit.html.erb
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/habitforge/!svn/ver/60/trunk/app/views/coaches/edit.html.erb
+END
+index.html.erb
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/habitforge/!svn/ver/52/trunk/app/views/coaches/index.html.erb
+END
+new.html.erb
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/habitforge/!svn/ver/52/trunk/app/views/coaches/new.html.erb
+END
+show.html.erb
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/habitforge/!svn/ver/137/trunk/app/views/coaches/show.html.erb
+END

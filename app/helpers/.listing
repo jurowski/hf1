@@ -1,0 +1,11 @@
+drwxr-xr-x    2 jurowsk1 jurowsk1     4096 Dec  3 13:51 .
+drwxr-xr-x    6 jurowsk1 jurowsk1     4096 Dec  8 01:22 ..
+-rw-r--r--    1 jurowsk1 jurowsk1      115 Sep 25 16:10 application_helper.rb
+-rw-r--r--    1 jurowsk1 jurowsk1       29 Sep 25 16:10 checkpoints_helper.rb
+-rw-r--r--    1 jurowsk1 jurowsk1       24 Sep 25 16:10 cheers_helper.rb
+-rw-r--r--    1 jurowsk1 jurowsk1       35 Dec  3 13:51 failedcheckpoints_helper.rb
+-rw-r--r--    1 jurowsk1 jurowsk1       23 Sep 25 16:10 goals_helper.rb
+-rw-r--r--    1 jurowsk1 jurowsk1       32 Sep 25 16:10 password_resets_helper.rb
+-rw-r--r--    1 jurowsk1 jurowsk1       23 Dec  2 16:09 stats_helper.rb
+-rw-r--r--    1 jurowsk1 jurowsk1       30 Sep 25 16:10 user_sessions_helper.rb
+-rw-r--r--    1 jurowsk1 jurowsk1       23 Sep 25 16:10 users_helper.rb

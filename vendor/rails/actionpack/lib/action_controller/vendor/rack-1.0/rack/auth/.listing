@@ -1,0 +1,6 @@
+drwxr-xr-x    4 jurowsk1 jurowsk1     4096 Sep 25 16:12 .
+drwxr-xr-x    6 jurowsk1 jurowsk1     4096 Sep 25 16:12 ..
+drwxr-xr-x    2 jurowsk1 jurowsk1     4096 Sep 25 16:12 abstract
+-rw-r--r--    1 jurowsk1 jurowsk1     1188 Sep 25 16:12 basic.rb
+drwxr-xr-x    2 jurowsk1 jurowsk1     4096 Sep 25 16:12 digest
+-rw-r--r--    1 jurowsk1 jurowsk1    17728 Sep 25 16:12 openid.rb

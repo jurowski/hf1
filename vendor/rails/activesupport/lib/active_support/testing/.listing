@@ -1,0 +1,8 @@
+drwxr-xr-x    2 jurowsk1 jurowsk1     4096 Sep 25 16:12 .
+drwxr-xr-x   11 jurowsk1 jurowsk1     4096 Sep 25 16:12 ..
+-rw-r--r--    1 jurowsk1 jurowsk1     2225 Sep 25 16:12 assertions.rb
+-rw-r--r--    1 jurowsk1 jurowsk1      568 Sep 25 16:12 declarative.rb
+-rw-r--r--    1 jurowsk1 jurowsk1      188 Sep 25 16:12 default.rb
+-rw-r--r--    1 jurowsk1 jurowsk1     1685 Sep 25 16:12 deprecation.rb
+-rw-r--r--    1 jurowsk1 jurowsk1    11849 Sep 25 16:12 performance.rb
+-rw-r--r--    1 jurowsk1 jurowsk1     3080 Sep 25 16:12 setup_and_teardown.rb

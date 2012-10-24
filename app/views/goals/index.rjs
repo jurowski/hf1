@@ -1,0 +1,28 @@
+#logger.debug "SGJ2 inside format.js 1" 
+#render :index do |page|
+
+
+
+#page.visual_effect(:fade, "coach_#{@goal.id}", :duration => 0.2)
+
+page.replace_html "catch_up_on_checkpoints_goal_#{@goal.id}", :partial => "goals/catch_up_on_checkpoints", :object => @goal
+page.replace_html "options_#{@goal.id}", :partial => "goals/options", :object => @goal
+page.replace_html "stats_#{@goal.id}", :partial => "goals/stats", :object => @goal
+page.visual_effect(:appear, "stats_#{@goal.id}", :duration => 0.2)
+session[:refresh_stats] = true
+
+
+#logger.debug "SGJ2 inside format.js 1.2" 
+#### COMING FROM:
+#### link_to_remote 'YES-RJS2', :url => {:controller => "goals", :action => "js_update_checkpoint_yes"}, :locals => { :goal => @goal, :checkin_date => @checkin_date } %>
+#
+#logger.debug "SGJ2 inside format.js 2" 
+#
+#if goal
+#    logger.debug "SGJ2 inside format.js 3" 
+#
+#    @goal = goal
+#    page.replace_html "catch_up_on_checkpoints_goal_#{@goal.id}", :partial => "goals/catch_up_on_checkpoints", :object => @goal
+#    #render(:partial => 'catch_up_on_checkpoints', :locals => {:catch_up_on_checkpoints =>@goal })
+#    logger.debug "SGJ2 inside format.js 4" 
+#end

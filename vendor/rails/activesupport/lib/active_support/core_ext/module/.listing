@@ -1,0 +1,12 @@
+drwxr-xr-x    2 jurowsk1 jurowsk1     4096 Sep 25 16:12 .
+drwxr-xr-x   22 jurowsk1 jurowsk1     4096 Sep 25 16:12 ..
+-rw-r--r--    1 jurowsk1 jurowsk1     2509 Sep 25 16:12 aliasing.rb
+-rw-r--r--    1 jurowsk1 jurowsk1     1057 Sep 25 16:12 attr_accessor_with_default.rb
+-rw-r--r--    1 jurowsk1 jurowsk1      934 Sep 25 16:12 attr_internal.rb
+-rw-r--r--    1 jurowsk1 jurowsk1     2405 Sep 25 16:12 attribute_accessors.rb
+-rw-r--r--    1 jurowsk1 jurowsk1     4057 Sep 25 16:12 delegation.rb
+-rw-r--r--    1 jurowsk1 jurowsk1      685 Sep 25 16:12 inclusion.rb
+-rw-r--r--    1 jurowsk1 jurowsk1     2597 Sep 25 16:12 introspection.rb
+-rw-r--r--    1 jurowsk1 jurowsk1      714 Sep 25 16:12 loading.rb
+-rw-r--r--    1 jurowsk1 jurowsk1      634 Sep 25 16:12 model_naming.rb
+-rw-r--r--    1 jurowsk1 jurowsk1     1834 Sep 25 16:12 synchronization.rb

@@ -1,0 +1,55 @@
+<html>
+<head>
+<base href="http://habitforge.com/"/>
+ <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head>
+<body>
+
+
+<a href= "http://habitforge.com/user_session/new?skip_intro=1&after_login_cn=tomessages&after_login_ca=new&after_login_param_1_name=to_id&after_login_param_1_val=<%= @from_user.id %>&after_login_param_2_name=replying_to_message_id&after_login_param_2_val=<%= @tomessage.id %>">Send a Reply!</a>
+<hr>
+<strong>From: <%= @from_user.first_name %> <%= @from_user.last_name %>
+<br>
+Subject: <%= @tomessage.subject %></strong>
+<br>
+<br>
+<%= @tomessage.body.gsub("\n", "<br>") %>
+<hr>
+<a href= "http://habitforge.com/user_session/new?skip_intro=1&after_login_cn=tomessages&after_login_ca=new&after_login_param_1_name=to_id&after_login_param_1_val=<%= @from_user.id %>&after_login_param_2_name=replying_to_message_id&after_login_param_2_val=<%= @tomessage.id %>">Reply to <%= @from_user.first_name %>.</a>
+
+<br>
+<br>
+<br>
+<br>
+
+         <table align=center border="0" cellspacing="0" cellpadding="0">
+             <tr>
+                <td align="center">
+                 <p>
+                 (If the reply link doesn't work, log into HabitForge ( http://habitforge.com ) and click "Messages" in the top right corner.)
+                 <br>
+                 You are receiving this message because <%= @from_user.first_name %> is either on your team or "following" your progress on a goal in HabitForge.
+                 <br>
+                 </p>
+                </td>
+             </tr>
+             <tr>
+                <td align="center">
+                   <p>
+                   To manage your team membership, account or goals, log into <a href="http://habitforge.com">http://habitforge.com</a>
+                   </p>
+
+                </td>
+             </tr>
+             <tr>
+                <td align="center">
+                   <p>
+                   Questions? Email <a href="mailto:support@habitforge.com">support@habitforge.com</a>
+                   </p>
+
+                </td>
+             </tr>
+           </table>
+
+</body>
+</html>

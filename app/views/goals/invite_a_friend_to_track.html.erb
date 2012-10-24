@@ -1,0 +1,90 @@
+<h3>Invite a Friend to Track My Progress</h3>
+<% if params[:email] and params[:email] == "" %>
+  <p><strong><font color=red>Email address is required</font></strong></p>
+<% end %>
+<% if params[:the_subject] and params[:the_subject] == "" %>
+  <p><strong><font color=red>Subject is required</font></strong></p>
+<% end %>
+<% if params[:the_body] and params[:the_body] == "" %>
+  <p><strong><font color=red>Email body is required</font></strong></p>
+<% end %>
+
+<% emailsent = 0 %>
+<% alreadyinvitedthispersonforthisgoal = 0 %>
+<% if (params[:email] and params[:email] != "") and (params[:the_subject] and params[:the_subject] != "") and (params[:the_body] and params[:the_body] != "") %>
+  <% #gonna send that email %>
+  <p>Email sent.</p>
+  
+  <%
+  ### CREATE A CHEER RECORD
+  begin
+    cheer_existing = Cheer.find(:all, :conditions => "email = '#{params[:email]}' and goal_id = '#{@goal.id}'")
+    if cheer_existing.size > 0
+      #do nothing ... already exists
+      alreadyinvitedthispersonforthisgoal = 1
+    else
+      cheer = Cheer.new
+      cheer.goal_id = @goal.id
+      cheer.email = params[:email]
+      if cheer.save
+        puts "Email sent."
+      end
+      Notifier.deliver_invite_a_friend_to_track(current_user, params[:email], params[:the_body] + "\n The HabitForge URL is: http://habitforge.com", params[:the_subject]) # sends the email      
+      session[:emailsent] = 1
+    end
+  rescue
+    %>
+    <font color=red>Sorry, something went wrong. Your email was not sent.</font>
+    <br />
+  <%
+  end      
+  %>	
+
+<% end %>
+<% if alreadyinvitedthispersonforthisgoal == 1 %>
+  <font color=red>You've already invited this person to track this particular goal. The email wasn't sent.</font><br>
+<% end %>
+
+<% 
+if session[:emailsent] == 1 
+  session[:emailsent] = 0
+  %>
+  <font color=red>Your email has been sent.</font><br>
+	<br>
+	<%= link_to "Invite another friend!", :controller => "goals", :action => "invite_a_friend_to_track", :id => @goal.id%>
+    <br>
+    <br><%= link_to '<-- Back', goals_path %>
+<% else %>
+  <%= link_to '<-- Back', goals_path %>
+  <hr>
+  <form>
+  <br>
+  From: <%= current_user.email %>
+  <br>
+  <br>
+  Your friend's email address:
+  <input type="text" name="email"> <p>(Only accepts one email address at a time.)</p>
+  <br>
+  The subject of the email:
+  <input type="text" name="the_subject" size=50 value="Want to help me track something?">
+  <br>
+  <br>
+
+  The text of the email:
+  <br>
+  <TEXTAREA NAME="the_body" COLS=60 ROWS=20>
+Hello... this is <%= current_user.first_name %>, and I'm using the <% if session[:sponsor] == "clearworth" %>"My Learning Habit"<% elsif session[:sponsor] == "reengagefocus" %>reEngage Focus<% elsif session[:sponsor] == "forittobe" %>For It To Be<% elsif session[:sponsor] == "marriagereminders" %>Marriage Reminders<% else %>HabitForge<% end %> web application<% if session[:sponsor] == "clearworth" %> from ClearWorth and HabitForge<% end %>.
+
+Would you mind keeping tabs on my progress with getting something done? For 21 days straight I'm trying to be successful at <%= @goal.response_question %>. If I miss a day, I have to start over. 
+  
+You'd just need to create a free account on the <% if session[:sponsor] == "clearworth" %>My Learning Habit site ( http://mylearninghabit.com )<% elsif session[:sponsor] == "reengagefocus" %>reEngage Focus site ( http://reengagefocus.com )<% elsif session[:sponsor] == "forittobe" %>For It To Be site ( http://forittobe.com )<% elsif session[:sponsor] == "marriagereminders" %>Marriage Reminders site ( http://marriagereminders.com )<% else %>HabitForge site ( http://habitforge.com )<% end %> and register with your email address (you'd want to register with the same email address I just reached you at so my goal is linked to your account). Once you're logged in, you'll see my info in the "Friends" tab.
+
+Thanks for your help!
+<%= current_user.first_name %>
+  </TEXTAREA>
+  <br>
+  <br>
+  <p><input type="submit" value="Email this friend"></p>
+  </form>
+
+<% end %>

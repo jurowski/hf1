@@ -1,0 +1,17 @@
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/habitforge/!svn/ver/2/trunk/vendor/rails/actionpack/test/fixtures/symlink_parent
+END
+symlinked_layout.erb
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/habitforge/!svn/ver/2/trunk/vendor/rails/actionpack/test/fixtures/symlink_parent/symlinked_layout.erb
+END
+.listing
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/habitforge/!svn/ver/2/trunk/vendor/rails/actionpack/test/fixtures/symlink_parent/.listing
+END

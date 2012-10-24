@@ -1,0 +1,33 @@
+<p>
+  <b>Team:</b>
+  <%=h @teamgoal.team_id %>
+</p>
+
+<p>
+  <b>Goal:</b>
+  <%=h @teamgoal.goal_id %>
+</p>
+
+<p>
+  <b>Rating:</b>
+  <%=h @teamgoal.rating %>
+</p>
+
+<p>
+  <b>Qty kickoff votes:</b>
+  <%=h @teamgoal.qty_kickoff_votes %>
+</p>
+
+<p>
+  <b>Active:</b>
+  <%=h @teamgoal.active %>
+</p>
+
+<p>
+  <b>Suspend:</b>
+  <%=h @teamgoal.suspend %>
+</p>
+
+
+<%= link_to 'Edit', edit_teamgoal_path(@teamgoal) %> |
+<%= link_to 'Back', teamgoals_path %>

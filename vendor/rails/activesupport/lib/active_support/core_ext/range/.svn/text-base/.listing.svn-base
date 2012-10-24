@@ -1,0 +1,6 @@
+drwxr-xr-x    2 jurowsk1 jurowsk1     4096 Sep 25 16:12 .
+drwxr-xr-x   22 jurowsk1 jurowsk1     4096 Sep 25 16:12 ..
+-rw-r--r--    1 jurowsk1 jurowsk1      904 Sep 25 16:12 blockless_step.rb
+-rw-r--r--    1 jurowsk1 jurowsk1      851 Sep 25 16:12 conversions.rb
+-rw-r--r--    1 jurowsk1 jurowsk1     1007 Sep 25 16:12 include_range.rb
+-rw-r--r--    1 jurowsk1 jurowsk1      422 Sep 25 16:12 overlaps.rb

@@ -1,0 +1,14 @@
+drwxr-xr-x    3 jurowsk1 jurowsk1     4096 Sep 25 16:12 .
+drwxr-xr-x   29 jurowsk1 jurowsk1     4096 Sep 25 16:12 ..
+-rw-r--r--    1 jurowsk1 jurowsk1       30 Sep 25 16:12 all_types_with_layout.html.erb
+-rw-r--r--    1 jurowsk1 jurowsk1       39 Sep 25 16:12 all_types_with_layout.js.rjs
+-rw-r--r--    1 jurowsk1 jurowsk1        6 Sep 25 16:12 custom_constant_handling_without_block.mobile.erb
+-rw-r--r--    1 jurowsk1 jurowsk1       32 Sep 25 16:12 iphone_with_html_response_type.html.erb
+-rw-r--r--    1 jurowsk1 jurowsk1       39 Sep 25 16:12 iphone_with_html_response_type.iphone.erb
+drwxr-xr-x    2 jurowsk1 jurowsk1     4096 Sep 25 16:12 layouts
+-rw-r--r--    1 jurowsk1 jurowsk1       12 Sep 25 16:12 using_defaults.html.erb
+-rw-r--r--    1 jurowsk1 jurowsk1       36 Sep 25 16:12 using_defaults.js.rjs
+-rw-r--r--    1 jurowsk1 jurowsk1       20 Sep 25 16:12 using_defaults.xml.builder
+-rw-r--r--    1 jurowsk1 jurowsk1       12 Sep 25 16:12 using_defaults_with_type_list.html.erb
+-rw-r--r--    1 jurowsk1 jurowsk1       36 Sep 25 16:12 using_defaults_with_type_list.js.rjs
+-rw-r--r--    1 jurowsk1 jurowsk1       20 Sep 25 16:12 using_defaults_with_type_list.xml.builder

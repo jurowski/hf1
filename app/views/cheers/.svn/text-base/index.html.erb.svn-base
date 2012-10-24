@@ -1,0 +1,245 @@
+
+<%
+begin
+%>
+
+<%
+
+################################################
+####### WHAT PAGES SHOULD WE RETURN TO?
+session[:current_page] = request.request_uri
+session[:return_to_me] = request.request_uri
+################################################
+
+if current_user
+    if params[:gender]
+        current_user.gender = params[:gender] 
+        current_user.save
+    end
+    if params[:yob]
+        current_user.yob = params[:yob].to_i
+        current_user.save
+    end
+   if current_user.gender == nil
+       %>
+       <div class="error">
+       Are you <a href="/cheers?gender=male"><font color="red">Male</font></a> or <a href="/cheers?gender=female"><font color="red">Female</font></a> ? 
+       </div>
+       <%
+   else
+       if current_user.yob == nil
+       %>
+           <div class="error">
+           <form>
+           <table>
+           <tr>
+           <td>
+           What year were you born?
+           </td>
+           <td>
+            &nbsp
+            &nbsp
+            <select name="yob">
+                <%
+                oldest = 100
+                average = 30
+                today = current_user.dtoday.strftime("%Y").to_i
+                yob = today - 100
+                yob_select = today - average
+                100.times do
+                    yob = yob + 1
+                
+                    if yob == yob_select
+                    %>
+                        <option SELECTED>                
+                    <%
+                    else
+                    %>
+                        <option>
+                    <%
+                    end
+                    %>            
+                    <%= yob %>    
+                    </option>                
+                    <%
+                end
+                %>
+            </select>
+            </td>
+            <td>
+            &nbsp
+            &nbsp
+            <input type="submit" value="Save">
+            </td>
+            </tr>
+            </table>
+           </form>
+           </div>
+       <%
+       end       
+   end
+end
+
+if params[:show_winners] and params[:goal_id]
+  @goal = Goal.find(:first, :conditions => "id = '#{params[:goal_id]}'")      
+  %>
+  <%= render :partial => "checkpoints/priordaycategorywinnersgoal.erb", :locals => { :priordaycategorywinnersgoal => @goal }  %>
+  <%
+  #will render the partial _priordaycategorywinnersgoal.erb file from the checkpoints views  
+else
+%>
+  <h4>Sharing? Link to show others any active habits that I have "made public": </h4>
+  <p>&nbsp &nbsp &nbsp &nbsp &nbsp <a href="<%= session[:site_url] %>/cheers/1/shared?shared_u=<%= current_user.id %>" target="_blank"><%= session[:site_url] %>/cheers/1/shared?shared_u=<%= current_user.id %></a>
+
+        <br>
+        &nbsp &nbsp &nbsp &nbsp &nbsp 
+        <a name="fb_share" type="button" share_url="<%= session[:site_url] %>/cheers/1/shared?shared_u=<%= current_user.id %>" href="http://www.facebook.com/sharer.php">My <%= session[:site_name]%> Progress</a><script src="http://static.ak.fbcdn.net/connect.php/js/FB.Share" type="text/javascript"></script>
+        
+
+  </p>
+    <h4>Goals you're following</h4>
+    <h5>If someone invites you to follow their progress on a goal, it will be listed here. </h5>
+    <p>
+    <% if @cheers.size == 0 %>
+      (No invites yet.) 
+    <% else %>
+      <% 
+      i = 0
+      @cheers.each do |cheer| 
+        begin
+          i = i + 1
+          %>
+          <div style="background-color:#eeeeee;border-width:medium;border-color:#eeeeee;">
+          <%=h cheer.goal.user.first_name %> <%=h cheer.goal.user.last_name %> is <%= cheer.goal.title %>.
+          <br>
+          <%= link_to "View Progress", cheer %>
+          &nbsp; 
+          •
+          &nbsp;
+          <a href="/tomessages/new?to_id=<%= cheer.goal.user.id %>">Send <%= cheer.goal.user.first_name %> a Message!</a>
+          &nbsp; 
+          •
+          &nbsp;
+          <%= link_to 'Stop Following', cheer, :confirm => 'Are you sure?', :method => :delete %>
+          </div>
+          <br>
+        <%
+        rescue
+        %>
+          <i>This goal has been removed</i>
+          <% cheer.destroy %>
+        <%
+        end
+        %>
+      <% end %>
+    <% end %>
+    </p>
+  <br>  
+<p>
+<%
+begin
+  if params[:show_winners] and params[:category]
+    offset = 0
+    dnow = get_dnow
+    dnow = dnow + offset
+    dyesterday = dnow - 1
+    d2daysago = dnow - 2
+
+    my_conditions = "category = '#{params[:category]}' and publish = '1' and daysstraight <> '9999' and laststatus = 'yes' and (laststatusdate = '#{dyesterday}' or laststatusdate = '#{d2daysago}')"
+
+    @goals = Goal.find(:all, :conditions => my_conditions, :order => "daysstraight desc")
+    if @goals.size == 0 
+    else 
+      %>
+      <br>
+      <br>
+      <h4>Who succeeded yesterday in the category of "<%= params[:category]%>"</h4>
+      <br>
+      <br>
+      <%
+      @goals.each do |goal| 
+
+        if goal.category != nil 
+          %>    
+          &nbsp &nbsp <strong><a href="/cheers/<%= goal.id %>/shared?shared_u=<%= goal.user.id %>"<% if current_user == nil %> target="_blank"<% end %>><%= goal.user.first_name %></a></strong>:  
+          <%= goal.title %>
+          <% 
+          if goal.daysstraight > 1 
+          %>
+            <strong><%= goal.daysstraight %></strong> days straight.              
+          <% 
+          end  
+          %>
+          <br>  
+          <% 
+        end 
+
+
+
+      end 
+
+      
+      %>
+      <br>
+      <br>
+      <h4>Other Categories</h4>
+      <%
+    end
+  else
+  %>
+  <h4>Who Succeeded Yesterday?</h4>
+  <h5>(Click a category to see the list)</h5>
+  <%
+  end
+  %>
+</p>
+
+<%
+rescue
+%>
+  <br>
+  <p>Something went wrong. Go back to the <a href="<%= server_root_url %>">home page</a> and try again, or <a href="mailto:support@habitforge.com">Contact Support</a></p>
+<%
+end
+%>
+
+
+<%
+@arr = arr_goal_categories  
+for arr in @arr
+  %>
+  <p>
+  &nbsp &nbsp &nbsp &nbsp &nbsp <a href='<%= session[:current_page] %>?show_winners=1&category=<%= arr[0] %>'><%= arr[0] %></a>
+  </p>
+  <%
+end
+%>
+
+
+
+
+
+
+
+
+
+<%
+end
+%>
+
+<% ### TOO DB INTENSIVE %>
+<% #render :partial => "checkpoints/priordaywinners", :locals => { :priordaywinners => @checkpoints }  %>
+<% #will render the partial _priordaywinners.erb file from the checkpoint views %>
+
+<% ### TOO DB INTENSIVE %>
+<% #render :partial => "users/alluserssharedhabits", :locals => { :alluserssharedhabits => @users }  %>
+<% #will render the partial _alluserssharedhabits.erb file from the users views %>
+
+<%
+rescue
+%>
+  <br>
+  <p>Something went wrong. Go back to the <a href="http://habitforge.com">home page</a> and try again, or <a href="mailto:support@habitforge.com">Contact Support</a></p>
+<%
+end
+%>

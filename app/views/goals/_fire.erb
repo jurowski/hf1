@@ -1,0 +1,402 @@
+<!--  
+START 
+New Bets
+aka "Fire"
+-->
+    <% this_one_was_submitted = false %> 
+    <% if params[:start_fire_goal_id] == @goal.id.to_s %>
+        <!-- SOMEONE SUBMITTED THE FIRE FORM FOR THIS GOAL -->
+        <% 
+        this_one_was_submitted = true 
+        found_error = 0
+        %>
+    <% end %>
+
+    <%
+    ######################################################
+    ### Decide whether to allow non-paid users to use FIRE
+    #form_enabled = false
+    form_enabled = true
+    ######################################################
+    ######################################################
+    %>
+
+    <!-- <div class="grid_9 omega"> -->
+        <a name="form_<%= @goal.id %>" />
+            <DIV>
+            <% if @goal.number_my_active_bets == 0 %>
+                <% if params[:start_fire_goal_id] == @goal.id.to_s %>
+                    <div id="bets_details<%= @goal.id %>" >
+                <% else %>
+                    <div id="bets_details<%= @goal.id %>" style="display:none;">
+                <% end %>
+                <p>
+            <% 
+            else 
+                if @goal.number_my_active_bets > 0
+                    for bet in @goal.my_active_bets
+                    %>                        
+                        <div id="bets_details<%= @goal.id %>" style="display:none;">
+                    <%
+                    end
+                end 
+            end 
+            %>
+
+
+
+            <%
+            new_one_saved = 0
+            if @goal.number_my_active_bets == 0
+            %>
+                <% if this_one_was_submitted %>
+                    <% if params[:recipient] == "charity" and params[:charity] == "" %>
+                        <div class="error">Please select a charity</div>
+                        <% found_error = 1 %>
+                    <% end %> 
+                    <% if params[:recipient] == "friend" %>
+                        <% if !params[:friend_email] or !params[:friend_email].include? "@" or !params[:friend_email].include? "." %>
+                            <div class="error">Please enter a friend's valid email address</div>
+                            <% found_error = 1 %>
+                        <% end %> 
+                        <% if !params[:friend_name] %>
+                            <div class="error">Please enter your friend's name.</div>
+                            <% found_error = 1 %>
+                        <% end %> 
+                    <% end %> 
+
+                    <% 
+                    if params[:recipient] == "random"
+                        lucky_user_email = ""
+                        lucky_user_name = ""
+                        random_user_id = 0
+                    
+                        supporting_members = arr_all_habitforge_supporting_members_opted_in_random_fire_except_current_user
+
+                        if supporting_members.size > 0  
+                            random_user_number = rand(supporting_members.size) + 1 #between 1 and supporting_members.size
+                            counter = 0
+                            for user in supporting_members
+                                counter = counter + 1
+                                if counter == random_user_number
+                                 random_user_id = user.id
+                                 lucky_user_email = user.email
+                                 lucky_user_name = user.first_name
+                                end
+                            end  
+                        else
+                            %>
+                            <div class="error">
+                              Sorry, there was an error selecting a random user. Please contact support@habitforge.com or choose another recipient.
+                            </div>
+                            found_error = 1
+                            <%
+                        end
+                    end 
+                    %>
+            
+                    <% 
+                    if found_error == 0
+                        tomorrow = get_dnow + 1
+                        length_days = params[:days].to_i
+                
+                        ### Create a new bet
+                        new_bet = Bet.new()
+                        new_bet.recipient_type = params[:recipient]
+                        new_bet.fire_type = 1
+
+                        if params[:recipient] == "friend"
+                            new_bet.recipient_email = params[:friend_email]
+                            new_bet.recipient_name = params[:friend_name]
+
+                            new_cheer = Cheer.new()
+                            new_cheer.email = params[:friend_email]
+                            new_cheer.goal = @goal
+                            new_cheer.save
+                        end                            
+                        if params[:recipient] == "charity"
+                            ### Look up charity
+                            betpayee = Betpayee.find(:first, :conditions => "id = '#{params[:charity].to_i}'") 
+                            new_bet.betpayee = betpayee
+
+                            new_bet.recipient_email = betpayee.email
+                            new_bet.recipient_name = betpayee.name
+
+                        end
+                        if params[:recipient] == "random"
+                            new_bet.recipient_email = lucky_user_email
+                            new_bet.recipient_name = lucky_user_name
+                            new_bet.betpayee_id = random_user_id
+
+                            new_cheer = Cheer.new()
+                            new_cheer.email = lucky_user_email
+                            new_cheer.goal = @goal
+                            new_cheer.save
+                        end
+                
+                
+                        new_bet.goal = @goal
+                        new_bet.user = @goal.user
+                        new_bet.wager = params[:wager].to_i
+                        new_bet.floor = params[:floor].to_i
+                        new_bet.start_date = tomorrow
+                        new_bet.length_days = length_days
+                        new_bet.end_date = tomorrow + length_days
+                        new_bet.success_rate = 100
+                        new_bet.active_yn = 1
+                
+                
+                        if new_bet.save
+                            new_one_saved = 1 
+                        
+                            @bet = new_bet
+                            @user = @goal.user
+                        
+                            if params[:recipient] == "random"
+                                Notifier.deliver_bet_fire_random_new_notification(@user, @bet) # sends the email 
+                            end
+                            if params[:recipient] == "charity"
+                                Notifier.deliver_bet_fire_charity_new_notification(@user, @bet) # sends the email 
+                            end
+                            if params[:recipient] == "friend"
+                                Notifier.deliver_bet_fire_friend_new_notification(@user, @bet) # sends the email 
+                            end
+
+                            %>
+                            <div class="notice">Your <%= length_days %>-day challenge for $<%= new_bet.wager %> starts tomorrow! We have sent an email to you and to <%= new_bet.recipient_email %> with the details. </div>
+                            <%
+                        end
+                    end
+                    %>
+                <% end %> 
+
+
+                <% if new_one_saved == 0 %>
+                    <form action="/goals/#form_<%= @goal.id %>">
+                    <div style="background:#FFF6BF;padding:10px;margin:10px;width:500px;">
+                        <p>If my success rate 
+                        <select name="days" <% if !form_enabled %>DISABLED<% end %>>
+                            <option value=21 <% if params[:days] == "21" %>SELECTED<% end %>>
+                                21 days
+                            </option>
+                            <option value=30 <% if params[:days] == "30" %>SELECTED<% end %>>
+                                30 days
+                            </option>
+                            <option value=60 <% if params[:days] == "60" %>SELECTED<% end %>>
+                                60 days
+                            </option>
+                            <option value=90 <% if params[:days] == "90" %>SELECTED<% end %>>
+                                90 days
+                            </option>
+                            <option value=180 <% if params[:days] == "180" %>SELECTED<% end %>>
+                                180 days
+                            </option>
+                            <option value=365 <% if params[:days] == "365" %>SELECTED<% end %>>
+                                365 days
+                            </option>
+                        </select>
+                         from now 
+                         <br>is not at least 
+                        <select name="floor" <% if !form_enabled %>DISABLED<% end %>>
+                            <option value=14 <% if params[:floor] == "14" %>SELECTED<% end %>>
+                                14% (1 day/wk avg)
+                            </option>
+                            <option value=25 <% if params[:floor] == "25" %>SELECTED<% end %>>
+                                25%
+                            </option>
+                            <option value=28 <% if params[:floor] == "28" %>SELECTED<% end %>>
+                                28% (2 days/wk avg)
+                            </option>
+                            <option value=42 <% if params[:floor] == "42" %>SELECTED<% end %>>
+                                42% (3 days/wk avg)
+                            </option>
+                            <option value=50 <% if params[:floor] == "50" %>SELECTED<% end %>>
+                                50%
+                            </option>
+                            <option value=57 <% if params[:floor] == "57" %>SELECTED<% end %>>
+                                57% (4 days/wk avg)
+                            </option>
+                            <option value=71 <% if params[:floor] == "71" %>SELECTED<% end %>>
+                                71% (5 days/wk avg)
+                            </option>
+                            <option value=75 <% if !params[:floor] or params[:floor] == "75" %>SELECTED<% end %>>
+                                75%
+                            </option>
+                            <option value=85 <% if params[:floor] == "85" %>SELECTED<% end %>>
+                                85% (6 days/wk avg)
+                            </option>
+                            <option value=100 <% if params[:floor] == "100" %>SELECTED<% end %>>
+                                100% (every day)
+                            </option>
+                        </select>&nbsp,
+                        <br>
+                        then I will pay 
+                        <select name="wager" <% if !form_enabled %>DISABLED<% end %>>
+                            <option value=5 <% if params[:wager] == "5" %>SELECTED<% end %>>
+                                $5
+                            </option>
+                            <option value=10 <% if !params[:wager] or params[:wager] == "10" %>SELECTED<% end %>>
+                                $10
+                            </option>
+                            <option value=25 <% if params[:wager] == "25" %>SELECTED<% end %>>
+                                $25
+                            </option>
+                            <option value=50 <% if params[:wager] == "50" %>SELECTED<% end %>>
+                                $50
+                            </option>
+                            <option value=100 <% if params[:wager] == "100" %>SELECTED<% end %>>
+                                $100
+                            </option>
+                        </select>
+                        to:
+                        <p>
+                        &nbsp &nbsp &nbsp &nbsp &nbsp <input type="radio" name="recipient" value="friend" <% if !form_enabled %>DISABLED<% end %> <% if params[:recipient] == "friend" %>CHECKED<% end %>>&nbsp A friend of mine named: <input type="textbox" name="friend_name" value="<%= params[:friend_name] %>" <% if !form_enabled %>DISABLED<% end %>> 
+                        <br>
+                        &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp My friend's email address is: <input type="textbox" name="friend_email" value="<%= params[:friend_email] %>" <% if !form_enabled %>DISABLED<% end %>>
+                        <br>
+                        <br>
+                        &nbsp &nbsp &nbsp &nbsp &nbsp <input type="radio" name="recipient" value="charity" <% if !form_enabled %>DISABLED<% end %> <% if params[:recipient] == "charity" or !params[:recipient] %>CHECKED<% end %>>&nbsp A listed charity:
+                        <select name="charity" <% if !form_enabled %>DISABLED<% end %>>
+                            <option value="" <% if params[:charity] == "" %>SELECTED<% end %>> --- Select a Charity that will Motivate You --- </option>
+                        
+                            <%
+                            @charities = Betpayee.find(:all, :conditions => "show_in_pulldown = '1'") 
+                            if (@charities.size > 0)
+                                for charity in @charities
+                                    %>
+                                    <option value="<%= charity.id.to_s %>" <% if params[:charity] == charity.id.to_s %> SELECTED<% end %>><%= charity.name %></option>
+                                    <%
+                                end
+                            end
+                            %>
+                        </select>
+                        <br>
+                        <br>
+                        &nbsp &nbsp &nbsp &nbsp &nbsp <input type="radio" name="recipient" value="random" <% if !form_enabled %>DISABLED<% end %> <% if params[:recipient] == "random" %>CHECKED<% end %> >&nbsp Some lucky HabitForge Supporting Member (choose one randomly for me)
+                        </p>
+
+                        <input type=hidden name="start_fire_goal_id" value="<%= @goal.id %>"
+                        <div style="padding:10px;margin:10px;width:500px;">
+                            <% if form_enabled %>
+                                <h6>
+                                    By clicking the button below, you and the potential recipient will be sent an email laying out the terms of the challenge. See the "Details" below for those terms.
+                                </h6>
+                                <input type="submit" value="Start this challenge!">
+                            <% else %>
+                                <h6>
+                                <a href="http://habitforge.myshopify.com/collections/frontpage/products/habitforge-supporting-membership-1-year?ref=<%= @goal.user.id.to_s %>" class="button">
+                                    Enable with a Supporting Membership (Just $14.95 for 1 Year)
+                                </a>
+                                <br>
+                                </h6>
+                            <% end %>   
+                            <h6>
+                            <a href="/popupex<%= @goal.id %>.html" onclick="return popitup_bigger1('/fire_rules.html')">
+                            Details and Rules of "Price of Failure: Bet a Friend or Play for a Cause"
+                            </a>
+                            </h6>
+                        </div>
+
+
+
+                       </div>
+                    </p>
+                    </p>
+                    </p>   
+                    </form>     
+                <% end %>
+            
+            <%
+            end
+            %>
+        
+        
+        
+        
+        
+            <%
+            ### SHOW ACTIVE BETS, even if just saved now
+            if (@goal.number_my_active_bets > 0 or new_one_saved == 1)
+            %>
+
+                <%
+                for bet in @goal.my_active_bets
+                    %>
+
+                    <div class="notice">
+                    <p>
+                    Your <%= bet.length_days %>-day challenge for $<%= bet.wager %> runs from <%= bet.start_date.strftime("%A, %b %d, %Y") %> through <%= bet.end_date.strftime("%A, %b %d, %Y") %>.
+
+                    <br>
+                    Your current success rate for this time period is <%= bet.success_rate_dynamic %>%
+                    (<%= bet.number_successful_days_in_this_bet %> successful days out of <%= bet.number_checkpoints_in_this_bet %> relevant days gone by)
+                    .
+
+
+                    <br>
+                    You need to succeed at least <%= bet.min_success_days_to_win %> days out of the <%= bet.length_days %>-day challenge period (<%= bet.floor%>%), or you'll owe <%= bet.recipient_name %> $<%= bet.wager %>!
+                    <%
+                    if bet.recipient_type == "random"
+                    %>
+                        <br>
+                        (<%= bet.recipient_name %> is now "following" your goal, and was randomly chosen, at your request, as the lucky potential recipient.)
+                    <%
+                    end
+                    %>
+                
+                
+                    <h6><a href="/popupex<%= @goal.id %>.html" onclick="return popitup_bigger1('/fire_rules.html')">Details and Rules</a></h6>
+
+                
+                    </p>
+                    </div>
+
+
+                    <% if request.env['HTTP_USER_AGENT'] =~ /[^\(]*[^\)]Chrome\// %>
+
+                    <% end %>
+
+                    <%                        
+                end
+                %>
+
+        
+            <%
+            end
+            %>
+
+
+            <%
+            ### SHOW AD
+            if (session[:site_name] == "habitforge" or session[:sponsor] == "habitforge") and (current_user.kill_ads_until == nil or current_user.dtoday > current_user.kill_ads_until)
+            %>
+                <script type="text/javascript"><!--
+                google_ad_client = "ca-pub-8620829126449222";
+                /* Fire drop down banner */
+                google_ad_slot = "9392158046";
+                google_ad_width = 468;
+                google_ad_height = 60;
+                //-->
+                </script>
+                <script type="text/javascript"
+                src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+                </script>            
+            <%
+            end
+            ### END SHOW AD
+            %>
+
+            </div>
+            </p>
+
+        </div>
+
+
+
+    <!-- </div> END of: div class="grid_9 omega" -->
+
+<!--  
+END 
+New Bets
+aka "Fire"
+-->

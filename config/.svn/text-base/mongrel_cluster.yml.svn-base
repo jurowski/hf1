@@ -1,0 +1,11 @@
+--- 
+address: 0.0.0.0
+clean: true
+log_file: log/mongrel.log
+port: 12003
+cwd: /home/jurowsk1/etc/rails_apps/habitforge/current
+environment: production
+user: jurowsk1
+group: jurowsk1
+pid_file: log/mongrel.pid
+servers: 2

@@ -1,0 +1,12 @@
+drwxr-xr-x    8 jurowsk1 jurowsk1     4096 Sep 25 16:31 .
+drwxr-xr-x    3 jurowsk1 jurowsk1     4096 Sep 25 16:31 ..
+drwxr-xr-x    2 jurowsk1 jurowsk1     4096 Sep 25 16:30 acts_as_authentic
+drwxr-xr-x    2 jurowsk1 jurowsk1     4096 Sep 25 16:30 authenticates_many
+drwxr-xr-x    2 jurowsk1 jurowsk1     4096 Sep 25 16:31 controller_adapters
+drwxr-xr-x    2 jurowsk1 jurowsk1     4096 Sep 25 16:31 crypto_providers
+-rw-r--r--    1 jurowsk1 jurowsk1     3120 Sep 11 22:19 i18n.rb
+-rw-r--r--    1 jurowsk1 jurowsk1     1067 Sep 11 22:19 random.rb
+-rw-r--r--    1 jurowsk1 jurowsk1     1196 Sep 11 22:19 regex.rb
+drwxr-xr-x    2 jurowsk1 jurowsk1     4096 Sep 25 16:31 session
+drwxr-xr-x    2 jurowsk1 jurowsk1     4096 Sep 25 16:31 test_case
+-rw-r--r--    1 jurowsk1 jurowsk1     5629 Sep 11 22:19 test_case.rb

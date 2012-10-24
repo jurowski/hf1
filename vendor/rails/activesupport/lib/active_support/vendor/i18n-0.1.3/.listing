@@ -1,0 +1,8 @@
+drwxr-xr-x    4 jurowsk1 jurowsk1     4096 Sep 25 16:12 .
+drwxr-xr-x    6 jurowsk1 jurowsk1     4096 Sep 25 16:12 ..
+-rwxr-xr-x    1 jurowsk1 jurowsk1     1061 Sep 25 16:12 MIT-LICENSE
+-rw-r--r--    1 jurowsk1 jurowsk1      449 Sep 25 16:12 README.textile
+-rw-r--r--    1 jurowsk1 jurowsk1       65 Sep 25 16:12 Rakefile
+-rw-r--r--    1 jurowsk1 jurowsk1      780 Sep 25 16:12 i18n.gemspec
+drwxr-xr-x    3 jurowsk1 jurowsk1     4096 Sep 25 16:12 lib
+drwxr-xr-x    3 jurowsk1 jurowsk1     4096 Sep 25 16:12 test

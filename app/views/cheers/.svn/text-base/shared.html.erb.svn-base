@@ -1,0 +1,140 @@
+<% 
+  intro_phrase = "Shared Goals"
+  @their_active_goals = Array.new()
+  they = User.find(:first, :conditions => "id = '#{params[:shared_u]}'")
+  if they == nil
+      %>
+      That user does not exist.
+      <%
+  else
+      %>
+
+      <% if current_user != nil %> 
+          <a href="/cheers"><--Back</a>
+      <% end %>  
+      
+      <p>
+
+
+      <% 
+      if params[:one_g] 
+        begin
+            one_goal = Goal.find(params[:one_g])
+            if one_goal and one_goal.is_active_and_public
+              @their_active_goals << one_goal
+            end
+        rescue
+            puts "didn't find goal"
+        end
+      else 
+        @their_active_goals = they.active_public_goals
+      end 
+
+
+      if !@their_active_goals or @their_active_goals.size == 0
+        intro_phrase = "<h3>#{they.first_name} has no Shared Goals at this time</h3>"
+      end 
+      if @their_active_goals and @their_active_goals.size == 1
+        intro_phrase = "<h3>#{they.first_name}'s Shared Goal</h3>"
+      end 
+      if @their_active_goals and @their_active_goals.size > 1
+        intro_phrase = "<h3>#{they.first_name}'s Shared Goals</h3>"
+      end 
+
+
+      %>
+      <%= intro_phrase %>
+      <%
+      @their_active_goals.each do |goal|
+          %>
+          <div class="div_habit">
+          <h4>Working on "<%= goal.title %>".</h4>
+          <%
+          if goal.desired_success_rate != nil and goal.desired_success_rate < 100
+            %>
+            <br>
+            (Their goal is to do this <%= goal.desired_success_rate %>% of the time.)
+            <%
+          end
+
+          if goal.get_latest_stats_badge != nil and goal.get_latest_stats_badge.include? "missing"
+              %>
+              <p>
+              <%
+              if goal.successful_days_in_a_row_without_9s > 0
+                  %>
+                  <br>
+                  Days in a row (as of last reporting): <%= goal.successful_days_in_a_row_without_9s %>
+                  <br>
+                  <br>
+                  <%
+              end              
+              if goal.get_longest_run > 3
+                  %>
+                  <br>
+                  Longest run: <%= goal.get_longest_run %> days straight
+                  <br>
+                  (longest since this stat started being recorded in Jan. 2012)
+                  <%
+              end
+              %>
+              <br>
+              Overall Success Rate: <%= goal.percent_of_checkpoints_with_answer_of_yes %>%
+              <%
+              if goal.days_since_first_checkpoint >= 7
+                  %>
+                  <br>
+                  <%= goal.success_rate_during_past_n_days(7) %>% Success these past 7 days
+                  <%
+              end
+              if goal.days_since_first_checkpoint >= 21
+                  %>
+                  <br>
+                  <%= goal.success_rate_during_past_n_days(21) %>% Success these past 3 weeks
+                  <%
+              end
+              if goal.days_since_first_checkpoint >= 90
+                  %>
+                  <br>
+                  <%= goal.success_rate_during_past_n_days(90) %>% Success these past 3 months
+                  <%
+              end
+              if goal.days_since_first_checkpoint >= 180
+                  %>
+                  <br>
+                  <%= goal.success_rate_during_past_n_days(180) %>% Success these past 6 months
+                  <%
+              end
+              if goal.days_since_first_checkpoint >= 365
+                  %>
+                  <br>
+                  <%= goal.success_rate_during_past_n_days(365) %>% Success during the past year.
+                  <%
+              end
+              %>
+              </p>
+              <%
+          else
+            %>
+            <p>          
+
+            <%= goal.get_latest_stats_badge %>
+            <%= goal.get_latest_stats_badge_details %>
+
+            </p>
+            <%
+          end
+          %>
+          <br>
+          <p>.: tracked for the past <%= goal.days_since_first_checkpoint %> days :.</p>
+          </div>
+        <%
+      end
+      %>
+      <%
+  end
+  %>
+  
+
+  <br />
+ 

@@ -1,0 +1,23 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  credits: 1
+  start_date: 2011-05-01
+  end_date: 2011-05-01
+  success_rate: 1
+  donated_amount: 9.99
+  donation_date: 2011-05-01
+  active_yn: 1
+  success_percent_to_id: 1
+  loss_percent_to_id: 1
+
+two:
+  credits: 1
+  start_date: 2011-05-01
+  end_date: 2011-05-01
+  success_rate: 1
+  donated_amount: 9.99
+  donation_date: 2011-05-01
+  active_yn: 1
+  success_percent_to_id: 1
+  loss_percent_to_id: 1

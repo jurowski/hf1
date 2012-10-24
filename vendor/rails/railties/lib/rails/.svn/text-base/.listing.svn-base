@@ -1,0 +1,11 @@
+drwxr-xr-x    4 jurowsk1 jurowsk1     4096 Sep 25 16:12 .
+drwxr-xr-x    6 jurowsk1 jurowsk1     4096 Sep 25 16:12 ..
+-rw-r--r--    1 jurowsk1 jurowsk1     1949 Sep 25 16:12 backtrace_cleaner.rb
+-rw-r--r--    1 jurowsk1 jurowsk1      478 Sep 25 16:12 gem_builder.rb
+-rw-r--r--    1 jurowsk1 jurowsk1     8712 Sep 25 16:12 gem_dependency.rb
+drwxr-xr-x    2 jurowsk1 jurowsk1     4096 Sep 25 16:12 plugin
+-rw-r--r--    1 jurowsk1 jurowsk1     4499 Sep 25 16:12 plugin.rb
+drwxr-xr-x    2 jurowsk1 jurowsk1     4096 Sep 25 16:12 rack
+-rw-r--r--    1 jurowsk1 jurowsk1      214 Sep 25 16:12 rack.rb
+-rw-r--r--    1 jurowsk1 jurowsk1     5193 Sep 25 16:12 vendor_gem_source_index.rb
+-rw-r--r--    1 jurowsk1 jurowsk1      136 Sep 25 16:12 version.rb

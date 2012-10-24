@@ -1,0 +1,6 @@
+drwxr-xr-x    3 jurowsk1 jurowsk1     4096 Sep 25 16:11 .
+drwxr-xr-x   13 jurowsk1 jurowsk1     4096 Dec  2 16:15 ..
+-rw-r--r--    1 jurowsk1 jurowsk1       82 Sep 25 16:02 .htaccess
+-rw-r--r--    1 jurowsk1 jurowsk1    91136 Sep 25 16:11 development.sqlite3
+drwxr-xr-x    2 jurowsk1 jurowsk1     4096 Dec  3 15:01 migrate
+-rw-r--r--    1 jurowsk1 jurowsk1     4244 Dec  3 15:01 schema.rb

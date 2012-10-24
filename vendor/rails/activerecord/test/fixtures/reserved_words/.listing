@@ -1,0 +1,7 @@
+drwxr-xr-x    2 jurowsk1 jurowsk1     4096 Sep 25 16:12 .
+drwxr-xr-x    6 jurowsk1 jurowsk1     4096 Sep 25 16:12 ..
+-rw-r--r--    1 jurowsk1 jurowsk1       39 Sep 25 16:12 distinct.yml
+-rw-r--r--    1 jurowsk1 jurowsk1      158 Sep 25 16:12 distincts_selects.yml
+-rw-r--r--    1 jurowsk1 jurowsk1      128 Sep 25 16:12 group.yml
+-rw-r--r--    1 jurowsk1 jurowsk1       53 Sep 25 16:12 select.yml
+-rw-r--r--    1 jurowsk1 jurowsk1       63 Sep 25 16:12 values.yml

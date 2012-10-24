@@ -1,0 +1,8 @@
+drwxr-xr-x    2 jurowsk1 jurowsk1     4096 Dec 16 10:59 .
+drwxr-xr-x   12 jurowsk1 jurowsk1     4096 Dec  3 13:51 ..
+-rw-r--r--    1 jurowsk1 jurowsk1     4542 Nov 30 07:41 _priordaywinners.erb
+-rw-r--r--    1 jurowsk1 jurowsk1     8840 Dec 16 16:57 autoupdate.html.erb
+-rw-r--r--    1 jurowsk1 jurowsk1      673 Oct 12 22:07 edit.html.erb
+-rw-r--r--    1 jurowsk1 jurowsk1     1269 Oct 12 22:08 index.html.erb
+-rw-r--r--    1 jurowsk1 jurowsk1      646 Sep 25 16:10 new.html.erb
+-rw-r--r--    1 jurowsk1 jurowsk1      488 Sep 25 16:10 show.html.erb

@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 37
+/svn/habitforge/!svn/ver/248/trunk/db
+END
+schema.rb
+K 25
+svn:wc:ra_dav:version-url
+V 45
+/svn/habitforge/!svn/ver/2/trunk/db/schema.rb
+END
+development.sqlite3
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/habitforge/!svn/ver/2/trunk/db/development.sqlite3
+END
+.listing
+K 25
+svn:wc:ra_dav:version-url
+V 44
+/svn/habitforge/!svn/ver/2/trunk/db/.listing
+END
+.htaccess
+K 25
+svn:wc:ra_dav:version-url
+V 45
+/svn/habitforge/!svn/ver/2/trunk/db/.htaccess
+END

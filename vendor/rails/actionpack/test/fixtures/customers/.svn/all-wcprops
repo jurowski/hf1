@@ -1,0 +1,17 @@
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/habitforge/!svn/ver/2/trunk/vendor/rails/actionpack/test/fixtures/customers
+END
+.listing
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/habitforge/!svn/ver/2/trunk/vendor/rails/actionpack/test/fixtures/customers/.listing
+END
+_customer.html.erb
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/habitforge/!svn/ver/2/trunk/vendor/rails/actionpack/test/fixtures/customers/_customer.html.erb
+END

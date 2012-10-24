@@ -1,0 +1,7 @@
+drwxr-xr-x    2 jurowsk1 jurowsk1     4096 Sep 25 16:12 .
+drwxr-xr-x    5 jurowsk1 jurowsk1     4096 Sep 25 16:12 ..
+-rw-r--r--    1 jurowsk1 jurowsk1      404 Sep 25 16:12 backtrace_silencers.rb
+-rw-r--r--    1 jurowsk1 jurowsk1      377 Sep 25 16:12 inflections.rb
+-rw-r--r--    1 jurowsk1 jurowsk1      205 Sep 25 16:12 mime_types.rb
+-rw-r--r--    1 jurowsk1 jurowsk1      778 Sep 25 16:12 new_rails_defaults.rb
+-rw-r--r--    1 jurowsk1 jurowsk1      697 Sep 25 16:12 session_store.rb

@@ -1,0 +1,13 @@
+drwxr-xr-x    2 jurowsk1 jurowsk1     4096 Dec  2 15:56 .
+drwxr-xr-x   12 jurowsk1 jurowsk1     4096 Dec  3 13:51 ..
+-rw-r--r--    1 jurowsk1 jurowsk1     4772 Dec  1 17:57 _form.erb
+-rw-r--r--    1 jurowsk1 jurowsk1      206 Sep 25 16:10 edit.html.erb
+-rw-r--r--    1 jurowsk1 jurowsk1        0 Sep 25 16:10 extend_time.html.erb
+-rw-r--r--    1 jurowsk1 jurowsk1        0 Nov 25 19:43 go.html.erb
+-rw-r--r--    1 jurowsk1 jurowsk1      147 Nov 25 20:24 hold.html.erb
+-rw-r--r--    1 jurowsk1 jurowsk1    11856 Dec  2 21:54 index.html.erb
+-rw-r--r--    1 jurowsk1 jurowsk1    10689 Oct 16 15:25 index2.html.erb
+-rw-r--r--    1 jurowsk1 jurowsk1    10501 Jan  1  1970 indexbad.html.erb
+-rw-r--r--    1 jurowsk1 jurowsk1     2020 Sep 26 03:42 invite_a_friend_to_track.html.erb
+-rw-r--r--    1 jurowsk1 jurowsk1      226 Jan  1  1970 new.html.erb
+-rw-r--r--    1 jurowsk1 jurowsk1      483 Sep 25 16:10 show.html.erb

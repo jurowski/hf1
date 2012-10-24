@@ -1,0 +1,38 @@
+
+
+<% if @from_user != nil %>
+    <p>
+      <br>
+      <a href= "/tomessages/new?to_id=<%= @from_user.id %>&replying_to_message_id=<%= @tomessage.id %>" class="button">Send a Reply to <%= @from_user.first_name %></a>
+      <br>
+      <br>
+      <b>From:</b> <%= @from_user.first_name %>
+      <br>
+      <b>Subject:</b>
+      <%=h @tomessage.subject %>
+    </p>
+
+    <p>
+      <%= @tomessage.body.gsub("\n", "<br>") %>
+    </p>
+
+
+    <p><%= link_to '<-- Back to all messages', "/tomessages" %></p>
+
+<% else %>
+    <p>
+      <br>
+      <b>From:</b> (This person removed their account.)
+      <br>
+      <b>Subject:</b>
+      <%=h @tomessage.subject %>
+    </p>
+
+    <p>
+      <%= @tomessage.body.gsub("\n", "<br>") %>
+    </p>
+
+
+    <p><%= link_to '<-- Back to all messages', "/tomessages" %></p>
+<% end %>
+

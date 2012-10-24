@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+       "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+  <title>adventurino</title>
+  <%= stylesheet_link_tag 'scaffold', 'depot'%>
+  <%= javascript_include_tag  :defaults %>
+</head>
+<body id="adventurino">
+  <div id="banner">
+Adventurino
+  </div>
+  <div id="columns">
+    <div id="side" class="side">
+      <a href="/">Home</a><br />
+    </div>
+    <div id="main">
+      <div id="other" class="support_content">
+      <%= link_to 'Users', '/users' %>
+      <%= link_to 'Goals', '/goals' %>
+      <%=  link_to 'Checkpoints', '/checkpoints' %>
+      <br />
+      <%
+      @cn = controller.controller_name 
+      @ca = controller.action_name 
+      %>
+      <br />
+      <%= "Current Page: " + @cn + "/" + @ca %>
+      <br />
+      
+      <%= link_to 'New user (Admin only)', new_account_path %>
+      
+      </div>
+      <%= yield  %>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,18 @@
+
+<p>
+  <b>Goal:</b>
+  <%=h @checkpoint.goal.title + "(" + @checkpoint.goal.user.last_name + ", " + @checkpoint.goal.user.first_name + ")"   %>
+</p>
+
+<p>
+  <b>Checkin date:</b>
+  <%=h @checkpoint.checkin_date.strftime("%a, %b %d, %Y") %>
+</p>
+
+<p>
+  <b>Status:</b>
+  <%=h @checkpoint.status %>
+</p>
+
+
+<%= link_to 'Back', checkpoints_path %>

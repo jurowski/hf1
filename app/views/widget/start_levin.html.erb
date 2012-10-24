@@ -1,0 +1,170 @@
+<%
+  email_submitted = false
+  email_validated = false
+  goal_submitted = false
+  first_name_submitted = false
+
+  if params[:widget_goal] and params[:widget_goal] != ""
+    goal_submitted = true
+  end
+    
+  if params[:widget_email] and params[:widget_email] != ""
+    email_submitted = true
+  end
+
+  if params[:widget_first_name] and params[:widget_first_name] != ""
+    first_name_submitted = true
+  end
+
+  if email_submitted
+  
+    ### validate email
+    user = User.find(:first, :conditions => "email = '#{params[:widget_email]}'"
+)
+    if user == nil
+      email_validated = true
+    end
+  end
+
+%>
+
+
+<% if email_validated and first_name_submitted %>
+  <%
+  ##user = User.new
+  ### doing it this way just to grab the time zone...
+  user = User.new(params[:user])
+
+  if session[:referer] != nil
+    user.referer = session[:referer]
+  end
+
+  user.first_name = params[:widget_first_name]
+  user.last_name = ""
+  user.email = params[:widget_email]
+  user.email_confirmation = params[:widget_email]
+
+  user.time_zone = params[:time_zone]
+
+  random_pw_number = rand(1000) + 1 #between 1 and 1000
+
+  user.password = "xty" + random_pw_number.to_s
+  user.password_confirmation = user.password
+  user.password_temp = user.password
+
+  user.goal_temp = params[:widget_goal]
+  user.sponsor = "habitforge"
+
+  ### having periods in the first name kills the attempts to email that person, so remove periods
+  user.first_name = user.first_name.gsub(".", "")
+
+
+  if params[:affiliate_name] and params[:affiliate_name] != "" 
+    affiliate = Affiliate.find(:first, :conditions => "affiliate_name = '#{params[:affiliate_name]}'")
+    if affiliate
+      user.affiliate = affiliate
+    end
+  end
+
+
+  ### Setting this to something other than 0 so that this person
+  ### is included in the next morning's cron job to send emails
+  ### this will get reset to the right number once each day via cron
+  ### but set it now in case user is being created after that job runs
+  user.update_number_active_goals = 1
+  %>
+
+  <% if user.save %>
+
+    <%
+    if params[:weekdays_only] and params[:weekdays_only] == "true"
+	weekdays_only = "true"
+    else
+	weekdays_only = "false"
+    end  
+    @user = user
+    Notifier.deliver_widget_user_creation(@user, weekdays_only) # sends the email
+    %>
+
+    <i>You're almost done! Now just check your email inbox and click the "Activate Your Goal!" link to enable your check-ins.</i>
+    <br>
+    <br>
+    <br><i>Questions? Email support@habitforge.com</i>
+
+  <% else %>
+    <i>Sorry, but there was a problem saving your account. Please contact support@habitforge.com or visit http://habitfor
+ge.com to sign up via the main site.</i>
+
+  <% end %>
+
+<% end %>
+
+<% if email_submitted and !email_validated %>
+  There is already a HabitForge account with that address. Please visit habitforge.com in a new browser window to log in.
+
+  <br>
+  <a href="http://habitforge.com/widget/start_levin?widget_goal=<%= params[:widget_goal] %>">Try a different email address.</
+a><br>
+  <br><i>Questions? Email support@habitforge.com</i>
+<% end %>
+
+<% if goal_submitted and (!first_name_submitted or !email_submitted) %>
+
+Enter your name and email, click "Go!", and 
+
+    <%
+    if params[:weekdays_only] and params[:weekdays_only] == "true"
+    %>
+	five days a week 
+    <%
+    else
+    %>
+	for 21 days 
+    <%
+    end
+    %>
+HabitForge will ask you:
+<br>
+<div style="margin-top:5px;padding:5px;background-color:#F7F8E0;">
+<span style="font-weight:bold;">"Were you successful yesterday with <%= params[:widget_goal] %>?"</span> 
+</div>
+You can track your progress online, too. Click "Go!" to get started now.
+
+  <br>
+      <% user = User.new %>
+      <% form_for user, :url => "http://habitforge.com/widget/start_levin" do |f| %>
+       
+          <input type=hidden name="time_zone" value="Central Time (US & Canada)">
+	  <% if params[:affiliate_name] %>
+	  	<input type=hidden name="affiliate_name" value="<%= params[:affiliate_name] %>">       
+	  <% end %>
+	  <% if params[:weekdays_only]  %>
+		<input type=hidden name="weekdays_only" value="<%= params[:weekdays_only] %>"> 
+	  <% end %>
+        <div style="width:240px;margin:10px;padding:5px;background:#ffffff;">
+		<table>
+		<tr>
+		<td nowrap>
+           First name: <input type="textbox" size="15" name="widget_first_name" >
+        	</td>
+		<td>
+		</td>
+		</tr>
+		<tr>
+		<td nowrap>
+        Email: <input type="textbox" size=20 name="widget_email" placeholder="ex: me@something.com
+" >
+		</td>
+		<td>
+        <input type="hidden" name="widget_goal" value="<%= params[:widget_goal] %>"> 
+        <%= f.submit "Go!", :type => :image, :src => "/images/widget_go_47x32.png" %> 
+        	</td>
+		</tr>
+		</table>
+
+        </div>
+
+      <% end %>
+
+<% end %>
+

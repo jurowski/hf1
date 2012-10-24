@@ -1,0 +1,9 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  checkin_datetime: 2009-09-03 16:25:47
+  status: MyString
+
+two:
+  checkin_datetime: 2009-09-03 16:25:47
+  status: MyString

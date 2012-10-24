@@ -1,0 +1,125 @@
+K 25
+svn:wc:ra_dav:version-url
+V 38
+/svn/habitforge/!svn/ver/263/trunk/app
+END
+remove_duplicate_checkpoints.rb
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/habitforge/!svn/ver/2/trunk/app/remove_duplicate_checkpoints.rb
+END
+finished_update_user-number_active_goals_at
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/habitforge/!svn/ver/2/trunk/app/finished_update_user-number_active_goals_at
+END
+notify_bets_due_for_payment.rb
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/habitforge/!svn/ver/65/trunk/app/notify_bets_due_for_payment.rb
+END
+launched_update_stats_at
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/habitforge/!svn/ver/2/trunk/app/launched_update_stats_at
+END
+.listing
+K 25
+svn:wc:ra_dav:version-url
+V 45
+/svn/habitforge/!svn/ver/2/trunk/app/.listing
+END
+update_user-number_active_goals.rb
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/habitforge/!svn/ver/250/trunk/app/update_user-number_active_goals.rb
+END
+split_up_teams.rb
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/habitforge/!svn/ver/115/trunk/app/split_up_teams.rb
+END
+send_expire_notices.rb
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/habitforge/!svn/ver/156/trunk/app/send_expire_notices.rb
+END
+finished_update_stats_at
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/habitforge/!svn/ver/2/trunk/app/finished_update_stats_at
+END
+update_promotion1s.rb
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/habitforge/!svn/ver/2/trunk/app/update_promotion1s.rb
+END
+remove_slackers_from_teams.rb
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/habitforge/!svn/ver/111/trunk/app/remove_slackers_from_teams.rb
+END
+update_stats.rb
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svn/habitforge/!svn/ver/251/trunk/app/update_stats.rb
+END
+send_reminders.rb
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/habitforge/!svn/ver/243/trunk/app/send_reminders.rb
+END
+update_goals-gmtoffest.rb
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/habitforge/!svn/ver/2/trunk/app/update_goals-gmtoffest.rb
+END
+find_errors_in_log.rb
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/habitforge/!svn/ver/2/trunk/app/find_errors_in_log.rb
+END
+.htaccess
+K 25
+svn:wc:ra_dav:version-url
+V 46
+/svn/habitforge/!svn/ver/2/trunk/app/.htaccess
+END
+delete_yesterdays_chekpoints_for_resending.rb
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/habitforge/!svn/ver/2/trunk/app/delete_yesterdays_chekpoints_for_resending.rb
+END
+notify_extraacc_due_for_an_email.rb
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/habitforge/!svn/ver/86/trunk/app/notify_extraacc_due_for_an_email.rb
+END
+send_reminders_frequent.rb
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/habitforge/!svn/ver/243/trunk/app/send_reminders_frequent.rb
+END
+launched_update_user-number_active_goals_at
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/habitforge/!svn/ver/2/trunk/app/launched_update_user-number_active_goals_at
+END

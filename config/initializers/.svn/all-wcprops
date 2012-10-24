@@ -1,0 +1,53 @@
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/svn/habitforge/!svn/ver/2/trunk/config/initializers
+END
+inflections.rb
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/habitforge/!svn/ver/2/trunk/config/initializers/inflections.rb
+END
+session_store.rb
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/habitforge/!svn/ver/2/trunk/config/initializers/session_store.rb
+END
+.listing
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/habitforge/!svn/ver/2/trunk/config/initializers/.listing
+END
+backtrace_silencers.rb
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/habitforge/!svn/ver/2/trunk/config/initializers/backtrace_silencers.rb
+END
+actionmailer.rb
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/habitforge/!svn/ver/2/trunk/config/initializers/actionmailer.rb
+END
+logger_modifications.rb
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/habitforge/!svn/ver/2/trunk/config/initializers/logger_modifications.rb
+END
+new_rails_defaults.rb
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/habitforge/!svn/ver/2/trunk/config/initializers/new_rails_defaults.rb
+END
+mime_types.rb
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/habitforge/!svn/ver/2/trunk/config/initializers/mime_types.rb
+END

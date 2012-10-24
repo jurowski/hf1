@@ -1,0 +1,26 @@
+<h1>Listing betpayees</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Url</th>
+    <th>Totaldonated</th>
+  </tr>
+
+<% @betpayees.each do |betpayee| %>
+  <tr>
+    <td><%=h betpayee.name %></td>
+    <td><%=h betpayee.url %></td>
+    <td><%=h betpayee.totaldonated %></td>
+    <td><%=h betpayee.product_id %></td>
+    <td><%=h betpayee.image_path %></td>
+    <td><%= link_to 'Show', betpayee %></td>
+    <td><%= link_to 'Edit', edit_betpayee_path(betpayee) %></td>
+    <td><%= link_to 'Destroy', betpayee, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New betpayee', new_betpayee_path %>

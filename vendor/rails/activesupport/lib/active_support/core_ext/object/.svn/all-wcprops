@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/habitforge/!svn/ver/2/trunk/vendor/rails/activesupport/lib/active_support/core_ext/object
+END
+.listing
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/habitforge/!svn/ver/2/trunk/vendor/rails/activesupport/lib/active_support/core_ext/object/.listing
+END
+extending.rb
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/svn/habitforge/!svn/ver/2/trunk/vendor/rails/activesupport/lib/active_support/core_ext/object/extending.rb
+END
+conversions.rb
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/svn/habitforge/!svn/ver/2/trunk/vendor/rails/activesupport/lib/active_support/core_ext/object/conversions.rb
+END
+misc.rb
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/habitforge/!svn/ver/2/trunk/vendor/rails/activesupport/lib/active_support/core_ext/object/misc.rb
+END
+instance_variables.rb
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/svn/habitforge/!svn/ver/2/trunk/vendor/rails/activesupport/lib/active_support/core_ext/object/instance_variables.rb
+END
+metaclass.rb
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/svn/habitforge/!svn/ver/2/trunk/vendor/rails/activesupport/lib/active_support/core_ext/object/metaclass.rb
+END

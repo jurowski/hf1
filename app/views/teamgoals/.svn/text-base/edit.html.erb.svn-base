@@ -1,0 +1,36 @@
+<h1>Editing teamgoal</h1>
+
+<% form_for(@teamgoal) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :team_id %><br />
+    <%= f.text_field :team_id %>
+  </p>
+  <p>
+    <%= f.label :goal_id %><br />
+    <%= f.text_field :goal_id %>
+  </p>
+  <p>
+    <%= f.label :rating %><br />
+    <%= f.text_field :rating %>
+  </p>
+  <p>
+    <%= f.label :qty_kickoff_votes %><br />
+    <%= f.text_field :qty_kickoff_votes %>
+  </p>
+  <p>
+    <%= f.label :active %><br />
+    <%= f.text_field :active %>
+  </p>
+  <p>
+    <%= f.label :suspend %><br />
+    <%= f.text_field :suspend %>
+  </p>
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @teamgoal %> |
+<%= link_to 'Back', teamgoals_path %>

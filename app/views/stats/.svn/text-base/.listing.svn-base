@@ -1,0 +1,6 @@
+drwxr-xr-x    2 jurowsk1 jurowsk1     4096 Dec  2 16:09 .
+drwxr-xr-x   12 jurowsk1 jurowsk1     4096 Dec  3 13:51 ..
+-rw-r--r--    1 jurowsk1 jurowsk1      931 Dec  2 16:09 edit.html.erb
+-rw-r--r--    1 jurowsk1 jurowsk1      884 Dec  2 16:09 index.html.erb
+-rw-r--r--    1 jurowsk1 jurowsk1      896 Dec  2 16:09 new.html.erb
+-rw-r--r--    1 jurowsk1 jurowsk1      591 Dec  2 16:09 show.html.erb

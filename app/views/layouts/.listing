@@ -1,0 +1,11 @@
+drwxr-xr-x    2 jurowsk1 jurowsk1     4096 Dec  3 13:51 .
+drwxr-xr-x   12 jurowsk1 jurowsk1     4096 Dec  3 13:51 ..
+-rw-r--r--    1 jurowsk1 jurowsk1    12785 Dec  3 17:16 application.html.erb
+-rw-r--r--    1 jurowsk1 jurowsk1     7502 Sep 25 16:10 applicationOLD.html.erb
+-rw-r--r--    1 jurowsk1 jurowsk1      473 Sep 25 16:10 checkpoints.html.erb
+-rw-r--r--    1 jurowsk1 jurowsk1      468 Sep 25 16:10 cheers.html.erb
+-rw-r--r--    1 jurowsk1 jurowsk1      479 Dec  3 13:51 failedcheckpoints.html.erb
+-rw-r--r--    1 jurowsk1 jurowsk1      467 Sep 25 16:10 goals.html.erb
+-rw-r--r--    1 jurowsk1 jurowsk1      467 Dec  2 16:09 stats.html.erb
+-rw-r--r--    1 jurowsk1 jurowsk1     1023 Sep 25 16:10 top.html.erb
+-rw-r--r--    1 jurowsk1 jurowsk1      466 Sep 25 16:10 users.html.erb

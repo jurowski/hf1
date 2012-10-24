@@ -1,0 +1,17 @@
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/habitforge/!svn/ver/2/trunk/vendor/rails/activerecord/test/migrations/decimal
+END
+.listing
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/habitforge/!svn/ver/2/trunk/vendor/rails/activerecord/test/migrations/decimal/.listing
+END
+1_give_me_big_numbers.rb
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/svn/habitforge/!svn/ver/2/trunk/vendor/rails/activerecord/test/migrations/decimal/1_give_me_big_numbers.rb
+END

@@ -1,0 +1,92 @@
+<h1>Editing coachgoal</h1>
+
+<% form_for(@coachgoal) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :coach_id %><br />
+    <%= f.text_field :coach_id %>
+  </p>
+  <p>
+    <%= f.label :goal_id %><br />
+    <%= f.text_field :goal_id %>
+  </p>
+  <p>
+    <%= f.label :goal_name %><br />
+    <%= f.text_field :goal_name %>
+  </p>
+  <p>
+    <%= f.label :user_id %><br />
+    <%= f.text_field :user_id %>
+  </p>
+  <p>
+    <%= f.label :user_email %><br />
+    <%= f.text_field :user_email %>
+  </p>
+  <p>
+    <%= f.label :user_first_name %><br />
+    <%= f.text_field :user_first_name %>
+  </p>
+  <p>
+    <%= f.label :coach_was_paid_out_on_date %><br />
+    <%= f.date_select :coach_was_paid_out_on_date %>
+  </p>
+  <p>
+    <%= f.label :coach_was_paid_out_amount %><br />
+    <%= f.text_field :coach_was_paid_out_amount %>
+  </p>
+  <p>
+    <%= f.label :amount_client_paid_total %><br />
+    <%= f.text_field :amount_client_paid_total %>
+  </p>
+  <p>
+    <%= f.label :amount_client_paid_split_to_site %><br />
+    <%= f.text_field :amount_client_paid_split_to_site %>
+  </p>
+  <p>
+    <%= f.label :amount_client_paid_split_to_coach %><br />
+    <%= f.text_field :amount_client_paid_split_to_coach %>
+  </p>
+  <p>
+    <%= f.label :week_1_email_due_date %><br />
+    <%= f.date_select :week_1_email_due_date %>
+  </p>
+  <p>
+    <%= f.label :week_1_email_sent_date %><br />
+    <%= f.date_select :week_1_email_sent_date %>
+  </p>
+  <p>
+    <%= f.label :week_2_email_due_date %><br />
+    <%= f.date_select :week_2_email_due_date %>
+  </p>
+  <p>
+    <%= f.label :week_2_email_sent_date %><br />
+    <%= f.date_select :week_2_email_sent_date %>
+  </p>
+  <p>
+    <%= f.label :week_3_email_due_date %><br />
+    <%= f.date_select :week_3_email_due_date %>
+  </p>
+  <p>
+    <%= f.label :week_3_email_sent_date %><br />
+    <%= f.date_select :week_3_email_sent_date %>
+  </p>
+  <p>
+    <%= f.label :week_4_email_due_date %><br />
+    <%= f.date_select :week_4_email_due_date %>
+  </p>
+  <p>
+    <%= f.label :week_4_email_sent_date %><br />
+    <%= f.date_select :week_4_email_sent_date %>
+  </p>
+  <p>
+    <%= f.label :is_active %><br />
+    <%= f.text_field :is_active %>
+  </p>
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @coachgoal %> |
+<%= link_to 'Back', coachgoals_path %>

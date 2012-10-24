@@ -1,0 +1,17 @@
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/habitforge/!svn/ver/2/trunk/vendor/rails/activerecord/test/migrations/broken
+END
+100_migration_that_raises_exception.rb
+K 25
+svn:wc:ra_dav:version-url
+V 120
+/svn/habitforge/!svn/ver/2/trunk/vendor/rails/activerecord/test/migrations/broken/100_migration_that_raises_exception.rb
+END
+.listing
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/habitforge/!svn/ver/2/trunk/vendor/rails/activerecord/test/migrations/broken/.listing
+END

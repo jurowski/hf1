@@ -1,0 +1,15 @@
+drwxr-xr-x   15 jurowsk1 jurowsk1     4096 Sep 25 16:12 .
+drwxr-xr-x    4 jurowsk1 jurowsk1     4096 Sep 25 16:12 ..
+drwxr-xr-x    3 jurowsk1 jurowsk1     4096 Sep 25 16:12 controller
+drwxr-xr-x    3 jurowsk1 jurowsk1     4096 Sep 25 16:12 helper
+drwxr-xr-x    3 jurowsk1 jurowsk1     4096 Sep 25 16:12 integration_test
+drwxr-xr-x    3 jurowsk1 jurowsk1     4096 Sep 25 16:12 mailer
+drwxr-xr-x    3 jurowsk1 jurowsk1     4096 Sep 25 16:12 metal
+drwxr-xr-x    3 jurowsk1 jurowsk1     4096 Sep 25 16:12 migration
+drwxr-xr-x    3 jurowsk1 jurowsk1     4096 Sep 25 16:12 model
+drwxr-xr-x    3 jurowsk1 jurowsk1     4096 Sep 25 16:12 observer
+drwxr-xr-x    3 jurowsk1 jurowsk1     4096 Sep 25 16:12 performance_test
+drwxr-xr-x    3 jurowsk1 jurowsk1     4096 Sep 25 16:12 plugin
+drwxr-xr-x    3 jurowsk1 jurowsk1     4096 Sep 25 16:12 resource
+drwxr-xr-x    3 jurowsk1 jurowsk1     4096 Sep 25 16:12 scaffold
+drwxr-xr-x    3 jurowsk1 jurowsk1     4096 Sep 25 16:12 session_migration

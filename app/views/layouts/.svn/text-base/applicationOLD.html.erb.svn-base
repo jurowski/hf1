@@ -1,0 +1,208 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+ 
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+  <title><%= controller.controller_name %>: <%= controller.action_name %></title>
+  <%= stylesheet_link_tag 'earthlingtwo' %>
+  <%= javascript_include_tag :defaults %>
+</head>
+<body>
+<div id="wrapper">
+	<div id="header">
+		<div id="logo">
+			<h1><a href="#">EarthlingTwo</a></h1>
+			<p>by <a href="http://www.nodethirtythree.com">nodethirtythree</a> + <a href="http://www.freecsstemplates.org/">fct</a></p>
+		</div>
+	</div>
+	<!-- end #header -->
+	<div id="menu">
+		<ul>
+			<li class="current_page_item"><a href="#">Home</a></li>
+			<li><a href="#">Services</a></li>
+			<li><a href="#">Portfolio</a></li>
+			<li><a href="#">About</a></li>
+			<li><a href="#">Contact</a></li>
+		</ul>
+	</div>
+	<!-- end #menu -->
+	<div id="page">
+		<div id="content">
+			<div id="banner"><img src="/images/img07.jpg" alt="" /></div>
+			<div class="post">
+				<h2 class="title"><a href="#">Lorem ipsum dolor sit amet </a></h2>
+				<p class="meta">Aliquam sit amet tempus sed consequat</p>
+				<div class="entry">
+					<p>This is <strong>EarthlingTwo</strong>, a free template by <a href="http://www.nodethirtythree.com">nodethirtythree</a> and <a href="http://www.freecsstemplates.org">Free CSS Templates</a>.  It’s kind of a sequel to an older template I did for FCT a long time ago named <a href="http://www.freecsstemplates.org/preview/earthling">Earthling</a>.</p>
+					<p>This template is released under the <a href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution</a> license, so use it however you like, just keep the links back to our sites. The scenic photo above is a public domain work from <a href="http://www.pdphoto.org">PDPhoto.org</a>. Be sure to check out my other work at <a href="http://www.nodethirtythree.com/">my site</a> or follow me on <a href="http://twitter.com/nodethirtythree/">Twitter</a> for news and updates. Have fun.</p>
+					<p class="links"><a href="#" class="more">Read More</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#" class="comments">Comments (33)</a></p>
+				</div>
+			</div>
+			<div style="clear: both;">&nbsp;</div>
+		</div>
+		<!-- end #content -->
+		<div id="sidebar">
+			<ul>
+				<li>
+					<h2>Veroeros sit dolore</h2>
+					<p><strong>Donec turpis orci</strong> facilisis et ornare eget, sagittis eu massa. Quisque dui diam, euismod et lobortis sed etiam lorem ipsum dolor etiam nullam et faucibus. <a href="#">More&#8230;</a></p>
+				</li>
+				<li>
+					<h2>Categories</h2>
+					<ul>
+						<li><span>09.13.09</span><a href="#">Vestibulum risus vitae</a></li>
+						<li><span>09.13.09</span><a href="#">Condimentum et molestie</a></li>
+						<li><span>09.13.09</span><a href="#">Facilisis sed vestibulum</a></li>
+						<li><span>09.13.09</span><a href="#">Ipsum primis et sed luctus </a></li>
+						<li><span>09.13.09</span><a href="#">Ultrices posuere nulla </a></li>
+						<li><span>09.13.09</span><a href="#">Accumsan lorem sodales </a></li>
+						<li><span>09.13.09</span><a href="#">Scelerisque consectetur </a></li>
+						<li><span>09.13.09</span><a href="#">Maecenas quam aliquet</a></li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+		<!-- end #sidebar -->
+		<div style="clear: both;">&nbsp;</div>
+	</div>
+	<!-- end #page -->
+</div>
+<div id="footer-content">
+	<div class="column1">
+		<h2>Volutpat quisque sed et aliquam</h2>
+		<p><strong>Maecenas ut ante</strong> eu velit laoreet tempor accumsan vitae nibh. Aenean commodo, tortor eu porta convolutpat elementum. Proin fermentum molestie erat eget vehicula. Aenean eget tellus mi. Fusce scelerisque odio quis ante bibendum sollicitudin. Suspendisse potenti. Vivamus quam odio, facilisis at ultrices nec, sollicitudin ac risus. Donec ut odio ipsum, sed tincidunt. <a href="#">Learn more&#8230;</a></p>
+	</div>
+	<div class="column2">
+		<ul class="list">
+			<li><a href="#">Tempor accumsan vitae sed nibh dolore</a></li>
+			<li><a href="#">Aenean commodo, tortor eu porta veroeros</a></li>
+			<li><a href="#">Fermentum molestie erat eget consequat</a></li>
+			<li><a href="#">Donec vestibulum interdum diam etiam</a></li>
+			<li><a href="#">Vehicula aenean eget sed tellus blandit</a></li>
+		</ul>
+	</div>
+</div>
+<div id="footer">
+	<p> (c) 2009 Sitename.com. Design by <a href="http://www.nodethirtythree.com">nodethirtythree</a> and <a href="http://www.freecsstemplates.org">Free CSS Templates</a>.</p>
+</div>
+
+<%
+@cn = controller.controller_name 
+@ca = controller.action_name 
+if @cn == "user_sessions" and @ca == "new"
+  %>
+  <table cellpadding=0 cellspacing=0>
+  <tr>
+  <td>
+    <%= link_to "<b>Create Free Account</b>", new_user_path %> |
+    <b>Sign in: &nbsp;&nbsp;&nbsp;</b> 
+  </td>
+  <td>
+
+
+    
+    <% form_for @user_session, :url => user_session_path do |f| %>
+      <%= f.error_messages %>
+      <%= f.label :email %>: 
+      <%= f.text_field :email, :size => 20 %>
+    </td>
+    <td>&nbsp;
+      <%= f.label :password %>: 
+      <%= f.password_field :password, :size => 20 %>
+      <% #f.check_box :remember_me %><%= f.label :remember_me %><br />
+      <%= f.submit "Login" %>
+    <% end %>
+  </td>
+  <td>&nbsp;&nbsp;
+  <%= link_to "Forgot Password", "/password_resets/new" %>
+  </td>
+  </tr>
+  </table>  
+  <hr>
+  <p style="color: green"><%= flash[:notice] %></p>
+
+  <center><img src="/images/habitforge_banner1.png" align="center"/>  </center>
+  <%
+  qstarted = 0
+  qestablished = 0
+  @all_goals = Goal.find(:all, :conditions => "status = 'start'") 
+  @all_goals.each do |all_goals|
+    if all_goals.status == "start"
+      qstarted = qstarted + 1
+    end
+    if all_goals.established_on > all_goals.start
+      qestablished = qestablished + 1
+    end
+  end
+  %>
+  <center><%= qstarted %> habits currently being forged
+  •
+  <%= qestablished %> habits already created
+  <%= link_to "<h1>Create Your Free Account Now!</h1>", new_user_path %>
+
+  <br>
+   <%= link_to_function ("<h3>How it works...</h3>") {
+   |page| page.visual_effect :toggle_appear, "show_how" 
+  } 
+  %>
+  </center>
+  <br>
+  <div id="show_how" style="display:none;">
+  <center>
+  <br>
+  <img src="/images/habitforge_banner1-steps.png" align="center"/>  
+  <br>
+  <br>
+  </center>
+  </div>
+  <%
+else
+  %>
+  <h1>HabitForge</h1>
+  <%
+end 
+
+if @cn != "password_resets"
+%> 
+  <% if !current_user %>
+  <% else %>
+    <%
+    #link_to "My Account", users_path 
+    %>  
+    <%= link_to 'Goals', '/goals' %> |
+    <%= link_to "My Account", account_path %> |
+
+    <% #link_to "Logout #{current_user.email}", user_session_path, :method => :delete, :confirm => "Are you sure you want to logout?" %>
+    <%= link_to "Logout #{current_user.email}", user_session_path, :method => :delete %>
+
+    <%
+    if current_user.first_name == "Admin" && current_user.email == "jurowski2@gmail.com" 
+      current_user_is_admin = true
+    else
+      current_user_is_admin = false
+    end
+    %>
+    <% if current_user_is_admin %>
+      <%= link_to 'Users', '/users' %> |
+      <%= link_to 'New user (Admin only)', new_account_path %> |    
+      <%= pluralize User.logged_in.count, "user" %> currently logged in<br /> <!-- This based on last_request_at, if they were active < 10 minutes they are logged in -->
+    <% end %>
+
+    <hr>
+
+    <% #"Current Page: " + @cn + "/" + @ca %>
+    <br />
+
+
+  <% end %>
+
+<%  
+end
+%>
+ <%= yield %>
+ 
+
+ 
+</body>
+</html>

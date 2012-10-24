@@ -1,0 +1,32 @@
+<h1>Listing expiredcheckpoints</h1>
+
+<table>
+  <tr>
+    <th>Checkin date</th>
+    <th>Checkin time</th>
+    <th>Status</th>
+    <th>Goal</th>
+    <th>Created at</th>
+    <th>Updated at</th>
+    <th>Comment</th>
+  </tr>
+
+<% @expiredcheckpoints.each do |expiredcheckpoint| %>
+  <tr>
+    <td><%=h expiredcheckpoint.checkin_date %></td>
+    <td><%=h expiredcheckpoint.checkin_time %></td>
+    <td><%=h expiredcheckpoint.status %></td>
+    <td><%=h expiredcheckpoint.goal_id %></td>
+    <td><%=h expiredcheckpoint.created_at %></td>
+    <td><%=h expiredcheckpoint.updated_at %></td>
+    <td><%=h expiredcheckpoint.comment %></td>
+    <td><%= link_to 'Show', expiredcheckpoint %></td>
+    <td><%= link_to 'Edit', edit_expiredcheckpoint_path(expiredcheckpoint) %></td>
+    <td><%= link_to 'Destroy', expiredcheckpoint, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New expiredcheckpoint', new_expiredcheckpoint_path %>

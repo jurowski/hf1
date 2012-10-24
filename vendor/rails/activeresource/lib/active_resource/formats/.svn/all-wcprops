@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/habitforge/!svn/ver/2/trunk/vendor/rails/activeresource/lib/active_resource/formats
+END
+json_format.rb
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/habitforge/!svn/ver/2/trunk/vendor/rails/activeresource/lib/active_resource/formats/json_format.rb
+END
+.listing
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/habitforge/!svn/ver/2/trunk/vendor/rails/activeresource/lib/active_resource/formats/.listing
+END
+xml_format.rb
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/habitforge/!svn/ver/2/trunk/vendor/rails/activeresource/lib/active_resource/formats/xml_format.rb
+END

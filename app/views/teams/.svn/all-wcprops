@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/svn/habitforge/!svn/ver/2/trunk/app/views/teams
+END
+edit.html.erb
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/habitforge/!svn/ver/2/trunk/app/views/teams/edit.html.erb
+END
+index.html.erb
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/habitforge/!svn/ver/2/trunk/app/views/teams/index.html.erb
+END
+new.html.erb
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/habitforge/!svn/ver/2/trunk/app/views/teams/new.html.erb
+END
+show.html.erb
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/habitforge/!svn/ver/2/trunk/app/views/teams/show.html.erb
+END

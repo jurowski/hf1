@@ -1,0 +1,103 @@
+<p>
+  <b>Coach:</b>
+  <%=h @coachgoal.coach_id %>
+</p>
+
+<p>
+  <b>Goal:</b>
+  <%=h @coachgoal.goal_id %>
+</p>
+
+<p>
+  <b>Goal name:</b>
+  <%=h @coachgoal.goal_name %>
+</p>
+
+<p>
+  <b>User:</b>
+  <%=h @coachgoal.user_id %>
+</p>
+
+<p>
+  <b>User email:</b>
+  <%=h @coachgoal.user_email %>
+</p>
+
+<p>
+  <b>User first name:</b>
+  <%=h @coachgoal.user_first_name %>
+</p>
+
+<p>
+  <b>Coach was paid out on date:</b>
+  <%=h @coachgoal.coach_was_paid_out_on_date %>
+</p>
+
+<p>
+  <b>Coach was paid out amount:</b>
+  <%=h @coachgoal.coach_was_paid_out_amount %>
+</p>
+
+<p>
+  <b>Amount client paid total:</b>
+  <%=h @coachgoal.amount_client_paid_total %>
+</p>
+
+<p>
+  <b>Amount client paid split to site:</b>
+  <%=h @coachgoal.amount_client_paid_split_to_site %>
+</p>
+
+<p>
+  <b>Amount client paid split to coach:</b>
+  <%=h @coachgoal.amount_client_paid_split_to_coach %>
+</p>
+
+<p>
+  <b>Week 1 email due date:</b>
+  <%=h @coachgoal.week_1_email_due_date %>
+</p>
+
+<p>
+  <b>Week 1 email sent date:</b>
+  <%=h @coachgoal.week_1_email_sent_date %>
+</p>
+
+<p>
+  <b>Week 2 email due date:</b>
+  <%=h @coachgoal.week_2_email_due_date %>
+</p>
+
+<p>
+  <b>Week 2 email sent date:</b>
+  <%=h @coachgoal.week_2_email_sent_date %>
+</p>
+
+<p>
+  <b>Week 3 email due date:</b>
+  <%=h @coachgoal.week_3_email_due_date %>
+</p>
+
+<p>
+  <b>Week 3 email sent date:</b>
+  <%=h @coachgoal.week_3_email_sent_date %>
+</p>
+
+<p>
+  <b>Week 4 email due date:</b>
+  <%=h @coachgoal.week_4_email_due_date %>
+</p>
+
+<p>
+  <b>Week 4 email sent date:</b>
+  <%=h @coachgoal.week_4_email_sent_date %>
+</p>
+
+<p>
+  <b>Is active:</b>
+  <%=h @coachgoal.is_active %>
+</p>
+
+
+<%= link_to 'Edit', edit_coachgoal_path(@coachgoal) %> |
+<%= link_to 'Back', coachgoals_path %>

@@ -1,0 +1,235 @@
+
+@charset 'utf-8';
+.featuredbg {
+    /*
+	background:#ad2d01 url(../images/skins/sleek/orange/background.jpg) repeat-x center top;
+    */
+	background:#cccccc url(../images/skins/sleek/orange/background_lighter.jpg) repeat-x center top;
+	}
+	
+.featuredtotal {
+    /*
+	background:#ad2d01;
+    */
+	background:#eeeeee;
+	}
+
+.featuredband {
+	background:url(../images/skins/sleek/orange/bottomfeature.png) center bottom no-repeat;
+	}
+
+.featuredbg h1, .featuredbg h2 {
+	color:#ffffff;
+	text-shadow:#000000 0px -1px 1px;;
+ }
+	
+.featuredbg h3, .featuredbg h4 {
+  	color: #f3c4bc;
+ 	text-shadow:#000000 0px -1px 1px;;
+ 	padding-top:0;
+}
+
+.latest h4 a:hover, .latest h5 a:hover, .sidebar h5 a:hover, 
+.sidebar h4 a:hover, h5 a:hover, h4 a:hover {
+	text-decoration:none;
+	color: #851300;
+}
+
+.image-desc p, .image-desc ul, .image-desc ol, .featuredbg p {
+color:#f3c4bc;
+text-shadow:#000 0px -1px 0px;
+}
+
+ul.thumbs img, ul.thumbs img a, ul.thumbs img a:visited, ul.thumbs img a:active {
+	border:#ffffff 3px solid;
+}
+
+.dark.button{
+	background-color: #2d0700;
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#851300', endColorstr='#2d0700'); /* for IE */
+	background: -webkit-gradient(linear, left top, left bottom, from(#851300), to(#2d0700)); /* for webkit browsers */
+	background: -moz-linear-gradient(top,  #851300,  #2d0700); /* for firefox 3.6+ */ 
+	border:#2d0700 1px solid;
+	text-shadow:#000000 0 -1px 0;
+	color:#ffffff;
+}
+
+.dark.button:hover {
+	background-color:#ffc6b6;
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffc6b6', endColorstr='#cd5a40'); /* for IE */
+	background: -webkit-gradient(linear, left top, left bottom, from(#ffc6b6), to(#cd5a40)); /* for webkit browsers */
+	background: -moz-linear-gradient(top,  #ffc6b6,  #cd5a40); /* for firefox 3.6+ */ 
+	color: #000000;
+	text-shadow: 0 1px 0px #ffffff;
+	border:#cd5a40 1px solid;
+}	
+.light.button {
+	background-color:#ffc6b6;
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffc6b6', endColorstr='#cd5a40'); /* for IE */
+	background: -webkit-gradient(linear, left top, left bottom, from(#ffc6b6), to(#cd5a40)); /* for webkit browsers */
+	background: -moz-linear-gradient(top,  #ffc6b6,  #cd5a40); /* for firefox 3.6+ */ 
+	color: #000000;
+	text-shadow: 0 1px 0px #ffffff;
+	border:#cd5a40 1px solid;
+}
+.light.button:hover {
+	color: #ffffff;
+	background: #2d0700;
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#222222', endColorstr='#000000'); /* for IE */
+	background: -webkit-gradient(linear, left top, left bottom, from(#222222), to(#000000)); /* for webkit browsers */
+	background: -moz-linear-gradient(top,  #222222,  #000000); /* for firefox 3.6+ */ 
+	border:#000000 1px solid;
+	text-shadow:#000000 0 -1px 0;
+}
+.testimonial p {
+	color:#ffffff;
+}
+
+a {
+	color:#851300;
+}
+
+.footer a {
+	color:#cd5a40;
+}
+
+
+/* PODS!!!! */
+/* div.primaryPod {
+	border-bottom: 1px solid #8f0505;
+	background: #EDE9D4;
+	width: 243px;
+	padding-bottom:10px;
+}
+*/
+/*div.primaryPod243 h1 {
+	font-size:13px;
+	/*text-transform:uppercase;*//*
+	letter-spacing: 0px;
+	color: #ffffff;
+	background-color: #8f0505;
+	width: 243px;
+	line-height: 24px;
+	text-indent: 10px;
+	margin: 0px 0px 10px 0px;
+	font-family:Arial, Helvetica, sans-serif;
+	padding:6px 0px 6px 0px;
+}
+*/
+/*div.primaryPod243 p{
+	padding: 0px 10px 4px 10px;
+}
+*/
+
+div.primaryPod243 {
+	background:#EDE9D4;
+	width:243px;
+}
+
+div.primaryPod243 h1 {
+	font-size:13px;
+	background-color:#8f0505;
+	letter-spacing:0px;
+	color:#fff;
+	width:243px;
+	line-height:24px;
+	text-indent:10px;
+	margin:0px;
+	background:url(../images/hf_red-pod-bg.png) top repeat-x;
+	font-family: Arial, Helvetica, sans-serif;
+	padding:5px 0px 10px;
+}
+div.primaryPod243 p {
+	padding:0px 10px 5px 10px;
+}
+div.podTop243 {
+	height:5px;
+	width:243px;
+	background:url(../images/hf_red.png) -213px -35px no-repeat;
+	padding:0px;
+	margin:0px;
+	font-size:1px;
+}
+div.podMid243 {
+	border:0;
+	border-left:#B59F73 1px solid;
+	border-right:#B59F73 1px solid;
+	padding:10px 0 7px 0;
+}
+div.podBottom243 {
+	height:5px;
+	width:243px;
+	background:url(../images/smph_red.png) -213px -45px no-repeat;
+	padding:0px;
+	margin:0px;
+	font-size:1px;
+}
+
+div.primaryPod203 {
+	border-bottom:	1px solid #8f0505;
+	background: #EDE9D4;
+	width: 203px;
+	padding-bottom:10px;
+}
+div.primaryPod203 h1 {
+	font-size:13px;
+	/*text-transform:uppercase;*/
+	letter-spacing: 0px;
+	color: #ffffff;
+	background-color:#8f0505;
+	width: 203px;
+	line-height: 24px;
+	text-indent: 10px;
+	margin: 0px 0px 10px 0px;
+	font-family:Arial, Helvetica, sans-serif;
+	padding:6px 0px 6px 0px;
+}
+div.primaryPod203 p{
+	padding: 0px 10px 5px 10px;
+}
+/* right in page related pods and sibling pods */
+div.padPod {
+	padding:0px;
+} /* was 10px */
+div.padPodGoo {
+	padding:20px;
+}
+/*
+#rightPodPlaceholder{float:right;width:189px;padding:0px;margin: 0px;display:none;}
+*/
+#rightPodPlaceholder{
+	float:right;
+	width:212px;
+	padding:0px;
+	margin: 0px;
+}
+div.rightPod {
+	float: right;
+	width: 212px;
+	padding: 0px;
+}
+div.rightPod hr{
+	padding:0px;margin:5px 0px 5px 0px;
+}
+div.rightPod div.innerRight{ 
+	border-color:#cec9ad; 
+	border-style:solid; 
+	border-width:1px; 
+	padding:10px; 
+	margin: 0px 0px 10px 10px;
+}
+div.rightPod div.innerRight p{ 
+	padding:0px 0px 4px 0px;
+}
+div.rightPod div.innerRight ul{
+	list-style:none;
+	margin:0px 0px 0px 0px;
+	padding:0px 0px 1px 0px; /*needs 1px bottom apparently for IE glitch?*/
+}
+div.rightPod div.innerRight ul li{
+	margin:0px;
+	padding-bottom:5px;
+	line-height:105%;
+}
+
+

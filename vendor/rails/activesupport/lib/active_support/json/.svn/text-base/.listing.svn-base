@@ -1,0 +1,6 @@
+drwxr-xr-x    3 jurowsk1 jurowsk1     4096 Sep 25 16:12 .
+drwxr-xr-x   11 jurowsk1 jurowsk1     4096 Sep 25 16:12 ..
+-rw-r--r--    1 jurowsk1 jurowsk1     2765 Sep 25 16:12 decoding.rb
+drwxr-xr-x    2 jurowsk1 jurowsk1     4096 Sep 25 16:12 encoders
+-rw-r--r--    1 jurowsk1 jurowsk1     1059 Sep 25 16:12 encoding.rb
+-rw-r--r--    1 jurowsk1 jurowsk1      196 Sep 25 16:12 variable.rb

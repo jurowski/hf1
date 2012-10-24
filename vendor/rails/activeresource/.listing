@@ -1,0 +1,7 @@
+drwxr-xr-x    4 jurowsk1 jurowsk1     4096 Sep 25 16:12 .
+drwxr-xr-x    8 jurowsk1 jurowsk1     4096 Sep 25 16:12 ..
+-rw-r--r--    1 jurowsk1 jurowsk1    10267 Sep 25 16:12 CHANGELOG
+-rw-r--r--    1 jurowsk1 jurowsk1     6262 Sep 25 16:12 README
+-rw-r--r--    1 jurowsk1 jurowsk1     3927 Sep 25 16:12 Rakefile
+drwxr-xr-x    3 jurowsk1 jurowsk1     4096 Sep 25 16:12 lib
+drwxr-xr-x    4 jurowsk1 jurowsk1     4096 Sep 25 16:12 test

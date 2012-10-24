@@ -1,0 +1,161 @@
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/svn/habitforge/!svn/ver/263/trunk/app/controllers
+END
+checkpoints_controller.rb
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/habitforge/!svn/ver/263/trunk/app/controllers/checkpoints_controller.rb
+END
+tomessages_controller.rb
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/habitforge/!svn/ver/189/trunk/app/controllers/tomessages_controller.rb
+END
+teamgoals_controller.rb
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/habitforge/!svn/ver/177/trunk/app/controllers/teamgoals_controller.rb
+END
+failedcheckpoints_controller.rb
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/habitforge/!svn/ver/177/trunk/app/controllers/failedcheckpoints_controller.rb
+END
+quotes_controller.rb
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/habitforge/!svn/ver/187/trunk/app/controllers/quotes_controller.rb
+END
+betpayees_controller.rb
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/habitforge/!svn/ver/177/trunk/app/controllers/betpayees_controller.rb
+END
+.listing
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/habitforge/!svn/ver/2/trunk/app/controllers/.listing
+END
+hooks_controller.rb
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/habitforge/!svn/ver/158/trunk/app/controllers/hooks_controller.rb
+END
+password_resets_controller.rb
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/habitforge/!svn/ver/2/trunk/app/controllers/password_resets_controller.rb
+END
+promotion1s_controller.rb
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/habitforge/!svn/ver/177/trunk/app/controllers/promotion1s_controller.rb
+END
+frommessages_controller.rb
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/habitforge/!svn/ver/177/trunk/app/controllers/frommessages_controller.rb
+END
+expiredcheckpoints_controller.rb
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/habitforge/!svn/ver/177/trunk/app/controllers/expiredcheckpoints_controller.rb
+END
+bets_controller.rb
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/habitforge/!svn/ver/177/trunk/app/controllers/bets_controller.rb
+END
+tags_controller.rb
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/habitforge/!svn/ver/240/trunk/app/controllers/tags_controller.rb
+END
+stats_controller.rb
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/habitforge/!svn/ver/177/trunk/app/controllers/stats_controller.rb
+END
+users_controller.rb
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/habitforge/!svn/ver/258/trunk/app/controllers/users_controller.rb
+END
+goaltemplates_controller.rb
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/habitforge/!svn/ver/240/trunk/app/controllers/goaltemplates_controller.rb
+END
+goaltags_controller.rb
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/habitforge/!svn/ver/240/trunk/app/controllers/goaltags_controller.rb
+END
+coachgoals_controller.rb
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/habitforge/!svn/ver/177/trunk/app/controllers/coachgoals_controller.rb
+END
+application_controller.rb
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/habitforge/!svn/ver/198/trunk/app/controllers/application_controller.rb
+END
+user_sessions_controller.rb
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/habitforge/!svn/ver/172/trunk/app/controllers/user_sessions_controller.rb
+END
+goals_controller.rb
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/habitforge/!svn/ver/263/trunk/app/controllers/goals_controller.rb
+END
+coaches_controller.rb
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/habitforge/!svn/ver/177/trunk/app/controllers/coaches_controller.rb
+END
+affiliates_controller.rb
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/habitforge/!svn/ver/187/trunk/app/controllers/affiliates_controller.rb
+END
+cheers_controller.rb
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/habitforge/!svn/ver/188/trunk/app/controllers/cheers_controller.rb
+END
+teams_controller.rb
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/habitforge/!svn/ver/177/trunk/app/controllers/teams_controller.rb
+END

@@ -1,0 +1,5 @@
+drwxr-xr-x    2 jurowsk1 jurowsk1     4096 Sep 25 16:12 .
+drwxr-xr-x   11 jurowsk1 jurowsk1     4096 Sep 25 16:12 ..
+-rw-r--r--    1 jurowsk1 jurowsk1    26979 Sep 25 16:12 chars.rb
+-rw-r--r--    1 jurowsk1 jurowsk1      188 Sep 25 16:12 exceptions.rb
+-rw-r--r--    1 jurowsk1 jurowsk1     2317 Sep 25 16:12 unicode_database.rb

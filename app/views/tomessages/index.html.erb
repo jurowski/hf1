@@ -1,0 +1,71 @@
+<h2>My Messages</h2><a href="/frommessages">View messages I've sent</a>
+<p />
+<p />
+
+<table border=0>
+
+
+<% if @tomessages == nil %>
+    No Messages.
+<% else %>
+
+
+    <% @tomessages.each do |tomessage| %>
+        <%
+        @from_user = User.find(:first, :conditions => "id = '#{tomessage.from_id}'")
+        from_user_first_name = ""
+        if @from_user != nil
+            from_user_first_name = @from_user.first_name
+            %>
+            <tr>
+            <td nowrap>
+              <%= link_to '<img src="/images/close_32.png" height="20px" alt="Delete" border="0" />', tomessage, :confirm => 'Delete this message?', :method => :delete %>
+
+              &nbsp &nbsp
+              <a href= "/tomessages/new?to_id=<%= @from_user.id %>&replying_to_message_id=<%= tomessage.id %>" class="button" >Reply to <%= from_user_first_name%></a>
+              &nbsp &nbsp
+              
+
+            </td>
+
+
+            <% if tomessage.unread == 1 %>
+                <td>
+                &nbsp &nbsp &nbsp &nbsp</td>
+                <td><strong><%= link_to tomessage.subject, tomessage %><strong></td>
+            <% else %>
+                <td>
+                &nbsp &nbsp &nbsp &nbsp</td>
+                <td><%= link_to tomessage.subject, tomessage %></td>
+            <% end %>
+          </tr>
+        <%
+        else
+            
+            from_user_first_name = '(This person removed their account)'
+        %>
+            <tr>
+            <td><%= link_to 'Delete', tomessage, :confirm => 'Delete this message?', :method => :delete %>
+            &nbsp &nbsp
+            </td>
+
+
+            <% if tomessage.unread == 1 %>
+                <td><strong><%=h from_user_first_name %></strong>
+                &nbsp &nbsp &nbsp &nbsp</td>
+                <td><strong><%= link_to tomessage.subject, tomessage %><strong></td>
+            <% else %>
+                <td><%=h from_user_first_name %>
+                &nbsp &nbsp &nbsp &nbsp</td>
+                <td><%= link_to tomessage.subject, tomessage %></td>
+            <% end %>
+          </tr>
+        <%
+        end
+        %>
+    <% end %>
+    </table>
+
+<% end %>
+
+<br />

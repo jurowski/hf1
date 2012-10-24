@@ -1,0 +1,23 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  name: MyString
+  category_name: MyString
+  qty_max: 1
+  qty_current: 1
+  avg_success_rate: 1
+  avg_days_in_a_row: 1
+  avg_met_goal_last_week: 1
+  qty_checked_in_yesterday: 1
+  qty_checked_in_last_2_days: 1
+
+two:
+  name: MyString
+  category_name: MyString
+  qty_max: 1
+  qty_current: 1
+  avg_success_rate: 1
+  avg_days_in_a_row: 1
+  avg_met_goal_last_week: 1
+  qty_checked_in_yesterday: 1
+  qty_checked_in_last_2_days: 1

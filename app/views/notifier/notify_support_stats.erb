@@ -1,0 +1,25 @@
+<%
+sitename = ""
+if `uname -n`.strip == 'adv.adventurino.com'
+  #### HABITFORGE SETTINGS ON VPS
+  sitename = "VPS"
+elsif `uname -n`.strip == 'gns499aa.joyent.us'
+  #### DEV SETTINGS ON HABITFORGE VPS
+  sitename = "DEV"
+else
+  #### SETTINGS FOR DEV LAPTOP
+  sitename = "LAPTOP"
+end
+%>
+
+-----
+<%= sitename %>
+-----
+On <%= @stat.recorddate %> @ <%= @stat.recordhour %>:
+
+<%= @stat.activeusercount %> Active of <%= @stat.usercount %> Total Users with <%= @stat.activegoalcount %> Active Goals
+
+<%= @stat.checkpointemailssent %> checkpoint emails sent this hour.
+
+<%= @stat.totalheckpointemailfailure %> total failed checkpoint emails.
+-----

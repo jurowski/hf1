@@ -1,0 +1,119 @@
+K 25
+svn:wc:ra_dav:version-url
+V 43
+/svn/habitforge/!svn/ver/52/trunk/test/unit
+END
+user_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/habitforge/!svn/ver/2/trunk/test/unit/user_test.rb
+END
+notifier_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/habitforge/!svn/ver/2/trunk/test/unit/notifier_test.rb
+END
+coachgoal_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/habitforge/!svn/ver/52/trunk/test/unit/coachgoal_test.rb
+END
+goal_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/habitforge/!svn/ver/2/trunk/test/unit/goal_test.rb
+END
+cheer_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/habitforge/!svn/ver/2/trunk/test/unit/cheer_test.rb
+END
+.listing
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/svn/habitforge/!svn/ver/2/trunk/test/unit/.listing
+END
+team_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/habitforge/!svn/ver/2/trunk/test/unit/team_test.rb
+END
+checkpoint_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/habitforge/!svn/ver/2/trunk/test/unit/checkpoint_test.rb
+END
+tomessage_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/habitforge/!svn/ver/2/trunk/test/unit/tomessage_test.rb
+END
+teamgoal_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/habitforge/!svn/ver/2/trunk/test/unit/teamgoal_test.rb
+END
+failedcheckpoint_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/habitforge/!svn/ver/2/trunk/test/unit/failedcheckpoint_test.rb
+END
+quote_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/habitforge/!svn/ver/2/trunk/test/unit/quote_test.rb
+END
+betpayee_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/habitforge/!svn/ver/2/trunk/test/unit/betpayee_test.rb
+END
+promotion1_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/habitforge/!svn/ver/2/trunk/test/unit/promotion1_test.rb
+END
+expiredcheckpoint_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/habitforge/!svn/ver/2/trunk/test/unit/expiredcheckpoint_test.rb
+END
+frommessage_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/habitforge/!svn/ver/2/trunk/test/unit/frommessage_test.rb
+END
+bet_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svn/habitforge/!svn/ver/2/trunk/test/unit/bet_test.rb
+END
+stat_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/habitforge/!svn/ver/2/trunk/test/unit/stat_test.rb
+END
+coach_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/habitforge/!svn/ver/52/trunk/test/unit/coach_test.rb
+END

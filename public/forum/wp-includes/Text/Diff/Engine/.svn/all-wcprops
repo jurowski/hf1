@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/habitforge/!svn/ver/2/trunk/public/forum/wp-includes/Text/Diff/Engine
+END
+xdiff.php
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/habitforge/!svn/ver/2/trunk/public/forum/wp-includes/Text/Diff/Engine/xdiff.php
+END
+.listing
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/habitforge/!svn/ver/2/trunk/public/forum/wp-includes/Text/Diff/Engine/.listing
+END
+native.php
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/habitforge/!svn/ver/2/trunk/public/forum/wp-includes/Text/Diff/Engine/native.php
+END
+string.php
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/habitforge/!svn/ver/2/trunk/public/forum/wp-includes/Text/Diff/Engine/string.php
+END
+shell.php
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/habitforge/!svn/ver/2/trunk/public/forum/wp-includes/Text/Diff/Engine/shell.php
+END

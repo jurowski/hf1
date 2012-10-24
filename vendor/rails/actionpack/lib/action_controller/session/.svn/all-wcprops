@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/habitforge/!svn/ver/2/trunk/vendor/rails/actionpack/lib/action_controller/session
+END
+mem_cache_store.rb
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/habitforge/!svn/ver/2/trunk/vendor/rails/actionpack/lib/action_controller/session/mem_cache_store.rb
+END
+abstract_store.rb
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/habitforge/!svn/ver/2/trunk/vendor/rails/actionpack/lib/action_controller/session/abstract_store.rb
+END
+.listing
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/habitforge/!svn/ver/2/trunk/vendor/rails/actionpack/lib/action_controller/session/.listing
+END
+cookie_store.rb
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/habitforge/!svn/ver/2/trunk/vendor/rails/actionpack/lib/action_controller/session/cookie_store.rb
+END

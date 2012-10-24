@@ -1,0 +1,38 @@
+<p>
+  <b>Credits:</b>
+  <%=h @bet.credits %>
+</p>
+
+<p>
+  <b>Start date:</b>
+  <%=h @bet.start_date %>
+</p>
+
+<p>
+  <b>End date:</b>
+  <%=h @bet.end_date %>
+</p>
+
+<p>
+  <b>Success rate:</b>
+  <%=h @bet.success_rate %>
+</p>
+
+<p>
+  <b>Donated amount:</b>
+  <%=h @bet.donated_amount %>
+</p>
+
+<p>
+  <b>Donation date:</b>
+  <%=h @bet.donation_date %>
+</p>
+
+<p>
+  <b>Active yn:</b>
+  <%=h @bet.active_yn %>
+</p>
+
+
+<%= link_to 'Edit', edit_bet_path(@bet) %> |
+<%= link_to 'Back', bets_path %>

@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/habitforge/!svn/ver/2/trunk/vendor/plugins/authlogic-2.1.1/lib/authlogic/test_case
+END
+mock_cookie_jar.rb
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/habitforge/!svn/ver/2/trunk/vendor/plugins/authlogic-2.1.1/lib/authlogic/test_case/mock_cookie_jar.rb
+END
+mock_request.rb
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/habitforge/!svn/ver/2/trunk/vendor/plugins/authlogic-2.1.1/lib/authlogic/test_case/mock_request.rb
+END
+rails_request_adapter.rb
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/svn/habitforge/!svn/ver/2/trunk/vendor/plugins/authlogic-2.1.1/lib/authlogic/test_case/rails_request_adapter.rb
+END
+.listing
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/habitforge/!svn/ver/2/trunk/vendor/plugins/authlogic-2.1.1/lib/authlogic/test_case/.listing
+END
+mock_logger.rb
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/habitforge/!svn/ver/2/trunk/vendor/plugins/authlogic-2.1.1/lib/authlogic/test_case/mock_logger.rb
+END
+mock_controller.rb
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/habitforge/!svn/ver/2/trunk/vendor/plugins/authlogic-2.1.1/lib/authlogic/test_case/mock_controller.rb
+END

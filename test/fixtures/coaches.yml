@@ -1,0 +1,19 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  user_id: 1
+  categories: MyString
+  client_count_limit: 1
+  client_count_active: 1
+  client_count_cumulative: 1
+  is_willing_to_work: 1
+  blurb: MyText
+
+two:
+  user_id: 1
+  categories: MyString
+  client_count_limit: 1
+  client_count_active: 1
+  client_count_cumulative: 1
+  is_willing_to_work: 1
+  blurb: MyText

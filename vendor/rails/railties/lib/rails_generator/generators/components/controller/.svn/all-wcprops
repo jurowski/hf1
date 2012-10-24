@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/svn/habitforge/!svn/ver/2/trunk/vendor/rails/railties/lib/rails_generator/generators/components/controller
+END
+USAGE
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/svn/habitforge/!svn/ver/2/trunk/vendor/rails/railties/lib/rails_generator/generators/components/controller/USAGE
+END
+.listing
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/svn/habitforge/!svn/ver/2/trunk/vendor/rails/railties/lib/rails_generator/generators/components/controller/.listing
+END
+controller_generator.rb
+K 25
+svn:wc:ra_dav:version-url
+V 131
+/svn/habitforge/!svn/ver/2/trunk/vendor/rails/railties/lib/rails_generator/generators/components/controller/controller_generator.rb
+END

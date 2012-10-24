@@ -1,0 +1,6 @@
+drwxr-xr-x    2 jurowsk1 jurowsk1     4096 Sep 25 16:12 .
+drwxr-xr-x    4 jurowsk1 jurowsk1     4096 Sep 25 16:12 ..
+-rw-r--r--    1 jurowsk1 jurowsk1      520 Sep 25 16:12 debugger.rb
+-rw-r--r--    1 jurowsk1 jurowsk1      747 Sep 25 16:12 log_tailer.rb
+-rw-r--r--    1 jurowsk1 jurowsk1     1307 Sep 25 16:12 metal.rb
+-rw-r--r--    1 jurowsk1 jurowsk1     1246 Sep 25 16:12 static.rb

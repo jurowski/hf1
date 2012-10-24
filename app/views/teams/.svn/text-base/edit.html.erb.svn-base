@@ -1,0 +1,48 @@
+<h1>Editing team</h1>
+
+<% form_for(@team) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label :category_name %><br />
+    <%= f.text_field :category_name %>
+  </p>
+  <p>
+    <%= f.label :qty_max %><br />
+    <%= f.text_field :qty_max %>
+  </p>
+  <p>
+    <%= f.label :qty_current %><br />
+    <%= f.text_field :qty_current %>
+  </p>
+  <p>
+    <%= f.label :avg_success_rate %><br />
+    <%= f.text_field :avg_success_rate %>
+  </p>
+  <p>
+    <%= f.label :avg_days_in_a_row %><br />
+    <%= f.text_field :avg_days_in_a_row %>
+  </p>
+  <p>
+    <%= f.label :avg_met_goal_last_week %><br />
+    <%= f.text_field :avg_met_goal_last_week %>
+  </p>
+  <p>
+    <%= f.label :qty_checked_in_yesterday %><br />
+    <%= f.text_field :qty_checked_in_yesterday %>
+  </p>
+  <p>
+    <%= f.label :qty_checked_in_last_2_days %><br />
+    <%= f.text_field :qty_checked_in_last_2_days %>
+  </p>
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @team %> |
+<%= link_to 'Back', teams_path %>

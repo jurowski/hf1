@@ -1,0 +1,10 @@
+drwxr-xr-x    7 jurowsk1 jurowsk1     4096 Sep 25 16:31 .
+drwxr-xr-x    7 jurowsk1 jurowsk1     4096 Sep 25 16:31 ..
+drwxr-xr-x    2 jurowsk1 jurowsk1     4096 Sep 25 16:31 acts_as_authentic_test
+-rw-r--r--    1 jurowsk1 jurowsk1      377 Sep 11 22:19 authenticates_many_test.rb
+drwxr-xr-x    2 jurowsk1 jurowsk1     4096 Sep 25 16:31 crypto_provider_test
+drwxr-xr-x    2 jurowsk1 jurowsk1     4096 Sep 25 16:31 fixtures
+drwxr-xr-x    2 jurowsk1 jurowsk1     4096 Sep 25 16:31 libs
+-rw-r--r--    1 jurowsk1 jurowsk1     1593 Sep 11 22:19 random_test.rb
+drwxr-xr-x    2 jurowsk1 jurowsk1     4096 Sep 25 16:31 session_test
+-rw-r--r--    1 jurowsk1 jurowsk1     5115 Sep 11 22:19 test_helper.rb

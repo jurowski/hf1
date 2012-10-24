@@ -1,0 +1,47 @@
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/habitforge/!svn/ver/2/trunk/vendor/rails/actionpack/lib/action_controller/vendor/html-scanner/html
+END
+document.rb
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/svn/habitforge/!svn/ver/2/trunk/vendor/rails/actionpack/lib/action_controller/vendor/html-scanner/html/document.rb
+END
+selector.rb
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/svn/habitforge/!svn/ver/2/trunk/vendor/rails/actionpack/lib/action_controller/vendor/html-scanner/html/selector.rb
+END
+.listing
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/svn/habitforge/!svn/ver/2/trunk/vendor/rails/actionpack/lib/action_controller/vendor/html-scanner/html/.listing
+END
+node.rb
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/svn/habitforge/!svn/ver/2/trunk/vendor/rails/actionpack/lib/action_controller/vendor/html-scanner/html/node.rb
+END
+version.rb
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/svn/habitforge/!svn/ver/2/trunk/vendor/rails/actionpack/lib/action_controller/vendor/html-scanner/html/version.rb
+END
+sanitizer.rb
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/svn/habitforge/!svn/ver/2/trunk/vendor/rails/actionpack/lib/action_controller/vendor/html-scanner/html/sanitizer.rb
+END
+tokenizer.rb
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/svn/habitforge/!svn/ver/2/trunk/vendor/rails/actionpack/lib/action_controller/vendor/html-scanner/html/tokenizer.rb
+END

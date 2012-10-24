@@ -1,0 +1,48 @@
+<p>
+  <b>Name:</b>
+  <%=h @team.name %>
+</p>
+
+<p>
+  <b>Category name:</b>
+  <%=h @team.category_name %>
+</p>
+
+<p>
+  <b>Qty max:</b>
+  <%=h @team.qty_max %>
+</p>
+
+<p>
+  <b>Qty current:</b>
+  <%=h @team.qty_current %>
+</p>
+
+<p>
+  <b>Avg success rate:</b>
+  <%=h @team.avg_success_rate %>
+</p>
+
+<p>
+  <b>Avg days in a row:</b>
+  <%=h @team.avg_days_in_a_row %>
+</p>
+
+<p>
+  <b>Avg met goal last week:</b>
+  <%=h @team.avg_met_goal_last_week %>
+</p>
+
+<p>
+  <b>Qty checked in yesterday:</b>
+  <%=h @team.qty_checked_in_yesterday %>
+</p>
+
+<p>
+  <b>Qty checked in last 2 days:</b>
+  <%=h @team.qty_checked_in_last_2_days %>
+</p>
+
+
+<%= link_to 'Edit', edit_team_path(@team) %> |
+<%= link_to 'Back', teams_path %>

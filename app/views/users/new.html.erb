@@ -1,0 +1,69 @@
+
+<%
+@warnings = ""
+if `uname -n`.strip == 'adv.adventurino.com'
+  #### HABITFORGE SETTINGS ON VPS
+  @warnings = ""
+elsif `uname -n`.strip == 'gns499aa.joyent.us'
+  #### DEV SETTINGS ON HABITFORGE VPS
+  @warnings = "The main, stable version of habitforge can be found <a href='http://habitforge.com'>here</a>. You are currently on the beta testers version of habitforge. If you create an account on this beta version, we cannot guarantee that your information will be kept forever, and you may run into bugs. If you do choose to sign up here (instead of on the <a href='http://habitforge.com'>LIVE SITE</a>, please let us know of any issues you run into by emailing <a href='mailto:support@habitforge.com'>support@habitforge.com</a>, and specify that you're using the beta testers edition. Thanks, Sandon"
+else
+  #### SETTINGS FOR DEV LAPTOP
+  @warnings = "This is the laptop dev version. Data entered here will not be around for long."
+end
+%>
+
+<font color=red><%= @warnings %></font>
+
+<div class="clear"></div>
+
+
+    <span style="font-size:125%;color:#000000;font-weight:900px">Who's recommending HabitForge to their readers?</span>
+    <span style="font-size:80%;"><br>Reviews: <a href="http://www.fourhourbody.com/" target="_blank">The 4-Hour Body</a>
+    &nbsp;
+    <a href="http://www.familycircle.com/family-fun/technology/online-tools-for-achieving-goals/" target="_blank">Family Circle</a>
+    &nbsp;
+    <a href="http://www.shape.com/lifestyle/mind-and-body/5-ways-change-your-life-good?page=3" target="_blank">Shape Magazine</a>
+    &nbsp;
+    <a href="http://www.womansday.com/Articles/Health-Fitness/Make-Healthy-Habits-Stick.html" target="_blank">Woman's Day</a>
+    &nbsp;
+    <a href="http://tech.ca.msn.com/pcworld-article.aspx?cp-documentid=23549978" target="_blank">PC World</a>
+    </span>
+<br>
+<br>
+<% form_for @user, :url => account_path do |f| %>
+  <%= f.error_messages %>
+  <br>
+  <span style="font-size:125%;color:#000000;font-weight:900px">Choose Features:</span>
+  <br>
+  <p>
+  <br>
+  <input type="radio" name="account_type" value="supporting" checked><span style="font-size:130%;font-weight:900;"> Premium Membership (Just $9.95 for 12 months!)</span>
+<br> <span style="font-size:150%;color:#FF0000;font-weight:900;">Get Another 25% off now! Enter coupon code "takeaction" at checkout!</span>
+
+<span style="font-size:120%;font-weight:900;">
+<br>&nbsp<image height="20px" src="/images/checkmark_green.png">Unlimited Active Private or Public Habits
+<br>&nbsp<image height="20px" src="/images/checkmark_green.png">No Ads
+<br>&nbsp<image height="20px" src="/images/checkmark_green.png">Unlimited Reminders
+<br>&nbsp<image height="20px" src="/images/checkmark_green.png">Optional friendly reminders and pushes from other members if you start to slack!</span>
+  <br><br>
+  <input type="radio" name="account_type" value="free" > Free Account: (Limit 1 Active Public Habit, with Ads)
+  <br><br>
+
+  <h3>Signup Info</h3>
+  <%= render :partial => "form", :object => f %>
+
+  <br>
+
+<h3>Terms and Privacy</h3>
+<p>We will never sell your email address or share it with a third party. By signing up with HabitForge, you agree to be reached by email so that you can report on your goal progress. You can also receive goal reminders if you enable them. Additionally, HabitForge may send habit-related newsletter content, which you can unsubscribe from at any time via an unsubscribe link in the email.
+If you do choose to share goals with other members of this site, only your first name will be shown.
+While members can send messages to one another, email addresses will never be exposed (all member to member email will be routed through HabitForge addresses).
+</p>
+  <br>
+  <%= f.submit "I agree... Let's Get Started!" %>
+</p>
+
+<% end %>
+
+

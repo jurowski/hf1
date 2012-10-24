@@ -1,0 +1,5 @@
+drwxr-xr-x    2 jurowsk1 jurowsk1     4096 Sep 25 16:31 .
+drwxr-xr-x    8 jurowsk1 jurowsk1     4096 Sep 25 16:31 ..
+-rw-r--r--    1 jurowsk1 jurowsk1     1712 Sep 11 22:19 abstract_adapter.rb
+-rw-r--r--    1 jurowsk1 jurowsk1     1026 Sep 11 22:19 merb_adapter.rb
+-rw-r--r--    1 jurowsk1 jurowsk1     2072 Sep 11 22:19 rails_adapter.rb

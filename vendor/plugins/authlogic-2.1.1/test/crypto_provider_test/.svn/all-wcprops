@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/habitforge/!svn/ver/2/trunk/vendor/plugins/authlogic-2.1.1/test/crypto_provider_test
+END
+bcrypt_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/habitforge/!svn/ver/2/trunk/vendor/plugins/authlogic-2.1.1/test/crypto_provider_test/bcrypt_test.rb
+END
+sha512_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/habitforge/!svn/ver/2/trunk/vendor/plugins/authlogic-2.1.1/test/crypto_provider_test/sha512_test.rb
+END
+aes256_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/habitforge/!svn/ver/2/trunk/vendor/plugins/authlogic-2.1.1/test/crypto_provider_test/aes256_test.rb
+END
+.listing
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/habitforge/!svn/ver/2/trunk/vendor/plugins/authlogic-2.1.1/test/crypto_provider_test/.listing
+END
+sha1_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/habitforge/!svn/ver/2/trunk/vendor/plugins/authlogic-2.1.1/test/crypto_provider_test/sha1_test.rb
+END

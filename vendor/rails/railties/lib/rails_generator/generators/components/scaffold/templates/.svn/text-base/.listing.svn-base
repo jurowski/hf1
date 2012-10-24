@@ -1,0 +1,12 @@
+drwxr-xr-x    2 jurowsk1 jurowsk1     4096 Sep 25 16:12 .
+drwxr-xr-x    3 jurowsk1 jurowsk1     4096 Sep 25 16:12 ..
+-rw-r--r--    1 jurowsk1 jurowsk1     2457 Sep 25 16:12 controller.rb
+-rw-r--r--    1 jurowsk1 jurowsk1     1224 Sep 25 16:12 functional_test.rb
+-rw-r--r--    1 jurowsk1 jurowsk1       46 Sep 25 16:12 helper.rb
+-rw-r--r--    1 jurowsk1 jurowsk1       95 Sep 25 16:12 helper_test.rb
+-rw-r--r--    1 jurowsk1 jurowsk1      494 Sep 25 16:12 layout.html.erb
+-rw-r--r--    1 jurowsk1 jurowsk1      889 Sep 25 16:12 style.css
+-rw-r--r--    1 jurowsk1 jurowsk1      436 Sep 25 16:12 view_edit.html.erb
+-rw-r--r--    1 jurowsk1 jurowsk1      699 Sep 25 16:12 view_index.html.erb
+-rw-r--r--    1 jurowsk1 jurowsk1      384 Sep 25 16:12 view_new.html.erb
+-rw-r--r--    1 jurowsk1 jurowsk1      284 Sep 25 16:12 view_show.html.erb

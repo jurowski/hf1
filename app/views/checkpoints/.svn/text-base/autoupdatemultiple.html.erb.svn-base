@@ -1,0 +1,100 @@
+<%
+
+    ### EXAMPLE URLS: 
+    ###  http://habitforge.com/checkpoints/1/autoupdatemultiple?d=2012-01-26&u=29103&g=111490
+
+    ###  jurowski@gmail.com
+    ###  http://localhost:3000/checkpoints/1/autoupdatemultiple?d=2012-01-26&u=44&g=25861
+
+    ###  jurowski@wisc.edu
+    ###  http://localhost:3000/checkpoints/1/autoupdatemultiple?d=2012-01-26&u=15706&g=25858
+
+  session[:return_to_me] = request.request_uri
+  if current_user == nil
+  %>
+    <%= link_to "Log in", new_user_session_path + "?skip_intro=1" %>  to view all of your goals and stats</center></strong></h3>
+    <br>
+  <%
+  end
+  %>
+
+
+<%
+#### for any checkpoint created after 20091130 at 12 midnight (id of 14789 or greater), require goal id and user id in the params
+if @goal == nil or (session[:u] != @goal.user.id.to_s)
+  ###fail, may be a fraudulent URL
+  %>
+  The URL is invalid... the goal that this link refers to might no longer exist. Please contact support so that we can help resolve this.
+<%
+else
+%>
+  <p />
+  <%            
+  if !params[:submitted]
+  %>
+      <div class="success" style="width:800px;">
+      <h2>Hi <%= @goal.user.first_name %>! Were you successful on <%= @day_of_checkpoints %> at...</h2> 
+      </div>
+  <%
+  end
+  %>
+  
+  <form action="<%= session[:return_to_me] %>" method="POST">
+    <%
+    for goal_additional in @goals_additional
+      @checkpoint = Checkpoint.find(:first, :conditions => "goal_id = '#{goal_additional.id}' and checkin_date = '#{session[:d]}'")
+      if @checkpoint != nil
+        id = @checkpoint.id
+        status_id = "status_" + id.to_s
+        comment_id = "comment_" + id.to_s
+        %>
+        <br>
+        <DIV style="border-radius:20px;-moz-border-radius:20px;border-width:thin; border-style:solid; border-color:#CCCCCC; padding:10px 10px 10px 10px; width:800px;">
+            <br>
+
+          <table width=100% cellpadding=0 cellspacing=0 border=0>
+            <tr>
+              <td  width=100%>
+                <h2>...<%= goal_additional.title %>?</h2>
+                  <h3>  
+                  <label><input type="radio" name="status_<%= id %>" value="yes" <% if @checkpoint.status == "yes" %> checked="checked" <% end %> />   <font color="black">Yes</font></label>
+                    &nbsp 
+                  <label><input type="radio" name="status_<%= id %>" value="no" <% if @checkpoint.status == "no" %> checked="checked" <% end %> />   <font color="black">No</font></label>
+                  </h3>
+              </td>
+            </tr>
+          </table>
+          <br>
+
+        <h4><%= link_to_function ("Add a Note") {
+         |page| page.visual_effect :toggle_appear, "note_#{@checkpoint.id}" 
+        } 
+        %></h4>
+        <div id="note_<%= @checkpoint.id %>" style="display:none;">
+            <br>
+            <textarea cols="80" rows="4" name="comment_<%= id %>"><%= @checkpoint.comment %></textarea> 
+            <p>Add a note or comment above, which will be saved when you click "Save Answers" at the bottom.
+            Notes are visible to others only if your goal is "shared" with other users.</p>
+        </div>
+
+
+          </div>
+        <%  
+      end  
+    end
+    %>
+    <br>
+    <center><input type="submit" class="button dark huge" value="Save Answers" /></center>
+    <input type="hidden" name="submitted" value="1">
+
+  </form>
+
+  <br>
+  <br>
+  <br>
+  <br>
+
+
+<%      
+end ###end valid URL section
+%>

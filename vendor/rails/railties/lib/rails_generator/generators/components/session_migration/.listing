@@ -1,0 +1,5 @@
+drwxr-xr-x    3 jurowsk1 jurowsk1     4096 Sep 25 16:12 .
+drwxr-xr-x   15 jurowsk1 jurowsk1     4096 Sep 25 16:12 ..
+-rw-r--r--    1 jurowsk1 jurowsk1      378 Sep 25 16:12 USAGE
+-rw-r--r--    1 jurowsk1 jurowsk1      514 Sep 25 16:12 session_migration_generator.rb
+drwxr-xr-x    2 jurowsk1 jurowsk1     4096 Sep 25 16:12 templates

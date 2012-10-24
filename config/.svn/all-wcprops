@@ -1,0 +1,71 @@
+K 25
+svn:wc:ra_dav:version-url
+V 41
+/svn/habitforge/!svn/ver/240/trunk/config
+END
+mongrel.yml
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/svn/habitforge/!svn/ver/2/trunk/config/mongrel.yml
+END
+routes.rb
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/svn/habitforge/!svn/ver/240/trunk/config/routes.rb
+END
+database.yml
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/svn/habitforge/!svn/ver/2/trunk/config/database.yml
+END
+mongrel_cluster.yml
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/habitforge/!svn/ver/2/trunk/config/mongrel_cluster.yml
+END
+boot.rb
+K 25
+svn:wc:ra_dav:version-url
+V 47
+/svn/habitforge/!svn/ver/2/trunk/config/boot.rb
+END
+environment.rb
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/habitforge/!svn/ver/240/trunk/config/environment.rb
+END
+.listing
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/svn/habitforge/!svn/ver/2/trunk/config/.listing
+END
+newrelic.yml
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/svn/habitforge/!svn/ver/2/trunk/config/newrelic.yml
+END
+.htaccess
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/svn/habitforge/!svn/ver/2/trunk/config/.htaccess
+END
+database.yml_20090925
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/habitforge/!svn/ver/2/trunk/config/database.yml_20090925
+END
+deploy.rb
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/svn/habitforge/!svn/ver/2/trunk/config/deploy.rb
+END

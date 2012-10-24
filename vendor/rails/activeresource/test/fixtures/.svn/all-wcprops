@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/habitforge/!svn/ver/2/trunk/vendor/rails/activeresource/test/fixtures
+END
+beast.rb
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/habitforge/!svn/ver/2/trunk/vendor/rails/activeresource/test/fixtures/beast.rb
+END
+customer.rb
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/habitforge/!svn/ver/2/trunk/vendor/rails/activeresource/test/fixtures/customer.rb
+END
+.listing
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/habitforge/!svn/ver/2/trunk/vendor/rails/activeresource/test/fixtures/.listing
+END
+person.rb
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/habitforge/!svn/ver/2/trunk/vendor/rails/activeresource/test/fixtures/person.rb
+END
+street_address.rb
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/habitforge/!svn/ver/2/trunk/vendor/rails/activeresource/test/fixtures/street_address.rb
+END

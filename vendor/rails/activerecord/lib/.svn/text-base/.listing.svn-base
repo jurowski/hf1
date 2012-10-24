@@ -1,0 +1,5 @@
+drwxr-xr-x    3 jurowsk1 jurowsk1     4096 Sep 25 16:12 .
+drwxr-xr-x    5 jurowsk1 jurowsk1     4096 Sep 25 16:12 ..
+drwxr-xr-x    7 jurowsk1 jurowsk1     4096 Sep 25 16:12 active_record
+-rw-r--r--    1 jurowsk1 jurowsk1     3588 Sep 25 16:12 active_record.rb
+-rw-r--r--    1 jurowsk1 jurowsk1       24 Sep 25 16:12 activerecord.rb

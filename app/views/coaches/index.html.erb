@@ -1,0 +1,32 @@
+<h1>Listing coaches</h1>
+
+<table>
+  <tr>
+    <th>User</th>
+    <th>Categories</th>
+    <th>Client count limit</th>
+    <th>Client count active</th>
+    <th>Client count cumulative</th>
+    <th>Is willing to work</th>
+    <th>Blurb</th>
+  </tr>
+
+<% @coaches.each do |coach| %>
+  <tr>
+    <td><%=h coach.user_id %></td>
+    <td><%=h coach.categories %></td>
+    <td><%=h coach.client_count_limit %></td>
+    <td><%=h coach.client_count_active %></td>
+    <td><%=h coach.client_count_cumulative %></td>
+    <td><%=h coach.is_willing_to_work %></td>
+    <td><%=h coach.blurb %></td>
+    <td><%= link_to 'Show', coach %></td>
+    <td><%= link_to 'Edit', edit_coach_path(coach) %></td>
+    <td><%= link_to 'Destroy', coach, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New coach', new_coach_path %>

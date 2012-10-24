@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/habitforge/!svn/ver/2/trunk/vendor/rails/activesupport/lib/active_support/core_ext/integer
+END
+inflections.rb
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/svn/habitforge/!svn/ver/2/trunk/vendor/rails/activesupport/lib/active_support/core_ext/integer/inflections.rb
+END
+time.rb
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/habitforge/!svn/ver/2/trunk/vendor/rails/activesupport/lib/active_support/core_ext/integer/time.rb
+END
+even_odd.rb
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/svn/habitforge/!svn/ver/2/trunk/vendor/rails/activesupport/lib/active_support/core_ext/integer/even_odd.rb
+END
+.listing
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/habitforge/!svn/ver/2/trunk/vendor/rails/activesupport/lib/active_support/core_ext/integer/.listing
+END

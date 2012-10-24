@@ -1,0 +1,125 @@
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/svn/habitforge/!svn/ver/52/trunk/test/unit/helpers
+END
+failedcheckpoints_helper_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/habitforge/!svn/ver/2/trunk/test/unit/helpers/failedcheckpoints_helper_test.rb
+END
+quotes_helper_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/habitforge/!svn/ver/2/trunk/test/unit/helpers/quotes_helper_test.rb
+END
+betpayees_helper_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/habitforge/!svn/ver/2/trunk/test/unit/helpers/betpayees_helper_test.rb
+END
+password_resets_helper_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/habitforge/!svn/ver/2/trunk/test/unit/helpers/password_resets_helper_test.rb
+END
+.listing
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/habitforge/!svn/ver/2/trunk/test/unit/helpers/.listing
+END
+promotion1s_helper_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/habitforge/!svn/ver/2/trunk/test/unit/helpers/promotion1s_helper_test.rb
+END
+frommessages_helper_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/habitforge/!svn/ver/2/trunk/test/unit/helpers/frommessages_helper_test.rb
+END
+expiredcheckpoints_helper_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/habitforge/!svn/ver/2/trunk/test/unit/helpers/expiredcheckpoints_helper_test.rb
+END
+bets_helper_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/habitforge/!svn/ver/2/trunk/test/unit/helpers/bets_helper_test.rb
+END
+stats_helper_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/habitforge/!svn/ver/2/trunk/test/unit/helpers/stats_helper_test.rb
+END
+users_helper_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/habitforge/!svn/ver/2/trunk/test/unit/helpers/users_helper_test.rb
+END
+coachgoals_helper_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/habitforge/!svn/ver/52/trunk/test/unit/helpers/coachgoals_helper_test.rb
+END
+user_sessions_helper_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/habitforge/!svn/ver/2/trunk/test/unit/helpers/user_sessions_helper_test.rb
+END
+goals_helper_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/habitforge/!svn/ver/2/trunk/test/unit/helpers/goals_helper_test.rb
+END
+coaches_helper_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/habitforge/!svn/ver/52/trunk/test/unit/helpers/coaches_helper_test.rb
+END
+cheers_helper_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/habitforge/!svn/ver/2/trunk/test/unit/helpers/cheers_helper_test.rb
+END
+teams_helper_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/habitforge/!svn/ver/2/trunk/test/unit/helpers/teams_helper_test.rb
+END
+checkpoints_helper_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/habitforge/!svn/ver/2/trunk/test/unit/helpers/checkpoints_helper_test.rb
+END
+tomessages_helper_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/habitforge/!svn/ver/2/trunk/test/unit/helpers/tomessages_helper_test.rb
+END
+teamgoals_helper_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/habitforge/!svn/ver/2/trunk/test/unit/helpers/teamgoals_helper_test.rb
+END

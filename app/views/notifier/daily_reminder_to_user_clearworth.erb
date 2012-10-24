@@ -1,0 +1,44 @@
+<%
+    sitename = "mylearninghabit.com"
+
+    arr_subject = Array.new
+    arr_subject.push(["This is just a reminder about #{@goal.response_question} today!"])
+    arr_subject.push(["Don't forget about #{@goal.response_question} today! "])
+    arr_subject.push(["Remember to keep #{@goal.response_question} on your schedule for today!"])
+
+    random_number = 0
+    random_number = rand(arr_subject.size) + 0 #between 0 and arr_subject.size
+    random_subject = arr_subject[random_number]
+%>
+Hi <%= @goal.user.first_name %>. <%= random_subject %>
+<p/>
+<p />
+
+
+When you're ready to check in for today, come back to this email and click:  
+
+<a href="http://<%= sitename %>/goals?update_checkpoint_status=yes&date=<%= @goal.user.dtoday %>&e0=<%= @goal.user.email[0] %>&f0=<%= @goal.user.first_name[0] %>&u=<%= @goal.user.id %>&goal_id=<%= @goal.id %>&coming_from=email" >
+I did it today!
+</a> or
+<a href="http://<%= sitename %>/goals?update_checkpoint_status=no&date=<%= @goal.user.dtoday %>&e0=<%= @goal.user.email[0] %>&f0=<%= @goal.user.first_name[0] %>&u=<%= @goal.user.id %>&goal_id=<%= @goal.id %>&coming_from=email" >
+I did not do it today.
+</a>
+<br>
+(Or just log into http://<%= sitename %> and tell us there.)
+<br>
+<br>
+<i>
+You have until midnight to act on "<%= @goal.response_question %>". 
+<br>
+If we don't hear from you today, we'll send a "yes/no" check-in email early tomorrow morning.
+</i>
+<p />
+Best of luck with your goals!
+<p />
+<p />
+
+<i>
+To stop receiving reminders about this goal, log into http://<%= sitename %> and modify your goal settings. 
+<br>
+Questions? Email support@<%= sitename %>
+</i>

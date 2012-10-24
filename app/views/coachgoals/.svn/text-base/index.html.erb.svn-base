@@ -1,0 +1,58 @@
+<h1>Listing coachgoals</h1>
+
+<table>
+  <tr>
+    <th>Coach</th>
+    <th>Goal</th>
+    <th>Goal name</th>
+    <th>User</th>
+    <th>User email</th>
+    <th>User first name</th>
+    <th>Coach was paid out on date</th>
+    <th>Coach was paid out amount</th>
+    <th>Amount client paid total</th>
+    <th>Amount client paid split to site</th>
+    <th>Amount client paid split to coach</th>
+    <th>Week 1 email due date</th>
+    <th>Week 1 email sent date</th>
+    <th>Week 2 email due date</th>
+    <th>Week 2 email sent date</th>
+    <th>Week 3 email due date</th>
+    <th>Week 3 email sent date</th>
+    <th>Week 4 email due date</th>
+    <th>Week 4 email sent date</th>
+    <th>Is active</th>
+  </tr>
+
+<% @coachgoals.each do |coachgoal| %>
+  <tr>
+    <td><%=h coachgoal.coach_id %></td>
+    <td><%=h coachgoal.goal_id %></td>
+    <td><%=h coachgoal.goal_name %></td>
+    <td><%=h coachgoal.user_id %></td>
+    <td><%=h coachgoal.user_email %></td>
+    <td><%=h coachgoal.user_first_name %></td>
+    <td><%=h coachgoal.coach_was_paid_out_on_date %></td>
+    <td><%=h coachgoal.coach_was_paid_out_amount %></td>
+    <td><%=h coachgoal.amount_client_paid_total %></td>
+    <td><%=h coachgoal.amount_client_paid_split_to_site %></td>
+    <td><%=h coachgoal.amount_client_paid_split_to_coach %></td>
+    <td><%=h coachgoal.week_1_email_due_date %></td>
+    <td><%=h coachgoal.week_1_email_sent_date %></td>
+    <td><%=h coachgoal.week_2_email_due_date %></td>
+    <td><%=h coachgoal.week_2_email_sent_date %></td>
+    <td><%=h coachgoal.week_3_email_due_date %></td>
+    <td><%=h coachgoal.week_3_email_sent_date %></td>
+    <td><%=h coachgoal.week_4_email_due_date %></td>
+    <td><%=h coachgoal.week_4_email_sent_date %></td>
+    <td><%=h coachgoal.is_active %></td>
+    <td><%= link_to 'Show', coachgoal %></td>
+    <td><%= link_to 'Edit', edit_coachgoal_path(coachgoal) %></td>
+    <td><%= link_to 'Destroy', coachgoal, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New coachgoal', new_coachgoal_path %>

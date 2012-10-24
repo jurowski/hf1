@@ -1,0 +1,5 @@
+drwxr-xr-x    2 jurowsk1 jurowsk1     4096 Sep 25 16:12 .
+drwxr-xr-x    4 jurowsk1 jurowsk1     4096 Sep 25 16:12 ..
+-rw-r--r--    1 jurowsk1 jurowsk1     4683 Sep 25 16:12 custom_methods_test.rb
+-rw-r--r--    1 jurowsk1 jurowsk1     1395 Sep 25 16:12 equality_test.rb
+-rw-r--r--    1 jurowsk1 jurowsk1     5169 Sep 25 16:12 load_test.rb

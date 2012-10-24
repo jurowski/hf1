@@ -1,0 +1,48 @@
+
+<%
+@warnings = ""
+if `uname -n`.strip == 'adv.adventurino.com'
+  #### HABITFORGE SETTINGS ON VPS
+  @warnings = ""
+elsif `uname -n`.strip == 'gns499aa.joyent.us'
+  #### DEV SETTINGS ON HABITFORGE VPS
+  @warnings = "The main, stable version of habitforge can be found <a href='http://habitforge.com'>here</a>. You are currently on the beta testers version of habitforge. If you create an account on this beta version, we cannot guarantee that your information will be kept forever, and you may run into bugs. If you do choose to sign up here (instead of on the <a href='http://habitforge.com'>LIVE SITE</a>, please let us know of any issues you run into by emailing <a href='mailto:support@habitforge.com'>support@habitforge.com</a>, and specify that you're using the beta testers edition. Thanks, Sandon"
+else
+  #### SETTINGS FOR DEV LAPTOP
+  @warnings = "This is the laptop dev version. Data entered here will not be around for long."
+end
+%>
+
+<font color=red><%= @warnings %></font>
+
+<div class="clear"></div>
+
+<% form_for @user, :url => account_path do |f| %>
+  <%= f.error_messages %>
+  <%= render :partial => "form", :object => f %>
+
+  <br>
+  <br>
+
+    <h5><span style="font-size:125%;">Who's recommending HabitForge to their readers?
+    <br><a href="http://www.fourhourbody.com/" target="_blank">The 4-Hour Body</a>
+    &nbsp;
+    <a href="http://www.familycircle.com/family-fun/technology/online-tools-for-achieving-goals/" target="_blank">Family Circle</a>
+    &nbsp;
+    <a href="http://www.shape.com/lifestyle/mind-and-body/5-ways-change-your-life-good?page=3" target="_blank">Shape Magazine</a>
+    &nbsp;
+    <a href="http://www.womansday.com/Articles/Health-Fitness/Make-Healthy-Habits-Stick.html" target="_blank">Woman's Day</a>
+    &nbsp;
+    <a href="http://tech.ca.msn.com/pcworld-article.aspx?cp-documentid=23549978" target="_blank">PC World</a>
+    </span></h5>
+<p>
+  <input type="radio" name="account_type" value="free" checked> Free Account: (Limit 1 Active Habit, with Ads)
+  <br>
+  <input type="radio" name="account_type" value="supporting"> $9.95 Supporting Membership: (1 year of Unlimited Active Habits, No Ads!) 
+  <br>
+  <%= f.submit "Let's Get Started!" %>
+</p>
+
+<% end %>
+
+

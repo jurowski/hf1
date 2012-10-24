@@ -1,0 +1,20 @@
+<%= @coachgoal.coach.user.first_name %>, you have a new client!
+
+<%= @coachgoal.user.first_name %> has a goal entitled "<%= @coachgoal.goal.title %>" in the category of "<%= @coachgoal.goal.category %>", and could use your help with staying on track!
+
+At the end of each week, for the next 4 weeks, <%= @coachgoal.user.first_name %> would like you to check on his/her progress via the "Coaching" tab on HabitForge ( http://habitforge.com ). Then through the site, please send them a personal message to help motivate them to sticking with their goal!
+
+Once you've sent the fourth weekly message to <%= @coachgoal.user.first_name %> (on or after <%= @coachgoal.week_4_email_due_date.strftime("%A, %b %d, %Y") %>), the client will rate their experience, and I'll be sending you a payment for $<%= @coachgoal.amount_client_paid_split_to_coach %>.
+
+If you have any questions, please let me know!
+
+Thanks so much.
+Sandon Jurowski
+
+HabitForge Creator
+http://habitforge.com
+
+
+
+Questions? Email support@habitforge.com
+

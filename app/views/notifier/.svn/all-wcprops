@@ -1,0 +1,365 @@
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svn/habitforge/!svn/ver/247/trunk/app/views/notifier
+END
+checkpoint_notification_multiple.erb
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/habitforge/!svn/ver/2/trunk/app/views/notifier/checkpoint_notification_multiple.erb
+END
+support_coachgoal_missing_coach_notification.erb
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/habitforge/!svn/ver/52/trunk/app/views/notifier/support_coachgoal_missing_coach_notification.erb
+END
+goal_creation_notification_reengagefocus.erb
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/habitforge/!svn/ver/2/trunk/app/views/notifier/goal_creation_notification_reengagefocus.erb
+END
+checkpoint_notification_forittobe.erb
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/habitforge/!svn/ver/204/trunk/app/views/notifier/checkpoint_notification_forittobe.erb
+END
+user_upgrade_unknown_notification.erb
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/habitforge/!svn/ver/2/trunk/app/views/notifier/user_upgrade_unknown_notification.erb
+END
+notify_support_extraacc_due.erb
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/habitforge/!svn/ver/2/trunk/app/views/notifier/notify_support_extraacc_due.erb
+END
+invite_a_friend_to_track.erb
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/habitforge/!svn/ver/2/trunk/app/views/notifier/invite_a_friend_to_track.erb
+END
+signup_notification.erb
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/habitforge/!svn/ver/2/trunk/app/views/notifier/signup_notification.erb
+END
+goal_creation_notification.erb
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/habitforge/!svn/ver/94/trunk/app/views/notifier/goal_creation_notification.erb
+END
+notify_support_error.erb
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/habitforge/!svn/ver/2/trunk/app/views/notifier/notify_support_error.erb
+END
+notify_support_donations_due.erb
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/habitforge/!svn/ver/2/trunk/app/views/notifier/notify_support_donations_due.erb
+END
+.listing
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/habitforge/!svn/ver/2/trunk/app/views/notifier/.listing
+END
+daily_reminder_to_user_clearworth.erb
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/habitforge/!svn/ver/204/trunk/app/views/notifier/daily_reminder_to_user_clearworth.erb
+END
+password_reset_instructions_clearworth.erb
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/habitforge/!svn/ver/2/trunk/app/views/notifier/password_reset_instructions_clearworth.erb
+END
+bet_fire_random_due_notification.erb
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/habitforge/!svn/ver/88/trunk/app/views/notifier/bet_fire_random_due_notification.erb
+END
+checkpoint_notification_multiple_forittobe.erb
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/habitforge/!svn/ver/2/trunk/app/views/notifier/checkpoint_notification_multiple_forittobe.erb
+END
+tell_a_friend.erb
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/habitforge/!svn/ver/2/trunk/app/views/notifier/tell_a_friend.erb
+END
+coach_coachgoal_email_due_notification.erb
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/habitforge/!svn/ver/72/trunk/app/views/notifier/coach_coachgoal_email_due_notification.erb
+END
+daily_reminder_to_user.erb
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/habitforge/!svn/ver/230/trunk/app/views/notifier/daily_reminder_to_user.erb
+END
+goal_creation_notification_forittobe.erb
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/habitforge/!svn/ver/2/trunk/app/views/notifier/goal_creation_notification_forittobe.erb
+END
+tomessage_notification.erb
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/habitforge/!svn/ver/2/trunk/app/views/notifier/tomessage_notification.erb
+END
+bet_user_unknown_notification.erb
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/habitforge/!svn/ver/2/trunk/app/views/notifier/bet_user_unknown_notification.erb
+END
+user_upgrade_2year_notification.erb
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/habitforge/!svn/ver/127/trunk/app/views/notifier/user_upgrade_2year_notification.erb
+END
+user_expire_soon_notification.erb
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/habitforge/!svn/ver/237/trunk/app/views/notifier/user_expire_soon_notification.erb
+END
+bet_fire_random_new_notification.erb
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/habitforge/!svn/ver/88/trunk/app/views/notifier/bet_fire_random_new_notification.erb
+END
+user_extraacc_only_notification.erb
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/habitforge/!svn/ver/52/trunk/app/views/notifier/user_extraacc_only_notification.erb
+END
+checkpoint_notification_multiple_clearworth.erb
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/habitforge/!svn/ver/2/trunk/app/views/notifier/checkpoint_notification_multiple_clearworth.erb
+END
+user_expired_notification.erb
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/habitforge/!svn/ver/153/trunk/app/views/notifier/user_expired_notification.erb
+END
+coach_goal_unknown_notification.erb
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/habitforge/!svn/ver/52/trunk/app/views/notifier/coach_goal_unknown_notification.erb
+END
+daily_reminder_to_user_forittobe.erb
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/habitforge/!svn/ver/204/trunk/app/views/notifier/daily_reminder_to_user_forittobe.erb
+END
+bet_fire_charity_due_notification.erb
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/habitforge/!svn/ver/88/trunk/app/views/notifier/bet_fire_charity_due_notification.erb
+END
+user_extraacc_upgrade_notification.erb
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/habitforge/!svn/ver/52/trunk/app/views/notifier/user_extraacc_upgrade_notification.erb
+END
+goal_creation_notification_clearworth.erb
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/habitforge/!svn/ver/2/trunk/app/views/notifier/goal_creation_notification_clearworth.erb
+END
+password_reset_instructions_marriagereminders.erb
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/habitforge/!svn/ver/2/trunk/app/views/notifier/password_reset_instructions_marriagereminders.erb
+END
+bet_fire_friend_due_notification.erb
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/habitforge/!svn/ver/88/trunk/app/views/notifier/bet_fire_friend_due_notification.erb
+END
+coach_coachgoal_fulfilled_notification.erb
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/habitforge/!svn/ver/72/trunk/app/views/notifier/coach_coachgoal_fulfilled_notification.erb
+END
+user_extraacc_unknown_notification.erb
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/habitforge/!svn/ver/2/trunk/app/views/notifier/user_extraacc_unknown_notification.erb
+END
+checkpoint_notification_marriagereminders.erb
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/habitforge/!svn/ver/192/trunk/app/views/notifier/checkpoint_notification_marriagereminders.erb
+END
+bet_fire_charity_new_notification.erb
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/habitforge/!svn/ver/88/trunk/app/views/notifier/bet_fire_charity_new_notification.erb
+END
+notify_support_stats.erb
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/habitforge/!svn/ver/247/trunk/app/views/notifier/notify_support_stats.erb
+END
+coach_coachgoal_notification.erb
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/habitforge/!svn/ver/88/trunk/app/views/notifier/coach_coachgoal_notification.erb
+END
+user_upgrade_3month_notification.erb
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/habitforge/!svn/ver/128/trunk/app/views/notifier/user_upgrade_3month_notification.erb
+END
+bet_fire_friend_new_notification.erb
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/habitforge/!svn/ver/88/trunk/app/views/notifier/bet_fire_friend_new_notification.erb
+END
+password_reset_instructions_reengagefocus.erb
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/habitforge/!svn/ver/2/trunk/app/views/notifier/password_reset_instructions_reengagefocus.erb
+END
+user_upgrade_6month_notification.erb
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/habitforge/!svn/ver/127/trunk/app/views/notifier/user_upgrade_6month_notification.erb
+END
+checkpoint_notification_clearworth.erb
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/habitforge/!svn/ver/204/trunk/app/views/notifier/checkpoint_notification_clearworth.erb
+END
+password_reset_instructions.erb
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/habitforge/!svn/ver/2/trunk/app/views/notifier/password_reset_instructions.erb
+END
+checkpoint_notification_multiple_marriagereminders.erb
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/habitforge/!svn/ver/2/trunk/app/views/notifier/checkpoint_notification_multiple_marriagereminders.erb
+END
+checkpoint_notification_reengagefocus.erb
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/habitforge/!svn/ver/2/trunk/app/views/notifier/checkpoint_notification_reengagefocus.erb
+END
+user_upgrade_notification.erb
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/habitforge/!svn/ver/2/trunk/app/views/notifier/user_upgrade_notification.erb
+END
+goal_creation_notification_marriagereminders.erb
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/habitforge/!svn/ver/2/trunk/app/views/notifier/goal_creation_notification_marriagereminders.erb
+END
+checkpoint_notification.erb
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/habitforge/!svn/ver/237/trunk/app/views/notifier/checkpoint_notification.erb
+END
+coach_user_unknown_notification.erb
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/habitforge/!svn/ver/52/trunk/app/views/notifier/coach_user_unknown_notification.erb
+END
+user_upgrade_5year_notification.erb
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/habitforge/!svn/ver/127/trunk/app/views/notifier/user_upgrade_5year_notification.erb
+END
+bet_added_notification.erb
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/habitforge/!svn/ver/2/trunk/app/views/notifier/bet_added_notification.erb
+END
+bet_goal_unknown_notification.erb
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/habitforge/!svn/ver/2/trunk/app/views/notifier/bet_goal_unknown_notification.erb
+END
+notify_support.erb
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/habitforge/!svn/ver/2/trunk/app/views/notifier/notify_support.erb
+END
+checkpoint_notification_multiple_reengagefocus.erb
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/habitforge/!svn/ver/2/trunk/app/views/notifier/checkpoint_notification_multiple_reengagefocus.erb
+END
+password_reset_instructions_forittobe.erb
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/habitforge/!svn/ver/2/trunk/app/views/notifier/password_reset_instructions_forittobe.erb
+END
+promotion_1.erb
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/habitforge/!svn/ver/2/trunk/app/views/notifier/promotion_1.erb
+END

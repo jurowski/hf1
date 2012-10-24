@@ -1,0 +1,10 @@
+drwxr-xr-x    2 jurowsk1 jurowsk1     4096 Sep 25 16:12 .
+drwxr-xr-x    3 jurowsk1 jurowsk1     4096 Sep 25 16:12 ..
+-rw-r--r--    1 jurowsk1 jurowsk1     1053 Sep 25 16:12 _request_and_response.erb
+-rw-r--r--    1 jurowsk1 jurowsk1      963 Sep 25 16:12 _trace.erb
+-rw-r--r--    1 jurowsk1 jurowsk1      428 Sep 25 16:12 diagnostics.erb
+-rw-r--r--    1 jurowsk1 jurowsk1      563 Sep 25 16:12 layout.erb
+-rw-r--r--    1 jurowsk1 jurowsk1       63 Sep 25 16:12 missing_template.erb
+-rw-r--r--    1 jurowsk1 jurowsk1      334 Sep 25 16:12 routing_error.erb
+-rw-r--r--    1 jurowsk1 jurowsk1      808 Sep 25 16:12 template_error.erb
+-rw-r--r--    1 jurowsk1 jurowsk1       58 Sep 25 16:12 unknown_action.erb

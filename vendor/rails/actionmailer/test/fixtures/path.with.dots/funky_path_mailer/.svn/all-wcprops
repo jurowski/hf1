@@ -1,0 +1,17 @@
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/habitforge/!svn/ver/2/trunk/vendor/rails/actionmailer/test/fixtures/path.with.dots/funky_path_mailer
+END
+.listing
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/svn/habitforge/!svn/ver/2/trunk/vendor/rails/actionmailer/test/fixtures/path.with.dots/funky_path_mailer/.listing
+END
+multipart_with_template_path_with_dots.erb
+K 25
+svn:wc:ra_dav:version-url
+V 148
+/svn/habitforge/!svn/ver/2/trunk/vendor/rails/actionmailer/test/fixtures/path.with.dots/funky_path_mailer/multipart_with_template_path_with_dots.erb
+END

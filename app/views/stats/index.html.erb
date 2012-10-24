@@ -1,0 +1,34 @@
+<h1>Listing stats</h1>
+
+<table>
+  <tr>
+    <th>Recorddate</th>
+    <th>Recordhour</th>
+    <th>Usercount</th>
+    <th>Goalcount</th>
+    <th>Goalactivecount</th>
+    <th>Goalsnewcreated</th>
+    <th>Usersnewcreated</th>
+    <th>Checkpointemailssent</th>
+  </tr>
+
+<% @stats.each do |stat| %>
+  <tr>
+    <td><%=h stat.recorddate %></td>
+    <td><%=h stat.recordhour %></td>
+    <td><%=h stat.usercount %></td>
+    <td><%=h stat.goalcount %></td>
+    <td><%=h stat.goalactivecount %></td>
+    <td><%=h stat.goalsnewcreated %></td>
+    <td><%=h stat.usersnewcreated %></td>
+    <td><%=h stat.checkpointemailssent %></td>
+    <td><%= link_to 'Show', stat %></td>
+    <td><%= link_to 'Edit', edit_stat_path(stat) %></td>
+    <td><%= link_to 'Destroy', stat, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New stat', new_stat_path %>

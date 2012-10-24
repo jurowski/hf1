@@ -1,0 +1,42 @@
+<h1>Editing coach</h1>
+
+<% form_for(@coach) do |f| %>
+  <%= f.error_messages %>
+
+  <% if current_user.is_admin != nil and current_user.is_admin == 1 %>
+      <p>
+        <%= f.label :user_id %><br />
+        <%= f.text_field :user_id %>
+      </p>
+      <p>
+        <%= f.label :categories %><br />
+        <%= f.text_field :categories %>
+      </p>
+      <p>
+        <%= f.label :client_count_active %><br />
+        <%= f.text_field :client_count_active %>
+      </p>
+      <p>
+        <%= f.label :client_count_cumulative %><br />
+        <%= f.text_field :client_count_cumulative %>
+      </p>
+      <p>
+        <%= f.label :is_willing_to_work %><br />
+        <%= f.text_field :is_willing_to_work %>
+      </p>
+
+  <% end %>
+  <p>
+    The max number of active clients I want to have at one time is:
+    <%= f.text_field :client_count_limit, :size => 2 %> (0-100)
+  </p>
+  <p>
+    <%= f.label :blurb %><br />
+    <%= f.text_area :blurb %>
+  </p>
+  <p>
+    <%= f.submit 'Save Changes' %>
+  </p>
+<% end %>
+
+<%= link_to 'Cancel Editing', @coach %>

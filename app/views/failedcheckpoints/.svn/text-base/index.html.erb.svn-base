@@ -1,0 +1,26 @@
+<h1>Listing failedcheckpoints</h1>
+
+<table>
+  <tr>
+    <th>User</th>
+    <th>Goal</th>
+    <th>Checkpoint</th>
+    <th>Email</th>
+  </tr>
+
+<% @failedcheckpoints.each do |failedcheckpoint| %>
+  <tr>
+    <td><%=h failedcheckpoint.user_id %></td>
+    <td><%=h failedcheckpoint.goal_id %></td>
+    <td><%=h failedcheckpoint.checkpoint_id %></td>
+    <td><%=h failedcheckpoint.email %></td>
+    <td><%= link_to 'Show', failedcheckpoint %></td>
+    <td><%= link_to 'Edit', edit_failedcheckpoint_path(failedcheckpoint) %></td>
+    <td><%= link_to 'Destroy', failedcheckpoint, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New failedcheckpoint', new_failedcheckpoint_path %>

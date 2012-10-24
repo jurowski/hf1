@@ -1,0 +1,9 @@
+drwxr-xr-x    2 jurowsk1 jurowsk1     4096 Dec  6 13:05 .
+drwxr-xr-x   12 jurowsk1 jurowsk1     4096 Dec  3 13:51 ..
+-rw-r--r--    1 jurowsk1 jurowsk1     3523 Oct 21 16:22 _alluserssharedhabits.erb
+-rw-r--r--    1 jurowsk1 jurowsk1      997 Nov 29 18:03 _form.erb
+-rw-r--r--    1 jurowsk1 jurowsk1      678 Nov 29 18:05 edit.html.erb
+-rw-r--r--    1 jurowsk1 jurowsk1      422 Nov 25 22:14 index.html.erb
+-rw-r--r--    1 jurowsk1 jurowsk1      183 Sep 25 16:10 new.html.erb
+-rw-r--r--    1 jurowsk1 jurowsk1      385 Dec  6 19:03 show.html.erb
+-rw-r--r--    1 jurowsk1 jurowsk1     1451 Sep 26 03:33 tell_a_friend.html.erb

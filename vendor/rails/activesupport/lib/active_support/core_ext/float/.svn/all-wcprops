@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/habitforge/!svn/ver/2/trunk/vendor/rails/activesupport/lib/active_support/core_ext/float
+END
+time.rb
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/habitforge/!svn/ver/2/trunk/vendor/rails/activesupport/lib/active_support/core_ext/float/time.rb
+END
+.listing
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/habitforge/!svn/ver/2/trunk/vendor/rails/activesupport/lib/active_support/core_ext/float/.listing
+END
+rounding.rb
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/habitforge/!svn/ver/2/trunk/vendor/rails/activesupport/lib/active_support/core_ext/float/rounding.rb
+END

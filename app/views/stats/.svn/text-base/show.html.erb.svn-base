@@ -1,0 +1,43 @@
+<p>
+  <b>Recorddate:</b>
+  <%=h @stat.recorddate %>
+</p>
+
+<p>
+  <b>Recordhour:</b>
+  <%=h @stat.recordhour %>
+</p>
+
+<p>
+  <b>Usercount:</b>
+  <%=h @stat.usercount %>
+</p>
+
+<p>
+  <b>Goalcount:</b>
+  <%=h @stat.goalcount %>
+</p>
+
+<p>
+  <b>Goalactivecount:</b>
+  <%=h @stat.goalactivecount %>
+</p>
+
+<p>
+  <b>Goalsnewcreated:</b>
+  <%=h @stat.goalsnewcreated %>
+</p>
+
+<p>
+  <b>Usersnewcreated:</b>
+  <%=h @stat.usersnewcreated %>
+</p>
+
+<p>
+  <b>Checkpointemailssent:</b>
+  <%=h @stat.checkpointemailssent %>
+</p>
+
+
+<%= link_to 'Edit', edit_stat_path(@stat) %> |
+<%= link_to 'Back', stats_path %>

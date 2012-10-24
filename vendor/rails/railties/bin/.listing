@@ -1,0 +1,12 @@
+drwxr-xr-x    3 jurowsk1 jurowsk1     4096 Sep 25 16:12 .
+drwxr-xr-x   11 jurowsk1 jurowsk1     4096 Sep 25 16:12 ..
+-rwxr-xr-x    1 jurowsk1 jurowsk1      152 Sep 25 16:12 about
+-rwxr-xr-x    1 jurowsk1 jurowsk1       98 Sep 25 16:12 console
+-rwxr-xr-x    1 jurowsk1 jurowsk1      100 Sep 25 16:12 dbconsole
+-rwxr-xr-x    1 jurowsk1 jurowsk1       98 Sep 25 16:12 destroy
+-rwxr-xr-x    1 jurowsk1 jurowsk1       99 Sep 25 16:12 generate
+drwxr-xr-x    2 jurowsk1 jurowsk1     4096 Sep 25 16:12 performance
+-rwxr-xr-x    1 jurowsk1 jurowsk1       97 Sep 25 16:12 plugin
+-rwxr-xr-x    1 jurowsk1 jurowsk1      636 Sep 25 16:12 rails
+-rwxr-xr-x    1 jurowsk1 jurowsk1       97 Sep 25 16:12 runner
+-rwxr-xr-x    1 jurowsk1 jurowsk1       97 Sep 25 16:12 server

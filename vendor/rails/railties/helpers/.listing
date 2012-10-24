@@ -1,0 +1,6 @@
+drwxr-xr-x    2 jurowsk1 jurowsk1     4096 Sep 25 16:12 .
+drwxr-xr-x   11 jurowsk1 jurowsk1     4096 Sep 25 16:12 ..
+-rw-r--r--    1 jurowsk1 jurowsk1      430 Sep 25 16:12 application_controller.rb
+-rw-r--r--    1 jurowsk1 jurowsk1      115 Sep 25 16:12 application_helper.rb
+-rw-r--r--    1 jurowsk1 jurowsk1      225 Sep 25 16:12 performance_test.rb
+-rw-r--r--    1 jurowsk1 jurowsk1     1800 Sep 25 16:12 test_helper.rb

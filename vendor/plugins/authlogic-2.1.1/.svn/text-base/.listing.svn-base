@@ -1,0 +1,15 @@
+drwxr-xr-x    7 jurowsk1 jurowsk1     4096 Sep 25 16:31 .
+drwxr-xr-x    3 jurowsk1 jurowsk1     4096 Sep 25 16:30 ..
+-rw-r--r--    1 jurowsk1 jurowsk1       68 Sep 11 22:19 .gitignore
+-rw-r--r--    1 jurowsk1 jurowsk1    24896 Sep 11 22:19 CHANGELOG.rdoc
+-rw-r--r--    1 jurowsk1 jurowsk1     1071 Sep 11 22:19 LICENSE
+-rw-r--r--    1 jurowsk1 jurowsk1    18365 Sep 11 22:19 README.rdoc
+-rw-r--r--    1 jurowsk1 jurowsk1     1306 Sep 11 22:19 Rakefile
+-rw-r--r--    1 jurowsk1 jurowsk1       35 Sep 11 22:19 VERSION.yml
+-rw-r--r--    1 jurowsk1 jurowsk1     8532 Sep 11 22:19 authlogic.gemspec
+drwxr-xr-x    3 jurowsk1 jurowsk1     4096 Sep 25 16:30 generators
+-rw-r--r--    1 jurowsk1 jurowsk1       49 Sep 11 22:19 init.rb
+drwxr-xr-x    3 jurowsk1 jurowsk1     4096 Sep 25 16:31 lib
+drwxr-xr-x    2 jurowsk1 jurowsk1     4096 Sep 25 16:31 rails
+drwxr-xr-x    2 jurowsk1 jurowsk1     4096 Sep 25 16:31 shoulda_macros
+drwxr-xr-x    7 jurowsk1 jurowsk1     4096 Sep 25 16:31 test

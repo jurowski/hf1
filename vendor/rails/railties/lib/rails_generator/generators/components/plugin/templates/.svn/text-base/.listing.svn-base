@@ -1,0 +1,14 @@
+drwxr-xr-x    2 jurowsk1 jurowsk1     4096 Sep 25 16:12 .
+drwxr-xr-x    3 jurowsk1 jurowsk1     4096 Sep 25 16:12 ..
+-rw-r--r--    1 jurowsk1 jurowsk1     1086 Sep 25 16:12 MIT-LICENSE
+-rw-r--r--    1 jurowsk1 jurowsk1      206 Sep 25 16:12 README
+-rw-r--r--    1 jurowsk1 jurowsk1      588 Sep 25 16:12 Rakefile
+-rw-r--r--    1 jurowsk1 jurowsk1      145 Sep 25 16:12 USAGE
+-rw-r--r--    1 jurowsk1 jurowsk1      178 Sep 25 16:12 generator.rb
+-rw-r--r--    1 jurowsk1 jurowsk1       25 Sep 25 16:12 init.rb
+-rw-r--r--    1 jurowsk1 jurowsk1       25 Sep 25 16:12 install.rb
+-rw-r--r--    1 jurowsk1 jurowsk1       20 Sep 25 16:12 plugin.rb
+-rw-r--r--    1 jurowsk1 jurowsk1       94 Sep 25 16:12 tasks.rake
+-rw-r--r--    1 jurowsk1 jurowsk1       78 Sep 25 16:12 test_helper.rb
+-rw-r--r--    1 jurowsk1 jurowsk1       27 Sep 25 16:12 uninstall.rb
+-rw-r--r--    1 jurowsk1 jurowsk1      164 Sep 25 16:12 unit_test.rb

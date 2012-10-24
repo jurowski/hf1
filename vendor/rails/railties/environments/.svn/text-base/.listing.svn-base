@@ -1,0 +1,7 @@
+drwxr-xr-x    2 jurowsk1 jurowsk1     4096 Sep 25 16:12 .
+drwxr-xr-x   11 jurowsk1 jurowsk1     4096 Sep 25 16:12 ..
+-rw-r--r--    1 jurowsk1 jurowsk1     2795 Sep 25 16:12 boot.rb
+-rw-r--r--    1 jurowsk1 jurowsk1      747 Sep 25 16:12 development.rb
+-rw-r--r--    1 jurowsk1 jurowsk1     2020 Sep 25 16:12 environment.rb
+-rw-r--r--    1 jurowsk1 jurowsk1     1011 Sep 25 16:12 production.rb
+-rw-r--r--    1 jurowsk1 jurowsk1     1311 Sep 25 16:12 test.rb

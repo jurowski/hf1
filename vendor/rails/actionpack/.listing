@@ -1,0 +1,10 @@
+drwxr-xr-x    4 jurowsk1 jurowsk1     4096 Sep 25 16:12 .
+drwxr-xr-x    8 jurowsk1 jurowsk1     4096 Sep 25 16:12 ..
+-rw-r--r--    1 jurowsk1 jurowsk1   259248 Sep 25 16:12 CHANGELOG
+-rw-r--r--    1 jurowsk1 jurowsk1     1074 Sep 25 16:12 MIT-LICENSE
+-rw-r--r--    1 jurowsk1 jurowsk1    13068 Sep 25 16:12 README
+-rw-r--r--    1 jurowsk1 jurowsk1      810 Sep 25 16:12 RUNNING_UNIT_TESTS
+-rw-r--r--    1 jurowsk1 jurowsk1     4911 Sep 25 16:12 Rakefile
+-rw-r--r--    1 jurowsk1 jurowsk1      787 Sep 25 16:12 install.rb
+drwxr-xr-x    5 jurowsk1 jurowsk1     4096 Sep 25 16:12 lib
+drwxr-xr-x    7 jurowsk1 jurowsk1     4096 Sep 25 16:12 test

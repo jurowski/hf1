@@ -1,0 +1,95 @@
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/habitforge/!svn/ver/2/trunk/vendor/plugins/newrelic_rpm/lib/new_relic
+END
+local_environment.rb
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/habitforge/!svn/ver/2/trunk/vendor/plugins/newrelic_rpm/lib/new_relic/local_environment.rb
+END
+rack.rb
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/habitforge/!svn/ver/2/trunk/vendor/plugins/newrelic_rpm/lib/new_relic/rack.rb
+END
+control.rb
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/habitforge/!svn/ver/2/trunk/vendor/plugins/newrelic_rpm/lib/new_relic/control.rb
+END
+version.rb
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/habitforge/!svn/ver/2/trunk/vendor/plugins/newrelic_rpm/lib/new_relic/version.rb
+END
+transaction_sample.rb
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/habitforge/!svn/ver/2/trunk/vendor/plugins/newrelic_rpm/lib/new_relic/transaction_sample.rb
+END
+transaction_analysis.rb
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/habitforge/!svn/ver/2/trunk/vendor/plugins/newrelic_rpm/lib/new_relic/transaction_analysis.rb
+END
+recipes.rb
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/habitforge/!svn/ver/2/trunk/vendor/plugins/newrelic_rpm/lib/new_relic/recipes.rb
+END
+merbtasks.rb
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/habitforge/!svn/ver/2/trunk/vendor/plugins/newrelic_rpm/lib/new_relic/merbtasks.rb
+END
+metric_spec.rb
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/habitforge/!svn/ver/2/trunk/vendor/plugins/newrelic_rpm/lib/new_relic/metric_spec.rb
+END
+noticed_error.rb
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/habitforge/!svn/ver/2/trunk/vendor/plugins/newrelic_rpm/lib/new_relic/noticed_error.rb
+END
+agent.rb
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/habitforge/!svn/ver/2/trunk/vendor/plugins/newrelic_rpm/lib/new_relic/agent.rb
+END
+stats.rb
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/habitforge/!svn/ver/2/trunk/vendor/plugins/newrelic_rpm/lib/new_relic/stats.rb
+END
+metric_parser.rb
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/habitforge/!svn/ver/2/trunk/vendor/plugins/newrelic_rpm/lib/new_relic/metric_parser.rb
+END
+metrics.rb
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/habitforge/!svn/ver/2/trunk/vendor/plugins/newrelic_rpm/lib/new_relic/metrics.rb
+END
+metric_data.rb
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/habitforge/!svn/ver/2/trunk/vendor/plugins/newrelic_rpm/lib/new_relic/metric_data.rb
+END

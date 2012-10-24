@@ -1,0 +1,744 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+ 
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <base href="<%= server_root_url %>/"/>
+  <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+
+  <meta name="keywords" content="habitforge, habit forge, habit tracker, goal setting, habits, goals, resolutions, new years resolutions, new years resolution, accountability, accountability buddy, self improvement, 21 days, form a habit, 21 days to form a habit, sandon, sandon jurowski" />
+  <meta name="description" content="Free web app that emails you daily asking you a yes or no question about whether you followed through on a habit you want to establish (exercising daily, drinking 8 glasses of water, cutting caffeine intake). If you say "yes" for 21 days in a row, you've done it. Skip a day, and start over at day 1. Invite friend to keep you accountable." />
+
+
+
+
+<% if session[:sponsor] == "eathealthy" %>
+  <%= stylesheet_link_tag 'eathealthy' %>
+<% else %>
+  <%= stylesheet_link_tag 'earthlingtwo' %>
+<% end %>
+
+<%= javascript_include_tag :defaults %>
+
+<title><%= @site_name %> | <%= @tagline %></title>
+<%
+
+### GET DATE NOW ###
+jump_forward_days = 0
+
+tnow = Time.now
+
+tnow_Y = tnow.strftime("%Y").to_i #year, 4 digits
+tnow_m = tnow.strftime("%m").to_i #month of the year
+tnow_d = tnow.strftime("%d").to_i #day of the month
+tnow_H = tnow.strftime("%H").to_i #hour (24-hour format)
+tnow_M = tnow.strftime("%M").to_i #minute of the hour
+dnow = Date.new(tnow_Y, tnow_m, tnow_d) + jump_forward_days
+
+d3days_ago = dnow - 3
+######
+
+
+@cn = controller.controller_name 
+@ca = controller.action_name 
+
+
+%>
+
+
+<% # " | Current Page: " + @cn + "/" + @ca 
+%>
+
+</head>
+<body>
+
+<div id="wrapper">
+    	<% if current_user %>
+        <table cellpadding=5 cellspacing=5 border=0 width=100%>
+          <tr>
+            <td align=right>
+            <strong>
+            <%
+            @tomessages = Tomessage.find(:all, :conditions => "to_id = '#{current_user.id}' and unread = 1")
+            if @tomessages
+                if @tomessages.size > 0
+                %>
+                 <a href="/tomessages"><font color="red"><%= @tomessages.size %></strong> New Messages</font></a>
+                <%
+                else
+                %>
+                  <a href="/tomessages">Messages (0 New)</font></a>                
+                <%
+                end
+            end
+            %>
+
+
+            
+            
+            <font color="black">Signed in as <%= current_user.first_name%> | 					<%= link_to "<font color='black'>My Account</font>", account_path %>
+ | <%= link_to "<font color='black'>Log Out</font>", user_session_path, :method => :delete %>  			    
+            </font></strong>
+            </td>
+          </tr>
+        </table>
+      <% end %>
+
+	<div id="header">
+		<div id="logo">
+			<br>
+			<%= @site_name_format %>
+      <br>
+			<p><font color=#999999><%= @tagline %></font></p>
+			
+<%
+if params[:promo_1_token] and params[:user_id]
+    @users = User.find(:all, :conditions => "id = #{params[:user_id]} and promo_1_token = '#{params[:promo_1_token]}'")
+    for user in @users
+        if user.promo_1_token != "used"
+            user.promo_1_token = "used"
+            user.promo_1_responded = 1
+            user.save
+        end
+    end    
+end
+if params[:unsubscribe] and params[:first_name]
+    @users = User.find(:all, :conditions => "id = #{params[:unsubscribe]} and first_name = '#{params[:first_name]}'")
+    for user in @users
+        user.unsubscribed_from_promo_emails = 1
+        user.save
+        %>
+        <script language="javascript" type="text/javascript">
+alert('You have been unsubscribed, and will not receive any more promotional emails from HabitForge.');
+</script>
+        <%
+    end    
+end
+%>
+    
+    
+<% if session[:current_user_is_admin] == true and (params[:impersonate] or session[:impersonate]) %>
+  <br><a href="users?impersonate=3>">Become Admin Again</a>
+<% end %>
+		</div>
+	</div>
+	<!-- end #header -->
+	<div id="menu">
+		<ul>
+				<li><a href="http://habitforge.wordpress.com" target="_blank">Blog</a></li>
+				<li><a href="/donations.html" target="_blank">Donate</a></li>
+			  <% if !current_user %>
+				<li 
+					<% if @cn == "user_sessions" and @ca == "new" %> 
+						class="current_page_item" 
+					<% end %>
+				><%= link_to "About", new_user_session_path %></li>
+				<li 
+					<% if @cn == "users" and @ca == "new" %> 
+						class="current_page_item" 
+					<% end %>
+				><%= link_to "Sign Up Free", new_user_path %></li>
+				<li><%= link_to "Log In", new_user_session_path + "?skip_intro=1" %></li>
+		      <% else %>
+			    <li 
+					<% if @cn == "goals" or @cn == "checkpoints" %> 
+						class="current_page_item" 
+					<% end %>
+				><%= link_to 'My Habits', '/goals' %></li>
+			    <li 
+					<% if @cn == "cheers" %> 
+						class="current_page_item" 
+					<% end %>
+				><%= link_to 'Friends', '/cheers' %></li>
+			    <li 
+					<% if @cn == "users" and @ca == "show" %> 
+						class="current_page_item" 
+					<% end %>
+				>
+				</li>
+			    <%
+			    if current_user.first_name == "Admin" && current_user.email == "jurowski2@gmail.com" 
+			      current_user_is_admin = true
+			    else
+			      current_user_is_admin = false
+			    end
+			    %>
+			    <% if current_user_is_admin %>
+			      <li><%= link_to 'Users', '/users' %></li>
+			      <li><%= link_to 'New user', new_account_path %></li>
+			      <%= pluralize User.logged_in.count, "user" %> currently logged in<br /> <!-- This based on last_request_at, if they were active < 10 minutes they are logged in -->
+			    <% end %>
+			    <% #"Current Page: " + @cn + "/" + @ca 	%>
+			  <% end %>
+		</ul>
+	</div>
+
+	<!-- end #menu -->
+
+	  <% if session[:sponsor] == "eathealthy" %>
+  	  <DIV id="page" style="font-size:14px; -moz-border-radius: 15px; -webkit-border-radius: 15px; border-width:thin; border-bottom-style:solid; border-left-style:solid; border-right-style:solid; border-top-style:solid; border-color:#CCCCCC; background-color:#eeeeee; padding:0px 0px 0px 0px;">  
+	  <% else %>
+  	  <div id="page">
+	  <% end %>
+    <% if @ca == "sharelinks" or !current_user %>
+      <% ### hide the sharelinks %>
+    <% else %>
+      <table border=0 cellpadding=0 cellspacing=0 width=100%>
+        <tr>
+          <td>
+            <a href="goals/1/sharelinks" target="_blank"><img src="/images/sharing_icons.png" border=0 alt="Share"/></a>            
+          </td>
+          <td width=100% nowrap>
+            &nbsp
+          	<% if current_user %>
+          		  <img src="/images/friend.png" alt="Tell a friend" width = 25/>
+          			<%= link_to "Email a friend about habitforge!", :controller => "users", :action => "tell_a_friend", :id => current_user.id%>
+            <% end %>
+            &nbsp
+          </td>
+          <td nowrap align=right>
+          </td>
+        </tr>
+      </table>
+    <% end %>
+  <% if @cn == "goals" and @ca == "sharelinks" %>
+		<% 
+		#http://digg.com/tools/integrate#1
+		### screw digg... it' slowing down page loads A LOT
+
+		#<!--
+		#          --> 
+		%>
+		<DIV style="border-width:thin; border-style:solid; border-color:#CCCCCC">     
+     <center>
+		<table cellpadding=5 cellspacing=0 border=0>
+		<tr>
+		<td>
+    <script type="text/javascript">
+    digg_url = 'habitforge.com';
+    digg_skin = 'compact';
+    digg_window = 'new';
+    </script>
+    <script src="http://digg.com/tools/diggthis.js" type="text/javascript"></script>
+    </td>
+    <td>
+
+    <a href="http://www.stumbleupon.com/submit?url=http://habitforge.com%26title%3DThe%2BArticle%2BTitle"> <img border=0 src="http://cdn.stumble-upon.com/images/120x20_su_gray.gif" alt=""></a>
+
+    </td>
+
+    <td>
+
+    <a name="fb_share" type="button" share_url="http://habitforge.com" href="http://www.facebook.com/sharer.php">Share</a><script src="http://static.ak.fbcdn.net/connect.php/js/FB.Share" type="text/javascript"></script>
+    <td>
+  
+    <script type="text/javascript" src="http://static.ak.connect.facebook.com/js/api_lib/v0.4/FeatureLoader.js.php/en_US">
+    </script>
+    <script type="text/javascript">
+      FB.init("ed1371ea0af8481bbb2d049845b75fdf");
+    </script>
+    <fb:fan profile_id="281059421608" stream="" connections="" width="300">
+    </fb:fan>
+
+    </td>
+    <td>
+    <a href=http://twitter.com/home?status=Using%20habitforge!%20http://habitforge.com><img src='/images/twitter.png' border=0 alt="Tweet this!"/></a>
+    </td>
+    <td>
+    <a href="http://twitter.com/habitforge"><img src='/images/twitter_follow_me.png' border=0 alt="Follow Us on Twitter"/></a>
+    </td>
+    </tr>
+    </table>
+    </div>
+  <% end %>
+
+  <% if !current_user %>
+
+
+  <%
+  if @cn == "user_sessions" and @ca == "new" and params[:skip_intro] != "1"
+  %>
+
+			<div class="post">
+
+<br>
+<center><img src='/images/at_least.png' border=0></center>
+
+    <DIV style="font-size:16px; border-width:thin; border-left-style:none; border-right-style:none; border-top-style:dashed; border-bottom-style:dashed; border-color:#CCCCCC; background-color:#FFFFCC;  padding:10px 10px 10px 10px;">  
+
+    <center>
+    <i>
+		<h3>What could you do daily to improve your life?</h3>
+		    <br>
+		    We'll check in daily by email asking how you did. 
+    <br>
+  
+		Just click "yes" or "no" from the email. 
+    <br>
+
+		Succeed for 21 days, and the new action will be easier than ever.
+		<br>
+		Skip a day and the clock starts over at day one. 
+    </i>
+    </div>
+		</center>
+    <center>
+		<br><a href="/users/new"><h3><img src='/images/start_now.gif' border=0></h3></a> 
+    </center>
+
+
+    </div>
+
+  <% end %>
+<% end %> 
+		<div id="content">			
+			<div class="post">
+			    <%
+			    if @cn == "user_sessions" and @ca == "new" and params[:skip_intro] != "1"
+				  %>
+          <table border=0 cellpadding=0 cellspacing=0>
+          <tr><td>
+          <br>
+      		</div>
+      	  <h1>3 Simple Steps</h1>
+      	  <br>
+          <DIV style="font-size:12px; border-width:thin; border-left-style:solid; border-right-style:solid; border-bottom-style:solid; border-top-style:solid; border-color:#CCCCCC; background-color:#FFFFFF; padding:10px 10px 10px 10px;">  
+
+						<h3>Step 1: Name the challenge.</h3>
+						<p>If you could do one thing every day that would change your life for the better, <strong>what would it be?</strong></p>
+      			  <img src="/images/step1.png" alt="Step 1" width = 500/>
+
+              <br>
+              <br>
+              <br>
+              <br>
+
+						<h3>Step 2: Check your email.</h3>
+			
+						<p>We'll ask you daily by email if you were successful the day before at doing that one thing. From within the email, just click "yes" or "no", and <strong>we'll do the rest</strong>.</p>
+
+      			  <img src="/images/step2.png" alt="Step 2"/>
+              <br>
+              <br>
+              <br>
+              <br>
+
+						<h3>Step 3: Succeed for twenty-one days.</h3>
+						<p>Do that one thing you've committed to doing. Skip a day before succeeding for 21 days straight, and we'll start you back at day one. Succeed for 21 days in a row, and you can enter monitoring mode. But by that point the action should seem second nature.</p>
+    			  <img src="/images/step3.png" alt="Step 3" width = 600/>
+
+            </div>
+
+					</div>
+
+					</td></tr>
+				  </table>
+				<%
+		    end
+
+		    %>
+
+        <% if @cn == "user_sessions" and @ca == "new" and !params[:skip_intro] %>
+        <% else %>
+    			<div class="entry">
+
+
+    				  <%= yield %>          
+    			</div>
+        <% end %>
+      
+			</div>
+			<div style="clear: both;">&nbsp;</div>
+		</div>
+		</center>
+		<!-- end #content -->
+		<div id="sidebar">
+
+
+    <% if current_user or @cn == "users" or @cn == "checkpoints" or params[:skip_intro] or @ca == "sharelinks"%>
+      <% ### HIDE ALERT AND TESTIMONIALS %>
+    <% else %>
+	
+      <%
+    	#### INSERT TESTIMONIAL HERE 
+      %>
+    
+
+			<div class="entry">
+      &nbsp
+      </div>
+
+      <% if session[:sponsor] == "clearworth" %>        
+        <img src="images/clearworth.gif" border=0>
+      <% end %>
+
+      <% if session[:sponsor] == "eathealthy" %>        
+        <img src="images/weight-watchers.jpg" width=200 border=0>
+      <% end %>
+
+
+
+      <% if session[:sponsor] == "habitforge" %>
+
+
+        <center>
+    		<a href="http://www.pcworld.com/article/189178/112_best_free_downloads_sites_and_services_the_full_list.html" target='_blank'>
+    		  <img src="images/pcworld.png" border=0>
+    		</a>
+        </center>
+
+        <hr>
+        <h1>Does This Work?</h1>
+        Check out the numbers below...
+        <br>
+        <br>
+        <h3>37%</h3>
+        Average Increased Success Rate
+        <br>
+        after 30 days of use
+        <br>
+
+
+        <h3>726,232</h3>
+        Successful days logged
+        <hr>
+
+
+        
+        <center>
+        <a href="http://www.amazon.com/gp/product/030746363X?ie=UTF8&tag=habitforge-20&linkCode=as2&camp=1789&creative=9325&creativeASIN=030746363X" target="_blank"><img border="0" src="images/4_hour_body.png"></a>
+        </center>
+
+
+
+
+        
+        <center>
+    		<a href="http://www.womansday.com/Articles/Health/Diet-Nutrition/Make-Healthy-Habits-Stick.html" target='_blank'>
+    		  <img src="images/womansday.png" border=0 width=150>
+    		</a>
+        </center>
+        
+
+
+        
+        <DIV style="font-size:12px; border-width:thin; border-left-style:solid; border-right-style:solid; border-top-style:solid; border-bottom-style:solid; border-color:#CCCCCC; background-color:#eeeeee; padding:10px 10px 10px 10px;">  
+
+                <i>
+        "I’ve been doing this for 20 years and can think of only two things that have ever helped: My Daily Habits list and HabitForge."
+        </i>
+        --<a href='http://www.momimprovement.com/11-things/' target='_blank'>momimprovement.com</a>
+
+
+        <br>
+        <br>
+
+        </div>
+
+        <br>
+        <center>
+    		<a href="http://tech.ca.msn.com/pcworld-article.aspx?cp-documentid=23549978" target='_blank'>
+    		  <img src="images/msn.png" border=0 width=180>
+    		</a>
+        </center>
+
+
+
+        <center>
+    		<a href="http://lifehacker.com/5438863/habitforge-helps-you-form-new-habits-in-21+day-blocks" target='_blank'>
+    		  <img src="images/lifehacker.png" border=0>
+    		</a>
+        </center>
+
+
+        <DIV style="font-size:12px; border-width:thin; border-left-style:solid; border-right-style:solid; border-top-style:solid; border-bottom-style:solid; border-color:#CCCCCC; background-color:#eeeeee; padding:10px 10px 10px 10px;">  
+
+
+        <i>
+          "I'm now back in love with my "to do" list and I'm hugely more efficient. Even better, I'm getting the really important stuff done."
+        </i>
+        --<a href='http://www.publicationcoach.com/free-articles/habitforge.php' target='_blank'>Daphne Gray-Grant</a>
+
+        <br>
+        <br>
+        </div>
+
+        <br>
+        <center>
+    		<a href="http://www.familycircle.com/family-fun/technology/online-tools-for-achieving-goals/" target='_blank'>
+    		  <img src="images/familycircle.png" border=0 height=100px >
+    		</a>
+        </center>
+
+
+
+        <DIV style="font-size:14px; border-width:thin; border-bottom-style:none; border-left-style:none; border-right-style:none; border-top-style:none; border-color:#CCCCCC; background-color:#FFFFFF; padding:10px 10px 10px 10px;">  
+        </div>
+
+
+
+
+
+
+
+
+
+        <% end %>
+
+    <% end %>
+
+
+
+			<ul>
+
+
+      <% 
+      if current_user or @ca == "autoupdate" or @ca == "autoupdatemultiple" 
+      %> 
+        <% if session[:sponsor] == "habitforge" %>   
+          <% 
+          if params[:status] != "yes" 
+              ### Don't advertise if also asking for donation
+              
+                show_ads = 0
+                exercise = 0
+                eat_healthy = 0
+                ### Don't advertise if they've paid to skip ads
+                if current_user
+                      #if session[:site_name] == "habitforge" and (current_user.kill_ads_until == nil or dnow > current_user.kill_ads_until)
+                      if session[:site_name] == "habitforge" and (current_user.kill_ads_until == nil)
+                        show_ads = 1
+                        exercise_goals = Goal.find(:first, :conditions => "user_id = '#{current_user.id}' and category = 'Exercise'")
+                        if exercise_goals != nil
+                            exercise = 1
+                        end
+                        eat_healthy_goals = Goal.find(:first, :conditions => "user_id = '#{current_user.id}' and category = 'Diet, Healthy Foods and Water'")
+                        if eat_healthy_goals != nil
+                            eat_healthy = 1
+                        end
+                      end
+                else
+                    if @ca == "autoupdate"
+                        #if session[:site_name] == "habitforge" and (@checkpoint.goal.user.kill_ads_until == nil or dnow > @checkpoint.goal.user.kill_ads_until)
+                        if @checkpoint != nil
+                            if session[:site_name] == "habitforge" and (@checkpoint.goal.user.kill_ads_until == nil)
+                                show_ads = 1
+                                if @checkpoint.goal.category == "Exercise"
+                                    exercise = 1
+                                end
+                                if @checkpoint.goal.category == "Diet, Healthy Foods and Water"
+                                    eat_healthy = 1
+                                end
+                            end
+                        end
+                    end
+                    if @ca == "autoupdatemultiple"
+                        #if session[:site_name] == "habitforge" and (@goal.user.kill_ads_until == nil or dnow > @goal.user.kill_ads_until)
+                        if @goal != nil
+                            if session[:site_name] == "habitforge" and (@goal.user.kill_ads_until == nil)
+                                show_ads = 1
+                                if @goal.category == "Exercise"
+                                    exercise = 1
+                                end
+                                if @goal.category == "Diet, Healthy Foods and Water"
+                                    eat_healthy = 1
+                                end
+                            end
+                        end
+                    end
+                end              
+                if show_ads == 1
+                    %> 
+                    <li>
+                        <br />
+                        <br />
+                        <br />
+
+                    <%
+                    random_display_int = rand(4) + 1 #between 1 and 4 
+
+                    if exercise == 1111 
+                    %>   
+
+                        <%
+                        if random_display_int == 1 
+                        %>   
+                            <iframe src="http://rcm.amazon.com/e/cm?lt1=_blank&bc1=000000&IS2=1&nou=1&bg1=FFFFFF&fc1=000000&lc1=0B0E1E&t=habitforge-20&o=1&p=8&l=as1&m=amazon&f=ifr&ref=qf_sp_asin_til&asins=1605295493" style="width:120px;height:240px;" scrolling="no" marginwidth="0" marginheight="0" frameborder="0"></iframe>
+                        <%
+                        end
+                        %>  
+                        <%
+                        if random_display_int == 2 
+                        %>   
+                            <iframe src="http://rcm.amazon.com/e/cm?t=habitforge-20&o=1&p=8&l=as1&asins=1605295507&nou=1&ref=qf_sp_asin_til&fc1=000000&IS2=1&lt1=_blank&m=amazon&lc1=0B0E1E&bc1=000000&bg1=FFFFFF&f=ifr" style="width:120px;height:240px;" scrolling="no" marginwidth="0" marginheight="0" frameborder="0"></iframe>
+                        <%
+                        end
+                        %>  
+                        <%
+                        if random_display_int == 3 
+                        %>   
+                            <iframe src="http://rcm.amazon.com/e/cm?t=habitforge-20&o=1&p=8&l=as1&asins=1579546579&nou=1&ref=qf_sp_asin_til&fc1=000000&IS2=1&lt1=_blank&m=amazon&lc1=0B0E1E&bc1=000000&bg1=FFFFFF&f=ifr" style="width:120px;height:240px;" scrolling="no" marginwidth="0" marginheight="0" frameborder="0"></iframe>
+                        <%
+                        end
+                        %>  
+                        <%
+                        if random_display_int == 4 
+                        %>   
+                            <iframe src="http://rcm.amazon.com/e/cm?t=habitforge-20&o=1&p=8&l=as1&asins=1592332161&nou=1&ref=qf_sp_asin_til&fc1=000000&IS2=1&lt1=_blank&m=amazon&lc1=0B0E1E&bc1=000000&bg1=FFFFFF&f=ifr" style="width:120px;height:240px;" scrolling="no" marginwidth="0" marginheight="0" frameborder="0"></iframe>
+                        <%
+                        end
+                        %>  
+
+                    <%
+                    else 
+                    %>
+                        <%
+                        if eat_healthy == 11111
+                        %>
+                            <%
+                            if random_display_int == 1 
+                            %> 
+                                <iframe src="http://rcm.amazon.com/e/cm?t=habitforge-20&o=1&p=8&l=as1&asins=0470080590&nou=1&ref=qf_sp_asin_til&fc1=000000&IS2=1&lt1=_blank&m=amazon&lc1=0B0E1E&bc1=000000&bg1=FFFFFF&f=ifr" style="width:120px;height:240px;" scrolling="no" marginwidth="0" marginheight="0" frameborder="0"></iframe>
+                            <%
+                            end
+                            %>  
+                            <%
+                            if random_display_int == 2 
+                            %>  
+                                <iframe src="http://rcm.amazon.com/e/cm?t=habitforge-20&o=1&p=8&l=as1&asins=0743266420&nou=1&ref=qf_sp_asin_til&fc1=000000&IS2=1&lt1=_blank&m=amazon&lc1=0B0E1E&bc1=000000&bg1=FFFFFF&f=ifr" style="width:120px;height:240px;" scrolling="no" marginwidth="0" marginheight="0" frameborder="0"></iframe> 
+                            <%
+                            end
+                            %>  
+                            <%
+                            if random_display_int == 3 
+                            %>  
+                                <iframe src="http://rcm.amazon.com/e/cm?t=habitforge-20&o=1&p=8&l=as1&asins=0972018417&nou=1&ref=qf_sp_asin_til&fc1=000000&IS2=1&lt1=_blank&m=amazon&lc1=0B0E1E&bc1=000000&bg1=FFFFFF&f=ifr" style="width:120px;height:240px;" scrolling="no" marginwidth="0" marginheight="0" frameborder="0"></iframe>
+                            <%
+                            end
+                            %>  
+                            <%
+                            if random_display_int == 4 
+                            %>
+                                <iframe src="http://rcm.amazon.com/e/cm?t=habitforge-20&o=1&p=8&l=as1&asins=1452861382&nou=1&ref=qf_sp_asin_til&fc1=000000&IS2=1&lt1=_blank&m=amazon&lc1=0B0E1E&bc1=000000&bg1=FFFFFF&f=ifr" style="width:120px;height:240px;" scrolling="no" marginwidth="0" marginheight="0" frameborder="0"></iframe>
+                            <%
+                            end
+                            %>  
+                        <%
+                        else
+                        %>
+                            <script type="text/javascript"><!--
+                            google_ad_client = "pub-8620829126449222";
+                            /* habitforge autoupdate page ads */
+                            google_ad_slot = "5902057735";
+                            google_ad_width = 300;
+                            google_ad_height = 250;
+                            //-->
+                            </script>
+                            <script type="text/javascript"
+                            src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+                            </script>                        
+                        <%
+                        end
+                        %>
+
+                    <%
+                    end    
+                    %>
+
+                    <%
+
+                    the_user_id = "0"
+                    if current_user 
+                      the_user_id = current_user.id.to_s
+                    else
+                      if @ca == "autoupdate"
+                          the_user_id = @checkpoint.goal.user.id.to_s
+                      end
+                      if @ca == "autoupdatemultiple"
+                          the_user_id = @goal.user.id.to_s
+                      end
+                    end
+
+                    if show_ads == 1
+                      %>
+                          <h4><%= link_to_function ("Hide the Ads!") {
+                           |page| page.visual_effect :toggle_appear, "membership" 
+                          }%></h4>
+                          <div id="membership" style="display:none;">
+                          <DIV style="border-width:thin; border-top-style:dashed; border-bottom-style:dashed; border-color:#CCCCCC;background-color:#FFFCCC; padding:0px 0px 0px 0px;">
+
+                    <br>
+                    <br>
+                    <h3>Supporting Member Benefits </h3>
+                    <br>• Create unlimited active habits
+                    <br>• No more advertisements
+                    <br>• Hides the periodic "please donate" splash screen
+                    <br>
+                    <br> 
+                        <br><h3><a href="http://habitforge.myshopify.com/collections/frontpage/products/habitforge-supporting-membership-1-year?ref=<%= the_user_id %>">Only $9.99 for 12 Months!</a></h3>
+                              
+                          </div>
+                          </div>
+                      <%
+                    end
+                end
+                %>  
+                
+
+
+
+                </li>
+     			</ul>
+      		<% end %> 
+        <% end %> 
+        <% if session[:sponsor] == "clearworth" %>        
+          <img src="images/clearworth.gif" border=0>
+        <% end %>
+        <% if session[:sponsor] == "eathealthy" %>        
+          <img src="images/weight-watchers.jpg" width=200 border=0>
+        <% end %>
+      <% end %>        
+      
+      
+
+
+  		</div>
+  		<!-- end #sidebar -->
+		<center>
+		<div style="clear: both;">&nbsp;</div>
+
+
+  </div>
+	<!-- end #page -->
+</div>
+
+
+<br>
+<br>
+
+
+<% if session[:sponsor] == "habitforge" %>
+  <center>
+  <DIV style="font-size:12px; border-width:thin; border-top-style:dashed; border-bottom-style:dashed; border-color:#CCCCCC; background-color:#F0F0F0; padding:10px 10px 10px 10px;">  
+      
+      </p>
+    	<strong>Need Help? Email us:</strong> <a href="mailto:support@habitforge.com">support@habitforge.com</a>
+      <br>
+    	(c) 2011 HabitForge LLC 
+	
+  </div>
+  </center>
+<% end %>
+
+
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+var pageTracker = _gat._getTracker("UA-10841267-1");
+pageTracker._trackPageview();
+} catch(err) {}</script>
+</body>
+</html>

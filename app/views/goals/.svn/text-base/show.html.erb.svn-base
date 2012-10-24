@@ -1,0 +1,32 @@
+<p>
+  <b>User:</b>
+  <%=h @goal.user.first_name + " " + @goal.user.last_name %>
+</p>
+
+<p>
+  <b>Title:</b>
+  <%=h @goal.title %>
+</p>
+
+<p>
+  <b>Status:</b>
+  <%=h @goal.status %>
+</p>
+<p>
+  <b>Start:</b>
+  <%=h @goal.start.strftime("%a, %b %d, %Y")  %>
+</p>
+
+<p>
+  <b>Stop:</b>
+  <%=h @goal.stop.strftime("%a, %b %d, %Y") %>
+</p>
+
+<p>
+  <b>Response question:</b>
+  <%=h @goal.response_question %>
+</p>
+
+
+<%= link_to 'Edit', edit_goal_path(@goal) %> |
+<%= link_to 'Back', goals_path %>

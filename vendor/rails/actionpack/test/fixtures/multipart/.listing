@@ -1,0 +1,13 @@
+drwxr-xr-x    2 jurowsk1 jurowsk1     4096 Sep 25 16:12 .
+drwxr-xr-x   29 jurowsk1 jurowsk1     4096 Sep 25 16:12 ..
+-rw-r--r--    1 jurowsk1 jurowsk1    19820 Sep 25 16:12 binary_file
+-rw-r--r--    1 jurowsk1 jurowsk1    10313 Sep 25 16:12 boundary_problem_file
+-rw-r--r--    1 jurowsk1 jurowsk1       78 Sep 25 16:12 bracketed_param
+-rw-r--r--    1 jurowsk1 jurowsk1      191 Sep 25 16:12 empty
+-rw-r--r--    1 jurowsk1 jurowsk1        5 Sep 25 16:12 hello.txt
+-rw-r--r--    1 jurowsk1 jurowsk1    20659 Sep 25 16:12 large_text_file
+-rw-r--r--    1 jurowsk1 jurowsk1    19937 Sep 25 16:12 mixed_files
+-rw-r--r--    1 jurowsk1 jurowsk1   159528 Sep 25 16:12 mona_lisa.jpg
+-rw-r--r--    1 jurowsk1 jurowsk1      156 Sep 25 16:12 none
+-rw-r--r--    1 jurowsk1 jurowsk1       73 Sep 25 16:12 single_parameter
+-rw-r--r--    1 jurowsk1 jurowsk1      187 Sep 25 16:12 text_file

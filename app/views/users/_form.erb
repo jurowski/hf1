@@ -1,0 +1,71 @@
+<br />
+
+<table border=0 cellpadding=0 cellspacing=0>
+  <tr>
+    <td valign=top nowrap>
+      First Name<font color=red>*</font>
+    </td>
+    <td valign=top nowrap>
+      <%= form.text_field :first_name %><br />    
+    </td>
+  </tr>
+  <tr>
+    <td valign=top nowrap>
+    Last Name (Optional)
+    </td>
+    <td valign=top nowrap>
+    <%= form.text_field :last_name %><br />    
+    </td>
+    </tr>
+    <tr><td>&nbsp</td></tr>
+    <tr>
+    <td valign=top nowrap>
+    Email<font color=red>*</font>
+    </td>
+    <td valign=top nowrap>
+    <%= form.text_field :email %><br />    
+    </td>
+    </tr>
+    <tr>
+
+    <td valign=top nowrap>
+    Re-type Email<font color=red>*</font>
+    </td>
+    <td valign=top nowrap>
+    <%= form.text_field :email_confirmation %><br />
+    </td>
+    </tr>
+    <tr>
+    <tr><td>&nbsp</td></tr>
+    <td valign=top nowrap>
+    Password<%= form.object.new_record? ? nil : "Change password" %><font color=red>*</font>
+    </td>
+    <td valign=top nowrap>
+    <%= form.password_field :password %><br />    
+    </td>
+    </tr>
+    <tr>
+
+    <td valign=top nowrap>
+    Re-type Password<font color=red>*</font>
+    </td>
+    <td valign=top nowrap>
+    <%= form.password_field :password_confirmation %><br />    
+    </td>
+    </tr>
+    <tr>
+    <tr><td>&nbsp</td></tr>
+
+    <td valign=top nowrap>
+    Your Time Zone<font color=red>*</font>
+    </td>
+    <td valign=top nowrap>
+
+    <%= form.time_zone_select :time_zone, ActiveSupport::TimeZone.us_zones, :default => "Eastern Time (US & Canada)" %><br />    
+    </td>
+
+  </tr>
+</table>
+
+<br />
+<br>

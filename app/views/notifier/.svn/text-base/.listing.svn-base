@@ -1,0 +1,9 @@
+drwxr-xr-x    2 jurowsk1 jurowsk1     4096 Dec  3 15:31 .
+drwxr-xr-x   12 jurowsk1 jurowsk1     4096 Dec  3 13:51 ..
+-rw-r--r--    1 jurowsk1 jurowsk1     3010 Dec  3 21:29 checkpoint_notification.erb
+-rw-r--r--    1 jurowsk1 jurowsk1      664 Nov 25 21:39 goal_creation_notification.erb
+-rw-r--r--    1 jurowsk1 jurowsk1        0 Sep 25 16:10 invite_a_friend_to_track.erb
+-rw-r--r--    1 jurowsk1 jurowsk1      310 Dec  3 20:55 notify_support.erb
+-rw-r--r--    1 jurowsk1 jurowsk1      369 Jan  1  1970 password_reset_instructions.erb
+-rw-r--r--    1 jurowsk1 jurowsk1      209 Jan  1  1970 signup_notification.erb
+-rw-r--r--    1 jurowsk1 jurowsk1        1 Sep 25 16:10 tell_a_friend.erb

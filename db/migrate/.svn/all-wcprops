@@ -1,0 +1,593 @@
+K 25
+svn:wc:ra_dav:version-url
+V 45
+/svn/habitforge/!svn/ver/248/trunk/db/migrate
+END
+20110904024125_add_email_to_betpayee.rb
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/habitforge/!svn/ver/31/trunk/db/migrate/20110904024125_add_email_to_betpayee.rb
+END
+20110608190911_add_coachfollow_to_user.rb
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/habitforge/!svn/ver/2/trunk/db/migrate/20110608190911_add_coachfollow_to_user.rb
+END
+20110916164808_add_coachid_to_user.rb
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/habitforge/!svn/ver/51/trunk/db/migrate/20110916164808_add_coachid_to_user.rb
+END
+20110215135925_add_hide_donation_plea_to_user.rb
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/habitforge/!svn/ver/2/trunk/db/migrate/20110215135925_add_hide_donation_plea_to_user.rb
+END
+20091012175024_add_comment_to_checkpoint.rb
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/habitforge/!svn/ver/2/trunk/db/migrate/20091012175024_add_comment_to_checkpoint.rb
+END
+.listing
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/svn/habitforge/!svn/ver/2/trunk/db/migrate/.listing
+END
+20091120221826_add_daysstraight_to_goal.rb
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/habitforge/!svn/ver/2/trunk/db/migrate/20091120221826_add_daysstraight_to_goal.rb
+END
+20091130034455_add_laststatusdate_to_goal.rb
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/habitforge/!svn/ver/2/trunk/db/migrate/20091130034455_add_laststatusdate_to_goal.rb
+END
+20120124144820_add_isaffiliate_to_user.rb
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/habitforge/!svn/ver/186/trunk/db/migrate/20120124144820_add_isaffiliate_to_user.rb
+END
+20120119200525_create_affiliates.rb
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/habitforge/!svn/ver/171/trunk/db/migrate/20120119200525_create_affiliates.rb
+END
+20120116200538_add_expirenotices_to_user.rb
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/habitforge/!svn/ver/153/trunk/db/migrate/20120116200538_add_expirenotices_to_user.rb
+END
+20110516135314_add_syslognote_to_checkpoint.rb
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/habitforge/!svn/ver/2/trunk/db/migrate/20110516135314_add_syslognote_to_checkpoint.rb
+END
+20110329174705_create_frommessages.rb
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/habitforge/!svn/ver/2/trunk/db/migrate/20110329174705_create_frommessages.rb
+END
+20110903184044_add_name_to_bet.rb
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/habitforge/!svn/ver/31/trunk/db/migrate/20110903184044_add_name_to_bet.rb
+END
+20110502131757_add_betid_to_goals.rb
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/habitforge/!svn/ver/2/trunk/db/migrate/20110502131757_add_betid_to_goals.rb
+END
+20110206054636_add_unlimited_goals_to_user.rb
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/habitforge/!svn/ver/2/trunk/db/migrate/20110206054636_add_unlimited_goals_to_user.rb
+END
+20100118205634_add_serversendhour_to_goal.rb
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/habitforge/!svn/ver/2/trunk/db/migrate/20100118205634_add_serversendhour_to_goal.rb
+END
+20120117173248_create_goaltemplates.rb
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/habitforge/!svn/ver/239/trunk/db/migrate/20120117173248_create_goaltemplates.rb
+END
+20101219025828_add_donation_to_user.rb
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/habitforge/!svn/ver/2/trunk/db/migrate/20101219025828_add_donation_to_user.rb
+END
+20100122092103_add_dayn_to_goal.rb
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/habitforge/!svn/ver/2/trunk/db/migrate/20100122092103_add_dayn_to_goal.rb
+END
+20110916151836_add_isacoach_to_user.rb
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/habitforge/!svn/ver/51/trunk/db/migrate/20110916151836_add_isacoach_to_user.rb
+END
+20110502142458_add_wager_to_bets.rb
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/habitforge/!svn/ver/2/trunk/db/migrate/20110502142458_add_wager_to_bets.rb
+END
+20091201212808_add_pleasure_to_goal.rb
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/habitforge/!svn/ver/2/trunk/db/migrate/20091201212808_add_pleasure_to_goal.rb
+END
+20091231211612_create_quotes.rb
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/habitforge/!svn/ver/2/trunk/db/migrate/20091231211612_create_quotes.rb
+END
+20091203210112_add_totalheckpointemailfailure_to_stat.rb
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/habitforge/!svn/ver/2/trunk/db/migrate/20091203210112_add_totalheckpointemailfailure_to_stat.rb
+END
+20120118163005_add_optinrandomfire_to_user.rb
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/habitforge/!svn/ver/163/trunk/db/migrate/20120118163005_add_optinrandomfire_to_user.rb
+END
+20100127042611_add_gender_to_user.rb
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/habitforge/!svn/ver/2/trunk/db/migrate/20100127042611_add_gender_to_user.rb
+END
+20100327220335_add_sponsor_to_user.rb
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/habitforge/!svn/ver/2/trunk/db/migrate/20100327220335_add_sponsor_to_user.rb
+END
+20090903212547_create_checkpoints.rb
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/habitforge/!svn/ver/2/trunk/db/migrate/20090903212547_create_checkpoints.rb
+END
+20110122215246_add_pre_start_days_per_week_to_goal.rb
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/habitforge/!svn/ver/2/trunk/db/migrate/20110122215246_add_pre_start_days_per_week_to_goal.rb
+END
+20120213150231_add_morereminders_to_goal.rb
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/habitforge/!svn/ver/231/trunk/db/migrate/20120213150231_add_morereminders_to_goal.rb
+END
+20101220032333_add_promo1responded_to_user.rb
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/habitforge/!svn/ver/2/trunk/db/migrate/20101220032333_add_promo1responded_to_user.rb
+END
+20110502030337_add_goalid_to_bets.rb
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/habitforge/!svn/ver/2/trunk/db/migrate/20110502030337_add_goalid_to_bets.rb
+END
+20091203195532_add_status_to_failedcheckpoint.rb
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/habitforge/!svn/ver/2/trunk/db/migrate/20091203195532_add_status_to_failedcheckpoint.rb
+END
+20110329172340_add_stats_to_teamgoal.rb
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/habitforge/!svn/ver/2/trunk/db/migrate/20110329172340_add_stats_to_teamgoal.rb
+END
+20100629212301_add_sponsor_to_quote.rb
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/habitforge/!svn/ver/2/trunk/db/migrate/20100629212301_add_sponsor_to_quote.rb
+END
+20120117173622_create_goaltags.rb
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/habitforge/!svn/ver/239/trunk/db/migrate/20120117173622_create_goaltags.rb
+END
+20110402003607_add_unread_to_tomessage.rb
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/habitforge/!svn/ver/2/trunk/db/migrate/20110402003607_add_unread_to_tomessage.rb
+END
+20091201213257_add_pp_remind_to_goal.rb
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/habitforge/!svn/ver/2/trunk/db/migrate/20091201213257_add_pp_remind_to_goal.rb
+END
+20110502030710_add_productid_to_betpayees.rb
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/habitforge/!svn/ver/2/trunk/db/migrate/20110502030710_add_productid_to_betpayees.rb
+END
+20090903212550_create_sessions.rb
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/habitforge/!svn/ver/2/trunk/db/migrate/20090903212550_create_sessions.rb
+END
+20091121162122_add_time_zone_to_user.rb
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/habitforge/!svn/ver/2/trunk/db/migrate/20091121162122_add_time_zone_to_user.rb
+END
+20110916153545_create_coachgoals.rb
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/habitforge/!svn/ver/51/trunk/db/migrate/20110916153545_create_coachgoals.rb
+END
+20120211212943_add_statsbadgedetails_to_goal.rb
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/habitforge/!svn/ver/226/trunk/db/migrate/20120211212943_add_statsbadgedetails_to_goal.rb
+END
+20100117223411_add_gmtoffset_to_goal.rb
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/habitforge/!svn/ver/2/trunk/db/migrate/20100117223411_add_gmtoffset_to_goal.rb
+END
+20110329170229_create_teams.rb
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/habitforge/!svn/ver/2/trunk/db/migrate/20110329170229_create_teams.rb
+END
+20110502022738_create_betpayees.rb
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/habitforge/!svn/ver/2/trunk/db/migrate/20110502022738_create_betpayees.rb
+END
+20091201213332_add_pp_remind_last_date_to_goal.rb
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/habitforge/!svn/ver/2/trunk/db/migrate/20091201213332_add_pp_remind_last_date_to_goal.rb
+END
+20110401210440_add_fromid_to_frommessage.rb
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/habitforge/!svn/ver/2/trunk/db/migrate/20110401210440_add_fromid_to_frommessage.rb
+END
+20110916152337_add_iscoached_to_goal.rb
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/habitforge/!svn/ver/51/trunk/db/migrate/20110916152337_add_iscoached_to_goal.rb
+END
+20100122092036_add_dayr_to_goal.rb
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/habitforge/!svn/ver/2/trunk/db/migrate/20100122092036_add_dayr_to_goal.rb
+END
+20100111044232_add_update_number_active_goals_to_user.rb
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/habitforge/!svn/ver/2/trunk/db/migrate/20100111044232_add_update_number_active_goals_to_user.rb
+END
+20100127042758_add_yob_to_user.rb
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/habitforge/!svn/ver/2/trunk/db/migrate/20100127042758_add_yob_to_user.rb
+END
+20110126051358_add_kill_ads_until_to_user.rb
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/habitforge/!svn/ver/2/trunk/db/migrate/20110126051358_add_kill_ads_until_to_user.rb
+END
+20100122092018_add_dayt_to_goal.rb
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/habitforge/!svn/ver/2/trunk/db/migrate/20100122092018_add_dayt_to_goal.rb
+END
+20111011211547_add_reminder_to_goal.rb
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/habitforge/!svn/ver/91/trunk/db/migrate/20111011211547_add_reminder_to_goal.rb
+END
+20110904025544_add_show_to_betpayee.rb
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/habitforge/!svn/ver/31/trunk/db/migrate/20110904025544_add_show_to_betpayee.rb
+END
+20101218033551_create_promotion1s.rb
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/habitforge/!svn/ver/2/trunk/db/migrate/20101218033551_create_promotion1s.rb
+END
+20091130034440_add_laststatus_to_goal.rb
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/habitforge/!svn/ver/2/trunk/db/migrate/20091130034440_add_laststatus_to_goal.rb
+END
+20110329171723_add_hasopening_to_team.rb
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/habitforge/!svn/ver/2/trunk/db/migrate/20110329171723_add_hasopening_to_team.rb
+END
+20091202220927_create_stats.rb
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/habitforge/!svn/ver/2/trunk/db/migrate/20091202220927_create_stats.rb
+END
+20120211201743_add_statsbadge_to_goal.rb
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/habitforge/!svn/ver/226/trunk/db/migrate/20120211201743_add_statsbadge_to_goal.rb
+END
+20100118210151_add_usersendhour_to_goal.rb
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/habitforge/!svn/ver/2/trunk/db/migrate/20100118210151_add_usersendhour_to_goal.rb
+END
+20090903212401_create_goals.rb
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/habitforge/!svn/ver/2/trunk/db/migrate/20090903212401_create_goals.rb
+END
+20110321012913_add_combine_daily_emails_to_user.rb
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/habitforge/!svn/ver/2/trunk/db/migrate/20110321012913_add_combine_daily_emails_to_user.rb
+END
+20100122092044_add_dayf_to_goal.rb
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/habitforge/!svn/ver/2/trunk/db/migrate/20100122092044_add_dayf_to_goal.rb
+END
+20120117172827_create_tags.rb
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/habitforge/!svn/ver/239/trunk/db/migrate/20120117172827_create_tags.rb
+END
+20110226022441_add_days_into_it_to_goal.rb
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/habitforge/!svn/ver/2/trunk/db/migrate/20110226022441_add_days_into_it_to_goal.rb
+END
+20120119211610_add_affiliateid_to_user.rb
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/habitforge/!svn/ver/171/trunk/db/migrate/20120119211610_add_affiliateid_to_user.rb
+END
+20110325152241_add_payments_to_user.rb
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/habitforge/!svn/ver/2/trunk/db/migrate/20110325152241_add_payments_to_user.rb
+END
+20100122092053_add_days_to_goal.rb
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/habitforge/!svn/ver/2/trunk/db/migrate/20100122092053_add_days_to_goal.rb
+END
+20110329174653_create_tomessages.rb
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/habitforge/!svn/ver/2/trunk/db/migrate/20110329174653_create_tomessages.rb
+END
+20100113051527_create_expiredcheckpoints.rb
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/habitforge/!svn/ver/2/trunk/db/migrate/20100113051527_create_expiredcheckpoints.rb
+END
+20110916152958_create_coaches.rb
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/habitforge/!svn/ver/51/trunk/db/migrate/20110916152958_create_coaches.rb
+END
+20090924193811_create_cheers.rb
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/habitforge/!svn/ver/2/trunk/db/migrate/20090924193811_create_cheers.rb
+END
+20110502021916_create_bets.rb
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/habitforge/!svn/ver/2/trunk/db/migrate/20110502021916_create_bets.rb
+END
+20110329171430_add_teamid_to_goal.rb
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/habitforge/!svn/ver/2/trunk/db/migrate/20110329171430_add_teamid_to_goal.rb
+END
+20101218023404_add_promo1_to_user.rb
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/habitforge/!svn/ver/2/trunk/db/migrate/20101218023404_add_promo1_to_user.rb
+END
+20110608191034_add_coachfollowyn_to_user.rb
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/habitforge/!svn/ver/2/trunk/db/migrate/20110608191034_add_coachfollowyn_to_user.rb
+END
+20110916164822_add_coachgoalid_to_goal.rb
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/habitforge/!svn/ver/51/trunk/db/migrate/20110916164822_add_coachgoalid_to_goal.rb
+END
+20110226020324_add_success_rate_percentage_to_goal.rb
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/habitforge/!svn/ver/2/trunk/db/migrate/20110226020324_add_success_rate_percentage_to_goal.rb
+END
+20110401210417_add_fromid_to_tomessage.rb
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/habitforge/!svn/ver/2/trunk/db/migrate/20110401210417_add_fromid_to_tomessage.rb
+END
+20120217142238_add_activeusercount_to_stat.rb
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/habitforge/!svn/ver/248/trunk/db/migrate/20120217142238_add_activeusercount_to_stat.rb
+END
+20110502131307_add_betpayeeid_to_bets.rb
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/habitforge/!svn/ver/2/trunk/db/migrate/20110502131307_add_betpayeeid_to_bets.rb
+END
+20110901025456_add_fire_to_bet.rb
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/habitforge/!svn/ver/31/trunk/db/migrate/20110901025456_add_fire_to_bet.rb
+END
+20091201212830_add_pain_to_goal.rb
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/habitforge/!svn/ver/2/trunk/db/migrate/20091201212830_add_pain_to_goal.rb
+END
+20090903211937_create_users.rb
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/habitforge/!svn/ver/2/trunk/db/migrate/20090903211937_create_users.rb
+END
+20100114095133_add_index_to_goals.rb
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/habitforge/!svn/ver/2/trunk/db/migrate/20100114095133_add_index_to_goals.rb
+END
+20120123200408_add_longestrun_to_goal.rb
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/habitforge/!svn/ver/182/trunk/db/migrate/20120123200408_add_longestrun_to_goal.rb
+END
+20110329170436_create_teamgoals.rb
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/habitforge/!svn/ver/2/trunk/db/migrate/20110329170436_create_teamgoals.rb
+END
+20091203195130_create_failedcheckpoints.rb
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/habitforge/!svn/ver/2/trunk/db/migrate/20091203195130_create_failedcheckpoints.rb
+END
+20100122091950_add_daym_to_goal.rb
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/habitforge/!svn/ver/2/trunk/db/migrate/20100122091950_add_daym_to_goal.rb
+END
+20100114095132_add_index_to_checkpoints.rb
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/habitforge/!svn/ver/2/trunk/db/migrate/20100114095132_add_index_to_checkpoints.rb
+END
+20110502135109_add_imagepath_to_betpayees.rb
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/habitforge/!svn/ver/2/trunk/db/migrate/20110502135109_add_imagepath_to_betpayees.rb
+END
+20120217115732_add_activegoalshour_to_user.rb
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/habitforge/!svn/ver/244/trunk/db/migrate/20120217115732_add_activegoalshour_to_user.rb
+END
+20110401213256_add_unread_to_frommessage.rb
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/habitforge/!svn/ver/2/trunk/db/migrate/20110401213256_add_unread_to_frommessage.rb
+END
+20110325185359_add_goal_days_per_week_to_goal.rb
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/habitforge/!svn/ver/2/trunk/db/migrate/20110325185359_add_goal_days_per_week_to_goal.rb
+END
+20100122092028_add_dayw_to_goal.rb
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/habitforge/!svn/ver/2/trunk/db/migrate/20100122092028_add_dayw_to_goal.rb
+END

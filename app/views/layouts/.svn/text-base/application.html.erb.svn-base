@@ -1,0 +1,187 @@
+
+<% 
+@site_name = ""
+@site_name_format = ""
+@tagline = ""
+@new_features = ""
+@warnings = ""
+@hardware = ""
+
+
+##############
+###   SPONSORS
+##############
+## (ie habitforge, clearworth, etc.)
+if params[:sponsor]
+  session[:sponsor] = params[:sponsor]
+end
+if session[:sponsor] == nil or session[:sponsor] == "" or session[:sponsor] == "habitforge"
+  session[:sponsor] = "habitforge"
+  session[:site_name] = "habitforge"
+  session[:support_email] = "support@habitforge.com"
+  @site_name = "HabitForge"
+  @support_email = "support@habitforge.com"
+  @site_name_format = "<h1><a href='#'>#{@site_name}</a></h1>"
+  @tagline = "Simple Accountability. Positive Change."
+  session[:site_url] = "http://habitforge.com"
+end
+if request.domain.include? 'mylearninghabit' or session[:sponsor] == "clearworth"
+  session[:sponsor] = "clearworth"
+	session[:site_name] = "My Learning Habit"
+	@site_name = "My Learning Habit"
+  session[:support_email] = "support@habitforge.com"
+  @support_email = "support@habitforge.com"
+  @site_name_format = "<h1><a href='#'><font color=#FFFFFF>#{@site_name}</font></a><font color=#eeeeee> [under construction]</font></h1>"
+	@tagline = "Your tagline here!"
+	@new_features = ""
+  @warnings = ""
+  session[:site_url] = "http://mylearninghabit.com"
+end
+if request.domain.include? 'forittobe' or session[:sponsor] == "forittobe"
+  session[:sponsor] = "forittobe"
+	session[:site_name] = "For It To Be"
+  @support_email = "support@forittobe.com"
+	@site_name = "For It To Be"
+  session[:support_email] = "support@forittobe.com"	
+  @site_name_format = "<h1><a href='#'><font color=#FFFFFF>#{@site_name}</font></a><font color=#eeeeee> [under construction]</font></h1>"
+	@tagline = "Your tagline here!"
+	@new_features = ""
+  @warnings = ""
+  session[:site_url] = "http://forittobe.com"
+end
+if request.domain.include? 'marriagereminders' or session[:sponsor] == "marriagereminders"
+  session[:sponsor] = "marriagereminders"
+	session[:site_name] = "Marriage Reminders"
+  @support_email = "support@marriagereminders.com"
+	@site_name = "Marriage Reminders"
+  session[:support_email] = "support@marriagereminders.com"	
+  @site_name_format = "<h1><a href='#'><font color=#FFFFFF>#{@site_name}</font></a><font color=#eeeeee> [under construction]</font></h1>"
+	@tagline = "Your tagline here!"
+	@new_features = ""
+  @warnings = ""
+
+  session[:site_url] = "http://marriagereminders.com"
+end
+
+
+
+##############
+###    SERVERS
+##############
+if `uname -n`.strip == 'adv.adventurino.com'
+  #### HABITFORGE SETTINGS ON VPS
+  @hardware = "prod"
+elsif `uname -n`.strip == 'gns499aa.joyent.us'
+  #### DEV SETTINGS ON HABITFORGE VPS
+  @site_name = @site_name + " [beta]"
+  @hardware = "test"
+else
+  #### SETTINGS FOR DEV LAPTOP
+  @site_name = @site_name + " [laptop]"
+  @hardware = "dev"
+end
+
+
+##### TAKE THIS OUT ONCE reengagefocus is in production! !!!!
+#if session[:sponsor] == "reengagefocus"
+#  @hardware = "dev"
+#end
+
+
+
+
+### GET DATE NOW ###
+jump_forward_days = 0
+
+tnow = Time.now
+tnow_Y = tnow.strftime("%Y").to_i #year, 4 digits
+tnow_m = tnow.strftime("%m").to_i #month of the year
+tnow_d = tnow.strftime("%d").to_i #day of the month
+tnow_H = tnow.strftime("%H").to_i #hour (24-hour format)
+tnow_M = tnow.strftime("%M").to_i #minute of the hour
+#puts tnow_Y + tnow_m + tnow_d  
+puts "Current timestamp is #{tnow.to_s}"
+dnow = Date.new(tnow_Y, tnow_m, tnow_d) + jump_forward_days
+dyesterday = dnow - 1
+d2daysago = dnow - 2
+######
+
+%>
+
+
+<%
+@cn = controller.controller_name 
+@ca = controller.action_name 
+%>
+
+
+
+
+<% if @ca != "view_goal_creation_email" and @ca != "view_checkpoint_single_email" and @ca != "view_checkpoint_multiple_email" %>
+  <%= render :partial => "layouts/#{session[:sponsor]}.erb"%>
+<% end %>
+
+
+
+
+
+
+<% if @hardware == "dev" and @cn == "checkpoints" and @ca == "autoupdate" %>
+  <a href="/checkpoints/view_checkpoint_single_email/<%= @checkpoint.id %>/" target="_blank">View Single Checkpoint Email</a>
+  <br>
+  <a href="/checkpoints/view_checkpoint_multiple_email/<%= @checkpoint.id %>/" target="_blank">View Multiple Checkpoint Email</a>
+<% end %>
+<% if @hardware == "dev" and @cn == "goals" and @ca == "edit" %>
+  <a href="/goals/view_goal_creation_email/<%= @goal.id %>/" target="_blank">View Goal Creation Email</a>
+<% end %>
+<% if @hardware == "dev" and @cn == "goals" and @ca == "single" %>
+  <% 
+  ### GET DATE NOW ###
+  jump_forward_days = 0
+
+  tnow = Time.now
+  tnow_Y = tnow.strftime("%Y").to_i #year, 4 digits
+  tnow_m = tnow.strftime("%m").to_i #month of the year
+  tnow_d = tnow.strftime("%d").to_i #day of the month
+  tnow_H = tnow.strftime("%H").to_i #hour (24-hour format)
+  tnow_M = tnow.strftime("%M").to_i #minute of the hour
+  #puts tnow_Y + tnow_m + tnow_d  
+  puts "Current timestamp is #{tnow.to_s}"
+  dnow = Date.new(tnow_Y, tnow_m, tnow_d) + jump_forward_days
+  dyesterday = dnow - 1
+  d2daysago = dnow - 2
+  ######
+
+  @checkpoints = Checkpoint.find(:all, :conditions => "goal_id = '#{@goal.id}' and checkin_date = '#{dyesterday}'")
+  if @checkpoints.size == 0
+    %>
+    <a href="/goals/single/<%= @goal.id %>/?create_checkpoint_yesterday=1">Create a checkpoint for yesterday</a>
+    <%
+    if params[:create_checkpoint_yesterday]
+      #### START CREATE CHECK POINT
+      checkpoint = Checkpoint.new
+      checkpoint.goal_id = @goal.id
+      checkpoint.checkin_date = dyesterday
+      checkpoint.status = "email not yet sent"
+      checkpoint.save
+      #### END CREATE CHECKPOINT
+      %>
+      <b>Created Checkpoint for Yesterday... Refresh the page to see it.</b>
+      <%
+    end
+  else
+    %>
+    <b>Checkpoint already exists for Yesterday.</b>
+    <%
+  end    
+  %>        
+<% end %>
+
+<% 
+### TEST OUT WHAT THE HTML EMAIL WILL LOOK LIKE
+if @hardware == "dev" and @ca == "view_goal_creation_email" or @ca == "view_checkpoint_single_email" or @ca == "view_checkpoint_multiple_email" 
+%>
+  <%= yield %> 
+<% 
+end 
+%>

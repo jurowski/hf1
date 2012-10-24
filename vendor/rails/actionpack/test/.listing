@@ -1,0 +1,11 @@
+drwxr-xr-x    7 jurowsk1 jurowsk1     4096 Sep 25 16:12 .
+drwxr-xr-x    4 jurowsk1 jurowsk1     4096 Sep 25 16:12 ..
+-rw-r--r--    1 jurowsk1 jurowsk1     1480 Sep 25 16:12 abstract_unit.rb
+-rw-r--r--    1 jurowsk1 jurowsk1     3366 Sep 25 16:12 active_record_unit.rb
+drwxr-xr-x    2 jurowsk1 jurowsk1     4096 Sep 25 16:12 activerecord
+-rw-r--r--    1 jurowsk1 jurowsk1      407 Sep 25 16:12 adv_attr_test.rb
+drwxr-xr-x    7 jurowsk1 jurowsk1     4096 Sep 25 16:12 controller
+drwxr-xr-x   29 jurowsk1 jurowsk1     4096 Sep 25 16:12 fixtures
+drwxr-xr-x    2 jurowsk1 jurowsk1     4096 Sep 25 16:12 template
+-rw-r--r--    1 jurowsk1 jurowsk1      274 Sep 25 16:12 testing_sandbox.rb
+drwxr-xr-x    2 jurowsk1 jurowsk1     4096 Sep 25 16:12 view

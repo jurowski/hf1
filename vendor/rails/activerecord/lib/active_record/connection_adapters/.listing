@@ -1,0 +1,8 @@
+drwxr-xr-x    3 jurowsk1 jurowsk1     4096 Sep 25 16:12 .
+drwxr-xr-x    7 jurowsk1 jurowsk1     4096 Sep 25 16:12 ..
+drwxr-xr-x    2 jurowsk1 jurowsk1     4096 Sep 25 16:12 abstract
+-rwxr-xr-x    1 jurowsk1 jurowsk1     7766 Sep 25 16:12 abstract_adapter.rb
+-rw-r--r--    1 jurowsk1 jurowsk1    21505 Sep 25 16:12 mysql_adapter.rb
+-rw-r--r--    1 jurowsk1 jurowsk1    39734 Sep 25 16:12 postgresql_adapter.rb
+-rw-r--r--    1 jurowsk1 jurowsk1      985 Sep 25 16:12 sqlite3_adapter.rb
+-rw-r--r--    1 jurowsk1 jurowsk1    14233 Sep 25 16:12 sqlite_adapter.rb

@@ -1,0 +1,149 @@
+K 25
+svn:wc:ra_dav:version-url
+V 45
+/svn/habitforge/!svn/ver/263/trunk/app/models
+END
+coach.rb
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svn/habitforge/!svn/ver/52/trunk/app/models/coach.rb
+END
+user.rb
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svn/habitforge/!svn/ver/263/trunk/app/models/user.rb
+END
+goaltag.rb
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/habitforge/!svn/ver/240/trunk/app/models/goaltag.rb
+END
+goaltemplate.rb
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/habitforge/!svn/ver/240/trunk/app/models/goaltemplate.rb
+END
+notifier.rb
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/habitforge/!svn/ver/209/trunk/app/models/notifier.rb
+END
+coachgoal.rb
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/habitforge/!svn/ver/52/trunk/app/models/coachgoal.rb
+END
+user_session.rb
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/habitforge/!svn/ver/2/trunk/app/models/user_session.rb
+END
+goal.rb
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svn/habitforge/!svn/ver/257/trunk/app/models/goal.rb
+END
+affiliate.rb
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/habitforge/!svn/ver/171/trunk/app/models/affiliate.rb
+END
+.listing
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/svn/habitforge/!svn/ver/2/trunk/app/models/.listing
+END
+cheer.rb
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svn/habitforge/!svn/ver/52/trunk/app/models/cheer.rb
+END
+team.rb
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/svn/habitforge/!svn/ver/2/trunk/app/models/team.rb
+END
+tomessage.rb
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/habitforge/!svn/ver/2/trunk/app/models/tomessage.rb
+END
+checkpoint.rb
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/habitforge/!svn/ver/253/trunk/app/models/checkpoint.rb
+END
+teamgoal.rb
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/habitforge/!svn/ver/2/trunk/app/models/teamgoal.rb
+END
+failedcheckpoint.rb
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/habitforge/!svn/ver/2/trunk/app/models/failedcheckpoint.rb
+END
+quote.rb
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/svn/habitforge/!svn/ver/2/trunk/app/models/quote.rb
+END
+betpayee.rb
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/habitforge/!svn/ver/2/trunk/app/models/betpayee.rb
+END
+promotion1.rb
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/habitforge/!svn/ver/2/trunk/app/models/promotion1.rb
+END
+frommessage.rb
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/habitforge/!svn/ver/2/trunk/app/models/frommessage.rb
+END
+expiredcheckpoint.rb
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/habitforge/!svn/ver/2/trunk/app/models/expiredcheckpoint.rb
+END
+bet.rb
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/svn/habitforge/!svn/ver/189/trunk/app/models/bet.rb
+END
+stat.rb
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/svn/habitforge/!svn/ver/2/trunk/app/models/stat.rb
+END
+tag.rb
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/svn/habitforge/!svn/ver/240/trunk/app/models/tag.rb
+END

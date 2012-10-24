@@ -1,0 +1,11 @@
+drwxr-xr-x    2 jurowsk1 jurowsk1     4096 Sep 25 16:12 .
+drwxr-xr-x   22 jurowsk1 jurowsk1     4096 Sep 25 16:12 ..
+-rw-r--r--    1 jurowsk1 jurowsk1     2530 Sep 25 16:12 access.rb
+-rw-r--r--    1 jurowsk1 jurowsk1      299 Sep 25 16:12 behavior.rb
+-rw-r--r--    1 jurowsk1 jurowsk1      855 Sep 25 16:12 conversions.rb
+-rw-r--r--    1 jurowsk1 jurowsk1      730 Sep 25 16:12 filters.rb
+-rw-r--r--    1 jurowsk1 jurowsk1     6726 Sep 25 16:12 inflections.rb
+-rw-r--r--    1 jurowsk1 jurowsk1      619 Sep 25 16:12 iterators.rb
+-rw-r--r--    1 jurowsk1 jurowsk1     3359 Sep 25 16:12 multibyte.rb
+-rw-r--r--    1 jurowsk1 jurowsk1     1014 Sep 25 16:12 starts_ends_with.rb
+-rw-r--r--    1 jurowsk1 jurowsk1      253 Sep 25 16:12 xchar.rb

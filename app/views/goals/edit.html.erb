@@ -1,0 +1,58 @@
+<%
+begin
+%>
+  <h1>Editing habit</h1>
+
+  <hr>
+  <a href="/goals/single/<%= @goal.id %>">Checkpoints & Comments</a>
+
+
+  <% 
+  if @goal.status == "start" or @goal.status == "monitor"
+  %>
+  |
+  	<%= link_to "Invite a friend to follow", :controller => "goals", :action => "invite_a_friend_to_track", :id => @goal.id%>
+  <%
+  end
+  %>   
+  <% if @goal.status != "hold" %>
+      | 
+      <%= link_to 'Place on Hold', "/goals/hold/#{@goal.id}", :confirm => 'If you put a goal on hold, you will stop getting emails about it.
+      
+------  WARNING  ------
+If you later choose to re-activate this goal, your history (the old checkpoint days and comments) WILL BE DELETED WHEN RE-ACTIVATED so that the success rate will stay relevant and accurate. 
+
+ARE YOU SURE YOU WANT TO DO THIS?' %> 
+  <% end %>
+
+  |
+  <%= link_to "Delete", @goal, :confirm => 'Are you sure you want to delete this goal?', :method => :delete %>
+
+<br>
+
+
+  <% form_for(@goal) do |f| %>
+    <%= f.error_messages %>
+    <%= render :partial => "form", :object => f %>
+  <% if @goal.status == "hold" %>
+        <div class="notice">
+            WARNING: By clicking "Save and Re-Activate" below, your history (the old checkpoint days and comments) WILL BE DELETED so that the success rate will stay relevant and accurate. THIS CAN NOT BE UNDONE.
+        </div>
+    <%= f.submit 'Save and Re-Activate' %>
+  <% else %>
+    <%= f.submit 'Save Changes' %>
+  <% end %>
+
+    </p>
+  <% end %>
+
+  <p><%= link_to 'Back (Cancel Changes)', goals_path %></p>
+
+<%
+rescue
+%>
+  <br>
+  <p>Something went wrong. Go back to the <a href="http://habitforge.com">home page</a> and try again, or <a href="mailto:support@habitforge.com">Contact Support</a></p>
+<%
+end
+%>

@@ -1,0 +1,10 @@
+--- 
+:debug: false
+:log_file: log/mongrel.log
+:docroot: public
+:host: 0.0.0.0
+:environment: production
+:port: 12003
+:daemon: true
+:cwd: /home/jurowsk1/etc/rails_apps/habitforge/current
+:pid_file: log/mongrel.pid

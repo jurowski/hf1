@@ -1,0 +1,17 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  team_id: 1
+  goal_id: 1
+  rating: 1
+  qty_kickoff_votes: 1
+  active: 1
+  suspend: 1
+
+two:
+  team_id: 1
+  goal_id: 1
+  rating: 1
+  qty_kickoff_votes: 1
+  active: 1
+  suspend: 1

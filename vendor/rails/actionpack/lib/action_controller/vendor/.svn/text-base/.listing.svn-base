@@ -1,0 +1,5 @@
+drwxr-xr-x    4 jurowsk1 jurowsk1     4096 Sep 25 16:12 .
+drwxr-xr-x    9 jurowsk1 jurowsk1     4096 Sep 25 16:12 ..
+drwxr-xr-x    3 jurowsk1 jurowsk1     4096 Sep 25 16:12 html-scanner
+-rw-r--r--    1 jurowsk1 jurowsk1      521 Sep 25 16:12 html-scanner.rb
+drwxr-xr-x    3 jurowsk1 jurowsk1     4096 Sep 25 16:12 rack-1.0

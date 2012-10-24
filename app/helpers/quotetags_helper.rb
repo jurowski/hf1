@@ -1,0 +1,2 @@
+module QuotetagsHelper
+end

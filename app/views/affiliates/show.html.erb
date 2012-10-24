@@ -1,0 +1,116 @@
+<div class="notice">
+<h4>Affiliate Info:
+  <%=h @affiliate.first_name %>
+  <%=h @affiliate.last_name %>
+  (<%=h @affiliate.email %>)
+</h4>
+<p>
+  <%=h @affiliate.first_name %>, you will earn <%=h @affiliate.affiliate_earnings_rate %>% of all fees collected 
+  for users who sign up for Supporting Memberships who were directed to <%= session[:site_name] %> through your
+  affiliate link:  
+  <%
+  affiliate_link = session[:site_url] + "/?affiliate_name=" + @affiliate.affiliate_name
+  %>
+  <h4>
+  &nbsp &nbsp &nbsp &nbsp &nbsp 
+  <a href="<%= affiliate_link %>" target="_blank">
+  <%= affiliate_link %>
+  </a>
+  </h4>
+</p>
+
+
+<p>
+  <b>Additionally, users you refer can enter this coupon code on checkout to receive a <%=h @affiliate.coupon_discount %>% discount:</b>
+  <h4>
+  &nbsp &nbsp &nbsp &nbsp &nbsp 
+  <%=h @affiliate.coupon_code %>
+  </h4>
+</p>
+
+
+<%
+if current_user.is_admin
+%>
+    <p>
+    <%= link_to 'Edit', edit_affiliate_path(@affiliate) %> |
+    <%= link_to 'Back', affiliates_path %>
+    </p>
+<%
+end
+%>
+</div>
+
+
+
+
+
+
+<%
+affiliate_signups = User.find(:all, :conditions => "affiliate_id = '#{@affiliate.id}'")
+if affiliate_signups
+%>
+<h3> <%= affiliate_signups.size %> User(s) Signed Up via this Affiliate Account </h3>
+
+    <table cellpadding=2 cellspacing=2>
+        <th>First Name</th>
+        <th>Created</th>
+        <th>Supporting Member?</th>
+    <%
+    for affiliate_signup in affiliate_signups
+        %>
+        <tr>
+            <td>
+                <p><%= affiliate_signup.first_name %></p>
+            </td>
+            <td>
+                <p><%= affiliate_signup.created_at %></p>
+            </td>
+            <td>
+                <p>
+                &nbsp
+                &nbsp
+                <%
+                if affiliate_signup.is_habitforge_supporting_member
+                    if affiliate_signup.last_donation_date != nil
+                    %>
+                        Yes, from <%= affiliate_signup.last_donation_date %> through <%= affiliate_signup.kill_ads_until %>
+                    <%
+                    else
+                    %>
+                        Yes, through <%= affiliate_signup.kill_ads_until %>
+                    <%
+                    end
+                    %>
+                <%
+                else
+                %>
+                    <%
+                    if affiliate_signup.kill_ads_until != nil
+                    %>
+                        Expired <%= affiliate_signup.kill_ads_until %>
+                    <%
+                    else
+                    %>
+                        No
+                    <%
+                    end
+                    %>
+                <%
+                end
+                %>
+                </p>
+            </td>
+        </tr>
+        <%
+    end 
+    %>
+    </table>
+    <%
+else
+%>
+    <h3> No Users Signed Up yet via this Affiliate Account </h3>
+
+<%
+end
+%>

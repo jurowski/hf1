@@ -1,0 +1,23 @@
+<p>
+  <b>User:</b>
+  <%=h @failedcheckpoint.user_id %>
+</p>
+
+<p>
+  <b>Goal:</b>
+  <%=h @failedcheckpoint.goal_id %>
+</p>
+
+<p>
+  <b>Checkpoint:</b>
+  <%=h @failedcheckpoint.checkpoint_id %>
+</p>
+
+<p>
+  <b>Email:</b>
+  <%=h @failedcheckpoint.email %>
+</p>
+
+
+<%= link_to 'Edit', edit_failedcheckpoint_path(@failedcheckpoint) %> |
+<%= link_to 'Back', failedcheckpoints_path %>

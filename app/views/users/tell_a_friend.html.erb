@@ -1,0 +1,70 @@
+<% if current_user != nil %>
+  <h1>Tell a friend</h1>
+  <% if params[:email] and params[:email] == "" %>
+    <p><strong><font color=red>Email address is required</font></strong></p>
+  <% end %>
+  <% if params[:the_subject] and params[:the_subject] == "" %>
+    <p><strong><font color=red>Subject is required</font></strong></p>
+  <% end %>
+  <% if params[:the_body] and params[:the_body] == "" %>
+    <p><strong><font color=red>Email body is required</font></strong></p>
+  <% end %>
+
+  <% emailsent = 0 %>
+  <% if (params[:email] and params[:email] != "") and (params[:the_subject] and params[:the_subject] != "") and (params[:the_body] and params[:the_body] != "") %>
+    <% #gonna send that email %>
+    <% Notifier.deliver_tell_a_friend(current_user, params[:email], params[:the_body] + "\n The HabitForge URL is: http://habitforge.com ...Check it out!", params[:the_subject]) # sends the email %>
+
+    <% emailsent = 1 %>
+
+  <% end %>
+
+  <% if emailsent == 1 %>
+    <font color=red>Your email has been sent.</font><br>  
+  	<%= link_to "Tell another friend!", :controller => "users", :action => "tell_a_friend", :id => current_user.id %>
+    <%= link_to 'Back', goals_path %>
+  <% else %>
+  <%= link_to 'Back', goals_path %>
+  <hr>
+  <form>
+  <br>
+    From: <%= current_user.email %>
+    <br>
+    <br>
+    Your friend's email address:
+    <input type="text" name="email"> (Only accepts one email address at a time.)
+    <br>
+    <br>
+    The subject of the email:
+    <input type="text" name="the_subject" size=50 value="A friend wants to invite you to habitforge">
+    <br>
+    <br>
+
+    The text of the email:
+    <br>
+
+    <TEXTAREA NAME="the_body" COLS=60 ROWS=20>
+  Hello... this is <%= current_user.first_name %>. 
+
+  I'm emailing you from the habitforge site, and I thought you might want to check it out.
+
+  It's a free web application used for goal setting. It helps you create (or break) habits by sending you a daily email asking whether you accomplished a particular goal the day before.
+
+  If you say "yes" for 21 days in a row, then you've succeeded in creating a new habit. If you miss a day, you start back at day one.
+
+  You'd just need to create a free account on the HabitForge site ( http://habitforge.com ) and register with your email address.
+
+  Thanks!
+  <%= current_user.first_name %>
+    </TEXTAREA>
+
+
+    <input type="submit" value="Email this friend">
+  </form>
+
+  <% end %>
+
+  
+<% else %>
+  Your session may have expired. Please log out and log back in.  
+<% end %>

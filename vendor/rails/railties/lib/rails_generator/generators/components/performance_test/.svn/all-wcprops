@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/svn/habitforge/!svn/ver/2/trunk/vendor/rails/railties/lib/rails_generator/generators/components/performance_test
+END
+USAGE
+K 25
+svn:wc:ra_dav:version-url
+V 119
+/svn/habitforge/!svn/ver/2/trunk/vendor/rails/railties/lib/rails_generator/generators/components/performance_test/USAGE
+END
+.listing
+K 25
+svn:wc:ra_dav:version-url
+V 122
+/svn/habitforge/!svn/ver/2/trunk/vendor/rails/railties/lib/rails_generator/generators/components/performance_test/.listing
+END
+performance_test_generator.rb
+K 25
+svn:wc:ra_dav:version-url
+V 143
+/svn/habitforge/!svn/ver/2/trunk/vendor/rails/railties/lib/rails_generator/generators/components/performance_test/performance_test_generator.rb
+END

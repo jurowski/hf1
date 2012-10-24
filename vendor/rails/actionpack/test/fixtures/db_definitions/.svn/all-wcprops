@@ -1,0 +1,17 @@
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/habitforge/!svn/ver/2/trunk/vendor/rails/actionpack/test/fixtures/db_definitions
+END
+sqlite.sql
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/habitforge/!svn/ver/2/trunk/vendor/rails/actionpack/test/fixtures/db_definitions/sqlite.sql
+END
+.listing
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/habitforge/!svn/ver/2/trunk/vendor/rails/actionpack/test/fixtures/db_definitions/.listing
+END

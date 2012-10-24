@@ -1,0 +1,127 @@
+<% 
+#begin
+%>
+
+  <%
+  ### GET DATE NOW ###
+  jump_forward_days = 0  
+  dnow = get_dnow + jump_forward_days
+  dyesterday = dnow - 1
+  ######
+
+  @my_established_goals.each do |goal|
+
+
+    ### instead of daysgoneby = dnow - goal.start,
+    ### calculate, instead the number of checkpoints that have been created
+    @checkpoints_gone_by = Checkpoint.find(:all, :conditions => "goal_id = '#{goal.id}' and checkin_date >= '#{goal.start}'")
+    daysgoneby = @checkpoints_gone_by.size
+
+      #### START GOAL BOX
+    %>
+    <DIV style="border-width:thin; border-style:solid; border-color:#FFFFFF; padding:0px 0px 0px 0px;">
+    <table border=0 cellpadding=5 cellspacing=0>
+    <tr>
+    <td>
+    <%
+    ### instead of daysgoneby = dnow - goal.start,
+    ### calculate, instead the number of checkpoints that have been created
+    @checkpoints_gone_by = Checkpoint.find(:all, :conditions => "goal_id = '#{goal.id}' and checkin_date >= '#{goal.start}'")
+    daysgoneby = @checkpoints_gone_by.size
+
+    ###daysleft = goal.stop - dnow
+    daysleft = 21 - daysgoneby
+
+    @checkpoints = Checkpoint.find(:all, :conditions => "goal_id = '#{goal.id}'")
+    totalsize = @checkpoints.size
+
+    if goal.established_on.to_s != "1900-01-01"
+      daysinarow = 0
+      ##count backwards to get the number of yes's in a row
+      thestatus = "yes"
+      dcheckday = dyesterday
+      while thestatus == "yes" do
+        @oldercheckpoints = Checkpoint.find(:all, :conditions => "goal_id = '#{goal.id}' and checkin_date = '#{dcheckday}' and status = 'yes'")
+        if @oldercheckpoints.size == 0
+          thestatus = "no"
+        else
+          daysinarow = daysinarow + 1
+        end
+        dcheckday = dcheckday - 1
+      end
+      ##update the goal's daysstraight field
+      goal.daysstraight = daysinarow
+      goal.save      
+      %>
+      <img src="/images/ring_buttons21.png" alt="Established Habit" width = 100/>
+    <%
+    end
+    %>
+    <%
+    if goal.status == "monitor"
+      ### If we're within 3 days of the end of the monitoring period, give the option to extend another 3 weeks
+      if goal.stop - dnow < 3
+      %>
+        <b>Monitoring ends <%=h goal.stop %>. <%= link_to 'Extend 3 weeks?', "goals/extend_time/#{goal.id}" %>
+      <%  
+      end
+      %>
+    <%
+    end
+    %>
+    <% if totalsize > 0
+      @no = Checkpoint.find(:all, :conditions => "status = 'no' and goal_id = '#{goal.id}'")
+      no_percent = (((@no.size + 0.0) / totalsize)*100).floor  
+      @yes = Checkpoint.find(:all, :conditions => "status = 'yes' and goal_id = '#{goal.id}'")
+      yes_percent = (((@yes.size + 0.0) / totalsize)*100).floor 
+      @missing = Checkpoint.find(:all, :conditions => "status = 'email sent' and goal_id = '#{goal.id}'")
+      # Convert these Ints into Floats by adding 0.0
+      missing = @missing.size + 0.0
+      total = totalsize + 0.0
+      missing_percent = ((missing / total)*100).floor
+      %>
+    <% else %>
+      no stats yet
+    <% end %>
+
+    </td>
+    <td>
+
+    <strong><%= goal.title %></strong>
+    <br>
+    <% if goal.status != 'hold' and daysinarow != 0 %>
+      <strong><%= daysinarow %> days in a row</strong>      
+    <% end %>
+
+    <% 
+    first_checkpoint = Checkpoint.find(:first, :conditions => "goal_id = #{goal.id}", :order => "checkin_date asc") 
+    if first_checkpoint != nil
+        forged_in = goal.established_on - first_checkpoint.checkin_date
+        %>
+        Created in <%= forged_in %> days
+        <%
+    end
+    %>
+
+    <br>
+    <%= link_to "Details and Options", edit_goal_path(goal) %>
+    </td>
+    </tr>
+    </table>
+    </div>
+    <% #################   END GOAL BOX ############### %>
+    
+  <% end %>
+
+  <br />
+
+<%
+#rescue
+#  <br>
+#  <p><font color=red>Something went wrong. Go back to the <a href="http://habitforge.com">home page</a> and try again, or <a href="mailto:support@habitforge.com">Contact Support</a></font></p>
+#  </div>
+
+%>
+<%
+#end
+%>

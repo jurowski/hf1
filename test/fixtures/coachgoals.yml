@@ -1,0 +1,45 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  coach_id: 1
+  goal_id: 1
+  goal_name: MyString
+  user_id: 1
+  user_email: MyString
+  user_first_name: MyString
+  coach_was_paid_out_on_date: 2011-09-16
+  coach_was_paid_out_amount: 9.99
+  amount_client_paid_total: 9.99
+  amount_client_paid_split_to_site: 9.99
+  amount_client_paid_split_to_coach: 9.99
+  week_1_email_due_date: 2011-09-16
+  week_1_email_sent_date: 2011-09-16
+  week_2_email_due_date: 2011-09-16
+  week_2_email_sent_date: 2011-09-16
+  week_3_email_due_date: 2011-09-16
+  week_3_email_sent_date: 2011-09-16
+  week_4_email_due_date: 2011-09-16
+  week_4_email_sent_date: 2011-09-16
+  is_active: 1
+
+two:
+  coach_id: 1
+  goal_id: 1
+  goal_name: MyString
+  user_id: 1
+  user_email: MyString
+  user_first_name: MyString
+  coach_was_paid_out_on_date: 2011-09-16
+  coach_was_paid_out_amount: 9.99
+  amount_client_paid_total: 9.99
+  amount_client_paid_split_to_site: 9.99
+  amount_client_paid_split_to_coach: 9.99
+  week_1_email_due_date: 2011-09-16
+  week_1_email_sent_date: 2011-09-16
+  week_2_email_due_date: 2011-09-16
+  week_2_email_sent_date: 2011-09-16
+  week_3_email_due_date: 2011-09-16
+  week_3_email_sent_date: 2011-09-16
+  week_4_email_due_date: 2011-09-16
+  week_4_email_sent_date: 2011-09-16
+  is_active: 1

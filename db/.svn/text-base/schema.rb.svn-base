@@ -1,0 +1,251 @@
+# This file is auto-generated from the current state of the database. Instead of editing this file, 
+# please use the migrations feature of Active Record to incrementally modify your database, and
+# then regenerate this schema definition.
+#
+# Note that this schema.rb definition is the authoritative source for your database schema. If you need
+# to create the application database on another system, you should be using db:schema:load, not running
+# all the migrations from scratch. The latter is a flawed and unsustainable approach (the more migrations
+# you'll amass, the slower it'll run and the greater likelihood for issues).
+#
+# It's strongly recommended to check this file into your version control system.
+
+ActiveRecord::Schema.define(:version => 20110329174705) do
+
+  create_table "checkpoints", :force => true do |t|
+    t.date     "checkin_date"
+    t.time     "checkin_time"
+    t.string   "status",       :default => "email sent", :null => false
+    t.integer  "goal_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.text     "comment"
+  end
+
+  add_index "checkpoints", ["goal_id"], :name => "index_checkpoints_on_goal_id"
+
+  create_table "cheers", :force => true do |t|
+    t.string   "email"
+    t.integer  "goal_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "expiredcheckpoints", :force => true do |t|
+    t.date     "checkin_date"
+    t.time     "checkin_time"
+    t.string   "status"
+    t.integer  "goal_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.text     "comment"
+  end
+
+  create_table "failedcheckpoints", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "goal_id"
+    t.integer  "checkpoint_id"
+    t.string   "email"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "status"
+  end
+
+  create_table "frommessages", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "subject"
+    t.text     "body"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "goals", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "title",                                                       :null => false
+    t.text     "summary"
+    t.text     "why"
+    t.date     "start"
+    t.date     "stop"
+    t.date     "established_on"
+    t.string   "category"
+    t.boolean  "publish",                               :default => false
+    t.boolean  "share",                                 :default => false
+    t.string   "status",                                :default => "start"
+    t.text     "response_question"
+    t.string   "response_options",                      :default => "yes;no"
+    t.time     "reminder_time"
+    t.boolean  "higher_is_better",                      :default => true
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "daysstraight"
+    t.string   "laststatus"
+    t.date     "laststatusdate"
+    t.text     "pleasure"
+    t.text     "pain"
+    t.boolean  "pp_remind"
+    t.date     "pp_remind_last_date"
+    t.string   "gmtoffset",               :limit => 10
+    t.integer  "serversendhour"
+    t.integer  "usersendhour"
+    t.boolean  "daym"
+    t.boolean  "dayt"
+    t.boolean  "dayw"
+    t.boolean  "dayr"
+    t.boolean  "dayf"
+    t.boolean  "days"
+    t.boolean  "dayn"
+    t.integer  "longestrun"
+    t.string   "sponsor"
+    t.integer  "pre_start_days_per_week"
+    t.integer  "success_rate_percentage"
+    t.integer  "days_into_it"
+    t.integer  "goal_days_per_week"
+    t.integer  "team_id"
+  end
+
+  add_index "goals", ["user_id"], :name => "index_goals_on_user_id"
+
+  create_table "messages", :force => true do |t|
+    t.integer  "from_id"
+    t.integer  "to_id"
+    t.string   "subject"
+    t.text     "body"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "promotion1s", :force => true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "quotes", :force => true do |t|
+    t.text     "thought"
+    t.string   "author"
+    t.date     "last_used"
+    t.boolean  "priority"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "sponsor"
+  end
+
+  create_table "sessions", :force => true do |t|
+    t.string   "session_id", :null => false
+    t.text     "data"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "sessions", ["session_id"], :name => "index_sessions_on_session_id"
+  add_index "sessions", ["updated_at"], :name => "index_sessions_on_updated_at"
+
+  create_table "sponsors", :force => true do |t|
+    t.string   "name"
+    t.string   "admin_user_email_1"
+    t.string   "admin_user_email_2"
+    t.text     "ad_text_1"
+    t.text     "ad_text_2"
+    t.text     "ad_text_3"
+    t.text     "ad_text_4"
+    t.text     "ad_text_5"
+    t.text     "main_message"
+    t.text     "site_name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "stats", :force => true do |t|
+    t.date     "recorddate"
+    t.integer  "recordhour"
+    t.integer  "usercount"
+    t.integer  "goalcount"
+    t.integer  "goalactivecount"
+    t.integer  "goalsnewcreated"
+    t.integer  "usersnewcreated"
+    t.integer  "checkpointemailssent"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "totalheckpointemailfailure"
+  end
+
+  create_table "teamgoals", :force => true do |t|
+    t.integer  "team_id"
+    t.integer  "goal_id"
+    t.integer  "rating"
+    t.integer  "qty_kickoff_votes"
+    t.integer  "active"
+    t.integer  "suspend"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "rank"
+    t.integer  "success_rate"
+    t.integer  "days_in_a_row"
+    t.integer  "met_goal_last_week"
+    t.date     "last_checkin_date"
+  end
+
+  create_table "teams", :force => true do |t|
+    t.string   "name"
+    t.string   "category_name"
+    t.integer  "qty_max"
+    t.integer  "qty_current"
+    t.integer  "avg_success_rate"
+    t.integer  "avg_days_in_a_row"
+    t.integer  "avg_met_goal_last_week"
+    t.integer  "qty_checked_in_yesterday"
+    t.integer  "qty_checked_in_last_2_days"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "has_opening"
+  end
+
+  create_table "tomessages", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "subject"
+    t.text     "body"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "users", :force => true do |t|
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "email",                                                        :default => "", :null => false
+    t.string   "string",                                                       :default => "", :null => false
+    t.string   "crypted_password",                                                             :null => false
+    t.string   "password_salt",                                                                :null => false
+    t.string   "persistence_token",                                                            :null => false
+    t.string   "single_access_token",                                                          :null => false
+    t.string   "perishable_token",                                             :default => "", :null => false
+    t.integer  "login_count",                                                  :default => 0,  :null => false
+    t.integer  "failed_login_count",                                           :default => 0,  :null => false
+    t.datetime "last_request_at"
+    t.datetime "current_login_at"
+    t.datetime "last_login_at"
+    t.string   "current_login_ip"
+    t.string   "last_login_ip"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "time_zone"
+    t.integer  "update_number_active_goals"
+    t.string   "gender"
+    t.integer  "yob"
+    t.string   "sponsor"
+    t.integer  "unsubscribed_from_promo_emails"
+    t.string   "promo_1_token"
+    t.integer  "promo_1_sent"
+    t.date     "last_donation_date"
+    t.date     "last_donation_plea_date"
+    t.integer  "donated_so_far"
+    t.integer  "promo_1_responded"
+    t.date     "kill_ads_until"
+    t.integer  "unlimited_goals"
+    t.integer  "hide_donation_plea"
+    t.integer  "combine_daily_emails"
+    t.decimal  "payments",                       :precision => 8, :scale => 2
+    t.integer  "goal_days_per_week"
+  end
+
+  add_index "users", ["email"], :name => "index_users_on_email"
+  add_index "users", ["perishable_token"], :name => "index_users_on_perishable_token"
+
+end

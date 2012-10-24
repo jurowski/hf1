@@ -1,0 +1,21 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  recorddate: 2009-12-02
+  recordhour: 1
+  usercount: 1
+  goalcount: 1
+  goalactivecount: 1
+  goalsnewcreated: 1
+  usersnewcreated: 1
+  checkpointemailssent: 1
+
+two:
+  recorddate: 2009-12-02
+  recordhour: 1
+  usercount: 1
+  goalcount: 1
+  goalactivecount: 1
+  goalsnewcreated: 1
+  usersnewcreated: 1
+  checkpointemailssent: 1

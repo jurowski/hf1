@@ -1,0 +1,44 @@
+<h1>Editing stat</h1>
+
+<% form_for(@stat) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :recorddate %><br />
+    <%= f.date_select :recorddate %>
+  </p>
+  <p>
+    <%= f.label :recordhour %><br />
+    <%= f.text_field :recordhour %>
+  </p>
+  <p>
+    <%= f.label :usercount %><br />
+    <%= f.text_field :usercount %>
+  </p>
+  <p>
+    <%= f.label :goalcount %><br />
+    <%= f.text_field :goalcount %>
+  </p>
+  <p>
+    <%= f.label :goalactivecount %><br />
+    <%= f.text_field :goalactivecount %>
+  </p>
+  <p>
+    <%= f.label :goalsnewcreated %><br />
+    <%= f.text_field :goalsnewcreated %>
+  </p>
+  <p>
+    <%= f.label :usersnewcreated %><br />
+    <%= f.text_field :usersnewcreated %>
+  </p>
+  <p>
+    <%= f.label :checkpointemailssent %><br />
+    <%= f.text_field :checkpointemailssent %>
+  </p>
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @stat %> |
+<%= link_to 'Back', stats_path %>
