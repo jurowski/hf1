@@ -781,7 +781,6 @@ http://localhost:3000/goals?update_checkpoint_status=yes&date=2012-02-12&e0=106&
         %>
         <a href="http://createhealthyhabits.myvi.net/index.html#Stories" target="_blank"><img src="/images/visalus<%= random_ad %>.jpg" height="100px" /></a>
         <%
-        logger.warn("sgj:visalus ad" + random_ad.to_s + " shown")
       end ### end if exercise or diet
     end ### end if habitforge and daily_status == no
     #####    END SHOW VISALUS ADS

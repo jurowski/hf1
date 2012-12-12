@@ -109,7 +109,7 @@ show_monitor_option_details = 0
             &nbsp &nbsp &nbsp &nbsp
             &nbsp &nbsp &nbsp &nbsp
             &nbsp &nbsp &nbsp 
-            <a href="https://www.securepublications.com/habit-1-year.php?ref=<%= current_user.id %>"><font color=red>Become a Supporting Member!</font></a>
+            <a href="http://habitforge.myshopify.com/collections/frontpage/products/habitforge-supporting-membership-1-year?ref=<%= current_user.id %>"><font color=red>Become a Supporting Member!</font></a>
             <br>
             &nbsp &nbsp &nbsp &nbsp
             <em>Hide the ads, create unlimited active habits, and get access to the new site!</em>
@@ -495,7 +495,7 @@ if @ca == "edit" %>
                     <p>
                         "Frequent Reminders" available only to Supporting Members:
                         &nbsp &nbsp
-                        <a href="https://www.securepublications.com/habit-1-year.php?ref=<%= current_user.id.to_s %>" class="button" >Just $9.95 for 12 months!</a>
+                        <a href="http://habitforge.myshopify.com/collections/frontpage/products/habitforge-supporting-membership-1-year?ref=<%= current_user.id.to_s %>" class="button" >Just $9.95 for 12 months!</a>
                         <br>
                         (Unlimited active habits, Frequent Reminders, No advertisements!)
                     </p>
@@ -602,7 +602,7 @@ end
 <h2>Public Motivation: Put yourself out there!</h2>
 <p>
 <% if current_user.sponsor == "habitforge" and !current_user.is_habitforge_supporting_member and current_user.id > 79152 %>
-  <strong>Prefer "Private" habits as an option? Get a Supporting Membership!</strong> <a href="https://www.securepublications.com/habit-1-year.php?ref=<%= current_user.id.to_s %>" class="button">Just $9.95 for 12 months!</a>
+  <strong>Prefer "Private" habits as an option? Get a Supporting Membership!</strong> <a href="http://habitforge.myshopify.com/collections/frontpage/products/habitforge-supporting-membership-1-year?ref=<%= current_user.id.to_s %>" class="button">Just $9.95 for 12 months!</a>
   <br>
   <br>
   <input disabled="disabled" id="publish" name="publish" type="checkbox" value="true" checked />
@@ -627,7 +627,7 @@ If I don't succeed for a few days, other HabitForge members can earn points by s
 
 <% if !current_user.is_habitforge_supporting_member %>
   <br><br>(Available to Supporting Members Only)
-<a href="https://www.securepublications.com/habit-1-year.php?ref=<%= current_user.id.to_s %>" class="button">Upgrade Now: Just $9.95 for 12 months!</a>
+<a href="http://habitforge.myshopify.com/collections/frontpage/products/habitforge-supporting-membership-1-year?ref=<%= current_user.id.to_s %>" class="button">Upgrade Now: Just $9.95 for 12 months!</a>
 <% end %>
 <br>
 <br>

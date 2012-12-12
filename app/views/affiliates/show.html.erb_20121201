@@ -74,21 +74,11 @@ if affiliate_signups
                 if affiliate_signup.is_habitforge_supporting_member
                     if affiliate_signup.last_donation_date != nil
                     %>
-                        <% if @affiliate.last_payment_date != nil %>
-                          <% if @affiliate.last_payment_date < affiliate_signup.last_donation_date %>
-                            (NOT YET PAID OUT)
-                          <% else %>
-                            (PAID OUT)
-                          <% end %>
-                        
-                        <% else %>
-                          (NOT YET PAID OUT) 
-			<% end %>
                         Yes, from <%= affiliate_signup.last_donation_date %> through <%= affiliate_signup.kill_ads_until %>
                     <%
                     else
                     %>
-                        (ADMIN: CHECK START DATE TO DETERMINE PAYOUT STATUS) Yes, through <%= affiliate_signup.kill_ads_until %>
+                        Yes, through <%= affiliate_signup.kill_ads_until %>
                     <%
                     end
                     %>

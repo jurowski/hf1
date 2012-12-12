@@ -94,8 +94,15 @@ class SendRemindersFrequent < ActiveRecord::Base
       ### GET USER DATE and TIMENOW ###
 
 
+      #Time.zone = user.time_zone
+      #tnow = Time.zone.now + jump_forward_seconds #User time
+
       Time.zone = user.time_zone
-      tnow = Time.zone.now + jump_forward_seconds #User time
+      if Time.zone
+        tnow = Time.zone.now + jump_forward_seconds #User time
+      else
+        tnow = Time.now + jump_forward_seconds
+      end
       
       tnow_hour_temp = tnow - (0 * 3600) # add 3600 seconds for each hour, so 14400 = 4 hours
       tnow_hour = tnow_hour_temp.strftime("%k").to_i #hour (24-hour format, w/ no leading zeroes)

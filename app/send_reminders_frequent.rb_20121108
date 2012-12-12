@@ -1,9 +1,9 @@
 require 'active_record'
 require 'date'
 require 'logger'
-class SendReminders < ActiveRecord::Base
-  # This script emails reminders to people abou their goals
-
+class SendRemindersFrequent < ActiveRecord::Base
+  # This script emails reminders to people about their goals
+  # ...for those who've signed up for "frequent" reminders throughout the day
 
   if `uname -n`.strip == 'adv.adventurino.com'
     #### HABITFORGE SETTINGS ON VPS
@@ -94,16 +94,8 @@ class SendReminders < ActiveRecord::Base
       ### GET USER DATE and TIMENOW ###
 
 
-      #Time.zone = user.time_zone
-      #tnow = Time.zone.now + jump_forward_seconds #User time
-
       Time.zone = user.time_zone
-      if Time.zone
-        tnow = Time.zone.now + jump_forward_seconds #User time
-      else
-        tnow = Time.now + jump_forward_seconds
-      end
-
+      tnow = Time.zone.now + jump_forward_seconds #User time
       
       tnow_hour_temp = tnow - (0 * 3600) # add 3600 seconds for each hour, so 14400 = 4 hours
       tnow_hour = tnow_hour_temp.strftime("%k").to_i #hour (24-hour format, w/ no leading zeroes)
@@ -145,20 +137,19 @@ class SendReminders < ActiveRecord::Base
           day_name = "dayn"
       end
       ######
+      
+        
       ###################
       ###################
       #@goals = Goal.find(:all, :conditions => "status !='hold' and start < '#{dnow}' and stop >= '#{dnow}' and #{day_name} = '1'") 
       goal_conditions = "user_id = #{user.id}"
+      goal_conditions = goal_conditions + " and more_reminders_enabled = '1'"
       goal_conditions = goal_conditions + " and status != 'hold'"
-      
-
       #goal_conditions = goal_conditions + " and ((start < '#{dnow}' and stop >= '#{dnow}') or (laststatusdate is not null and laststatusdate > '#{user.dstop_after_stale_days}'))"
       goal_conditions = goal_conditions + " and ((start <= '#{dnow}' and stop >= '#{dnow}') or (laststatusdate is not null and laststatusdate > '#{user.dstop_after_stale_days}'))"
       goal_conditions = goal_conditions + " and #{day_name} = '1'"   #comment out this one line if not supporting days of the week
-      goal_conditions = goal_conditions + " and reminder_send_hour <= '#{tnow_hour}'"
-      goal_conditions = goal_conditions + " and reminder_send_hour <> '-1'"
-      goal_conditions = goal_conditions + " and (reminder_last_sent_date is null or reminder_last_sent_date < '#{dnow}')"
-      #goal_conditions = goal_conditions + " and reminder_last_sent_date < '#{dnow}'"
+      goal_conditions = goal_conditions + " and more_reminders_start <= '#{tnow_hour}'"
+      goal_conditions = goal_conditions + " and more_reminders_end >= '#{tnow_hour}'"
 
       #don't send the reminder on the goal creation day!
       #so if user.today < goal.start_date, don't send
@@ -171,12 +162,17 @@ class SendReminders < ActiveRecord::Base
       @goals = Goal.find(:all, :conditions => goal_conditions)
       for goal in @goals
           
-        ### don't let a reminder go out if it's > 4 hours too late
-        max_time_to_send = goal.reminder_send_hour + 4
-        if tnow_hour <= max_time_to_send 
+
+        next_time_to_send = goal.more_reminders_last_sent + goal.more_reminders_every_n_hours
+
+        ### send if now >= (last_sent_hour + send_every)
+        ### also send if last_sent_hour > now 
+        ### (this means it was last sent yesterday)
+
+        if (tnow_hour >= next_time_to_send) or (goal.more_reminders_last_sent > tnow_hour) 
 
             ### Send reminder email
-            logtext = "About to send user_id of #{goal.user.id.to_s} ( #{goal.user.email} ) a reminder email for today (#{today_dayname}), #{dnow}. Their time is #{tnow.to_s} or hour number #{tnow_hour}."              
+            logtext = "About to send user_id of #{goal.user.id.to_s} ( #{goal.user.email} ) a 'frequent' reminder email for today (#{today_dayname}), #{dnow}. Their time is #{tnow.to_s} or hour number #{tnow_hour}."              
             puts logtext
             logger.info logtext 
 
@@ -188,36 +184,14 @@ class SendReminders < ActiveRecord::Base
                         logger.debug "reminder sent for " + goal.user.email + " " + goal.title
                         reminder_sent = true
                     rescue
-                        the_message = "SGJerror failed to send HF reminder for goal " + goal.id.to_s + " entitled " + goal.title + " to " + goal.user.email 
-                        puts the_message
-                        logger.error the_message
-                    end
-            end
-            if goal.user.sponsor == "forittobe"
-                    begin
-                        Notifier.deliver_daily_reminder_to_user_forittobe(goal) # sends the email 
-                        logger.debug "reminder sent for " + goal.user.email + " " + goal.title
-                        reminder_sent = true
-                    rescue
-                        the_message = "SGJerror failed to send FORITTOBE reminder to " + goal.user.email 
-                        puts the_message
-                        logger.error the_message
-                    end
-            end
-            if goal.user.sponsor == "clearworth"
-                    begin 
-                        Notifier.deliver_daily_reminder_to_user_clearworth(goal) # sends the email 
-                        logger.debug "reminder sent for " + goal.user.email + " " + goal.title
-                        reminder_sent = true
-                    rescue
-                        the_message = "SGJerror failed to send CLEARWORTH reminder to " + goal.user.email 
+                        the_message = "SGJerror failed to send HF reminder to " + goal.user.email 
                         puts the_message
                         logger.error the_message
                     end
             end
         
             if reminder_sent
-                goal.reminder_last_sent_date = dnow
+                goal.more_reminders_last_sent = tnow_hour
                 goal.save
 
                 logtext = "Success emailing #{goal.user.email}."              
@@ -225,9 +199,6 @@ class SendReminders < ActiveRecord::Base
                 logger.info logtext 
             end
 
-
-        else
-            ### it's too late in the day, don't bother sending this reminder
         end
 
       end

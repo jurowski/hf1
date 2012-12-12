@@ -6,8 +6,6 @@
 <meta name="description" content="Exercise more. Eat Healthy. Start any new habit you can think of or break a bad habit. HabitForge is a free web app that emails you daily asking you a yes or no question about whether you followed through on a habit you want to establish. If you say "yes" for 21 days in a row, you've done it. Skip a day, and start over at day 1. Join a team or go solo. Invite friend to keep you accountable." />
 
 
-
-
 <script type="text/javascript">var switchTo5x=true;</script><script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script><script type="text/javascript">stLight.options({publisher:'6f618717-8285-4c8c-b5c7-4f9e1d5e2a92'});</script>
 
 <title>HabitForge | Simple Accountability. Positive Change.</title>
@@ -562,16 +560,9 @@ What could you do daily to improve your life?</div>
 
 
 
-
-
-
-
-
-
-
     <div class="clear"></div>
     <div class="container_12">
-        <div class="grid_12" style="margin-top:-50px;" >
+        <div class="grid_12">
             <!--Begin Latest Projects-->
     <div class="latest">
                 <div class="divider">
@@ -605,15 +596,10 @@ What could you do daily to improve your life?</div>
 
         </div>
     </div>
+
+
+
     <div class="clear"></div>
-
-
-
-
-
-
-
-
     <div class="container_12">
         <div class="grid_12">
             <!--Begin Latest Projects-->
@@ -666,7 +652,7 @@ What could you do daily to improve your life?</div>
 
 
 
-    <%= render :partial => "layouts/testimonials"  %>
+
 
 
 
@@ -681,10 +667,8 @@ What could you do daily to improve your life?</div>
 
     <!--END Full Width Featured Tabs-->
     </div>
-
-
-
     <!--Begin Callout Section-->
+
     <div class="callout">
         <div class="calloutcontainer">
             <div class="container_12">
@@ -719,7 +703,12 @@ What could you do daily to improve your life?</div>
         </div>
     </div>
     <!--End Callout Section-->
+
+
+
     <div class="clear"></div>
+
+
 
     <div class="footer">
         <div class="container_12">
@@ -899,10 +888,10 @@ What could you do daily to improve your life?</div>
 
 
 
-<% if show_ads == 11 %>
+<% if show_ads == 1 %>
   <center><a href="http://41cc573h0r4jyn3ez2tcoionkd.hop.clickbank.net/" target="_blank"><img src="/images/fat_loss_factor.png" height="100px" /></a></center>
 <% end %>
-<% if show_ads == 1 %>
+<% if show_ads == 11 %>
     <div class="container_12">
         <div class="grid_8">
 

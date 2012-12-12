@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121016034047) do
+ActiveRecord::Schema.define(:version => 20121201200915) do
 
   create_table "affiliates", :force => true do |t|
     t.string   "email"
@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(:version => 20121016034047) do
     t.integer  "affiliate_earnings_rate"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.date     "last_payment_date"
   end
 
   create_table "betpayees", :force => true do |t|

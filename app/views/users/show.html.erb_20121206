@@ -60,7 +60,7 @@
             </h5
 
             <br>
-            <a href="https://www.securepublications.com/habit-1-year.php?ref=<%= current_user.id.to_s %>" class="button">Just $9.95 for 12 months!</a>
+            <a href="http://habitforge.myshopify.com/collections/frontpage/products/habitforge-supporting-membership-1-year?ref=<%= current_user.id.to_s %>" class="button">Just $9.95 for 12 months!</a>
             &nbsp &nbsp
         </div>
 
@@ -115,7 +115,7 @@
             </h5
 
             <br>
-            <a href="https://www.securepublications.com/habit-1-year.php?ref=<%= current_user.id.to_s %>" class="button">Extend 1 Year for just $9.95!</a>
+            <a href="http://habitforge.myshopify.com/collections/frontpage/products/habitforge-supporting-membership-1-year?ref=<%= current_user.id.to_s %>" class="button">Extend 1 Year for just $9.95!</a>
             </h4>        
         </div>
 

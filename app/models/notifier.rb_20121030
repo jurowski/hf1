@@ -40,7 +40,7 @@ class Notifier < ActionMailer::Base
 
   def user_expired_notification(user)
     recipients user.first_name + "<" + user.email + ">"
-    #bcc         "support@habitforge.com"
+    bcc         "support@habitforge.com"
     from       "habitforge <support@habitforge.com>"
     subject    "Renewal Notice: Your Supporting Membership Has Expired."
     body       :user => user
@@ -49,7 +49,7 @@ class Notifier < ActionMailer::Base
 
   def user_expire_soon_notification(user)
     recipients user.first_name + "<" + user.email + ">"
-    #bcc         "support@habitforge.com"
+    bcc         "support@habitforge.com"
     from       "habitforge <support@habitforge.com>"
     subject    "Renewal Notice: Your Supporting Membership Will Expire Soon!"
     body       :user => user
@@ -264,7 +264,6 @@ class Notifier < ActionMailer::Base
   def goal_creation_notification(goal)
     recipients	goal.user.email
     from       "habitforge <support@habitforge.com>"
-    bcc         "support@habitforge.com"
     subject    "Goal Creation Notification"
     body       :goal => goal
     content_type "text/html"
@@ -281,7 +280,7 @@ class Notifier < ActionMailer::Base
 
   def pushmessage_to_slacker(from_user, to_user, slacker_goal, push_message)
     recipients  to_user.email
-    #bcc        ["jurowski@gmail.com"]
+    bcc        ["jurowski@gmail.com"]
     from       "No Reply-Messages <noreply-messages@habitforge.com>"
     subject    "You have received a 'push' from someone at HabitForge! (#{from_user.first_name} is counting on you to succeed w/in 48 hours!)"
     body       :to_user => to_user, :from_user => from_user, :slacker_goal => slacker_goal, :push_message => push_message
@@ -290,7 +289,7 @@ class Notifier < ActionMailer::Base
 
   def succeeded_with_pushmessage_to_slacker(to_user, slacker_goal)
     recipients  to_user.email
-    #bcc        ["jurowski@gmail.com"]
+    bcc        ["jurowski@gmail.com"]
     from       "No Reply-Messages <noreply-messages@habitforge.com>"
     subject    "Your 'push' to #{slacker_goal.user.first_name} helped! You've earned another 10 SupportPoints!"
     body       :to_user => to_user, :slacker_goal => slacker_goal
@@ -301,7 +300,6 @@ class Notifier < ActionMailer::Base
     recipients	goal.user.email
     from       "ClearWorth and HabitForge <support@habitforge.com>"
     subject    "Goal Creation Notification"
-    bcc         "support@habitforge.com"
     body       :goal => goal
     content_type "text/html"
   end
@@ -310,14 +308,12 @@ class Notifier < ActionMailer::Base
     recipients	goal.user.email
     from       "reEngage Focus <support@reengagefocus.com>"
     subject    "Goal Creation Notification"
-    bcc         "support@habitforge.com"
     body       :goal => goal
     content_type "text/html"
   end
 
   def goal_creation_notification_forittobe(goal)
     recipients	goal.user.email
-    bcc         "support@habitforge.com"
     from       "For It To Be <support@forittobe.com>"
     subject    "Goal Creation Notification"
     body       :goal => goal
@@ -325,7 +321,6 @@ class Notifier < ActionMailer::Base
   end
   def goal_creation_notification_marriagereminders(goal)
     recipients	goal.user.email
-    bcc         "support@habitforge.com"
     from       "Marriage Reminders <support@marriagereminders.com>"
     subject    "Goal Creation Notification"
     body       :goal => goal
@@ -551,7 +546,7 @@ class Notifier < ActionMailer::Base
 
   def user_ask_for_testimonial(user, the_subject)
     recipients  user.email
-    #bcc         "support@habitforge.com"
+    bcc         "support@habitforge.com"
     from        "habitforge <support@habitforge.com>"
     subject     the_subject
     body        :user => user

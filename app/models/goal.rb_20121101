@@ -47,7 +47,7 @@ class Goal < ActiveRecord::Base
     #### the rules used by the cron checkpoint creation script:
     #### goal_conditions = goal_conditions + " and status != 'hold'"
     #### goal_conditions = goal_conditions + " and ((start < '#{dnow}' and stop >= '#{dnow}') or (laststatusdate is not null and laststatusdate > '#{user.dstop_after_stale_days}'))"
-    if self.status != "hold" and (((self.start != nil  and (self.start <= self.user.dtomorrow)) and (self.stop != nil and (self.stop >= self.user.dtoday))) or ((self.laststatusdate != nil) and (self.laststatusdate > self.user.dstop_after_stale_days)))
+    if self.status != "hold" and (((self.start <= self.user.dtomorrow) and (self.stop >= self.user.dtoday)) or ((self.laststatusdate != nil) and (self.laststatusdate > self.user.dstop_after_stale_days)))
         return true        
     else
         return false

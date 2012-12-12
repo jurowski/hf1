@@ -196,7 +196,7 @@ if legit_url == 1
                       </div>
 
 
-                        <br><h3><a href="https://www.securepublications.com/habit-1-year.php?ref=<%= @checkpoint.goal.user.id.to_s %>" class="button">Only $14.95 for 12 Months!</a></h3>
+                        <br><h3><a href="http://habitforge.myshopify.com/collections/frontpage/products/habitforge-supporting-membership-1-year?ref=<%= @checkpoint.goal.user.id.to_s %>" class="button">Only $14.95 for 12 Months!</a></h3>
 <p><%= link_to_function ("Not now, thanks") {
              |page| page.visual_effect :toggle_appear, "advanced" 
             }%></p>                        

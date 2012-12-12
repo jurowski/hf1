@@ -264,7 +264,6 @@ class Notifier < ActionMailer::Base
   def goal_creation_notification(goal)
     recipients	goal.user.email
     from       "habitforge <support@habitforge.com>"
-    bcc         "support@habitforge.com"
     subject    "Goal Creation Notification"
     body       :goal => goal
     content_type "text/html"
@@ -301,7 +300,6 @@ class Notifier < ActionMailer::Base
     recipients	goal.user.email
     from       "ClearWorth and HabitForge <support@habitforge.com>"
     subject    "Goal Creation Notification"
-    bcc         "support@habitforge.com"
     body       :goal => goal
     content_type "text/html"
   end
@@ -310,14 +308,12 @@ class Notifier < ActionMailer::Base
     recipients	goal.user.email
     from       "reEngage Focus <support@reengagefocus.com>"
     subject    "Goal Creation Notification"
-    bcc         "support@habitforge.com"
     body       :goal => goal
     content_type "text/html"
   end
 
   def goal_creation_notification_forittobe(goal)
     recipients	goal.user.email
-    bcc         "support@habitforge.com"
     from       "For It To Be <support@forittobe.com>"
     subject    "Goal Creation Notification"
     body       :goal => goal
@@ -325,7 +321,6 @@ class Notifier < ActionMailer::Base
   end
   def goal_creation_notification_marriagereminders(goal)
     recipients	goal.user.email
-    bcc         "support@habitforge.com"
     from       "Marriage Reminders <support@marriagereminders.com>"
     subject    "Goal Creation Notification"
     body       :goal => goal

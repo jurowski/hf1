@@ -521,13 +521,13 @@ logger.debug "SGJ2 2 #{goal.title}(#{goal.id}) #{goal.daysstraight} daysstraight
           else
             begin              
               if session[:sponsor] == "clearworth"
-                #Notifier.deliver_goal_creation_notification_clearworth(@goal) # sends the email
+                Notifier.deliver_goal_creation_notification_clearworth(@goal) # sends the email
               elsif session[:sponsor] == "forittobe"
-                #Notifier.deliver_goal_creation_notification_forittobe(@goal) # sends the email
+                Notifier.deliver_goal_creation_notification_forittobe(@goal) # sends the email
               elsif session[:sponsor] == "marriagereminders"
-                #Notifier.deliver_goal_creation_notification_marriagereminders(@goal) # sends the email
+                Notifier.deliver_goal_creation_notification_marriagereminders(@goal) # sends the email
               else
-                #Notifier.deliver_goal_creation_notification(@goal) # sends the email
+                Notifier.deliver_goal_creation_notification(@goal) # sends the email
               end
             rescue
               puts "Error while sending goal notification email from Goal.create action."

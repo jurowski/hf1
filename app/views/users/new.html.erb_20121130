@@ -39,12 +39,7 @@ end
   <p>
   <br>
   <input type="radio" name="account_type" value="supporting" checked><span style="font-size:130%;font-weight:900;"> Premium Membership (Just $9.95 for 12 months!)</span>
-
-  <% if @affiliate %>
-    <% if @affiliate.coupon_code != nil and @affiliate.coupon_code != "" and @affiliate.coupon_discount != nil %>
-      <br> <span style="font-size:150%;color:#FF0000;font-weight:900;">Get Another <%= @affiliate.coupon_discount %>% off now! Enter coupon code "<%= @affiliate.coupon_code %>" at checkout!</span>
-    <% end %>
-  <% end %>
+<br> <span style="font-size:150%;color:#FF0000;font-weight:900;">Get Another 25% off now! Enter coupon code "takeaction" at checkout!</span>
 
 <span style="font-size:120%;font-weight:900;">
 <br>&nbsp<image height="20px" src="/images/checkmark_green.png">Unlimited Active Private or Public Habits

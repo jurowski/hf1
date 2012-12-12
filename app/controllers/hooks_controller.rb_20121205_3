@@ -636,7 +636,6 @@ testing_xml_resend_any = %{
 
 
         xml_product_id = 0
-	xml_variant_id = 0
         ### Iterate through each line item and check each product id
         ### to determine whether the user is upgrading their account
         ### or if they're buying cause credits for a goal
@@ -655,16 +654,7 @@ testing_xml_resend_any = %{
            logger.info 'XML Looking at Line Item #' + line_item_counter.to_s
            
            xml_product_id = item.elements['line-item/product-id'].text.to_i
-	   xml_variant_id = item.elements['line-item/variant-id'].text.to_i
-	
-           if (xml_product_id == 49 and xml_variant_id == 27) or xml_product_id == 33131182 or xml_product_id == 63752422 or xml_product_id == 63868112 or xml_product_id == 63752802 or xml_product_id == 63753272 or xml_product_id == 43003332
-
-
-
-	     #### INFUSION SOFT PRODUCT IDS
- 	     #### product-id = 49 and variant-id = 27 := 12-month @ $9.95
-
-	     #### SHOPIFY PRODUCT IDs
+           if xml_product_id == 33131182 or xml_product_id == 63752422 or xml_product_id == 63868112 or xml_product_id == 63752802 or xml_product_id == 63753272 or xml_product_id == 43003332
              ### 33131182 = 12-month Supporting Membership
              ### 43003332 = Extra Accountability (aka "coach")
 
@@ -674,7 +664,7 @@ testing_xml_resend_any = %{
              ### 63753272 = 5 year Supporting Membership
              ############################################
              #### START ACCOUNT UPGRADE ONLY PORTION
-             if (xml_product_id == 49 and xml_variant_id == 27) or xml_product_id == 33131182 or xml_product_id == 63752422 or xml_product_id == 63868112 or xml_product_id == 63752802 or xml_product_id == 63753272
+             if xml_product_id == 33131182 or xml_product_id == 63752422 or xml_product_id == 63868112 or xml_product_id == 63752802 or xml_product_id == 63753272
                  logger.info 'XML This Line Item is for an Account Upgrade'
                  ### If their email exists in our db, upgrade their account
                  account_upgraded = 0
@@ -783,7 +773,7 @@ testing_xml_resend_any = %{
                      end
 
                      ### 33131182 = 12-month Supporting Membership
-                     if (xml_product_id == 49 and xml_variant_id == 27) or xml_product_id == 33131182
+                     if xml_product_id == 33131182
                          Notifier.deliver_user_upgrade_notification(user) # sends the email
                      end
 
@@ -1085,10 +1075,8 @@ testing_xml_resend_any = %{
              end
              #### END EXTRA ACCOUNTABILITY (COACHING) ONLY PORTION
              ############################################                 
-           end  
-           #else
-           ### commented out the below for now, since we're not doing cause credits anymore
-           if 1 == 0 
+             
+           else
              ### not 33131182 or 43003332, so User is likely cause credits for their goal
              
              #### REMEMBER, THERE ARE MANY CAUSE CREDIT ITEM-IDs,

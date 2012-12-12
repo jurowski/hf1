@@ -1,9 +1,9 @@
-<%= link_to_function ('<img src="/images/add_32.png" border="0" height="25px" />Start a New Habit  
+<%= link_to_function ('<img src="/images/add_32.png" border="0" height="25px" />Start one of the habits below  
 ') {
-|page| page.visual_effect :toggle_appear, "advanced" 
+|page| page.visual_effect :toggle_appear, "advanced2" 
 }%>
 </div>
-<div id="advanced" style="display:none;">
+<div id="advanced2" style="display:none;">
 <br>
 <br>
 <div class="notice" style="width:700px;border-width:1px;background-color:#eeeeee;">
@@ -30,12 +30,12 @@
 
 <br>
 
-<a href="https://www.securepublications.com/habit-1-year.php?ref=<%= current_user.id.to_s %>" class="button" >Just $9.95 for 12 months!</a>
+<a href="http://habitforge.myshopify.com/collections/frontpage/products/habitforge-supporting-membership-1-year?ref=<%= current_user.id.to_s %>" class="button" >Just $9.95 for 12 months!</a>
 
 <br>
 <br>
 <p><%= link_to_function ("Not now, thanks") {
-|page| page.visual_effect :toggle_appear, "advanced" 
+|page| page.visual_effect :toggle_appear, "advanced2" 
 }%></p>                        
 <p />
 <p />

@@ -206,15 +206,6 @@ class UsersController < ApplicationController
         session[:goal_template_text] = params[:goal_template_text]
     end
     @user = User.new
-
-    
-    if session[:affiliate_name] != nil and session[:affiliate_name] != ""
-      @affiliate = Affiliate.find(:first, :conditions => "affiliate_name = '#{session[:affiliate_name]}'")
-      if @affiliate
-          @user.affiliate = @affiliate
-      end
-    end
-
     #@user.yob = 1980
     #respond_to do |format|
     #  format.html # new.html.erb

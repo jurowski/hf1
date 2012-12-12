@@ -8,7 +8,7 @@ development:
 <% if `uname -n`.strip == 'adv.adventurino.com' %>
   database: jurowsk1_adventurinodev
   username: jurowsk1_jurowsk
-  password: abcd1234
+  password: ZMysql1!
   socket: /var/lib/mysql/mysql.sock    ### adventurino.com VPS
 <% elsif `uname -n`.strip == 'gns499aa.joyent.us' %>
   database: habitforge_dev
@@ -46,6 +46,6 @@ production:
   database: jurowsk1_adventurinodev
   pool: 5
   username: jurowsk1_jurowsk
-  password: abcd1234
+  password: ZMysql1!
   socket: /var/lib/mysql/mysql.sock    ### adventurino.com VPS
   #socket: /private/tmp/mysql.sock ### osx local laptop
