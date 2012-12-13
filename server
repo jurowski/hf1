@@ -1,0 +1,469 @@
+Script started on Wed 12 Dec 2012 11:41:16 PM CST
+]0;sgj700@ubuntu: ~/rails_apps/hf1sgj700@ubuntu:~/rails_apps/hf1$ script/server
+NOTE: Gem.source_index is deprecated, use Specification. It will be removed on or after 2011-11-01.
+Gem.source_index called from ./script/../config/../vendor/rails/railties/lib/rails/gem_dependency.rb:21.
+NOTE: Gem::SourceIndex#refresh! is deprecated with no replacement. It will be removed on or after 2011-11-01.
+Gem::SourceIndex#refresh! called from ./script/../config/../vendor/rails/railties/lib/rails/vendor_gem_source_index.rb:34.
+NOTE: Gem::SourceIndex#load_gems_in is deprecated with no replacement. It will be removed on or after 2011-11-01.
+Gem::SourceIndex#load_gems_in called from /home/sgj700/.rvm/rubies/ruby-1.8.7-p352/lib/ruby/site_ruby/1.8/rubygems/source_index.rb:322.
+NOTE: Gem::SourceIndex#add_spec is deprecated, use Specification.add_spec. It will be removed on or after 2011-11-01.
+Gem::SourceIndex#add_spec called from /home/sgj700/.rvm/rubies/ruby-1.8.7-p352/lib/ruby/site_ruby/1.8/rubygems/source_index.rb:127.
+NOTE: Gem::SourceIndex#add_spec is deprecated, use Specification.add_spec. It will be removed on or after 2011-11-01.
+Gem::SourceIndex#add_spec called from /home/sgj700/.rvm/rubies/ruby-1.8.7-p352/lib/ruby/site_ruby/1.8/rubygems/source_index.rb:127.
+NOTE: Gem::SourceIndex#add_spec is deprecated, use Specification.add_spec. It will be removed on or after 2011-11-01.
+Gem::SourceIndex#add_spec called from /home/sgj700/.rvm/rubies/ruby-1.8.7-p352/lib/ruby/site_ruby/1.8/rubygems/source_index.rb:127.
+NOTE: Gem::SourceIndex#add_spec is deprecated, use Specification.add_spec. It will be removed on or after 2011-11-01.
+Gem::SourceIndex#add_spec called from /home/sgj700/.rvm/rubies/ruby-1.8.7-p352/lib/ruby/site_ruby/1.8/rubygems/source_index.rb:127.
+NOTE: Gem::SourceIndex#add_spec is deprecated, use Specification.add_spec. It will be removed on or after 2011-11-01.
+Gem::SourceIndex#add_spec called from /home/sgj700/.rvm/rubies/ruby-1.8.7-p352/lib/ruby/site_ruby/1.8/rubygems/source_index.rb:127.
+NOTE: Gem::SourceIndex#add_spec is deprecated, use Specification.add_spec. It will be removed on or after 2011-11-01.
+Gem::SourceIndex#add_spec called from /home/sgj700/.rvm/rubies/ruby-1.8.7-p352/lib/ruby/site_ruby/1.8/rubygems/source_index.rb:127.
+NOTE: Gem::SourceIndex#add_spec is deprecated, use Specification.add_spec. It will be removed on or after 2011-11-01.
+Gem::SourceIndex#add_spec called from /home/sgj700/.rvm/rubies/ruby-1.8.7-p352/lib/ruby/site_ruby/1.8/rubygems/source_index.rb:127.
+NOTE: Gem::SourceIndex#add_spec is deprecated, use Specification.add_spec. It will be removed on or after 2011-11-01.
+Gem::SourceIndex#add_spec called from /home/sgj700/.rvm/rubies/ruby-1.8.7-p352/lib/ruby/site_ruby/1.8/rubygems/source_index.rb:127.
+NOTE: Gem::SourceIndex#add_spec is deprecated, use Specification.add_spec. It will be removed on or after 2011-11-01.
+Gem::SourceIndex#add_spec called from /home/sgj700/.rvm/rubies/ruby-1.8.7-p352/lib/ruby/site_ruby/1.8/rubygems/source_index.rb:127.
+NOTE: Gem::SourceIndex#add_spec is deprecated, use Specification.add_spec. It will be removed on or after 2011-11-01.
+Gem::SourceIndex#add_spec called from /home/sgj700/.rvm/rubies/ruby-1.8.7-p352/lib/ruby/site_ruby/1.8/rubygems/source_index.rb:127.
+NOTE: Gem::SourceIndex#add_spec is deprecated, use Specification.add_spec. It will be removed on or after 2011-11-01.
+Gem::SourceIndex#add_spec called from /home/sgj700/.rvm/rubies/ruby-1.8.7-p352/lib/ruby/site_ruby/1.8/rubygems/source_index.rb:127.
+NOTE: Gem::SourceIndex#add_spec is deprecated, use Specification.add_spec. It will be removed on or after 2011-11-01.
+Gem::SourceIndex#add_spec called from /home/sgj700/.rvm/rubies/ruby-1.8.7-p352/lib/ruby/site_ruby/1.8/rubygems/source_index.rb:127.
+NOTE: Gem::SourceIndex#add_spec is deprecated, use Specification.add_spec. It will be removed on or after 2011-11-01.
+Gem::SourceIndex#add_spec called from /home/sgj700/.rvm/rubies/ruby-1.8.7-p352/lib/ruby/site_ruby/1.8/rubygems/source_index.rb:127.
+NOTE: Gem::SourceIndex#add_spec is deprecated, use Specification.add_spec. It will be removed on or after 2011-11-01.
+Gem::SourceIndex#add_spec called from /home/sgj700/.rvm/rubies/ruby-1.8.7-p352/lib/ruby/site_ruby/1.8/rubygems/source_index.rb:127.
+NOTE: Gem::SourceIndex#add_spec is deprecated, use Specification.add_spec. It will be removed on or after 2011-11-01.
+Gem::SourceIndex#add_spec called from /home/sgj700/.rvm/rubies/ruby-1.8.7-p352/lib/ruby/site_ruby/1.8/rubygems/source_index.rb:127.
+NOTE: Gem::SourceIndex#add_spec is deprecated, use Specification.add_spec. It will be removed on or after 2011-11-01.
+Gem::SourceIndex#add_spec called from /home/sgj700/.rvm/rubies/ruby-1.8.7-p352/lib/ruby/site_ruby/1.8/rubygems/source_index.rb:127.
+NOTE: Gem::SourceIndex#add_spec is deprecated, use Specification.add_spec. It will be removed on or after 2011-11-01.
+Gem::SourceIndex#add_spec called from /home/sgj700/.rvm/rubies/ruby-1.8.7-p352/lib/ruby/site_ruby/1.8/rubygems/source_index.rb:127.
+NOTE: Gem::SourceIndex#add_spec is deprecated, use Specification.add_spec. It will be removed on or after 2011-11-01.
+Gem::SourceIndex#add_spec called from /home/sgj700/.rvm/rubies/ruby-1.8.7-p352/lib/ruby/site_ruby/1.8/rubygems/source_index.rb:127.
+NOTE: Gem::SourceIndex#add_spec is deprecated, use Specification.add_spec. It will be removed on or after 2011-11-01.
+Gem::SourceIndex#add_spec called from /home/sgj700/.rvm/rubies/ruby-1.8.7-p352/lib/ruby/site_ruby/1.8/rubygems/source_index.rb:127.
+NOTE: Gem::SourceIndex#add_spec is deprecated, use Specification.add_spec. It will be removed on or after 2011-11-01.
+Gem::SourceIndex#add_spec called from /home/sgj700/.rvm/rubies/ruby-1.8.7-p352/lib/ruby/site_ruby/1.8/rubygems/source_index.rb:127.
+NOTE: Gem::SourceIndex#add_spec is deprecated, use Specification.add_spec. It will be removed on or after 2011-11-01.
+Gem::SourceIndex#add_spec called from /home/sgj700/.rvm/rubies/ruby-1.8.7-p352/lib/ruby/site_ruby/1.8/rubygems/source_index.rb:127.
+NOTE: Gem::SourceIndex#add_spec is deprecated, use Specification.add_spec. It will be removed on or after 2011-11-01.
+Gem::SourceIndex#add_spec called from /home/sgj700/.rvm/rubies/ruby-1.8.7-p352/lib/ruby/site_ruby/1.8/rubygems/source_index.rb:127.
+NOTE: Gem::SourceIndex#add_spec is deprecated, use Specification.add_spec. It will be removed on or after 2011-11-01.
+Gem::SourceIndex#add_spec called from /home/sgj700/.rvm/rubies/ruby-1.8.7-p352/lib/ruby/site_ruby/1.8/rubygems/source_index.rb:127.
+NOTE: Gem::SourceIndex#add_spec is deprecated, use Specification.add_spec. It will be removed on or after 2011-11-01.
+Gem::SourceIndex#add_spec called from /home/sgj700/.rvm/rubies/ruby-1.8.7-p352/lib/ruby/site_ruby/1.8/rubygems/source_index.rb:127.
+NOTE: Gem::SourceIndex#add_spec is deprecated, use Specification.add_spec. It will be removed on or after 2011-11-01.
+Gem::SourceIndex#add_spec called from /home/sgj700/.rvm/rubies/ruby-1.8.7-p352/lib/ruby/site_ruby/1.8/rubygems/source_index.rb:127.
+NOTE: Gem::SourceIndex#add_spec is deprecated, use Specification.add_spec. It will be removed on or after 2011-11-01.
+Gem::SourceIndex#add_spec called from /home/sgj700/.rvm/rubies/ruby-1.8.7-p352/lib/ruby/site_ruby/1.8/rubygems/source_index.rb:127.
+NOTE: Gem::SourceIndex#add_spec is deprecated, use Specification.add_spec. It will be removed on or after 2011-11-01.
+Gem::SourceIndex#add_spec called from /home/sgj700/.rvm/rubies/ruby-1.8.7-p352/lib/ruby/site_ruby/1.8/rubygems/source_index.rb:127.
+NOTE: Gem::SourceIndex#add_spec is deprecated, use Specification.add_spec. It will be removed on or after 2011-11-01.
+Gem::SourceIndex#add_spec called from /home/sgj700/.rvm/rubies/ruby-1.8.7-p352/lib/ruby/site_ruby/1.8/rubygems/source_index.rb:127.
+NOTE: Gem::SourceIndex#add_spec is deprecated, use Specification.add_spec. It will be removed on or after 2011-11-01.
+Gem::SourceIndex#add_spec called from /home/sgj700/.rvm/rubies/ruby-1.8.7-p352/lib/ruby/site_ruby/1.8/rubygems/source_index.rb:127.
+NOTE: Gem::SourceIndex#add_spec is deprecated, use Specification.add_spec. It will be removed on or after 2011-11-01.
+Gem::SourceIndex#add_spec called from /home/sgj700/.rvm/rubies/ruby-1.8.7-p352/lib/ruby/site_ruby/1.8/rubygems/source_index.rb:127.
+NOTE: Gem::SourceIndex#add_spec is deprecated, use Specification.add_spec. It will be removed on or after 2011-11-01.
+Gem::SourceIndex#add_spec called from /home/sgj700/.rvm/rubies/ruby-1.8.7-p352/lib/ruby/site_ruby/1.8/rubygems/source_index.rb:127.
+NOTE: Gem::SourceIndex#add_spec is deprecated, use Specification.add_spec. It will be removed on or after 2011-11-01.
+Gem::SourceIndex#add_spec called from /home/sgj700/.rvm/rubies/ruby-1.8.7-p352/lib/ruby/site_ruby/1.8/rubygems/source_index.rb:127.
+NOTE: Gem::SourceIndex#add_spec is deprecated, use Specification.add_spec. It will be removed on or after 2011-11-01.
+Gem::SourceIndex#add_spec called from /home/sgj700/.rvm/rubies/ruby-1.8.7-p352/lib/ruby/site_ruby/1.8/rubygems/source_index.rb:127.
+NOTE: Gem::SourceIndex#add_spec is deprecated, use Specification.add_spec. It will be removed on or after 2011-11-01.
+Gem::SourceIndex#add_spec called from /home/sgj700/.rvm/rubies/ruby-1.8.7-p352/lib/ruby/site_ruby/1.8/rubygems/source_index.rb:127.
+NOTE: Gem::SourceIndex#add_spec is deprecated, use Specification.add_spec. It will be removed on or after 2011-11-01.
+Gem::SourceIndex#add_spec called from /home/sgj700/.rvm/rubies/ruby-1.8.7-p352/lib/ruby/site_ruby/1.8/rubygems/source_index.rb:127.
+NOTE: Gem::SourceIndex#add_spec is deprecated, use Specification.add_spec. It will be removed on or after 2011-11-01.
+Gem::SourceIndex#add_spec called from /home/sgj700/.rvm/rubies/ruby-1.8.7-p352/lib/ruby/site_ruby/1.8/rubygems/source_index.rb:127.
+NOTE: Gem::SourceIndex#add_spec is deprecated, use Specification.add_spec. It will be removed on or after 2011-11-01.
+Gem::SourceIndex#add_spec called from /home/sgj700/.rvm/rubies/ruby-1.8.7-p352/lib/ruby/site_ruby/1.8/rubygems/source_index.rb:127.
+NOTE: Gem::SourceIndex#add_spec is deprecated, use Specification.add_spec. It will be removed on or after 2011-11-01.
+Gem::SourceIndex#add_spec called from /home/sgj700/.rvm/rubies/ruby-1.8.7-p352/lib/ruby/site_ruby/1.8/rubygems/source_index.rb:127.
+NOTE: Gem::SourceIndex#add_spec is deprecated, use Specification.add_spec. It will be removed on or after 2011-11-01.
+Gem::SourceIndex#add_spec called from /home/sgj700/.rvm/rubies/ruby-1.8.7-p352/lib/ruby/site_ruby/1.8/rubygems/source_index.rb:127.
+NOTE: Gem::SourceIndex#add_spec is deprecated, use Specification.add_spec. It will be removed on or after 2011-11-01.
+Gem::SourceIndex#add_spec called from /home/sgj700/.rvm/rubies/ruby-1.8.7-p352/lib/ruby/site_ruby/1.8/rubygems/source_index.rb:127.
+NOTE: Gem::SourceIndex#add_spec is deprecated, use Specification.add_spec. It will be removed on or after 2011-11-01.
+Gem::SourceIndex#add_spec called from /home/sgj700/.rvm/rubies/ruby-1.8.7-p352/lib/ruby/site_ruby/1.8/rubygems/source_index.rb:127.
+NOTE: Gem::SourceIndex#add_spec is deprecated, use Specification.add_spec. It will be removed on or after 2011-11-01.
+Gem::SourceIndex#add_spec called from /home/sgj700/.rvm/rubies/ruby-1.8.7-p352/lib/ruby/site_ruby/1.8/rubygems/source_index.rb:127.
+NOTE: Gem::SourceIndex#add_spec is deprecated, use Specification.add_spec. It will be removed on or after 2011-11-01.
+Gem::SourceIndex#add_spec called from /home/sgj700/.rvm/rubies/ruby-1.8.7-p352/lib/ruby/site_ruby/1.8/rubygems/source_index.rb:127.
+NOTE: Gem::SourceIndex#add_spec is deprecated, use Specification.add_spec. It will be removed on or after 2011-11-01.
+Gem::SourceIndex#add_spec called from /home/sgj700/.rvm/rubies/ruby-1.8.7-p352/lib/ruby/site_ruby/1.8/rubygems/source_index.rb:127.
+NOTE: Gem::SourceIndex#add_spec is deprecated, use Specification.add_spec. It will be removed on or after 2011-11-01.
+Gem::SourceIndex#add_spec called from /home/sgj700/.rvm/rubies/ruby-1.8.7-p352/lib/ruby/site_ruby/1.8/rubygems/source_index.rb:127.
+NOTE: Gem::SourceIndex#add_spec is deprecated, use Specification.add_spec. It will be removed on or after 2011-11-01.
+Gem::SourceIndex#add_spec called from /home/sgj700/.rvm/rubies/ruby-1.8.7-p352/lib/ruby/site_ruby/1.8/rubygems/source_index.rb:127.
+NOTE: Gem::SourceIndex#add_spec is deprecated, use Specification.add_spec. It will be removed on or after 2011-11-01.
+Gem::SourceIndex#add_spec called from /home/sgj700/.rvm/rubies/ruby-1.8.7-p352/lib/ruby/site_ruby/1.8/rubygems/source_index.rb:127.
+NOTE: Gem::SourceIndex#add_spec is deprecated, use Specification.add_spec. It will be removed on or after 2011-11-01.
+Gem::SourceIndex#add_spec called from /home/sgj700/.rvm/rubies/ruby-1.8.7-p352/lib/ruby/site_ruby/1.8/rubygems/source_index.rb:127.
+NOTE: Gem::SourceIndex#add_spec is deprecated, use Specification.add_spec. It will be removed on or after 2011-11-01.
+Gem::SourceIndex#add_spec called from /home/sgj700/.rvm/rubies/ruby-1.8.7-p352/lib/ruby/site_ruby/1.8/rubygems/source_index.rb:127.
+NOTE: Gem::SourceIndex#add_spec is deprecated, use Specification.add_spec. It will be removed on or after 2011-11-01.
+Gem::SourceIndex#add_spec called from /home/sgj700/.rvm/rubies/ruby-1.8.7-p352/lib/ruby/site_ruby/1.8/rubygems/source_index.rb:127.
+NOTE: Gem::SourceIndex#add_spec is deprecated, use Specification.add_spec. It will be removed on or after 2011-11-01.
+Gem::SourceIndex#add_spec called from /home/sgj700/.rvm/rubies/ruby-1.8.7-p352/lib/ruby/site_ruby/1.8/rubygems/source_index.rb:127.
+NOTE: Gem::SourceIndex#add_spec is deprecated, use Specification.add_spec. It will be removed on or after 2011-11-01.
+Gem::SourceIndex#add_spec called from /home/sgj700/.rvm/rubies/ruby-1.8.7-p352/lib/ruby/site_ruby/1.8/rubygems/source_index.rb:127.
+NOTE: Gem::SourceIndex#add_spec is deprecated, use Specification.add_spec. It will be removed on or after 2011-11-01.
+Gem::SourceIndex#add_spec called from /home/sgj700/.rvm/rubies/ruby-1.8.7-p352/lib/ruby/site_ruby/1.8/rubygems/source_index.rb:127.
+NOTE: Gem::SourceIndex#add_spec is deprecated, use Specification.add_spec. It will be removed on or after 2011-11-01.
+Gem::SourceIndex#add_spec called from /home/sgj700/.rvm/rubies/ruby-1.8.7-p352/lib/ruby/site_ruby/1.8/rubygems/source_index.rb:127.
+NOTE: Gem::SourceIndex#add_spec is deprecated, use Specification.add_spec. It will be removed on or after 2011-11-01.
+Gem::SourceIndex#add_spec called from /home/sgj700/.rvm/rubies/ruby-1.8.7-p352/lib/ruby/site_ruby/1.8/rubygems/source_index.rb:127.
+NOTE: Gem::SourceIndex#add_spec is deprecated, use Specification.add_spec. It will be removed on or after 2011-11-01.
+Gem::SourceIndex#add_spec called from /home/sgj700/.rvm/rubies/ruby-1.8.7-p352/lib/ruby/site_ruby/1.8/rubygems/source_index.rb:127.
+NOTE: Gem::SourceIndex#add_spec is deprecated, use Specification.add_spec. It will be removed on or after 2011-11-01.
+Gem::SourceIndex#add_spec called from /home/sgj700/.rvm/rubies/ruby-1.8.7-p352/lib/ruby/site_ruby/1.8/rubygems/source_index.rb:127.
+NOTE: Gem::SourceIndex#add_spec is deprecated, use Specification.add_spec. It will be removed on or after 2011-11-01.
+Gem::SourceIndex#add_spec called from /home/sgj700/.rvm/rubies/ruby-1.8.7-p352/lib/ruby/site_ruby/1.8/rubygems/source_index.rb:127.
+NOTE: Gem::SourceIndex#add_spec is deprecated, use Specification.add_spec. It will be removed on or after 2011-11-01.
+Gem::SourceIndex#add_spec called from /home/sgj700/.rvm/rubies/ruby-1.8.7-p352/lib/ruby/site_ruby/1.8/rubygems/source_index.rb:127.
+NOTE: Gem::SourceIndex#add_spec is deprecated, use Specification.add_spec. It will be removed on or after 2011-11-01.
+Gem::SourceIndex#add_spec called from /home/sgj700/.rvm/rubies/ruby-1.8.7-p352/lib/ruby/site_ruby/1.8/rubygems/source_index.rb:127.
+NOTE: Gem::SourceIndex#initialize is deprecated with no replacement. It will be removed on or after 2011-11-01.
+Gem::SourceIndex#initialize called from ./script/../config/../vendor/rails/railties/lib/rails/vendor_gem_source_index.rb:100.
+NOTE: Gem::SourceIndex#add_spec is deprecated, use Specification.add_spec. It will be removed on or after 2011-11-01.
+Gem::SourceIndex#add_spec called from /home/sgj700/.rvm/rubies/ruby-1.8.7-p352/lib/ruby/site_ruby/1.8/rubygems/source_index.rb:91.
+NOTE: Gem::SourceIndex#add_spec is deprecated, use Specification.add_spec. It will be removed on or after 2011-11-01.
+Gem::SourceIndex#add_spec called from /home/sgj700/.rvm/rubies/ruby-1.8.7-p352/lib/ruby/site_ruby/1.8/rubygems/source_index.rb:91.
+NOTE: Gem::SourceIndex#add_spec is deprecated, use Specification.add_spec. It will be removed on or after 2011-11-01.
+Gem::SourceIndex#add_spec called from /home/sgj700/.rvm/rubies/ruby-1.8.7-p352/lib/ruby/site_ruby/1.8/rubygems/source_index.rb:91.
+NOTE: Gem::SourceIndex#add_spec is deprecated, use Specification.add_spec. It will be removed on or after 2011-11-01.
+Gem::SourceIndex#add_spec called from /home/sgj700/.rvm/rubies/ruby-1.8.7-p352/lib/ruby/site_ruby/1.8/rubygems/source_index.rb:91.
+NOTE: Gem::SourceIndex#add_spec is deprecated, use Specification.add_spec. It will be removed on or after 2011-11-01.
+Gem::SourceIndex#add_spec called from /home/sgj700/.rvm/rubies/ruby-1.8.7-p352/lib/ruby/site_ruby/1.8/rubygems/source_index.rb:91.
+NOTE: Gem::SourceIndex#add_spec is deprecated, use Specification.add_spec. It will be removed on or after 2011-11-01.
+Gem::SourceIndex#add_spec called from /home/sgj700/.rvm/rubies/ruby-1.8.7-p352/lib/ruby/site_ruby/1.8/rubygems/source_index.rb:91.
+/home/sgj700/rails_apps/hf1/vendor/rails/activesupport/lib/active_support/dependencies.rb:55: uninitialized constant ActiveSupport::Dependencies::Mutex (NameError)
+	from /home/sgj700/.rvm/rubies/ruby-1.8.7-p352/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:36:in `gem_original_require'
+	from /home/sgj700/.rvm/rubies/ruby-1.8.7-p352/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:36:in `require'
+	from /home/sgj700/rails_apps/hf1/vendor/rails/activesupport/lib/active_support.rb:56
+	from /home/sgj700/.rvm/rubies/ruby-1.8.7-p352/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:36:in `gem_original_require'
+	from /home/sgj700/.rvm/rubies/ruby-1.8.7-p352/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:36:in `require'
+	from /home/sgj700/rails_apps/hf1/vendor/rails/railties/lib/commands/server.rb:1
+	from /home/sgj700/.rvm/rubies/ruby-1.8.7-p352/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:36:in `gem_original_require'
+	from /home/sgj700/.rvm/rubies/ruby-1.8.7-p352/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:36:in `require'
+	from script/server:3
+]0;sgj700@ubuntu: ~/rails_apps/hf1sgj700@ubuntu:~/rails_apps/hf1$ wget http://rubyforge.org/frs/download.php/70696/rubygems-1.3.7.t gz 
+--2012-12-12 23:46:12--  http://rubyforge.org/frs/download.php/70696/rubygems-1.3.7.tgz
+Resolving rubyforge.org... 50.56.192.79
+Connecting to rubyforge.org|50.56.192.79|:80... connected.
+HTTP request sent, awaiting response... 302 Found
+Location: http://files.rubyforge.vm.bytemark.co.uk/rubygems/rubygems-1.3.7.tgz [following]
+--2012-12-12 23:46:12--  http://files.rubyforge.vm.bytemark.co.uk/rubygems/rubygems-1.3.7.tgz
+Resolving files.rubyforge.vm.bytemark.co.uk... 80.68.94.54
+Connecting to files.rubyforge.vm.bytemark.co.uk|80.68.94.54|:80... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 290986 (284K) [application/x-gzip]
+Saving to: `rubygems-1.3.7.tgz'
+
+ 0% [                                                        ] 0           --.-K/s               7% [===>                                                    ] 21,589      86.0K/s              18% [=========>                                              ] 54,389       108K/s              38% [====================>                                   ] 113,213      150K/s              57% [===============================>                        ] 167,965      167K/s              96% [=====================================================>  ] 281,477      224K/s              100%[=======================================================>] 290,986      231K/s   in 1.2s    
+
+2012-12-12 23:46:14 (231 KB/s) - `rubygems-1.3.7.tgz' saved [290986/290986]
+
+]0;sgj700@ubuntu: ~/rails_apps/hf1sgj700@ubuntu:~/rails_apps/hf1$ tar xf rubygems-1.3.7.gz 
+tar: rubygems-1.3.7.gz: Cannot open: No such file or directory
+tar: Error is not recoverable: exiting now
+]0;sgj700@ubuntu: ~/rails_apps/hf1sgj700@ubuntu:~/rails_apps/hf1$ cd ru[K[K[K[K[Kls
+about    [0m[01;34mdb[0m            [01;32mheader_hf.png[0m      [01;34mpublic[0m     [01;32mREVISION[0m            [01;34mshared files[0m
+[01;34mapp[0m      [01;32mdispatch.cgi[0m  [01;32mhost_specific.txt[0m  [01;32mRakefile[0m   [01;31mrubygems-1.3.7.tgz[0m  [01;34mtest[0m
+[01;32mCapfile[0m  [01;34mdoc[0m           [01;34mlib[0m                [01;32mREADME[0m     [01;34mscript[0m              [01;34mvendor[0m
+[01;34mconfig[0m   [01;32mgenerate[0m      [40;31;01mlog[0m                [01;32mREADME.md[0m  server
+]0;sgj700@ubuntu: ~/rails_apps/hf1sgj700@ubuntu:~/rails_apps/hf1$ cd ..
+]0;sgj700@ubuntu: ~/rails_appssgj700@ubuntu:~/rails_apps$ ls
+[0m[01;34mhf1[0m  [01;34mold[0m
+]0;sgj700@ubuntu: ~/rails_appssgj700@ubuntu:~/rails_apps$ cd ..
+]0;sgj700@ubuntu: ~sgj700@ubuntu:~$ cd Downloads/
+]0;sgj700@ubuntu: ~/Downloadssgj700@ubuntu:~/Downloads$ ls
+]0;sgj700@ubuntu: ~/Downloadssgj700@ubuntu:~/Downloads$ cd ..
+]0;sgj700@ubuntu: ~sgj700@ubuntu:~$ cd /mp[K[Ktmp
+]0;sgj700@ubuntu: /tmpsgj700@ubuntu:/tmp$ ls
+[0m[01;34mguest-yrzbL4[0m        [01;34mpulse-7sEIpmrAd6cA[0m  [01;34mssh-QRKTcSgl2050[0m             [30;42mVMwareDnD[0m
+[01;34mkeyring-868sx2[0m      [01;34mpulse-cxQxCOyw0VlK[0m  unity_support_test.1         [01;34mvmware-guest-yrzbL4[0m
+[01;34mkeyring-LNZh5O[0m      [01;34mpulse-PKdhtXMmr18n[0m  [01;34mvirtual-guest-yrzbL4.ogISax[0m  [01;34mvmware-root[0m
+[01;34mpulse-2L9K88eMlGn7[0m  [01;34mssh-jmJMMlGe2746[0m    [01;34mvirtual-sgj700.ufsrOC[0m        [01;34mvmware-sgj700[0m
+]0;sgj700@ubuntu: /tmpsgj700@ubuntu:/tmp$ lscd /tmp[2P..[3Plscd Downloads/..[K[3Plscd ..[3Plstar xf rubygems-1.3.7.gz [C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[43@wget http://rubyforge.org/frs/download.php/70696/rubygems-1.3.7.t[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[43Ptar xf rubygems-1.3.7.[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[43@wget http://rubyforge.org/frs/download.php/70696/rubygems-1.3.7.t[C[C[C/tmp/
+--2012-12-12 23:48:06--  http://rubyforge.org/frs/download.php/70696/rubygems-1.3.7.tgz
+Resolving rubyforge.org... 50.56.192.79
+Connecting to rubyforge.org|50.56.192.79|:80... connected.
+HTTP request sent, awaiting response... 302 Found
+Location: http://files.rubyforge.vm.bytemark.co.uk/rubygems/rubygems-1.3.7.tgz [following]
+--2012-12-12 23:48:06--  http://files.rubyforge.vm.bytemark.co.uk/rubygems/rubygems-1.3.7.tgz
+Resolving files.rubyforge.vm.bytemark.co.uk... 80.68.94.54
+Connecting to files.rubyforge.vm.bytemark.co.uk|80.68.94.54|:80... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 290986 (284K) [application/x-gzip]
+Saving to: `rubygems-1.3.7.tgz'
+
+ 0% [                                                        ] 0           --.-K/s               6% [==>                                                     ] 20,221      79.4K/s              17% [========>                                               ] 51,653       102K/s              34% [==================>                                     ] 99,533       131K/s              54% [=============================>                          ] 158,389      157K/s              73% [========================================>               ] 213,109      169K/s              100%[=======================================================>] 290,986      209K/s   in 1.4s    
+
+2012-12-12 23:48:07 (209 KB/s) - `rubygems-1.3.7.tgz' saved [290986/290986]
+
+/tmp/: Scheme missing.
+FINISHED --2012-12-12 23:48:07--
+Downloaded: 1 files, 284K in 1.4s (209 KB/s)
+]0;sgj700@ubuntu: /tmpsgj700@ubuntu:/tmp$ cd /[K[K[K[Kls
+[0m[01;34mguest-yrzbL4[0m        [01;34mpulse-cxQxCOyw0VlK[0m  unity_support_test.1         [01;34mvmware-root[0m
+[01;34mkeyring-868sx2[0m      [01;34mpulse-PKdhtXMmr18n[0m  [01;34mvirtual-guest-yrzbL4.ogISax[0m  [01;34mvmware-sgj700[0m
+[01;34mkeyring-LNZh5O[0m      [01;31mrubygems-1.3.7.tgz[0m  [01;34mvirtual-sgj700.ufsrOC[0m
+[01;34mpulse-2L9K88eMlGn7[0m  [01;34mssh-jmJMMlGe2746[0m    [30;42mVMwareDnD[0m
+[01;34mpulse-7sEIpmrAd6cA[0m  [01;34mssh-QRKTcSgl2050[0m    [01;34mvmware-guest-yrzbL4[0m
+]0;sgj700@ubuntu: /tmpsgj700@ubuntu:/tmp$ tar xf rubygems-1.3.7.gz 
+tar: rubygems-1.3.7.gz: Cannot open: No such file or directory
+tar: Error is not recoverable: exiting now
+]0;sgj700@ubuntu: /tmpsgj700@ubuntu:/tmp$ ls
+[0m[01;34mguest-yrzbL4[0m        [01;34mpulse-cxQxCOyw0VlK[0m  unity_support_test.1         [01;34mvmware-root[0m
+[01;34mkeyring-868sx2[0m      [01;34mpulse-PKdhtXMmr18n[0m  [01;34mvirtual-guest-yrzbL4.ogISax[0m  [01;34mvmware-sgj700[0m
+[01;34mkeyring-LNZh5O[0m      [01;31mrubygems-1.3.7.tgz[0m  [01;34mvirtual-sgj700.ufsrOC[0m
+[01;34mpulse-2L9K88eMlGn7[0m  [01;34mssh-jmJMMlGe2746[0m    [30;42mVMwareDnD[0m
+[01;34mpulse-7sEIpmrAd6cA[0m  [01;34mssh-QRKTcSgl2050[0m    [01;34mvmware-guest-yrzbL4[0m
+]0;sgj700@ubuntu: /tmpsgj700@ubuntu:/tmp$ lstar xf rubygems-1.3.7.gz [1@/[1@t[1@m[1@p[1P[1P[1P[1@t[1@m[1@p[1@/
+tar: /tmp/rubygems-1.3.7.gz: Cannot open: No such file or directory
+tar: Error is not recoverable: exiting now
+]0;sgj700@ubuntu: /tmpsgj700@ubuntu:/tmp$ pwd
+/tmp
+]0;sgj700@ubuntu: /tmpsgj700@ubuntu:/tmp$ pwdtar xf /tmp/rubygems-1.3.7.gz [K[K[K[K.tgz rubygems-1.3.7/[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K
+]0;sgj700@ubuntu: /tmpsgj700@ubuntu:/tmp$ cd rubygems-1.3.7/
+]0;sgj700@ubuntu: /tmp/rubygems-1.3.7sgj700@ubuntu:/tmp/rubygems-1.3.7$ ls
+[0m[01;34mbin[0m               GPL.txt              [01;34mlib[0m           [01;34mpkgs[0m      setup.rb
+ChangeLog         [01;34mhide_lib_for_update[0m  LICENSE.txt   Rakefile  [01;34mtest[0m
+cruise_config.rb  History.txt          Manifest.txt  README    [01;34mutil[0m
+]0;sgj700@ubuntu: /tmp/rubygems-1.3.7sgj700@ubuntu:/tmp/rubygems-1.3.7$ r[Ksudo ruby setup.rb
+[sudo] password for sgj700: 
+sudo: ruby: command not found
+]0;sgj700@ubuntu: /tmp/rubygems-1.3.7sgj700@ubuntu:/tmp/rubygems-1.3.7$ sudo ruby setup.rb
+sudo: ruby: command not found
+]0;sgj700@ubuntu: /tmp/rubygems-1.3.7sgj700@ubuntu:/tmp/rubygems-1.3.7$ sudo ruby setup.rb[1P[1P[1P[1P[1P
+RubyGems 1.3.7 installed
+
+﻿=== 1.3.7 / 2010-05-13
+
+NOTE:
+
+http://rubygems.org is now the default source for downloading gems.
+
+You may have sources set via ~/.gemrc, so you should replace
+http://gems.rubyforge.org with http://rubygems.org
+
+http://gems.rubyforge.org will continue to work for the forseeable future.
+
+New features:
+
+* `gem` commands
+  * `gem install` and `gem fetch` now report alternate platforms when a
+    matching one couldn't be found.
+  * `gem contents` --prefix is now the default as specified in --help.  Bug
+    #27211 by Mamoru Tasaka.
+  * `gem fetch` can fetch of old versions again.  Bug #27960 by Eric Hankins.
+  * `gem query` and friends output now lists platforms.  Bug #27856 by Greg
+    Hazel.
+  * `gem server` now allows specification of multiple gem dirs for
+    documentation.  Bug #27573 by Yuki Sonoda.
+  * `gem unpack` can unpack gems again.  Bug #27872 by Timothy Jones.
+  * `gem unpack` now unpacks remote gems.
+  * --user-install is no longer the default.  If you really liked it, see
+    Gem::ConfigFile to learn how to set it by default.  (This change was made
+    in 1.3.6)
+* RubyGems now has platform support for IronRuby.  Patch #27951 by Will Green.
+
+Bug fixes:
+
+* Require rubygems/custom_require if --disable-gem was set.  Bug #27700 by
+  Roger Pack.
+* RubyGems now protects against exceptions being raised by plugins.
+* rubygems/builder now requires user_interaction.  Ruby Bug #1040 by Phillip
+  Toland.
+* Gem::Dependency support #version_requirements= with a warning.  Fix for old
+  Rails versions.  Bug #27868 by Wei Jen Lu.
+* Gem::PackageTask depends on the package dir like the other rake package
+  tasks so dependencies can be hooked up correctly.
+
+
+------------------------------------------------------------------------------
+
+RubyGems installed the following executables:
+	/home/sgj700/.rvm/rubies/ruby-1.8.7-p352/bin/gem
+
+]0;sgj700@ubuntu: /tmp/rubygems-1.3.7sgj700@ubuntu:/tmp/rubygems-1.3.7$ cd /ha[K[K[Kril[K[K[K~/rails_apps/hf1/
+]0;sgj700@ubuntu: ~/rails_apps/hf1sgj700@ubuntu:~/rails_apps/hf1$ srcip[K[K[K[Kcript/server
+=> Booting Mongrel
+=> Rails 2.3.2 application starting on http://0.0.0.0:3000
+./script/../config/../vendor/rails/railties/lib/rails/gem_dependency.rb:99:Warning: Gem::Dependency#version_requirements is deprecated and will be removed on or after August 2010.  Use #requirement
+Rails Error: Unable to access log file. Please ensure that /home/sgj700/rails_apps/hf1/log/development.log exists and is chmod 0666. The log level has been raised to WARN and the output directed to STDERR until the problem is fixed.
+** [NewRelic] NewRelic Agent Developer Mode enabled.
+** [NewRelic] To view performance information, go to http://localhost:3000/newrelic
+** [NewRelic] Error initializing New Relic plugin (No such file or directory - /home/sgj700/rails_apps/hf1/log/newrelic_agent.log)
+** [NewRelic] /home/sgj700/.rvm/rubies/ruby-1.8.7-p352/lib/ruby/1.8/logger.rb:524:in `initialize'
+/home/sgj700/.rvm/rubies/ruby-1.8.7-p352/lib/ruby/1.8/logger.rb:524:in `open'
+/home/sgj700/.rvm/rubies/ruby-1.8.7-p352/lib/ruby/1.8/logger.rb:524:in `create_logfile'
+/home/sgj700/.rvm/rubies/ruby-1.8.7-p352/lib/ruby/1.8/logger.rb:519:in `open_logfile'
+/home/sgj700/.rvm/rubies/ruby-1.8.7-p352/lib/ruby/1.8/logger.rb:486:in `initialize'
+/home/sgj700/.rvm/rubies/ruby-1.8.7-p352/lib/ruby/1.8/logger.rb:262:in `new'
+/home/sgj700/.rvm/rubies/ruby-1.8.7-p352/lib/ruby/1.8/logger.rb:262:in `initialize'
+/home/sgj700/rails_apps/hf1/vendor/plugins/newrelic_rpm/lib/new_relic/control.rb:344:in `new'
+/home/sgj700/rails_apps/hf1/vendor/plugins/newrelic_rpm/lib/new_relic/control.rb:344:in `setup_log'
+/home/sgj700/rails_apps/hf1/vendor/plugins/newrelic_rpm/lib/new_relic/control.rb:78:in `init_plugin'
+/home/sgj700/rails_apps/hf1/vendor/plugins/newrelic_rpm/init.rb:24:in `evaluate_init_rb'
+./script/../config/../vendor/rails/railties/lib/rails/plugin.rb:146:in `evaluate_init_rb'
+/home/sgj700/rails_apps/hf1/vendor/rails/activesupport/lib/active_support/core_ext/kernel/reporting.rb:11:in `silence_warnings'
+./script/../config/../vendor/rails/railties/lib/rails/plugin.rb:142:in `evaluate_init_rb'
+./script/../config/../vendor/rails/railties/lib/rails/plugin.rb:48:in `load'
+./script/../config/../vendor/rails/railties/lib/rails/plugin/loader.rb:38:in `load_plugins'
+./script/../config/../vendor/rails/railties/lib/rails/plugin/loader.rb:37:in `each'
+./script/../config/../vendor/rails/railties/lib/rails/plugin/loader.rb:37:in `load_plugins'
+./script/../config/../vendor/rails/railties/lib/initializer.rb:348:in `load_plugins'
+./script/../config/../vendor/rails/railties/lib/initializer.rb:163:in `process'
+./script/../config/../vendor/rails/railties/lib/initializer.rb:113:in `send'
+./script/../config/../vendor/rails/railties/lib/initializer.rb:113:in `run'
+/home/sgj700/rails_apps/hf1/config/environment.rb:14
+/home/sgj700/.rvm/rubies/ruby-1.8.7-p352/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+/home/sgj700/.rvm/rubies/ruby-1.8.7-p352/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `require'
+/home/sgj700/rails_apps/hf1/vendor/rails/activesupport/lib/active_support/dependencies.rb:156:in `require'
+/home/sgj700/rails_apps/hf1/vendor/rails/activesupport/lib/active_support/dependencies.rb:521:in `new_constants_in'
+/home/sgj700/rails_apps/hf1/vendor/rails/activesupport/lib/active_support/dependencies.rb:156:in `require'
+/home/sgj700/rails_apps/hf1/vendor/rails/railties/lib/commands/server.rb:84
+/home/sgj700/.rvm/rubies/ruby-1.8.7-p352/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+/home/sgj700/.rvm/rubies/ruby-1.8.7-p352/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `require'
+script/server:3
+** [NewRelic] Agent is disabled.
+/home/sgj700/rails_apps/hf1/vendor/rails/railties/lib/rails/rack/log_tailer.rb:10:in `size': No such file or directory - /home/sgj700/rails_apps/hf1/log/development.log (Errno::ENOENT)
+	from /home/sgj700/rails_apps/hf1/vendor/rails/railties/lib/rails/rack/log_tailer.rb:10:in `initialize'
+	from /home/sgj700/.rvm/gems/ruby-1.8.7-p352/gems/rack-1.0.1/lib/rack/builder.rb:37:in `new'
+	from /home/sgj700/.rvm/gems/ruby-1.8.7-p352/gems/rack-1.0.1/lib/rack/builder.rb:37:in `use'
+	from /home/sgj700/.rvm/gems/ruby-1.8.7-p352/gems/rack-1.0.1/lib/rack/builder.rb:56:in `call'
+	from /home/sgj700/.rvm/gems/ruby-1.8.7-p352/gems/rack-1.0.1/lib/rack/builder.rb:56:in `to_app'
+	from /home/sgj700/.rvm/gems/ruby-1.8.7-p352/gems/rack-1.0.1/lib/rack/builder.rb:54:in `inject'
+	from /home/sgj700/.rvm/gems/ruby-1.8.7-p352/gems/rack-1.0.1/lib/rack/builder.rb:56:in `each'
+	from /home/sgj700/.rvm/gems/ruby-1.8.7-p352/gems/rack-1.0.1/lib/rack/builder.rb:56:in `inject'
+	from /home/sgj700/.rvm/gems/ruby-1.8.7-p352/gems/rack-1.0.1/lib/rack/builder.rb:56:in `to_app'
+	from /home/sgj700/rails_apps/hf1/vendor/rails/railties/lib/commands/server.rb:95
+	from /home/sgj700/.rvm/rubies/ruby-1.8.7-p352/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+	from /home/sgj700/.rvm/rubies/ruby-1.8.7-p352/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `require'
+	from script/server:3
+]0;sgj700@ubuntu: ~/rails_apps/hf1sgj700@ubuntu:~/rails_apps/hf1$ mkdir log
+mkdir: cannot create directory `log': File exists
+]0;sgj700@ubuntu: ~/rails_apps/hf1sgj700@ubuntu:~/rails_apps/hf1$ cd log
+bash: cd: log: No such file or directory
+]0;sgj700@ubuntu: ~/rails_apps/hf1sgj700@ubuntu:~/rails_apps/hf1$ cd log
+bash: cd: log: No such file or directory
+]0;sgj700@ubuntu: ~/rails_apps/hf1sgj700@ubuntu:~/rails_apps/hf1$ l[Kpwd
+/home/sgj700/rails_apps/hf1
+]0;sgj700@ubuntu: ~/rails_apps/hf1sgj700@ubuntu:~/rails_apps/hf1$ ls
+about    [0m[01;34mdb[0m            [01;32mheader_hf.png[0m      [01;34mpublic[0m     [01;32mREVISION[0m            [01;34mshared files[0m
+[01;34mapp[0m      [01;32mdispatch.cgi[0m  [01;32mhost_specific.txt[0m  [01;32mRakefile[0m   [01;31mrubygems-1.3.7.tgz[0m  [01;34mtest[0m
+[01;32mCapfile[0m  [01;34mdoc[0m           [01;34mlib[0m                [01;32mREADME[0m     [01;34mscript[0m              [01;34mtmp[0m
+[01;34mconfig[0m   [01;32mgenerate[0m      [40;31;01mlog[0m                [01;32mREADME.md[0m  server              [01;34mvendor[0m
+]0;sgj700@ubuntu: ~/rails_apps/hf1sgj700@ubuntu:~/rails_apps/hf1$ cdl[K log
+bash: cd: log: No such file or directory
+]0;sgj700@ubuntu: ~/rails_apps/hf1sgj700@ubuntu:~/rails_apps/hf1$ ls -la
+total 616
+drwxr-xr-x 14 sgj700 sgj700   4096 2012-12-12 23:50 [0m[01;34m.[0m
+drwxrwxr-x  4 sgj700 sgj700   4096 2012-12-12 23:05 [01;34m..[0m
+-rw-rw-r--  1 sgj700 sgj700  28672 2012-12-12 23:09 about
+drwxrwxr-x  8 sgj700 sgj700   4096 2012-12-12 23:03 [01;34mapp[0m
+-rwxrwxr-x  1 sgj700 sgj700    212 2012-12-12 23:03 [01;32mCapfile[0m
+drwxrwxr-x  6 sgj700 sgj700   4096 2012-12-12 23:03 [01;34mconfig[0m
+drwxrwxr-x  4 sgj700 sgj700   4096 2012-12-12 23:03 [01;34mdb[0m
+-rwxrwxr-x  1 sgj700 sgj700    474 2012-12-12 23:03 [01;32mdispatch.cgi[0m
+drwxrwxr-x  3 sgj700 sgj700   4096 2012-12-12 23:03 [01;34mdoc[0m
+-rwxrwxr-x  1 sgj700 sgj700 102400 2012-12-12 23:03 [01;32mgenerate[0m
+drwxrwxr-x  8 sgj700 sgj700   4096 2012-12-12 23:03 [01;34m.git[0m
+-rw-rw-r--  1 sgj700 sgj700    178 2012-12-12 23:03 .gitignore
+-rwxrwxr-x  1 sgj700 sgj700  71695 2012-12-12 23:03 [01;32mheader_hf.png[0m
+-rwxrwxr-x  1 sgj700 sgj700    413 2012-12-12 23:03 [01;32mhost_specific.txt[0m
+drwxrwxr-x  4 sgj700 sgj700   4096 2012-12-12 23:03 [01;34mlib[0m
+lrwxrwxrwx  1 sgj700 sgj700     51 2012-12-12 23:03 [40;31;01mlog[0m -> [40;31;01m/home/jurowsk1/etc/rails_apps/habitforge/shared/log[0m
+drwxrwxr-x  9 sgj700 sgj700   4096 2012-12-12 23:03 [01;34mpublic[0m
+-rwxrwxr-x  1 sgj700 sgj700    307 2012-12-12 23:03 [01;32mRakefile[0m
+-rwxrwxr-x  1 sgj700 sgj700  10011 2012-12-12 23:03 [01;32mREADME[0m
+-rwxrwxr-x  1 sgj700 sgj700     12 2012-12-12 23:03 [01;32mREADME.md[0m
+-rwxrwxr-x  1 sgj700 sgj700      4 2012-12-12 23:03 [01;32mREVISION[0m
+-rw-rw-r--  1 sgj700 sgj700 290986 2010-05-14 12:37 [01;31mrubygems-1.3.7.tgz[0m
+drwxrwxr-x  4 sgj700 sgj700   4096 2012-12-12 23:03 [01;34mscript[0m
+-rw-rw-r--  1 sgj700 sgj700  32768 2012-12-12 23:50 server
+drwxrwxr-x  6 sgj700 sgj700   4096 2012-12-12 23:03 [01;34mshared files[0m
+drwxrwxr-x  8 sgj700 sgj700   4096 2012-12-12 23:03 [01;34mtest[0m
+drwxrwxr-x  6 sgj700 sgj700   4096 2012-12-12 23:50 [01;34mtmp[0m
+drwxrwxr-x  5 sgj700 sgj700   4096 2012-12-12 23:03 [01;34mvendor[0m
+]0;sgj700@ubuntu: ~/rails_apps/hf1sgj700@ubuntu:~/rails_apps/hf1$ rm log
+]0;sgj700@ubuntu: ~/rails_apps/hf1sgj700@ubuntu:~/rails_apps/hf1$ ls -la
+total 620
+drwxr-xr-x 14 sgj700 sgj700   4096 2012-12-12 23:51 [0m[01;34m.[0m
+drwxrwxr-x  4 sgj700 sgj700   4096 2012-12-12 23:05 [01;34m..[0m
+-rw-rw-r--  1 sgj700 sgj700  28672 2012-12-12 23:09 about
+drwxrwxr-x  8 sgj700 sgj700   4096 2012-12-12 23:03 [01;34mapp[0m
+-rwxrwxr-x  1 sgj700 sgj700    212 2012-12-12 23:03 [01;32mCapfile[0m
+drwxrwxr-x  6 sgj700 sgj700   4096 2012-12-12 23:03 [01;34mconfig[0m
+drwxrwxr-x  4 sgj700 sgj700   4096 2012-12-12 23:03 [01;34mdb[0m
+-rwxrwxr-x  1 sgj700 sgj700    474 2012-12-12 23:03 [01;32mdispatch.cgi[0m
+drwxrwxr-x  3 sgj700 sgj700   4096 2012-12-12 23:03 [01;34mdoc[0m
+-rwxrwxr-x  1 sgj700 sgj700 102400 2012-12-12 23:03 [01;32mgenerate[0m
+drwxrwxr-x  8 sgj700 sgj700   4096 2012-12-12 23:03 [01;34m.git[0m
+-rw-rw-r--  1 sgj700 sgj700    178 2012-12-12 23:03 .gitignore
+-rwxrwxr-x  1 sgj700 sgj700  71695 2012-12-12 23:03 [01;32mheader_hf.png[0m
+-rwxrwxr-x  1 sgj700 sgj700    413 2012-12-12 23:03 [01;32mhost_specific.txt[0m
+drwxrwxr-x  4 sgj700 sgj700   4096 2012-12-12 23:03 [01;34mlib[0m
+drwxrwxr-x  9 sgj700 sgj700   4096 2012-12-12 23:03 [01;34mpublic[0m
+-rwxrwxr-x  1 sgj700 sgj700    307 2012-12-12 23:03 [01;32mRakefile[0m
+-rwxrwxr-x  1 sgj700 sgj700  10011 2012-12-12 23:03 [01;32mREADME[0m
+-rwxrwxr-x  1 sgj700 sgj700     12 2012-12-12 23:03 [01;32mREADME.md[0m
+-rwxrwxr-x  1 sgj700 sgj700      4 2012-12-12 23:03 [01;32mREVISION[0m
+-rw-rw-r--  1 sgj700 sgj700 290986 2010-05-14 12:37 [01;31mrubygems-1.3.7.tgz[0m
+drwxrwxr-x  4 sgj700 sgj700   4096 2012-12-12 23:03 [01;34mscript[0m
+-rw-rw-r--  1 sgj700 sgj700  36864 2012-12-12 23:51 server
+drwxrwxr-x  6 sgj700 sgj700   4096 2012-12-12 23:03 [01;34mshared files[0m
+drwxrwxr-x  8 sgj700 sgj700   4096 2012-12-12 23:03 [01;34mtest[0m
+drwxrwxr-x  6 sgj700 sgj700   4096 2012-12-12 23:50 [01;34mtmp[0m
+drwxrwxr-x  5 sgj700 sgj700   4096 2012-12-12 23:03 [01;34mvendor[0m
+]0;sgj700@ubuntu: ~/rails_apps/hf1sgj700@ubuntu:~/rails_apps/hf1$ mkdri[K[Kir log
+]0;sgj700@ubuntu: ~/rails_apps/hf1sgj700@ubuntu:~/rails_apps/hf1$ mkdir log[3Pls -larm logls -lacd log[4Plspwdcd log[3@mkdir[C[C[C[Cscript/servercd ~/rails_apps/hf1/[7Pscript/server
+=> Booting Mongrel
+=> Rails 2.3.2 application starting on http://0.0.0.0:3000
+./script/../config/../vendor/rails/railties/lib/rails/gem_dependency.rb:99:Warning: Gem::Dependency#version_requirements is deprecated and will be removed on or after August 2010.  Use #requirement
+** [NewRelic] NewRelic Agent Developer Mode enabled.
+** [NewRelic] To view performance information, go to http://localhost:3000/newrelic
+** [NewRelic] New Relic RPM Agent 2.9.9 Initialized: pid = 9615
+** [NewRelic] Agent Log found in /home/sgj700/rails_apps/hf1/log/newrelic_agent.log
+=> Call with -d to detach
+=> Ctrl-C to shutdown server
+/!\ FAILSAFE /!\  Wed Dec 12 23:51:53 -0600 2012
+  Status: 500 Internal Server Error
+  Can't connect to local MySQL server through socket '/private/tmp/mysql.sock' (2)
+    /home/sgj700/rails_apps/hf1/vendor/rails/activerecord/lib/active_record/connection_adapters/mysql_adapter.rb:576:in `real_connect'
+    /home/sgj700/rails_apps/hf1/vendor/rails/activerecord/lib/active_record/connection_adapters/mysql_adapter.rb:576:in `connect'
+    /home/sgj700/rails_apps/hf1/vendor/rails/activerecord/lib/active_record/connection_adapters/mysql_adapter.rb:204:in `initialize'
+    /home/sgj700/rails_apps/hf1/vendor/rails/activerecord/lib/active_record/connection_adapters/mysql_adapter.rb:76:in `new'
+    /home/sgj700/rails_apps/hf1/vendor/rails/activerecord/lib/active_record/connection_adapters/mysql_adapter.rb:76:in `mysql_connection'
+    /home/sgj700/rails_apps/hf1/vendor/rails/activerecord/lib/active_record/connection_adapters/abstract/connection_pool.rb:223:in `send'
+    /home/sgj700/rails_apps/hf1/vendor/rails/activerecord/lib/active_record/connection_adapters/abstract/connection_pool.rb:223:in `new_connection'
+    /home/sgj700/rails_apps/hf1/vendor/rails/activerecord/lib/active_record/connection_adapters/abstract/connection_pool.rb:245:in `checkout_new_connection'
+    /home/sgj700/rails_apps/hf1/vendor/rails/activerecord/lib/active_record/connection_adapters/abstract/connection_pool.rb:188:in `checkout'
+    /home/sgj700/rails_apps/hf1/vendor/rails/activerecord/lib/active_record/connection_adapters/abstract/connection_pool.rb:184:in `loop'
+    /home/sgj700/rails_apps/hf1/vendor/rails/activerecord/lib/active_record/connection_adapters/abstract/connection_pool.rb:184:in `checkout'
+    /home/sgj700/.rvm/rubies/ruby-1.8.7-p352/lib/ruby/1.8/monitor.rb:242:in `synchronize'
+    /home/sgj700/rails_apps/hf1/vendor/rails/activerecord/lib/active_record/connection_adapters/abstract/connection_pool.rb:183:in `checkout'
+    /home/sgj700/rails_apps/hf1/vendor/rails/activerecord/lib/active_record/connection_adapters/abstract/connection_pool.rb:98:in `connection'
+    /home/sgj700/rails_apps/hf1/vendor/rails/activerecord/lib/active_record/connection_adapters/abstract/connection_pool.rb:326:in `retrieve_connection'
+    /home/sgj700/rails_apps/hf1/vendor/rails/activerecord/lib/active_record/connection_adapters/abstract/connection_specification.rb:123:in `retrieve_connection'
+    /home/sgj700/rails_apps/hf1/vendor/rails/activerecord/lib/active_record/connection_adapters/abstract/connection_specification.rb:115:in `connection'
+    /home/sgj700/rails_apps/hf1/vendor/rails/activerecord/lib/active_record/query_cache.rb:9:in `cache'
+    /home/sgj700/rails_apps/hf1/vendor/rails/activerecord/lib/active_record/query_cache.rb:28:in `call'
+    /home/sgj700/rails_apps/hf1/vendor/rails/activerecord/lib/active_record/connection_adapters/abstract/connection_pool.rb:361:in `call'
+    /home/sgj700/.rvm/gems/ruby-1.8.7-p352/gems/rack-1.0.1/lib/rack/head.rb:9:in `call'
+    /home/sgj700/.rvm/gems/ruby-1.8.7-p352/gems/rack-1.0.1/lib/rack/methodoverride.rb:24:in `call'
+    /home/sgj700/rails_apps/hf1/vendor/rails/actionpack/lib/action_controller/params_parser.rb:15:in `call'
+    /home/sgj700/rails_apps/hf1/vendor/rails/actionpack/lib/action_controller/rewindable_input.rb:25:in `call'
+    /home/sgj700/rails_apps/hf1/vendor/rails/actionpack/lib/action_controller/session/cookie_store.rb:93:in `call'
+    /home/sgj700/rails_apps/hf1/vendor/rails/actionpack/lib/action_controller/reloader.rb:9:in `call'
+    /home/sgj700/rails_apps/hf1/vendor/rails/actionpack/lib/action_controller/failsafe.rb:11:in `call'
+    /home/sgj700/.rvm/gems/ruby-1.8.7-p352/gems/rack-1.0.1/lib/rack/lock.rb:11:in `call'
+    /home/sgj700/.rvm/gems/ruby-1.8.7-p352/gems/rack-1.0.1/lib/rack/lock.rb:11:in `synchronize'
+    /home/sgj700/.rvm/gems/ruby-1.8.7-p352/gems/rack-1.0.1/lib/rack/lock.rb:11:in `call'
+    /home/sgj700/rails_apps/hf1/vendor/rails/actionpack/lib/action_controller/dispatcher.rb:106:in `call'
+    /home/sgj700/rails_apps/hf1/vendor/rails/railties/lib/rails/rack/static.rb

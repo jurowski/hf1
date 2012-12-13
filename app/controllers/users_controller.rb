@@ -324,34 +324,20 @@ class UsersController < ApplicationController
       end
       @stat.usersnewcreated = @stat.usersnewcreated + 1
 
-
       #######
       # end actions
       #######
 
       @stat.save
       
-      
-      
-      
       #Notifier.deliver_signup_notification(@user) # sends the email
       
-      #redirect_back_or_default account_url  #takes them to the "user/show" view
-
-      #if @user.first_name == "test"
-      #  redirect_to("http://www.eversave.com/service/servlet/consumers.Redirect?rid=12662&r=http://habitforge.com/goals&g=#{@user.gender}&dob=0101#{@user.yob}&fn=#{@user.first_name}")
-      #else
-      #  redirect_to("http://habitforge.com/goals")
-      #end
-      
       if params[:account_type] and params[:account_type] == "supporting"
-          redirect_to("http://habitforge.myshopify.com/collections/frontpage/products/habitforge-supporting-membership-1-year?ref=#{@user.id.to_s}")
+          #redirect_to("http://habitforge.myshopify.com/collections/frontpage/products/habitforge-supporting-membership-1-year?ref=#{@user.id.to_s}")
+          redirect_to("https://www.securepublications.com/habit-1-year.php?ref=#{@user.id.to_s}")
       else
           redirect_to("/goals/new")
       end
-
-      #redirect_to("http://www.eversave.com/service/servlet/consumers.Redirect?rid=12662&r=http://habitforge.com/goals&g=#{@user.gender}&dob=0101#{@user.yob}&fn=#{@user.first_name}")
-
 
     else
       render :action => :new

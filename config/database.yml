@@ -19,7 +19,8 @@ development:
   database: jurowsk1_adventurinodev
   username: jurowsk1_jurowsk
   password: abcd1234
-  socket: /private/tmp/mysql.sock ### osx local laptop
+  #socket: /private/tmp/mysql.sock ### osx local laptop
+  socket: /var/run/mysqld/mysqld.sock ### ubuntu vm
 <% end%>
 
 ## SQLite version 3.x
