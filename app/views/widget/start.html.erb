@@ -35,9 +35,7 @@
   ### doing it this way just to grab the time zone...
   user = User.new(params[:user])
 
-  if session[:referer] != nil
-    user.referer = session[:referer]
-  end
+  user.referer = "discovery.com"
 
   user.first_name = params[:widget_first_name]
   user.last_name = ""
