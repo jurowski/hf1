@@ -267,6 +267,53 @@ function popitup_bigger1(url) {
 <% end %>
 
 
+
+
+<% if @show_sales_overlay or params[:show_sales_overlay] %>
+     <div id="goals_unsuccessful_lightbox_black" class="black_overlay">
+     </div>
+     <div id="goals_unsuccessful_lightbox_close" class="div_close_button">
+        <%= link_to_function ("<img src='/images/close.png' />") {
+            |page|
+         page.visual_effect(:fade, "goals_unsuccessful_lightbox_black", :duration => 0.0)
+         page.visual_effect(:fade, "goals_unsuccessful_lightbox_white", :duration => 0.0)
+         page.visual_effect(:fade, "goals_unsuccessful_lightbox_close", :duration => 0.0)
+        }
+        %>
+     </div>
+
+     <div id="goals_unsuccessful_lightbox_white" class="white_content">
+      <center>
+      <h2>Sign up for a HabitForge Membership Today!<h2>
+      <div>
+      <a href="#">$3.95 per month</a>
+      <br><a href="#">$29 per year</a>
+      <br><a href="#">$99 Lifetime Membership</a> 
+      </div>
+      <br>
+      <h3>HabitForge has been recommended by:</h3>
+      <hr> 
+      Men's Fitness | Men's Health | Shape Magazine | Woman's Day | Family Circle | The 4 Hour Body
+      <br> Fox News Business | CNN Money | CIO.com | PC World | The Power of Positive Fitness
+      <hr>
+      <br>
+      <br>
+      <br> <a href="#">No thanks. I'd just like to try one habit with limited features for now.</a> 
+      </center>
+    </div>
+
+<% end %>
+
+
+
+
+
+
+
+
+
+
+
 <% if @cn == "user_sessions" and @ca == "new" and !params[:skip_intro] %>
 		    <center>
  		    <div style="background-color:#eeeeee;">

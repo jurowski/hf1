@@ -94,125 +94,10 @@ show_monitor_option_details = 0
 &nbsp
 </div>
 <% end %>
-
-
-<h2>Which mode?</h2>
-  <% if @ca != "edit" %>
-    <% if params["monitor"] or (params[:weekdays_only] and params[:weekdays_only] == "true") %>
-
-      <%
-      if params[:weekdays_only] == "true"
-        @goal.days = false
-        @goal.dayn = false
-	@goal.goal_days_per_week = 5
-      end
-      show_monitor_option_details = 1        
-      %>     
-            <a href="/goals/new"><img src='/images/21days_deselected.png' border=0></a> 
-            <img src='/images/monitor_selected.png' border=0>        
-            <%= form.hidden_field :status, :value => "monitor" %>
-    <% else %>
-        <img src='/images/21days_selected.png' border=0>         
-        <a href="/goals/new?monitor=1"><img src='/images/monitor_deselected.png' border=0></a>
-        <%= form.hidden_field :status, :value => "start" %>
-    <% end %>
-
-  <%
-  end 
-
-the_status = "" 
-if @ca == "edit" %>
-
-    <%
-    the_status = "start"
-    changed = 0
-    if @goal.status == "monitor"
-        the_status = "monitor"
-    else
-        the_status = "start"
-    end
-    if params["monitor"]
-        the_status = "monitor"
-        changed = 1
-    end
-    if params["start"]
-        the_status = "start"
-        changed = 1
-    end
-    %>
-
-    
-    <% if the_status == "monitor" %>
-        <a href="/goals/<%=@goal.id%>/edit?start=1">
-            <img src='/images/21days_deselected.png' border=0>
-        </a>
-        <img src='/images/monitor_selected.png' border=0>    
-        <%= form.hidden_field :status, :value => "monitor" %>
-    <% end %>
-
-    <% if the_status == "start" %>
-        <% if changed == 1 and @goal.status == "monitor" %>
-            <font color="red">Note: Changing from "monitoring" to "21 days" starts you back at Day 1.</font>
-            <br>
-        <% end %>
-        <img src='/images/21days_selected.png' border=0>
-        <a href="/goals/<%=@goal.id%>/edit?monitor=1"><img src='/images/monitor_deselected.png' border=0></a>
-        <%= form.hidden_field :status, :value => "start" %>
-    <% end %>
+   
+<% if session[:sfm_virgin] == true %> 
+<h2>What is the first habit you'd like to create?</h2>
 <% end %>
-
-<%
-@arr_goal_days_per_week = Array.new
-@arr_goal_days_per_week.push(["7", 7])
-@arr_goal_days_per_week.push(["6", 6])
-@arr_goal_days_per_week.push(["5", 5])
-@arr_goal_days_per_week.push(["4", 4])
-@arr_goal_days_per_week.push(["3", 3])
-@arr_goal_days_per_week.push(["2", 2])
-@arr_goal_days_per_week.push(["1", 1])
-%>
-<br>
-
-<% if (@ca == "new" and params["monitor"] and show_monitor_option_details == 1) or (the_status == "monitor") %>
-    &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp <strong>I'm committed to succeeding at this 
-    <%= select(:goal, :goal_days_per_week, @arr_goal_days_per_week) %> 
-    days each week.</strong>
-    <br>
-    <br>
-  &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp <strong>I only want to receive check-in emails asking about these days:</strong> 
-
-      <br>
-      <br>
-      &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp <%= check_box(:goal, :daym, options = {}, checked_value = "true", unchecked_value = "false") %>
-      <strong>Mon</strong> &nbsp;
-
-      <%= check_box(:goal, :dayt, options = {}, checked_value = "true", unchecked_value = "false") %>
-      <strong>Tue</strong> &nbsp;
-
-      <%= check_box(:goal, :dayw, options = {}, checked_value = "true", unchecked_value = "false") %>
-      <strong>Wed</strong> &nbsp;
-
-      <%= check_box(:goal, :dayr, options = {}, checked_value = "true", unchecked_value = "false") %>
-      <strong>Thu</strong> &nbsp;
-
-      <%= check_box(:goal, :dayf, options = {}, checked_value = "true", unchecked_value = "false") %>
-      <strong>Fri</strong> &nbsp;
-
-      <br>
-  
-      &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp 
-
-  
-      <%= check_box(:goal, :days, options = {}, checked_value = "true", unchecked_value = "false") %>
-      <strong>Sat</strong> &nbsp;
-
-      <%= check_box(:goal, :dayn, options = {}, checked_value = "true", unchecked_value = "false") %>
-      <strong>Sun</strong> &nbsp;
-
-
-<% end %>
-
-<br>
 <br>
 <div class="success" style="width:800px;">
 <h2>Email me early in the morning and ask:</h2>
@@ -448,7 +333,11 @@ if @ca == "edit" %>
                     <p>
                         "Frequent Reminders" available only to Supporting Members:
                         &nbsp &nbsp
+                        <% if session[:sfm] and session[:sfm] == "v2" %>
+                          <a href="/goals/?show_sales_overlay=1">Go Premium!</a>
+                        <% else %>
                         <a href="https://www.securepublications.com/habit-1-year.php?ref=<%= current_user.id.to_s %>" class="button" >Just $9.95 for 12 months!</a>
+                        <% end %>
                         <br>
                         (Unlimited active habits, Frequent Reminders, No advertisements!)
                     </p>
@@ -492,8 +381,10 @@ if @ca == "new"
     %>
     
     <br>
+    <% if !session[:sfm_virgin]  %>
         <strong>On average, how many days per week are you already succeeding at this?</strong>
         <%= select(:goal, :pre_start_days_per_week, @arr_pre_start_days_per_week) %> 
+    <% end %>
 <%
 end
 %>
@@ -536,7 +427,18 @@ end
 <h2>Public Motivation: Put yourself out there!</h2>
 <p>
 <% if current_user.sponsor == "habitforge" and !current_user.is_habitforge_supporting_member and current_user.id > 79152 %>
-  <strong>Prefer "Private" habits as an option? Get a Supporting Membership!</strong> <a href="https://www.securepublications.com/habit-1-year.php?ref=<%= current_user.id.to_s %>" class="button">Just $9.95 for 12 months!</a>
+  <strong>Prefer "Private" habits as an option? Get a Supporting Membership!</strong> 
+
+
+
+
+                        <% if session[:sfm] and session[:sfm] == "v2" %>
+                          <a href="/goals/?show_sales_overlay=1">Go Premium!</a>
+                        <% else %>
+                        <a href="https://www.securepublications.com/habit-1-year.php?ref=<%= current_user.id.to_s %>" class="button" >Just $9.95 for 12 months!</a>
+                        <% end %>
+
+
   <br>
   <br>
   <input disabled="disabled" id="publish" name="publish" type="checkbox" value="true" checked />
@@ -561,7 +463,15 @@ If I don't succeed for a few days, other HabitForge members can earn points by s
 
 <% if !current_user.is_habitforge_supporting_member %>
   <br><br>(Available to Supporting Members Only)
-<a href="https://www.securepublications.com/habit-1-year.php?ref=<%= current_user.id.to_s %>" class="button">Upgrade Now: Just $9.95 for 12 months!</a>
+
+
+                        <% if session[:sfm] and session[:sfm] == "v2" %>
+                          <a href="/goals/?show_sales_overlay=1">Go Premium!</a>
+                        <% else %>
+                        <a href="https://www.securepublications.com/habit-1-year.php?ref=<%= current_user.id.to_s %>" class="button" >Just $9.95 for 12 months!</a>
+                        <% end %>
+
+
 <% end %>
 <br>
 <br>
@@ -624,4 +534,125 @@ member(s) to send me a push each day. They can choose a "push messages" below to
 </p>
 <br>
 <%= form.hidden_field :reminder_time, :value => :reminder_time %>
+
+
+<h2>How often do you plan to do this?</h2>
+  <% if @ca != "edit" %>
+    <% if params["monitor"] or (params[:weekdays_only] and params[:weekdays_only] == "true") %>
+
+      <%
+      if params[:weekdays_only] == "true"
+        @goal.days = false
+        @goal.dayn = false
+        @goal.goal_days_per_week = 5
+      end
+      show_monitor_option_details = 1
+      %>
+            <a href="/goals/new"><img src='/images/21days_deselected.png' border=0></a>
+            <img src='/images/monitor_selected.png' border=0>
+            <%= form.hidden_field :status, :value => "monitor" %>
+    <% else %>
+        <img src='/images/21days_selected.png' border=0>
+        <a href="/goals/new?monitor=1"><img src='/images/monitor_deselected.png' border=0></a>
+        <%= form.hidden_field :status, :value => "start" %>
+    <% end %>
+
+  <%
+  end
+
+the_status = ""
+if @ca == "edit" %>
+
+    <%
+    the_status = "start"
+    changed = 0
+    if @goal.status == "monitor"
+        the_status = "monitor"
+    else
+        the_status = "start"
+    end
+    if params["monitor"]
+        the_status = "monitor"
+        changed = 1
+    end
+    if params["start"]
+        the_status = "start"
+        changed = 1
+    end
+    %>
+    <% if the_status == "monitor" %>
+        <a href="/goals/<%=@goal.id%>/edit?start=1">
+            <img src='/images/21days_deselected.png' border=0>
+        </a>
+        <img src='/images/monitor_selected.png' border=0>
+        <%= form.hidden_field :status, :value => "monitor" %>
+    <% end %>
+
+    <% if the_status == "start" %>
+        <% if changed == 1 and @goal.status == "monitor" %>
+            <font color="red">Note: Changing from "monitoring" to "21 days" starts you back at Day 1.</font>
+            <br>
+        <% end %>
+        <img src='/images/21days_selected.png' border=0>
+        <a href="/goals/<%=@goal.id%>/edit?monitor=1"><img src='/images/monitor_deselected.png' border=0></a>
+        <%= form.hidden_field :status, :value => "start" %>
+    <% end %>
+<% end %>
+<%
+@arr_goal_days_per_week = Array.new
+@arr_goal_days_per_week.push(["7", 7])
+@arr_goal_days_per_week.push(["6", 6])
+@arr_goal_days_per_week.push(["5", 5])
+@arr_goal_days_per_week.push(["4", 4])
+@arr_goal_days_per_week.push(["3", 3])
+@arr_goal_days_per_week.push(["2", 2])
+@arr_goal_days_per_week.push(["1", 1])
+%>
+<br>
+
+<% if (@ca == "new" and params["monitor"] and show_monitor_option_details == 1) or (the_status == "monitor") %>
+    &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp <strong>I'm committed to succeeding at this 
+    <%= select(:goal, :goal_days_per_week, @arr_goal_days_per_week) %> 
+    days each week.</strong>
+    <br>
+    <br>
+  &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp <strong>I only want to receive check-in emails asking about these days:</strong>
+
+      <br>
+      <br>
+      &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp <%= check_box(:goal, :daym, options = {}, checked_value = "true", unchecked_value = "false") %>
+      <strong>Mon</strong> &nbsp;
+
+      <%= check_box(:goal, :dayt, options = {}, checked_value = "true", unchecked_value = "false") %>
+      <strong>Tue</strong> &nbsp;
+
+      <%= check_box(:goal, :dayw, options = {}, checked_value = "true", unchecked_value = "false") %>
+      <strong>Wed</strong> &nbsp;
+
+      <%= check_box(:goal, :dayr, options = {}, checked_value = "true", unchecked_value = "false") %>
+      <strong>Thu</strong> &nbsp;
+
+      <%= check_box(:goal, :dayf, options = {}, checked_value = "true", unchecked_value = "false") %>
+      <strong>Fri</strong> &nbsp;
+
+      <br>
+
+      &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+
+
+      <%= check_box(:goal, :days, options = {}, checked_value = "true", unchecked_value = "false") %>
+      <strong>Sat</strong> &nbsp;
+
+      <%= check_box(:goal, :dayn, options = {}, checked_value = "true", unchecked_value = "false") %>
+      <strong>Sun</strong> &nbsp;
+
+
+<% end %>
+
+<br>
+<br>
+
+
+
+
 <hr>

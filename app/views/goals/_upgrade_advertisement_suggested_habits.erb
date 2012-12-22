@@ -30,7 +30,12 @@
 
 <br>
 
-<a href="https://www.securepublications.com/habit-1-year.php?ref=<%= current_user.id.to_s %>" class="button" >Just $9.95 for 12 months!</a>
+
+                        <% if session[:sfm] and session[:sfm] == "v2" %>
+                          <a href="/goals/?show_sales_overlay=1">Go Premium!</a>
+                        <% else %>
+                        <a href="https://www.securepublications.com/habit-1-year.php?ref=<%= current_user.id.to_s %>" class="button" >Just $9.95 for 12 months!</a>
+                        <% end %>
 
 <br>
 <br>

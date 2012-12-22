@@ -412,6 +412,8 @@ logger.debug "SGJ2 2 #{goal.title}(#{goal.id}) #{goal.daysstraight} daysstraight
   # POST /goals
   # POST /goals.xml
   def create
+      @show_sales_overlay = false
+
       if current_user and params[:first_name]
 	  current_user.first_name = params[:first_name]
  
@@ -430,7 +432,7 @@ logger.debug "SGJ2 2 #{goal.title}(#{goal.id}) #{goal.daysstraight} daysstraight
       end
 
 
-
+    
 
       ################################
       #Status Creation Business Rules
@@ -445,7 +447,7 @@ logger.debug "SGJ2 2 #{goal.title}(#{goal.id}) #{goal.daysstraight} daysstraight
    
           if session[:sfm_virgin] and session[:sfm_virgin] == true
             session[:sfm_virgin] = false
-
+            @show_sales_overlay = true
 
             @user = current_user
             #### now that we have their first name, we can send the email 
@@ -557,11 +559,14 @@ logger.debug "SGJ2 2 #{goal.title}(#{goal.id}) #{goal.daysstraight} daysstraight
             end
           end
 
-
-          format.html { render :action => "index" } # index.html.erb
-          format.xml  { render :xml => @goals }
-
-
+          if @show_sales_overlay
+            format.html { render :action => "edit" }
+            format.xml  { render :xml => @goals }
+          else
+            format.html { render :action => "index" } # index.html.erb
+            format.xml  { render :xml => @goals }
+          end
+          
 
         else
           format.html { render :action => "new" }
