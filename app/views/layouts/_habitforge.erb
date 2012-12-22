@@ -689,11 +689,13 @@ What could you do daily to improve your life?</div>
 
 
 
-
-    <div class="container_12">
+    <% if session[:sfm] and session[:sfm] == "v2" %>          
+    <!-- nothing -->             
+    <% else %> 
+      <div class="container_12">
         <div class="grid_12">
             <!--Begin Latest Projects-->
-    <div class="latest">
+      <div class="latest">
                 <div class="divider">
                     <h6><span>Need inspiration? Choose from some Popular Habits below</span></h6><!--Titled Divider-->
                 </div>
@@ -738,8 +740,8 @@ What could you do daily to improve your life?</div>
     <!--End Latest Projects-->        
 
         </div>
-    </div>
-
+      </div>
+    <% end %>
 
 
     <%= render :partial => "layouts/testimonials"  %>
@@ -772,9 +774,13 @@ What could you do daily to improve your life?</div>
                         <h3>What could you do daily to improve your life? </h3>
                         <p>Take a minute to commit to a change. We'll help keep you on track!</p>
                     </div>
-                
-                    <a href="/users/new" class="button dark huge">Get Started... It's Free!</a><!--Button is Automatically Aligned Right-->
-                    <!--Huge Botton Aligned Right in this section-->                    
+                    <% if session[:sfm] and session[:sfm] == "v2" %>
+                      <!-- nothing -->
+                    <% else %>              
+                      <a href="/users/new" class="button dark huge">Get Started... It's Free!</a><!--Button is Automatically Aligned Right-->
+                      <!--Huge Botton Aligned Right in this section-->                    
+                    <% end %>
+
                 </div>
                 <div class="clear"></div>
             </div>
