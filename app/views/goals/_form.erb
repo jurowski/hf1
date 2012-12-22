@@ -97,6 +97,7 @@ show_monitor_option_details = 0
 
 
 <h2>Which mode?</h2>
+  <% if @ca != "edit" %>
     <% if params["monitor"] or (params[:weekdays_only] and params[:weekdays_only] == "true") %>
 
       <%
@@ -116,7 +117,9 @@ show_monitor_option_details = 0
         <%= form.hidden_field :status, :value => "start" %>
     <% end %>
 
-<% 
+  <%
+  end 
+
 the_status = "" 
 if @ca == "edit" %>
 
