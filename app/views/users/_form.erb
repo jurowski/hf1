@@ -38,7 +38,7 @@
     <tr>
     <tr><td>&nbsp</td></tr>
     <td valign=top nowrap>
-    Password<%= form.object.new_record? ? nil : "Change password" %><font color=red>*</font>
+    <%= form.object.new_record? ? nil : "Change " %>Password<font color=red>*</font>
     </td>
     <td valign=top nowrap>
     <%= form.password_field :password %><br />    

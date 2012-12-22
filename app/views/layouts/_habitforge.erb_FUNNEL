@@ -249,17 +249,7 @@ function popitup_bigger1(url) {
   <% if current_user.goal_temp != nil and current_user.goal_temp == "" %>
     <div class="error" id="noscript-warning" style="height:10px;">
     <p>
-
-      <% if session[:sfm_virgin_need_to_confirm_timezone] and session[:sfm_virgin_need_to_confirm_timezone] == true %>
-         So that check-in and reminder emails come at the right time, <a href="/account/edit">Click here to set your time zone.</a>
-      <% end %>
-      <% if session[:sfm_virgin_need_to_email_temp_password] and session[:sfm_virgin_need_to_email_temp_password] == true %>
-        You have a temporary password set of: <%= current_user.password_temp %> <a href="/account/edit">Please change it now!</a>
-      <% else %>
-        You are using the temporary password that was emailed to you. 
-      <% end %>
-
-      <a href="/account/edit">Click here to set a new password.</a>
+      You are using the temporary password that was emailed to you. <a href="/account/edit">Click here to set a new password.</a>
     </p>
     </div>
   <% end %>
@@ -280,15 +270,6 @@ function popitup_bigger1(url) {
 
 
 <% 
-### sfm = sales funnel method
-if params[:sfm]
-  session[:sfm] = params[:sfm]
-end
-if session[:sfm] == nil
-  session[:sfm] = "v1"
-end 
-
-
 if params[:affiliate_name]
     session[:affiliate_name] = params[:affiliate_name]
 end 
@@ -367,9 +348,7 @@ end
 						class="current" 
 					<% end %>
 				>
-				    <% if session[:sfm] == "v1" %>
-				      <%= link_to "Sign up Free", '/users/new' %>
-				    <% end %>
+				    <%= link_to "Sign up Free", '/users/new' %>
 				</li>
 				<li><%= link_to "Log In", new_user_session_path + "?skip_intro=1" %></li>
 		      <% else %>
@@ -545,23 +524,17 @@ end
 <br>
 What could you do daily to improve your life?</div>
                                     <br>
+				    <form action="/goals/new_prior_to_signup?quick_setup=1">
+                                    <input type="submit" value="Sign Up Free!" class="button dark huge">
 
-				 <% if session[:sfm] == "v2" %>
-				    <!-- v2 Sales Funnel Model -->
-				    <%= render :partial => "users/quicksignup_v2"  %>
-				  <% end %>
-
-				  <% if session[:sfm] == "v1" %>
-				      <!-- Default SFM (Sales Funnel Model)-->
-                                      <a href="/users/new" class="button dark huge">Sign Up Free!</a><!--Call To Action-->
-  
-                                    </div>
+                                </div>
                                     <DIV style="filter:alpha(opacity=100);opacity:1.0;border-radius:20px;-moz-border-radius:20px;border-width:none;border-color:#eeeeee;background-color:#ffffff;border-style:solid;margin:-55px 0px 0px 0px;padding:5px 5px 5px 160px;width:340px;">
-                                            <h6>Join a Team or Go Solo. Stay Private or Go Public.
-                                            <br>We'll check in daily to see how you did.</h6>
+                            		<input type="text" style="font:2em Arial sans-serif;margin-top:14px;" placeholder="Enter your email address...">
+					<br>
+					&nbsp
                                     </div>
-				<% end %>
-				 
+
+
                             </li>
 
                         </ul>

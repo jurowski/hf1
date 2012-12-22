@@ -11,7 +11,7 @@ class GoalsController < ApplicationController
   ### goal_id, user id (as "u"), first letter of first name and first letter of email
   ### ex: URL params: &e0=<%= @goal.user.email[0] %>&f0=<%= @goal.user.first_name[0] %>
   
-  before_filter :require_user, :only => [:single, :index, :show, :new, :edit, :destroy, :update, :invite_a_friend_to_track]
+  #before_filter :require_user, :only => [:single, :index, :show, :new, :edit, :destroy, :update, :invite_a_friend_to_track]
 
   autocomplete_for :goal, :response_question
 
@@ -267,6 +267,7 @@ logger.debug "SGJ2 2 #{goal.title}(#{goal.id}) #{goal.daysstraight} daysstraight
     #end
   end
 
+
   # GET /goals/new
   # GET /goals/new.xml
   def new
@@ -411,6 +412,14 @@ logger.debug "SGJ2 2 #{goal.title}(#{goal.id}) #{goal.daysstraight} daysstraight
   # POST /goals
   # POST /goals.xml
   def create
+      if current_user and params[:first_name]
+	  current_user.first_name = params[:first_name]
+ 
+          ### having periods in the first name kills the attempts to email that person, so remove periods
+          current_user.first_name = current_user.first_name.gsub(".", "")
+          current_user.save
+     end 
+
       @goal = Goal.new(params[:goal])
 
 
@@ -433,7 +442,21 @@ logger.debug "SGJ2 2 #{goal.title}(#{goal.id}) #{goal.daysstraight} daysstraight
       respond_to do |format|
         if @goal.save
           flash[:notice] = 'Goal was successfully created.'
-        
+   
+          if session[:sfm_virgin] and session[:sfm_virgin] == true
+            session[:sfm_virgin] = false
+
+
+            @user = current_user
+            #### now that we have their first name, we can send the email 
+            the_subject = "Confirm your HabitForge Subscription"
+            begin
+              Notifier.deliver_user_confirm(@user, the_subject) # sends the email
+            rescue
+              logger.error("sgj:email confirmation for user creation did not send")
+            end
+
+          end      
           current_user.goal_temp = ""
           current_user.save
         

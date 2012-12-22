@@ -93,6 +93,15 @@ end
                         You are about to become the newest member of HabitForge, a community of people committed to improving their lives through daily consistent action! Simply click the confirmation link below to get started!
                         <br>
                         <br>
+
+                        <% if @user.password_temp and @user.password_temp != "" %>
+                        Your account info is:
+                        username: <%= @user.email %>
+                        temp password: <%= @user.password_temp %> (you will be prompted to change this)
+                        <br>
+                        <br>
+                        <% end %>
+
                         <a href="http://<%= @sitename %>/goals?confirmed_address_token=<%= @user.confirmed_address_token %>&user_id=<%= @user.id %>">Click to Start Using Habitforge Now!!!</a>
                         </td>
                         </tr>

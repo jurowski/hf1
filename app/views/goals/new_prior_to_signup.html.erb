@@ -1,0 +1,277 @@
+<h3>...a start of something new</h3>
+
+<% form_for @goal, :url => url_for(:controller => 'goals', :action => 'new_prior_to_signup') do |form| %>
+    <%= form.error_messages %>
+
+
+
+<hr>
+<%
+dest = Date.new(1900,01,01)
+if @goal.established_on == nil
+  @goal.established_on = "1900-01-01"
+end
+if @goal.status == nil
+    @goal.status = "start"
+end
+
+@arrStatus = Array.new
+
+if @goal.status == "start"
+  if  @goal.established_on == dest
+    @arrStatus.push(["Shoot for 21 Days Straight (strict)", "start"])
+  else
+    @arrStatus.push(["Established", "start"])
+  end
+else
+  if @goal.status != "start" and @goal.established_on != dest
+    @arrStatus.push(["Go! (start over at day 1)", "start"])
+  end
+end
+%>
+<br>
+<br>
+<%
+show_monitor_option_details = 0
+%>
+<h2>Which Mode?</h2>
+    <% if params["monitor"] or (params[:weekdays_only] and params[:weekdays_only] == "true") 
+      if params[:weekdays_only] == "true"
+        @goal.days = false
+        @goal.dayn = false
+	@goal.goal_days_per_week = 5
+      end
+      show_monitor_option_details = 1        
+      %>     
+      <a href="/goals/new_prior_to_signup"><img src='/images/21days_deselected.png' border=0></a> 
+      <img src='/images/monitor_selected.png' border=0>        
+      <%= form.hidden_field :status, :value => "monitor" %>
+    <% else %>
+      <img src='/images/21days_selected.png' border=0>         
+      <a href="/goals/new_prior_to_signup?monitor=1"><img src='/images/monitor_deselected.png' border=0></a>
+      <%= form.hidden_field :status, :value => "start" %>
+    <% end %>
+
+<% 
+the_status = "" 
+@arr_goal_days_per_week = Array.new
+@arr_goal_days_per_week.push(["7", 7])
+@arr_goal_days_per_week.push(["6", 6])
+@arr_goal_days_per_week.push(["5", 5])
+@arr_goal_days_per_week.push(["4", 4])
+@arr_goal_days_per_week.push(["3", 3])
+@arr_goal_days_per_week.push(["2", 2])
+@arr_goal_days_per_week.push(["1", 1])
+%>
+<br>
+
+<% if (params["monitor"] and show_monitor_option_details == 1) or (the_status == "monitor") %>
+    &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp <strong>I'm committed to succeeding at this 
+    <%= select(:goal, :goal_days_per_week, @arr_goal_days_per_week) %> 
+    days each week.</strong>
+    <br>
+    <br>
+  &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp <strong>I only want to receive check-in emails asking about these days:</strong> 
+
+      <br>
+      <br>
+      &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp <%= check_box(:goal, :daym, options = {}, checked_value = "true", unchecked_value = "false") %>
+      <strong>Mon</strong> &nbsp;
+
+      <%= check_box(:goal, :dayt, options = {}, checked_value = "true", unchecked_value = "false") %>
+      <strong>Tue</strong> &nbsp;
+
+      <%= check_box(:goal, :dayw, options = {}, checked_value = "true", unchecked_value = "false") %>
+      <strong>Wed</strong> &nbsp;
+
+      <%= check_box(:goal, :dayr, options = {}, checked_value = "true", unchecked_value = "false") %>
+      <strong>Thu</strong> &nbsp;
+
+      <%= check_box(:goal, :dayf, options = {}, checked_value = "true", unchecked_value = "false") %>
+      <strong>Fri</strong> &nbsp;
+
+      <br>
+  
+      &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp 
+
+  
+      <%= check_box(:goal, :days, options = {}, checked_value = "true", unchecked_value = "false") %>
+      <strong>Sat</strong> &nbsp;
+
+      <%= check_box(:goal, :dayn, options = {}, checked_value = "true", unchecked_value = "false") %>
+      <strong>Sun</strong> &nbsp;
+
+
+<% end %>
+
+<br>
+<br>
+<div class="success" style="width:800px;">
+<h2>Email me early in the morning and ask:</h2>
+  <table border=0>
+  <tr>
+  <td valign=top align=right nowrap>
+  </td>
+  <td nowrap>
+  <p><image src="/images/lightbulb_32.png" height=25px /><i><span style="color:red;"><span style="font-size:120%;">Tip</span>: type a keyword (ex: "exercise", "carb" or "smoking") for popular goals</span></i></p>
+  </td>
+  </tr>
+  <tr>
+  <td valign=top align=right nowrap>
+  <h3>"Were you successful yesterday at &nbsp</h3>
+  </td>
+  <td nowrap>
+  <%= form.text_field :response_question, :class => 'autocomplete', 'data-autocomplete-url'=>autocomplete_for_goal_response_question_goals_path, :size => 40 %>
+  &nbsp &nbsp &nbsp &nbsp &nbsp<p><i> Ex: walking for at least 20 minutes</i></p>
+  </strong>
+  </td>
+  </tr>
+
+
+
+  <tr>
+  <td valign=top nowrap align=right>
+  &nbsp
+  </td>
+  <td nowrap>
+  &nbsp
+  </td>
+  </tr>
+
+
+
+  <tr>
+  <td valign=top nowrap align=right>
+  <strong>What Category is this? &nbsp</strong>  
+  </td>
+  <td nowrap>
+    <%
+    @arr = arr_goal_categories  
+    %>
+    <%= select(:goal, :category, @arr)%>
+  </td>
+  </tr>
+
+  <tr>
+  <td valign=top nowrap align=right>
+  &nbsp
+  </td>
+  <td nowrap>
+  &nbsp
+  </td>
+  </tr>
+
+  <tr>
+  <td valign=top nowrap align=right>
+  &nbsp
+  </td>
+  <td nowrap>
+  &nbsp
+  </td>
+  </tr>
+
+
+
+
+  
+  <tr>
+  <td valign=top nowrap align=right>
+  <strong>Should we also send a daily reminder to do this? &nbsp</strong>  
+  </td>
+  <td nowrap>
+    <%
+    @arr_reminder = Array.new
+
+    @arr_reminder.push(["No Reminder Email, Thanks", -1])
+    @arr_reminder.push(["Sure, send one at ~5:00am", 5])
+    @arr_reminder.push(["Sure, send one at ~6:00am", 6])
+    @arr_reminder.push(["Sure, send one at ~7:00am", 7])
+    @arr_reminder.push(["Sure, send one at ~8:00am", 8])
+    @arr_reminder.push(["Sure, send one at ~9:00am", 9])
+    @arr_reminder.push(["Sure, send one at ~10:00am", 10])
+    @arr_reminder.push(["Sure, send one at ~11:00am", 11])
+    @arr_reminder.push(["Sure, send one at ~12:00pm", 12])
+    @arr_reminder.push(["Sure, send one at ~1:00pm", 13])
+    @arr_reminder.push(["Sure, send one at ~2:00pm", 14])
+    @arr_reminder.push(["Sure, send one at ~3:00pm", 15])
+    @arr_reminder.push(["Sure, send one at ~4:00pm", 16])
+    @arr_reminder.push(["Sure, send one at ~5:00pm", 17])
+    @arr_reminder.push(["Sure, send one at ~6:00pm", 18])
+    @arr_reminder.push(["Sure, send one at ~7:00pm", 19])
+    @arr_reminder.push(["Sure, send one at ~8:00pm", 20])
+    @arr_reminder.push(["Sure, send one at ~9:00pm", 21])
+    @arr_reminder.push(["Sure, send one at ~10:00pm", 22])
+    @arr_reminder.push(["Sure, send one at ~11:00pm", 23])
+    %>
+    <%= select(:goal, :reminder_send_hour, @arr_reminder)%>
+</h2>
+
+  </td>
+  </tr>
+
+
+
+  <tr>
+  <td valign=top nowrap align=right>
+  &nbsp
+  </td>
+  <td nowrap>
+  &nbsp
+  </td>
+  </tr>
+ </table>
+      <br>
+  </td>
+  </tr>
+
+
+  </table>
+</div>
+
+
+  
+<% 
+    @arr_pre_start_days_per_week = Array.new
+
+    @arr_pre_start_days_per_week.push(["0", 0])
+    @arr_pre_start_days_per_week.push(["1", 1])
+    @arr_pre_start_days_per_week.push(["2", 2])
+    @arr_pre_start_days_per_week.push(["3", 3])
+    @arr_pre_start_days_per_week.push(["4", 4])
+    @arr_pre_start_days_per_week.push(["5", 5])
+    @arr_pre_start_days_per_week.push(["6", 6])
+    @arr_pre_start_days_per_week.push(["7", 7])
+    %>
+    
+    <br>
+        <strong>On average, how many days per week are you already succeeding at this?</strong>
+        <%= select(:goal, :pre_start_days_per_week, @arr_pre_start_days_per_week) %> 
+
+<br>
+<br>
+<hr>
+    <p>
+    <%= form.submit 'Create' %>
+    </p>
+
+</div>
+</div>
+
+
+<br>
+<br>
+
+
+
+</p>
+
+<%= form.hidden_field :reminder_time, :value => :reminder_time %>
+</p>
+
+
+
+</p>
+
+
+<% end %>
+

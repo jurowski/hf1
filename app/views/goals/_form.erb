@@ -79,9 +79,24 @@ show_monitor_option_details = 0
 %>
 
 
+<% if session[:sfm_virgin] == true and current_user.first_name == "unknown"%>
+  <% first_name_value = "" %>
+  <% 
+  if params[:first_name] 
+    first_name_value = params[:first_name]
+  end
+  %>
 
-<h2>Which Mode?</h2>
-<% if @ca == "new" %>
+  <span style="font:2em Arial sans-serif;margin-top:14px;">What's your first name?</span><input type="textbox" name="first_name" value="<%= first_name_value %>" placeholder="ex: Steven" style="font:2em Arial sans-serif;margin-top:14px;">
+<div >
+&nbsp
+<br>
+&nbsp
+</div>
+<% end %>
+
+
+<h2>Which mode?</h2>
     <% if params["monitor"] or (params[:weekdays_only] and params[:weekdays_only] == "true") %>
 
       <%
@@ -90,49 +105,16 @@ show_monitor_option_details = 0
         @goal.dayn = false
 	@goal.goal_days_per_week = 5
       end
-      %>
-
-        <% 
-        #RANGE 200
-        #53365        
-        #53552
-        if current_user.id > 53365 and current_user.id < 53566 and  (current_user.unlimited_goals != 1) and (session[:site_name] == "habitforge") %>
-            <img src='/images/21days_selected.png' border=0> 
-            <br>
-            <br>
-            <h3><font color=red>&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp New Option for Supporting Members</font></h3>
-            <img src='/images/monitor_supporting_members.png' border=0>
-            <br>
-            <p>
-            &nbsp &nbsp &nbsp &nbsp
-            &nbsp &nbsp &nbsp &nbsp
-            &nbsp &nbsp &nbsp &nbsp
-            &nbsp &nbsp &nbsp &nbsp
-            &nbsp &nbsp &nbsp 
-            <a href="https://www.securepublications.com/habit-1-year.php?ref=<%= current_user.id %>"><font color=red>Become a Supporting Member!</font></a>
-            <br>
-            &nbsp &nbsp &nbsp &nbsp
-            <em>Hide the ads, create unlimited active habits, and get access to the new site!</em>
-            <br>
-            &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
-            <a href="http://habitforge.myshopify.com/collections/frontpage/products/habitforge-supporting-membership-1-year?ref=<%= current_user.id %>"><font color=red>50% off... Now Only $4.99 for 12 Months!</font>
-            </a>
-            </p>  
-            <%= form.hidden_field :status, :value => "start" %>                                                                                                      
-        <% 
-        else 
-            show_monitor_option_details = 1        
-        %>     
+      show_monitor_option_details = 1        
+      %>     
             <a href="/goals/new"><img src='/images/21days_deselected.png' border=0></a> 
             <img src='/images/monitor_selected.png' border=0>        
             <%= form.hidden_field :status, :value => "monitor" %>
-        <% end %>
     <% else %>
         <img src='/images/21days_selected.png' border=0>         
         <a href="/goals/new?monitor=1"><img src='/images/monitor_deselected.png' border=0></a>
         <%= form.hidden_field :status, :value => "start" %>
     <% end %>
-<% end %>
 
 <% 
 the_status = "" 
@@ -171,40 +153,7 @@ if @ca == "edit" %>
             <br>
         <% end %>
         <img src='/images/21days_selected.png' border=0>
-
-
-
-        <%  
-        #RANGE 200
-        #53365        
-        #53552
-        if current_user.id > 53365 and current_user.id < 53566 and (current_user.unlimited_goals != 1) and (session[:site_name] == "habitforge") %>
-             <br>
-            <br>
-            <h3><font color=red>&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp New Option for Supporting Members</font></h3>  
-            <img src='/images/monitor_supporting_members.png' border=0>
-            <br>
-            <p>
-            &nbsp &nbsp &nbsp &nbsp
-            &nbsp &nbsp &nbsp &nbsp
-            &nbsp &nbsp &nbsp &nbsp
-            &nbsp &nbsp &nbsp &nbsp
-            &nbsp &nbsp &nbsp 
-            <a href="http://habitforge.myshopify.com/collections/frontpage/products/habitforge-supporting-membership-1-year?ref=<%= current_user.id %>"><font color=red>Become a Supporting Member!</font></a>
-            <br>
-            &nbsp &nbsp &nbsp &nbsp
-            <em>Hide the ads, create unlimited active habits, and get access to the new site!</em>
-            <br>
-            &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
-            <a href="http://habitforge.myshopify.com/collections/frontpage/products/habitforge-supporting-membership-1-year?ref=<%= current_user.id %>"><font color=red>50% off... Now Only $4.99 for 12 Months!</font>
-            </a>
-            </p>  
-
-        <% else %>
-            <a href="/goals/<%=@goal.id%>/edit?monitor=1"><img src='/images/monitor_deselected.png' border=0></a>
-        <% end %>
-
-
+        <a href="/goals/<%=@goal.id%>/edit?monitor=1"><img src='/images/monitor_deselected.png' border=0></a>
         <%= form.hidden_field :status, :value => "start" %>
     <% end %>
 <% end %>
@@ -277,7 +226,7 @@ if @ca == "edit" %>
   <h3>"Were you successful yesterday at &nbsp</h3>
   </td>
   <td nowrap>
-  <%= form.text_field :response_question, :class => 'autocomplete', 'data-autocomplete-url'=>autocomplete_for_goal_response_question_goals_path, :size => 60 %>
+  <%= form.text_field :response_question, :class => 'autocomplete', 'data-autocomplete-url'=>autocomplete_for_goal_response_question_goals_path, :size => 40 %>
   &nbsp &nbsp &nbsp &nbsp &nbsp<p><i> Ex: walking for at least 20 minutes</i></p>
   </strong>
   </td>
@@ -335,6 +284,7 @@ if @ca == "edit" %>
   <strong>Should we also send a daily reminder to do this? &nbsp</strong>  
   </td>
   <td nowrap>
+
     <%
     @arr_reminder = Array.new
 
@@ -362,7 +312,7 @@ if @ca == "edit" %>
     <%= select(:goal, :reminder_send_hour, @arr_reminder)%>
 
     <%
-      if current_user.sponsor == "habitforge" and !@goal.more_reminders_enabled
+      if current_user.sponsor == "habitforge" and !@goal.more_reminders_enabled and !session[:sfm_virgin]
           %>
             <strong><%= link_to_function ("<span style='text-decoration:underline;'>more reminders</span>") {
              |page| page.visual_effect :toggle_appear, "multiple_reminders" 
@@ -545,6 +495,8 @@ if @ca == "new"
 end
 %>
 
+
+<% if !session[:sfm_virgin]  %>
 <br>
 <br>
 
@@ -575,29 +527,8 @@ end
 
 <br>
 <br>
-
-
-
 </p>
-
-<%
-if @goal.status != "hold" and @goal.status != ""
-%>
-  <% #<p> Started on: @goal.start %>
-  <% #form.date_select :start %>
-  <% #form.hidden_field :start, :value => :start %>
-<%
-end
-%>
-<%= form.hidden_field :reminder_time, :value => :reminder_time %>
 </p>
-
-
-
-
-
-
-
 
 <h2>Public Motivation: Put yourself out there!</h2>
 <p>
@@ -684,19 +615,10 @@ member(s) to send me a push each day. They can choose a "push messages" below to
 
 <% end %>
 
+<% end ### end whether session[:sfm_virgin] == true %>
+
 
 </p>
-
-    
-
-
 <br>
-
-  
-
-
-
-
-
-
+<%= form.hidden_field :reminder_time, :value => :reminder_time %>
 <hr>

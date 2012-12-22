@@ -79,7 +79,11 @@
       <p>
       <%= link_to "Forgot Password", "/password_resets/new" %>
       &nbsp;&nbsp;
-      <%= link_to "Need an Account", new_user_path %></li>
+     <% if session[:sfm] == "v1" %> 
+       <%= link_to "Need an Account", new_user_path %></li>
+     <% else %>
+       <%= link_to "Need an Account", "/" %></li>
+     <% end %>
       </p>
 
 

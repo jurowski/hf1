@@ -41,7 +41,9 @@ class UserSessionsController < ApplicationController
                 redirect_to("/" + params[:after_login_cn] + vars)
             end
         else
+          if !params[:quick_setup]
             redirect_to(goals_url)
+          end
         end
 
         

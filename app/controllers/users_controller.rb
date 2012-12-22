@@ -1,5 +1,7 @@
+require "mail"
 class UsersController < ApplicationController
   layout "application"
+
   # GET /users
   # GET /users.xml
 
@@ -8,6 +10,16 @@ class UsersController < ApplicationController
   #before_filter :require_no_user, :only => [:new, :create]
   before_filter :require_user, :only => [:show, :edit, :update, :index, :destroy]
   #before_filter :require_user, :only => [:show, :edit, :update]
+
+  def valid_email( value )
+    begin
+     return false if value == ''
+     parsed = Mail::Address.new( value )
+     return parsed.address == value && parsed.local != parsed.address
+    rescue Mail::Field::ParseError
+      return false
+    end
+  end
 
   def get_dnow
     ### GET DATE NOW ###
@@ -198,6 +210,92 @@ class UsersController < ApplicationController
     #  format.xml  { render :xml => @user }
     #end
   end
+  def quicksignup_v2
+    logger.debug("sgj:users_controller:quicksignup_v2:1")
+    @form_submitted = false
+    @email_submitted = false
+    @email_duplicate = false
+    @email_blank = false
+    @email_valid = false
+    @account_created = false
+
+    if params[:form_submitted]
+      @form_submitted = true
+    end
+    if params[:email] and params[:email] == ""
+      @email_blank = true
+    end 
+    if params[:email] and params[:email] != ""
+      @email_submitted = true
+    end
+
+    if @email_submitted
+      if valid_email(params[:email])
+        @email_valid = true
+      end
+    end
+
+    if @email_valid
+      ### validate email
+      user = User.find(:first, :conditions => "email = '#{params[:email]}'"
+)
+      if user != nil
+        @email_duplicate = true
+      end
+    end ### end if email_submitted
+
+    if @email_duplicate
+      ### ask the user to enter a new email address or log in w/ the existing one
+    else
+      user = User.new
+      user.first_name = "unknown"
+      user.last_name = ""
+      if session[:referer] != nil
+        user.referer = session[:referer]
+      end
+      user.email = params[:email]
+      user.email_confirmation = params[:email]
+      random_pw_number = rand(1000) + 1 #between 1 and 1000
+      user.password = "xty" + random_pw_number.to_s
+      user.password_confirmation = user.password
+      user.password_temp = user.password
+      user.sponsor = "habitforge"
+      user.time_zone = "Central Time (US & Canada)"
+      ### having periods in the first name kills the attempts to email that person, so remove periods
+      user.first_name = user.first_name.gsub(".", "")
+
+      if params[:affiliate_name] and params[:affiliate_name] != ""
+        affiliate = Affiliate.find(:first, :conditions => "affiliate_name = '#{params[:affiliate_name]}'")
+        if affiliate
+          user.affiliate = affiliate
+        end
+      end
+
+      ### Setting this to something other than 0 so that this person
+      ### is included in the next morning's cron job to send emails
+      ### this will get reset to the right number once each day via cron
+      ### but set it now in case user is being created after that job runs
+      user.update_number_active_goals = 1
+
+      if user.save 
+        ### do something like the below once we know what their goal is
+        #@user = user
+        #Notifier.deliver_widget_user_creation(@user) # sends the email
+        session[:sfm_virgin] = true ### they are setting up their first goal ... allows you to hide or show certain things
+        session[:sfm_virgin_need_to_confirm_timezone] = true
+        session[:sfm_virgin_need_to_email_temp_password] = true
+        @account_created = true
+
+        ### route them to goal creation page (which should reference session[:sfm] for quick goal-creation options)
+        redirect_to("/goals/new")
+      else
+        ### Problem saving user: ask them to contact support
+      end ### end if user.save
+
+    end ### end if not duplicate email
+
+
+  end
 
   # GET /users/new
   # GET /users/new.xml
@@ -273,14 +371,16 @@ class UsersController < ApplicationController
     #### ALLOW FOR EMAIL ADDRESS CONFIRMATION
     random_confirm_token = rand(1000) + 1 #between 1 and 1000
     @user.confirmed_address_token = "xtynzsc" + random_confirm_token.to_s
-
     if @user.save
       flash[:notice] = "Account registered!"
      
       #### now that we have saved and have the user id, we can send the email 
       the_subject = "Confirm your HabitForge Subscription"
-      Notifier.deliver_user_confirm(@user, the_subject) # sends the email
-      
+      begin
+        Notifier.deliver_user_confirm(@user, the_subject) # sends the email
+      rescue
+        logger.error("sgj:email confirmation for user creation did not send")
+      end
       
       ### GET DATE NOW ###
       jump_forward_days = 0
@@ -374,6 +474,10 @@ class UsersController < ApplicationController
     @user.first_name = @user.first_name.gsub(".", "")
     
     if @user.update_attributes(params[:user])
+
+      if session[:sfm_virtin_need_to_confirm_timezone]
+        session[:sfm_virtin_need_to_confirm_timezone] = false
+      end
 
       @user.password_temp = ""
       @user.save
