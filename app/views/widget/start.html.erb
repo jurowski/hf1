@@ -140,7 +140,7 @@ a><br>
   <br>
   <br>
       <% user = User.new %>
-      <% form_for user, :url => "http://habitforge.com/widget/start" do |f| %>
+      <% form_for user, :url => "/widget/start" do |f| %>
        
         
         <div style="width:240px;margin:10px;padding:5px;background:#ffffff;">
@@ -152,6 +152,12 @@ a><br>
         <input type="hidden" name="widget_goal" value="<%= params[:widget_goal] %>"> 
         <input type="submit" value="Start Now!" class="start_now"> 
         <!--  f.submit "Go!" --> 
+        <% if params[:widget_first_name] and params[:widget_first_name] == "" %>
+          <span style="color:#FF0000;"> Please enter your first name.</span> 
+        <% end %>
+        <% if params[:widget_email] and params[:widget_email] == "" %>
+          <span style="color:#FF0000;"> Please enter your email address.</span> 
+        <% end %>
 
 
 <%= link_to_function ("Privacy Policy") {
@@ -184,7 +190,11 @@ ddress or share it with anyone.  Questions? Email us at: support@habitforge.com
       Check my progress daily by email asking:
       <div style="width:240px;margin:10px;padding:5px;background:#ffffff;">"Were you successful yesterday <br>at <input t
 ype="textbox" size=20 name="widget_goal" placeholder="ex: walking for 20 minutes">?"
-      <input type="submit" value="Go!">
+        <input type="submit" value="Start Now!" class="start_now"> 
+        <!--  f.submit "Go!" --> 
+        <% if params[:widget_goal] and params[:widget_goal] == "" %>
+          <span style="color:#FF0000;">Please enter a goal.</span>
+        <% end %>
       </div>
       (then simply click "Yes" or "No" from the email)
     </form>
