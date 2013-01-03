@@ -36,6 +36,7 @@
   user = User.new(params[:user])
 
   user.referer = "discovery.com"
+  user.time_zone = "Central Time (US & Canada)"
 
   user.first_name = params[:widget_first_name]
   user.last_name = ""
