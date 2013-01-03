@@ -1,0 +1,22 @@
+/* Pricing Tables
+------------------------------------------------------*/
+.price_table 			{ width:800px; margin:0 auto; padding:20px; }
+
+.price_table a img		{ outline:none; border:none;}
+
+table.customtable 		{ margin: 19px 0 20px 0; width:90%; border:0px solid #ccc; border-collapse:collapse; }
+table.customtable th	{ font:bold 18px "Trebuchet Ms", Arial, verdana, sans-serif; text-align:center; padding:0px; border-bottom:1px solid #ddd; }
+table.customtable th 	{ background:url(images/table-head-mid.png) repeat-x; height:78px; }
+
+table.customtable th.lefthead 	{ background:url(images/table-head-left.png) no-repeat top left; height:78px;	}
+table.customtable th.righthead 	{ background:url(images/table-head-right.png) no-repeat top right; height:78px; }
+			
+table.customtable td				{ border-bottom:1px solid #ddd; border-left:1px solid #ddd; border-right:1px solid #ddd; color: #000; padding: 10px 15px; font:normal 13px "Trebuchet Ms", Arial, verdana, sans-serif; }
+
+.floatright				{ float:right; }
+
+table.customtable td,
+table.customtable th 	{ text-align:center;}
+
+table.customtable thead th			{ border-left:none !important; border-right:none !important;}
+table.customtable td:first-child 	{ background:#eee; text-align:left; padding-left:30px; font-weight:bold;   }

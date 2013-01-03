@@ -232,16 +232,25 @@ logger.debug "SGJ2 2 #{goal.title}(#{goal.id}) #{goal.daysstraight} daysstraight
       end
 
 
-
-      ### http://firstruby.wordpress.com/2008/11/03/remote_function-or-link_to_remote-with-multiple-parameters-in-ruby-on-rails/
-      respond_to do |format|
-        format.html # index.html.erb
-        #format.xml  { render :xml => @goals }
-
-
-        format.js # index.rjs
-
+      if params[:optimize_my_first_goal]
+       my_first_goal_id = 0
+       if current_user.number_of_active_habits == 1
+         my_first_goal_id = current_user.active_goals[0].id
+       end 
+       if my_first_goal_id != 0
+         redirect_to("/goals/#{my_first_goal_id}/edit")
+       else
+         redirect_to("/goals")
+       end 
+     else
+          ### http://firstruby.wordpress.com/2008/11/03/remote_function-or-link_to_remote-with-multiple-parameters-in-ruby-on-rails/
+          respond_to do |format|
+            format.html # index.html.erb
+            #format.xml  { render :xml => @goals }
+            format.js # index.rjs
+          end
       end
+
     #else
     #  redirect_to(server_root_url)
     #end

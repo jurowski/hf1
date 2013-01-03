@@ -340,6 +340,11 @@ class UsersController < ApplicationController
   def create
     @user = User.new(params[:user])
 
+    if @user.time_zone == nil
+      @user.time_zone = "Central Time (US & Canada)"
+      session[:sfm_virgin_need_to_confirm_timezone] = true
+    end
+
     if session[:referer] != nil
       @user.referer = session[:referer]
     end
