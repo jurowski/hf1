@@ -476,6 +476,7 @@ class Notifier < ActionMailer::Base
   
   def widget_user_creation(user, weekdays_only = "false")
     recipients	user.email
+    bcc         "support@habitforge.com"
     from	"habitforge <support@habitforge.com>"
     subject	"Activate your new habit goal!"
     if weekdays_only == "true"
