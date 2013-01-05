@@ -52,7 +52,7 @@ end
 <br>&nbsp<image height="20px" src="/images/checkmark_green.png">Unlimited Reminders
 <br>&nbsp<image height="20px" src="/images/checkmark_green.png">Optional friendly reminders and pushes from other members if you start to slack!</span>
   <br><br>
-  <input type="radio" name="account_type" value="free" > Free Account: (Limit 1 Active Public Habit, with Ads)
+  <input type="radio" name="account_type" value="free" > Free Account: (Limited features, Public Only, With Ads)
   <br><br>
 
   <h3>Signup Info</h3>
@@ -66,7 +66,7 @@ If you do choose to share goals with other members of this site, only your first
 While members can send messages to one another, email addresses will never be exposed (all member to member email will be routed through HabitForge addresses).
 </p>
   <br>
-  <%= f.submit "I agree... Let's Get Started!" %>
+  <%= f.submit "I agree... Let's Get Started!", :class=>"start_now"%>
 </p>
 
 <% end %>

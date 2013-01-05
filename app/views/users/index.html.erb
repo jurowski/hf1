@@ -22,7 +22,7 @@ counter_have_goals = 0
 
         <% if session[:sponsor] == "habitforge" %>
             <% if user.unlimited_goals == 1 %>
-                <strong>Supporting Member</strong>
+                <strong>Premium Member</strong>
             <% else %>
                 <a href="users?upgrade_id=<%=user.id%>">Upgrade and Send Email</a>
             <% end %>

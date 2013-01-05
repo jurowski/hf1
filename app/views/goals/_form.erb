@@ -331,12 +331,12 @@ show_monitor_option_details = 0
                         <br>
                         <br>
                     <p>
-                        "Frequent Reminders" available only to Supporting Members:
+                        "Frequent Reminders" available only to Premium Members:
                         &nbsp &nbsp
                         <% if session[:sfm] and session[:sfm] == "v2" %>
-                          <a href="/goals/?show_sales_overlay=1">Go Premium!</a>
+                          <a href="/goals/?show_sales_overlay=1" class="start_now">Learn More</a>
                         <% else %>
-                        <a href="https://www.securepublications.com/habit-1-year.php?ref=<%= current_user.id.to_s %>" class="button" >Just $9.95 for 12 months!</a>
+                        <a href="https://www.securepublications.com/habit-1-year.php?ref=<%= current_user.id.to_s %>" class="start_now" >Learn More</a>
                         <% end %>
                         <br>
                         (Unlimited active habits, Frequent Reminders, No advertisements!)
@@ -427,15 +427,15 @@ end
 <h2>Public Motivation: Put yourself out there!</h2>
 <p>
 <% if current_user.sponsor == "habitforge" and !current_user.is_habitforge_supporting_member and current_user.id > 79152 %>
-  <strong>Prefer "Private" habits as an option? Get a Supporting Membership!</strong> 
+  <strong>Prefer "Private" habits as an option? Get a Premium Membership!</strong> 
 
 
 
 
                         <% if session[:sfm] and session[:sfm] == "v2" %>
-                          <a href="/goals/?show_sales_overlay=1">Go Premium!</a>
+                          <a href="/goals/?show_sales_overlay=1" class="start_now">Learn More</a>
                         <% else %>
-                        <a href="https://www.securepublications.com/habit-1-year.php?ref=<%= current_user.id.to_s %>" class="button" >Just $9.95 for 12 months!</a>
+                        <a href="https://www.securepublications.com/habit-1-year.php?ref=<%= current_user.id.to_s %>" class="start_now" >Learn More</a>
                         <% end %>
 
 
@@ -458,17 +458,17 @@ end
 <span style="font-size:75%;font-style:italic;">There is real power in the simple knowledge that others will be notified when you start to get off track. After one or two lapses, your mind decides it's better to just take the action than be reminded by someone else of what you already know you need to do.
 <br>
 <br>
-If I don't succeed for a few days, other HabitForge members can earn points by sending me a "push". They can use one of the phrases below, and if I succeed within 48 hours after their "push", they earn additional points redeemable toward a Supporting Membership.
+If I don't succeed for a few days, other HabitForge members can earn points by sending me a "push". They can use one of the phrases below, and if I succeed within 48 hours after their "push", they earn additional points redeemable toward a Premium Membership.
 </span>
 
 <% if !current_user.is_habitforge_supporting_member %>
-  <br><br>(Available to Supporting Members Only)
+  <br><br>(Available to Premium Members Only)
 
 
                         <% if session[:sfm] and session[:sfm] == "v2" %>
-                          <a href="/goals/?show_sales_overlay=1">Go Premium!</a>
+                          <a href="/goals/?show_sales_overlay=1" class="start_now">Learn More</a>
                         <% else %>
-                        <a href="https://www.securepublications.com/habit-1-year.php?ref=<%= current_user.id.to_s %>" class="button" >Just $9.95 for 12 months!</a>
+                        <a href="https://www.securepublications.com/habit-1-year.php?ref=<%= current_user.id.to_s %>" class="start_now" >Learn More</a>
                         <% end %>
 
 
