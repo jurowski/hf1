@@ -75,7 +75,7 @@
     %>
       
       <%= link_to 'Edit', edit_goal_path(goal) %> 
-      • <a href="/goals/single/<%= goal.id %>" >Daily Checkpoints and Comments</a>
+      • <a href="/goals/single/<%= goal.id %>" >My History</a>
       • <%= link_to 'Delete', goal, :confirm => 'Are you sure you want to delete this goal?', :method => :delete %>
       
         <div class="grid_12">
@@ -100,17 +100,15 @@
                     <!-- 
                     COACH!!!
                     START render the partial _coach.erb file from the goal views 
-                    -->
-                    <h4><%= link_to_function ("Click for Coaching Options") {
+                    <h4> link_to_function ("Click for Coaching Options") {
                      |page| page.visual_effect :toggle_appear, "coach_#{goal.id}" 
                     } 
-                    %></h4>
-                    <div id="coach_<%= goal.id %>" style="display:none;">
+                    </h4>
+                    <div id="coach_= goal.id " style="display:none;">
                       
-                      <% @goal = goal %>
-                      <%= render :partial => "goals/coach", :locals => { :coach => @goal }  %>
+                      @goal = goal %>
+                      render :partial => "goals/coach", :locals => { :coach => @goal }  
                     </div>
-                    <!-- 
                     END render the partial _coach.erb file from the goal views 
                     -->
                     <% end %>

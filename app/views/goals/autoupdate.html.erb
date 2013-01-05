@@ -222,12 +222,10 @@ if legit_url == 1
     <!-- 
     COACH!!!
     START render the partial _coach.erb file from the goal views 
-    -->
-      <% @goal = @checkpoint.goal %>
-      <%= render :partial => "goals/coach", :locals => { :coach => @goal }  %>
+      @goal = @checkpoint.goal
+      render :partial => "goals/coach", :locals => { :coach => @goal }
       <br>
       <br>
-    <!-- 
     END render the partial _coach.erb file from the goal views 
     -->
     

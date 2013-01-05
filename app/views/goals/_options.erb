@@ -16,7 +16,7 @@
      |page| 
      page.visual_effect(:fade, "watchers_#{@goal.id}", :duration => 0.0)
      page.visual_effect(:fade, "team_#{@goal.id}", :duration => 0.0)
-     page.visual_effect(:fade, "coach_#{@goal.id}", :duration => 0.2)
+     #page.visual_effect(:fade, "coach_#{@goal.id}", :duration => 0.2)
      page.visual_effect(:toggle_appear, "stats_#{@goal.id}", :duration => 0.2)
     } 
     %>
@@ -32,7 +32,7 @@
     &nbsp | &nbsp
     <%= link_to_function (function_name) {
      |page|
-         page.visual_effect(:fade, "coach_#{@goal.id}", :duration => 0.0)
+         #page.visual_effect(:fade, "coach_#{@goal.id}", :duration => 0.0)
          page.visual_effect(:fade, "team_#{@goal.id}", :duration => 0.0)
          page.visual_effect(:fade, "stats_#{@goal.id}", :duration => 0.2)
          page.visual_effect(:toggle_appear, "watchers_#{@goal.id}", :duration => 0.2)
@@ -44,18 +44,18 @@
 
     <% if session[:site_name] == "habitforge" %>
 
-        <!-- COACHING HEADER START -->
+        <!-- COACHING HEADER START 
         &nbsp | &nbsp
-        <%= link_to_function ("<img src='/images/User-Files-icon.png' height='23px' />&nbsp Coaching") {
+         link_to_function ("<img src='/images/User-Files-icon.png' height='23px' />&nbsp Coaching") {
             |page|
          page.visual_effect(:fade, "watchers_#{@goal.id}", :duration => 0.0)
          page.visual_effect(:fade, "team_#{@goal.id}", :duration => 0.0)
          page.visual_effect(:fade, "stats_#{@goal.id}", :duration => 0.2)
-         page.visual_effect(:toggle_appear, "coach_#{@goal.id}", :duration => 0.2)
+         #page.visual_effect(:toggle_appear, "coach_#{@goal.id}", :duration => 0.2)
 
         } 
-        %>
-        <!-- COACHING HEADER END -->
+        
+         COACHING HEADER END -->
 
     <%
     end ### end whether habitorge
@@ -83,7 +83,7 @@
     <%= link_to_function (function_name) {
      |page|
          page.visual_effect(:fade, "watchers_#{@goal.id}", :duration => 0.0)
-         page.visual_effect(:fade, "coach_#{@goal.id}", :duration => 0.0)
+         #page.visual_effect(:fade, "coach_#{@goal.id}", :duration => 0.0)
          page.visual_effect(:fade, "stats_#{@goal.id}", :duration => 0.2)
          page.visual_effect(:toggle_appear, "team_#{@goal.id}", :duration => 0.2)
     } 
