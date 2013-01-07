@@ -657,12 +657,15 @@ testing_xml_resend_any = %{
            xml_product_id = item.elements['line-item/product-id'].text.to_i
 	   xml_variant_id = item.elements['line-item/variant-id'].text.to_i
 	
-           if (xml_product_id == 49 and xml_variant_id == 27) or xml_product_id == 33131182 or xml_product_id == 63752422 or xml_product_id == 63868112 or xml_product_id == 63752802 or xml_product_id == 63753272 or xml_product_id == 43003332
+           if (xml_product_id == 49 and xml_variant_id > 0 ) or xml_product_id == 33131182 or xml_product_id == 63752422 or xml_product_id == 63868112 or xml_product_id == 63752802 or xml_product_id == 63753272 or xml_product_id == 43003332
+
+           #if (xml_product_id == 49 and xml_variant_id == 27) or xml_product_id == 33131182 or xml_product_id == 63752422 or xml_product_id == 63868112 or xml_product_id == 63752802 or xml_product_id == 63753272 or xml_product_id == 43003332
 
 
 
 	     #### INFUSION SOFT PRODUCT IDS
  	     #### product-id = 49 and variant-id = 27 := 12-month @ $9.95
+             #### product-id = 49 and variant-id = 31 := 12-month @ $9.95 (w/ some discount code, perhaps any code)
 
 	     #### SHOPIFY PRODUCT IDs
              ### 33131182 = 12-month Supporting Membership
