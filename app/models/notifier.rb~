@@ -42,7 +42,7 @@ class Notifier < ActionMailer::Base
     recipients user.first_name + "<" + user.email + ">"
     #bcc         "support@habitforge.com"
     from       "habitforge <support@habitforge.com>"
-    subject    "Renewal Notice: Your Premium Membership Has Expired."
+    subject    "Renewal Notice: Your Supporting Membership Has Expired."
     body       :user => user
     content_type "text/html"
   end 
@@ -51,7 +51,7 @@ class Notifier < ActionMailer::Base
     recipients user.first_name + "<" + user.email + ">"
     #bcc         "support@habitforge.com"
     from       "habitforge <support@habitforge.com>"
-    subject    "Renewal Notice: Your Premium Membership Will Expire Soon!"
+    subject    "Renewal Notice: Your Supporting Membership Will Expire Soon!"
     body       :user => user
     content_type "text/html"
   end 
@@ -62,21 +62,21 @@ class Notifier < ActionMailer::Base
     recipients user.first_name + "<" + user.email + ">"
     cc         "support@habitforge.com"
     from       "habitforge <support@habitforge.com>"
-    subject    "Premium Membership Account Upgrade"
+    subject    "Supporting Membership Account Upgrade"
     body       :user => user
   end  
   def user_upgrade_6month_notification(user)
     recipients user.first_name + "<" + user.email + ">"
     cc         "support@habitforge.com"
     from       "habitforge <support@habitforge.com>"
-    subject    "Premium Membership Account Upgrade"
+    subject    "Supporting Membership Account Upgrade"
     body       :user => user
   end  
   def user_upgrade_notification(user)
     recipients user.first_name + "<" + user.email + ">"
     cc         "support@habitforge.com"
     from       "habitforge <support@habitforge.com>"
-    subject    "Premium Membership Account Upgrade"
+    subject    "Supporting Membership Account Upgrade"
     body       :user => user
   end  
   def user_upgrade_2year_notification(user)
