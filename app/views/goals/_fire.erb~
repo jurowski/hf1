@@ -184,7 +184,7 @@ aka "Fire"
                 <% if new_one_saved == 0 %>
                     <form action="/goals/#form_<%= @goal.id %>">
                     <div style="background:#FFF6BF;padding:10px;margin:10px;width:500px;">
-                        <p>If my success rate 
+                        <p>If my success rate over the next
                         <select name="days" <% if !form_enabled %>DISABLED<% end %>>
                             <option value=21 <% if params[:days] == "21" %>SELECTED<% end %>>
                                 21 days
@@ -205,7 +205,7 @@ aka "Fire"
                                 365 days
                             </option>
                         </select>
-                         from now 
+          
                          <br>is not at least 
                         <select name="floor" <% if !form_enabled %>DISABLED<% end %>>
                             <option value=14 <% if params[:floor] == "14" %>SELECTED<% end %>>
@@ -404,8 +404,7 @@ aka "Fire"
 
 
     <!-- </div> END of: div class="grid_9 omega" -->
-</div>
-</div> <!-- END div that toggles (fire_XXXX) -->
+<!-- </div> END div that toggles (fire_XXXX) -->
 <!--  
 END 
 New Bets

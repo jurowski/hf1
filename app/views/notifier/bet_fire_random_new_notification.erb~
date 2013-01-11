@@ -1,8 +1,10 @@
 <%= @user.first_name %>, 
 
-Thanks for adding some Extra Accountability to your goal through our "Fire" feature!
+Thanks for adding "Extra Accountability" to your goal!
 
-You've chosen to make <%= @bet.recipient_name %> your potential recipient.
+We've randomly chosen <%= @bet.recipient_name %> from our pool of HabitForge supporting members as your potential challenge recipient.
+
+(<%= @bet.recipient_name %>, send an email to support@habitforge.com if you'd rather not be involved in this, but I didn't think you'd mind the prospect of potential "money for nothing". You'll be able to follow <%= @user.first_name %>'s goal progress under the "Friends" tab when you're logged in.)
 
 Your <%= @bet.length_days %>-day challenge for $<%= @bet.wager %> runs from <%= @bet.start_date.strftime("%A, %b %d, %Y") %> through <%= @bet.end_date.strftime("%A, %b %d, %Y") %>.
 
@@ -10,14 +12,14 @@ You need to succeed at least <%= @bet.floor%>% out of the <%= @bet.length_days %
 
 We'll send another email at the end of the challenge period with the results.
 
-(<%= @bet.recipient_name %>, if you're not already signed up with HabitForge (http://habitforge.com), feel free to sign up under your <%= @bet.recipient_email %> address, and you'll be able to see <%= @user.first_name %>'s goal progress under the "Friends" tab.)
 
 
-Details: How "Fire" or "Extra Accountability" Works
 
-We'll send email notices to you and your friend twice:
+Details: How "Extra Accountability" Works
+
+We'll send email notices to you and <%= @bet.recipient_name %> twice:
     • Immediately (Prior to the first day of the challenge)
-    • Within Two Days After the challenge period ends to detail what you owe them, if anything.
+    • Within Two Days After the challenge period ends to detail what you owe <%= @bet.recipient_name %>, if anything.
 
 If you do end up "owing" <%= @bet.recipient_name %>, paypal is quick and easy, but a mailed personal check could work as well (we'll let the two of you work it out).
 
