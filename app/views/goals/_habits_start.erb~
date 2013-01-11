@@ -194,7 +194,8 @@
                     </p>            
                     </div>
 
-
+                    <div id="fire_<%= goal.id %>" >
+                    </div>
 
                     <div id="extra_<%= goal.id %>" >
                         

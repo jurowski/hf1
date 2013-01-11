@@ -69,7 +69,7 @@
 
         <!-- FIRE HEADER START --> 
         &nbsp | &nbsp
-        <%= link_to_function ("<img src='/images/fire_1.png' height='30px' />&nbsp Fire") {
+        <%= link_to_function ("<img src='/images/fire_1.png' height='23px' />&nbsp Fire") {
             |page|
          page.visual_effect(:fade, "watchers_#{@goal.id}", :duration => 0.0)
          page.visual_effect(:fade, "team_#{@goal.id}", :duration => 0.0)

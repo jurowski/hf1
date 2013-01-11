@@ -4,7 +4,7 @@ New Bets
 aka "Fire"
 -->
 <div id="fire_<%= @goal.id %>" class="div_team" style="display:none;">  
-
+hi i am fire
     <% this_one_was_submitted = false %> 
     <% if params[:start_fire_goal_id] == @goal.id.to_s %>
         <!-- SOMEONE SUBMITTED THE FIRE FORM FOR THIS GOAL -->

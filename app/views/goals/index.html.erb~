@@ -363,10 +363,6 @@ for goal in current_user.active_goals_sorted_by_next_action_day
     <!--  render :partial => "goals/coach", :locals => { :coach => @goal }  -->
     <!-- END COACH -->
     
-    <!-- START FIRE -->
-    <%=  render :partial => "goals/fire", :locals => { :fire => @goal }  %>
-    <!-- END FIRE -->
-
     
     </div>
     <br>
