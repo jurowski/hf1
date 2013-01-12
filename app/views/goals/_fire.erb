@@ -174,7 +174,7 @@ aka "Fire"
                             end
 
                             %>
-                            <div class="notice">Your <%= length_days %>-day challenge for $<%= new_bet.wager %> starts tomorrow! We have sent an email to you and to <%= new_bet.recipient_email %> with the details. </div>
+                            <div class="notice">Your <%= length_days %>-day challenge for $<%= new_bet.wager %> starts tomorrow! We have sent an email to you and to <%= new_bet.recipient_name %> with the details. </div>
                             <%
                         end
                     end
@@ -303,7 +303,7 @@ aka "Fire"
                             <% end %>   
                             <h6>
                             <a href="/popupex<%= @goal.id %>.html" onclick="return popitup_bigger1('/fire_rules.html')">
-                            Details and Rules of "Fire: Bet a Friend or Play for a Cause"
+                            Details and Rules of "Extra Accountability"
                             </a>
                             </h6>
                         </div>

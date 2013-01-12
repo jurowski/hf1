@@ -1,14 +1,16 @@
-<%= @user.first_name %>, 
+Hi <%= @bet.recipient_name %>.
 
-Thanks for using the HabitForge "Fire" (Extra Accountability) Feature to your goal!
+<%= @user.first_name %> is using the HabitForge "Fire" (Extra Accountability) Feature for one of their goals.
 
-We've randomly chosen <%= @bet.recipient_name %> from our pool of HabitForge supporting members as your potential challenge recipient.
+We've randomly chosen you from our pool of HabitForge Premium Members as the challenge recipient.
 
-(<%= @bet.recipient_name %>, send an email to support@habitforge.com if you'd rather not be involved in this, but I didn't think you'd mind the prospect of potential "money for nothing". You'll be able to follow <%= @user.first_name %>'s goal progress under the "Friends" tab when you're logged in.)
+(Send an email to support@habitforge.com if you'd rather not be involved in this, but I didn't think you'd mind the prospect of potential "money for nothing".)
 
-Your <%= @bet.length_days %>-day challenge for $<%= @bet.wager %> runs from <%= @bet.start_date.strftime("%A, %b %d, %Y") %> through <%= @bet.end_date.strftime("%A, %b %d, %Y") %>.
+You'll be able to follow <%= @user.first_name %>'s goal progress under the "Friends" tab when you're logged in.
 
-You need to succeed at least <%= @bet.floor%>% out of the <%= @bet.length_days %>-day challenge period, or you'll owe <%= @bet.recipient_name %> $<%= @bet.wager %>!
+<%= @user.first_name %>'s <%= @bet.length_days %>-day challenge for $<%= @bet.wager %> runs from <%= @bet.start_date.strftime("%A, %b %d, %Y") %> through <%= @bet.end_date.strftime("%A, %b %d, %Y") %>.
+
+<%= @user.first_name %> will need to succeed at least <%= @bet.floor%>% out of the <%= @bet.length_days %>-day challenge period, or <%= @user.first_name %> will owe you $<%= @bet.wager %>!
 
 We'll send another email at the end of the challenge period with the results.
 
@@ -17,20 +19,20 @@ We'll send another email at the end of the challenge period with the results.
 
 Details: How "Fire" or "Extra Accountability" Works
 
-We'll send email notices to you and <%= @bet.recipient_name %> twice:
+We'll send email notices to you and <%= @user.first_name %> twice:
     • Immediately (Prior to the first day of the challenge)
-    • Within Two Days After the challenge period ends to detail what you owe <%= @bet.recipient_name %>, if anything.
+    • Within Two Days After the challenge period ends to detail what <%= @user.first_name %> owes you, if anything.
 
-If you do end up "owing" <%= @bet.recipient_name %>, paypal is quick and easy, but a mailed personal check could work as well (we'll let the two of you work it out).
+If <%= @user.first_name %> does end up owing you $$, paypal is quick and easy, but a mailed personal check could work as well (we'll let the two of you work it out via the HabitForge's Messaging System).
 
-How will we know you made the payment to them? It's on the honor system, so we will not collect money or broker the transaction, but since we are sending notices to the recipient of what you'd owe, be a pal and keep your word! 
+How will we know that <%= @user.first_name %> made the payment to you? It's on the honor system, so we will not collect money or broker the transaction, but since we are sending notices to each of you of what's owed, we expect <%= @user.first_name %> will keep his/her word! 
 
 
 
-Best of luck with your goal!
+Thanks for providing this extra bit of accountability to <%= @user.first_name %>, and best of luck with your own goals!
 
 Sandon Jurowski
-Creator HabitForge.com
+HabitForge Creator
 http://habitforge.com
 support@habitforge.com
 

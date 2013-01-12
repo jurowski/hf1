@@ -4,8 +4,6 @@ Thanks for using the HabitForge "Fire" (Extra Accountability) Feature to your go
 
 We've randomly chosen <%= @bet.recipient_name %> from our pool of HabitForge supporting members as your potential challenge recipient.
 
-(<%= @bet.recipient_name %>, send an email to support@habitforge.com if you'd rather not be involved in this, but I didn't think you'd mind the prospect of potential "money for nothing". You'll be able to follow <%= @user.first_name %>'s goal progress under the "Friends" tab when you're logged in.)
-
 Your <%= @bet.length_days %>-day challenge for $<%= @bet.wager %> runs from <%= @bet.start_date.strftime("%A, %b %d, %Y") %> through <%= @bet.end_date.strftime("%A, %b %d, %Y") %>.
 
 You need to succeed at least <%= @bet.floor%>% out of the <%= @bet.length_days %>-day challenge period, or you'll owe <%= @bet.recipient_name %> $<%= @bet.wager %>!

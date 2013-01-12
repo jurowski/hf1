@@ -1152,19 +1152,18 @@ if current_user and current_user.is_habitforge_supporting_member
         end
     end
 
-    ### taking this out for now since we aren't putting "fire" in anymore
-    if current_user.opt_in_random_fire == "something that will never match"
-    #if current_user.opt_in_random_fire == nil
+    ### comment this out if you aren't putting "fire" in anymore
+    #if current_user.opt_in_random_fire == "something that will never match"
+
+    if current_user.opt_in_random_fire == nil
     %>
         <div class="notice">
             <h4>Money for nothing?</h4>
             <p>
-            As a Supporting Member, you have the option of being chosen randomly to "get paid" if people choose
-            to place a wager on their success rate but don't reach that goal (for some people this is a big motivator). 
+            As a Premium Member, you have the option of being chosen randomly to "get paid" if people choose to place a wager on their success rate but don't reach that goal (for some people this is a big motivator). 
             <br>
             <br>
-            Do you wish to be part of this "random pool"? You don't have to do anything, but we don't want to bug you if you'd
-            rather opt out.
+            Do you wish to be part of this "random pool"? You don't have to do anything, but we don't want to bug you if you'd rather opt out.
         
             <h6><a href="/popupex<%= @goal.id %>.html" onclick="return popitup_bigger1('/fire_rules_opt_in.html')">Learn More...</a></h6>
 

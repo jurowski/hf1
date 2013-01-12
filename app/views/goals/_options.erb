@@ -70,11 +70,13 @@
         <!-- FIRE HEADER START --> 
         <% 
         if @goal.number_my_active_bets > 0
-          function_image = "<img src='/images/money_icon.png' height='50px' /> Fire"
+          for bet in @goal.my_active_bets
+	    function_image = "<img src='/images/money_icon.png' height='50px' /> $#{bet.wager} to #{bet.recipient_name}?"
+          end
         else
-          function_image = "<img src='/images/money_icon.png' height='30px' /> Fire"
+          function_image = "<img src='/images/money_icon.png' height='30px' /> Extra Accountability?"
         end
-        #function_name = "#{function_image} Fire"
+        #function_name = "#{function_image} "
  	%>
         &nbsp | &nbsp
         <%= link_to_function (function_image) {

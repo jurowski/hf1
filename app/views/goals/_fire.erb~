@@ -163,7 +163,8 @@ aka "Fire"
                             @user = @goal.user
                         
                             if params[:recipient] == "random"
-                                Notifier.deliver_bet_fire_random_new_notification(@user, @bet) # sends the email 
+                                Notifier.deliver_bet_fire_random_new_notification_to_user(@user, @bet) # sends the email 
+                                Notifier.deliver_bet_fire_random_new_notification_to_recipient(@user, @bet) # sends the email 
                             end
                             if params[:recipient] == "charity"
                                 Notifier.deliver_bet_fire_charity_new_notification(@user, @bet) # sends the email 
@@ -173,7 +174,7 @@ aka "Fire"
                             end
 
                             %>
-                            <div class="notice">Your <%= length_days %>-day challenge for $<%= new_bet.wager %> starts tomorrow! We have sent an email to you and to <%= new_bet.recipient_email %> with the details. </div>
+                            <div class="notice">Your <%= length_days %>-day challenge for $<%= new_bet.wager %> starts tomorrow! We have sent an email to you and to <%= new_bet.recipient_name %> with the details. </div>
                             <%
                         end
                     end
