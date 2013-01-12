@@ -128,14 +128,21 @@ class Notifier < ActionMailer::Base
     body       :user => user, :bet => bet
   end  
 
-  def bet_fire_random_new_notification(user, bet)
+  def bet_fire_random_new_notification_to_user(user, bet)
     recipients user.first_name + "<" + user.email + ">"
-    cc         "support@habitforge.com, " + bet.recipient_name + "<" + bet.recipient_email + ">"
+    bcc         "support@habitforge.com"
     from       "HabitForge <support@habitforge.com>"
     subject    "Extra Accountability Challenge"
     body       :user => user, :bet => bet
   end  
 
+  def bet_fire_random_new_notification_to_recipient(user, bet)
+    recipients bet.recipient_name + "<" + bet.recipient_email + ">"
+    bcc         "support@habitforge.com"
+    from       "HabitForge <support@habitforge.com>"
+    subject    "Extra Accountability Challenge"
+    body       :user => user, :bet => bet
+  end  
 
 
   def bet_fire_charity_due_notification(user, bet, floor_days, successful_days)
@@ -154,14 +161,21 @@ class Notifier < ActionMailer::Base
     body       :user => user, :bet => bet, :floor_days => floor_days, :successful_days => successful_days
   end  
 
-  def bet_fire_random_due_notification(user, bet, floor_days, successful_days)
+  def bet_fire_random_due_notification_to_user(user, bet, floor_days, successful_days)
     recipients user.first_name + "<" + user.email + ">"
-    cc         "support@habitforge.com, " + bet.recipient_name + "<" + bet.recipient_email + ">"
+    bcc         "support@habitforge.com"
     from       "HabitForge <support@habitforge.com>"
     subject    user.first_name + "'s Challenge Period Results"
     body       :user => user, :bet => bet, :floor_days => floor_days, :successful_days => successful_days
   end  
 
+  def bet_fire_random_due_notification_to_recipient(user, bet, floor_days, successful_days)
+    recipients bet.recipient_name + "<" + bet.recipient_email + ">"
+    bcc         "support@habitforge.com"
+    from       "HabitForge <support@habitforge.com>"
+    subject    user.first_name + "'s Challenge Period Results"
+    body       :user => user, :bet => bet, :floor_days => floor_days, :successful_days => successful_days
+  end  
 
   def bet_added_notification(user)
     recipients user.first_name + "<" + user.email + ">"

@@ -1,0 +1,24 @@
+Hi <%= @user.first_name %>. 
+
+Your <%= @bet.length_days %>-day challenge for $<%= @bet.wager %> ended on <%= @bet.end_date.strftime("%A, %b %d, %Y") %>.
+
+To win the challenge, you needed to succeed at least <%= @bet.floor%>% (<%= @floor_days %> days) out of the <%= @bet.length_days %>-day challenge period.
+
+<% if @successful_days >= @floor_days %>
+Congratulations... you succeeded! You had $<%= @bet.wager %> on the line, but since you won, you don't owe <%= @bet.recipient_name %> a cent!
+
+Thanks for playing, and keep up the great work!
+<% else %>
+You fell a bit short with just <%= @successful_days %> successful days. You had some cash on the line, and you now owe <%= @bet.recipient_name %> $<%= @bet.wager %>!
+
+Please contact <%= @bet.recipient_name %> to discuss a method of payment (paypal or a check by mail). Payments are on the honor system, so be a good citizen and follow through!
+
+Thanks for playing, and best of luck with your goals!
+
+<% end %>
+
+Sandon Jurowski
+Creator HabitForge.com
+http://habitforge.com
+support@habitforge.com
+
