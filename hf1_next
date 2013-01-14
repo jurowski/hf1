@@ -1,0 +1,17 @@
+
+add these to goal model via a migration:
+team_summary_send_hour
+team_summary_last_sent_date
+
+set a default "team_summary_send_hour" of "noon" for everyone
+(allow for nil values as well and default the equation to 12)
+
+on second thought, only do this for habitforge... forget the others
+create notifier emails for forittobe, mylearninghabit and habitforge
+
+in the email, cull from the "team" section on the site
+
+modify the notifier
+
+
+

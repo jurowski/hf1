@@ -450,8 +450,7 @@ class User < ActiveRecord::Base
 
 
   def is_habitforge_supporting_member
-      ### things are a little messed up w/ clearworth
-      if (self.sponsor == "habitforge" or self.sponsor == "clearworth") and self.kill_ads_until != nil and self.kill_ads_until >= self.dtoday
+      if self.sponsor == "habitforge" and self.kill_ads_until != nil and self.kill_ads_until >= self.dtoday
           return true
       else
           return false
