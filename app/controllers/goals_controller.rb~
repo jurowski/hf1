@@ -572,7 +572,7 @@ logger.debug "SGJ2 2 #{goal.title}(#{goal.id}) #{goal.daysstraight} daysstraight
 
           if @show_sales_overlay
 	    ### format.html { render :action => "edit" }
-            format.html {redirect_to("https://www.securepublications.com/habit-gse3.php?ref=#{current_user.id.to_s}")}
+            format.html {redirect_to("https://www.securepublications.com/habit-gse3.php")}
 
             format.xml  { render :xml => @goals }
           else

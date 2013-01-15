@@ -334,9 +334,9 @@ show_monitor_option_details = 0
                         "Frequent Reminders" available only to Premium Members:
                         &nbsp &nbsp
                         <% if session[:sfm] and session[:sfm] == "v2" %>
-                          <a href="https://www.securepublications.com/habit-gse3.php?ref=<%= current_user.id.to_s %>" class="start_now" >Learn More</a>
+                          <a href="/goals/?show_sales_overlay=1" class="start_now">Learn More</a>
                         <% else %>
-                          <a href="https://www.securepublications.com/habit-1-year.php?ref=<%= current_user.id.to_s %>" class="start_now" >Learn More</a>
+                        <a href="https://www.securepublications.com/habit-1-year.php?ref=<%= current_user.id.to_s %>" class="start_now" >Learn More</a>
                         <% end %>
                         <br>
                         (Unlimited active habits, Frequent Reminders, No advertisements!)
@@ -433,9 +433,9 @@ end
 
 
                         <% if session[:sfm] and session[:sfm] == "v2" %>
-                          <a href="https://www.securepublications.com/habit-gse3.php?ref=<%= current_user.id.to_s %>" class="start_now" >Learn More</a>
+                          <a href="/goals/?show_sales_overlay=1" class="start_now">Learn More</a>
                         <% else %>
-                          <a href="https://www.securepublications.com/habit-1-year.php?ref=<%= current_user.id.to_s %>" class="start_now" >Learn More</a>
+                        <a href="https://www.securepublications.com/habit-1-year.php?ref=<%= current_user.id.to_s %>" class="start_now" >Learn More</a>
                         <% end %>
 
 
@@ -466,9 +466,9 @@ If I don't succeed for a few days, other HabitForge members can earn points by s
 
 
                         <% if session[:sfm] and session[:sfm] == "v2" %>
-                          <a href="https://www.securepublications.com/habit-gse3.php?ref=<%= current_user.id.to_s %>" class="start_now" >Learn More</a>
+                          <a href="/goals/?show_sales_overlay=1" class="start_now">Learn More</a>
                         <% else %>
-                          <a href="https://www.securepublications.com/habit-1-year.php?ref=<%= current_user.id.to_s %>" class="start_now" >Learn More</a>
+                        <a href="https://www.securepublications.com/habit-1-year.php?ref=<%= current_user.id.to_s %>" class="start_now" >Learn More</a>
                         <% end %>
 
 
