@@ -1,0 +1,30 @@
+<h1>Forgot Password</h1>
+
+<font color=red><strong><%= session[:flash_notice] %></strong></font>
+<% session[:flash_notice] = "" %>
+
+Fill out the form below and instructions to reset your password will be emailed to you:<br />
+<br />
+ 
+<% form_tag password_resets_path do %>
+  <label>Email:</label><br />
+  <%= text_field_tag "email" %><br />
+  <br />
+  <p><%= submit_tag "Reset my password" %></p>
+<% end %>
+
+
+<!--
+112: hf new signup funnel v2 free
+114: hf new signup funnel v2 monthly
+116: hf new signup funnel v2 yearly
+118: hf new signup funnel v2 lifetime
+
+contact_find_by_email(email, selected_fields)
+-->
+
+<%
+new_contact_id = Infusionsoft.contact_add({:FirstName => 'first_name', :LastName => 'last_name', :Email => 'test_from_sj@test.com'})
+Infusionsoft.email_optin('test_from_sj@test.com', 'HabitForge signup')
+Infusionsoft.contact_add_to_group(new_contact_id, 112)
+%>

@@ -49,6 +49,6 @@ Rails::Initializer.run do |config|
   config.gem "authlogic"
   config.gem "simple_autocomplete"
   config.gem "fast_gettext" ### needed for simple_autocomplete 
-  config.gem "infusionsoft"
+  
   
 end

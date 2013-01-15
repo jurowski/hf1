@@ -469,6 +469,24 @@ logger.debug "SGJ2 2 #{goal.title}(#{goal.id}) #{goal.daysstraight} daysstraight
               logger.error("sgj:email confirmation for user creation did not send")
             end
 
+	    begin
+        	#####################################################
+        	#####################################################
+		#### UPDATE THE CONTACT FOR THEM IN INFUSIONSOFT ######
+		#112: hf new signup funnel v2 free no goal yet
+		#120: hf new signup funnel v2 free created goal
+		#114: hf new signup funnel v2 monthly
+		#116: hf new signup funnel v2 yearly
+		#118: hf new signup funnel v2 lifetime
+		Infusionsoft.contact_update(session[:infusionsoft_contact_id].to_i, {:FirstName => current_user.first_name, :LastName => current_user.last_name})
+		Infusionsoft.contact_add_to_group(session[:infusionsoft_contact_id].to_i, 120)
+		Infusionsoft.contact_remove_from_group(session[:infusionsoft_contact_id].to_i, 112)
+        	####          END INFUSIONSOFT CONTACT           ####
+        	#####################################################
+        	#####################################################
+            rescue
+		logger.error("sgj:error updating contact in infusionsoft")
+            end
           end      
           current_user.goal_temp = ""
           current_user.save

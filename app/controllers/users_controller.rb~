@@ -286,26 +286,22 @@ class UsersController < ApplicationController
         session[:sfm_virgin_need_to_email_temp_password] = true
         @account_created = true
 
-        begin	
-	        #####################################################
-	        #####################################################
-		#### CREATE A CONTACT FOR THEM IN INFUSIONSOFT ######
-		#112: hf new signup funnel v2 free no goal yet
-		#120: hf new signup funnel v2 free created goal
-		#114: hf new signup funnel v2 monthly
-		#116: hf new signup funnel v2 yearly
-		#118: hf new signup funnel v2 lifetime
-                session[:infusionsoft_contact_id] = 0
-		new_contact_id = Infusionsoft.contact_add({:FirstName => user.first_name, :LastName => user.last_name, :Email => user.email})
-		Infusionsoft.email_optin(user.email, 'HabitForge signup')
-		Infusionsoft.contact_add_to_group(new_contact_id, 112)
-		session[:infusionsoft_contact_id] = new_contact_id
-	        ####          END INFUSIONSOFT CONTACT           ####
-	        #####################################################
-	        #####################################################
-        rescue
-	  logger.error("sgj:error creating infusionsoft contact")
-        end
+
+        #####################################################
+        #####################################################
+	#### CREATE A CONTACT FOR THEM IN INFUSIONSOFT ######
+	#112: hf new signup funnel v2 free no goal yet
+	#120: hf new signup funnel v2 free created goal
+	#114: hf new signup funnel v2 monthly
+	#116: hf new signup funnel v2 yearly
+	#118: hf new signup funnel v2 lifetime
+	new_contact_id = Infusionsoft.contact_add({:FirstName => user.first_name, :LastName => user.last_name, :Email => user.email})
+	Infusionsoft.email_optin(user.email, 'HabitForge signup')
+	Infusionsoft.contact_add_to_group(new_contact_id, 112)
+        ####          END INFUSIONSOFT CONTACT           ####
+        #####################################################
+        #####################################################
+
 
         ### route them to goal creation page (which should reference session[:sfm] for quick goal-creation options)
         redirect_to("/goals/new")
