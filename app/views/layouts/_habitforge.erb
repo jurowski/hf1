@@ -1404,4 +1404,10 @@ var pageTracker = _gat._getTracker("UA-10841267-1");
 pageTracker._trackPageview();
 } catch(err) {}
 </script>
+
+    <% if request.env['HTTP_USER_AGENT'] =~ /[^\(]*[^\)]Firefox\// %>
+    <% end %>
+    <% if request.env['HTTP_USER_AGENT'] =~ /[^\(]*[^\)]Chrome\// %>
+    <% end %>
+
 </body></html>

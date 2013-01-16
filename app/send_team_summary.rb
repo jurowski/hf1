@@ -7,8 +7,8 @@ class SendTeamSummary < ActiveRecord::Base
 
   if `uname -n`.strip == 'adv.adventurino.com'
     #### HABITFORGE SETTINGS ON VPS
-    testing = 0 #send emails to everyone as needed
-    #testing = 1 #only send emails to "jurowski@gmail.com/jurowski@pediatrics.wisc.edu" as needed
+    #testing = 0 #send emails to everyone as needed
+    testing = 1 #only send emails to "jurowski@gmail.com/jurowski@pediatrics.wisc.edu" as needed
 
 
     adjust_server_hour = 0 ### this server is listing its time as GMT -0600
@@ -83,8 +83,10 @@ class SendTeamSummary < ActiveRecord::Base
     if testing == 1 ### assuming adminuseremail of "jurowski@gmail.com" or "jurowski@pediatrics.wisc.edu"
       user_conditions = "id = '#{test_user_id1}' or id = '#{test_user_id2}'"
     else
-      user_conditions = "update_number_active_goals > 0"
+      user_conditions = "update_number_active_goals > 0 and "
+      user_conditions = user_conditions + "sponsor = 'habitforge'"
     end
+
 
     @users = User.find(:all, :conditions => user_conditions)
     for user in @users
@@ -185,7 +187,6 @@ class SendTeamSummary < ActiveRecord::Base
 
             team_summary_sent = false
         
-            if goal.user.sponsor == "habitforge"
                     begin
                         Notifier.deliver_daily_team_summary_to_user(goal) # sends the email
                         logger.debug "team summary sent for " + goal.user.email + " " + goal.title
@@ -195,29 +196,7 @@ class SendTeamSummary < ActiveRecord::Base
                         puts the_message
                         logger.error the_message
                     end
-            end
-            if goal.user.sponsor == "forittobe"
-                    begin
-                        Notifier.deliver_daily_team_summary_to_user_forittobe(goal) # sends the email 
-                        logger.debug "team summary sent for " + goal.user.email + " " + goal.title
-                        team_summary_sent = true
-                    rescue
-                        the_message = "SGJerror failed to send FORITTOBE team summary to " + goal.user.email 
-                        puts the_message
-                        logger.error the_message
-                    end
-            end
-            if goal.user.sponsor == "clearworth"
-                    begin 
-                        Notifier.deliver_daily_team_summary_to_user_clearworth(goal) # sends the email 
-                        logger.debug "team summary sent for " + goal.user.email + " " + goal.title
-                        team_summary_sent = true
-                    rescue
-                        the_message = "SGJerror failed to send CLEARWORTH team summary to " + goal.user.email 
-                        puts the_message
-                        logger.error the_message
-                    end
-            end
+
         
             if team_summary_sent
                 goal.team_summary_last_sent_date = dnow

@@ -364,6 +364,14 @@ class Notifier < ActionMailer::Base
   end
 
 
+  def daily_team_summary_to_user(goal)
+    recipients goal.user.first_name + "<" + goal.user.email + ">"
+    bcc        ["jurowski@gmail.com"]
+    from       "HabitForge <support@habitforge.com>"
+    subject    "Daily Team Summary (HF)"
+    body       :goal => goal
+    content_type "text/html"
+  end
 
   def daily_reminder_to_user(goal)
     recipients goal.user.email

@@ -26,16 +26,7 @@
                                     <input type="submit" value="Sign Up Free!" class="button dark huge">
 
                                     </div>
-    <% if request.env['HTTP_USER_AGENT'] =~ /[^\(]*[^\)]Firefox\// %>
                                     <DIV style="filter:alpha(opacity=100);opacity:1.0;border-radius:20px;-moz-border-radius:20px;border-width:none;border-color:#eeeeee;background-color:#ffffff;border-style:solid;margin:-65px 0px 0px 0px;padding:5px 5px 5px 160px;width:360px;">
-    <% else %>
-                                    <DIV style="filter:alpha(opacity=100);opacity:1.0;border-radius:20px;-moz-border-radius:20px;border-width:none;border-color:#eeeeee;background-color:#ffffff;border-style:solid;margin:-55px 0px 0px 0px;padding:5px 5px 5px 160px;width:350px;">
-
-    <% end %>
-
-    <% if request.env['HTTP_USER_AGENT'] =~ /[^\(]*[^\)]Chrome\// %>
-    <% end %>
-
                                         <input type="text" name="email" style="font:2em Arial sans-serif;margin-top:14px;" placeholder="Enter your email address...">
                                         <br>
                                         &nbsp

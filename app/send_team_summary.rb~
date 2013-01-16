@@ -83,8 +83,10 @@ class SendTeamSummary < ActiveRecord::Base
     if testing == 1 ### assuming adminuseremail of "jurowski@gmail.com" or "jurowski@pediatrics.wisc.edu"
       user_conditions = "id = '#{test_user_id1}' or id = '#{test_user_id2}'"
     else
-      user_conditions = "update_number_active_goals > 0"
+      user_conditions = "update_number_active_goals > 0 and "
+      user_conditions = user_conditions + "sponsor = 'habitforge'"
     end
+
 
     @users = User.find(:all, :conditions => user_conditions)
     for user in @users
@@ -165,13 +167,18 @@ class SendTeamSummary < ActiveRecord::Base
       
       @goals = Goal.find(:all, :conditions => goal_conditions)
       for goal in @goals
+	proceed = false
+	if goal.is_part_of_a_team
+	  team_goals = Goal.find(:all, :conditions => "team_id = '#{goal.team_id}'")
+	  if team_goals.size > 1
+            proceed = true
+          end
+	end
 
-      	#team_goals = Goal.find(:all, :conditions => "team_id = '#{goal.team_id}'")
-      	#if @team_goals.size < 2
           
         ### don't let a reminder go out if it's > 4 hours too late
         max_time_to_send = goal.team_summary_send_hour + 4
-        if goal.is_part_of_a_team and tnow_hour <= max_time_to_send 
+        if proceed and tnow_hour <= max_time_to_send 
 
             ### Send team summary email
             logtext = "About to send user_id of #{goal.user.id.to_s} ( #{goal.user.email} ) a team summary email for today (#{today_dayname}), #{dnow}. Their time is #{tnow.to_s} or hour number #{tnow_hour}."              
@@ -191,28 +198,7 @@ class SendTeamSummary < ActiveRecord::Base
                         logger.error the_message
                     end
             end
-            if goal.user.sponsor == "forittobe"
-                    begin
-                        Notifier.deliver_daily_team_summary_to_user_forittobe(goal) # sends the email 
-                        logger.debug "team summary sent for " + goal.user.email + " " + goal.title
-                        team_summary_sent = true
-                    rescue
-                        the_message = "SGJerror failed to send FORITTOBE team summary to " + goal.user.email 
-                        puts the_message
-                        logger.error the_message
-                    end
-            end
-            if goal.user.sponsor == "clearworth"
-                    begin 
-                        Notifier.deliver_daily_team_summary_to_user_clearworth(goal) # sends the email 
-                        logger.debug "team summary sent for " + goal.user.email + " " + goal.title
-                        team_summary_sent = true
-                    rescue
-                        the_message = "SGJerror failed to send CLEARWORTH team summary to " + goal.user.email 
-                        puts the_message
-                        logger.error the_message
-                    end
-            end
+
         
             if team_summary_sent
                 goal.team_summary_last_sent_date = dnow
