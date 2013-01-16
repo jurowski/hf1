@@ -109,7 +109,7 @@
 
                                  <% end %>
 
-
+    <tr><td><center>
     <%
       @team_goals = Goal.find(:all, :conditions => "team_id = '#{@goal.team_id}'")
 
@@ -161,6 +161,7 @@
         <%
       end
       %> 
+      </center></td></tr>
 
                                 
                                 <tr>
