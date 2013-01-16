@@ -7,8 +7,8 @@ class SendTeamSummary < ActiveRecord::Base
 
   if `uname -n`.strip == 'adv.adventurino.com'
     #### HABITFORGE SETTINGS ON VPS
-    #testing = 0 #send emails to everyone as needed
-    testing = 1 #only send emails to "jurowski@gmail.com/jurowski@pediatrics.wisc.edu" as needed
+    testing = 0 #send emails to everyone as needed
+    #testing = 1 #only send emails to "jurowski@gmail.com/jurowski@pediatrics.wisc.edu" as needed
 
 
     adjust_server_hour = 0 ### this server is listing its time as GMT -0600
