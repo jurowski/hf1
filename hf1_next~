@@ -1,3 +1,20 @@
+I am part of a team.
+Around noon each day I want to see how my team is doing.
+I want links in an email to send a message to those team mates.
 
+
+add these to goal model via a migration:
 team_summary_send_hour
 team_summary_last_sent_date
+
+set a default "team_summary_send_hour" of "noon" for everyone
+(allow for nil values as well and default the equation to 12)
+
+(only do this for habitforge, not for the other sites)
+
+in the email, cull from the "team" section on the site
+
+modify the notifier
+
+
+

@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121201200915) do
+ActiveRecord::Schema.define(:version => 20130116175434) do
 
   create_table "affiliates", :force => true do |t|
     t.string   "email"
@@ -216,6 +216,8 @@ ActiveRecord::Schema.define(:version => 20121201200915) do
     t.date     "next_push_on_or_after_date"
     t.integer  "pushes_allowed_per_day"
     t.integer  "pushes_remaining_on_next_push_date"
+    t.integer  "team_summary_send_hour",                           :default => 12
+    t.integer  "team_summary_last_sent_date"
   end
 
   add_index "goals", ["allow_push", "last_success_date", "next_push_on_or_after_date", "pushes_remaining_on_next_push_date"], :name => "allow_push"
