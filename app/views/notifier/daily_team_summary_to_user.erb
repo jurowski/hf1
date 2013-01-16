@@ -93,7 +93,7 @@
                                         </td>
                                         <td>
                                         <center>
-                                        <h3>Your latest stats are below...</h3>
+                                        <h3>Your own stats regarding your "<%= @goal.response_question %>" are below...</h3>
 
 
                                             <!-- in other locations we're directly calling "stats_image" and "stats_output"
@@ -108,6 +108,60 @@
 
 
                                  <% end %>
+
+    <tr><td><center>
+    <%
+      @team_goals = Goal.find(:all, :conditions => "team_id = '#{@goal.team_id}'")
+
+          has_percentage = 0
+          total_percentage = 0
+          average_percentage = 0
+          for team_goal in @team_goals
+              if team_goal.success_rate_percentage != nil
+                  has_percentage = has_percentage + 1
+                  total_percentage = total_percentage + team_goal.success_rate_percentage
+              end
+          end
+          if has_percentage > 0
+              average_percentage = total_percentage / has_percentage
+              %>
+              <p><h3>My Team's Success Rate is <%= average_percentage %>% 
+              <br>
+              <%
+          else
+              %>
+              <p><h3>My Team</h3></p>
+              <br>
+              <%                  
+          end
+
+
+      for team_goal in @team_goals
+        %>
+        <% if team_goal.user.id != current_user.id %>
+            <p><img src="/images/comment_user_add_32.png" /> <a href="/tomessages/new?to_id=<%= team_goal.user.id %>" >Send <%= team_goal.user.first_name %> a Message about <%= team_goal.response_question %></a>
+            • 
+            <% if team_goal.success_rate_percentage != nil %>
+                 Succeeding <%= team_goal.success_rate_percentage %>% of the last
+            <% end %>
+            <% if team_goal.days_into_it != nil %>
+                <%= team_goal.days_into_it %> days
+            <% end %>
+
+            <% if team_goal.daysstraight != nil and team_goal.daysstraight != 9999 %>
+                has done it <%= team_goal.daysstraight %> days in a row
+            <% end %>
+
+            <% if team_goal.laststatusdate != nil and team_goal.laststatus != nil %>
+            <% else %>              
+                 (has not yet checked in)
+            <% end %> 
+            </p>
+        <% end %>            
+        <%
+      end
+      %> 
+      </center></td></tr>
 
                                 
                                 <tr>
@@ -124,6 +178,7 @@
                                         
                                         
                                         <% 
+					inserted_something = false ### saving this in case we add other text via db later
                                         if !inserted_something
                                             random_quote_thought = "Seek the small improvement one day at a time. That’s the only way it happens — and when it happens, it lasts."
                                             random_quote_author = "Coach John Wooden"
