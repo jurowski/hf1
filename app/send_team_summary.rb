@@ -68,7 +68,7 @@ class SendTeamSummary < ActiveRecord::Base
 
 
 
-  #begin
+  begin
     retried_times = retried_times + 1
     
     puts "start er up"
@@ -187,15 +187,15 @@ class SendTeamSummary < ActiveRecord::Base
 
             team_summary_sent = false
         
-                    #begin
+                    begin
                         Notifier.deliver_daily_team_summary_to_user(goal) # sends the email
                         logger.debug "team summary sent for " + goal.user.email + " " + goal.title
-                    #    team_summary_sent = true
-                    #rescue
-                    #   the_message = "SGJerror failed to send HF team summary for goal " + goal.id.to_s + " entitled " + goal.title + " to " + goal.user.email 
-                    #    puts the_message
-                    #    logger.error the_message
-                    #end
+                        team_summary_sent = true
+                    rescue
+                        the_message = "SGJerror failed to send HF team summary for goal " + goal.id.to_s + " entitled " + goal.title + " to " + goal.user.email 
+                        puts the_message
+                        logger.error the_message
+                    end
 
         
             if team_summary_sent
@@ -216,10 +216,10 @@ class SendTeamSummary < ActiveRecord::Base
     end
     
     puts "end of script"
-  #rescue Timeout::Error
-  #  puts "Timeout error on run number #{retried_times}... restarting script from the top"
-  # if retried_times < retried_times_limit
-  #    retry
-  #  end
-  #end
+  rescue Timeout::Error
+    puts "Timeout error on run number #{retried_times}... restarting script from the top"
+    if retried_times < retried_times_limit
+      retry
+    end
+  end
 end
