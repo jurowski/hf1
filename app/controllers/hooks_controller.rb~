@@ -667,6 +667,12 @@ testing_xml_resend_any = %{
  	     #### product-id = 49 and variant-id = 27 := 12-month @ $9.95
              #### product-id = 49 and variant-id = 31 := 12-month @ $9.95 (w/ some discount code, perhaps any code)
 
+             #### NEW VARIANT-IDs !!! 20130114
+             #### 27 => current $9.95/year
+             #### 29 => new $3.95/month
+             #### 31 => new $29/year
+             #### 0 = > new $99 Lifetime
+
 	     #### SHOPIFY PRODUCT IDs
              ### 33131182 = 12-month Supporting Membership
              ### 43003332 = Extra Accountability (aka "coach")

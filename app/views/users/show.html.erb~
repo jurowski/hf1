@@ -60,7 +60,13 @@
             </h5
 
             <br>
-            <a href="https://www.securepublications.com/habit-1-year.php?ref=<%= current_user.id.to_s %>" class="start_now">Learn More</a>
+
+                        <% if session[:sfm] and session[:sfm] == "v2" %>
+		            <a href="https://www.securepublications.com/habit-gse3.php?ref=<%= current_user.id.to_s %>" class="start_now">Learn More</a>
+                        <% else %>
+		            <a href="https://www.securepublications.com/habit-1-year.php?ref=<%= current_user.id.to_s %>" class="start_now">Learn More</a>
+                        <% end %>
+
             &nbsp &nbsp
         </div>
 
@@ -115,7 +121,13 @@
             </h5
 
             <br>
-            <a href="https://www.securepublications.com/habit-1-year.php?ref=<%= current_user.id.to_s %>" class="start_now">Learn More</a>
+
+                        <% if session[:sfm] and session[:sfm] == "v2" %>
+		            <a href="https://www.securepublications.com/habit-gse3.php?ref=<%= current_user.id.to_s %>" class="start_now">Learn More</a>
+                        <% else %>
+		            <a href="https://www.securepublications.com/habit-1-year.php?ref=<%= current_user.id.to_s %>" class="start_now">Learn More</a>
+                        <% end %>
+
             </h4>        
         </div>
 

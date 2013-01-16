@@ -654,10 +654,16 @@ testing_xml_resend_any = %{
         
            logger.info 'XML Looking at Line Item #' + line_item_counter.to_s
            
+	   ### get the price, and add another 0 if the decimal value was something like 10.0
+	   xml_price = item.elements['line-item/price'].text.to_s
+	   if xml_price.split(//).last(2).to_s == ".0"
+	     xml_price = xml_price + "0"
+           end
+
            xml_product_id = item.elements['line-item/product-id'].text.to_i
 	   xml_variant_id = item.elements['line-item/variant-id'].text.to_i
 	
-           if (xml_product_id == 49 and xml_variant_id > 0 ) or xml_product_id == 33131182 or xml_product_id == 63752422 or xml_product_id == 63868112 or xml_product_id == 63752802 or xml_product_id == 63753272 or xml_product_id == 43003332
+           if xml_product_id == 49 or xml_product_id == 33131182 or xml_product_id == 63752422 or xml_product_id == 63868112 or xml_product_id == 63752802 or xml_product_id == 63753272 or xml_product_id == 43003332
 
            #if (xml_product_id == 49 and xml_variant_id == 27) or xml_product_id == 33131182 or xml_product_id == 63752422 or xml_product_id == 63868112 or xml_product_id == 63752802 or xml_product_id == 63753272 or xml_product_id == 43003332
 
@@ -683,7 +689,7 @@ testing_xml_resend_any = %{
              ### 63753272 = 5 year Supporting Membership
              ############################################
              #### START ACCOUNT UPGRADE ONLY PORTION
-             if (xml_product_id == 49 and xml_variant_id > 0 ) or xml_product_id == 33131182 or xml_product_id == 63752422 or xml_product_id == 63868112 or xml_product_id == 63752802 or xml_product_id == 63753272
+             if xml_product_id == 49 or xml_product_id == 33131182 or xml_product_id == 63752422 or xml_product_id == 63868112 or xml_product_id == 63752802 or xml_product_id == 63753272
                  logger.info 'XML This Line Item is for an Account Upgrade'
                  ### If their email exists in our db, upgrade their account
                  account_upgraded = 0
@@ -763,6 +769,20 @@ testing_xml_resend_any = %{
                          end
                      end
                      user.sent_expire_warning_on = '1900-01-01'
+
+		     if xml_product_id == 49
+			user.kill_ads_until = '3000-01-01'
+                        if xml_variant_id == 27 or xml_variant_id == 31
+			  user.plan = "Yearly"
+			end
+                        if xml_variant_id == 29
+			  user.plan = "Monthly"
+			end
+                        if xml_variant_id == 0
+			  user.plan = "Lifetime"
+			end
+			user.plan = user.plan + " @ $" + xml_price
+                     end
              
                      if user.payments == nil
                          user.payments = 0.0
@@ -780,30 +800,27 @@ testing_xml_resend_any = %{
                      ### Send email to user and CC support w/ thank you and upgrade info
                      logger.info 'XML ATTEMPTING TO Send email to user and CC support w/ thank you and upgrade info'
 
-
                      ### 63868112 = 3-month Supporting Membership
                      if xml_product_id == 63868112
                          Notifier.deliver_user_upgrade_3month_notification(user) # sends the email
                      end
-
                      ### 63752422 = 6-month Supporting Membership
                      if xml_product_id == 63752422
                          Notifier.deliver_user_upgrade_6month_notification(user) # sends the email
                      end
-
-                     ### 33131182 = 12-month Supporting Membership
-                     if (xml_product_id == 49 and xml_variant_id > 0) or xml_product_id == 33131182
-                         Notifier.deliver_user_upgrade_notification(user) # sends the email
-                     end
-
                      ### 63752802 = 2-year Supporting Membership
                      if xml_product_id == 63752802
                          Notifier.deliver_user_upgrade_2year_notification(user) # sends the email
                      end
-
                      ### 63753272 = 5-year Supporting Membership
                      if xml_product_id == 63753272
                          Notifier.deliver_user_upgrade_5year_notification(user) # sends the email
+                     end
+
+                     ### 33131182
+		     ### 12-month Supporting Membership
+                     if (xml_product_id == 49 and xml_variant_id > 0) or xml_product_id == 33131182
+                         Notifier.deliver_user_upgrade_notification(user) # sends the email
                      end
 
 
