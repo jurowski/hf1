@@ -278,19 +278,19 @@ function popitup_bigger1(url) {
   %>
 <% end %>
 
-<% if current_user and (current_user.password_temp != nil and current_user.password_temp != "") %>
+<% if current_user and @ca != "edit" and (current_user.password_temp != nil and current_user.password_temp != "") %>
 
   <% if current_user.goal_temp != nil and current_user.goal_temp == "" %>
     <div class="error" id="noscript-warning" style="height:10px;">
     <p>
 
-      <% if session[:sfm_virgin_need_to_confirm_timezone] and session[:sfm_virgin_need_to_confirm_timezone] == true %>
-         So that check-in and reminder emails come at the right time, <a href="/account/edit">Click here to set your time zone.</a>
-      <% end %>
       <% if session[:sfm_virgin_need_to_email_temp_password] and session[:sfm_virgin_need_to_email_temp_password] == true %>
         You have a temporary password set of: <%= current_user.password_temp %> <a href="/account/edit">Please change it now!</a>
       <% else %>
-        You are using the temporary password that was emailed to you. 
+              You are using the temporary password that was emailed to you. 
+	      <% if session[:sfm_virgin_need_to_confirm_timezone] and session[:sfm_virgin_need_to_confirm_timezone] == true %>
+	         <br>So that check-in and reminder emails come at the right time, <a href="/account/edit">Click here to set your time zone.</a>
+	      <% end %>
       <% end %>
 
       <a href="/account/edit">Click here to set a new password.</a>
