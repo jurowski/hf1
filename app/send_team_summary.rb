@@ -192,6 +192,7 @@ class SendTeamSummary < ActiveRecord::Base
                         logger.debug "team summary sent for " + goal.user.email + " " + goal.title
                         team_summary_sent = true
                     rescue
+			team_summary_sent = true ### doing this for now so that a glitch doesn't hold up everyone else's emails from being delivered
                         the_message = "SGJerror failed to send HF team summary for goal " + goal.id.to_s + " entitled " + goal.title + " to " + goal.user.email 
                         puts the_message
                         logger.error the_message
