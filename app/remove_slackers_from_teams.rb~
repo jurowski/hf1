@@ -35,15 +35,6 @@ class RemoveSlackersFromTeams < ActiveRecord::Base
   ten_days_ago = dnow - 10
   ######
   
-  ###########################################
-  ###      REMOVE TEAM_ID FROM HOLD GOALS ###
-  holdgoals = Goal.find(:all, :conditions => "team_id > 0 and status = 'hold'")
-  for goal in holdgoals
-    goal.team_id = nil
-    goal.save
-  end
-  ###  END REMOVE TEAM_ID FROM HOLD GOALS ###
-  ###########################################
 
 
   #######################################
@@ -127,7 +118,7 @@ class RemoveSlackersFromTeams < ActiveRecord::Base
   @teams = Team.find(:all)
   for team in @teams
     team_size = 0
-    @teamgoals = Teamgoal.find(:all, :conditions => "team_id = '#{team.id}' and active = '1'")
+    @teamgoals = Teamgoal.find(:all, :conditions => "team_id = '#{team.id}'")
     if @teamgoals != nil
 
         team_size = @teamgoals.size
