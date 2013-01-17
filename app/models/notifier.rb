@@ -368,7 +368,7 @@ class Notifier < ActionMailer::Base
     recipients goal.user.first_name + "<" + goal.user.email + ">"
     #bcc        ["jurowski@gmail.com"]
     from       "HabitForge <support@habitforge.com>"
-    subject    "Daily Team Summary (HF)"
+    subject    "[HF] the Lunchbreak: Team Activity Report"
     body       :goal => goal
     content_type "text/html"
   end
