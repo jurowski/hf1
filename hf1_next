@@ -1,26 +1,34 @@
-I am part of a team.
-Around noon each day I want to see how my team is doing.
-I want links in an email to send a message to those team mates.
-
-
-add these to goal model via a migration:
-team_summary_send_hour
-team_summary_last_sent_date
-
-set a default "team_summary_send_hour" of "noon" for everyone
-(allow for nil values as well and default the equation to 12)
-
-(only do this for habitforge, not for the other sites)
-
-in the email, cull from the "team" section on the site
-
-modify the notifier
-
 
 ------
-
 I want to invite people to my team
 send an invitation that they can "accept" if they want to be on my team
-
+-------
 Under "friends", display anyone I've ever communicated with
 ...allow me to invite one of those "friends" to a team
+-------
+if monitoring
+Then don't say sorry
+Instead comments on their success rate
+-------------
+when advertising your success rate to a team member
+And when calculating team success rate
+Change the success rate based on their goal
+--------------------
+Team success rate needs to be for one week and a three weeks
+--------------------------------
+Team show ranked table with grades for three days seven-day 21 day 30 day average
+-----------------------------------
+team add partic. pts to chart
+------------------------------------
+say: we'll let your team know you've checked in
+and print last checkin
+-------------------------------------
+tokens/artwork is uploadable/competable by program for teams
+---------------------
+do weelky reports for followers
+----------------------
+make follower reports optional
+------------------------
+Teams compete for carousel artwork in templated habits
+--------------------------------
+

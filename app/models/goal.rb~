@@ -1217,26 +1217,6 @@ logger.debug "SGJ 3"
   end  
 
 
-  def success_count_during_past_n_days(number_of_days)
-    yes_count = 0
-    begin
-
-        ### Do not include today unless today is already a "yes" or a "no"
-        today_checkpoint = Checkpoint.find(:first, :conditions => "goal_id = '#{self.id}' and checkin_date = '#{self.user.dtoday}' and status != 'yes' and status != 'no'")
-        if today_checkpoint
-            date2 = self.user.dyesterday
-        else
-            date2 = self.user.dtoday
-        end
-
-        date1 = date2 - number_of_days
-        yes_count = success_count_between_dates(date1,date2)    
-    rescue
-       logger.error "SGJ error in goals.success_count_during_past_n_days" 
-    end
-    return yes_count
-  end
-
   def success_rate_during_past_n_days(number_of_days)
     yes_percent = 0
     begin
@@ -1256,21 +1236,6 @@ logger.debug "SGJ 3"
     end
     return yes_percent
   end
-
-  def success_count_between_dates(date1,date2)
-    yes_count = 0
-    begin
-        my_checkpoints = Checkpoint.find(:all, :conditions => "goal_id = '#{self.id}' and checkin_date >= '#{date1}' and checkin_date <= '#{date2}'")
-        checkpoints_yes = Checkpoint.find(:all, :conditions => "status = 'yes' and goal_id = '#{self.id}' and checkin_date >= '#{date1}' and checkin_date <= '#{date2}'")
-        if my_checkpoints.size > 0
-            yes_count = checkpoints_yes.size 
-        end
-    rescue
-        logger.error "SGJ error in goals.success_count_between_dates(date1,date2)"
-    end
-    return yes_count
-  end
-
   
   def success_rate_between_dates(date1,date2)
     yes_percent = 0

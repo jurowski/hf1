@@ -123,7 +123,17 @@ if legit_url == 1
 
         <%
         arr_sorry = Array.new
-        arr_sorry.push(["Sorry you weren't successful at your xxx goal."])
+
+        if @checkpoint.goal.get_goal_days_per_week == 7
+          arr_sorry.push(["Sorry you weren't successful at your xxx goal."])
+          arr_sorry.push(["Ok. Hey, every day is a brand new day, right?"])
+          arr_sorry.push(["Well, it happens. One day is all you need to start a new streak!"])
+          arr_sorry.push(["One thing that works well for a lot of people: before you go to bed at night, write down in a journal your plan to succeed the next day. It works surprisingly well!"])
+          arr_sorry.push(["Alright. Have you thought about what kept you from succeeding, and how might be able to change that?"])
+        else
+          arr_sorry.push(["Well, it happens. One day is all you need to start a new streak!"])
+
+	end	
 
         random_number = 0
         random_number = rand(arr_sorry.size) + 0 #between 0 and arr_sorry.size
@@ -196,7 +206,18 @@ if legit_url == 1
                       </div>
 
 
-                        <br><h3><a href="https://www.securepublications.com/habit-1-year.php?ref=<%= @checkpoint.goal.user.id.to_s %>" class="start_now">Learn More</a></h3>
+                        <br><h3>
+
+                        <% if session[:sfm] and session[:sfm] == "v2" %>
+                          <a href="https://www.securepublications.com/habit-gse3.php?ref=<%= @checkpoint.goal.user.id.to_s %>" class="start_now">Learn More</a>
+                        <% else %>
+                          <a href="https://www.securepublications.com/habit-1-year.php?ref=<%= @checkpoint.goal.user.id.to_s %>" class="start_now">Learn More</a>
+                        <% end %>
+
+
+
+
+</h3>
 <p><%= link_to_function ("Not now, thanks") {
              |page| page.visual_effect :toggle_appear, "advanced" 
             }%></p>                        

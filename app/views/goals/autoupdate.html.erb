@@ -123,7 +123,34 @@ if legit_url == 1
 
         <%
         arr_sorry = Array.new
-        arr_sorry.push(["Sorry you weren't successful at your xxx goal."])
+
+        if @checkpoint.goal.get_goal_days_per_week == 7
+          arr_sorry.push(["Sorry you weren't successful at your xxx goal."])
+          arr_sorry.push(["Ok. Hey, every day is a brand new day, right?"])
+          arr_sorry.push(["Well, it happens. One day is all you need to start a new streak!"])
+          arr_sorry.push(["One thing that works well for a lot of people: before you go to bed at night, write down in a journal your plan to succeed the next day. It works surprisingly well!"])
+          arr_sorry.push(["Alright. Have you thought about what kept you from succeeding, and how might be able to change that?"])
+        else
+          if @checkpoint.goal.days_since_first_checkpoint >= 7
+            last_7_days_count = @checkpoint.goal.success_count_during_past_n_days(7)
+            if @checkpoint.goal.get_goal_days_per_week >= last_7_days_count
+              arr_sorry.push(["No worries. You've already done it #{last_7_days_count} days out of the last 7 days!"])
+              arr_sorry.push(["No problem, 'cause you've already succeeded #{last_7_days_count} days out of the last 7 days!"])
+              arr_sorry.push(["Hey, you've already succeeded #{last_7_days_count} days out of the last 7 days!"])
+
+
+ #{@checkpoint.goal.get_goal_days_per_week} days out of the week."])            
+
+            else
+              arr_sorry.push(["Ok. During the last 7 days you've done it #{last_7_days_count} times. Try to hit #{@checkpoint.goal.get_goal_days_per_week} per week!"])
+              arr_sorry.push(["Alright. Keep working toward #{@checkpoint.goal.get_goal_days_per_week} days a week, OK?"])
+            end
+          else
+            arr_sorry.push(["Ok. Just remember, try to hit #{@checkpoint.goal.get_goal_days_per_week} days out of the week."])
+            arr_sorry.push(["Alright. Keep working toward #{@checkpoint.goal.get_goal_days_per_week} days a week, OK?"])
+          end
+
+	end	
 
         random_number = 0
         random_number = rand(arr_sorry.size) + 0 #between 0 and arr_sorry.size
