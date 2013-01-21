@@ -1,4 +1,9 @@
 
+do a remind_me_at and check_in_with_me_at 	
+just mod the current by day less 1
+send multis for goals @ same checktime
+------
+if someone checks in with a "no", occasionally suggest that they join a team to help
 ------
 I want to invite people to my team
 send an invitation that they can "accept" if they want to be on my team
@@ -10,6 +15,8 @@ when advertising your success rate to a team member
 And when calculating team success rate
 Change the success rate based on their goal
 --------------------
+teamlunchemail: cull from autoupdate cinditional
+----------------------------
 Team success rate needs to be for one week and a three weeks
 --------------------------------
 Team show ranked table with grades for three days seven-day 21 day 30 day average

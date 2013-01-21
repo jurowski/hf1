@@ -2,10 +2,13 @@
 @sitename = ""
 if `uname -n`.strip == 'adv.adventurino.com'
   #### HABITFORGE SETTINGS ON VPS
-  @sitename = "reengagefocus.com"
+  @sitename = "habitforge.com"
+  if @checkpoint.goal.user.sponsor == "clearworth"
+    @sitename = "www.mylearninghabit.com"
+  end
 elsif `uname -n`.strip == 'gns499aa.joyent.us'
   #### DEV SETTINGS ON HABITFORGE VPS
-  @sitename = "dev.reengagefocus.com"
+  @sitename = "dev.habitforge.com"
 else
   #### SETTINGS FOR DEV LAPTOP
   @sitename = "localhost:3000"
@@ -42,7 +45,7 @@ end
       }
 
       td.header {
-         background-image: url('/images/reengagefocus/header_reengagefocus_multiple_checkpoint.png');
+         background-image: url('/images/header_hf_multiple.png');
          background-repeat: no-repeat;
          background-position: top center;
          background-color: #cccccc;
@@ -220,7 +223,7 @@ end
             </tr>
             <tr>
                <td class="header" align="left" valign="bottom">
-                  <img src="/images/reengagefocus/header_reengagefocus_multiple_checkpoint.png" alt="reengagefocus" width="580" height="130" />
+                  <img src="/images/header_hf_multiple.png" alt="habitforge" width="580" height="130" />
                </td>
             </tr>
             <tr>
@@ -253,6 +256,12 @@ end
 
 
 
+                        <% #110206 is a jurowski@gmail.com checkpoint.id number that can be used for testing%>
+
+                        <%
+                        #### TESTING
+                        #### @checkpoint = Checkpoint.find('110206')
+                        %>
 
                         <br>
                         <br>
@@ -290,7 +299,7 @@ end
                         Hi <%= @goal.user.first_name %>!
                         <p/>
                         <p />
-                        You have multiple goals in reEngage Focus, at least one of which has a checkpoint due for yesterday (<%= checkin_date.strftime("%a, %b %d, %Y") %>). 
+                        You have multiple goals in habitforge, at least one of which has a checkpoint due for yesterday (<%= checkin_date.strftime("%a, %b %d, %Y") %>). 
                         <br>
                         <br>                        
                         <a href="http://<%= @sitename %>/checkpoints/1/autoupdatemultiple?d=<%= checkin_date %>&u=<%= @goal.user.id %>&g=<%= @goal.id %>">Click here to update them all at once.</a>                          
@@ -309,10 +318,9 @@ end
                          <p>
                          Best of luck with your goals!
                          <br>
+                         <b>-HabitForge</b>
                          <br>
-                         <b>reEngage Focus</b>
-                         <br>
-                         <a href="http://<%= @sitename %>"> http://<%= @sitename %></a>
+                         <a href="http://<%= @sitename %>">http://<%= @sitename %></a>
                        </td>
                      </tr>
                      </p>                
@@ -332,14 +340,15 @@ end
                  <br>
                  To put your goals on hold and stop receiving emails about them:
                    <p><i>
-                   1) Log into your account at <a href="http://<%= @sitename %>">http://<%= @sitename %></a>  <br>2) Next to each goal that you want to stop receiving emails for, click "Place on Hold"
+                   1) Log into your account at <a href="http://<%= @sitename %>">http://<%= @sitename %></a>  <br>2) Next to each goal that you want to stop receiving emails for,               <br>2) Next to each goal that you want to stop receiving emails for, click "Details and Options", then click "Place on Hold"
+
                    </i></p>
                 </td>
              </tr>
              <tr>
                 <td class="permission" align="center">
                    <p>
-                   Want to remove your account, goals and checkpoint data from reEngage Focus? Log into <a href="http://<%= @sitename %>">http://<%= @sitename %></a>, click "My Account", select "Delete My Account".
+                   Want to remove your account, goals and checkpoint data from habitforge? Log into <a href="http://<%= @sitename %>">http://<%= @sitename %></a>, click "My Account", select "Delete My Account".
                    </p>
 
                 </td>
@@ -347,21 +356,13 @@ end
              <tr>
                 <td class="permission" align="center">
                    <p>
-                   Questions? Email <a href="mailto:support@reengagefocus.com">support@reengagefocus.com</a>
+                   Questions? Email <a href="mailto:support@habitforge.com">support@habitforge.com</a>
                    </p>
 
                 </td>
              </tr>
            </table>
-           <table width="580">
-              <tr>
-                <td width=100% align=right>
 
-                   <img src="/images/reengagefocus/logo.jpg" alt="reengagefocus" width=150 /> 
-                   
-                </td>
-              </tr>
-            </table>
       </td>
    </tr>
 </table>

@@ -100,7 +100,7 @@ show_monitor_option_details = 0
 <% end %>
 <br>
 <div class="success" style="width:800px;">
-<h2>Email me early in the morning and ask:</h2>
+<h2>Email me daily and ask:</h2>
   <table border=0>
   <tr>
   <td valign=top align=right nowrap>
@@ -111,7 +111,7 @@ show_monitor_option_details = 0
   </tr>
   <tr>
   <td valign=top align=right nowrap>
-  <h3>"Were you successful yesterday at &nbsp</h3>
+  <h3>"Were you successful at &nbsp</h3>
   </td>
   <td nowrap>
   <%= form.text_field :response_question, :class => 'autocomplete', 'data-autocomplete-url'=>autocomplete_for_goal_response_question_goals_path, :size => 40 %>
@@ -164,40 +164,42 @@ show_monitor_option_details = 0
   </tr>
 
 
-
-
-  
   <tr>
   <td valign=top nowrap align=right>
-  <strong>Should we also send a daily reminder to do this? &nbsp</strong>  
+  <strong>Remind me at: &nbsp</strong>  
   </td>
   <td nowrap>
 
     <%
     @arr_reminder = Array.new
 
-    @arr_reminder.push(["No Reminder Email, Thanks", -1])
-    @arr_reminder.push(["Sure, send one at ~5:00am", 5])
-    @arr_reminder.push(["Sure, send one at ~6:00am", 6])
-    @arr_reminder.push(["Sure, send one at ~7:00am", 7])
-    @arr_reminder.push(["Sure, send one at ~8:00am", 8])
-    @arr_reminder.push(["Sure, send one at ~9:00am", 9])
-    @arr_reminder.push(["Sure, send one at ~10:00am", 10])
-    @arr_reminder.push(["Sure, send one at ~11:00am", 11])
-    @arr_reminder.push(["Sure, send one at ~12:00pm", 12])
-    @arr_reminder.push(["Sure, send one at ~1:00pm", 13])
-    @arr_reminder.push(["Sure, send one at ~2:00pm", 14])
-    @arr_reminder.push(["Sure, send one at ~3:00pm", 15])
-    @arr_reminder.push(["Sure, send one at ~4:00pm", 16])
-    @arr_reminder.push(["Sure, send one at ~5:00pm", 17])
-    @arr_reminder.push(["Sure, send one at ~6:00pm", 18])
-    @arr_reminder.push(["Sure, send one at ~7:00pm", 19])
-    @arr_reminder.push(["Sure, send one at ~8:00pm", 20])
-    @arr_reminder.push(["Sure, send one at ~9:00pm", 21])
-    @arr_reminder.push(["Sure, send one at ~10:00pm", 22])
-    @arr_reminder.push(["Sure, send one at ~11:00pm", 23])
+    @arr_reminder.push(["~8:00am", 8])
+    @arr_reminder.push([" ", -1])
+    @arr_reminder.push([" ", -1])
+    @arr_reminder.push(["~5:00am", 5])
+    @arr_reminder.push(["~6:00am", 6])
+    @arr_reminder.push(["~7:00am", 7])
+    @arr_reminder.push(["~8:00am", 8])
+    @arr_reminder.push(["~9:00am", 9])
+    @arr_reminder.push(["~10:00am", 10])
+    @arr_reminder.push(["~11:00am", 11])
+    @arr_reminder.push(["~12:00pm", 12])
+    @arr_reminder.push(["~1:00pm", 13])
+    @arr_reminder.push(["~2:00pm", 14])
+    @arr_reminder.push(["~3:00pm", 15])
+    @arr_reminder.push(["~4:00pm", 16])
+    @arr_reminder.push(["~5:00pm", 17])
+    @arr_reminder.push(["~6:00pm", 18])
+    @arr_reminder.push(["~7:00pm", 19])
+    @arr_reminder.push(["~8:00pm", 20])
+    @arr_reminder.push(["~9:00pm", 21])
+    @arr_reminder.push(["~10:00pm", 22])
+    @arr_reminder.push(["~11:00pm", 23])
+    @arr_reminder.push(["no reminder", -1])
     %>
     <%= select(:goal, :reminder_send_hour, @arr_reminder)%>
+
+
 
     <%
       if current_user.sponsor == "habitforge" and !@goal.more_reminders_enabled and !session[:sfm_virgin]
@@ -217,6 +219,53 @@ show_monitor_option_details = 0
   </td>
   </tr>
 
+<% if current_user.email == "jurowski@gmail.com" or current_user.email == "jurowski@pediatrics.wisc.edu" %>
+  <tr><td colspan=10>&nbsp</td>
+  </tr>
+  <tr>
+  <td valign=top nowrap align=right>
+  <strong>Check in with me at: &nbsp</strong>  
+  </td>
+  <td nowrap>
+
+    <%
+    @arr_checkin = Array.new
+
+    @arr_checkin.push(["~8:00pm", 20])
+    @arr_checkin.push(["~9:00pm", 21])
+    @arr_checkin.push(["~10:00pm", 22])
+    @arr_checkin.push([" ", 0])
+    @arr_checkin.push(["---------", 0])
+    @arr_checkin.push([" ", 0])
+    @arr_checkin.push(["~1:00am", 1])
+    @arr_checkin.push(["~2:00am", 2])
+    @arr_checkin.push(["~3:00am", 3])
+    @arr_checkin.push(["~4:00am", 4])
+    @arr_checkin.push(["~5:00am", 5])
+    @arr_checkin.push(["~6:00am", 6])
+    @arr_checkin.push(["~7:00am", 7])
+    @arr_checkin.push(["~8:00am", 8])
+    @arr_checkin.push(["~9:00am", 9])
+    @arr_checkin.push(["~10:00am", 10])
+    @arr_checkin.push(["~11:00am", 11])
+    @arr_checkin.push(["~12:00pm", 12])
+    @arr_checkin.push(["~1:00pm", 13])
+    @arr_checkin.push(["~2:00pm", 14])
+    @arr_checkin.push(["~3:00pm", 15])
+    @arr_checkin.push(["~4:00pm", 16])
+    @arr_checkin.push(["~5:00pm", 17])
+    @arr_checkin.push(["~6:00pm", 18])
+    @arr_checkin.push(["~7:00pm", 19])
+    @arr_checkin.push(["~8:00pm", 20])
+    @arr_checkin.push(["~9:00pm", 21])
+    @arr_checkin.push(["~10:00pm", 22])
+    @arr_checkin.push(["~11:00pm", 23])
+    %>
+    <%= select(:goal, :usersendhour, @arr_checkin)%>
+
+  </td>
+  </tr>
+<% end %>
 
 
   <tr>

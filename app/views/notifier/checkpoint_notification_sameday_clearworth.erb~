@@ -2,10 +2,13 @@
 @sitename = ""
 if `uname -n`.strip == 'adv.adventurino.com'
   #### HABITFORGE SETTINGS ON VPS
-  @sitename = "reengagefocus.com"
+  @sitename = "habitforge.com"  
+  if @checkpoint.goal.user.sponsor == "clearworth"
+    @sitename = "www.mylearninghabit.com"
+  end
 elsif `uname -n`.strip == 'gns499aa.joyent.us'
   #### DEV SETTINGS ON HABITFORGE VPS
-  @sitename = "dev.reengagefocus.com"
+  @sitename = "dev.habitforge.com"
 else
   #### SETTINGS FOR DEV LAPTOP
   @sitename = "localhost:3000"
@@ -42,7 +45,7 @@ end
       }
 
       td.header {
-         background-image: url('/images/reengagefocus/header_reengagefocus_single_checkpoint.png');
+         background-image: url('/images/header_clearworth_single_checkpoint.png');
          background-repeat: no-repeat;
          background-position: top center;
          background-color: #cccccc;
@@ -220,7 +223,7 @@ end
             </tr>
             <tr>
                <td class="header" align="left" valign="bottom">
-                  <img src="/images/reengagefocus/header_reengagefocus_single_checkpoint.png" alt="reengagefocus" width="580" height="130" />
+                  <img src="/images/header_clearworth_single_checkpoint.png" alt="ClearWorth" width="580" height="130" />
                </td>
             </tr>
             <tr>
@@ -253,6 +256,13 @@ end
 
 
 
+
+                        <% #110206 is a jurowski@gmail.com checkpoint.id number that can be used for testing%>
+
+                        <%
+                        #### TESTING
+                        ####@checkpoint = Checkpoint.find('110206')
+                        %>
 
                         <br>
                         <br>
@@ -294,10 +304,10 @@ end
                         <table border="0" cellspacing="10" cellpadding="10" align=center>
                           <tr>
                             <td class="mainbar" align="center" valign="top" bgcolor=#f5f5f5>
-                              <a href="http://<%= @sitename %>/checkpoints/<%= @checkpoint.id %>/autoupdate?status=yes&u=<%= @checkpoint.goal.user.id %>&g=<%= @checkpoint.goal.id %>"><font size=14>Yes</font></a>
+                              <a href="http://<%= @sitename %>/goals?update_checkpoint_status=yes&date=<%= @checkpoint.goal.user.dyesterday %>&e0=<%= @checkpoint.goal.user.email[0] %>&f0=<%= @checkpoint.goal.user.first_name[0] %>&u=<%= @checkpoint.goal.user.id %>&goal_id=<%= @checkpoint.goal.id %>&coming_from=email" >Yes</a>
                             </td>
                             <td class="mainbar" align="center" valign="top" bgcolor=#f5f5f5>
-                              <a href="http://<%= @sitename %>/checkpoints/<%= @checkpoint.id %>/autoupdate?status=no&u=<%= @checkpoint.goal.user.id %>&g=<%= @checkpoint.goal.id %>"><font size=14>No</font></a>
+                              <a href="http://<%= @sitename %>/goals?update_checkpoint_status=no&date=<%= @checkpoint.goal.user.dyesterday %>&e0=<%= @checkpoint.goal.user.email[0] %>&f0=<%= @checkpoint.goal.user.first_name[0] %>&u=<%= @checkpoint.goal.user.id %>&goal_id=<%= @checkpoint.goal.id %>&coming_from=email" >No</a>
                             </td>
                           </tr>
                         </table>
@@ -373,8 +383,10 @@ end
                          <p>
                          Best of luck with your goal!
                          <br>
+                         <b>ClearWorth</b>
                          <br>
-                         <b>reEngage Focus</b>
+                         <br>
+                         <b>My Learning Habit, hosted by <a href="http://habitforge.com" target="_blank">HabitForge</a></b>
                          <br>
                          <a href="http://<%= @sitename %>"> http://<%= @sitename %></a>
                        </td>
@@ -403,7 +415,7 @@ end
              <tr>
                 <td class="permission" align="center">
                    <p>
-                   Want to remove your account, goals and checkpoint data from reEngage Focus? Log into <a href="http://<%= @sitename %>">http://<%= @sitename %></a>, click "My Account", select "Delete My Account".
+                   Want to remove your account, goals and checkpoint data from My Learning Habit? Log into <a href="http://<%= @sitename %>">http://<%= @sitename %></a>, click "My Account", select "Delete My Account".
                    </p>
 
                 </td>
@@ -411,7 +423,7 @@ end
              <tr>
                 <td class="permission" align="center">
                    <p>
-                   Questions? Email <a href="mailto:support@reengagefocus.com">support@reengagefocus.com</a>
+                   Questions? Email <a href="mailto:support@habitforge.com">support@habitforge.com</a>
                    </p>
 
                 </td>
@@ -420,9 +432,7 @@ end
            <table width="580">
               <tr>
                 <td width=100% align=right>
-                
-                   <img src="/images/reengagefocus/logo.jpg" alt="reengagefocus" width=150 />
-               
+                   <img src="/images/CW-circle-and-text-w-phrase.png" alt="ClearWorth" width=150 />
                 </td>
               </tr>
             </table>

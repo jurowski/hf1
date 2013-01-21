@@ -417,6 +417,19 @@ class Notifier < ActionMailer::Base
     body       :checkpoint => checkpoint
     content_type "text/html"
   end
+
+  def checkpoint_notification_sameday(checkpoint)
+    
+    recipients checkpoint.goal.user.email
+    #recipients checkpoint.goal.user.first_name + "<" + checkpoint.goal.user.email + ">"
+    #bcc        ["jurowski@gmail.com"]
+    from       "HabitForge Daily Check-In <noreplygoalcheckpoint@habitforge.com>"
+    #subject    get_random_subject
+    subject    "HF: Time to check in!"
+    body       :checkpoint => checkpoint
+    content_type "text/html"
+  end
+
   def checkpoint_notification_clearworth(checkpoint)
     recipients checkpoint.goal.user.email
     #recipients checkpoint.goal.user.first_name + "<" + checkpoint.goal.user.email + ">"
@@ -427,15 +440,16 @@ class Notifier < ActionMailer::Base
     content_type "text/html"
   end
 
-  def checkpoint_notification_reengagefocus(checkpoint)
+  def checkpoint_notification_sameday_clearworth(checkpoint)
     recipients checkpoint.goal.user.email
     #recipients checkpoint.goal.user.first_name + "<" + checkpoint.goal.user.email + ">"
     #bcc        ["jurowski@gmail.com"]
-    from       "reEngange Focus Goal Checkpoint <noreplygoalcheckpoint@habitforge.com>"
+    from       "My Learning Habit Checkpoint <noreplygoalcheckpoint@habitforge.com>"
     subject    "Goal Checkpoint Notification"
     body       :checkpoint => checkpoint
     content_type "text/html"
   end
+
 
   def checkpoint_notification_forittobe(checkpoint)
     recipients checkpoint.goal.user.email
@@ -446,17 +460,29 @@ class Notifier < ActionMailer::Base
     body       :checkpoint => checkpoint
     content_type "text/html"
   end
-  def checkpoint_notification_marriagereminders(checkpoint)
+
+
+  def checkpoint_notification_sameday_forittobe(checkpoint)
     recipients checkpoint.goal.user.email
     #recipients checkpoint.goal.user.first_name + "<" + checkpoint.goal.user.email + ">"
     #bcc        ["jurowski@gmail.com"]
-    from       "Marriage Reminders Goal Checkpoint <noreplygoalcheckpoint@marriagereminders.com>"
+    from       "For It To Be Goal Checkpoint <noreplygoalcheckpoint@habitforge.com>"
     subject    "Goal Checkpoint Notification"
     body       :checkpoint => checkpoint
     content_type "text/html"
   end
 
+
   def checkpoint_notification_multiple(checkpoint)
+
+    recipients checkpoint.goal.user.email
+    from       "HabitForge Daily Check-In <noreplygoalcheckpoint@habitforge.com>"
+    subject    get_random_subject
+    body       :checkpoint => checkpoint
+    content_type "text/html"
+  end
+
+  def checkpoint_notification_multiple_sameday(checkpoint)
 
     recipients checkpoint.goal.user.email
     from       "HabitForge Daily Check-In <noreplygoalcheckpoint@habitforge.com>"
@@ -472,14 +498,15 @@ class Notifier < ActionMailer::Base
     body       :checkpoint => checkpoint
     content_type "text/html"
   end
-  
-  def checkpoint_notification_multiple_reengagefocus(checkpoint)
+
+  def checkpoint_notification_multiple_sameday_clearworth(checkpoint)
     recipients checkpoint.goal.user.email
-    from       "reEngage Focus Goal Checkpoint <noreplygoalcheckpoint@habitforge.com>"
+    from       "My Learning Habit Checkpoint <noreplygoalcheckpoint@habitforge.com>"
     subject    "Multi-Goal Checkpoint Notification"
     body       :checkpoint => checkpoint
     content_type "text/html"
-  end  
+  end
+
 
   def checkpoint_notification_multiple_forittobe(checkpoint)
     recipients checkpoint.goal.user.email
@@ -488,13 +515,16 @@ class Notifier < ActionMailer::Base
     body       :checkpoint => checkpoint
     content_type "text/html"
   end
-  def checkpoint_notification_multiple_marriagereminders(checkpoint)
+
+
+  def checkpoint_notification_multiple_sameday_forittobe(checkpoint)
     recipients checkpoint.goal.user.email
-    from       "Marriage Reminders Goal Checkpoint <noreplygoalcheckpoint@habitforge.com>"
+    from       "For It To Be Goal Checkpoint <noreplygoalcheckpoint@habitforge.com>"
     subject    "Multi-Goal Checkpoint Notification"
     body       :checkpoint => checkpoint
     content_type "text/html"
   end
+
   
   def widget_user_creation(user, weekdays_only = "false")
     recipients	user.email

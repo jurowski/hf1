@@ -2,10 +2,16 @@
 @sitename = ""
 if `uname -n`.strip == 'adv.adventurino.com'
   #### HABITFORGE SETTINGS ON VPS
-  @sitename = "marriagereminders.com"
+  @sitename = "habitforge.com"  
+  
+  #### sitenames for skinned sites are now set in their own files
+  #if @checkpoint.goal.user.sponsor == "clearworth"
+  #  @sitename = "www.mylearninghabit.com"
+  #end
+  
 elsif `uname -n`.strip == 'gns499aa.joyent.us'
   #### DEV SETTINGS ON HABITFORGE VPS
-  @sitename = "dev.marriagereminders.com"
+  @sitename = "dev.habitforge.com"
 else
   #### SETTINGS FOR DEV LAPTOP
   @sitename = "localhost:3000"
@@ -42,7 +48,7 @@ end
       }
 
       td.header {
-         background-image: url('/images/marriagereminders/header_marriagereminders_single_checkpoint.png');
+         background-image: url('/images/header_hf.png');
          background-repeat: no-repeat;
          background-position: top center;
          background-color: #cccccc;
@@ -220,7 +226,7 @@ end
             </tr>
             <tr>
                <td class="header" align="left" valign="bottom">
-                  <img src="/images/marriagereminders/header_marriagereminders_single_checkpoint.png" alt="marriagereminders" width="580" height="130" />
+                  <img src="/images/header_hf_checkpoint.png" alt="habitforge" width="580" height="130" />
                </td>
             </tr>
             <tr>
@@ -254,6 +260,13 @@ end
 
 
 
+                        <% #110206 is a jurowski@gmail.com checkpoint.id number that can be used for testing%>
+
+                        <%
+                        #### TESTING
+                        ####@checkpoint = Checkpoint.find('110206')
+                        %>
+
                         <br>
                         <br>
                         <p>
@@ -262,13 +275,13 @@ end
 
                         daily_quote = ""
                         daily_author = ""
-                        quote = Quote.find(:first, :conditions => "last_used = '#{dnow}' and sponsor = 'marriagereminders'")
+                        quote = Quote.find(:first, :conditions => "last_used = '#{dnow}' and sponsor = 'habitforge'")
                         if quote
                           daily_quote = quote.thought
                           daily_author = quote.author
                         else
                           daily_quote = "nothing yet"
-                          quote = Quote.find(:first, :conditions => "sponsor = 'marriagereminders'", :order => "last_used ASC")
+                          quote = Quote.find(:first, :conditions => "sponsor = 'habitforge'", :order => "last_used ASC")
                           quote.last_used = dnow
                           quote.save
                           daily_quote = quote.thought
@@ -285,7 +298,9 @@ end
                         Hi <%= @checkpoint.goal.user.first_name %>!
                         <p/>
                         <p />
-                        Were you successful yesterday (<%= @checkpoint.checkin_date.strftime("%a, %b %d, %Y") %>) at <%= @checkpoint.goal.response_question %> ?
+                        Were you successful today at <%= @checkpoint.goal.response_question %> ?
+			<br>
+                        (this is for <%= @checkpoint.checkin_date.strftime("%a, %b %d, %Y") %>)
                         <p>
                         </td>
                         </tr>
@@ -294,10 +309,10 @@ end
                         <table border="0" cellspacing="10" cellpadding="10" align=center>
                           <tr>
                             <td class="mainbar" align="center" valign="top" bgcolor=#f5f5f5>
-                              <a href="http://<%= @sitename %>/goals?update_checkpoint_status=yes&date=<%= @checkpoint.goal.user.dyesterday %>&e0=<%= @checkpoint.goal.user.email[0] %>&f0=<%= @checkpoint.goal.user.first_name[0] %>&u=<%= @checkpoint.goal.user.id %>&goal_id=<%= @checkpoint.goal.id %>" >Yes</a>
+                              <h1><a href="http://<%= @sitename %>/goals?update_checkpoint_status=yes&date=<%= @checkpoint.goal.user.dyesterday %>&e0=<%= @checkpoint.goal.user.email[0] %>&f0=<%= @checkpoint.goal.user.first_name[0] %>&u=<%= @checkpoint.goal.user.id %>&goal_id=<%= @checkpoint.goal.id %>&coming_from=email" ><span style="font-size:2em;">Yes</span></a>&nbsp &nbsp</h1>
                             </td>
                             <td class="mainbar" align="center" valign="top" bgcolor=#f5f5f5>
-                              <a href="http://<%= @sitename %>/goals?update_checkpoint_status=no&date=<%= @checkpoint.goal.user.dyesterday %>&e0=<%= @checkpoint.goal.user.email[0] %>&f0=<%= @checkpoint.goal.user.first_name[0] %>&u=<%= @checkpoint.goal.user.id %>&goal_id=<%= @checkpoint.goal.id %>" >No</a>
+                              <h1>&nbsp &nbsp<a href="http://<%= @sitename %>/goals?update_checkpoint_status=no&date=<%= @checkpoint.goal.user.dyesterday %>&e0=<%= @checkpoint.goal.user.email[0] %>&f0=<%= @checkpoint.goal.user.first_name[0] %>&u=<%= @checkpoint.goal.user.id %>&goal_id=<%= @checkpoint.goal.id %>&coming_from=email" ><span style="font-size:2em;">No</span></a></h1>
                             </td>
                           </tr>
                         </table>
@@ -309,8 +324,9 @@ end
                         <p>
 
                         <%
-                        if @checkpoint.goal.pp_remind == true
-
+                        ### only send pleasure/pain info if they don't get daily reminder emails
+                        ### because those daily reminders are a better place to put them
+                        if @checkpoint.goal.pp_remind == true and @checkpoint.goal.reminder_send_hour == -1
 
 
                         	### Decide whether it's time to insert the reminder 
@@ -373,9 +389,9 @@ end
                          <p>
                          Best of luck with your goal!
                          <br>
+                         <b>-HabitForge</b>
                          <br>
-                         <br>
-                         <a href="http://<%= @sitename %>"> http://<%= @sitename %></a>
+                         <a href="http://<%= @sitename %>">http://<%= @sitename %></a>
                        </td>
                      </tr>
                      </p>                
@@ -395,14 +411,14 @@ end
                  <br>
                  <i>To put this goal on hold and stop receiving emails about it, click <a href="http://<%= @sitename %>/goals/hold/<%= @checkpoint.goal.id %>?u=<%= @checkpoint.goal.user.id %>">here</a>. </i>
                    <p><i>
-                   If the links in this email don't work: <br>1) log into your account at http://<%= @sitename %>  <br>2) Beneath your goal, click on "Edit Checkpoints"  <br>3) Next to <%= @checkpoint.checkin_date.strftime("%a, %b %d, %Y") %>, click "Yes" or "No".
+                   If the Yes/No links in this email don't work: <br>1) log into your account at http://<%= @sitename %>  <br>2) Beneath your goal, click on "Edit Checkpoints"  <br>3) Next to <%= @checkpoint.checkin_date.strftime("%a, %b %d, %Y") %>, click "Yes" or "No".
                    </i></p>
                 </td>
              </tr>
              <tr>
                 <td class="permission" align="center">
                    <p>
-                   Want to remove your account, goals and checkpoint data from MarriageReminders? Log into <a href="http://<%= @sitename %>">http://<%= @sitename %></a>, click "My Account", select "Delete My Account".
+                   Want to remove your account, goals and checkpoint data from habitforge? Log into <a href="http://<%= @sitename %>">http://<%= @sitename %></a>, click "My Account", select "Delete My Account".
                    </p>
 
                 </td>
@@ -410,20 +426,12 @@ end
              <tr>
                 <td class="permission" align="center">
                    <p>
-                   Questions? Email <a href="mailto:support@marriagereminders.com">support@marriagereminders.com</a>
+                   Questions? Email <a href="mailto:support@habitforge.com">support@habitforge.com</a>
                    </p>
 
                 </td>
              </tr>
            </table>
-           <table width="580">
-              <tr>
-                <td width=100% align=right>
-                
-               
-                </td>
-              </tr>
-            </table>
 
       </td>
    </tr>

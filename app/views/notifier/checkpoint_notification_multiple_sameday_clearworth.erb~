@@ -2,10 +2,13 @@
 @sitename = ""
 if `uname -n`.strip == 'adv.adventurino.com'
   #### HABITFORGE SETTINGS ON VPS
-  @sitename = "marriagereminders.com"
+  @sitename = "habitforge.com"
+  if @checkpoint.goal.user.sponsor == "clearworth"
+    @sitename = "www.mylearninghabit.com"
+  end
 elsif `uname -n`.strip == 'gns499aa.joyent.us'
   #### DEV SETTINGS ON HABITFORGE VPS
-  @sitename = "dev.marriagereminders.com"
+  @sitename = "dev.habitforge.com"
 else
   #### SETTINGS FOR DEV LAPTOP
   @sitename = "localhost:3000"
@@ -42,7 +45,7 @@ end
       }
 
       td.header {
-         background-image: url('/images/marriagereminders/header_marriagereminders_multiple_checkpoint.png');
+         background-image: url('/images/header_clearworth_multiple_checkpoint.png');
          background-repeat: no-repeat;
          background-position: top center;
          background-color: #cccccc;
@@ -220,7 +223,7 @@ end
             </tr>
             <tr>
                <td class="header" align="left" valign="bottom">
-                  <img src="/images/marriagereminders/header_marriagereminders_multiple_checkpoint.png" alt="marriagereminders" width="580" height="130" />
+                  <img src="/images/header_clearworth_multiple_checkpoint.png" alt="ClearWorth" width="580" height="130" />
                </td>
             </tr>
             <tr>
@@ -253,6 +256,12 @@ end
 
 
 
+                        <% #110206 is a jurowski@gmail.com checkpoint.id number that can be used for testing%>
+
+                        <%
+                        #### TESTING
+                        #### @checkpoint = Checkpoint.find('110206')
+                        %>
 
                         <br>
                         <br>
@@ -262,13 +271,13 @@ end
 
                         daily_quote = ""
                         daily_author = ""
-                        quote = Quote.find(:first, :conditions => "last_used = '#{dnow}' and sponsor = 'marriagereminders'")
+                        quote = Quote.find(:first, :conditions => "last_used = '#{dnow}' and sponsor = 'habitforge'")
                         if quote
                           daily_quote = quote.thought
                           daily_author = quote.author
                         else
                           daily_quote = "nothing yet"
-                          quote = Quote.find(:first, :conditions => "sponsor = 'marriagereminders'", :order => "last_used ASC")
+                          quote = Quote.find(:first, :conditions => "sponsor = 'habitforge'", :order => "last_used ASC")
                           quote.last_used = dnow
                           quote.save
                           daily_quote = quote.thought
@@ -290,7 +299,7 @@ end
                         Hi <%= @goal.user.first_name %>!
                         <p/>
                         <p />
-                        You have multiple goals in MarriageReminders, at least one of which has a checkpoint due for yesterday (<%= checkin_date.strftime("%a, %b %d, %Y") %>). 
+                        You have multiple goals in My Learning Habit, at least one of which has a checkpoint due for yesterday (<%= checkin_date.strftime("%a, %b %d, %Y") %>). 
                         <br>
                         <br>                        
                         <a href="http://<%= @sitename %>/checkpoints/1/autoupdatemultiple?d=<%= checkin_date %>&u=<%= @goal.user.id %>&g=<%= @goal.id %>">Click here to update them all at once.</a>                          
@@ -309,7 +318,10 @@ end
                          <p>
                          Best of luck with your goals!
                          <br>
+                         <b>ClearWorth</b>
                          <br>
+                         <br>
+                         <b>My Learning Habit, hosted by <a href="http://habitforge.com" target="_blank">HabitForge</a></b>
                          <br>
                          <a href="http://<%= @sitename %>"> http://<%= @sitename %></a>
                        </td>
@@ -338,7 +350,7 @@ end
              <tr>
                 <td class="permission" align="center">
                    <p>
-                   Want to remove your account, goals and checkpoint data from MarriageReminders? Log into <a href="http://<%= @sitename %>">http://<%= @sitename %></a>, click "My Account", select "Delete My Account".
+                   Want to remove your account, goals and checkpoint data from My Learning Habit? Log into <a href="http://<%= @sitename %>">http://<%= @sitename %></a>, click "My Account", select "Delete My Account".
                    </p>
 
                 </td>
@@ -346,7 +358,7 @@ end
              <tr>
                 <td class="permission" align="center">
                    <p>
-                   Questions? Email <a href="mailto:support@marriagereminders.com">support@marriagereminders.com</a>
+                   Questions? Email <a href="mailto:support@habitforge.com">support@habitforge.com</a>
                    </p>
 
                 </td>
@@ -355,8 +367,7 @@ end
            <table width="580">
               <tr>
                 <td width=100% align=right>
-
-                   
+                   <img src="/images/CW-circle-and-text-w-phrase.png" alt="ClearWorth" width=150 />
                 </td>
               </tr>
             </table>

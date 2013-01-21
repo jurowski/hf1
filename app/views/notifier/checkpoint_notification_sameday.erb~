@@ -1,0 +1,439 @@
+<%
+@sitename = ""
+if `uname -n`.strip == 'adv.adventurino.com'
+  #### HABITFORGE SETTINGS ON VPS
+  @sitename = "habitforge.com"  
+  
+  #### sitenames for skinned sites are now set in their own files
+  #if @checkpoint.goal.user.sponsor == "clearworth"
+  #  @sitename = "www.mylearninghabit.com"
+  #end
+  
+elsif `uname -n`.strip == 'gns499aa.joyent.us'
+  #### DEV SETTINGS ON HABITFORGE VPS
+  @sitename = "dev.habitforge.com"
+else
+  #### SETTINGS FOR DEV LAPTOP
+  @sitename = "localhost:3000"
+end
+%>
+<html>
+<head>
+  <base href="http://<%= @sitename %>/"/>
+   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <title>Template 9 - Single Column</title>
+   <style type="text/css" media="screen">
+      body {
+         margin: 0;
+         padding: 0;
+         background-color: #ffffff;
+      }
+
+      td.permission {
+         padding: 20px 0 20px 0;
+      }
+
+      td.permission p {
+         font-family: 'Lucida Grande', sans-serif;
+         font-size: 10px;
+         font-weight: normal;
+         color: #151515;
+      }
+
+      td.permission p a {
+         font-family: 'Lucida Grande', sans-serif;
+         font-size: 10px;
+         font-weight: normal;
+         color: #a72323;
+      }
+
+      td.header {
+         background-image: url('/images/header_hf.png');
+         background-repeat: no-repeat;
+         background-position: top center;
+         background-color: #cccccc;
+         height: 130px;
+      }
+
+      td.header h1 {
+         font-family: Georgia, serif;
+         font-size: 30px;
+         font-weight: normal;
+         color: #333333;
+         margin-left: 50px;
+         margin-bottom: 24px;
+      }
+
+      table.content {
+         background-color: #f5f5f5;
+      }
+
+      td.sidebar a {
+         font-family: 'Lucida Grande', sans-serif;
+         font-size: 11px;
+         font-weight: normal;
+         color: #a72323;
+         text-decoration: none;
+      }
+
+      td.sidebar ul {
+         margin: 0 0 0 24px;
+         padding: 0;
+      }
+
+      td.sidebar ul li,
+      td.sidebar ul li a {
+         font-family: 'Lucida Grande', sans-serif;
+         font-size: 12px;
+         font-weight: normal;
+         color: #a72323;
+      }
+
+      td.sidebar h3 {
+         font-family: 'Lucida Grande', sans-serif;
+         font-size: 16px;
+         font-weight: bold;
+         color: #333333;
+         margin: 10px 0 14px 0;
+         padding: 0;
+      }
+
+      td.sidebar h3.buttons {
+         font-family: 'Lucida Grande', sans-serif;
+         font-size: 16px;
+         font-weight: bold;
+         color: #333333;
+         margin: 0 0 4px 0;
+         padding: 0;
+      }
+
+      td.sidebar h4 {
+         font-family: 'Lucida Grande', sans-serif;
+         font-size: 13px;
+         font-weight: bold;
+         color: #333333;
+         margin: 0 0 2px 0;
+         padding: 0;
+      }
+
+      td.sidebar p {
+         font-family: 'Lucida Grande', sans-serif;
+         font-size: 11px;
+         font-weight: normal;
+         color: #505050;
+         margin: 0 0 13px 0;
+         padding: 0;
+      }
+
+      td.sidebar p.buttons {
+         font-family: 'Lucida Grande', sans-serif;
+         font-size: 11px;
+         font-weight: normal;
+         color: #505050;
+         margin: 0 0 4px 0;
+         padding: 0;
+      }
+
+      td.border {
+         border-right: 2px solid #e0e0e0;
+      }
+
+      td.mainbar a {
+         font-family: 'Lucida Grande', sans-serif;
+         font-size: 12px;
+         font-weight: normal;
+         color: #a72323;
+         text-decoration: none;
+      }
+
+      td.mainbar h2 {
+         font-family: 'Lucida Grande', sans-serif;
+         font-size: 16px;
+         font-weight: bold;
+         color: #a72323;
+         margin: 0 0 4px 0;
+         padding: 0 0 4px 0;
+         border-bottom: 1px solid #cbcbcb;
+      }
+
+      td.mainbar h3 {
+         font-family: Georgia, serif;
+         font-size: 16px;
+         font-weight: normal;
+         color: #333333;
+         margin: 10px 0 14px 0;
+         padding: 0;
+      }
+
+      td.mainbar p {
+         font-family: 'Lucida Grande', sans-serif;
+         font-size: 12px;
+         font-weight: normal;
+         color: #333333;
+         margin: 0 0 16px 0;
+         padding: 0;
+      }
+
+      td.mainbar p.top {
+         font-family: 'Lucida Grande', sans-serif;
+         font-size: 10px;
+         font-weight: bold;
+         color: #a72323;
+         margin: 0 0 30px 0;
+         padding: 0;
+      }
+
+      td.mainbar p.top a {
+         font-family: 'Lucida Grande', sans-serif;
+         font-size: 10px;
+         font-weight: bold;
+         color: #a72323;
+      }
+
+      td.mainbar ul {
+         font-family: 'Lucida Grande', sans-serif;
+         font-size: 12px;
+         font-weight: normal;
+         color: #333333;
+         margin: 0 0 20px 24px;
+         padding: 0;
+      }
+
+      td.footer {
+         padding: 20px 0 20px 0;
+      }
+
+      td.footer p {
+         font-family: 'Lucida Grande', sans-serif;
+         font-size: 10px;
+         font-weight: normal;
+         color: #151515;
+      }
+   </style>
+</head>
+<body>
+
+<table border="0" cellspacing="0" cellpadding="0" align=center>
+   <tr>
+      <td align="center">
+
+         <table width="580" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+               <td class="permission" align="center">
+                  <p><i>Do not reply to this message. Instead, indicate your answer by clicking the "Yes" or "No" links below. 
+                  </i></p>
+               </td>
+            </tr>
+            <tr>
+               <td class="header" align="left" valign="bottom">
+                  <img src="/images/header_hf_checkpoint.png" alt="habitforge" width="580" height="130" />
+               </td>
+            </tr>
+            <tr>
+               <td bgcolor=#f5f5f5>
+                
+                  <table width="580" height="130" border="0" cellspacing="16" cellpadding="0" class="content">
+                     <tr>
+                        <td class="mainbar" align="left" valign="top" width="580" bgcolor=#f5f5f5>
+
+
+                        <%
+                        
+                        ### GET DATE NOW ###
+                      	jump_forward_days = 0
+
+                      	tnow = Time.now
+                      	tnow_Y = tnow.strftime("%Y").to_i #year, 4 digits
+                      	tnow_m = tnow.strftime("%m").to_i #month of the year
+                      	tnow_d = tnow.strftime("%d").to_i #day of the month
+                      	tnow_H = tnow.strftime("%H").to_i #hour (24-hour format)
+                      	tnow_M = tnow.strftime("%M").to_i #minute of the hour
+                      	#puts tnow_Y + tnow_m + tnow_d  
+                      	puts "Current timestamp is #{tnow.to_s}"
+                      	dnow = Date.new(tnow_Y, tnow_m, tnow_d) + jump_forward_days
+                      	dyesterday = dnow - 1
+                      	######
+                      	
+                        %>
+
+
+
+
+
+                        <% #110206 is a jurowski@gmail.com checkpoint.id number that can be used for testing%>
+
+                        <%
+                        #### TESTING
+                        ####@checkpoint = Checkpoint.find('110206')
+                        %>
+
+                        <br>
+                        <br>
+                        <p>
+                        <%
+                        #/generate scaffold quote thought:text author:string last_used:date priority:boolean
+
+                        daily_quote = ""
+                        daily_author = ""
+                        quote = Quote.find(:first, :conditions => "last_used = '#{dnow}' and sponsor = 'habitforge'")
+                        if quote
+                          daily_quote = quote.thought
+                          daily_author = quote.author
+                        else
+                          daily_quote = "nothing yet"
+                          quote = Quote.find(:first, :conditions => "sponsor = 'habitforge'", :order => "last_used ASC")
+                          quote.last_used = dnow
+                          quote.save
+                          daily_quote = quote.thought
+                          daily_author = quote.author
+                        end
+                        %>
+                        <strong>"<%= daily_quote %>"</strong>  -<i><%= daily_author %></i>
+
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        
+                        Hi <%= @checkpoint.goal.user.first_name %>!
+                        <p/>
+                        <p />
+                        Were you successful yesterday (<%= @checkpoint.checkin_date.strftime("%a, %b %d, %Y") %>) at <%= @checkpoint.goal.response_question %> ?
+                        <p>
+                        </td>
+                        </tr>
+                        <tr>
+                        <td class="mainbar" align="center" valign="top" width="580" bgcolor=#f5f5f5>
+                        <table border="0" cellspacing="10" cellpadding="10" align=center>
+                          <tr>
+                            <td class="mainbar" align="center" valign="top" bgcolor=#f5f5f5>
+                              <h1><a href="http://<%= @sitename %>/goals?update_checkpoint_status=yes&date=<%= @checkpoint.goal.user.dyesterday %>&e0=<%= @checkpoint.goal.user.email[0] %>&f0=<%= @checkpoint.goal.user.first_name[0] %>&u=<%= @checkpoint.goal.user.id %>&goal_id=<%= @checkpoint.goal.id %>&coming_from=email" >Yes</a></h1>
+                            </td>
+                            <td class="mainbar" align="center" valign="top" bgcolor=#f5f5f5>
+                              <h1><a href="http://<%= @sitename %>/goals?update_checkpoint_status=no&date=<%= @checkpoint.goal.user.dyesterday %>&e0=<%= @checkpoint.goal.user.email[0] %>&f0=<%= @checkpoint.goal.user.first_name[0] %>&u=<%= @checkpoint.goal.user.id %>&goal_id=<%= @checkpoint.goal.id %>&coming_from=email" >No</a></h1>
+                            </td>
+                          </tr>
+                        </table>
+                        </td>
+                        </tr>
+                        <td class="mainbar" align="left" valign="top" width="580" bgcolor=#f5f5f5>
+                        <p>
+                        <p>
+                        <p>
+
+                        <%
+                        ### only send pleasure/pain info if they don't get daily reminder emails
+                        ### because those daily reminders are a better place to put them
+                        if @checkpoint.goal.pp_remind == true and @checkpoint.goal.reminder_send_hour == -1
+
+
+                        	### Decide whether it's time to insert the reminder 
+                        	doit = 0
+                        	if @checkpoint.goal.pp_remind_last_date == nil
+                        		doit = 1
+                        	else
+                        		dnextreminder = @checkpoint.goal.pp_remind_last_date + 3
+                        		if dnow == dnextreminder or dnow > dnextreminder
+                        			doit = 1
+                        		end
+                        	end
+
+
+                          # If it is time, then insert the reminders if they exist	
+                          if doit == 1
+                            @checkpoint.goal.pp_remind_last_date = dnow
+                            @checkpoint.goal.save
+                            %>
+                            <hr>
+                            <%
+                            if @checkpoint.goal.pain != nil and @checkpoint.goal.pain != ""
+                            %>
+                              <p>
+                              <p>
+                              Remember what you said about the "Pain" you'll feel long term if you don't follow through on forming this habit...
+                              <p>
+                              "<%= @checkpoint.goal.pain %>" --<%= @checkpoint.goal.user.first_name %>
+                            <%
+                            end
+                            %>
+
+                            <%
+                            if @checkpoint.goal.pleasure != nil and @checkpoint.goal.pleasure != ""
+                            %>
+                              <p>
+                              <p>
+                              And don't forget about how you'll feel once the habit is formed, and in what ways your life will be improved...
+                              <p>
+                              <p>
+                              "<%= @checkpoint.goal.pleasure %>" --<%= @checkpoint.goal.user.first_name %>
+                            <%
+                            end
+                            %>
+                            <hr>
+                            <%
+                          end
+                        %>
+                        <hr>
+                        <%
+                        end
+                        %>
+                        <p>
+                        <p>
+
+                        </td>
+                     </tr>
+                     <tr>
+                       <td class="mainbar" align="left" valign="top" width="580" bgcolor=#f5f5f5>
+                         <p>
+                         Best of luck with your goal!
+                         <br>
+                         <b>-HabitForge</b>
+                         <br>
+                         <a href="http://<%= @sitename %>">http://<%= @sitename %></a>
+                       </td>
+                     </tr>
+                     </p>                
+                 </table>
+
+               </td>
+            </tr>
+         </table>
+         <table align=center width="646" border="0" cellspacing="0" cellpadding="0">
+             <tr>
+                <td><img src="/images/footer-tail.jpg" alt="Footer" width="646" height="87" /></td>
+             </tr>
+             <tr>
+                <td class="permission" align="center">
+                 <p>
+                 No longer working on this goal? 
+                 <br>
+                 <i>To put this goal on hold and stop receiving emails about it, click <a href="http://<%= @sitename %>/goals/hold/<%= @checkpoint.goal.id %>?u=<%= @checkpoint.goal.user.id %>">here</a>. </i>
+                   <p><i>
+                   If the Yes/No links in this email don't work: <br>1) log into your account at http://<%= @sitename %>  <br>2) Beneath your goal, click on "Edit Checkpoints"  <br>3) Next to <%= @checkpoint.checkin_date.strftime("%a, %b %d, %Y") %>, click "Yes" or "No".
+                   </i></p>
+                </td>
+             </tr>
+             <tr>
+                <td class="permission" align="center">
+                   <p>
+                   Want to remove your account, goals and checkpoint data from habitforge? Log into <a href="http://<%= @sitename %>">http://<%= @sitename %></a>, click "My Account", select "Delete My Account".
+                   </p>
+
+                </td>
+             </tr>
+             <tr>
+                <td class="permission" align="center">
+                   <p>
+                   Questions? Email <a href="mailto:support@habitforge.com">support@habitforge.com</a>
+                   </p>
+
+                </td>
+             </tr>
+           </table>
+
+      </td>
+   </tr>
+</table>
+
+</body>
+</html>
