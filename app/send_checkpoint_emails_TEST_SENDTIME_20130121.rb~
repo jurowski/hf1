@@ -620,10 +620,8 @@ class SendCheckpointEmails < ActiveRecord::Base
       goal_conditions = goal_conditions + " and #{day_name_plus1} = '1'" ### comment out this one line if not supporting days of the week
 
 
-      ### same-day check-ins
-      goal_conditions = goal_conditions + " and ("
-      goal_conditions = goal_conditions + "usersendhour >= '#{tnow_k}'"      
-
+      #goal_conditions = goal_conditions + " and ("
+      #goal_conditions = goal_conditions + "usersendhour = '#{tnow_k}'"      
       #goal_conditions = goal_conditions + " or usersendhour = '#{tlimit1_k}'"
       #goal_conditions = goal_conditions + " or usersendhour = '#{tlimit2_k}'"
       #goal_conditions = goal_conditions + " or usersendhour = '#{tlimit3_k}'"      
@@ -644,7 +642,7 @@ class SendCheckpointEmails < ActiveRecord::Base
       #goal_conditions = goal_conditions + " or usersendhour = '#{tlimit18_k}'"      
       #goal_conditions = goal_conditions + " or usersendhour = '#{tlimit19_k}'"      
       #goal_conditions = goal_conditions + " or usersendhour = '#{tlimit20_k}'"      
-      goal_conditions = goal_conditions + ")"
+      #goal_conditions = goal_conditions + ")"
 
       @goals = Goal.find(:all, :conditions => goal_conditions)
       for goal in @goals
