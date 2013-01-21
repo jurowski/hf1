@@ -586,6 +586,33 @@ class Goal < ActiveRecord::Base
         arr_sorry = Array.new
         arr_sorry.push(["Hi #{self.user.first_name}. Sorry you weren't successful at your xxx goal."])
 
+
+
+        if self.get_goal_days_per_week == 7
+          arr_sorry.push(["Hi #{self.user.first_name}. Sorry you weren't successful at your xxx goal."])
+          arr_sorry.push(["Ok. Hey, every day is a brand new day, right #{self.user.first_name}?"])
+          arr_sorry.push(["Well, it happens, #{self.user.first_name}. One day is all you need to start a new streak!"])
+          arr_sorry.push(["Ok #{self.user.first_name}. One thing that works well for a lot of people: before you go to bed at night, write down in a journal your plan to succeed the next day. It works surprisingly well!"])
+          arr_sorry.push(["Alright #{self.user.first_name}. Have you thought about what kept you from succeeding, and how might be able to change that?"])
+        else
+          if self.days_since_first_checkpoint >= 7
+            last_7_days_count = self.success_count_during_past_n_days(7)
+            if self.get_goal_days_per_week >= last_7_days_count
+              arr_sorry.push(["No worries #{self.user.first_name}. You've already done it #{last_7_days_count} days out of the last 7 days!"])
+              arr_sorry.push(["No problem, #{self.user.first_name}, 'cause you've already succeeded #{last_7_days_count} days out of the last 7 days!"])
+
+            else
+              arr_sorry.push(["Ok #{self.user.first_name}. During the last 7 days you've done it #{last_7_days_count} times. Try to hit #{self.get_goal_days_per_week} per week!"])
+              arr_sorry.push(["Alright #{self.user.first_name}. Keep working toward #{self.get_goal_days_per_week} days a week, OK?"])
+            end
+          else
+            arr_sorry.push(["Ok #{self.user.first_name}. Just remember, try to hit #{self.get_goal_days_per_week} days out of the week."])
+            arr_sorry.push(["Alright #{self.user.first_name}. Keep working toward #{self.get_goal_days_per_week} days a week, OK?"])
+          end
+
+	end
+
+
         random_number = 0
         random_number = rand(arr_sorry.size) + 0 #between 0 and arr_sorry.size
         random_sorry = arr_sorry[random_number]

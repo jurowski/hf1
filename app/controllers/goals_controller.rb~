@@ -478,7 +478,7 @@ logger.debug "SGJ2 2 #{goal.title}(#{goal.id}) #{goal.daysstraight} daysstraight
 		#114: hf new signup funnel v2 monthly
 		#116: hf new signup funnel v2 yearly
 		#118: hf new signup funnel v2 lifetime
-		Infusionsoft.contact_update(session[:infusionsoft_contact_id].to_i, {:FirstName => user.first_name, :LastName => user.last_name})
+		Infusionsoft.contact_update(session[:infusionsoft_contact_id].to_i, {:FirstName => current_user.first_name, :LastName => current_user.last_name})
 		Infusionsoft.contact_add_to_group(session[:infusionsoft_contact_id].to_i, 120)
 		Infusionsoft.contact_remove_from_group(session[:infusionsoft_contact_id].to_i, 112)
         	####          END INFUSIONSOFT CONTACT           ####

@@ -282,7 +282,7 @@ class UsersController < ApplicationController
         #@user = user
         #Notifier.deliver_widget_user_creation(@user) # sends the email
         session[:sfm_virgin] = true ### they are setting up their first goal ... allows you to hide or show certain things
-        #session[:sfm_virgin_need_to_confirm_timezone] = true
+        session[:sfm_virgin_need_to_confirm_timezone] = true
         session[:sfm_virgin_need_to_email_temp_password] = true
         @account_created = true
 

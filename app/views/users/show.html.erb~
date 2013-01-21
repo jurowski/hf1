@@ -91,17 +91,27 @@
 
         <%
         else
-        %>
-
+	%>
             <div class="notice" style="width:400px;border-width:1px;background-color:#eeeeee;">
                 <p>
                 <h2>
-                Your Premium Membership is good through <%= current_user.kill_ads_until.strftime("%b %d, %Y") %>   
-                <br>
-                <span style="font-size:60%;">
-                (You can work on unlimited active habits, ad-free!)
-                </span
 
+		<%	  
+		if current_user.plan and (current_user.plan.include? 'Lifetime' or current_user.plan.include? 'Monthly' or current_user.plan.include? 'Yearly')
+		%>
+			You are a Premium Member! (<%= current_user.plan%>)
+		<%		
+		else
+	        %>
+
+	                Your Premium Membership is good through <%= current_user.kill_ads_until.strftime("%b %d, %Y") %>   
+	                <br>
+	                <span style="font-size:60%;">
+	                (You can work on unlimited active habits, ad-free!)
+	                </span>
+		<%
+		end
+		%>
                 </h2>
 
         <%
@@ -118,7 +128,7 @@
             <a href="http://www.womansday.com/Articles/Health-Fitness/Make-Healthy-Habits-Stick.html" target="_blank">Woman's Day</a>
             &nbsp;
             <a href="http://tech.ca.msn.com/pcworld-article.aspx?cp-documentid=23549978" target="_blank">PC World</a>
-            </h5
+            </h5>
 
             <br>
 

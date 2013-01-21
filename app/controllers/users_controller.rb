@@ -460,7 +460,7 @@ class UsersController < ApplicationController
       
       if params[:account_type] and params[:account_type] == "supporting"
           #redirect_to("http://habitforge.myshopify.com/collections/frontpage/products/habitforge-supporting-membership-1-year?ref=#{@user.id.to_s}")
-          redirect_to("https://www.securepublications.com/habit-1-year.php?ref=#{@user.id.to_s}")
+          redirect_to("https://www.securepublications.com/habit-1-year.php?ref=#{@user.id.to_s}&email=#{@user.email}")
       else
           redirect_to("/goals/new")
       end
