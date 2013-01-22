@@ -53,7 +53,7 @@ class SendCheckpointEmails < ActiveRecord::Base
   
   ## add 3600 seconds for each hour, so 14400 = 4 hours.... won't affect the day/date... just the hour, for time zone re-sending if failures occurred, you could move the hour forward or backward
   hours_to_jump = 0
-  ## hours_to_jump = -5
+  # hours_to_jump = -5
 
   jump_forward_seconds = (hours_to_jump + adjust_server_hour) * 3600  
   

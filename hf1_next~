@@ -1,16 +1,21 @@
 
+---------------------
+AWAITING TESTING
+---------------------
 do a remind_me_at and check_in_with_me_at 	
 just mod the current by day less 1
 send multis for goals @ same checktime
 ------
-if someone checks in with a "no", occasionally suggest that they join a team to help
-------
-I want to invite people to my team
-send an invitation that they can "accept" if they want to be on my team
--------
-Under "friends", display anyone I've ever communicated with
-...allow me to invite one of those "friends" to a team
--------
+
+
+
+!!!! DOH !!!! you just told autoupdatemultiple to not display things that are after usersendhour
+BUT ... you should only restrict that if today's date is equal to the check-in date ... meaning, if today is after the checkout day
+you should not restrict
+
+---------------------
+NEXT
+---------------------
 when advertising your success rate to a team member
 And when calculating team success rate
 Change the success rate based on their goal
@@ -23,6 +28,11 @@ Team show ranked table with grades for three days seven-day 21 day 30 day averag
 -----------------------------------
 team add partic. pts to chart
 ------------------------------------
+
+
+---------------------
+FUTURE
+---------------------
 say: we'll let your team know you've checked in
 and print last checkin
 -------------------------------------
@@ -34,4 +44,13 @@ make follower reports optional
 ------------------------
 Teams compete for carousel artwork in templated habits
 --------------------------------
+if someone checks in with a "no", occasionally suggest that they join a team to help
+------
+I want to invite people to my team
+send an invitation that they can "accept" if they want to be on my team
+-------
+Under "friends", display anyone I've ever communicated with
+...allow me to invite one of those "friends" to a team
+-------
+
 

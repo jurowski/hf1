@@ -8,6 +8,16 @@ send multis for goals @ same checktime
 ------
 
 
+
+!!!! DOH !!!! you just told autoupdatemultiple to not display things that are after usersendhour
+BUT ... you should only restrict that if today's date is equal to the check-in date ... meaning, if today is after the checkout day
+you should not restrict
+
+
+
+
+
+
 ---------------------
 NEXT
 ---------------------
