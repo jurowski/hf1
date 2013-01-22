@@ -284,7 +284,7 @@ class SendCheckpointEmails < ActiveRecord::Base
       day_name = ""
       day_name_plus1 = ""
       yesterday_dayname = dyesterday.strftime("%A")
-      today_dname = dnow.strftime("%A")
+      today_dayname = dnow.strftime("%A")
       #puts "Current timestamp is #{tnow.to_s}"
       #puts "Yesterday was a #{yesterday_dayname}"
       if yesterday_dayname == "Monday"
