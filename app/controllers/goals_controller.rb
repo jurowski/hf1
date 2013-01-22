@@ -764,10 +764,7 @@ logger.debug "SGJ2 2 #{goal.title}(#{goal.id}) #{goal.daysstraight} daysstraight
             
             
             ##### SET THE HOUR THAT THE REMINDERS SHOULD GO OUT FOR THIS GOAL #############
-            @goal.usersendhour = 1
-
-
-
+            #@goal.usersendhour = 1
             if @goal.user.email == "jurowski@gmail.com" or @goal.user.email == "jurowski@pediatrics.wisc.edu"
 	      puts "___ testing custom user send hour, so not assigning usersendhour here unless nil"
               if @goal.usersendhour == nil

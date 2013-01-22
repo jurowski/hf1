@@ -492,7 +492,15 @@ logger.debug "SGJ2 2 #{goal.title}(#{goal.id}) #{goal.daysstraight} daysstraight
           current_user.save
         
           ##### SET THE HOUR THAT THE REMINDERS SHOULD GO OUT FOR THIS GOAL #############
-          @goal.usersendhour = 1
+            if @goal.user.email == "jurowski@gmail.com" or @goal.user.email == "jurowski@pediatrics.wisc.edu"
+	      puts "___ testing custom user send hour, so not assigning usersendhour here unless nil"
+              if @goal.usersendhour == nil
+	        @goal.usersendhour = 1
+              end
+            else
+              @goal.usersendhour = 1
+	    end
+
           Time.zone = @goal.user.time_zone
           utcoffset = Time.zone.formatted_offset(false)
           offset_seconds = Time.zone.now.gmt_offset 
@@ -757,6 +765,18 @@ logger.debug "SGJ2 2 #{goal.title}(#{goal.id}) #{goal.daysstraight} daysstraight
             
             ##### SET THE HOUR THAT THE REMINDERS SHOULD GO OUT FOR THIS GOAL #############
             @goal.usersendhour = 1
+
+
+
+            if @goal.user.email == "jurowski@gmail.com" or @goal.user.email == "jurowski@pediatrics.wisc.edu"
+	      puts "___ testing custom user send hour, so not assigning usersendhour here unless nil"
+              if @goal.usersendhour == nil
+	        @goal.usersendhour = 1
+              end
+            else
+              @goal.usersendhour = 1
+	    end
+
             Time.zone = @goal.user.time_zone
             utcoffset = Time.zone.formatted_offset(false)
             offset_seconds = Time.zone.now.gmt_offset 
