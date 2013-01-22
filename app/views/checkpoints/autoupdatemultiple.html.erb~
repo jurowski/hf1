@@ -42,8 +42,17 @@ else
   <form action="<%= session[:return_to_me] %>" method="POST">
     <%
     for goal_additional in @goals_additional
+
+      Time.zone = @goal.user.time_zone
+      if Time.zone
+        tnow = Time.zone.now #User time
+      else
+        tnow = Time.now
+      end
+      tnow_k = tnow.strftime("%k").to_i #hour (24-hour format, w/ no leading zeroes)
+
       @checkpoint = Checkpoint.find(:first, :conditions => "goal_id = '#{goal_additional.id}' and checkin_date = '#{session[:d]}'")
-      if @checkpoint != nil
+      if @checkpoint != nil and (@checkpoint.goal.usersendhour <= tnow_k)
         id = @checkpoint.id
         status_id = "status_" + id.to_s
         comment_id = "comment_" + id.to_s

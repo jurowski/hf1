@@ -51,8 +51,16 @@ else
       end
       tnow_k = tnow.strftime("%k").to_i #hour (24-hour format, w/ no leading zeroes)
 
+      #### if checking in same-day, only show those that are past the checkin time
+      only_show_goals_that_it_is_checkin_time_for = false
+      if @goal.user.dtoday.to_s == session[:d]
+        only_show_goals_that_it_is_checkin_time_for = true
+      else
+
+      
+
       @checkpoint = Checkpoint.find(:first, :conditions => "goal_id = '#{goal_additional.id}' and checkin_date = '#{session[:d]}'")
-      if @checkpoint != nil and (@checkpoint.goal.usersendhour <= tnow_k)
+      if @checkpoint != nil and (!only_show_goals_that_it_is_checkin_time_for or (only_show_goals_that_it_is_checkin_time_for and @checkpoint.goal.usersendhour <= tnow_k))
         id = @checkpoint.id
         status_id = "status_" + id.to_s
         comment_id = "comment_" + id.to_s
