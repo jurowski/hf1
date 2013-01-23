@@ -285,7 +285,7 @@ end
                         Hi <%= @checkpoint.goal.user.first_name %>!
                         <p/>
                         <p />
-                        Were you successful yesterday (<%= @checkpoint.checkin_date.strftime("%a, %b %d, %Y") %>) at <%= @checkpoint.goal.response_question %> ?
+                        Were you successful today (<%= @checkpoint.checkin_date.strftime("%a, %b %d, %Y") %>) at <%= @checkpoint.goal.response_question %> ?
                         <p>
                         </td>
                         </tr>
