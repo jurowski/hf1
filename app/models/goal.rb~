@@ -62,6 +62,7 @@ class Goal < ActiveRecord::Base
       end
   end  
 
+
   def date_created
       tcreated = self.created_at
 
@@ -593,7 +594,7 @@ class Goal < ActiveRecord::Base
           arr_sorry.push(["Ok. Hey, every day is a brand new day, right #{self.user.first_name}?"])
           arr_sorry.push(["Well, it happens, #{self.user.first_name}. One day is all you need to start a new streak!"])
           arr_sorry.push(["Ok #{self.user.first_name}. One thing that works well for a lot of people: before you go to bed at night, write down in a journal your plan to succeed the next day. It works surprisingly well!"])
-          arr_sorry.push(["Alright #{self.user.first_name}. Have you thought about what kept you from succeeding, and how might be able to change that?"])
+          arr_sorry.push(["Alright #{self.user.first_name}. Have you thought about what kept you from succeeding, and how you might be able to change that?"])
         else
           if self.days_since_first_checkpoint >= 7
             last_7_days_count = self.success_count_during_past_n_days(7)
@@ -639,7 +640,9 @@ class Goal < ActiveRecord::Base
     end
   end
 
-  def create_checkpoint_if_needed(reporting_date)
+  def create_checkpoint_if_needed(reporting_date_string)
+    reporting_date = reporting_date_string.to_date
+    logger.info("sgj:reporting_date =" + reporting_date.to_s)
     checkpoint = Checkpoint.find(:first, :conditions => "goal_id = '#{self.id}' and checkin_date = '#{reporting_date}'")
 
     if !checkpoint
@@ -654,22 +657,24 @@ class Goal < ActiveRecord::Base
     return checkpoint
   end
 
-  def update_checkpoint(reporting_date, status, comment = "")
+## blah
+  def update_checkpoint(reporting_date_string, status, comment = "")
+    reporting_date = reporting_date_string.to_date
     success = true
-    begin
+    #begin
         ### Not sure why this was there twice
         ###self.create_checkpoint_if_needed(reporting_date)
         checkpoint = self.create_checkpoint_if_needed(reporting_date)
         success = checkpoint.update_status(status, comment)
-    rescue
-        success = false
-        logger.error "SGJ:error in update_checkpoint"
-    end
+    #rescue
+    #    success = false
+    #    logger.error "SGJ:error in update_checkpoint"
+    #end
     return success
   end
 
-  def is_this_a_relevant_day(check_date)
-
+  def is_this_a_relevant_day(check_date_string)
+    check_date = check_date_string.to_date
     ### do not allow creation of checkpoints prior to the original start date
     if self.first_start_date != nil
       if check_date < self.start

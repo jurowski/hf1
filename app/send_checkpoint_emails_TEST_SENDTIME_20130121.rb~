@@ -2,6 +2,15 @@ require 'active_record'
 require 'date'
 require 'logger'
 class SendCheckpointEmails < ActiveRecord::Base
+
+  #### convert a date of this format: 2012-01-01 into a date of the same essential format but "not a string"
+  def to_date(date_string) 	   
+    arr_date_string = date_string.split("-")
+    date_string_as_date = Date.new(arr_date_string[0], arr_date_string[1], arr_date_string[2])
+    return date_string_as_date
+  end
+
+
   # This script emails people who have checkins due on their goals
 
 
@@ -42,7 +51,7 @@ class SendCheckpointEmails < ActiveRecord::Base
     send_emails = 1
 
     test_user_id1 = "44"
-    test_user_id2 = "44"
+    test_user_id2 = "83430"
   end
 
 
@@ -530,7 +539,11 @@ class SendCheckpointEmails < ActiveRecord::Base
             
             ### 20110320 ... modified to allow for toggling of "send separate emails if i choose"
             #if @goals_additional.size == 1
-            if @goals_additional.size == 1 or user.combine_daily_emails == 0
+
+            ### 20130123 ... since these are time-specific check-ins, just combine them always if they have same-time check-ins
+            #if @goals_additional.size == 1 or user.combine_daily_emails == 0
+            if @goals_additional.size == 1
+
               #### This user only has one matching goal,
               #### OR This user wants one email per goal,
               ####  so proceed normally with a single goal email
@@ -546,9 +559,10 @@ class SendCheckpointEmails < ActiveRecord::Base
                     @stat.checkpointemailssent = @stat.checkpointemailssent + 1
                     @stat.save
                     checkpoint.status = 'email queued'
-                    if checkpoint.save
-                      #puts "Checkpoint was successfully updated to 'email queued'."
-                    end                
+                    checkpoint.save
+                    #if checkpoint.save
+                    # #puts "Checkpoint was successfully updated to 'email queued'."
+                    #end                
                     #puts "start notifier deliver"
                     if send_emails == 1
                       sent_successfully = true
@@ -648,9 +662,11 @@ class SendCheckpointEmails < ActiveRecord::Base
                     #puts "Updating #{goal_additional.user.email}'s goal #{goal_additional.id}, checkpoint of #{checkin_date}."
                     for checkpoint in @checkpoints
                       checkpoint.status = 'email queued'
-                      if checkpoint.save
-                        #puts "SUCCESS Checkpoint was successfully updated to 'email queued'."
-                      end                
+                      checkpoint.save
+
+                      #if checkpoint.save
+                      # #puts "SUCCESS Checkpoint was successfully updated to 'email queued'."
+                      #end                
                     end            
                   end              
                   if limit_one == 0

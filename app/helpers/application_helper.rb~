@@ -46,13 +46,6 @@ module ApplicationHelper
     return dnow
   end
 
-  #### convert a date of this format: 2012-01-01 into a date of the same essential format but "not a string"
-  def to_date(date_string) 	   
-    arr_date_string = date_string.split("-")
-    date_string_as_date = Date.new(arr_date_string[0], arr_date_string[1], arr_date_string[2])
-    return date_string_as_date
-  end
-
 
   def arr_all_habitforge_supporting_members
       supporting_members = User.find(:all, :conditions => "kill_ads_until is not null and kill_ads_until >= '#{current_user.dtoday}'")

@@ -1,0 +1,40 @@
+require "logger"
+class Checkpoint < ActiveRecord::Base
+  belongs_to :goal
+  validates_length_of :status, :minimum => 2
+  validates_inclusion_of :status, :in => ["no", "yes", "email sent", "email failure", "email not yet sent", "email queued"]
+  validates_uniqueness_of :checkin_date, :scope => :goal_id
+
+### blah
+  def update_status(status, comment = "")
+      success = true
+      #begin    
+        self.status = status
+        self.comment = comment
+        self.save
+        if self.goal != nil
+            ### it would be nil if the goal had been deleted w/out the checkpoints being deleted
+            ### this does seem to happen somehow now and then
+        
+            self.goal.create_checkpoints_where_missing
+            self.goal.remove_if_duplicates(self.checkin_date)
+            self.goal.update_last_status_and_date(self)
+            self.goal.reset_start_date_if_needed
+            self.goal.update_daysstraight
+            self.goal.update_longest_run
+            self.goal.update_if_habit_established
+            self.goal.update_stats ### also updates last_stats_badge
+            self.goal.auto_extend_3_weeks_if_monitoring
+            self.goal.update_bets_success_rates
+        else
+            success = false
+        end
+      #rescue
+      #  success = false
+      # logger.error "SGJ:error in update_status(status)"
+      #end
+      return success
+  end
+
+
+end

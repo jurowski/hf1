@@ -62,6 +62,7 @@ class Goal < ActiveRecord::Base
       end
   end  
 
+
   def date_created
       tcreated = self.created_at
 
@@ -639,7 +640,9 @@ class Goal < ActiveRecord::Base
     end
   end
 
-  def create_checkpoint_if_needed(reporting_date)
+  def create_checkpoint_if_needed(reporting_date_string)
+    reporting_date = reporting_date_string.to_date
+    logger.info("sgj:reporting_date =" + reporting_date.to_s)
     checkpoint = Checkpoint.find(:first, :conditions => "goal_id = '#{self.id}' and checkin_date = '#{reporting_date}'")
 
     if !checkpoint
@@ -654,7 +657,8 @@ class Goal < ActiveRecord::Base
     return checkpoint
   end
 
-  def update_checkpoint(reporting_date, status, comment = "")
+  def update_checkpoint(reporting_date_string, status, comment = "")
+    reporting_date = reporting_date_string.to_date
     success = true
     begin
         ### Not sure why this was there twice
@@ -668,8 +672,8 @@ class Goal < ActiveRecord::Base
     return success
   end
 
-  def is_this_a_relevant_day(check_date)
-
+  def is_this_a_relevant_day(check_date_string)
+    check_date = check_date_string.to_date
     ### do not allow creation of checkpoints prior to the original start date
     if self.first_start_date != nil
       if check_date < self.start
