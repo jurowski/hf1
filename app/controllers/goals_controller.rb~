@@ -555,8 +555,15 @@ logger.debug "SGJ2 2 #{goal.title}(#{goal.id}) #{goal.daysstraight} daysstraight
 
           if (@goal.status == "start" or @goal.status == "monitor")
           
+            start_day_offset = 1
+            if params[:start_today] and params[:start_today] == "yes"
+              start_day_offset = 0
+            end
+
             ### Set the standard dates
-            @goal.start = dnow + 1
+            @goal.start = dnow + start_day_offset
+
+
             @goal.stop = @goal.start + @goal.days_to_form_a_habit
   
 	    @goal.first_start_date = @goal.start
@@ -764,10 +771,7 @@ logger.debug "SGJ2 2 #{goal.title}(#{goal.id}) #{goal.daysstraight} daysstraight
             
             
             ##### SET THE HOUR THAT THE REMINDERS SHOULD GO OUT FOR THIS GOAL #############
-            @goal.usersendhour = 1
-
-
-
+            #@goal.usersendhour = 1
             if @goal.user.email == "jurowski@gmail.com" or @goal.user.email == "jurowski@pediatrics.wisc.edu"
 	      puts "___ testing custom user send hour, so not assigning usersendhour here unless nil"
               if @goal.usersendhour == nil

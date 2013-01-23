@@ -106,19 +106,6 @@ class SendCheckpointEmails < ActiveRecord::Base
     tlimit7 = tnow - (7 * 3600)
     tlimit8 = tnow - (8 * 3600)
     #tlimit9 = tnow - (9 * 3600)
-    #tlimit10 = tnow - (10 * 3600)
-    #tlimit11 = tnow - (11 * 3600)
-    #tlimit12 = tnow - (12 * 3600)
-    #tlimit13 = tnow - (13 * 3600)
-    #tlimit14 = tnow - (14 * 3600)
-    #tlimit15 = tnow - (15 * 3600)
-    #tlimit16 = tnow - (16 * 3600)
-    #tlimit17 = tnow - (17 * 3600)
-    #tlimit18 = tnow - (18 * 3600)
-    #tlimit19 = tnow - (19 * 3600)
-    #tlimit20 = tnow - (20 * 3600)
-
-
 
     tlimit1_k = tlimit1.strftime("%k").to_i #hour (24-hour format, w/ no leading zeroes)
     tlimit2_k = tlimit2.strftime("%k").to_i
@@ -129,19 +116,6 @@ class SendCheckpointEmails < ActiveRecord::Base
     tlimit7_k = tlimit7.strftime("%k").to_i
     tlimit8_k = tlimit8.strftime("%k").to_i
     #tlimit9_k = tlimit9.strftime("%k").to_i
-    #tlimit10_k = tlimit10.strftime("%k").to_i
-    #tlimit11_k = tlimit11.strftime("%k").to_i
-    #tlimit12_k = tlimit12.strftime("%k").to_i
-    #tlimit13_k = tlimit13.strftime("%k").to_i
-    #tlimit14_k = tlimit14.strftime("%k").to_i
-    #tlimit15_k = tlimit15.strftime("%k").to_i
-    #tlimit16_k = tlimit16.strftime("%k").to_i
-    #tlimit17_k = tlimit17.strftime("%k").to_i
-    #tlimit18_k = tlimit18.strftime("%k").to_i
-    #tlimit19_k = tlimit19.strftime("%k").to_i
-    #tlimit20_k = tlimit20.strftime("%k").to_i
-
-
     
     tnow_Y = tnow.strftime("%Y").to_i #year, 4 digits
     tnow_m = tnow.strftime("%m").to_i #month of the year
@@ -201,7 +175,17 @@ class SendCheckpointEmails < ActiveRecord::Base
 
 
 
-
+    ######################################################################################    
+    ######################################################################################
+    ######################################################################################
+    ######################################################################################
+    ######################################################################################
+    #####     START CREATE CHECKPOINTS
+    ######################################################################################
+    ######################################################################################
+    ######################################################################################
+    ######################################################################################
+    ######################################################################################
     user_conditions = ""
     if testing == 1 ### assuming adminuseremail of "jurowski@gmail.com" or "jurowski@pediatrics.wisc.edu"
       user_conditions = "id = '#{test_user_id1}' or id = '#{test_user_id2}'"
@@ -233,17 +217,7 @@ class SendCheckpointEmails < ActiveRecord::Base
       tlimit7 = tnow - (7 * 3600)
       tlimit8 = tnow - (8 * 3600)
       #tlimit9 = tnow - (9 * 3600)
-      #tlimit10 = tnow - (10 * 3600)
-      #tlimit11 = tnow - (11 * 3600)
-      #tlimit12 = tnow - (12 * 3600)
-      #tlimit13 = tnow - (13 * 3600)
-      #tlimit14 = tnow - (14 * 3600)
-      #tlimit15 = tnow - (15 * 3600)
-      #tlimit16 = tnow - (16 * 3600)
-      #tlimit17 = tnow - (17 * 3600)
-      #tlimit18 = tnow - (18 * 3600)
-      #tlimit19 = tnow - (19 * 3600)
-      #tlimit20 = tnow - (20 * 3600)
+
 
       tlimit1_k = tlimit1.strftime("%k").to_i #hour (24-hour format, w/ no leading zeroes)
       tlimit2_k = tlimit2.strftime("%k").to_i
@@ -254,17 +228,6 @@ class SendCheckpointEmails < ActiveRecord::Base
       tlimit7_k = tlimit7.strftime("%k").to_i
       tlimit8_k = tlimit8.strftime("%k").to_i
       #tlimit9_k = tlimit9.strftime("%k").to_i
-      #tlimit10_k = tlimit10.strftime("%k").to_i
-      #tlimit11_k = tlimit11.strftime("%k").to_i
-      #tlimit12_k = tlimit12.strftime("%k").to_i
-      #tlimit13_k = tlimit13.strftime("%k").to_i
-      #tlimit14_k = tlimit14.strftime("%k").to_i
-      #tlimit15_k = tlimit15.strftime("%k").to_i
-      #tlimit16_k = tlimit16.strftime("%k").to_i
-      #tlimit17_k = tlimit17.strftime("%k").to_i
-      #tlimit18_k = tlimit18.strftime("%k").to_i
-      #tlimit19_k = tlimit19.strftime("%k").to_i
-      #tlimit20_k = tlimit20.strftime("%k").to_i
       
       tnow_Y = tnow.strftime("%Y").to_i #year, 4 digits
       tnow_m = tnow.strftime("%m").to_i #month of the year
@@ -348,24 +311,7 @@ class SendCheckpointEmails < ActiveRecord::Base
       #goal_conditions = goal_conditions + "usersendhour = '#{tnow_k}'"      
       #goal_conditions = goal_conditions + " or usersendhour = '#{tlimit1_k}'"
       #goal_conditions = goal_conditions + " or usersendhour = '#{tlimit2_k}'"
-      #goal_conditions = goal_conditions + " or usersendhour = '#{tlimit3_k}'"      
-      #goal_conditions = goal_conditions + " or usersendhour = '#{tlimit4_k}'"      
-      #goal_conditions = goal_conditions + " or usersendhour = '#{tlimit5_k}'"      
-      #goal_conditions = goal_conditions + " or usersendhour = '#{tlimit6_k}'"      
-      #goal_conditions = goal_conditions + " or usersendhour = '#{tlimit7_k}'"      
-      #goal_conditions = goal_conditions + " or usersendhour = '#{tlimit8_k}'"      
-      #goal_conditions = goal_conditions + " or usersendhour = '#{tlimit9_k}'"      
-      #goal_conditions = goal_conditions + " or usersendhour = '#{tlimit10_k}'"      
-      #goal_conditions = goal_conditions + " or usersendhour = '#{tlimit11_k}'"      
-      #goal_conditions = goal_conditions + " or usersendhour = '#{tlimit12_k}'"      
-      #goal_conditions = goal_conditions + " or usersendhour = '#{tlimit13_k}'"      
-      #goal_conditions = goal_conditions + " or usersendhour = '#{tlimit14_k}'"      
-      #goal_conditions = goal_conditions + " or usersendhour = '#{tlimit15_k}'"      
-      #goal_conditions = goal_conditions + " or usersendhour = '#{tlimit16_k}'"      
-      #goal_conditions = goal_conditions + " or usersendhour = '#{tlimit17_k}'"      
-      #goal_conditions = goal_conditions + " or usersendhour = '#{tlimit18_k}'"      
-      #goal_conditions = goal_conditions + " or usersendhour = '#{tlimit19_k}'"      
-      #goal_conditions = goal_conditions + " or usersendhour = '#{tlimit20_k}'"      
+      #goal_conditions = goal_conditions + " or usersendhour = '#{tlimit3_k}'"           
       #goal_conditions = goal_conditions + ")"
       
       @goals = Goal.find(:all, :conditions => goal_conditions)
@@ -413,67 +359,27 @@ class SendCheckpointEmails < ActiveRecord::Base
         ###################
       end
     end
-    
-
-
-    ##### _______________________________________________________________________________________________________________________________________________________________________________
-    #####               |                         ------------------          C L I E N T   T I M E            ------------------                                                       |
-    ##### Server Time   _________________________________________________________________________________________________________________________________________________________________
-    #####   (-0600)     |               01 (1am)              |               02 (2am)               |                03 (3am)               |            04 (4am)                      |
-    ##### 			      	_________________________________________________________________________________________________________________________________________________________________
-    #####				        |											                      	Format: [ServerSendHour (client GMT;client day)]																	                                |
-    ##### _______________________________________________________________________________________________________________________________________________________________________________
-    ##### at 00 (12am)  | 00 (-0500;today)                    |  23 (-0400, -0430 and -0330;today)   |  22 (-0300;today)                     |  21 (-0200;today)                        |
-    ##### _______________________________________________________________________________________________________________________________________________________________________________    
-    ##### at 01 (01am)  | 01 (-0600;today)                    |  00 (-0500;today)                    |  23 (-0400, -0430 and -0330;today)    |  22 (-0300;today)                        |
-    ##### _______________________________________________________________________________________________________________________________________________________________________________    
-    ##### at 02 (02am)  | 02 (-0700;today)                    |  01 (-0600;today)                    |  00 (-0500;today)                     |  23 (-0400, -0430 and -0330;today)       |
-    ##### _______________________________________________________________________________________________________________________________________________________________________________    
-    ##### at 03 (03am)  | 03 (-0800;today)                    |  02 (-0700;today)                    |  01 (-0600;today)                     |  00 (-0500;today)                        | 
-    ##### _______________________________________________________________________________________________________________________________________________________________________________
-    ##### at 04 (04am)  | 04 (-0900;today)                    |  03 (-0800;today)                    |  02 (-0700;today)                     |  01 (-0600;today)                        |
-    ##### _______________________________________________________________________________________________________________________________________________________________________________
-    ##### at 05 (05am)  | 05 (+1400;tomorrow and -1000;today) |  04 (-0900;today)                    |  03 (-0800;today)                     |  02 (-0700;today)                        |
-    ##### _______________________________________________________________________________________________________________________________________________________________________________
-    ##### at 06 (06am)  | 06 (+1300;tomorrow and -1100;today) |  05 (+1400;tomorrow and -1000;today) |  04 (-0900;today)                     |  03 (-0800;today)                        |
-    ##### _______________________________________________________________________________________________________________________________________________________________________________    
-    ##### at 07 (07am)  | 07 (+1200;tomorrow and -1200;today) |  06 (+1300;tomorrow and -1100;today) |  05 (+1400;tomorrow and -1000;today)  |  04 (-0900;today)                        |
-    ##### _______________________________________________________________________________________________________________________________________________________________________________
-    ##### at 08 (08am)  | 08 (+1100;tomorrow)                 |  07 (+1200;tomorrow and -1200;today) |  06 (+1300;tomorrow and -1100;today)  |  05 (+1400;tomorrow and -1000;today)     |
-    ##### _______________________________________________________________________________________________________________________________________________________________________________
-    ##### at 09 (09am)  | 09 (+1000, +0930;tomorrow)          |  08 (+1100;tomorrow)                 |  07 (+1200;tomorrow and -1200;today)  |  06 (+1300;tomorrow and -1100;today)     |
-    ##### _______________________________________________________________________________________________________________________________________________________________________________
-    ##### at 10 (10am)  | 10 (+0900;tomorrow)                 | 09 (+1000, +0930;tomorrow)           |  08 (+1100;tomorrow)                  |  07 (+1200;tomorrow and -1200;today)     |
-    ##### _______________________________________________________________________________________________________________________________________________________________________________
-    ##### at 11 (11am)  | 11 (+0800;tomorrow)                 |  10 (+0900;tomorrow)                 | 09 (+1000, +0930;tomorrow)            |  08 (+1100;tomorrow)                     |
-    ##### _______________________________________________________________________________________________________________________________________________________________________________
-    ##### at 12 (12pm)  | 12 (+0700;tomorrow)                 |  11 (+0800;tomorrow)                 |  10 (+0900;tomorrow)                  | 09 (+1000, +0930;tomorrow)               |
-    ##### _______________________________________________________________________________________________________________________________________________________________________________
-    ##### at 13 (1pm)   | 13 (+0600, +0545, +0530;tomorrow)   |  12 (+0700;tomorrow)                 |  11 (+0800;tomorrow)                  |  10 (+0900;tomorrow)                     |
-    ##### _______________________________________________________________________________________________________________________________________________________________________________
-    ##### at 14 (2pm)   | 14 (+0500 and +0430;tomorrow)       | 13 (+0600, +0545, +0530;tomorrow)    |  12 (+0700;tomorrow)                  |  11 (+0800;tomorrow)                     |
-    ##### _______________________________________________________________________________________________________________________________________________________________________________
-    ##### at 15 (3pm)   | 15 (+0400 and +0330;tomorrow)       | 14 (+0500 and +0430;tomorrow)        | 13 (+0600, +0545, +0530;tomorrow)     |  12 (+0700;tomorrow)                     |
-    ##### _______________________________________________________________________________________________________________________________________________________________________________
-    ##### at 16 (4pm)   | 16 (+0300;tomorrow)                 | 15 (+0400 and +0330;tomorrow)        | 14 (+0500 and +0430;tomorrow)         | 13 (+0600, +0545, +0530;tomorrow)        |
-    ##### _______________________________________________________________________________________________________________________________________________________________________________
-    ##### at 17 (5pm)   | 17 (+0200;tomorrow)                 |  16 (+0300;tomorrow)                 | 15 (+0400 and +0330;tomorrow)         | 14 (+0500 and +0430;tomorrow)            |
-    ##### _______________________________________________________________________________________________________________________________________________________________________________
-    ##### at 18 (6pm)   | 18 (+0100;tomorrow)                 |  17 (+0200;tomorrow)                 |  16 (+0300;tomorrow)                  | 15 (+0400 and +0330;tomorrow)            |
-    ##### _______________________________________________________________________________________________________________________________________________________________________________
-    ##### at 19 (7pm)   | 19 (+0000;tomorrow)                 |  18 (+0100;tomorrow)                 |  17 (+0200;tomorrow)                  |  16 (+0300;tomorrow)                     |
-    ##### _______________________________________________________________________________________________________________________________________________________________________________
-    ##### at 20 (8pm)   | 20 (-0100;tomorrow)                 |  19 (+0000;tomorrow)                 |  18 (+0100;tomorrow)                  |  17 (+0200;tomorrow)                     |
-    ##### _______________________________________________________________________________________________________________________________________________________________________________
-    ##### at 21 (9pm)   | 21 (-0200;tomorrow)                 |  20 (-0100;tomorrow)                 |  19 (+0000;tomorrow)                  |  18 (+0100;tomorrow)                     |
-    ##### _______________________________________________________________________________________________________________________________________________________________________________
-    ##### at 22 (10pm)  | 22 (-0300;tomorrow)                 |  21 (-0200;tomorrow)                 |  20 (-0100;tomorrow)                  |  19 (+0000;tomorrow)                     |
-    ##### _______________________________________________________________________________________________________________________________________________________________________________
-    ##### at 23 (11pm)  | 23 (-0400,-0430 and -0330;tomorrow) |  22 (-0300;tomorrow)                 |  21 (-0200;tomorrow)                  |  20 (-0100;tomorrow)                     |
-    ##### _______________________________________________________________________________________________________________________________________________________________________________
+    ######################################################################################
+    ######################################################################################
+    #####     END CREATE CHECKPOINTS
+    ######################################################################################
+    ######################################################################################
+    ######################################################################################
+    ######################################################################################
 
 
 
+
+
+
+
+    ######################################################################################
+    ######################################################################################
+    ######################################################################################
+    ######################################################################################
+    #####     START SEND EMAILS
+    ######################################################################################
+    ######################################################################################
 
     ###################
     ### Send email to users with goals that have a checkpoint of 'email not yet sent'
@@ -502,19 +408,6 @@ class SendCheckpointEmails < ActiveRecord::Base
       tlimit7 = tnow - (3 * 3600)
       tlimit8 = tnow - (3 * 3600)
       #tlimit9 = tnow - (3 * 3600)
-      #tlimit10 = tnow - (3 * 3600)
-      #tlimit11 = tnow - (3 * 3600)
-      #tlimit12 = tnow - (3 * 3600)
-      #tlimit13 = tnow - (3 * 3600)
-      #tlimit14 = tnow - (3 * 3600)
-      #tlimit15 = tnow - (3 * 3600)
-      #tlimit16 = tnow - (3 * 3600)
-      #tlimit17 = tnow - (3 * 3600)
-      #tlimit18 = tnow - (3 * 3600)
-      #tlimit19 = tnow - (3 * 3600)
-      #tlimit20 = tnow - (3 * 3600)
-
-
 
       tlimit1_k = tlimit1.strftime("%k").to_i #hour (24-hour format, w/ no leading zeroes)
       tlimit2_k = tlimit2.strftime("%k").to_i
@@ -525,17 +418,6 @@ class SendCheckpointEmails < ActiveRecord::Base
       tlimit7_k = tlimit7.strftime("%k").to_i
       tlimit8_k = tlimit8.strftime("%k").to_i
       #tlimit9_k = tlimit9.strftime("%k").to_i
-      #tlimit10_k = tlimit10.strftime("%k").to_i
-      #tlimit11_k = tlimit11.strftime("%k").to_i
-      #tlimit12_k = tlimit12.strftime("%k").to_i
-      #tlimit13_k = tlimit13.strftime("%k").to_i
-      #tlimit14_k = tlimit14.strftime("%k").to_i
-      #tlimit15_k = tlimit15.strftime("%k").to_i
-      #tlimit16_k = tlimit16.strftime("%k").to_i
-      #tlimit17_k = tlimit17.strftime("%k").to_i
-      #tlimit18_k = tlimit18.strftime("%k").to_i
-      #tlimit19_k = tlimit19.strftime("%k").to_i
-      #tlimit20_k = tlimit20.strftime("%k").to_i
 
       tnow_Y = tnow.strftime("%Y").to_i #year, 4 digits
       tnow_m = tnow.strftime("%m").to_i #month of the year
@@ -622,28 +504,14 @@ class SendCheckpointEmails < ActiveRecord::Base
 
       ### same-day check-ins
       goal_conditions = goal_conditions + " and ("
-      goal_conditions = goal_conditions + "usersendhour <= '#{tnow_k}'"      
+
+      ### just leave as "equal to" instead of ">=" ... if something happens where an hour or more is skipped,
+      ### the separate "previous day" script will pick it up 
+      goal_conditions = goal_conditions + "usersendhour = '#{tnow_k}'"      
 
       #goal_conditions = goal_conditions + " or usersendhour = '#{tlimit1_k}'"
       #goal_conditions = goal_conditions + " or usersendhour = '#{tlimit2_k}'"
-      #goal_conditions = goal_conditions + " or usersendhour = '#{tlimit3_k}'"      
-      #goal_conditions = goal_conditions + " or usersendhour = '#{tlimit4_k}'"      
-      #goal_conditions = goal_conditions + " or usersendhour = '#{tlimit5_k}'"      
-      #goal_conditions = goal_conditions + " or usersendhour = '#{tlimit6_k}'"      
-      #goal_conditions = goal_conditions + " or usersendhour = '#{tlimit7_k}'"      
-      #goal_conditions = goal_conditions + " or usersendhour = '#{tlimit8_k}'"      
-      #goal_conditions = goal_conditions + " or usersendhour = '#{tlimit9_k}'"      
-      #goal_conditions = goal_conditions + " or usersendhour = '#{tlimit10_k}'"      
-      #goal_conditions = goal_conditions + " or usersendhour = '#{tlimit11_k}'"      
-      #goal_conditions = goal_conditions + " or usersendhour = '#{tlimit12_k}'"      
-      #goal_conditions = goal_conditions + " or usersendhour = '#{tlimit13_k}'"      
-      #goal_conditions = goal_conditions + " or usersendhour = '#{tlimit14_k}'"      
-      #goal_conditions = goal_conditions + " or usersendhour = '#{tlimit15_k}'"      
-      #goal_conditions = goal_conditions + " or usersendhour = '#{tlimit16_k}'"      
-      #goal_conditions = goal_conditions + " or usersendhour = '#{tlimit17_k}'"      
-      #goal_conditions = goal_conditions + " or usersendhour = '#{tlimit18_k}'"      
-      #goal_conditions = goal_conditions + " or usersendhour = '#{tlimit19_k}'"      
-      #goal_conditions = goal_conditions + " or usersendhour = '#{tlimit20_k}'"      
+      #goal_conditions = goal_conditions + " or usersendhour = '#{tlimit3_k}'"          
       goal_conditions = goal_conditions + ")"
 
       @goals = Goal.find(:all, :conditions => goal_conditions)
@@ -657,12 +525,16 @@ class SendCheckpointEmails < ActiveRecord::Base
             #puts "checkpoint awaiting an email for #{goal.id} on #{checkin_date}"
             ######################################################################################################################################
             ### Now see if that same user has additional goals
-            ######################################################################################################################################
+  ######################################################################################################################################
             @goals_additional = Goal.find(:all, :conditions => goal_conditions)
             
             ### 20110320 ... modified to allow for toggling of "send separate emails if i choose"
             #if @goals_additional.size == 1
-            if @goals_additional.size == 1 or user.combine_daily_emails == 0
+
+            ### 20130123 ... since these are time-specific check-ins, just combine them always if they have same-time check-ins
+            #if @goals_additional.size == 1 or user.combine_daily_emails == 0
+            if @goals_additional.size == 1
+
               #### This user only has one matching goal,
               #### OR This user wants one email per goal,
               ####  so proceed normally with a single goal email
@@ -678,9 +550,10 @@ class SendCheckpointEmails < ActiveRecord::Base
                     @stat.checkpointemailssent = @stat.checkpointemailssent + 1
                     @stat.save
                     checkpoint.status = 'email queued'
-                    if checkpoint.save
-                      #puts "Checkpoint was successfully updated to 'email queued'."
-                    end                
+                    checkpoint.save
+                    #if checkpoint.save
+                    # #puts "Checkpoint was successfully updated to 'email queued'."
+                    #end                
                     #puts "start notifier deliver"
                     if send_emails == 1
                       sent_successfully = true
@@ -694,6 +567,7 @@ class SendCheckpointEmails < ActiveRecord::Base
                             sent_successfully = true
                         rescue
                             checkpoint.status = 'email failure'
+                            checkpoint.save
                             the_message = "SGJerror failed to send single sameday CLEARWORTH checkpoint email to " + checkpoint.goal.user.email 
                             puts the_message
                             logger.error the_message
@@ -708,6 +582,7 @@ class SendCheckpointEmails < ActiveRecord::Base
                             sent_successfully = true
                         rescue
                             checkpoint.status = 'email failure'
+                            checkpoint.save
                             the_message = "SGJerror failed to send single sameday FORITTOBE checkpoint email to " + checkpoint.goal.user.email 
                             puts the_message
                             logger.error the_message
@@ -715,13 +590,20 @@ class SendCheckpointEmails < ActiveRecord::Base
                       else
                         begin
                             ### risky to put this before the actual send, but can't figure out why it fails every few weeks when it used to be "after" the actual send
+	                    logger.info("sgj:about to set checkpoint status to 'email sent' and then save")
                             checkpoint.status = 'email sent'
                             checkpoint.save
+	                    logger.info("sgj:successfully set checkpoint status to 'email sent' and saved")
 
+
+	                    logger.info("sgj:about to email checkppoint email to " + checkpoint.goal.user.email)
                             Notifier.deliver_checkpoint_notification_sameday(checkpoint) # sends the email                                
+	                    logger.info("sgj:back from sending email checkppoint email to " + checkpoint.goal.user.email)
+
                             sent_successfully = true
                         rescue
                             checkpoint.status = 'email failure'
+                            checkpoint.save
                             the_message = "SGJerror failed to send single sameday HF checkpoint email to " + checkpoint.goal.user.email 
                             puts the_message
                             logger.error the_message
@@ -771,9 +653,11 @@ class SendCheckpointEmails < ActiveRecord::Base
                     #puts "Updating #{goal_additional.user.email}'s goal #{goal_additional.id}, checkpoint of #{checkin_date}."
                     for checkpoint in @checkpoints
                       checkpoint.status = 'email queued'
-                      if checkpoint.save
-                        #puts "SUCCESS Checkpoint was successfully updated to 'email queued'."
-                      end                
+                      checkpoint.save
+
+                      #if checkpoint.save
+                      # #puts "SUCCESS Checkpoint was successfully updated to 'email queued'."
+                      #end                
                     end            
                   end              
                   if limit_one == 0
@@ -864,6 +748,13 @@ class SendCheckpointEmails < ActiveRecord::Base
         end
       end
     end
+    ######################################################################################
+    ######################################################################################
+    #####     END SEND EMAILS
+    ######################################################################################
+    ######################################################################################
+    ######################################################################################
+    ######################################################################################
     
 
 

@@ -219,7 +219,7 @@ show_monitor_option_details = 0
   </td>
   </tr>
 
-<% if current_user.email == "jurowski@gmail.com" or curren_user.email == "jurowski@pediatrics.wisc.edu" %>
+<% if current_user.email == "jurowski@gmail.com" or current_user.email == "jurowski@pediatrics.wisc.edu" %>
   <tr><td colspan=10>&nbsp</td>
   </tr>
   <tr>
@@ -412,7 +412,12 @@ show_monitor_option_details = 0
 </div>
 
 
-  
+<% if @ca == "new" %>
+  When will you start doing it? <select id="delay_start_for_this_many_days" name="delay_start_for_this_many_days">
+	<option value="0">Start Today</option>
+	<option value="1">Start Tomorrow</option>
+  </select>
+<% end %>
   
   
 <% 
@@ -490,6 +495,8 @@ end
 
   <br>
   <br>
+
+
   <input disabled="disabled" id="publish" name="publish" type="checkbox" value="true" checked />
 <% else %>
   <%= check_box(:goal, :publish, options = {}, checked_value = "true", unchecked_value = "false") %>

@@ -555,8 +555,15 @@ logger.debug "SGJ2 2 #{goal.title}(#{goal.id}) #{goal.daysstraight} daysstraight
 
           if (@goal.status == "start" or @goal.status == "monitor")
           
+            start_day_offset = 1
+            if params[:delay_start_for_this_many_days] 
+              start_day_offset = params[:delay_start_for_this_many_days].to_i
+            end
+
             ### Set the standard dates
-            @goal.start = dnow + 1
+            @goal.start = dnow + start_day_offset
+
+
             @goal.stop = @goal.start + @goal.days_to_form_a_habit
   
 	    @goal.first_start_date = @goal.start

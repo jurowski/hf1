@@ -9,13 +9,23 @@ send multis for goals @ same checktime
 
 
 
-!!!! DOH !!!! you just told autoupdatemultiple to not display things that are after usersendhour
-BUT ... you should only restrict that if today's date is equal to the check-in date ... meaning, if today is after the checkout day
-you should not restrict
 
 ---------------------
 NEXT
 ---------------------
+checkins not coming b/c
+nope, flossing was set to email queued again
+-------------------------------------------
+checkin not showing overlay... and not registering b/c why? b/c sameday?
+--------------------------------------------
+allow habits to start TODAY
+---------------------------
+see if we can add flags to the ruby scripts: 1. run for a particular email 2. jump hours 3. jump days
+-------------------------------
+add achievemint to the template plan
+------------------------------
+add in flylady habit of the month as a "suggestion" or "template"
+--------------------------
 when advertising your success rate to a team member
 And when calculating team success rate
 Change the success rate based on their goal
