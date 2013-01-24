@@ -501,8 +501,8 @@ class UsersController < ApplicationController
     
     if @user.update_attributes(params[:user])
 
-      if session[:sfm_virtin_need_to_confirm_timezone]
-        session[:sfm_virtin_need_to_confirm_timezone] = false
+      if session[:sfm_virgin_need_to_confirm_timezone]
+        session[:sfm_virgin_need_to_confirm_timezone] = false
       end
 
       @user.password_temp = ""
@@ -511,13 +511,24 @@ class UsersController < ApplicationController
       @goals = Goal.find(:all, :conditions => "user_id = '#{@user.id}'")
       for goal in @goals
         puts "_______________"
-        goal.usersendhour = 1
+
+        if goal.user.email == "jurowski@gmail.com" or goal.user.email == "jurowski@pediatrics.wisc.edu"
+	  puts "___ testing custom user send hour, so not assigning usersendhour here unless nil"
+          if goal.usersendhour == nil
+	    goal.usersendhour = 1
+          end
+        else
+          goal.usersendhour = 1
+	end
+
         Time.zone = goal.user.time_zone
         utcoffset = Time.zone.formatted_offset(false)
         offset_seconds = Time.zone.now.gmt_offset 
+
         send_time = Time.utc(2000, "jan", 1, goal.usersendhour, 0, 0) #2000-01-01 01:00:00 UTC
         central_time_offset = 21600 #add this in since we're doing UTC
         server_time = send_time - offset_seconds - central_time_offset
+
         puts "User lives in #{goal.user.time_zone} timezone, UTC offset of #{utcoffset} (#{offset_seconds} seconds)." #Save this value in each goal, and use that to do checkpoint searches w/ cronjob
         puts "For them to get an email at #{send_time.strftime('%k')} their time, the server would have to send it at #{server_time.strftime('%k')} Central time"
         goal.serversendhour = server_time.strftime('%k')

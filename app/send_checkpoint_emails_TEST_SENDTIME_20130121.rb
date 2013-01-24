@@ -10,8 +10,8 @@ class SendCheckpointEmails < ActiveRecord::Base
 
   if `uname -n`.strip == 'adv.adventurino.com'
     #### HABITFORGE SETTINGS ON VPS
-    #testing = 0 #send emails to everyone as needed
-    testing = 1 #only send emails to "jurowski@gmail.com/jurowski@pediatrics.wisc.edu" as needed
+    testing = 0 #send emails to everyone as needed
+    #testing = 1 #only send emails to "jurowski@gmail.com/jurowski@pediatrics.wisc.edu" as needed
 
 
     adjust_server_hour = 0 ### this server is listing its time as GMT -0600
@@ -511,6 +511,7 @@ class SendCheckpointEmails < ActiveRecord::Base
       ### just leave as "equal to" instead of ">=" ... if something happens where an hour or more is skipped,
       ### the separate "previous day" script will pick it up 
       goal_conditions = goal_conditions + "usersendhour = '#{tnow_k}'"      
+      goal_conditions = goal_conditions + " and usersendhour != '1'"      
 
       #goal_conditions = goal_conditions + " or usersendhour = '#{tlimit1_k}'"
       #goal_conditions = goal_conditions + " or usersendhour = '#{tlimit2_k}'"

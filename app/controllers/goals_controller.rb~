@@ -556,8 +556,8 @@ logger.debug "SGJ2 2 #{goal.title}(#{goal.id}) #{goal.daysstraight} daysstraight
           if (@goal.status == "start" or @goal.status == "monitor")
           
             start_day_offset = 1
-            if params[:start_today] and params[:start_today] == "yes"
-              start_day_offset = 0
+            if params[:delay_start_for_this_many_days] 
+              start_day_offset = params[:delay_start_for_this_many_days].to_i
             end
 
             ### Set the standard dates

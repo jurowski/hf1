@@ -417,6 +417,7 @@ show_monitor_option_details = 0
 	<option value="0">Start Today</option>
 	<option value="1">Start Tomorrow</option>
   </select>
+  <br>
 <% end %>
   
   
