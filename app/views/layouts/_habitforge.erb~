@@ -415,10 +415,12 @@ table.customtable td:first-child 	{ background:#eee; text-align:left; padding-le
 
 
 <% if @cn == "user_sessions" and @ca == "new" and !params[:skip_intro] %>
+
 		    <center>
+<img src="/images/logos_bw.jpg" height=75px />
  		    <div style="background-color:#eeeeee;">
                     	<h5><span style="font-size:175%;">
-<a href="http://www.forbes.com/sites/tjmccue/2013/01/07/11-stellar-tools-to-keep-new-years-resolutions/" target="_blank"  >"Stellar Tool to Keep New Year's Resolutions"</a></br> --Forbes</span>
+<a href="http://www.forbes.com/sites/tjmccue/2013/01/07/11-stellar-tools-to-keep-new-years-resolutions/" target="_blank"  >"Stellar Tool to Keep New Year's Resolutions"</a>--Forbes</span>
 
 <!-- Now Rated #5 on the list of <a href="http://www.cio.com/slideshow/detail/65063/20-Awesome-Cloud-Services-You-ve-Never-Heard-of#slide5" target="_blank"  >"Awesome Cloud Services You've Never Heard a"</br><PCWorld> --and CIO com.span</Of> -->
 
@@ -1404,4 +1406,10 @@ var pageTracker = _gat._getTracker("UA-10841267-1");
 pageTracker._trackPageview();
 } catch(err) {}
 </script>
+
+    <% if request.env['HTTP_USER_AGENT'] =~ /[^\(]*[^\)]Firefox\// %>
+    <% end %>
+    <% if request.env['HTTP_USER_AGENT'] =~ /[^\(]*[^\)]Chrome\// %>
+    <% end %>
+
 </body></html>
