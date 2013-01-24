@@ -118,6 +118,7 @@ class RemoveSlackersFromTeams < ActiveRecord::Base
       puts "total_removed = #{total_removed.to_s}"
   end
 
+  ##########
   ### REMOVE ANY OLD INACTIVE TEAMGOAL RECORDS
   ### REMOVE ANY INACTIVE GOALS FROM TEAM
   inactive_teamgoals = Teamgoal.find(:all, :conditions => "active != '1' ")
@@ -129,7 +130,7 @@ class RemoveSlackersFromTeams < ActiveRecord::Base
     end
     teamgoal.delete
   end
-
+  ##########
 
   ### END REMOVE SLACKERS ###
   #######################################
