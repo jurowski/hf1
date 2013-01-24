@@ -417,7 +417,7 @@ table.customtable td:first-child 	{ background:#eee; text-align:left; padding-le
 <% if @cn == "user_sessions" and @ca == "new" and !params[:skip_intro] %>
 
 		    <center>
-<img src="/images/logos_bw.jpg" height=75px />
+<img src="/images/logos_bw.jpg" height=65px />
  		    <div style="background-color:#eeeeee;">
                     	<h5><span style="font-size:175%;">
 <a href="http://www.forbes.com/sites/tjmccue/2013/01/07/11-stellar-tools-to-keep-new-years-resolutions/" target="_blank"  >"Stellar Tool to Keep New Year's Resolutions"</a>--Forbes</span>
