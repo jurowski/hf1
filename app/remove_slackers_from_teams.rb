@@ -176,7 +176,7 @@ class RemoveSlackersFromTeams < ActiveRecord::Base
 
   ###########################################################
   ### Merge Teams... fill any qty 3 teams w/ qty 1 teams
-  big_teams = Team.find(:all, :conditions => "has_openings = '1' and qty_current = '3'")
+  big_teams = Team.find(:all, :conditions => "has_opening = '1' and qty_current = '3'")
   big_teams.each do |big_team|
     small_team = Team.find(:first, :conditions => "'qty_current = '1'")
     if small_team
