@@ -123,7 +123,7 @@ class RemoveSlackersFromTeams < ActiveRecord::Base
   ### REMOVE ANY INACTIVE GOALS FROM TEAM
   inactive_teamgoals = Teamgoal.find(:all, :conditions => "active != '1' ")
   inactive_teamgoals.each do |teamgoal|
-    goal = Goal.find(teamgoal.goal_id)
+    goal = Goal.find(:first, :conditions => "id = '#{teamgoal.goal_id}'")
     if goal
       goal.team_id = nil
       goal.save

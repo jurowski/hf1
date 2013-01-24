@@ -164,6 +164,14 @@ class RemoveSlackersFromTeams < ActiveRecord::Base
 
 
 
+  ###########################################################
+  ##### DELETE ANY TEAMS THAT HAVE QTY CURRENT of 0 #########
+  teams = team.find(:all, :conditions => "qty_current = '0'")
+  teams.each do |team|
+    team.destroy
+  end
+  ##### END DELETE ANY TEAMS THAT HAVE QTY CURRENT of 0 #####
+  ###########################################################
 
   
   puts "end of script"
