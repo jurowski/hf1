@@ -93,12 +93,12 @@ class RemoveSlackersFromTeams < ActiveRecord::Base
                 team.save  
             end  
             
-            #puts "will delete teamgoal for nil goal of #{teamgoal.goal_id}"
-            #teamgoal.destroy
+            puts "will delete teamgoal for nil goal of #{teamgoal.goal_id}"
+            teamgoal.destroy
 
-            puts "will de-activate teamgoal for goal of #{teamgoal.goal_id}"
-            teamgoal.active = 0
-            teamgoal.save      
+            #puts "will de-activate teamgoal for goal of #{teamgoal.goal_id}"
+            #teamgoal.active = 0
+            t#eamgoal.save      
 
             ### Modify and Save Goal
             goal.team_id = nil
@@ -117,6 +117,21 @@ class RemoveSlackersFromTeams < ActiveRecord::Base
   else
       puts "total_removed = #{total_removed.to_s}"
   end
+
+  ##########
+  ### REMOVE ANY OLD INACTIVE TEAMGOAL RECORDS
+  ### REMOVE ANY INACTIVE GOALS FROM TEAM
+  inactive_teamgoals = Teamgoal.find(:all, :conditions => "active != '1' ")
+  inactive_teamgoals.each do |teamgoal|
+    goal = Goal.find(teamgoal.goal_id)
+    if goal
+      goal.team_id = nil
+      goal.save
+    end
+    teamgoal.delete
+  end
+  ##########
+
   ### END REMOVE SLACKERS ###
   #######################################
 
