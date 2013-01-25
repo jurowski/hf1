@@ -426,7 +426,14 @@ table.customtable td:first-child 	{ background:#eee; text-align:left; padding-le
 
 		    <center>
 <img src="/images/logos_bw.jpg" height=65px />
+                    	<h5><span style="font-size:175%;">
+<a href="http://www.forbes.com/sites/tjmccue/2013/01/07/11-stellar-tools-to-keep-new-years-resolutions/" target="_blank"  >"Stellar Tool to Keep New Year's Resolutions"</a>--Forbes.com</span>
+
+<!-- Now Rated #5 on the list of <a href="http://www.cio.com/slideshow/detail/65063/20-Awesome-Cloud-Services-You-ve-Never-Heard-of#slide5" target="_blank"  >"Awesome Cloud Services You've Never Heard a"</br><PCWorld> --and CIO com.span</Of> -->
+
+			</h5>
                     </center>
+
 <% end %>
 
 <div id="spinner" class="spinner_overlay" style="display:none;">
@@ -475,7 +482,7 @@ end
         <div class="grid_3 logo"> 
             <a href="/">
                 <% if landing_page %>
-                  <img src="/images/habitforge_logo.png" alt="logo" height="65px"/>
+                  <img src="/images/habitforge_logo.png" alt="logo" height="65px" style="margin-top:-20px;"/>
                 <% else %>
                   <img src="/images/habitforge_logo.png" alt="logo" height="50px"/>
                 <% end %>
@@ -677,32 +684,31 @@ end
 
 <% if landing_page %>
 
+
+
     <!--Start Featured Section - Integrated Galleriffic Slider -->
-    <div class="featuredbgDOH">
+    <div class="featuredbg">
         <div class="container_12">
 
-                                    <div class="caption"><!--Slide Title-->
+                                    <div class="caption" ><!--Slide Title-->
+					<div style="margin-top:5px;">
 					<center>
-                                        <h2>Your Proven Tool for Rapidly and Easily Improving Your Daily Habits</h2>
-                    	<h5><span style="font-size:175%;">
-<a href="http://www.forbes.com/sites/tjmccue/2013/01/07/11-stellar-tools-to-keep-new-years-resolutions/" target="_blank"  >"Stellar Tool to Keep New Year's Resolutions"</a>--Forbes</span>
-
-<!-- Now Rated #5 on the list of <a href="http://www.cio.com/slideshow/detail/65063/20-Awesome-Cloud-Services-You-ve-Never-Heard-of#slide5" target="_blank"  >"Awesome Cloud Services You've Never Heard a"</br><PCWorld> --and CIO com.span</Of> -->
-
-			</h5>
-
-
-
+                                        <h2>Your Proven Tool for Rapidly and Easily Improving Your Daily Habits
+<br><span style="font-size:.8em;">Use this free tool to build the habits you’ve always wanted.</span>					
+					</h2>
+					<br>
 					</center>
+					</div>
                                     </div>
 	</div>
         <div class="container_12">
+	    <div style="margin-top:-45px;">
             <div class="grid_5">
 		    <%= render :partial => "layouts/testimonials"  %>
             </div>
             <div id="caption" class="grid_7">
 
-                  <DIV style="border-radius:20px;-moz-border-radius:20px;border-width:thin;border-color:#FFCC00;background-color:#ffffff;border-style:solid;border-width:3px;padding:10px 10px 10px 10px;width:550px;height:220px;margin-left:-30px;margin-top:30px;">
+                  <DIV style="border-radius:20px;-moz-border-radius:20px;border-width:thin;border-color:#FFCC00;background-color:#ffffff;border-style:solid;border-width:3px;padding:10px 10px 10px 10px;width:550px;height:150px;margin-left:-30px;margin-top:30px;">
 
 
                 <div class="grid_7 thumbslider"><!--Thumbnails and Full Content-->
@@ -716,9 +722,7 @@ end
                                 <div class="caption">
                                     <div style="margin-top:90px;margin-left:50px;font-weight:bold;font-size:22px;color:#000000;text-shadow: none;">
  
-					<h3>Use this free tool to build the habits you’ve always wanted.</h3>
 
-<br>	
 What could you do daily to improve your life?</div>
 
 				 <% if session[:sfm] == "v2" %>
@@ -744,8 +748,15 @@ What could you do daily to improve your life?</div>
 		  </div>
 		    </div>
 
+
+<div style="margin-top:-40px;">
+<center><img src="/images/odometer_hf1.jpg" /></center>
+</div>
+
+
                 </div>    
             </div>
+ 	    </div>
 
 
 
@@ -763,8 +774,6 @@ What could you do daily to improve your life?</div>
 
 
 <br>
-<center><img src="/images/odometer_hf1.jpg" /></center>
-
     <div class="clear"></div>
     <div class="container_12">
         <div class="grid_12" style="margin-top:0px;" >
