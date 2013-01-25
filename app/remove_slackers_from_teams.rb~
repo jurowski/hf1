@@ -178,7 +178,7 @@ class RemoveSlackersFromTeams < ActiveRecord::Base
   ### Merge Teams... fill any qty 3 teams w/ qty 1 teams
   big_teams = Team.find(:all, :conditions => "has_opening = '1' and qty_current = '3'")
   big_teams.each do |big_team|
-    small_team = Team.find(:first, :conditions => "qty_current = '1'")
+    small_team = Team.find(:first, :conditions => "category_name = '#{big_team.category_name}' and qty_current = '1'")
     if small_team
       small_teamgoal = Teamgoal.find(:first, :conditions => "team_id = '#{small_team.id}'")
       if small_teamgoal
@@ -207,7 +207,7 @@ class RemoveSlackersFromTeams < ActiveRecord::Base
   ### Merge Teams... fill any qty 2 teams w/ qty 1 teams
   big_teams = Team.find(:all, :conditions => "has_opening = '1' and qty_current = '2'")
   big_teams.each do |big_team|
-    small_team = Team.find(:first, :conditions => "qty_current = '1'")
+    small_team = Team.find(:first, :conditions => "category_name = '#{big_team.category_name}' and qty_current = '1'")
     if small_team
       small_teamgoal = Teamgoal.find(:first, :conditions => "team_id = '#{small_team.id}'")
       if small_teamgoal
