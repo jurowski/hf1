@@ -34,6 +34,7 @@ class RemoveSlackersFromTeams < ActiveRecord::Base
   four_days_ago = dnow - 4
   ten_days_ago = dnow - 10
   ######
+
   
   ###########################################
   ###      REMOVE TEAM_ID FROM HOLD GOALS ###
@@ -44,6 +45,31 @@ class RemoveSlackersFromTeams < ActiveRecord::Base
   end
   ###  END REMOVE TEAM_ID FROM HOLD GOALS ###
   ###########################################
+
+
+  ###########################################################
+  ##### DELETE ANY TEAMGOALS THAT HAVE NO TEAM or NO GOAL or NO ACTIVE GOAL
+  teamgoals = Teamgoal.find(:all)
+  teamgoals.each do |teamgoal|
+    destroy_this_teamgoal = false
+    team = Team.find(:first, :conditions => "id = '#{teamgoal.team_id}'")
+    goal = Goal.find(:first, :conditions => "id = '#{teamgoal.goal_id}'")
+    if goal and goal.status == 'hold'
+      goal.team_id = nil
+      goal.save
+      destroy_this_teamgoal = true
+    end
+
+    if !goal or !team
+      destroy_this_teamgoal = true
+    end
+
+    if destroy_this_teamgoal == true
+      teamgoal.destroy
+    end
+  end
+  ##### END DELETE ANY TEAMGOALS THAT HAVE NO TEAM or NO GOAL or NO ACTIVE GOAL
+  ###########################################################
 
 
   #######################################
@@ -161,7 +187,7 @@ class RemoveSlackersFromTeams < ActiveRecord::Base
   end
   #### END ADJUST TEAM SIZE IF INCORRECT ####
   ###########################################
-
+  
 
 
   ###########################################################
