@@ -21,25 +21,34 @@
 &nbsp
 </div>
 
+<div style="margin-top:0px;margin-left:50px;">
                                     <form action="/quicksignup_v2">
 
-                                    <input type="submit" value="Sign Up Free!" class="button dark huge">
+                                    <input type="submit" value="Sign Up Free!" class="start_now" style="height:40px;"> &nbsp
 
                                     </div>
     <% if request.env['HTTP_USER_AGENT'] =~ /[^\(]*[^\)]Firefox\// %>
-                                    <DIV style="filter:alpha(opacity=100);opacity:1.0;border-radius:20px;-moz-border-radius:20px;border-width:none;border-color:#eeeeee;background-color:#ffffff;border-style:solid;margin:-65px 0px 0px 0px;padding:5px 5px 5px 160px;width:360px;">
+                                    <DIV style="filter:alpha(opacity=100);opacity:1.0;border-radius:20px;-moz-border-radius:20px;border-width:none;border-color:none;background-color:none;border-style:solid;margin:-58px 0px 0px 0px;padding:5px 5px 5px 200px;width:390px;">
     <% else %>
-                                    <DIV style="filter:alpha(opacity=100);opacity:1.0;border-radius:20px;-moz-border-radius:20px;border-width:none;border-color:#eeeeee;background-color:#ffffff;border-style:solid;margin:-55px 0px 0px 0px;padding:5px 5px 5px 160px;width:350px;">
+                                    <DIV style="filter:alpha(opacity=100);opacity:1.0;border-radius:20px;-moz-border-radius:20px;border-width:none;border-color:none;background-color:none;border-style:solid;margin:-55px 0px 0px 0px;padding:5px 5px 5px 200px;width:390px;">
 
     <% end %>
 
     <% if request.env['HTTP_USER_AGENT'] =~ /[^\(]*[^\)]Chrome\// %>
     <% end %>
 
-                                        <input type="text" name="email" style="font:2em Arial sans-serif;margin-top:14px;" placeholder="Enter your email address...">
+                                        &nbsp 
+
+
+    <% if request.env['HTTP_USER_AGENT'] =~ /[^\(]*[^\)]Firefox\// %>
+<input type="text" name="email" style="padding-left:5px;font:2em Arial sans-serif;margin-top:14px;" placeholder="Enter your email address..." size="18">
+    <% else %>
+<input type="text" name="email" style="padding-left:5px;font:2em Arial sans-serif;margin-top:14px;" placeholder="Enter your email address..." size="20">
+
+    <% end %>
                                         <br>
                                         &nbsp
                                     </div>
 				    <input type="hidden" name="form_submitted" value=1>
                                     </form>
-
+</div>

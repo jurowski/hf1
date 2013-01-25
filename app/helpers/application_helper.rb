@@ -54,6 +54,7 @@ module ApplicationHelper
   end
 
 
+
   def arr_all_habitforge_supporting_members
       supporting_members = User.find(:all, :conditions => "kill_ads_until is not null and kill_ads_until >= '#{current_user.dtoday}'")
       return supporting_members

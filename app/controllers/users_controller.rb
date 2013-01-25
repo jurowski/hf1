@@ -11,6 +11,54 @@ class UsersController < ApplicationController
   before_filter :require_user, :only => [:show, :edit, :update, :index, :destroy]
   #before_filter :require_user, :only => [:show, :edit, :update]
 
+
+  def stats_increment_new_user
+
+      ### GET DATE NOW ###
+      jump_forward_days = 0
+
+      tnow = Time.now
+      tnow_Y = tnow.strftime("%Y").to_i #year, 4 digits
+      tnow_m = tnow.strftime("%m").to_i #month of the year
+      tnow_d = tnow.strftime("%d").to_i #day of the month
+      tnow_H = tnow.strftime("%H").to_i #hour (24-hour format)
+      tnow_M = tnow.strftime("%M").to_i #minute of the hour
+      #puts tnow_Y + tnow_m + tnow_d  
+      puts "Current timestamp is #{tnow.to_s}"
+      dnow = Date.new(tnow_Y, tnow_m, tnow_d) + jump_forward_days
+      dyesterday = dnow - 1
+      d2daysago = dnow - 2
+      ######
+
+
+      @stats = Stat.find(:all, :conditions => "recorddate = '#{get_dnow}' and recordhour = '#{tnow_H}'")
+
+      @stat = Stat.new
+      if @stats.size > 0
+        for stat in @stats
+          @stat =  stat
+        end
+      end
+      @stat.recorddate = dnow
+      @stat.recordhour = tnow_H
+
+
+      #######
+      # enter actions here
+      #######
+
+      if @stat.usersnewcreated == nil
+        @stat.usersnewcreated = 0
+      end
+      @stat.usersnewcreated = @stat.usersnewcreated + 1
+
+      #######
+      # end actions
+      #######
+
+      @stat.save
+  end
+
   def valid_email( value )
     begin
      return false if value == ''
@@ -278,6 +326,9 @@ class UsersController < ApplicationController
       user.update_number_active_goals = 1
 
       if user.save 
+
+        stats_increment_new_user
+
         ### do something like the below once we know what their goal is
         #@user = user
         #Notifier.deliver_widget_user_creation(@user) # sends the email
@@ -408,53 +459,11 @@ class UsersController < ApplicationController
         logger.error("sgj:email confirmation for user creation did not send")
       end
       
-      ### GET DATE NOW ###
-      jump_forward_days = 0
-
-      tnow = Time.now
-      tnow_Y = tnow.strftime("%Y").to_i #year, 4 digits
-      tnow_m = tnow.strftime("%m").to_i #month of the year
-      tnow_d = tnow.strftime("%d").to_i #day of the month
-      tnow_H = tnow.strftime("%H").to_i #hour (24-hour format)
-      tnow_M = tnow.strftime("%M").to_i #minute of the hour
-      #puts tnow_Y + tnow_m + tnow_d  
-      puts "Current timestamp is #{tnow.to_s}"
-      dnow = Date.new(tnow_Y, tnow_m, tnow_d) + jump_forward_days
-      dyesterday = dnow - 1
-      d2daysago = dnow - 2
-      ######
-
-
 
       ### FIELDS
       #stat recorddate:date recordhour:integer usercount:integer goalcount:integer goalactivecount:integer goalsnewcreated:integer usersnewcreated:integer checkpointemailssent:integer
 
-      @stats = Stat.find(:all, :conditions => "recorddate = '#{dnow}' and recordhour = '#{tnow_H}'")
-
-      @stat = Stat.new
-      if @stats.size > 0
-        for stat in @stats
-          @stat =  stat
-        end
-      end
-      @stat.recorddate = dnow
-      @stat.recordhour = tnow_H
-
-
-      #######
-      # enter actions here
-      #######
-
-      if @stat.usersnewcreated == nil
-        @stat.usersnewcreated = 0
-      end
-      @stat.usersnewcreated = @stat.usersnewcreated + 1
-
-      #######
-      # end actions
-      #######
-
-      @stat.save
+      stats_increment_new_user
       
       #Notifier.deliver_signup_notification(@user) # sends the email
       

@@ -25,26 +25,26 @@ h1 {
 	margin:0;
 	font-size:36px;
 	font-family: 'Droid Serif', georgia, serif;
-	text-shadow:#fff 0px 0px 0px;
+	text-shadow:#fff 0px 2px 0px;
 }
 h2  {
 	padding:0 0 20px 0;
 	letter-spacing:-1px;
 	font-size:28px;
 	font-family: 'Droid Serif', georgia, serif;
-	text-shadow:#fff 0px 0px 0px;
+	text-shadow:#fff 0px 1px 0px;
 }
 h3 {
 	padding:0 0 10px 0;
 	font-size:18px;
 	font-family: 'Droid Serif', georgia, serif;
-	text-shadow:#fff 0px 0px 0px;
+	text-shadow:#fff 0px 1px 0px;
 }
 h4 {
 	padding:10px 0;
 	font-size:14px;
 	font-family: 'Droid Sans', arial, sans-serif;
-	text-shadow:#fff 0px 0px 0px;
+	text-shadow:#fff 0px 1px 0px;
 	font-weight:bold;
 	color:#000;
 	line-height:22px;
@@ -54,7 +54,7 @@ h5 {
 	font-size:10px;
 	font-family: 'Droid Serif', georgia, serif;
 	font-style:italic;
-	text-shadow:#fff 0px 0px 0px;
+	text-shadow:#fff 0px 1px 0px;
 	color:#555555;
 }
 
@@ -63,7 +63,7 @@ h6 {
 	font-size:14px;
 	font-family: 'Droid Serif', georgia, serif;
 	font-style:italic;
-	text-shadow:#fff 0px 0px 0px;
+	text-shadow:#fff 0px 1px 0px;
 	color:#555555;
 }
 
@@ -189,7 +189,7 @@ acronym, abbr {
 	text-decoration: none;
 	word-spacing: 0em;
 	line-height: 1.2;
-	text-shadow: 0px, 0px, 0px, #ffffff;
+	text-shadow: 0px, 1px, 1px, #ffffff;
 }
 
 /*-----------------------------------------------------------------------------------*/
@@ -252,7 +252,7 @@ p, ul, ol, .button {
 	margin:0;
 	padding:0 0 1.25em 0;
 	color:#555555;
-	text-shadow:#fff 0px 0px 0px;
+	text-shadow:#fff 0px 1px 0px;
 }
 
 /* Divider Element **************************/
@@ -276,7 +276,7 @@ p, ul, ol, .button {
 	letter-spacing:1px;
 	margin-bottom:0px;
 	padding-bottom:0px;
-	text-shadow:#000 0px 0px 0px;
+	text-shadow:#000 0px -1px 0px;
 }
 /* Pricing Section **************************/
 .pricing h1 {
@@ -343,7 +343,7 @@ p, ul, ol, .button {
 	font-style:italic;
 	color:#999999;
 	font-family: 'Droid Serif', georgia, serif;
-	text-shadow:#000 0px 0px 0px;
+	text-shadow:#000 0px -1px 0px;
 	font-weight:normal;
 }
 
@@ -352,14 +352,14 @@ p, ul, ol, .button {
 	padding:0px;
 	line-height:28px;
 	font-weight:bold;
-	text-shadow:#000 0px 0px 0px;
+	text-shadow:#000 0px -1px 0px;
 }
 
 .footer .note h4 {
 	font-style:italic;
 	color:#333333;
 	font-family: 'Droid Serif', georgia, serif;
-	text-shadow:#fff 0px 0px 0px;
+	text-shadow:#fff 0px -1px 0px;
 	font-weight:normal;
 }
 .footer h1, .footer h2, .footer h3, .footer h4, .footer h5, .footer h6 {
@@ -367,7 +367,7 @@ p, ul, ol, .button {
 }
 .footer p, .footer ul, .footer ol, .footer.button, .credits p, .credits ul, .credits ol, .credits.button, .footer textarea, .footer input {
 	color:#999999;
-	text-shadow:#000 0px 0px 0px;
+	text-shadow:#000 0px -1px 0px;
 	font-family: 'Droid Sans', arial, serif;
 }
 
@@ -378,7 +378,7 @@ p, ul, ol, .button {
 	letter-spacing:-1px;
 	font-size:28px;
 	font-family: 'Droid Serif', georgia, serif;
-	text-shadow:#fff 0px 0px 0px;
+	text-shadow:#fff 0px 1px 0px;
 	color:#333;
 }
 
@@ -398,7 +398,7 @@ p, ul, ol, .button {
 }
 /* Tabs Typography **************************/
 .ui-tabs-vertical .ui-tabs-nav li a span {
-	text-shadow:#fff 0px 0px 0px;
+	text-shadow:#fff 0px 1px 0px;
 	color:#555555;
 	font-weight:normal;
 	text-decoration:none;
