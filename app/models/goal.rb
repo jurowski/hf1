@@ -597,7 +597,7 @@ class Goal < ActiveRecord::Base
           arr_sorry.push(["Alright #{self.user.first_name}. Have you thought about what kept you from succeeding, and how you might be able to change that?"])
         else
           #if self.days_since_first_checkpoint >= 7
-          #  last_7_days_count = self.success_count_during_past_n_days(7)
+            last_7_days_count = self.success_count_during_past_n_days(7)
           #  if self.get_goal_days_per_week >= last_7_days_count
           #    arr_sorry.push(["No worries #{self.user.first_name}. You've already done it #{last_7_days_count} days out of the last 7 days!"])
           #    arr_sorry.push(["No problem, #{self.user.first_name}, 'cause you've already succeeded #{last_7_days_count} days out of the last 7 days!"])
