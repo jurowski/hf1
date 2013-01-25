@@ -657,19 +657,18 @@ class Goal < ActiveRecord::Base
     return checkpoint
   end
 
-## blah
   def update_checkpoint(reporting_date_string, status, comment = "")
     reporting_date = reporting_date_string.to_date
     success = true
-    #begin
+    begin
         ### Not sure why this was there twice
         ###self.create_checkpoint_if_needed(reporting_date)
         checkpoint = self.create_checkpoint_if_needed(reporting_date)
         success = checkpoint.update_status(status, comment)
-    #rescue
-    #    success = false
-    #    logger.error "SGJ:error in update_checkpoint"
-    #end
+    rescue
+        success = false
+        logger.error "SGJ:error in update_checkpoint"
+    end
     return success
   end
 

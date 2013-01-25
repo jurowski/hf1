@@ -596,20 +596,20 @@ class Goal < ActiveRecord::Base
           arr_sorry.push(["Ok #{self.user.first_name}. One thing that works well for a lot of people: before you go to bed at night, write down in a journal your plan to succeed the next day. It works surprisingly well!"])
           arr_sorry.push(["Alright #{self.user.first_name}. Have you thought about what kept you from succeeding, and how you might be able to change that?"])
         else
-          if self.days_since_first_checkpoint >= 7
-            last_7_days_count = self.success_count_during_past_n_days(7)
-            if self.get_goal_days_per_week >= last_7_days_count
-              arr_sorry.push(["No worries #{self.user.first_name}. You've already done it #{last_7_days_count} days out of the last 7 days!"])
-              arr_sorry.push(["No problem, #{self.user.first_name}, 'cause you've already succeeded #{last_7_days_count} days out of the last 7 days!"])
+          #if self.days_since_first_checkpoint >= 7
+          #  last_7_days_count = self.success_count_during_past_n_days(7)
+          #  if self.get_goal_days_per_week >= last_7_days_count
+          #    arr_sorry.push(["No worries #{self.user.first_name}. You've already done it #{last_7_days_count} days out of the last 7 days!"])
+          #    arr_sorry.push(["No problem, #{self.user.first_name}, 'cause you've already succeeded #{last_7_days_count} days out of the last 7 days!"])
 
-            else
+          #  else
               arr_sorry.push(["Ok #{self.user.first_name}. During the last 7 days you've done it #{last_7_days_count} times. Try to hit #{self.get_goal_days_per_week} per week!"])
               arr_sorry.push(["Alright #{self.user.first_name}. Keep working toward #{self.get_goal_days_per_week} days a week, OK?"])
-            end
-          else
+          #  end
+          #else
             arr_sorry.push(["Ok #{self.user.first_name}. Just remember, try to hit #{self.get_goal_days_per_week} days out of the week."])
             arr_sorry.push(["Alright #{self.user.first_name}. Keep working toward #{self.get_goal_days_per_week} days a week, OK?"])
-          end
+          #end
 
 	end
 
