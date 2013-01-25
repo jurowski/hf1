@@ -439,7 +439,7 @@ if params[:sfm]
   session[:sfm] = params[:sfm]
 end
 if session[:sfm] == nil
-  session[:sfm] = "v1"
+  session[:sfm] = "v2"
 end 
 
 
@@ -473,7 +473,7 @@ end
         <!--Start Logo-->
         <div class="grid_3 logo"> 
             <a href="/">
-                <img src="/images/habitforge_logo.png" alt="logo" height="50px"/>
+                <img src="/images/habitforge_logo.png" alt="logo" height="65px"/>
             </a> 
 
 
@@ -680,8 +680,9 @@ end
     <!--Start Featured Section - Integrated Galleriffic Slider -->
     <div class="featuredbg">
         <div class="container_12">
-
-
+            <div class="grid_5" style="background-color:#eeeeee;">
+		    <%= render :partial => "layouts/testimonials"  %>
+            </div>
             <div id="caption" class="grid_7">
 
                 <div class="grid_7 thumbslider"><!--Thumbnails and Full Content-->
@@ -691,14 +692,12 @@ end
 
                                 <div class="caption"><!--Slide Text-->
                                     <div class="image-title"><!--Slide Title-->
-                                        <h2>It takes at least 21 days to form a habit.</h2>
+                                        <h2>Your Proven Tool for Rapidly and Easily <br><br>Improving Your Daily Habits</h2>
                                     </div>
                                     <div style="font-weight:bold;font-size:22px;color:#000000;text-shadow: none;">
-<br><span style="font-style:italic;font-size:75%;">1.2 Million Successful Days logged so far. </span>
-<br>
+<span style="font-style:italic;font-size:75%;">1.2 Million Successful Days logged so far. </span>
 <br>
 What could you do daily to improve your life?</div>
-                                    <br>
 
 				 <% if session[:sfm] == "v2" %>
 				    <!-- v2 Sales Funnel Model -->
@@ -727,17 +726,7 @@ What could you do daily to improve your life?</div>
 
 
 
-            <div class="grid_5">
-                    <div class="container_5">
-                            <div class="grid_5">
-                                <!--Begin Latest News Section-->
-                                <div class="grid_5">
-                                    <img src="/images/gear_thick.png" border="0" margin="0"  />
-                                </div>
-                            </div>
-                            <div class="clear"></div>
-                    </div>
-            </div>
+
             <div class="clear"></div>
         </div>
         <div class="featuredtop"></div>
@@ -864,7 +853,6 @@ Now Rated #5 on the list of <a href="http://www.cio.com/slideshow/detail/65063/2
     <% end %>
 
 
-    <%= render :partial => "layouts/testimonials"  %>
 
 
 
