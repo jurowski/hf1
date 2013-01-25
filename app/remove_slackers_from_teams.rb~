@@ -221,9 +221,17 @@ class RemoveSlackersFromTeams < ActiveRecord::Base
           big_team.save
 
           small_team.destroy
-        
+        else
+          puts "could not find goal"
+          small_teamgoal.destroy
+          small_team.destroy
         end
+      else
+        puts "could not find small_teamgoal"
+        small_team.destroy
       end
+    else
+      puts "could not find small_team of size 1"
     end
   end
   ### END Merge Teams... fill any qty 3 teams w/ qty 1 teams
