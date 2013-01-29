@@ -443,6 +443,34 @@ logger.debug "SGJ2 2 #{goal.title}(#{goal.id}) #{goal.daysstraight} daysstraight
       end
 
 
+          if @goal.daym == nil 
+            @goal.daym = true
+          end
+          if @goal.dayt == nil 
+            @goal.dayt = true
+          end
+          if @goal.dayw == nil 
+            @goal.dayw = true
+          end
+          if @goal.dayr == nil 
+            @goal.dayr = true
+          end
+          if @goal.dayf == nil 
+            @goal.dayf = true
+          end
+          if @goal.days == nil 
+            @goal.days = true
+          end
+          if @goal.dayn == nil 
+            @goal.dayn = true
+          end
+
+          if @goal.status != "hold" and @goal.daym and @goal.dayt and @goal.dayw and @goal.dayr and @goal.dayf and @goal.days and @goal.dayn and (@goal.goal_days_per_week == nil or @goal.goal_days_per_week == 7)
+            @goal.status = "start"
+          else
+            @goal.status = "monitor"
+          end
+
     
 
       ################################
@@ -517,27 +545,6 @@ logger.debug "SGJ2 2 #{goal.title}(#{goal.id}) #{goal.daysstraight} daysstraight
 
 
 
-          if @goal.daym == nil 
-            @goal.daym = true
-          end
-          if @goal.dayt == nil 
-            @goal.dayt = true
-          end
-          if @goal.dayw == nil 
-            @goal.dayw = true
-          end
-          if @goal.dayr == nil 
-            @goal.dayr = true
-          end
-          if @goal.dayf == nil 
-            @goal.dayf = true
-          end
-          if @goal.days == nil 
-            @goal.days = true
-          end
-          if @goal.dayn == nil 
-            @goal.dayn = true
-          end
 
 
           #########
@@ -817,6 +824,11 @@ logger.debug "SGJ2 2 #{goal.title}(#{goal.id}) #{goal.daysstraight} daysstraight
               @goal.dayn = true
             end
 
+            if @goal.status != hold and @goal.daym and @goal.dayt and @goal.dayw and @goal.dayr and @goal.dayf and @goal.days and @goal.dayn and (@goal.goal_days_per_week == nil or @goal.days_per_week == 7)
+              @goal.status = "start"
+            else
+              @goal.status = "monitor"
+            end
 
             @goal.save
             

@@ -1338,7 +1338,7 @@ end
 
 
 
-
+<% if session[:sfm_virgin] and session[:sfm_virgin] != true %>
 
     <div class="footer">
 
@@ -1415,9 +1415,11 @@ end
             <!--END Quick Footer Contact Form Section-->
             <div class="clear"></div>
 
-
-
         </div>
+
+
+
+
         <div class="footertexture"></div><!--Footer Top Texture Absolute Positioned-->
     </div>
 
@@ -1426,6 +1428,8 @@ end
 
 <% end %>
 
+
+<% end ### end if session[:sfm_virgin] == true %>
 
 <!--Credits Section-->
 <div class="credits">

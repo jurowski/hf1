@@ -3,7 +3,7 @@
 <% form_for(@goal) do |f| %>
     <%= f.error_messages %>
 
-
+    <input type="hidden" name="status" value="start">
 
     <%= render :partial => "form", :object => f %>
 

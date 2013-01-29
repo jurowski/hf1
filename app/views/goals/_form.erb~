@@ -79,28 +79,19 @@ show_monitor_option_details = 0
 %>
 
 
-<% if session[:sfm_virgin] == true and current_user.first_name == "unknown"%>
-  <% first_name_value = "" %>
-  <% 
-  if params[:first_name] 
-    first_name_value = params[:first_name]
-  end
-  %>
 
-  <span style="font:2em Arial sans-serif;margin-top:14px;">What's your first name?</span><input type="textbox" name="first_name" value="<%= first_name_value %>" placeholder="ex: Steven" style="font:2em Arial sans-serif;margin-top:14px;">
-<div >
-&nbsp
-<br>
-&nbsp
-</div>
-<% end %>
    
-<% if session[:sfm_virgin] == true %> 
-<h2>What is the first habit you'd like to create?</h2>
-<% end %>
 <br>
 <div class="success" style="width:800px;">
+
+
+
+<% if session[:sfm_virgin] == true %> 
+<h2>What is the first habit you'd like to create?</h2>
+<% else %>
 <h2>Email me daily and ask:</h2>
+<% end %>
+
   <table border=0>
   <tr>
   <td valign=top align=right nowrap>
@@ -110,11 +101,16 @@ show_monitor_option_details = 0
   </td>
   </tr>
   <tr>
+  <td colspan=3>
+  We will check in with you daily and ask:
+  </td>
+  <tr>
+  <tr>
   <td valign=top align=right nowrap>
   <h3>"Were you successful at &nbsp</h3>
   </td>
   <td nowrap>
-  <%= form.text_field :response_question, :class => 'autocomplete', 'data-autocomplete-url'=>autocomplete_for_goal_response_question_goals_path, :size => 40 %>
+  <%= form.text_field :response_question, :class => 'autocomplete', 'data-autocomplete-url'=>autocomplete_for_goal_response_question_goals_path, :size => 40 %> ?"
   &nbsp &nbsp &nbsp &nbsp &nbsp<p><i> Ex: walking for at least 20 minutes</i></p>
   </strong>
   </td>
@@ -219,7 +215,7 @@ show_monitor_option_details = 0
   </td>
   </tr>
 
-<% if current_user.email == "jurowski@gmail.com" or current_user.email == "jurowski@pediatrics.wisc.edu" %>
+<!-- if current_user.email == "jurowski@gmail.com" or current_user.email == "jurowski@pediatrics.wisc.edu" -->
   <tr><td colspan=10>&nbsp</td>
   </tr>
   <tr>
@@ -265,7 +261,7 @@ show_monitor_option_details = 0
 
   </td>
   </tr>
-<% end %>
+<!-- end -->
 
 
   <tr>
@@ -587,75 +583,29 @@ member(s) to send me a push each day. They can choose a "push messages" below to
 
 <% end ### end whether session[:sfm_virgin] == true %>
 
-
 </p>
 <br>
 <%= form.hidden_field :reminder_time, :value => :reminder_time %>
 
+</div>
 
-<h2>How often do you plan to do this?</h2>
-  <% if @ca != "edit" %>
-    <% if params["monitor"] or (params[:weekdays_only] and params[:weekdays_only] == "true") %>
 
-      <%
+Some habits are daily and others are only a few days a week.</h2>
+
+Is your habit a daily or a less frequent one?
+
+
+<% 
+show_monitor_option_details = false
+if @goal.status == "monitor" or params["monitor"] or (params[:weekdays_only] and params[:weekdays_only] == "true")
       if params[:weekdays_only] == "true"
         @goal.days = false
         @goal.dayn = false
         @goal.goal_days_per_week = 5
       end
-      show_monitor_option_details = 1
-      %>
-            <a href="/goals/new"><img src='/images/21days_deselected.png' border=0></a>
-            <img src='/images/monitor_selected.png' border=0>
-            <%= form.hidden_field :status, :value => "monitor" %>
-    <% else %>
-        <img src='/images/21days_selected.png' border=0>
-        <a href="/goals/new?monitor=1"><img src='/images/monitor_deselected.png' border=0></a>
-        <%= form.hidden_field :status, :value => "start" %>
-    <% end %>
+      show_monitor_option_details = true
+end
 
-  <%
-  end
-
-the_status = ""
-if @ca == "edit" %>
-
-    <%
-    the_status = "start"
-    changed = 0
-    if @goal.status == "monitor"
-        the_status = "monitor"
-    else
-        the_status = "start"
-    end
-    if params["monitor"]
-        the_status = "monitor"
-        changed = 1
-    end
-    if params["start"]
-        the_status = "start"
-        changed = 1
-    end
-    %>
-    <% if the_status == "monitor" %>
-        <a href="/goals/<%=@goal.id%>/edit?start=1">
-            <img src='/images/21days_deselected.png' border=0>
-        </a>
-        <img src='/images/monitor_selected.png' border=0>
-        <%= form.hidden_field :status, :value => "monitor" %>
-    <% end %>
-
-    <% if the_status == "start" %>
-        <% if changed == 1 and @goal.status == "monitor" %>
-            <font color="red">Note: Changing from "monitoring" to "21 days" starts you back at Day 1.</font>
-            <br>
-        <% end %>
-        <img src='/images/21days_selected.png' border=0>
-        <a href="/goals/<%=@goal.id%>/edit?monitor=1"><img src='/images/monitor_deselected.png' border=0></a>
-        <%= form.hidden_field :status, :value => "start" %>
-    <% end %>
-<% end %>
-<%
 @arr_goal_days_per_week = Array.new
 @arr_goal_days_per_week.push(["7", 7])
 @arr_goal_days_per_week.push(["6", 6])
@@ -667,8 +617,48 @@ if @ca == "edit" %>
 %>
 <br>
 
-<% if (@ca == "new" and params["monitor"] and show_monitor_option_details == 1) or (the_status == "monitor") %>
-    &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp <strong>I'm committed to succeeding at this 
+
+
+<% if show_monitor_option_details %>
+    <div id="daily" style="display:none;">
+      <input type='radio' disabled checked> Daily <%= link_to_function ("<input type='radio' disabled unchecked> Not Daily") {
+       |page| 
+       page.visual_effect :toggle_appear, "daily" 
+       page.visual_effect :toggle_appear, "not_daily" 
+      } 
+      %>
+    </div>
+
+  <div id="not_daily" style="display:block;">
+
+<% else %>
+
+    <div id="daily" style="display:block;">
+      <input type='radio' disabled checked> Daily <%= link_to_function ("<input type='radio' disabled unchecked> Not Daily") {
+       |page| 
+       page.visual_effect :toggle_appear, "daily" 
+       page.visual_effect :toggle_appear, "not_daily" 
+      } 
+      %>
+    </div>
+  <div id="not_daily" style="display:none;">
+<% end %>
+
+
+    <div id="daily" style="display:block;">
+      <%= link_to_function ("<input type='radio' disabled unchecked> Daily ") {
+       |page| 
+       page.visual_effect :toggle_appear, "daily" 
+       page.visual_effect :toggle_appear, "not_daily" 
+      } 
+      %><input type='radio' disabled checked> Not Daily 
+    </div>
+
+  <div class="notice">
+
+
+
+    &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp <strong>My goal is to succeed at this at least 
     <%= select(:goal, :goal_days_per_week, @arr_goal_days_per_week) %> 
     days each week.</strong>
     <br>
@@ -704,7 +694,10 @@ if @ca == "edit" %>
       <strong>Sun</strong> &nbsp;
 
 
-<% end %>
+  </div>
+</div
+
+
 
 <br>
 <br>
@@ -712,4 +705,3 @@ if @ca == "edit" %>
 
 
 
-<hr>
