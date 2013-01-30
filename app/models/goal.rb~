@@ -567,7 +567,7 @@ class Goal < ActiveRecord::Base
                 #output << "<h5>last tallied #{self.last_stats_badge_date}</h5>"
             end
             if self.desired_success_rate < 100
-              output << "*(relative to your goal of " + self.get_goal_days_per_week.to_s + " days per week)"
+              output << " (relative to your goal of " + self.get_goal_days_per_week.to_s + " days per week)"
             end
 
             output << "</p>"
