@@ -221,6 +221,18 @@ $(document).ready(function(){
 
 
 
+<% if landing_page or ( @ca == "new" and @cn == "goals" and session[:sfm_virgin]) %>
+
+<h1>CRAZYEGG!!!</h1>
+<script type="text/javascript">
+setTimeout(function(){var a=document.createElement("script");
+var b=document.getElementsByTagName("script")[0];
+a.src=document.location.protocol+"//dnn506yrbagrg.cloudfront.net/pages/scripts/0013/7909.js?"+Math.floor(new Date().getTime()/3600000);
+a.async=true;a.type="text/javascript";b.parentNode.insertBefore(a,b)}, 1);
+</script>
+
+<% end %>
+
 
 
 </head>
@@ -813,7 +825,7 @@ What could you do daily to improve your life?</div>
 </div>
 
 		    <center>
-                  <img src="/images/odometer_hf1.jpg" height="70px" />
+                  <img src="/images/odometer_hf1.jpg" height="80px" />
 			</center>
 
     <div class="clear"></div>
