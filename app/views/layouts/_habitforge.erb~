@@ -212,8 +212,8 @@ $(document).ready(function(){
     pager: false,
     mode: 'fade',
     auto: true,
-    pause: 2500,
-    adaptiveHeight: true
+    pause: 3000,
+    adaptiveHeight: false
   });
 });
 </script>
@@ -463,12 +463,6 @@ table.customtable td:first-child 	{ background:#eee; text-align:left; padding-le
 
 		    <center>
 <img src="/images/logos_bw.jpg" height=65px />
-                    	<h5><span style="font-size:175%;">
-<a href="http://www.forbes.com/sites/tjmccue/2013/01/07/11-stellar-tools-to-keep-new-years-resolutions/" target="_blank"  >"Stellar Tool to Keep New Year's Resolutions"</a>--Forbes.com</span>
-
-<!-- Now Rated #5 on the list of <a href="http://www.cio.com/slideshow/detail/65063/20-Awesome-Cloud-Services-You-ve-Never-Heard-of#slide5" target="_blank"  >"Awesome Cloud Services You've Never Heard a"</br><PCWorld> --and CIO com.span</Of> -->
-
-			</h5>
                     </center>
 
 <% end %>
@@ -740,7 +734,7 @@ end
 	</div>
         <div class="container_12">
 	    <div style="margin-top:-45px;">
-            <div class="grid_5" style="float:left;margin-top:30px;margin-left:-45px;">                    
+            <div class="grid_5" style="float:left;margin-top:40px;margin-left:-45px;">                    
 		    <%= render :partial => "layouts/testimonials"  %>
             </div>
             <div id="caption" class="grid_7" style="float:right;">
@@ -805,40 +799,62 @@ What could you do daily to improve your life?</div>
 
 
 <br>
+    <div class="clear"></div>
+
+<div>
+<div style="margin-top:-35px;float:right;margin-right:70px;">
+
+                    	<h5><span style="font-size:1.7em;"><br>
+
+<a href="http://www.cio.com/slideshow/detail/65063/20-Awesome-Cloud-Services-You-ve-Never-Heard-of#slide5" target="_blank"  >"Now Rated #5 on the list of Awesome Cloud Services You've Never Heard Of"</a>--PCWorld and CIO.com
+<br>
+
+<a href="http://www.forbes.com/sites/tjmccue/2013/01/07/11-stellar-tools-to-keep-new-years-resolutions/" target="_blank"  >"Stellar Tool to Keep New Year's Resolutions"</a>--Forbes.com</span>
+
+<!-- Now Rated #5 on the list of <a href="http://www.cio.com/slideshow/detail/65063/20-Awesome-Cloud-Services-You-ve-Never-Heard-of#slide5" target="_blank"  >"Awesome Cloud Services You've Never Heard a"</br><PCWorld> --and CIO com.span</Of> -->
+
+			</h5>
 
 
 
-<div style="margin-top:-0px;float:right;">
-  <img src="/images/odometer_hf1.jpg" />
 </div>
+
+<div style="margin-top:-40px;float:left;margin-left:220px;">
+
+  <img src="/images/odometer_hf1.jpg" height=70px />
+
+</div>
+
+</div>
+
     <div class="clear"></div>
     <div class="container_12">
-        <div class="grid_12" style="margin-top:0px;" >
+        <div class="grid_12" style="margin-top:20px;" >
             <!--Begin Latest Projects-->
-	    <div class="latest">
-                <div class="divider">
-                    <h6><span>3 Simple Steps</span></h6><!--Titled Divider-->
-                </div>
-                <div class="grid_3 alpha"><!--Projects Intro Section-->
+	    <div class="">
 
-                    <h3>Simple Accountability.</h3>
-                    <p>
+                <div class=""><!--Projects Intro Section-->
+		    <center>
+                    <h3 style="font-weight:900;font-size:1.7em;">Simple Accountability. 3 Simple Steps.<br>
+                    <span style="font-weight:normal;font-size:0.6em;">
                         We check in daily by email to see how you did the day before.
-                        You can either "Go solo" or "Join a Group" of people who are working on a similar goal as you.</p>
+                        <br>You can either "Go solo" or "Join a Group" of people who are working on a similar goal as you.</span></h3>
+		    </center>
                 </div>
-                <div class="grid_3">
+<br>
+                <div class="grid_4 alpha">
                 <!--Image Hover-->
-                    <h4>Step 1: Decide and Act</h4>
+                    <h4 style="font-size:1.3em;">1. Decide and Act</h4>
                     <div class="hover"><span><a href="/images/step1.png" target="_blank" rel="prettyPhoto[pp_gal]" title="Name the challenge."><img src="/images/step1.png" alt="thumbnail" width="210px" /> </a></span></div><!--Hover Effect with Background-->
                 </div>
-                <div class="grid_3">
+                <div class="grid_4">
                 <!--Image Hover-->
-                    <h4>Step 2: Check your email</h4>
+                    <h4 style="font-size:1.3em;">2. Check your email</h4>
                     <div class="hover"><span><a href="/images/step2.png" target="_blank" rel="prettyPhoto[pp_gal]" title="You can add caption to pictures."><img src="/images/step2.png" alt="Check in Daily by Email" height="155px" width="210px" /></a></span></div><!--Hover Effect with Background-->
                 </div>
-                <div class="grid_3 omega">
+                <div class="grid_4 omega">
                 <!--Image Hover-->
-                    <h4>Step 3: Succeed for 21 Days</h4>
+                    <h4 style="font-size:1.3em;">3. Succeed for 21 Days</h4>
                     <div class="hover"><span><a href="/images/step3.png" target="_blank" rel="prettyPhoto[pp_gal]" title="Succeed for 21 days."> <img src="/images/step3.png" alt="thumbnail" width="210px" /></a></span> </div><!--Hover Effect with Background-->
                 </div>
                 <div class="clear"></div>
@@ -853,15 +869,7 @@ What could you do daily to improve your life?</div>
 
 
 
-<% if @cn == "user_sessions" and @ca == "new" and !params[:skip_intro] %>
-		    <center>
-                    	<h5><span style="font-size:175%;">
 
-Now Rated #5 on the list of <a href="http://www.cio.com/slideshow/detail/65063/20-Awesome-Cloud-Services-You-ve-Never-Heard-of#slide5" target="_blank"  >"Awesome Cloud Services You've Never Heard Of"</a></br>--PCWorld and CIO.com</span
-
-			</h5>
-                    </center>
-<% end %>
 
 
 
