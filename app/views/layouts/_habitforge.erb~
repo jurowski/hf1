@@ -1,4 +1,14 @@
 <% 
+  if `uname -n`.strip == 'adv.adventurino.com'
+    #### HABITFORGE SETTINGS ON VPS
+    production = true
+  else
+    production = false
+  end
+%>
+
+
+<% 
 if @cn == "user_sessions" and @ca == "new" and !params[:skip_intro]
   landing_page = true
 else
@@ -221,17 +231,23 @@ $(document).ready(function(){
 
 
 
-<% if landing_page or ( @ca == "new" and @cn == "goals" and session[:sfm_virgin]) %>
-
-<h1>CRAZYEGG!!!</h1>
+<!-- Crazy Egg Page Heat tracking ... only on landing page and new virgin goal and only when on prod server-->
+<% 
+if landing_page or ( @ca == "new" and @cn == "goals" and session[:sfm_virgin])
+  if `uname -n`.strip == 'adv.adventurino.com'
+  #### HABITFORGE SETTINGS ON VPS
+  %>
+<!-- Crazy Egg Page Heat tracking -->
 <script type="text/javascript">
 setTimeout(function(){var a=document.createElement("script");
 var b=document.getElementsByTagName("script")[0];
 a.src=document.location.protocol+"//dnn506yrbagrg.cloudfront.net/pages/scripts/0013/7909.js?"+Math.floor(new Date().getTime()/3600000);
 a.async=true;a.type="text/javascript";b.parentNode.insertBefore(a,b)}, 1);
 </script>
-
-<% end %>
+  <%
+  end
+end 
+%>
 
 
 

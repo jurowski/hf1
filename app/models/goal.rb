@@ -267,14 +267,25 @@ class Goal < ActiveRecord::Base
     return percent_no
   end
 
+  ### success rate relative to days per week goal
   def percent_of_checkpoints_with_answer_of_yes
     percent_yes = 0
     if self.number_of_checkpoints > 0
         percent_yes = (((self.number_of_checkpoints_with_answer_of_yes + 0.0) / self.number_of_checkpoints)*100).floor
     end
-    return percent_yes
+
+    relative_success_rate = (((percent_yes + 0.0) / self.desired_success_rate)*100).floor
+    if relative_success_rate > 100
+      relative_success_rate = 100
+    end
+    logger.info("sgj:percent_yes = " + percent_yes.to_s + " and relative_success_rate = " + relative_success_rate.to_s)
+
+    #return percent_yes
+    return relative_success_rate
   end
+
   
+
   def get_goal_days_per_week
       if self.goal_days_per_week == nil
           return 7
@@ -540,6 +551,10 @@ class Goal < ActiveRecord::Base
             output << "<p>"
             output << ".: " + self.percent_of_checkpoints_with_answer_of_yes.to_s + "% Overall Success Rate"
 
+            if self.desired_success_rate < 100
+              output << "*"
+            end
+
             how_long = Array.new()
             how_long = [7, 21]
             for age in how_long
@@ -551,6 +566,10 @@ class Goal < ActiveRecord::Base
             if self.last_stats_badge_date != nil
                 #output << "<h5>last tallied #{self.last_stats_badge_date}</h5>"
             end
+            if self.desired_success_rate < 100
+              output << " (relative to your goal of " + self.get_goal_days_per_week.to_s + " days per week)"
+            end
+
             output << "</p>"
           end 
         end 
@@ -1285,6 +1304,7 @@ logger.debug "SGJ 3"
     rescue
        logger.error "SGJ error in goals.success_rate_during_past_n_days" 
     end
+
     return yes_percent
   end
 
@@ -1302,7 +1322,8 @@ logger.debug "SGJ 3"
     return yes_count
   end
 
-  
+  ### probably don't want to make this particular function "relative" unless you're willing to
+  ### also modify how "fire/bets" work since those are currently not "relative"
   def success_rate_between_dates(date1,date2)
     yes_percent = 0
     begin
