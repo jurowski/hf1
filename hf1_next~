@@ -3,50 +3,20 @@
 AWAITING TESTING
 ---------------------
 
-------
-
-
-
-
 ---------------------
 NEXT
 ---------------------
 
-Mark Barclift <mbarclift@gmail.com>
-12:43 PM (2 hours ago)
+--------------------
+now that you've done relative success rates for "overall",
+see if you can do it for the lagging stats as well w/out breaking "bets" 
+--------------------
 
-to support 
-Guys,
-
-I like the Lunch Break feature.  Nice to have an extra reminder and team boost.
-
-However, it would be good to have more people on my team(s).  I am working on two habits currently, and only have one other member on each team.
-
-
-Sandon Jurowski <jurowski@gmail.com>
-3:29 PM (0 minutes ago)
-
-to Mark 
-Hmm... thanks Mark. I see what you mean... as people leave teams due to inactivity, there's no merging of those on smaller teams, and new people are randomly added to those w/ openings.
-
-I'll write a script to deal w/ this. Will try to have it working in a week or less.
-
-Thanks for bringing this to my attention.
-
-Sandon
-HabitForge Creator
-
----------------------------
-see if we can add flags to the ruby scripts: 1. run for a particular email 2. jump hours 3. jump days
 -------------------------------
 add achievemint to the template plan
 ------------------------------
 add in flylady habit of the month as a "suggestion" or "template"
 --------------------------
-when advertising your success rate to a team member
-And when calculating team success rate
-Change the success rate based on their goal
---------------------
 teamlunchemail: cull from autoupdate cinditional
 ----------------------------
 Team success rate needs to be for one week and a three weeks

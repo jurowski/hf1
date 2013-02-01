@@ -278,7 +278,7 @@ class Goal < ActiveRecord::Base
     if relative_success_rate > 100
       relative_success_rate = 100
     end
-    logger.info("sgj:percent_yes = " + percent_yes.to_s + " and relative_success_rate = " + relative_success_rate.to_s)
+    #logger.info("sgj:percent_yes = " + percent_yes.to_s + " and relative_success_rate = " + relative_success_rate.to_s)
 
     #return percent_yes
     return relative_success_rate
@@ -567,7 +567,7 @@ class Goal < ActiveRecord::Base
                 #output << "<h5>last tallied #{self.last_stats_badge_date}</h5>"
             end
             if self.desired_success_rate < 100
-              output << " (relative to your goal of " + self.get_goal_days_per_week.to_s + " days per week)"
+              output << " <br>*(Overall % is pro-rated relative to your goal of " + self.get_goal_days_per_week.to_s + " days per week)"
             end
 
             output << "</p>"
@@ -1289,6 +1289,7 @@ logger.debug "SGJ 3"
 
   def success_rate_during_past_n_days(number_of_days)
     yes_percent = 0
+    relative_success_rate = 0
     begin
 
         ### Do not include today unless today is already a "yes" or a "no"
@@ -1301,11 +1302,19 @@ logger.debug "SGJ 3"
 
         date1 = date2 - number_of_days
         yes_percent = success_rate_between_dates(date1,date2)    
+
+        relative_success_rate = (((yes_percent + 0.0) / self.desired_success_rate)*100).floor
+        if relative_success_rate > 100
+          relative_success_rate = 100
+        end
+        logger.info("sgj:yes_percent during last " + number_of_days.to_s +  " days is" + yes_percent.to_s + " and relative_success_rate = " + relative_success_rate.to_s)
+
     rescue
        logger.error "SGJ error in goals.success_rate_during_past_n_days" 
     end
 
-    return yes_percent
+    return relative_success_rate
+    #return yes_percent
   end
 
   def success_count_between_dates(date1,date2)
