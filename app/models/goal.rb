@@ -552,23 +552,24 @@ class Goal < ActiveRecord::Base
 
             output << "</h3>"  
             output << "<p>"
-            output << ".: " + self.percent_of_checkpoints_with_answer_of_yes.to_s + "% Overall Success Rate"
+            #output << ".: " + self.percent_of_checkpoints_with_answer_of_yes.to_s + "% Overall Success Rate"
+
 
             how_long = Array.new()
-            how_long = [7, 21]
+            how_long = [7, 21, 30]
             for age in how_long
                 if self.days_since_first_checkpoint >= age
                     output << " | " + self.success_rate_during_past_n_days(age).to_s + "% during last #{age} days"
                 end
             end    
-            output << " :."        
-            if self.last_stats_badge_date != nil
-                #output << "<h5>last tallied #{self.last_stats_badge_date}</h5>"
-            end
-
-            #if self.desired_success_rate < 100
-            #  output << " <br>(Success rates pro-rated relative to your goal of " + self.get_goal_days_per_week.to_s + " days per week)"
+            #output << " :."        
+            #if self.last_stats_badge_date != nil
+            #    #output << "<h5>last tallied #{self.last_stats_badge_date}</h5>"
             #end
+
+            if self.desired_success_rate < 100
+              output << " <br>(Success rates pro-rated relative to your goal of " + self.get_goal_days_per_week.to_s + " days per week)"
+            end
 
             output << "</p>"
           end 
@@ -991,7 +992,20 @@ logger.debug "SGJ 3"
             ####################################################
             totalsize = self.number_of_checkpoints
             if totalsize > 0      
-              self.success_rate_percentage = self.percent_of_checkpoints_with_answer_of_yes
+
+
+            #### SUCCESSS RATES ARE NOW LAGGING RATES
+            got_one = false
+            age_counter = 30
+            while age_counter > 0
+                if !got_one and self.days_since_first_checkpoint >= age_counter
+	              self.success_rate_percentage = self.success_rate_during_past_n_days(age_counter)
+                      got_one = true
+                end
+                age_counter = age_counter - 1
+            end   
+
+              #self.success_rate_percentage = self.percent_of_checkpoints_with_answer_of_yes
               self.days_into_it = totalsize
 
               ### not writing both to db since it ends up being over 255 char
