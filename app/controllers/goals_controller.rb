@@ -742,7 +742,6 @@ logger.debug "SGJ2 2 #{goal.title}(#{goal.id}) #{goal.daysstraight} daysstraight
 
       @goal = Goal.find(params[:id])
 
-      @goal.title = @goal.response_question
  
 
       if !@goal.pushes_allowed_per_day
@@ -776,6 +775,9 @@ logger.debug "SGJ2 2 #{goal.title}(#{goal.id}) #{goal.daysstraight} daysstraight
         respond_to do |format|
           if @goal.update_attributes(params[:goal])
             
+
+            @goal.title = @goal.response_question
+
             
             ##### SET THE HOUR THAT THE REMINDERS SHOULD GO OUT FOR THIS GOAL #############
             #@goal.usersendhour = 1
