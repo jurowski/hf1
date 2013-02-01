@@ -551,10 +551,6 @@ class Goal < ActiveRecord::Base
             output << "<p>"
             output << ".: " + self.percent_of_checkpoints_with_answer_of_yes.to_s + "% Overall Success Rate"
 
-            if self.desired_success_rate < 100
-              output << "*"
-            end
-
             how_long = Array.new()
             how_long = [7, 21]
             for age in how_long
@@ -566,9 +562,10 @@ class Goal < ActiveRecord::Base
             if self.last_stats_badge_date != nil
                 #output << "<h5>last tallied #{self.last_stats_badge_date}</h5>"
             end
-            if self.desired_success_rate < 100
-              output << " <br>*(Overall % is pro-rated relative to your goal of " + self.get_goal_days_per_week.to_s + " days per week)"
-            end
+
+            #if self.desired_success_rate < 100
+            #  output << " <br>(Success rates pro-rated relative to your goal of " + self.get_goal_days_per_week.to_s + " days per week)"
+            #end
 
             output << "</p>"
           end 

@@ -274,14 +274,19 @@ class Goal < ActiveRecord::Base
         percent_yes = (((self.number_of_checkpoints_with_answer_of_yes + 0.0) / self.number_of_checkpoints)*100).floor
     end
 
+        ### hey, umm... relative success rate is not as simple as the below
+        ### reason being is it has to be relative not only to the desired success rate
+	### but you also need to take into consideration how many checked days per week there are
+        ### meaning, if weekends are de-selected AND goal is 5 days per week, then relative and actual
+        ### success rates are exactly the same, and modifying to relative would make it look too high
     relative_success_rate = (((percent_yes + 0.0) / self.desired_success_rate)*100).floor
     if relative_success_rate > 100
       relative_success_rate = 100
     end
     #logger.info("sgj:percent_yes = " + percent_yes.to_s + " and relative_success_rate = " + relative_success_rate.to_s)
 
-    #return percent_yes
-    return relative_success_rate
+    return percent_yes
+    #return relative_success_rate
   end
 
   
@@ -562,9 +567,10 @@ class Goal < ActiveRecord::Base
             if self.last_stats_badge_date != nil
                 #output << "<h5>last tallied #{self.last_stats_badge_date}</h5>"
             end
-            if self.desired_success_rate < 100
-              output << " <br>(Success rates pro-rated relative to your goal of " + self.get_goal_days_per_week.to_s + " days per week)"
-            end
+
+            #if self.desired_success_rate < 100
+            #  output << " <br>(Success rates pro-rated relative to your goal of " + self.get_goal_days_per_week.to_s + " days per week)"
+            #end
 
             output << "</p>"
           end 
@@ -1299,18 +1305,23 @@ logger.debug "SGJ 3"
         date1 = date2 - number_of_days
         yes_percent = success_rate_between_dates(date1,date2)    
 
+        ### hey, umm... relative success rate is not as simple as the below
+        ### reason being is it has to be relative not only to the desired success rate
+	### but you also need to take into consideration how many checked days per week there are
+        ### meaning, if weekends are de-selected AND goal is 5 days per week, then relative and actual
+        ### success rates are exactly the same, and modifying to relative would make it look too high
         relative_success_rate = (((yes_percent + 0.0) / self.desired_success_rate)*100).floor
         if relative_success_rate > 100
           relative_success_rate = 100
         end
-        logger.info("sgj:yes_percent during last " + number_of_days.to_s +  " days is" + yes_percent.to_s + " and relative_success_rate = " + relative_success_rate.to_s)
+        #logger.info("sgj:yes_percent during last " + number_of_days.to_s +  " days is" + yes_percent.to_s + " and relative_success_rate = " + relative_success_rate.to_s)
 
     rescue
        logger.error "SGJ error in goals.success_rate_during_past_n_days" 
     end
 
-    return relative_success_rate
-    #return yes_percent
+    #return relative_success_rate
+    return yes_percent
   end
 
   def success_count_between_dates(date1,date2)

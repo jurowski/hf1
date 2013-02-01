@@ -7,6 +7,19 @@ AWAITING TESTING
 NEXT
 ---------------------
 
+        ### hey, umm... relative success rate is not as simple as the below
+        ### reason being is it has to be relative not only to the desired success rate
+	### but you also need to take into consideration how many checked days per week there are
+        ### meaning, if weekends are de-selected AND goal is 5 days per week, then relative and actual
+        ### success rates are exactly the same, and modifying to relative would make it look too high
+        relative_success_rate = (((yes_percent + 0.0) / self.desired_success_rate)*100).floor
+        if relative_success_rate > 100
+          relative_success_rate = 100
+        end
+
+-----
+I think it's time to work on SUCCESS PROGRAMS / TEMPLATES ... we can work on the rest of the tweaks after that
+
 --------------------
 now that you've done relative success rates for "overall",
 see if you can do it for the lagging stats as well w/out breaking "bets" 
