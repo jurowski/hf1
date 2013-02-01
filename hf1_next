@@ -9,6 +9,21 @@ NEXT
 xty791
 abc@gg.com
 
+db: 
+goal.success_rate_percentage
+
+functions:
+DO NOT MODIFY: goal.number_of_checkpoints
+
+CHANGE COUNT HERE: goal.success_rate_between_dates(date1,date2)
+
+Re-Implement RELATIVE CALC HERE: goal.success_rate_during_past_n_days(age)
+
+Re-Implement RELATIVE CALC HERE: goal.percent_of_checkpoints_with_answer_of_yes
+CHANGE COUNT HERE: goal.percent_of_checkpoints_with_answer_of_yes
+
+
+
         ### hey, umm... relative success rate is not as simple as the below
         ### reason being is it has to be relative not only to the desired success rate
 	### but you also need to take into consideration how many checked days per week there are

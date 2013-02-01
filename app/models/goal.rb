@@ -270,23 +270,21 @@ class Goal < ActiveRecord::Base
   ### success rate relative to days per week goal
   def percent_of_checkpoints_with_answer_of_yes
     percent_yes = 0
-    if self.number_of_checkpoints > 0
-        percent_yes = (((self.number_of_checkpoints_with_answer_of_yes + 0.0) / self.number_of_checkpoints)*100).floor
+
+    #if self.number_of_checkpoints > 0
+    if self.days_since_first_checkpoint > 0
+        #percent_yes = (((self.number_of_checkpoints_with_answer_of_yes + 0.0) / self.number_of_checkpoints)*100).floor
+        percent_yes = (((self.number_of_checkpoints_with_answer_of_yes + 0.0) / self.days_since_first_checkpoint)*100).floor
     end
 
-        ### hey, umm... relative success rate is not as simple as the below
-        ### reason being is it has to be relative not only to the desired success rate
-	### but you also need to take into consideration how many checked days per week there are
-        ### meaning, if weekends are de-selected AND goal is 5 days per week, then relative and actual
-        ### success rates are exactly the same, and modifying to relative would make it look too high
     relative_success_rate = (((percent_yes + 0.0) / self.desired_success_rate)*100).floor
     if relative_success_rate > 100
       relative_success_rate = 100
     end
     #logger.info("sgj:percent_yes = " + percent_yes.to_s + " and relative_success_rate = " + relative_success_rate.to_s)
 
-    return percent_yes
-    #return relative_success_rate
+    #return percent_yes
+    return relative_success_rate
   end
 
   
@@ -1305,11 +1303,6 @@ logger.debug "SGJ 3"
         date1 = date2 - number_of_days
         yes_percent = success_rate_between_dates(date1,date2)    
 
-        ### hey, umm... relative success rate is not as simple as the below
-        ### reason being is it has to be relative not only to the desired success rate
-	### but you also need to take into consideration how many checked days per week there are
-        ### meaning, if weekends are de-selected AND goal is 5 days per week, then relative and actual
-        ### success rates are exactly the same, and modifying to relative would make it look too high
         relative_success_rate = (((yes_percent + 0.0) / self.desired_success_rate)*100).floor
         if relative_success_rate > 100
           relative_success_rate = 100
@@ -1320,8 +1313,8 @@ logger.debug "SGJ 3"
        logger.error "SGJ error in goals.success_rate_during_past_n_days" 
     end
 
-    #return relative_success_rate
-    return yes_percent
+    return relative_success_rate
+    #return yes_percent
   end
 
   def success_count_between_dates(date1,date2)
@@ -1338,16 +1331,26 @@ logger.debug "SGJ 3"
     return yes_count
   end
 
-  ### probably don't want to make this particular function "relative" unless you're willing to
-  ### also modify how "fire/bets" work since those are currently not "relative"
   def success_rate_between_dates(date1,date2)
     yes_percent = 0
     begin
-        my_checkpoints = Checkpoint.find(:all, :conditions => "goal_id = '#{self.id}' and checkin_date >= '#{date1}' and checkin_date <= '#{date2}'")
+        ### no longer bothering to count checkpoints, because
+        ### if someone changes their relevant days per week,
+        ### there may be some missing (or too many) checkpoints for the new "days per week"
+        ### so instead, we'll count the number of days between the 2 dates in question
+        #my_checkpoints = Checkpoint.find(:all, :conditions => "goal_id = '#{self.id}' and checkin_date >= '#{date1}' and checkin_date <= '#{date2}'")
+        my_checkpoints = 0
+        my_checkpoints = date2 - date1
+
+
         checkpoints_yes = Checkpoint.find(:all, :conditions => "status = 'yes' and goal_id = '#{self.id}' and checkin_date >= '#{date1}' and checkin_date <= '#{date2}'")
-        if my_checkpoints.size > 0
-            yes_percent = (((checkpoints_yes.size + 0.0) / my_checkpoints.size)*100).floor 
+        #if my_checkpoints.size > 0
+        if my_checkpoints > 0
+            #yes_percent = (((checkpoints_yes.size + 0.0) / my_checkpoints.size)*100).floor 
+            yes_percent = (((checkpoints_yes.size + 0.0) / my_checkpoints)*100).floor 
+
         end
+
     rescue
         logger.error "SGJ error in goals.success_rate_between_dates(date1,date2)"
     end
