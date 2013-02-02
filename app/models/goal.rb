@@ -559,7 +559,7 @@ class Goal < ActiveRecord::Base
             how_long = [7, 21, 30]
             for age in how_long
                 if self.days_since_first_checkpoint >= age
-                    output << " | " + self.success_rate_during_past_n_days(age).to_s + "% during last #{age} days"
+                    output << " .: " + self.success_rate_during_past_n_days(age).to_s + "% during last #{age} days :."
                 end
             end    
             #output << " :."        
@@ -985,6 +985,7 @@ logger.debug "SGJ 3"
   end
 
   def update_stats
+        logger.debug("sgj:running goal.update_stats on: " + self.title)
         success = true
         begin
             ####################################################
@@ -999,7 +1000,9 @@ logger.debug "SGJ 3"
             age_counter = 30
             while age_counter > 0
                 if !got_one and self.days_since_first_checkpoint >= age_counter
+                      logger.debug("sgj: age_counter= " + age_counter.to_s)
 	              self.success_rate_percentage = self.success_rate_during_past_n_days(age_counter)
+                      logger.debug("sgj: self.success_rate_percentage = " + self.success_rate_percentage.to_s)
                       got_one = true
                 end
                 age_counter = age_counter - 1
