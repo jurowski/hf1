@@ -662,7 +662,7 @@ class Goal < ActiveRecord::Base
 
   def create_checkpoint_if_needed(reporting_date_string)
     reporting_date = reporting_date_string.to_date
-    logger.info("sgj:reporting_date =" + reporting_date.to_s)
+    logger.debug("sgj:reporting_date =" + reporting_date.to_s)
     checkpoint = Checkpoint.find(:first, :conditions => "goal_id = '#{self.id}' and checkin_date = '#{reporting_date}'")
 
     if !checkpoint
