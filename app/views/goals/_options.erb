@@ -10,7 +10,7 @@
     #if @goal.status == "monitor"
     #    function_name << " (Goal: #{@goal.desired_success_rate}%)"
     #end
-    function_name = "<img src='/images/gear.png' height='30px'/> Stats: #{@goal.successful_days_in_a_row_without_9s} straight, #{@goal.percent_of_checkpoints_with_answer_of_yes}% of last 30 days"
+    function_name = "<img src='/images/gear.png' height='30px'/> #{@goal.successful_days_in_a_row_without_9s} straight, #{@goal.percent_of_checkpoints_with_answer_of_yes}% last 30 days"
     %>
     <%= link_to_function (function_name) {
      |page| 
