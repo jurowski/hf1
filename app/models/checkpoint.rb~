@@ -5,10 +5,9 @@ class Checkpoint < ActiveRecord::Base
   validates_inclusion_of :status, :in => ["no", "yes", "email sent", "email failure", "email not yet sent", "email queued"]
   validates_uniqueness_of :checkin_date, :scope => :goal_id
 
-### blah
   def update_status(status, comment = "")
       success = true
-      #begin    
+      begin    
         self.status = status
         self.comment = comment
         self.save
@@ -29,10 +28,10 @@ class Checkpoint < ActiveRecord::Base
         else
             success = false
         end
-      #rescue
-      #  success = false
-      # logger.error "SGJ:error in update_status(status)"
-      #end
+      rescue
+        success = false
+        logger.error "SGJ:error in update_status(status)"
+      end
       return success
   end
 
