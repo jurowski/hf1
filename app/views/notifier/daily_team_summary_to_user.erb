@@ -125,7 +125,7 @@
           if has_percentage > 0
               average_percentage = total_percentage / has_percentage
               %>
-              <p><h3>My Team's 30-day Success Rate is <%= average_percentage %>% 
+              <p><h3>My Team's Success Rate is <%= average_percentage %>% during the past 30 days
               <br>
               <%
           else
@@ -145,7 +145,7 @@
                  Succeeding <%= team_goal.success_rate_percentage %>% of the last
             <% end %>
             <% if team_goal.days_into_it != nil %>
-                <%= team_goal.days_into_it %> days
+                30 days
             <% end %>
 
             <% if team_goal.daysstraight != nil and team_goal.daysstraight != 9999 %>

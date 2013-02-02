@@ -34,7 +34,7 @@ end
           if has_percentage > 0
               average_percentage = total_percentage / has_percentage
               %>
-              <p><h3>My Team's Success Rate is <%= average_percentage %>% during the past 30 days
+              <p><h3>My Team's Success Rate is <%= average_percentage %>% 
               | <a href="popupex.html" onclick="return popitup('team_rules.html')">Team Rules</a>
               | <a href="/goals?quit_a_team=1&goal_id=<%=@goal.id%>">Quit this team</a></h3></p>
 
