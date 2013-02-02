@@ -781,7 +781,7 @@ class Goal < ActiveRecord::Base
                     c_new.status = "email not yet sent"
                     c_new.syslognote = "checkpoint created late, during auto-update process"
                     if c_new.save
-                      logger.info 'created missing checkpoint for user ' + self.user.email + ' for goal of ' + self.id.to_s + ' and date of ' + c_new.checkin_date.to_s
+                      #logger.info 'created missing checkpoint for user ' + self.user.email + ' for goal of ' + self.id.to_s + ' and date of ' + c_new.checkin_date.to_s
                     else
                       logger.info 'error creating missing checkpoint for user ' + self.user.email + ' for goal of ' + self.id.to_s + ' and date of ' + c_new.checkin_date.to_s
                     end

@@ -273,18 +273,40 @@ class Goal < ActiveRecord::Base
 
     #if self.number_of_checkpoints > 0
     if self.days_since_first_checkpoint > 0
-        #percent_yes = (((self.number_of_checkpoints_with_answer_of_yes + 0.0) / self.number_of_checkpoints)*100).floor
-        percent_yes = (((self.number_of_checkpoints_with_answer_of_yes + 0.0) / self.days_since_first_checkpoint)*100).floor
+
+        ##percent_yes = (((self.number_of_checkpoints_with_answer_of_yes + 0.0) / self.number_of_checkpoints)*100).floor
+        #percent_yes = (((self.number_of_checkpoints_with_answer_of_yes + 0.0) / self.days_since_first_checkpoint)*100).floor
+
+            #### SUCCESSS RATES ARE NOW LAGGING RATES
+            #### (it is baked into def success_rate_during_past_n_days )
+            got_one = false
+            age_counter = 30
+            while age_counter > 0
+                if !got_one and self.days_since_first_checkpoint >= age_counter
+                      logger.debug("sgj: age_counter= " + age_counter.to_s)
+                      percent_yes = self.success_rate_during_past_n_days(age_counter)
+                      logger.debug("sgj: percent_yes = " + percent_yes.to_s)
+                      got_one = true
+                end
+                age_counter = age_counter - 1
+            end   
+
+
     end
 
-    relative_success_rate = (((percent_yes + 0.0) / self.desired_success_rate)*100).floor
-    if relative_success_rate > 100
-      relative_success_rate = 100
-    end
+
+
+
+
+    ### relative already baked into success_rate_during_past_n_days
+    #relative_success_rate = (((percent_yes + 0.0) / self.desired_success_rate)*100).floor
+    #if relative_success_rate > 100
+    #  relative_success_rate = 100
+    #end
     #logger.info("sgj:percent_yes = " + percent_yes.to_s + " and relative_success_rate = " + relative_success_rate.to_s)
 
-    #return percent_yes
-    return relative_success_rate
+    return percent_yes
+    #return relative_success_rate
   end
 
   
