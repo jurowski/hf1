@@ -1,0 +1,64 @@
+<h1>Listing levels</h1>
+
+<table>
+  <tr>
+    <th>Shared</th>
+    <th>Organization</th>
+    <th>Program</th>
+    <th>Template goal</th>
+    <th>Next level</th>
+    <th>This is the first level</th>
+    <th>Success once days straight</th>
+    <th>Success once lagging rate</th>
+    <th>Success once total success days</th>
+    <th>Success once min days elapsed</th>
+    <th>Min days elapsed</th>
+    <th>Min lag days</th>
+    <th>Min success days</th>
+    <th>Min success rate</th>
+    <th>Points</th>
+    <th>Name</th>
+    <th>Description</th>
+    <th>Tempt image name</th>
+    <th>Tempt image height</th>
+    <th>Prize image name</th>
+    <th>Prize image height</th>
+    <th>Prize url</th>
+    <th>Prize message</th>
+  </tr>
+
+<% @levels.each do |level| %>
+  <tr>
+    <td><%=h level.shared %></td>
+    <td><%=h level.organization_id %></td>
+    <td><%=h level.program_id %></td>
+    <td><%=h level.template_goal_id %></td>
+    <td><%=h level.next_level_id %></td>
+    <td><%=h level.this_is_the_first_level %></td>
+    <td><%=h level.success_once_days_straight %></td>
+    <td><%=h level.success_once_lagging_rate %></td>
+    <td><%=h level.success_once_total_success_days %></td>
+    <td><%=h level.success_once_min_days_elapsed %></td>
+    <td><%=h level.min_days_elapsed %></td>
+    <td><%=h level.min_lag_days %></td>
+    <td><%=h level.min_success_days %></td>
+    <td><%=h level.min_success_rate %></td>
+    <td><%=h level.points %></td>
+    <td><%=h level.name %></td>
+    <td><%=h level.description %></td>
+    <td><%=h level.tempt_image_name %></td>
+    <td><%=h level.tempt_image_height %></td>
+    <td><%=h level.prize_image_name %></td>
+    <td><%=h level.prize_image_height %></td>
+    <td><%=h level.prize_url %></td>
+    <td><%=h level.prize_message_id %></td>
+    <td><%= link_to 'Show', level %></td>
+    <td><%= link_to 'Edit', edit_level_path(level) %></td>
+    <td><%= link_to 'Destroy', level, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New level', new_level_path %>

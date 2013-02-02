@@ -1,4 +1,18 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :level_goals
+
+  map.resources :levels
+
+  map.resources :template_tags
+
+  map.resources :program_templates
+
+  map.resources :program_tags
+
+  map.resources :programs
+
+  map.resources :organizations
+
   map.resources :quotetags
 
   map.resources :affiliates

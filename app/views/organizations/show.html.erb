@@ -1,0 +1,63 @@
+<p>
+  <b>Managed by user:</b>
+  <%=h @organization.managed_by_user_id %>
+</p>
+
+<p>
+  <b>Name:</b>
+  <%=h @organization.name %>
+</p>
+
+<p>
+  <b>About:</b>
+  <%=h @organization.about %>
+</p>
+
+<p>
+  <b>Url:</b>
+  <%=h @organization.url %>
+</p>
+
+<p>
+  <b>Email:</b>
+  <%=h @organization.email %>
+</p>
+
+<p>
+  <b>Phone:</b>
+  <%=h @organization.phone %>
+</p>
+
+<p>
+  <b>Address:</b>
+  <%=h @organization.address %>
+</p>
+
+<p>
+  <b>City:</b>
+  <%=h @organization.city %>
+</p>
+
+<p>
+  <b>State:</b>
+  <%=h @organization.state %>
+</p>
+
+<p>
+  <b>Zip:</b>
+  <%=h @organization.zip %>
+</p>
+
+<p>
+  <b>Country:</b>
+  <%=h @organization.country %>
+</p>
+
+<p>
+  <b>Image logo:</b>
+  <%=h @organization.image_logo %>
+</p>
+
+
+<%= link_to 'Edit', edit_organization_path(@organization) %> |
+<%= link_to 'Back', organizations_path %>

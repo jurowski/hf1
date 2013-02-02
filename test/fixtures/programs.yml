@@ -1,0 +1,23 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  organization_id: 1
+  managed_by_user_id: 1
+  image_logo: MyString
+  name: MyString
+  about: MyText
+  joined_count: MyText
+  current_count: MyText
+  rating_stars: 1
+  rating_votes: 1
+
+two:
+  organization_id: 1
+  managed_by_user_id: 1
+  image_logo: MyString
+  name: MyString
+  about: MyText
+  joined_count: MyText
+  current_count: MyText
+  rating_stars: 1
+  rating_votes: 1

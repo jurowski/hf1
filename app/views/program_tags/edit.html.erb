@@ -1,0 +1,20 @@
+<h1>Editing program_tag</h1>
+
+<% form_for(@program_tag) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :program_id %><br />
+    <%= f.text_field :program_id %>
+  </p>
+  <p>
+    <%= f.label :tag_id %><br />
+    <%= f.text_field :tag_id %>
+  </p>
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @program_tag %> |
+<%= link_to 'Back', program_tags_path %>

@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130116175434) do
+ActiveRecord::Schema.define(:version => 20130202222038) do
 
   create_table "affiliates", :force => true do |t|
     t.string   "email"
@@ -238,6 +238,98 @@ ActiveRecord::Schema.define(:version => 20130116175434) do
     t.datetime "updated_at"
   end
 
+  create_table "level_goals", :force => true do |t|
+    t.integer  "level_id"
+    t.integer  "goal_id"
+    t.string   "prize_message_status"
+    t.integer  "points"
+    t.text     "notes"
+    t.date     "date_achieved"
+    t.integer  "success_rate"
+    t.integer  "success_count"
+    t.integer  "days_in"
+    t.string   "name"
+    t.text     "description"
+    t.string   "prize_image_name"
+    t.integer  "prize_image_height"
+    t.string   "prize_url"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "levels", :force => true do |t|
+    t.boolean  "shared"
+    t.integer  "organization_id"
+    t.integer  "program_id"
+    t.integer  "template_goal_id"
+    t.integer  "next_level_id"
+    t.boolean  "this_is_the_first_level"
+    t.boolean  "success_once_days_straight"
+    t.boolean  "success_once_lagging_rate"
+    t.boolean  "success_once_total_success_days"
+    t.boolean  "success_once_min_days_elapsed"
+    t.integer  "min_days_elapsed"
+    t.integer  "min_lag_days"
+    t.integer  "min_success_days"
+    t.integer  "min_success_rate"
+    t.integer  "points"
+    t.string   "name"
+    t.text     "description"
+    t.string   "tempt_image_name"
+    t.integer  "tempt_image_height"
+    t.string   "prize_image_name"
+    t.integer  "prize_image_height"
+    t.string   "prize_url"
+    t.integer  "prize_message_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "organizations", :force => true do |t|
+    t.integer  "managed_by_user_id"
+    t.string   "name"
+    t.text     "about"
+    t.string   "url"
+    t.string   "email"
+    t.string   "phone"
+    t.string   "address"
+    t.string   "city"
+    t.string   "state"
+    t.string   "zip"
+    t.string   "country"
+    t.string   "image_logo"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "program_tags", :force => true do |t|
+    t.integer  "program_id"
+    t.integer  "tag_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "program_templates", :force => true do |t|
+    t.integer  "program_id"
+    t.integer  "template_goal_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "programs", :force => true do |t|
+    t.integer  "organization_id"
+    t.integer  "managed_by_user_id"
+    t.string   "image_logo"
+    t.string   "name"
+    t.text     "about"
+    t.text     "joined_count"
+    t.text     "current_count"
+    t.integer  "rating_stars"
+    t.integer  "rating_votes"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "promotion1s", :force => true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -321,6 +413,13 @@ ActiveRecord::Schema.define(:version => 20130116175434) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "has_opening"
+  end
+
+  create_table "template_tags", :force => true do |t|
+    t.integer  "tag_id"
+    t.integer  "template_goal_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "tomessages", :force => true do |t|

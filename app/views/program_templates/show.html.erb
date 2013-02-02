@@ -1,0 +1,13 @@
+<p>
+  <b>Program:</b>
+  <%=h @program_template.program_id %>
+</p>
+
+<p>
+  <b>Template goal:</b>
+  <%=h @program_template.template_goal_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_program_template_path(@program_template) %> |
+<%= link_to 'Back', program_templates_path %>

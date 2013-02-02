@@ -1,0 +1,20 @@
+<h1>Editing program_template</h1>
+
+<% form_for(@program_template) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :program_id %><br />
+    <%= f.text_field :program_id %>
+  </p>
+  <p>
+    <%= f.label :template_goal_id %><br />
+    <%= f.text_field :template_goal_id %>
+  </p>
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @program_template %> |
+<%= link_to 'Back', program_templates_path %>

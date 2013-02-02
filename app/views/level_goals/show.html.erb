@@ -1,0 +1,73 @@
+<p>
+  <b>Level:</b>
+  <%=h @level_goal.level_id %>
+</p>
+
+<p>
+  <b>Goal:</b>
+  <%=h @level_goal.goal_id %>
+</p>
+
+<p>
+  <b>Prize message status:</b>
+  <%=h @level_goal.prize_message_status %>
+</p>
+
+<p>
+  <b>Points:</b>
+  <%=h @level_goal.points %>
+</p>
+
+<p>
+  <b>Notes:</b>
+  <%=h @level_goal.notes %>
+</p>
+
+<p>
+  <b>Date achieved:</b>
+  <%=h @level_goal.date_achieved %>
+</p>
+
+<p>
+  <b>Success rate:</b>
+  <%=h @level_goal.success_rate %>
+</p>
+
+<p>
+  <b>Success count:</b>
+  <%=h @level_goal.success_count %>
+</p>
+
+<p>
+  <b>Days in:</b>
+  <%=h @level_goal.days_in %>
+</p>
+
+<p>
+  <b>Name:</b>
+  <%=h @level_goal.name %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%=h @level_goal.description %>
+</p>
+
+<p>
+  <b>Prize image name:</b>
+  <%=h @level_goal.prize_image_name %>
+</p>
+
+<p>
+  <b>Prize image height:</b>
+  <%=h @level_goal.prize_image_height %>
+</p>
+
+<p>
+  <b>Prize url:</b>
+  <%=h @level_goal.prize_url %>
+</p>
+
+
+<%= link_to 'Edit', edit_level_goal_path(@level_goal) %> |
+<%= link_to 'Back', level_goals_path %>

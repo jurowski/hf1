@@ -1,0 +1,22 @@
+<h1>Listing program_templates</h1>
+
+<table>
+  <tr>
+    <th>Program</th>
+    <th>Template goal</th>
+  </tr>
+
+<% @program_templates.each do |program_template| %>
+  <tr>
+    <td><%=h program_template.program_id %></td>
+    <td><%=h program_template.template_goal_id %></td>
+    <td><%= link_to 'Show', program_template %></td>
+    <td><%= link_to 'Edit', edit_program_template_path(program_template) %></td>
+    <td><%= link_to 'Destroy', program_template, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New program_template', new_program_template_path %>

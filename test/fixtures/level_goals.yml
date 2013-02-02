@@ -1,0 +1,33 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  level_id: 1
+  goal_id: 1
+  prize_message_status: MyString
+  points: 1
+  notes: MyText
+  date_achieved: 2013-02-02
+  success_rate: 1
+  success_count: 1
+  days_in: 1
+  name: MyString
+  description: MyText
+  prize_image_name: MyString
+  prize_image_height: 1
+  prize_url: MyString
+
+two:
+  level_id: 1
+  goal_id: 1
+  prize_message_status: MyString
+  points: 1
+  notes: MyText
+  date_achieved: 2013-02-02
+  success_rate: 1
+  success_count: 1
+  days_in: 1
+  name: MyString
+  description: MyText
+  prize_image_name: MyString
+  prize_image_height: 1
+  prize_url: MyString

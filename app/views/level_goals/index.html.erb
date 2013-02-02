@@ -1,0 +1,46 @@
+<h1>Listing level_goals</h1>
+
+<table>
+  <tr>
+    <th>Level</th>
+    <th>Goal</th>
+    <th>Prize message status</th>
+    <th>Points</th>
+    <th>Notes</th>
+    <th>Date achieved</th>
+    <th>Success rate</th>
+    <th>Success count</th>
+    <th>Days in</th>
+    <th>Name</th>
+    <th>Description</th>
+    <th>Prize image name</th>
+    <th>Prize image height</th>
+    <th>Prize url</th>
+  </tr>
+
+<% @level_goals.each do |level_goal| %>
+  <tr>
+    <td><%=h level_goal.level_id %></td>
+    <td><%=h level_goal.goal_id %></td>
+    <td><%=h level_goal.prize_message_status %></td>
+    <td><%=h level_goal.points %></td>
+    <td><%=h level_goal.notes %></td>
+    <td><%=h level_goal.date_achieved %></td>
+    <td><%=h level_goal.success_rate %></td>
+    <td><%=h level_goal.success_count %></td>
+    <td><%=h level_goal.days_in %></td>
+    <td><%=h level_goal.name %></td>
+    <td><%=h level_goal.description %></td>
+    <td><%=h level_goal.prize_image_name %></td>
+    <td><%=h level_goal.prize_image_height %></td>
+    <td><%=h level_goal.prize_url %></td>
+    <td><%= link_to 'Show', level_goal %></td>
+    <td><%= link_to 'Edit', edit_level_goal_path(level_goal) %></td>
+    <td><%= link_to 'Destroy', level_goal, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New level_goal', new_level_goal_path %>

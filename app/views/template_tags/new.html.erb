@@ -1,0 +1,19 @@
+<h1>New template_tag</h1>
+
+<% form_for(@template_tag) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :tag_id %><br />
+    <%= f.text_field :tag_id %>
+  </p>
+  <p>
+    <%= f.label :template_goal_id %><br />
+    <%= f.text_field :template_goal_id %>
+  </p>
+  <p>
+    <%= f.submit 'Create' %>
+  </p>
+<% end %>
+
+<%= link_to 'Back', template_tags_path %>

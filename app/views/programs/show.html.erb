@@ -1,0 +1,48 @@
+<p>
+  <b>Organization:</b>
+  <%=h @program.organization_id %>
+</p>
+
+<p>
+  <b>Managed by user:</b>
+  <%=h @program.managed_by_user_id %>
+</p>
+
+<p>
+  <b>Image logo:</b>
+  <%=h @program.image_logo %>
+</p>
+
+<p>
+  <b>Name:</b>
+  <%=h @program.name %>
+</p>
+
+<p>
+  <b>About:</b>
+  <%=h @program.about %>
+</p>
+
+<p>
+  <b>Joined count:</b>
+  <%=h @program.joined_count %>
+</p>
+
+<p>
+  <b>Current count:</b>
+  <%=h @program.current_count %>
+</p>
+
+<p>
+  <b>Rating stars:</b>
+  <%=h @program.rating_stars %>
+</p>
+
+<p>
+  <b>Rating votes:</b>
+  <%=h @program.rating_votes %>
+</p>
+
+
+<%= link_to 'Edit', edit_program_path(@program) %> |
+<%= link_to 'Back', programs_path %>

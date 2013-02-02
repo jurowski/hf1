@@ -1,0 +1,51 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  shared: false
+  organization_id: 1
+  program_id: 1
+  template_goal_id: 1
+  next_level_id: 1
+  this_is_the_first_level: false
+  success_once_days_straight: false
+  success_once_lagging_rate: false
+  success_once_total_success_days: false
+  success_once_min_days_elapsed: false
+  min_days_elapsed: 1
+  min_lag_days: 1
+  min_success_days: 1
+  min_success_rate: 1
+  points: 1
+  name: MyString
+  description: MyText
+  tempt_image_name: MyString
+  tempt_image_height: 1
+  prize_image_name: MyString
+  prize_image_height: 1
+  prize_url: MyString
+  prize_message_id: 1
+
+two:
+  shared: false
+  organization_id: 1
+  program_id: 1
+  template_goal_id: 1
+  next_level_id: 1
+  this_is_the_first_level: false
+  success_once_days_straight: false
+  success_once_lagging_rate: false
+  success_once_total_success_days: false
+  success_once_min_days_elapsed: false
+  min_days_elapsed: 1
+  min_lag_days: 1
+  min_success_days: 1
+  min_success_rate: 1
+  points: 1
+  name: MyString
+  description: MyText
+  tempt_image_name: MyString
+  tempt_image_height: 1
+  prize_image_name: MyString
+  prize_image_height: 1
+  prize_url: MyString
+  prize_message_id: 1

@@ -1,0 +1,103 @@
+<h1>New level</h1>
+
+<% form_for(@level) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :shared %><br />
+    <%= f.check_box :shared %>
+  </p>
+  <p>
+    <%= f.label :organization_id %><br />
+    <%= f.text_field :organization_id %>
+  </p>
+  <p>
+    <%= f.label :program_id %><br />
+    <%= f.text_field :program_id %>
+  </p>
+  <p>
+    <%= f.label :template_goal_id %><br />
+    <%= f.text_field :template_goal_id %>
+  </p>
+  <p>
+    <%= f.label :next_level_id %><br />
+    <%= f.text_field :next_level_id %>
+  </p>
+  <p>
+    <%= f.label :this_is_the_first_level %><br />
+    <%= f.check_box :this_is_the_first_level %>
+  </p>
+  <p>
+    <%= f.label :success_once_days_straight %><br />
+    <%= f.check_box :success_once_days_straight %>
+  </p>
+  <p>
+    <%= f.label :success_once_lagging_rate %><br />
+    <%= f.check_box :success_once_lagging_rate %>
+  </p>
+  <p>
+    <%= f.label :success_once_total_success_days %><br />
+    <%= f.check_box :success_once_total_success_days %>
+  </p>
+  <p>
+    <%= f.label :success_once_min_days_elapsed %><br />
+    <%= f.check_box :success_once_min_days_elapsed %>
+  </p>
+  <p>
+    <%= f.label :min_days_elapsed %><br />
+    <%= f.text_field :min_days_elapsed %>
+  </p>
+  <p>
+    <%= f.label :min_lag_days %><br />
+    <%= f.text_field :min_lag_days %>
+  </p>
+  <p>
+    <%= f.label :min_success_days %><br />
+    <%= f.text_field :min_success_days %>
+  </p>
+  <p>
+    <%= f.label :min_success_rate %><br />
+    <%= f.text_field :min_success_rate %>
+  </p>
+  <p>
+    <%= f.label :points %><br />
+    <%= f.text_field :points %>
+  </p>
+  <p>
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label :description %><br />
+    <%= f.text_area :description %>
+  </p>
+  <p>
+    <%= f.label :tempt_image_name %><br />
+    <%= f.text_field :tempt_image_name %>
+  </p>
+  <p>
+    <%= f.label :tempt_image_height %><br />
+    <%= f.text_field :tempt_image_height %>
+  </p>
+  <p>
+    <%= f.label :prize_image_name %><br />
+    <%= f.text_field :prize_image_name %>
+  </p>
+  <p>
+    <%= f.label :prize_image_height %><br />
+    <%= f.text_field :prize_image_height %>
+  </p>
+  <p>
+    <%= f.label :prize_url %><br />
+    <%= f.text_field :prize_url %>
+  </p>
+  <p>
+    <%= f.label :prize_message_id %><br />
+    <%= f.text_field :prize_message_id %>
+  </p>
+  <p>
+    <%= f.submit 'Create' %>
+  </p>
+<% end %>
+
+<%= link_to 'Back', levels_path %>
