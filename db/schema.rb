@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130204200939) do
+ActiveRecord::Schema.define(:version => 20130204234035) do
 
   create_table "achievemints", :force => true do |t|
     t.string   "name"
@@ -258,6 +258,7 @@ ActiveRecord::Schema.define(:version => 20130204200939) do
     t.boolean  "template_on_level_success_stop_goal_bool"
     t.boolean  "template_let_user_decide_when_to_move_to_next_goal_bool"
     t.integer  "template_next_template_goal_id"
+    t.boolean  "check_in_same_day",                                                     :default => true
   end
 
   add_index "goals", ["allow_push", "last_success_date", "next_push_on_or_after_date", "pushes_remaining_on_next_push_date"], :name => "allow_push"
