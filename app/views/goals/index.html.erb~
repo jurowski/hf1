@@ -671,7 +671,7 @@ http://localhost:3000/goals?update_checkpoint_status=yes&date=2012-02-12&e0=106&
 
 
 
-			  slacker_goals = Goal.find(:all, :conditions => "allow_push = 1 and next_push_on_or_after_date = '#{dtoday}' and pushes_remaining_on_next_push_date > 0")
+			  slacker_goals = Goal.find(:all, :conditions => "status <> 'hold' and allow_push = 1 and next_push_on_or_after_date = '#{dtoday}' and pushes_remaining_on_next_push_date > 0")
 			  
 			    if slacker_goals.size > 0
 				    random_index = rand(slacker_goals.size) #between 0 and (size - 1)
