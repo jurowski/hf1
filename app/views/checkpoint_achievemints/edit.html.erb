@@ -1,0 +1,56 @@
+<h1>Editing checkpoint_achievemint</h1>
+
+<% form_for(@checkpoint_achievemint) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :user_id %><br />
+    <%= f.text_field :user_id %>
+  </p>
+  <p>
+    <%= f.label :goal_id %><br />
+    <%= f.text_field :goal_id %>
+  </p>
+  <p>
+    <%= f.label :template_goal_id %><br />
+    <%= f.text_field :template_goal_id %>
+  </p>
+  <p>
+    <%= f.label :achievemint_id %><br />
+    <%= f.text_field :achievemint_id %>
+  </p>
+  <p>
+    <%= f.label :checkpoint_id %><br />
+    <%= f.text_field :checkpoint_id %>
+  </p>
+  <p>
+    <%= f.label :unit_value %><br />
+    <%= f.text_field :unit_value %>
+  </p>
+  <p>
+    <%= f.label :param_1_value %><br />
+    <%= f.text_field :param_1_value %>
+  </p>
+  <p>
+    <%= f.label :param_2_value %><br />
+    <%= f.text_field :param_2_value %>
+  </p>
+  <p>
+    <%= f.label :param_3_value %><br />
+    <%= f.text_field :param_3_value %>
+  </p>
+  <p>
+    <%= f.label :transmission_status %><br />
+    <%= f.text_field :transmission_status %>
+  </p>
+  <p>
+    <%= f.label :points_worth %><br />
+    <%= f.text_field :points_worth %>
+  </p>
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @checkpoint_achievemint %> |
+<%= link_to 'Back', checkpoint_achievemints_path %>

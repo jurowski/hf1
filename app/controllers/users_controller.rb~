@@ -122,10 +122,16 @@ class UsersController < ApplicationController
 
             user = User.find(:first, :conditions => "id = #{params[:upgrade_id].to_i}") 
             if user != nil
+                days = 365
+                period = "a year"
+                if params[:days]
+		  days = params[:days].to_i
+                  period = "3 months"
+                end
                 user.combine_daily_emails = 0
                 user.hide_donation_plea = 1
                 user.unlimited_goals = 1
-                user.kill_ads_until = dnow + 365
+                user.kill_ads_until = dnow + days
                 user.sent_expire_warning_on = '1900-01-01'
             
                 if user.payments == nil
@@ -140,7 +146,7 @@ class UsersController < ApplicationController
                 end
                 ### Send email to user and CC support w/ thank you and upgrade info
                 logger.info 'HF ATTEMPTING TO Send email to user and CC support w/ thank you and upgrade info'
-                Notifier.deliver_user_upgrade_notification(user) # sends the email
+                Notifier.deliver_user_upgrade_notification(user,period) # sends the email
             end
         end
 
@@ -459,23 +465,6 @@ class UsersController < ApplicationController
         logger.error("sgj:email confirmation for user creation did not send")
       end
       
-      ### GET DATE NOW ###
-      jump_forward_days = 0
-
-      tnow = Time.now
-      tnow_Y = tnow.strftime("%Y").to_i #year, 4 digits
-      tnow_m = tnow.strftime("%m").to_i #month of the year
-      tnow_d = tnow.strftime("%d").to_i #day of the month
-      tnow_H = tnow.strftime("%H").to_i #hour (24-hour format)
-      tnow_M = tnow.strftime("%M").to_i #minute of the hour
-      #puts tnow_Y + tnow_m + tnow_d  
-      puts "Current timestamp is #{tnow.to_s}"
-      dnow = Date.new(tnow_Y, tnow_m, tnow_d) + jump_forward_days
-      dyesterday = dnow - 1
-      d2daysago = dnow - 2
-      ######
-
-
 
       ### FIELDS
       #stat recorddate:date recordhour:integer usercount:integer goalcount:integer goalactivecount:integer goalsnewcreated:integer usersnewcreated:integer checkpointemailssent:integer

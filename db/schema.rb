@@ -9,7 +9,18 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130202222038) do
+ActiveRecord::Schema.define(:version => 20130203051555) do
+
+  create_table "achievemints", :force => true do |t|
+    t.string   "name"
+    t.string   "unit"
+    t.string   "extra_param_1"
+    t.string   "extra_param_2"
+    t.string   "extra_param_3"
+    t.text     "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "affiliates", :force => true do |t|
     t.string   "email"
@@ -59,6 +70,22 @@ ActiveRecord::Schema.define(:version => 20130202222038) do
     t.string   "payment_url"
     t.date     "sent_bill_notice_date"
     t.string   "recipient_name"
+  end
+
+  create_table "checkpoint_achievemints", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "goal_id"
+    t.integer  "template_goal_id"
+    t.integer  "achievemint_id"
+    t.integer  "checkpoint_id"
+    t.string   "unit_value"
+    t.string   "param_1_value"
+    t.string   "param_2_value"
+    t.string   "param_3_value"
+    t.string   "transmission_status"
+    t.integer  "points_worth"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "checkpoints", :force => true do |t|
@@ -413,6 +440,13 @@ ActiveRecord::Schema.define(:version => 20130202222038) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "has_opening"
+  end
+
+  create_table "template_achievemints", :force => true do |t|
+    t.integer  "template_goal_id"
+    t.integer  "achievemint_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "template_tags", :force => true do |t|

@@ -18,6 +18,16 @@ I think it's time to work on SUCCESS PROGRAMS / TEMPLATES ... we can work on the
 once we have some templated habits, we can suggest them as part of a premium upgrade when someone is building their own (so prebuilt can be premium members only)
 ------
 
+do weekly reports for followers (notify David from train@funfitness once done)
+----------------------
+make follower reports optional
+------------------------
+
+1) My "New Messages" button remains red with the total number of accumulated messages, even though I have viewed them and responded to them. The user experience would be improved if the button only showed the number not yet viewed or responded to.
+--------------------
+2) For non-daily habits, it would be helpful to have an every-other-day option.  Since the number of days in the week is an odd number, the current non-daily option does not serve habits that need followup on alternative days.
+-------------------
+
 indiv output and team output
 show a table row w/ cells, header has 30, 21, 14, 7 day success rates below, color coded cells for good bad ugly
 -------------------------------
@@ -43,10 +53,6 @@ and print last checkin
 -------------------------------------
 tokens/artwork is uploadable/competable by program for teams
 ---------------------
-do weelky reports for followers
-----------------------
-make follower reports optional
-------------------------
 Teams compete for carousel artwork in templated habits
 --------------------------------
 if someone checks in with a "no", occasionally suggest that they join a team to help

@@ -1,0 +1,20 @@
+<h1>Editing template_achievemint</h1>
+
+<% form_for(@template_achievemint) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :template_goal_id %><br />
+    <%= f.text_field :template_goal_id %>
+  </p>
+  <p>
+    <%= f.label :achievemint_id %><br />
+    <%= f.text_field :achievemint_id %>
+  </p>
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @template_achievemint %> |
+<%= link_to 'Back', template_achievemints_path %>

@@ -1,0 +1,40 @@
+<h1>Listing checkpoint_achievemints</h1>
+
+<table>
+  <tr>
+    <th>User</th>
+    <th>Goal</th>
+    <th>Template goal</th>
+    <th>Achievemint</th>
+    <th>Checkpoint</th>
+    <th>Unit value</th>
+    <th>Param 1 value</th>
+    <th>Param 2 value</th>
+    <th>Param 3 value</th>
+    <th>Transmission status</th>
+    <th>Points worth</th>
+  </tr>
+
+<% @checkpoint_achievemints.each do |checkpoint_achievemint| %>
+  <tr>
+    <td><%=h checkpoint_achievemint.user_id %></td>
+    <td><%=h checkpoint_achievemint.goal_id %></td>
+    <td><%=h checkpoint_achievemint.template_goal_id %></td>
+    <td><%=h checkpoint_achievemint.achievemint_id %></td>
+    <td><%=h checkpoint_achievemint.checkpoint_id %></td>
+    <td><%=h checkpoint_achievemint.unit_value %></td>
+    <td><%=h checkpoint_achievemint.param_1_value %></td>
+    <td><%=h checkpoint_achievemint.param_2_value %></td>
+    <td><%=h checkpoint_achievemint.param_3_value %></td>
+    <td><%=h checkpoint_achievemint.transmission_status %></td>
+    <td><%=h checkpoint_achievemint.points_worth %></td>
+    <td><%= link_to 'Show', checkpoint_achievemint %></td>
+    <td><%= link_to 'Edit', edit_checkpoint_achievemint_path(checkpoint_achievemint) %></td>
+    <td><%= link_to 'Destroy', checkpoint_achievemint, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New checkpoint_achievemint', new_checkpoint_achievemint_path %>

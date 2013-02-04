@@ -122,10 +122,14 @@ class UsersController < ApplicationController
 
             user = User.find(:first, :conditions => "id = #{params[:upgrade_id].to_i}") 
             if user != nil
+                days = 365
+                if params[:days]
+		  days = params[:days].to_i
+                end
                 user.combine_daily_emails = 0
                 user.hide_donation_plea = 1
                 user.unlimited_goals = 1
-                user.kill_ads_until = dnow + 365
+                user.kill_ads_until = dnow + days
                 user.sent_expire_warning_on = '1900-01-01'
             
                 if user.payments == nil

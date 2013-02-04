@@ -7,7 +7,7 @@
 <p>
 Hi <%= @user.first_name %>.
 <br>
-<br>Your HabitForge Premium Membership will expire this week ( <%= @user.kill_ads_until.strftime("%b %d, %Y") %>).
+<br>Your HabitForge Premium Membership is about to expire ( <%= @user.kill_ads_until.strftime("%b %d, %Y") %>).
 <br>
 <br>(Premium Members are able to work on unlimited active habits with premium features, ad-free!)
 <br>

@@ -1,0 +1,27 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  user_id: 1
+  goal_id: 1
+  template_goal_id: 1
+  achievemint_id: 1
+  checkpoint_id: 1
+  unit_value: MyString
+  param_1_value: MyString
+  param_2_value: MyString
+  param_3_value: MyString
+  transmission_status: MyString
+  points_worth: 1
+
+two:
+  user_id: 1
+  goal_id: 1
+  template_goal_id: 1
+  achievemint_id: 1
+  checkpoint_id: 1
+  unit_value: MyString
+  param_1_value: MyString
+  param_2_value: MyString
+  param_3_value: MyString
+  transmission_status: MyString
+  points_worth: 1

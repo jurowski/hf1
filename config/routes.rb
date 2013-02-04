@@ -1,4 +1,10 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :checkpoint_achievemints
+
+  map.resources :template_achievemints
+
+  map.resources :achievemints
+
   map.resources :level_goals
 
   map.resources :levels

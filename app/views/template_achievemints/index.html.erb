@@ -1,0 +1,22 @@
+<h1>Listing template_achievemints</h1>
+
+<table>
+  <tr>
+    <th>Template goal</th>
+    <th>Achievemint</th>
+  </tr>
+
+<% @template_achievemints.each do |template_achievemint| %>
+  <tr>
+    <td><%=h template_achievemint.template_goal_id %></td>
+    <td><%=h template_achievemint.achievemint_id %></td>
+    <td><%= link_to 'Show', template_achievemint %></td>
+    <td><%= link_to 'Edit', edit_template_achievemint_path(template_achievemint) %></td>
+    <td><%= link_to 'Destroy', template_achievemint, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New template_achievemint', new_template_achievemint_path %>

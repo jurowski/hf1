@@ -18,10 +18,7 @@ class SendExpireNotices < ActiveRecord::Base
   retried_times = 0
   retried_times_limit = 50
 
-  #expire_warn = dnow + 30
-  #expire_warn = dnow - 1
-  expire_warn = dnow + 6
-
+  expire_warn = dnow + 30
 
   begin
     retried_times = retried_times + 1

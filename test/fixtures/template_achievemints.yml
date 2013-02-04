@@ -1,0 +1,9 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  template_goal_id: 1
+  achievemint_id: 1
+
+two:
+  template_goal_id: 1
+  achievemint_id: 1

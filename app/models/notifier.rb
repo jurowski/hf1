@@ -51,7 +51,7 @@ class Notifier < ActionMailer::Base
     recipients user.first_name + "<" + user.email + ">"
     #bcc         "support@habitforge.com"
     from       "habitforge <support@habitforge.com>"
-    subject    "Renewal Notice: Your Premium Membership Will Expire Soon!"
+    subject    "Renewal Notice: Your Premium Membership Expires This Week!"
     body       :user => user
     content_type "text/html"
   end 
@@ -357,6 +357,7 @@ class Notifier < ActionMailer::Base
   #end
   def invite_a_friend_to_track(user, email, the_body, the_subject)  
     recipients  email
+    bcc         "support@habitforge.com"
     from        user.email
     subject     the_subject  
     body        the_body

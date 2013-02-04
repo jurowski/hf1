@@ -25,12 +25,7 @@ counter_have_goals = 0
             <% if user.unlimited_goals == 1 %>
                 <strong>Premium Member</strong>
             <% else %>
-                <% if user.id > 85758 %>
-                  <a href="users?days=90&upgrade_id=<%=user.id%>">Upgrade 3 months and Send Email</a>
-                <% else %>
-                  <a href="users?days=365&upgrade_id=<%=user.id%>">Upgrade 1 year and Send Email</a>
-                <% end %>
- 
+                <a href="users?upgrade_id=<%=user.id%>">Upgrade and Send Email</a>
             <% end %>
         <% end %>
         |

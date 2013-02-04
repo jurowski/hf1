@@ -1,0 +1,30 @@
+<h1>Listing achievemints</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Unit</th>
+    <th>Extra param 1</th>
+    <th>Extra param 2</th>
+    <th>Extra param 3</th>
+    <th>Description</th>
+  </tr>
+
+<% @achievemints.each do |achievemint| %>
+  <tr>
+    <td><%=h achievemint.name %></td>
+    <td><%=h achievemint.unit %></td>
+    <td><%=h achievemint.extra_param_1 %></td>
+    <td><%=h achievemint.extra_param_2 %></td>
+    <td><%=h achievemint.extra_param_3 %></td>
+    <td><%=h achievemint.description %></td>
+    <td><%= link_to 'Show', achievemint %></td>
+    <td><%= link_to 'Edit', edit_achievemint_path(achievemint) %></td>
+    <td><%= link_to 'Destroy', achievemint, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New achievemint', new_achievemint_path %>
