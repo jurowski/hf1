@@ -1,0 +1,2 @@
+module MessageTagsHelper
+end

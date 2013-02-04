@@ -1,0 +1,20 @@
+<h1>Editing message_tag</h1>
+
+<% form_for(@message_tag) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :tag_id %><br />
+    <%= f.text_field :tag_id %>
+  </p>
+  <p>
+    <%= f.label :message_id %><br />
+    <%= f.text_field :message_id %>
+  </p>
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @message_tag %> |
+<%= link_to 'Back', message_tags_path %>

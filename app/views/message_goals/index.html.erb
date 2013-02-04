@@ -1,0 +1,32 @@
+<h1>Listing message_goals</h1>
+
+<table>
+  <tr>
+    <th>Message</th>
+    <th>Goal</th>
+    <th>Trigger</th>
+    <th>Sent date</th>
+    <th>Sent datetime</th>
+    <th>Sent status</th>
+    <th>Notes</th>
+  </tr>
+
+<% @message_goals.each do |message_goal| %>
+  <tr>
+    <td><%=h message_goal.message_id %></td>
+    <td><%=h message_goal.goal_id %></td>
+    <td><%=h message_goal.trigger_id %></td>
+    <td><%=h message_goal.sent_date %></td>
+    <td><%=h message_goal.sent_datetime %></td>
+    <td><%=h message_goal.sent_status %></td>
+    <td><%=h message_goal.notes %></td>
+    <td><%= link_to 'Show', message_goal %></td>
+    <td><%= link_to 'Edit', edit_message_goal_path(message_goal) %></td>
+    <td><%= link_to 'Destroy', message_goal, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New message_goal', new_message_goal_path %>

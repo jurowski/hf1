@@ -1,0 +1,19 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  message_id: 1
+  goal_id: 1
+  trigger_id: 1
+  sent_date: 2013-02-04
+  sent_datetime: 2013-02-04 14:02:57
+  sent_status: MyString
+  notes: MyText
+
+two:
+  message_id: 1
+  goal_id: 1
+  trigger_id: 1
+  sent_date: 2013-02-04
+  sent_datetime: 2013-02-04 14:02:57
+  sent_status: MyString
+  notes: MyText

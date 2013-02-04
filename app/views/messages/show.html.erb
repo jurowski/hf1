@@ -1,0 +1,98 @@
+<p>
+  <b>Shared:</b>
+  <%=h @message.shared %>
+</p>
+
+<p>
+  <b>Organization:</b>
+  <%=h @message.organization_id %>
+</p>
+
+<p>
+  <b>Program:</b>
+  <%=h @message.program_id %>
+</p>
+
+<p>
+  <b>Template goal:</b>
+  <%=h @message.template_goal_id %>
+</p>
+
+<p>
+  <b>Subject:</b>
+  <%=h @message.subject %>
+</p>
+
+<p>
+  <b>Body:</b>
+  <%=h @message.body %>
+</p>
+
+<p>
+  <b>Source:</b>
+  <%=h @message.source %>
+</p>
+
+<p>
+  <b>Random quote:</b>
+  <%=h @message.random_quote %>
+</p>
+
+<p>
+  <b>Insert in checkin emails:</b>
+  <%=h @message.insert_in_checkin_emails %>
+</p>
+
+<p>
+  <b>Insert in reminder emails:</b>
+  <%=h @message.insert_in_reminder_emails %>
+</p>
+
+<p>
+  <b>Insert in webpage:</b>
+  <%=h @message.insert_in_webpage %>
+</p>
+
+<p>
+  <b>Separate email:</b>
+  <%=h @message.separate_email %>
+</p>
+
+<p>
+  <b>For the team:</b>
+  <%=h @message.for_the_team %>
+</p>
+
+<p>
+  <b>For an individial:</b>
+  <%=h @message.for_an_individial %>
+</p>
+
+<p>
+  <b>For this date only:</b>
+  <%=h @message.for_this_date_only %>
+</p>
+
+<p>
+  <b>Not before this date:</b>
+  <%=h @message.not_before_this_date %>
+</p>
+
+<p>
+  <b>Not after this date:</b>
+  <%=h @message.not_after_this_date %>
+</p>
+
+<p>
+  <b>Trigger:</b>
+  <%=h @message.trigger_id %>
+</p>
+
+<p>
+  <b>Allow repeats after min days:</b>
+  <%=h @message.allow_repeats_after_min_days %>
+</p>
+
+
+<%= link_to 'Edit', edit_message_path(@message) %> |
+<%= link_to 'Back', messages_path %>

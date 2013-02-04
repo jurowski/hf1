@@ -1,0 +1,37 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  shared: false
+  organization_id: 1
+  program_id: 1
+  template_goal_id: 1
+  trigger_for_silence_instead_of_reports: false
+  trigger_for_failure_instead_of_success: false
+  trigger_once_days_straight_success_or_failure: false
+  trigger_once_lagging_rate_success_or_failure: false
+  trigger_once_total_days_of_success_or_failure: false
+  trigger_once_min_total_days_elapsed: false
+  min_total_days_elapsed: 1
+  min_lag_days: 1
+  min_success_or_failure_days: 1
+  min_success_or_failure_rate: 1
+  name: MyString
+  description: MyText
+
+two:
+  shared: false
+  organization_id: 1
+  program_id: 1
+  template_goal_id: 1
+  trigger_for_silence_instead_of_reports: false
+  trigger_for_failure_instead_of_success: false
+  trigger_once_days_straight_success_or_failure: false
+  trigger_once_lagging_rate_success_or_failure: false
+  trigger_once_total_days_of_success_or_failure: false
+  trigger_once_min_total_days_elapsed: false
+  min_total_days_elapsed: 1
+  min_lag_days: 1
+  min_success_or_failure_days: 1
+  min_success_or_failure_rate: 1
+  name: MyString
+  description: MyText

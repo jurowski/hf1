@@ -1,0 +1,83 @@
+<p>
+  <b>Shared:</b>
+  <%=h @trigger.shared %>
+</p>
+
+<p>
+  <b>Organization:</b>
+  <%=h @trigger.organization_id %>
+</p>
+
+<p>
+  <b>Program:</b>
+  <%=h @trigger.program_id %>
+</p>
+
+<p>
+  <b>Template goal:</b>
+  <%=h @trigger.template_goal_id %>
+</p>
+
+<p>
+  <b>Trigger for silence instead of reports:</b>
+  <%=h @trigger.trigger_for_silence_instead_of_reports %>
+</p>
+
+<p>
+  <b>Trigger for failure instead of success:</b>
+  <%=h @trigger.trigger_for_failure_instead_of_success %>
+</p>
+
+<p>
+  <b>Trigger once days straight success or failure:</b>
+  <%=h @trigger.trigger_once_days_straight_success_or_failure %>
+</p>
+
+<p>
+  <b>Trigger once lagging rate success or failure:</b>
+  <%=h @trigger.trigger_once_lagging_rate_success_or_failure %>
+</p>
+
+<p>
+  <b>Trigger once total days of success or failure:</b>
+  <%=h @trigger.trigger_once_total_days_of_success_or_failure %>
+</p>
+
+<p>
+  <b>Trigger once min total days elapsed:</b>
+  <%=h @trigger.trigger_once_min_total_days_elapsed %>
+</p>
+
+<p>
+  <b>Min total days elapsed:</b>
+  <%=h @trigger.min_total_days_elapsed %>
+</p>
+
+<p>
+  <b>Min lag days:</b>
+  <%=h @trigger.min_lag_days %>
+</p>
+
+<p>
+  <b>Min success or failure days:</b>
+  <%=h @trigger.min_success_or_failure_days %>
+</p>
+
+<p>
+  <b>Min success or failure rate:</b>
+  <%=h @trigger.min_success_or_failure_rate %>
+</p>
+
+<p>
+  <b>Name:</b>
+  <%=h @trigger.name %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%=h @trigger.description %>
+</p>
+
+
+<%= link_to 'Edit', edit_trigger_path(@trigger) %> |
+<%= link_to 'Back', triggers_path %>

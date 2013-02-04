@@ -1,0 +1,56 @@
+<h1>Listing messages</h1>
+
+<table>
+  <tr>
+    <th>Shared</th>
+    <th>Organization</th>
+    <th>Program</th>
+    <th>Template goal</th>
+    <th>Subject</th>
+    <th>Body</th>
+    <th>Source</th>
+    <th>Random quote</th>
+    <th>Insert in checkin emails</th>
+    <th>Insert in reminder emails</th>
+    <th>Insert in webpage</th>
+    <th>Separate email</th>
+    <th>For the team</th>
+    <th>For an individial</th>
+    <th>For this date only</th>
+    <th>Not before this date</th>
+    <th>Not after this date</th>
+    <th>Trigger</th>
+    <th>Allow repeats after min days</th>
+  </tr>
+
+<% @messages.each do |message| %>
+  <tr>
+    <td><%=h message.shared %></td>
+    <td><%=h message.organization_id %></td>
+    <td><%=h message.program_id %></td>
+    <td><%=h message.template_goal_id %></td>
+    <td><%=h message.subject %></td>
+    <td><%=h message.body %></td>
+    <td><%=h message.source %></td>
+    <td><%=h message.random_quote %></td>
+    <td><%=h message.insert_in_checkin_emails %></td>
+    <td><%=h message.insert_in_reminder_emails %></td>
+    <td><%=h message.insert_in_webpage %></td>
+    <td><%=h message.separate_email %></td>
+    <td><%=h message.for_the_team %></td>
+    <td><%=h message.for_an_individial %></td>
+    <td><%=h message.for_this_date_only %></td>
+    <td><%=h message.not_before_this_date %></td>
+    <td><%=h message.not_after_this_date %></td>
+    <td><%=h message.trigger_id %></td>
+    <td><%=h message.allow_repeats_after_min_days %></td>
+    <td><%= link_to 'Show', message %></td>
+    <td><%= link_to 'Edit', edit_message_path(message) %></td>
+    <td><%= link_to 'Destroy', message, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New message', new_message_path %>

@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130203051555) do
+ActiveRecord::Schema.define(:version => 20130204200939) do
 
   create_table "achievemints", :force => true do |t|
     t.string   "name"
@@ -179,20 +179,20 @@ ActiveRecord::Schema.define(:version => 20130203051555) do
 
   create_table "goals", :force => true do |t|
     t.integer  "user_id"
-    t.string   "title",                                                                  :null => false
+    t.string   "title",                                                                                       :null => false
     t.text     "summary"
     t.text     "why"
     t.date     "start"
     t.date     "stop"
     t.date     "established_on"
     t.string   "category"
-    t.boolean  "publish",                                          :default => false
-    t.boolean  "share",                                            :default => false
-    t.string   "status",                                           :default => "start"
+    t.boolean  "publish",                                                               :default => false
+    t.boolean  "share",                                                                 :default => false
+    t.string   "status",                                                                :default => "start"
     t.text     "response_question"
-    t.string   "response_options",                                 :default => "yes;no"
+    t.string   "response_options",                                                      :default => "yes;no"
     t.time     "reminder_time"
-    t.boolean  "higher_is_better",                                 :default => true
+    t.boolean  "higher_is_better",                                                      :default => true
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "daysstraight"
@@ -202,7 +202,7 @@ ActiveRecord::Schema.define(:version => 20130203051555) do
     t.text     "pain"
     t.boolean  "pp_remind"
     t.date     "pp_remind_last_date"
-    t.string   "gmtoffset",                          :limit => 10
+    t.string   "gmtoffset",                                               :limit => 10
     t.integer  "serversendhour"
     t.integer  "usersendhour"
     t.boolean  "daym"
@@ -227,13 +227,13 @@ ActiveRecord::Schema.define(:version => 20130203051555) do
     t.string   "last_stats_badge"
     t.date     "last_stats_badge_date"
     t.string   "last_stats_badge_details"
-    t.boolean  "more_reminders_enabled",                           :default => false
-    t.integer  "more_reminders_start",                             :default => 8
-    t.integer  "more_reminders_end",                               :default => 22
-    t.integer  "more_reminders_every_n_hours",                     :default => 4
-    t.integer  "more_reminders_last_sent",                         :default => 0
+    t.boolean  "more_reminders_enabled",                                                :default => false
+    t.integer  "more_reminders_start",                                                  :default => 8
+    t.integer  "more_reminders_end",                                                    :default => 22
+    t.integer  "more_reminders_every_n_hours",                                          :default => 4
+    t.integer  "more_reminders_last_sent",                                              :default => 0
     t.date     "first_start_date"
-    t.boolean  "allow_push",                                       :default => false
+    t.boolean  "allow_push",                                                            :default => false
     t.string   "phrase1"
     t.string   "phrase2"
     t.string   "phrase3"
@@ -243,8 +243,21 @@ ActiveRecord::Schema.define(:version => 20130203051555) do
     t.date     "next_push_on_or_after_date"
     t.integer  "pushes_allowed_per_day"
     t.integer  "pushes_remaining_on_next_push_date"
-    t.integer  "team_summary_send_hour",                           :default => 12
+    t.integer  "team_summary_send_hour",                                                :default => 12
     t.date     "team_summary_last_sent_date"
+    t.boolean  "template_owner_is_a_template"
+    t.boolean  "template_owner_advertise_me"
+    t.integer  "template_user_parent_goal_id"
+    t.integer  "achievemint_points_earned"
+    t.integer  "level_points_earned"
+    t.integer  "template_current_level_id"
+    t.boolean  "template_let_user_choose_any_level_bool"
+    t.boolean  "template_let_user_choose_lower_levels_bool"
+    t.boolean  "template_on_level_success_go_to_next_goal_bool"
+    t.boolean  "template_on_level_success_go_to_next_level_bool"
+    t.boolean  "template_on_level_success_stop_goal_bool"
+    t.boolean  "template_let_user_decide_when_to_move_to_next_goal_bool"
+    t.integer  "template_next_template_goal_id"
   end
 
   add_index "goals", ["allow_push", "last_success_date", "next_push_on_or_after_date", "pushes_remaining_on_next_push_date"], :name => "allow_push"
@@ -291,14 +304,6 @@ ActiveRecord::Schema.define(:version => 20130203051555) do
     t.integer  "template_goal_id"
     t.integer  "next_level_id"
     t.boolean  "this_is_the_first_level"
-    t.boolean  "success_once_days_straight"
-    t.boolean  "success_once_lagging_rate"
-    t.boolean  "success_once_total_success_days"
-    t.boolean  "success_once_min_days_elapsed"
-    t.integer  "min_days_elapsed"
-    t.integer  "min_lag_days"
-    t.integer  "min_success_days"
-    t.integer  "min_success_rate"
     t.integer  "points"
     t.string   "name"
     t.text     "description"
@@ -308,6 +313,50 @@ ActiveRecord::Schema.define(:version => 20130203051555) do
     t.integer  "prize_image_height"
     t.string   "prize_url"
     t.integer  "prize_message_id"
+    t.integer  "trigger_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "message_goals", :force => true do |t|
+    t.integer  "message_id"
+    t.integer  "goal_id"
+    t.integer  "trigger_id"
+    t.date     "sent_date"
+    t.datetime "sent_datetime"
+    t.string   "sent_status"
+    t.text     "notes"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "message_tags", :force => true do |t|
+    t.integer  "tag_id"
+    t.integer  "message_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "messages", :force => true do |t|
+    t.boolean  "shared"
+    t.integer  "organization_id"
+    t.integer  "program_id"
+    t.integer  "template_goal_id"
+    t.string   "subject"
+    t.text     "body"
+    t.string   "source"
+    t.boolean  "random_quote"
+    t.boolean  "insert_in_checkin_emails"
+    t.boolean  "insert_in_reminder_emails"
+    t.boolean  "insert_in_webpage"
+    t.boolean  "separate_email"
+    t.boolean  "for_the_team"
+    t.boolean  "for_an_individial"
+    t.date     "for_this_date_only"
+    t.date     "not_before_this_date"
+    t.date     "not_after_this_date"
+    t.integer  "trigger_id"
+    t.integer  "allow_repeats_after_min_days"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -465,6 +514,27 @@ ActiveRecord::Schema.define(:version => 20130203051555) do
     t.integer  "from_id"
     t.integer  "to_id"
     t.integer  "unread"
+  end
+
+  create_table "triggers", :force => true do |t|
+    t.boolean  "shared"
+    t.integer  "organization_id"
+    t.integer  "program_id"
+    t.integer  "template_goal_id"
+    t.boolean  "trigger_for_silence_instead_of_reports"
+    t.boolean  "trigger_for_failure_instead_of_success"
+    t.boolean  "trigger_once_days_straight_success_or_failure"
+    t.boolean  "trigger_once_lagging_rate_success_or_failure"
+    t.boolean  "trigger_once_total_days_of_success_or_failure"
+    t.boolean  "trigger_once_min_total_days_elapsed"
+    t.integer  "min_total_days_elapsed"
+    t.integer  "min_lag_days"
+    t.integer  "min_success_or_failure_days"
+    t.integer  "min_success_or_failure_rate"
+    t.string   "name"
+    t.text     "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "users", :force => true do |t|

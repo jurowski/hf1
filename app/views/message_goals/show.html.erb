@@ -1,0 +1,38 @@
+<p>
+  <b>Message:</b>
+  <%=h @message_goal.message_id %>
+</p>
+
+<p>
+  <b>Goal:</b>
+  <%=h @message_goal.goal_id %>
+</p>
+
+<p>
+  <b>Trigger:</b>
+  <%=h @message_goal.trigger_id %>
+</p>
+
+<p>
+  <b>Sent date:</b>
+  <%=h @message_goal.sent_date %>
+</p>
+
+<p>
+  <b>Sent datetime:</b>
+  <%=h @message_goal.sent_datetime %>
+</p>
+
+<p>
+  <b>Sent status:</b>
+  <%=h @message_goal.sent_status %>
+</p>
+
+<p>
+  <b>Notes:</b>
+  <%=h @message_goal.notes %>
+</p>
+
+
+<%= link_to 'Edit', edit_message_goal_path(@message_goal) %> |
+<%= link_to 'Back', message_goals_path %>

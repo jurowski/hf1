@@ -1,0 +1,75 @@
+<h1>New trigger</h1>
+
+<% form_for(@trigger) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :shared %><br />
+    <%= f.check_box :shared %>
+  </p>
+  <p>
+    <%= f.label :organization_id %><br />
+    <%= f.text_field :organization_id %>
+  </p>
+  <p>
+    <%= f.label :program_id %><br />
+    <%= f.text_field :program_id %>
+  </p>
+  <p>
+    <%= f.label :template_goal_id %><br />
+    <%= f.text_field :template_goal_id %>
+  </p>
+  <p>
+    <%= f.label :trigger_for_silence_instead_of_reports %><br />
+    <%= f.check_box :trigger_for_silence_instead_of_reports %>
+  </p>
+  <p>
+    <%= f.label :trigger_for_failure_instead_of_success %><br />
+    <%= f.check_box :trigger_for_failure_instead_of_success %>
+  </p>
+  <p>
+    <%= f.label :trigger_once_days_straight_success_or_failure %><br />
+    <%= f.check_box :trigger_once_days_straight_success_or_failure %>
+  </p>
+  <p>
+    <%= f.label :trigger_once_lagging_rate_success_or_failure %><br />
+    <%= f.check_box :trigger_once_lagging_rate_success_or_failure %>
+  </p>
+  <p>
+    <%= f.label :trigger_once_total_days_of_success_or_failure %><br />
+    <%= f.check_box :trigger_once_total_days_of_success_or_failure %>
+  </p>
+  <p>
+    <%= f.label :trigger_once_min_total_days_elapsed %><br />
+    <%= f.check_box :trigger_once_min_total_days_elapsed %>
+  </p>
+  <p>
+    <%= f.label :min_total_days_elapsed %><br />
+    <%= f.text_field :min_total_days_elapsed %>
+  </p>
+  <p>
+    <%= f.label :min_lag_days %><br />
+    <%= f.text_field :min_lag_days %>
+  </p>
+  <p>
+    <%= f.label :min_success_or_failure_days %><br />
+    <%= f.text_field :min_success_or_failure_days %>
+  </p>
+  <p>
+    <%= f.label :min_success_or_failure_rate %><br />
+    <%= f.text_field :min_success_or_failure_rate %>
+  </p>
+  <p>
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label :description %><br />
+    <%= f.text_area :description %>
+  </p>
+  <p>
+    <%= f.submit 'Create' %>
+  </p>
+<% end %>
+
+<%= link_to 'Back', triggers_path %>

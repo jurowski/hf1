@@ -1,0 +1,87 @@
+<h1>New message</h1>
+
+<% form_for(@message) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :shared %><br />
+    <%= f.check_box :shared %>
+  </p>
+  <p>
+    <%= f.label :organization_id %><br />
+    <%= f.text_field :organization_id %>
+  </p>
+  <p>
+    <%= f.label :program_id %><br />
+    <%= f.text_field :program_id %>
+  </p>
+  <p>
+    <%= f.label :template_goal_id %><br />
+    <%= f.text_field :template_goal_id %>
+  </p>
+  <p>
+    <%= f.label :subject %><br />
+    <%= f.text_field :subject %>
+  </p>
+  <p>
+    <%= f.label :body %><br />
+    <%= f.text_area :body %>
+  </p>
+  <p>
+    <%= f.label :source %><br />
+    <%= f.text_field :source %>
+  </p>
+  <p>
+    <%= f.label :random_quote %><br />
+    <%= f.check_box :random_quote %>
+  </p>
+  <p>
+    <%= f.label :insert_in_checkin_emails %><br />
+    <%= f.check_box :insert_in_checkin_emails %>
+  </p>
+  <p>
+    <%= f.label :insert_in_reminder_emails %><br />
+    <%= f.check_box :insert_in_reminder_emails %>
+  </p>
+  <p>
+    <%= f.label :insert_in_webpage %><br />
+    <%= f.check_box :insert_in_webpage %>
+  </p>
+  <p>
+    <%= f.label :separate_email %><br />
+    <%= f.check_box :separate_email %>
+  </p>
+  <p>
+    <%= f.label :for_the_team %><br />
+    <%= f.check_box :for_the_team %>
+  </p>
+  <p>
+    <%= f.label :for_an_individial %><br />
+    <%= f.check_box :for_an_individial %>
+  </p>
+  <p>
+    <%= f.label :for_this_date_only %><br />
+    <%= f.date_select :for_this_date_only %>
+  </p>
+  <p>
+    <%= f.label :not_before_this_date %><br />
+    <%= f.date_select :not_before_this_date %>
+  </p>
+  <p>
+    <%= f.label :not_after_this_date %><br />
+    <%= f.date_select :not_after_this_date %>
+  </p>
+  <p>
+    <%= f.label :trigger_id %><br />
+    <%= f.text_field :trigger_id %>
+  </p>
+  <p>
+    <%= f.label :allow_repeats_after_min_days %><br />
+    <%= f.text_field :allow_repeats_after_min_days %>
+  </p>
+  <p>
+    <%= f.submit 'Create' %>
+  </p>
+<% end %>
+
+<%= link_to 'Back', messages_path %>

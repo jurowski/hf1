@@ -1,4 +1,12 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :message_tags
+
+  map.resources :message_goals
+
+  map.resources :messages
+
+  map.resources :triggers
+
   map.resources :checkpoint_achievemints
 
   map.resources :template_achievemints

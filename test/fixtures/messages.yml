@@ -1,0 +1,43 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  shared: false
+  organization_id: 1
+  program_id: 1
+  template_goal_id: 1
+  subject: MyString
+  body: MyText
+  source: MyString
+  random_quote: false
+  insert_in_checkin_emails: false
+  insert_in_reminder_emails: false
+  insert_in_webpage: false
+  separate_email: false
+  for_the_team: false
+  for_an_individial: false
+  for_this_date_only: 2013-02-04
+  not_before_this_date: 2013-02-04
+  not_after_this_date: 2013-02-04
+  trigger_id: 1
+  allow_repeats_after_min_days: 1
+
+two:
+  shared: false
+  organization_id: 1
+  program_id: 1
+  template_goal_id: 1
+  subject: MyString
+  body: MyText
+  source: MyString
+  random_quote: false
+  insert_in_checkin_emails: false
+  insert_in_reminder_emails: false
+  insert_in_webpage: false
+  separate_email: false
+  for_the_team: false
+  for_an_individial: false
+  for_this_date_only: 2013-02-04
+  not_before_this_date: 2013-02-04
+  not_after_this_date: 2013-02-04
+  trigger_id: 1
+  allow_repeats_after_min_days: 1
