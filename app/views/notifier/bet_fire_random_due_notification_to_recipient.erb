@@ -2,15 +2,15 @@ Hi <%= @bet.recipient_name %>.
 
 <%= @user.first_name %>'s <%= @bet.length_days %>-day challenge for $<%= @bet.wager %> ended on <%= @bet.end_date.strftime("%A, %b %d, %Y") %>.
 
-To win the challenge, <%= @bet.recipient_name %> needed to succeed at least <%= @bet.floor%>% (<%= @floor_days %> days) out of the <%= @bet.length_days %>-day challenge period.
+To win the challenge, <%= @user.first_name %> needed to succeed at least <%= @bet.floor%>% (<%= @floor_days %> days) out of the <%= @bet.length_days %>-day challenge period.
 
 <% if @successful_days >= @floor_days %>
-Well, <%= @bet.recipient_name %> succeeded! There was $<%= @bet.wager %> on the line, but no payment is due because the goal was reached.
+Well, <%= @user.first_name %> succeeded! There was $<%= @bet.wager %> on the line, but no payment is due because the goal was reached.
 
 <% else %>
-<%= @bet.recipient_name %> did not reach the goal (there were <%= @successful_days %> successful days). <%= @bet.recipient_name %> now owes you $<%= @bet.wager %>!
+<%= @user.first_name %> did not reach the goal (there were <%= @successful_days %> successful days). <%= @user.first_name %> now owes you $<%= @bet.wager %>!
 
-<%= @bet.recipient_name %> has been asked to contact you via the HabitForge site messaging system to discuss a method of payment (paypal or a check by mail). Payments are on the honor system, so we expect <%= @bet.recipient_name %> will be a good citizen and follow through!
+<%= @user.first_name %> has been asked to contact you via the HabitForge site messaging system to discuss a method of payment (paypal or a check by mail). Payments are on the honor system, so we expect <%= @user.first_name %> will be a good citizen and follow through!
 
 Thanks for helping to provide some extra motivation, and best of luck with your own goals!
 
