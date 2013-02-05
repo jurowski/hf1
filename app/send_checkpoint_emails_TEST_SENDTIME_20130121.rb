@@ -511,8 +511,8 @@ class SendCheckpointEmails < ActiveRecord::Base
       ### just leave as "equal to" instead of ">=" ... if something happens where an hour or more is skipped,
       ### the separate "previous day" script will pick it up 
       goal_conditions = goal_conditions + "usersendhour = '#{tnow_k}'"      
-      goal_conditions = goal_conditions + " and usersendhour != '1'"      
-
+      #goal_conditions = goal_conditions + " and usersendhour != '1'"      
+      goal_conditions = goal_conditions + " and check_in_same_day = '1'"
       #goal_conditions = goal_conditions + " or usersendhour = '#{tlimit1_k}'"
       #goal_conditions = goal_conditions + " or usersendhour = '#{tlimit2_k}'"
       #goal_conditions = goal_conditions + " or usersendhour = '#{tlimit3_k}'"          

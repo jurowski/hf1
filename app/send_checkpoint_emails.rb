@@ -327,6 +327,7 @@ class SendCheckpointEmails < ActiveRecord::Base
       #@goals = Goal.find(:all, :conditions => "status !='hold' and start < '#{dnow}' and stop >= '#{dnow}' and #{day_name} = '1'") 
       goal_conditions = "user_id = #{user.id}"
       goal_conditions = goal_conditions + " and status != 'hold'"
+      goal_conditions = goal_conditions + " and check_in_same_day = '0'"
       goal_conditions = goal_conditions + " and ((start < '#{dnow}' and stop >= '#{dnow}') or (laststatusdate is not null and laststatusdate > '#{user.dstop_after_stale_days}'))"
       goal_conditions = goal_conditions + " and #{day_name} = '1'"   #comment out this one line if not supporting days of the week
       goal_conditions = goal_conditions + " and ("
