@@ -259,6 +259,16 @@ show_monitor_option_details = 0
     %>
     <%= select(:goal, :usersendhour, @arr_checkin)%>
 
+
+    <%
+    @arr_check_in_same_day = Array.new
+
+    @arr_check_in_same_day.push(["that same day", true])
+    @arr_check_in_same_day.push(["the next day", false])
+    %>
+    <%= select(:goal, :check_in_same_day, @arr_check_in_same_day)%>
+
+
   </td>
   </tr>
 <!-- end -->
@@ -290,6 +300,7 @@ show_monitor_option_details = 0
                     <%= check_box(:goal, :more_reminders_enabled, options = {}, checked_value = "true", unchecked_value = "false") %>
                     Send me frequent reminders every  
         
+
                 <%
                 @arr_reminder_frequency = Array.new
 
