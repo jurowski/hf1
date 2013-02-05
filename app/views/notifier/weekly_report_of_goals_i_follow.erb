@@ -1,0 +1,251 @@
+<%
+    sitename = "habitforge.com"
+
+    arr_closing = Array.new
+    arr_closing.push(["Best of luck today!"])
+    arr_closing.push(["Good luck today!"])
+    arr_closing.push(["Good luck with all of your goals!"])
+
+    random_number = 0
+    random_number = rand(arr_closing.size) + 0 #between 0 and arr_subject.size
+    random_closing = arr_closing[random_number]
+
+    arr_subject = Array.new
+    arr_subject.push(["Check out the progress of those you follow! "])
+    arr_subject.push(["Here is the progress for those you are following. "])
+
+    random_number = 0
+    random_number = rand(arr_subject.size) + 0 #between 0 and arr_subject.size
+    random_subject = arr_subject[random_number]
+%>
+
+
+
+
+
+<html>
+<head>
+   <base href="http://<%= sitename %>/"/>
+   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <title>the Weekly Follower Report (HabitForge)</title>
+   <style type="text/css" media="screen">
+      body {
+      	margin: 0;
+      	padding: 0;
+      }
+   </style>
+
+</head>
+<body>
+<a name="top" id="top"></a>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+   <tr>
+      <td align="left">         
+         <table width="580" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+               <td class="header" height="30">
+                  <img src="/images/habitforge_logo.png" alt="Thanks for supporting your team!" height="30" />
+               </td>
+            </tr>
+            <tr>
+               <td>  
+                  <table width="580" border="0" cellspacing="20" cellpadding="0">     
+                     <tr>
+                        <td width="580" align="left" valign="top" class="mainbar">
+                            <table border=0><tr><td valign=top align=center width=1%>
+                            
+                            
+                            <img src="/images/gear.png" alt=" " width="65px">
+                                </td>
+                                <td valign=top align=left width=99%>
+                                  <div style="padding:.8em;margin-bottom:1em;border:2px solid #ddd;background:#FFFFCC;color:#514721;border-color:#BBBBBB;">
+
+                                     <h3>Good <%= @goal.user.time_period_of_day_right_now %> <%= @goal.user.first_name %>!</h3>
+
+                                     <%= random_subject %>
+                                     <br>
+                                     <!-- (now hiding) random_closing -->
+                                 </div>
+                                </td></tr>
+
+
+                                 <% if @goal.get_latest_stats_badge and !@goal.get_latest_stats_badge.include? "missing" %>
+
+                                        <tr>
+                                        <td>
+                                        <br>
+                                        </td>
+                                        <td>                                
+                                        <br>
+                                        </td>
+                                        </tr>
+                        
+                                        <tr>
+                                        <td>
+                                        <br>
+                                        </td>
+                                        <td>
+                                        <center>
+                                        <h3>Your own stats for your "<%= @goal.response_question %>" habit are below...</h3>
+
+
+                                            <!-- in other locations we're directly calling "stats_image" and "stats_output"
+                                               ...but using the cached method here to save cycles
+                                               ...the cached method isn't working well for web page renders, always stale
+                                            -->
+                                            <%= @goal.get_latest_stats_badge %>
+                                            <%= @goal.get_latest_stats_badge_details %>
+                                        </center>
+                                        </td>
+                                        </tr>
+
+
+                                 <% end %>
+
+    <tr><td><br></td><td><center>
+    <%
+      @team_goals = Goal.find(:all, :conditions => "team_id = '#{@goal.team_id}'")
+
+          has_percentage = 0
+          total_percentage = 0
+          average_percentage = 0
+          for team_goal in @team_goals
+              if team_goal.success_rate_percentage != nil
+                  has_percentage = has_percentage + 1
+                  total_percentage = total_percentage + team_goal.success_rate_percentage
+              end
+          end
+          if has_percentage > 0
+              average_percentage = total_percentage / has_percentage
+              %>
+              <p><h3>My Team's Success Rate is <%= average_percentage %>% during the past 30 days
+              <br>
+              <%
+          else
+              %>
+              <p><h3>My Team</h3></p>
+              <br>
+              <%                  
+          end
+
+
+      for team_goal in @team_goals
+        %>
+        <% if team_goal.user.id != @goal.user.id %>
+            <p><img src="/images/comment_user_add_32.png" /> <a href="/tomessages/new?to_id=<%= team_goal.user.id %>" >Send <%= team_goal.user.first_name %> a Message about <%= team_goal.response_question %></a>
+            • 
+            <% if team_goal.success_rate_percentage != nil %>
+                 Succeeding <%= team_goal.success_rate_percentage %>% of the last
+            <% end %>
+            <% if team_goal.days_into_it != nil %>
+                30 days
+            <% end %>
+
+            <% if team_goal.daysstraight != nil and team_goal.daysstraight != 9999 %>
+                has done it <%= team_goal.daysstraight %> days in a row
+            <% end %>
+
+            <% if team_goal.laststatusdate != nil and team_goal.laststatus != nil %>
+            <% else %>              
+                 (has not yet checked in)
+            <% end %> 
+            </p>
+        <% end %>            
+        <%
+      end
+      %> 
+      </center></td></tr>
+
+                                
+                                <tr>
+                                <td>
+                                <br>
+                                </td>
+                                <td>                                
+                                <br>
+                                </td>
+                                </tr>
+                                
+
+
+                                        
+                                        
+                                        <% 
+					inserted_something = false ### saving this in case we add other text via db later
+                                        if !inserted_something
+                                            random_quote_thought = "Seek the small improvement one day at a time. That’s the only way it happens — and when it happens, it lasts."
+                                            random_quote_author = "Coach John Wooden"
+                                            random_quote = @goal.user.get_quote_random
+                                            if random_quote
+                                                random_quote_thought = random_quote.thought
+                                                random_quote_author = random_quote.author
+                                            end
+                                            %>
+
+                                            <tr>
+                                            <td align=center colspan=2 width=100%>
+                                                <div style="padding:.8em;margin-bottom:1em;border:2px solid #ddd;background:#EEEEEE;color:#8a1f11;border-color:#BBBBBB;">
+                                                    <p>
+                                                    
+                                                    "<%= random_quote_thought %>" --<%= random_quote_author %>
+                                        <%
+                                        end 
+                                        %>
+                                        
+
+
+                                        </p>
+                                    </div>
+                                </td></tr>
+                                
+                                
+
+                                <tr>
+                                <td>
+                                
+                                <br>
+                                </td>
+                                </tr>
+                                
+                                
+                                </table>
+                        </td>
+                     </tr>
+                  </table>
+                  
+               </td>
+            </tr>
+            <tr>
+                <td colspan=100>
+                    
+                </td>
+            </tr>
+            <tr>
+                <td align="center" colspan=100>
+                    Questions? Email support@<%= sitename %>
+                </td>
+            </tr>
+            <tr>
+                <td colspan=100>
+                    
+                </td>
+            </tr>
+            <tr>
+                <td colspan=100>
+                    
+                </td>
+            </tr>
+            <tr>
+                <td align="center" valign="top" class="footer">
+                   <p><i>The Lunchbreak Team Summary is a new feature, so bear with us as we tweak it to meet people's needs. The theory right now is: You are receiving daily team summaries because you are on a team for your goal and because the purpose of a team is to communicate and succeed toward a goal. If you think daily is too much, email support@habitforge.com to provide feedback on what would work better for you (weekly, etc.) and if enough people feel that way, we'll add the option. For now, to stop receiving team summaries, log into http://<%= sitename %> and remove yourself from the team.</i></p>
+                </td>
+            </tr>
+         </table>
+         
+      </td>
+   </tr>
+</table>
+
+</body>
+</html>
+

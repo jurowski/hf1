@@ -374,6 +374,15 @@ class Notifier < ActionMailer::Base
     content_type "text/html"
   end
 
+  def weekly_report_of_goals_i_follow(user)
+    recipients user.first_name + "<" + user.email + ">"
+    bcc        ["support@habitforge.com"]
+    from       "HabitForge <support@habitforge.com>"
+    subject    "[HF] the Weekly Follower Report"
+    body       :user => user
+    content_type "text/html"
+  end
+
   def daily_reminder_to_user(goal)
     recipients goal.user.email
     #recipients checkpoint.goal.user.first_name + "<" + checkpoint.goal.user.email + ">"
