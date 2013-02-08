@@ -156,7 +156,7 @@ class SendWatchersSummary < ActiveRecord::Base
       ### ONLY SEND ON THURSDAYS
       if today_dayname == "Monday"
 
-        cheer_conditions = "email = '#{user.email}' and weekly_report == '1'"    
+        cheer_conditions = "email = '#{user.email}' and weekly_report = '1'"    
         cheers = Cheer.find(:all, :conditions => cheer_conditions)
         for cheer in cheers
          begin
