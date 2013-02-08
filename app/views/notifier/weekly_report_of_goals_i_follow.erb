@@ -76,10 +76,19 @@
         %>
 
             <p><img src="/images/comment_user_add_32.png" /> <a href="/tomessages/new?to_id=<%= goal.user.id %>" >Send <%= goal.user.first_name %> a Message about <%= goal.response_question %></a>
-            <br> 
+            • 
+            <% if goal.success_rate_percentage != nil %>
+                 Succeeding <%= goal.success_rate_percentage %>% of the last
+            <% end %>
+            <% if goal.days_into_it != nil %>
+                30 days
+            <% end %>
+
+            <% if goal.daysstraight != nil and goal.daysstraight != 9999 %>
+                has done it <%= goal.daysstraight %> days in a row
+            <% end %>
+
             <% if goal.laststatusdate != nil and goal.laststatus != nil %>
-              <%= goal.stats_image %>
-              <%= goal.stats_output %>
             <% else %>              
                  (has not yet checked in)
             <% end %> 
