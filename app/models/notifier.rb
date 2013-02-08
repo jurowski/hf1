@@ -381,9 +381,9 @@ class Notifier < ActionMailer::Base
 
   ### watcher
   def weekly_report_of_goals_i_follow(user, arr_goals_to_email_me_about, day_of_the_week)
-    #recipients user.first_name + "<" + user.email + ">"
-    recipients "jurowski@gmail.com"
-    bcc        ["support@habitforge.com"]
+    recipients user.first_name + "<" + user.email + ">"
+    #recipients "jurowski@gmail.com"
+    #bcc        ["support@habitforge.com"]
     from       "HabitForge <support@habitforge.com>"
     subject    "[HF] #{day_of_the_week}'s Weekly Goal Follower Report"
     body       :user => user, :arr_goals_to_email_me_about => arr_goals_to_email_me_about

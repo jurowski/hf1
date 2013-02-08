@@ -62,8 +62,9 @@ class SendWatchersSummary < ActiveRecord::Base
   attempt_to_resend_failures = 0
   #attempt_to_resend_failures = 1  
 
-  #maxemails = 800
-  maxemails = 1
+  maxemails = 800
+  #maxemails = 1
+
   puts "Max emails to send per hour = #{maxemails}"
 
 
@@ -155,7 +156,7 @@ class SendWatchersSummary < ActiveRecord::Base
       arr_cheers_to_email_me_about = Array.new()
 
       ### ONLY SEND ON THURSDAYS
-      if today_dayname == "Monday"
+      if today_dayname == "Thursday"
 
         cheer_conditions = "email = '#{user.email}' and weekly_report = '1'"    
         cheers = Cheer.find(:all, :conditions => cheer_conditions)
