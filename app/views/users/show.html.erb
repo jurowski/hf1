@@ -186,17 +186,17 @@
     if current_user.combine_daily_emails == 0
     %>
         <h4>
-        We'll send <%= current_user.number_of_active_habits %> check-in emails with "Yes/No" links. 
+        We will send a check-in email for each goal even if more than one are due at the same hour. 
         <br>
-        <a href="/account?set_combine_daily_emails=1">Change to getting just one email with a link to an "update" web page.</a>
+        <a href="/account?set_combine_daily_emails=1">Change that: If I have more than one goal to check in with at the same time, combine the check-in emails into one.</a>
         </h4>        
     <%
     else
     %>
         <h4>
-        We'll send just one check-in email with a link to an "update" web page.
+       If you have more than one goal to check in with at the same time, we will combine the check-in emails into one email.
         <br>
-        <a href="/account?set_combine_daily_emails=0">Change to getting <%= current_user.number_of_active_habits %> emails with "Yes/No" links.</a>
+        <a href="/account?set_combine_daily_emails=0">Change that: Send a check-in email for each goal even if other goals are due for check-in at that same hour.</a>
         </h4>
     <%
     end
