@@ -155,8 +155,8 @@ class SendWatchersSummary < ActiveRecord::Base
       arr_goals_to_email_me_about = Array.new()
       arr_cheers_to_email_me_about = Array.new()
 
-      ### ONLY SEND ON THURSDAYS
-      if today_dayname == "Thursday"
+      ### ONLY SEND ON Wednesdays and after 8am
+      if (today_dayname == "Wednesday") and (tnow_H >= 8)
 
         cheer_conditions = "email = '#{user.email}' and weekly_report = '1'"    
         cheers = Cheer.find(:all, :conditions => cheer_conditions)
