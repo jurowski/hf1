@@ -120,6 +120,14 @@ else
           &nbsp; 
           •
           &nbsp;
+          <% if cheer.weekly_report %>
+            <a href="/cheers?stop_weekly_report=<%= cheer.id %>">Stop Emailing Weekly Report For This Goal</a>
+          <% else %>
+            <a href="/cheers?start_weekly_report=<%= cheer.id %>">Email Me a Weekly Report For This Goal</a>
+          <% end %>
+
+          •
+          &nbsp;
           <%= link_to 'Stop Following', cheer, :confirm => 'Are you sure?', :method => :delete %>
           </div>
           <br>

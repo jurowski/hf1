@@ -17,6 +17,34 @@ class CheersController < ApplicationController
         @cheers = Cheer.find(:all)
       else
         @cheers = Cheer.find(:all, :conditions => "email = '#{current_user.email}'")
+
+        if params[:stop_weekly_report]
+          begin
+            stop_cheer = Cheer.find(params[:stop_weekly_report].to_i)
+            if stop_cheer
+              stop_cheer.weekly_report = false
+              stop_cheer.save
+              flash[:notice] = 'Weekly report disabled.'
+            end
+          rescue
+            logger.error("sgj:cheers_controller:error while trying to stop weekly report for cheer_id of " + params[:stop_weekly_report])
+          end
+        end
+
+
+        if params[:start_weekly_report]
+          begin
+            start_cheer = Cheer.find(params[:start_weekly_report].to_i)
+            if start_cheer
+              start_cheer.weekly_report = true
+              start_cheer.save
+              flash[:notice] = 'Weekly report enabled.'
+            end
+          rescue
+            logger.error("sgj:cheers_controller:error while trying to start weekly report for cheer_id of " + params[:start_weekly_report])
+          end
+        end
+
       end
 
       respond_to do |format|
