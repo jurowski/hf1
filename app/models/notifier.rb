@@ -365,25 +365,25 @@ class Notifier < ActionMailer::Base
   end
 
 
-  def daily_team_summary_to_user(goal)
+  def daily_team_summary_to_user(goal, day_of_the_week)
     recipients goal.user.first_name + "<" + goal.user.email + ">"
     #bcc        ["jurowski@gmail.com"]
     from       "HabitForge <support@habitforge.com>"
 
     if goal.category
-      subject    "[HF] the Lunchbreak: #{goal.category} Team Activity Report"
+      subject    "[HF] the #{day_of_the_week} Lunchbreak: #{goal.category} Team Activity Report"
     else
-      subject    "[HF] the Lunchbreak: Team Activity Report"
+      subject    "[HF] the #{day_of_the_week} Lunchbreak: Team Activity Report"
     end
     body       :goal => goal
     content_type "text/html"
   end
 
-  def weekly_report_of_goals_i_follow(user)
+  def weekly_report_of_goals_i_follow(user, day_of_the_week)
     recipients user.first_name + "<" + user.email + ">"
     bcc        ["support@habitforge.com"]
     from       "HabitForge <support@habitforge.com>"
-    subject    "[HF] the Weekly Follower Report"
+    subject    "[HF] #{day_of_the_week}'s Weekly Follower Report"
     body       :user => user
     content_type "text/html"
   end

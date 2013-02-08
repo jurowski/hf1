@@ -171,8 +171,12 @@ class SendTeamSummary < ActiveRecord::Base
 	if goal.is_part_of_a_team
 	  team_goals = Goal.find(:all, :conditions => "team_id = '#{goal.team_id}'")
 	  if team_goals.size > 1
+
+      ### only send on Mondays and Fridays
+      if today_dayname == "Monday" or today_dayname == "Friday"
             proceed = true
-          end
+      end
+    end
 	end
 
           
@@ -188,7 +192,7 @@ class SendTeamSummary < ActiveRecord::Base
             team_summary_sent = false
         
                     begin
-                        Notifier.deliver_daily_team_summary_to_user(goal) # sends the email
+                        Notifier.deliver_daily_team_summary_to_user(goal, today_dayname) # sends the email
                         logger.debug "team summary sent for " + goal.user.email + " " + goal.title
                         team_summary_sent = true
                     rescue
