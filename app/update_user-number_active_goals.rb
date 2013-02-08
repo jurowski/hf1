@@ -5,12 +5,13 @@ class UpdateUserNumberActiveGoals < ActiveRecord::Base
   # 1. changes goal statuses to "hold" for those out of date range (unless it's an established habit)
   # 2. updates the number of active goals that each user has
   # 3. moves any checkpoints for "held" goals that were never established that are XXX days old to expiredcheckpoints
-  
+  # 4. updates whether the user follows any active goals
+
   ### Whether to run the above steps
   run_1 = "no" ### just do this manually when needed
   run_2 = "yes" ### or just do this manually when needed
   run_3 = "no" ### just do this manually when needed
-  
+  run_4 = "yes"
   
   FileUtils.touch 'tmp/launched_update_user-number_active_goals_at'
   
@@ -156,6 +157,59 @@ class UpdateUserNumberActiveGoals < ActiveRecord::Base
   # 
   #######
 
+
+  #######
+  # START 4. updates whether the user follows any active goals
+  # 
+  #######
+  if run_4 == "yes"
+      
+    puts "Going to update whether users follow any active goals"
+
+    ### If you iterate through all users at once you will bloat and kill the PID
+    ### so instead, cut them up by user.active_goals_tallied_hour
+    counter = 0
+    batch = 0
+    active_user_count = 0
+    active_goal_count = 0
+    per_run_limit = 1000
+    batch_size = 1 ### something greater than 0 to start
+
+    
+    while batch_size > 0
+        batch = batch + 1
+        puts "-----  BATCH #{batch} of qty #{per_run_limit} ------"
+        @all_users = User.find(:all, :limit => per_run_limit, :conditions => "(active_goals_i_follow_tallied_hour != #{tnow_H})")
+        batch_size = @all_users.size 
+        for user in @all_users
+          goal_count = 0
+          cheers = Cheer.find(:all, :conditions => "email = '#{user.email}'")
+
+          for cheer in cheers
+            begin
+              goal = Goal.find(cheer.goal_id)
+              if goal
+                if goal.is_active
+                  goal_count = goal_count + 1
+                end
+              end
+            rescue
+              puts "could not find goal_id " + cheer.goal_id.to_s
+            end
+          end
+          user.update_number_active_goals_i_follow = goal_count
+          user.active_goals_i_follow_tallied_hour = tnow_H
+          user.save
+          counter = counter + 1
+        end
+    end
+
+    
+  end
+  #######
+  # END 4. updates whether the user follows any active goals
+  # 
+  #######
 puts "end of script"
 FileUtils.touch 'tmp/finished_update_user-number_active_goals_at'
 

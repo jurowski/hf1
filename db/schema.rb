@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130208131333) do
+ActiveRecord::Schema.define(:version => 20130208151621) do
 
   create_table "achievemints", :force => true do |t|
     t.string   "name"
@@ -623,6 +623,8 @@ ActiveRecord::Schema.define(:version => 20130208131333) do
     t.boolean  "confirmed_address",                                                  :default => false
     t.string   "confirmed_address_token"
     t.boolean  "asked_for_testimonial",                                              :default => false
+    t.integer  "update_number_active_goals_i_follow",                                :default => 0
+    t.integer  "active_goals_i_follow_tallied_hour",                                 :default => 0
   end
 
   add_index "users", ["email"], :name => "index_users_on_email"
