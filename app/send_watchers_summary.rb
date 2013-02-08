@@ -62,7 +62,8 @@ class SendWatchersSummary < ActiveRecord::Base
   attempt_to_resend_failures = 0
   #attempt_to_resend_failures = 1  
 
-  maxemails = 800
+  #maxemails = 800
+  maxemails = 1
   puts "Max emails to send per hour = #{maxemails}"
 
 
@@ -200,8 +201,8 @@ class SendWatchersSummary < ActiveRecord::Base
         
             if watcher_summary_sent
               arr_cheers_to_email_me_about.each do |cheer|
-                #cheer.weekly_report_last_sent = dnow
-                #cheer.save
+                cheer.weekly_report_last_sent = dnow
+                cheer.save
                 logtext = "Success emailing #{user.email} goal info for cheer_id #{cheer.id.to_s}"              
                 puts logtext
                 logger.info logtext 
