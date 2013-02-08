@@ -677,7 +677,10 @@ testing_xml_resend_any = %{
              #### 27 => current $9.95/year
              #### 29 => new $3.95/month
              #### 31 => new $29/year
-             #### 0 = > new $99 Lifetime
+             #### 99 = > new $99 Lifetime
+             #### OLD: 0 = > new $99 Lifetime
+
+
 
 	     #### SHOPIFY PRODUCT IDs
              ### 33131182 = 12-month Supporting Membership
@@ -778,7 +781,7 @@ testing_xml_resend_any = %{
                         if xml_variant_id == 29
 			  user.plan = "Monthly"
 			end
-                        if xml_variant_id == 0
+                        if xml_variant_id == 99
 			  user.plan = "Lifetime"
 			end
 			user.plan = user.plan + " @ $" + xml_price
