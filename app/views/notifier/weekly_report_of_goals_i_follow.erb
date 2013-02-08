@@ -44,7 +44,7 @@
          <table width="580" border="0" cellspacing="0" cellpadding="0">
             <tr>
                <td class="header" height="30">
-                  <img src="/images/habitforge_logo.png" alt="Thanks for supporting your team!" height="30" />
+                  <img src="/images/habitforge_logo.png" alt="Thanks for helping with accountability!" height="30" />
                </td>
             </tr>
             <tr>
@@ -60,97 +60,30 @@
                                 <td valign=top align=left width=99%>
                                   <div style="padding:.8em;margin-bottom:1em;border:2px solid #ddd;background:#FFFFCC;color:#514721;border-color:#BBBBBB;">
 
-                                     <h3>Good <%= @goal.user.time_period_of_day_right_now %> <%= @goal.user.first_name %>!</h3>
+                                     <h3>Good <%= @user.time_period_of_day_right_now %> <%= @user.first_name %>!</h3>
 
-                                     <%= random_subject %>
+                                     <!-- (hiding) random_subject -->
                                      <br>
                                      <!-- (now hiding) random_closing -->
                                  </div>
                                 </td></tr>
 
 
-                                 <% if @goal.get_latest_stats_badge and !@goal.get_latest_stats_badge.include? "missing" %>
-
-                                        <tr>
-                                        <td>
-                                        <br>
-                                        </td>
-                                        <td>                                
-                                        <br>
-                                        </td>
-                                        </tr>
-                        
-                                        <tr>
-                                        <td>
-                                        <br>
-                                        </td>
-                                        <td>
-                                        <center>
-                                        <h3>Your own stats for your "<%= @goal.response_question %>" habit are below...</h3>
-
-
-                                            <!-- in other locations we're directly calling "stats_image" and "stats_output"
-                                               ...but using the cached method here to save cycles
-                                               ...the cached method isn't working well for web page renders, always stale
-                                            -->
-                                            <%= @goal.get_latest_stats_badge %>
-                                            <%= @goal.get_latest_stats_badge_details %>
-                                        </center>
-                                        </td>
-                                        </tr>
-
-
-                                 <% end %>
-
     <tr><td><br></td><td><center>
     <%
-      @team_goals = Goal.find(:all, :conditions => "team_id = '#{@goal.team_id}'")
 
-          has_percentage = 0
-          total_percentage = 0
-          average_percentage = 0
-          for team_goal in @team_goals
-              if team_goal.success_rate_percentage != nil
-                  has_percentage = has_percentage + 1
-                  total_percentage = total_percentage + team_goal.success_rate_percentage
-              end
-          end
-          if has_percentage > 0
-              average_percentage = total_percentage / has_percentage
-              %>
-              <p><h3>My Team's Success Rate is <%= average_percentage %>% during the past 30 days
-              <br>
-              <%
-          else
-              %>
-              <p><h3>My Team</h3></p>
-              <br>
-              <%                  
-          end
-
-
-      for team_goal in @team_goals
+      for goal in @arr_goals_to_email_me_about
         %>
-        <% if team_goal.user.id != @goal.user.id %>
-            <p><img src="/images/comment_user_add_32.png" /> <a href="/tomessages/new?to_id=<%= team_goal.user.id %>" >Send <%= team_goal.user.first_name %> a Message about <%= team_goal.response_question %></a>
-            • 
-            <% if team_goal.success_rate_percentage != nil %>
-                 Succeeding <%= team_goal.success_rate_percentage %>% of the last
-            <% end %>
-            <% if team_goal.days_into_it != nil %>
-                30 days
-            <% end %>
 
-            <% if team_goal.daysstraight != nil and team_goal.daysstraight != 9999 %>
-                has done it <%= team_goal.daysstraight %> days in a row
-            <% end %>
-
-            <% if team_goal.laststatusdate != nil and team_goal.laststatus != nil %>
+            <p><img src="/images/comment_user_add_32.png" /> <a href="/tomessages/new?to_id=<%= goal.user.id %>" >Send <%= goal.user.first_name %> a Message about <%= goal.response_question %></a>
+            <br> 
+            <% if goal.laststatusdate != nil and goal.laststatus != nil %>
+              <%= goal.stats_image %>
+              <%= goal.stats_output %>
             <% else %>              
                  (has not yet checked in)
             <% end %> 
             </p>
-        <% end %>            
         <%
       end
       %> 
@@ -237,7 +170,7 @@
             </tr>
             <tr>
                 <td align="center" valign="top" class="footer">
-                   <p><i>The Lunchbreak Team Summary is a new feature, so bear with us as we tweak it to meet people's needs. The theory right now is: You are receiving daily team summaries because you are on a team for your goal and because the purpose of a team is to communicate and succeed toward a goal. If you think daily is too much, email support@habitforge.com to provide feedback on what would work better for you (weekly, etc.) and if enough people feel that way, we'll add the option. For now, to stop receiving team summaries, log into http://<%= sitename %> and remove yourself from the team.</i></p>
+                   <p><i>The Weekly Goal Watcher Summary is a new feature, so bear with us as we tweak it to meet people's needs. The theory right now is: You are receiving weekly summaries because you are following the progress of someone's goal, and the purpose of following is to provide accountability. You can disable email reports for each goal you follow in the "Friends" tab when logged into http://<%= sitename %> .</i></p>
                 </td>
             </tr>
          </table>

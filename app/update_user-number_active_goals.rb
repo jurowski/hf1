@@ -13,7 +13,8 @@ class UpdateUserNumberActiveGoals < ActiveRecord::Base
   run_3 = "no" ### just do this manually when needed
   run_4 = "yes"
   
-  FileUtils.touch 'tmp/launched_update_user-number_active_goals_at'
+  ### Careful, the below can kill if running from terminal and not cron
+  #FileUtils.touch 'tmp/launched_update_user-number_active_goals_at'
   
   
   ### GET DATE NOW ###
@@ -72,9 +73,9 @@ class UpdateUserNumberActiveGoals < ActiveRecord::Base
     active_goal_count = 0
     per_run_limit = 1000
     batch_size = 1 ### something greater than 0 to start
-
+    max_batches = 20
     
-    while batch_size > 0
+    while (batch_size > 0) and (batch <= max_batches)
         batch = batch + 1
         puts "-----  BATCH #{batch} of qty #{per_run_limit} ------"
         @all_users = User.find(:all, :limit => per_run_limit, :conditions => "(active_goals_tallied_hour != #{tnow_H})")
@@ -174,9 +175,9 @@ class UpdateUserNumberActiveGoals < ActiveRecord::Base
     active_goal_count = 0
     per_run_limit = 1000
     batch_size = 1 ### something greater than 0 to start
-
+    max_batches = 20
     
-    while batch_size > 0
+    while (batch_size > 0) and (batch <= max_batches)
         batch = batch + 1
         puts "-----  BATCH #{batch} of qty #{per_run_limit} ------"
         @all_users = User.find(:all, :limit => per_run_limit, :conditions => "(active_goals_i_follow_tallied_hour != #{tnow_H})")
@@ -211,6 +212,8 @@ class UpdateUserNumberActiveGoals < ActiveRecord::Base
   # 
   #######
 puts "end of script"
-FileUtils.touch 'tmp/finished_update_user-number_active_goals_at'
+
+### Careful, the below can kill if running from terminal and not cron
+#FileUtils.touch 'tmp/finished_update_user-number_active_goals_at'
 
 end

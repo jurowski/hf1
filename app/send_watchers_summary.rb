@@ -7,7 +7,7 @@ class SendWatchersSummary < ActiveRecord::Base
   if `uname -n`.strip == 'adv.adventurino.com'
     #### HABITFORGE SETTINGS ON VPS
     testing = 0 #send emails to everyone as needed
-    testing = 1 #only send emails to "jurowski@gmail.com/jurowski@pediatrics.wisc.edu" as needed
+    #testing = 1 #only send emails to "jurowski@gmail.com/jurowski@pediatrics.wisc.edu" as needed
 
 
     adjust_server_hour = 0 ### this server is listing its time as GMT -0600
@@ -82,7 +82,8 @@ class SendWatchersSummary < ActiveRecord::Base
     if testing == 1 ### assuming adminuseremail of "jurowski@gmail.com" or "jurowski@pediatrics.wisc.edu"
       user_conditions = "id = '#{test_user_id1}' or id = '#{test_user_id2}'"
     else
-      user_conditions = user_conditions + "sponsor = 'habitforge'"
+      user_conditions = "update_number_active_goals_i_follow > '0'"
+      user_conditions = user_conditions + " and sponsor = 'habitforge'"
     end
 
 
@@ -147,76 +148,68 @@ class SendWatchersSummary < ActiveRecord::Base
       ######
       ###################
       ###################
-      goal_conditions = "user_id = #{user.id}"
-      goal_conditions = goal_conditions + " and status != 'hold'"
-      goal_conditions = goal_conditions + " and ((start <= '#{dnow}' and stop >= '#{dnow}') or (laststatusdate is not null and laststatusdate > '#{user.dstop_after_stale_days}'))"
-      #goal_conditions = goal_conditions + " and #{day_name} = '1'"   #comment out this one line if not supporting days of the week
-      goal_conditions = goal_conditions + " and team_summary_send_hour <= '#{tnow_hour}'"
-      goal_conditions = goal_conditions + " and team_summary_send_hour <> '-1'"
-      goal_conditions = goal_conditions + " and (team_summary_last_sent_date is null or team_summary_last_sent_date < '#{dnow}')"
 
-      #don't send the reminder on the goal creation day!
-      #so if user.today < goal.start_date, don't send
+      proceed = false
+      arr_goals_to_email_me_about = Array.new()
+      arr_cheers_to_email_me_about = Array.new()
 
-    #logtext = "running #{goal_conditions}"              
-    #puts logtext
-    #logger.info logtext 
+      ### ONLY SEND ON THURSDAYS
+      if today_dayname == "Monday"
 
-      
-      @goals = Goal.find(:all, :conditions => goal_conditions)
-      for goal in @goals
-	proceed = false
-	if goal.is_part_of_a_team
-	  team_goals = Goal.find(:all, :conditions => "team_id = '#{goal.team_id}'")
-	  if team_goals.size > 1
+        cheer_conditions = "email = '#{user.email}' and weekly_report == '1'"    
+        cheers = Cheer.find(:all, :conditions => cheer_conditions)
+        for cheer in cheers
+         begin
+           goal = Goal.find(cheer.goal_id)
+           if goal
+             if goal.is_active and (cheer.weekly_report_last_sent == nil or (dnow - cheer.weekly_report_last_sent > 6))
+               proceed = true
+               arr_goals_to_email_me_about << goal
+               arr_cheers_to_email_me_about << cheer
+             end
+           end
+         rescue
+           puts "could not find goal_id of " + cheer.goal_id.to_s
+         end
+        end ### end for cheer in cheers
 
-      ### only send on Mondays and Fridays
-      if today_dayname == "Monday" or today_dayname == "Friday"
-            proceed = true
-      end
-    end
-	end
+      end ### end if correct day(s) of the week
 
-          
-        ### don't let a reminder go out if it's > 4 hours too late
-        max_time_to_send = goal.team_summary_send_hour + 4
-        if proceed and tnow_hour <= max_time_to_send 
+
+
+        if proceed
 
             ### Send team summary email
-            logtext = "About to send user_id of #{goal.user.id.to_s} ( #{goal.user.email} ) a team summary email for today (#{today_dayname}), #{dnow}. Their time is #{tnow.to_s} or hour number #{tnow_hour}."              
+            logtext = "About to send user_id of #{user.id.to_s} ( #{user.email} ) a watcher email for today (#{today_dayname}), #{dnow}. Their time is #{tnow.to_s} or hour number #{tnow_hour}."              
             puts logtext
             logger.info logtext 
 
-            team_summary_sent = false
+            watcher_summary_sent = false
         
                     begin
-                        Notifier.deliver_daily_team_summary_to_user(goal, today_dayname) # sends the email
-                        logger.debug "team summary sent for " + goal.user.email + " " + goal.title
-                        team_summary_sent = true
+                        Notifier.deliver_weekly_report_of_goals_i_follow(user, arr_goals_to_email_me_about, today_dayname) # sends the email
+                        logger.debug "watcher summary sent to " + user.email
+                        watcher_summary_sent = true
                     rescue
-			team_summary_sent = true ### doing this for now so that a glitch doesn't hold up everyone else's emails from being delivered
-                        the_message = "SGJerror failed to send HF team summary for goal " + goal.id.to_s + " entitled " + goal.title + " to " + goal.user.email 
+			                  watcher_summary_sent = true ### doing this for now so that a glitch doesn't hold up everyone else's emails from being delivered
+                        the_message = "SGJerror failed to send HF watcher summary for " + user.id.to_s + " to " + user.email 
                         puts the_message
                         logger.error the_message
                     end
 
         
-            if team_summary_sent
-                goal.team_summary_last_sent_date = dnow
-                goal.save
-
-                logtext = "Success emailing team summary to #{goal.user.email}."              
+            if watcher_summary_sent
+              arr_cheers_to_email_me_about.each do |cheer|
+                #cheer.weekly_report_last_sent = dnow
+                #cheer.save
+                logtext = "Success emailing #{user.email} goal info for cheer_id #{cheer.id.to_s}"              
                 puts logtext
                 logger.info logtext 
-            end
+              end
+            end ### end if watcher_summary_sent
 
-
-        else
-            ### it's too late in the day, don't bother sending this team_summary
-        end
-
-      end
-    end
+      end ### end if proceed
+    end ### end for user in users
     
     puts "end of script"
   rescue Timeout::Error
@@ -224,5 +217,5 @@ class SendWatchersSummary < ActiveRecord::Base
     if retried_times < retried_times_limit
       retry
     end
-  end
-end
+  end ## end begin
+end ## end class
