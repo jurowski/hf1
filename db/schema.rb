@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130204234035) do
+ActiveRecord::Schema.define(:version => 20130208131333) do
 
   create_table "achievemints", :force => true do |t|
     t.string   "name"
@@ -107,6 +107,8 @@ ActiveRecord::Schema.define(:version => 20130204234035) do
     t.integer  "goal_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "weekly_report",           :default => true
+    t.date     "weekly_report_last_sent"
   end
 
   create_table "coaches", :force => true do |t|

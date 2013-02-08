@@ -49,84 +49,8 @@
           %>
           <div class="div_habit">
           <h4>Working on "<%= goal.title %>".</h4>
-          <%
-          if goal.desired_success_rate != nil and goal.desired_success_rate < 100
-            %>
-            <br>
-            (Their goal is to do this <%= goal.desired_success_rate %>% of the time.)
-            <%
-          end
-
-          if goal.get_latest_stats_badge != nil and goal.get_latest_stats_badge.include? "missing"
-              %>
-              <p>
-              <%
-              if goal.successful_days_in_a_row_without_9s > 0
-                  %>
-                  <br>
-                  Days in a row (as of last reporting): <%= goal.successful_days_in_a_row_without_9s %>
-                  <br>
-                  <br>
-                  <%
-              end              
-              if goal.get_longest_run > 3
-                  %>
-                  <br>
-                  Longest run: <%= goal.get_longest_run %> days straight
-                  <br>
-                  (longest since this stat started being recorded in Jan. 2012)
-                  <%
-              end
-              %>
-              <br>
-              Overall Success Rate: <%= goal.percent_of_checkpoints_with_answer_of_yes %>%
-              <%
-              if goal.days_since_first_checkpoint >= 7
-                  %>
-                  <br>
-                  <%= goal.success_rate_during_past_n_days(7) %>% Success these past 7 days
-                  <%
-              end
-              if goal.days_since_first_checkpoint >= 21
-                  %>
-                  <br>
-                  <%= goal.success_rate_during_past_n_days(21) %>% Success these past 3 weeks
-                  <%
-              end
-              if goal.days_since_first_checkpoint >= 90
-                  %>
-                  <br>
-                  <%= goal.success_rate_during_past_n_days(90) %>% Success these past 3 months
-                  <%
-              end
-              if goal.days_since_first_checkpoint >= 180
-                  %>
-                  <br>
-                  <%= goal.success_rate_during_past_n_days(180) %>% Success these past 6 months
-                  <%
-              end
-              if goal.days_since_first_checkpoint >= 365
-                  %>
-                  <br>
-                  <%= goal.success_rate_during_past_n_days(365) %>% Success during the past year.
-                  <%
-              end
-              %>
-              </p>
-              <%
-          else
-            %>
-            <p>          
-
-            <%= goal.get_latest_stats_badge %>
-            <%= goal.get_latest_stats_badge_details %>
-
-            </p>
-            <%
-          end
-          %>
-          <br>
-          <p>.: tracked for the past <%= goal.days_since_first_checkpoint %> days :.</p>
+            <%= goal.stats_image %>
+            <%= goal.stats_output %>
           </div>
         <%
       end
