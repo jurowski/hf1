@@ -475,14 +475,17 @@ logger.debug "SGJ2 2 #{goal.title}(#{goal.id}) #{goal.daysstraight} daysstraight
         	#####################################################
         	#####################################################
 		#### UPDATE THE CONTACT FOR THEM IN INFUSIONSOFT ######
-		#112: hf new signup funnel v2 free no goal yet
-		#120: hf new signup funnel v2 free created goal
-		#114: hf new signup funnel v2 monthly
-		#116: hf new signup funnel v2 yearly
-		#118: hf new signup funnel v2 lifetime
+    ### SANDBOX GROUP/TAG IDS
+    #112: hf new signup funnel v2 free no goal yet
+    #120: hf new signup funnel v2 free created goal
+    #
+    ### PRODUCTION GROUP/TAG IDS
+    #400: hf new signup funnel v2 free no goal yet
+    #398: hf new signup funnel v2 free created goal
+
 		Infusionsoft.contact_update(session[:infusionsoft_contact_id].to_i, {:FirstName => current_user.first_name, :LastName => current_user.last_name})
-		Infusionsoft.contact_add_to_group(session[:infusionsoft_contact_id].to_i, 120)
-		Infusionsoft.contact_remove_from_group(session[:infusionsoft_contact_id].to_i, 112)
+		Infusionsoft.contact_add_to_group(session[:infusionsoft_contact_id].to_i, 398)
+		Infusionsoft.contact_remove_from_group(session[:infusionsoft_contact_id].to_i, 400)
         	####          END INFUSIONSOFT CONTACT           ####
         	#####################################################
         	#####################################################

@@ -345,15 +345,18 @@ class UsersController < ApplicationController
 	        #####################################################
 	        #####################################################
 		#### CREATE A CONTACT FOR THEM IN INFUSIONSOFT ######
+    ### SANDBOX GROUP/TAG IDS
 		#112: hf new signup funnel v2 free no goal yet
 		#120: hf new signup funnel v2 free created goal
-		#114: hf new signup funnel v2 monthly
-		#116: hf new signup funnel v2 yearly
-		#118: hf new signup funnel v2 lifetime
+    #
+    ### PRODUCTION GROUP/TAG IDS
+    #400: hf new signup funnel v2 free no goal yet
+    #398: hf new signup funnel v2 free created goal
+
                 session[:infusionsoft_contact_id] = 0
 		new_contact_id = Infusionsoft.contact_add({:FirstName => user.first_name, :LastName => user.last_name, :Email => user.email})
 		Infusionsoft.email_optin(user.email, 'HabitForge signup')
-		Infusionsoft.contact_add_to_group(new_contact_id, 112)
+		Infusionsoft.contact_add_to_group(new_contact_id, 400)
 		session[:infusionsoft_contact_id] = new_contact_id
 	        ####          END INFUSIONSOFT CONTACT           ####
 	        #####################################################
