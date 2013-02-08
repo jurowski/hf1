@@ -27,7 +27,7 @@ if @goal.number_invites_sent_to_followers > 0
                 <%
             end
             %>
-            <%= invited_user.first_name %> is watching.
+            <%= invited_user.first_name %> is watching<% if cheer.weekly_report %> and will get weekly reports  <% end %>.
             <a href="/tomessages/new?to_id=<%= invited_user.id %>" >Send <%= invited_user.first_name %> a Message</a>
 
         <%
