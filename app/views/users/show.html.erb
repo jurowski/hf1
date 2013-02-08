@@ -180,23 +180,23 @@
   %>
     <br>
     <br>
-    <strong>Early-morning email check-ins</strong>
+    <strong>Combine any same-hour email check-ins into 1 email?</strong>
     <p>
     <%
     if current_user.combine_daily_emails == 0
     %>
         <h4>
-        We will send a check-in email for each goal even if more than one are due at the same hour. 
+        Currently set to NO. 
         <br>
-        <a href="/account?set_combine_daily_emails=1">Change that: If I have more than one goal to check in with at the same time, combine the check-in emails into one.</a>
+        <a href="/account?set_combine_daily_emails=1">Change to YES.</a>
         </h4>        
     <%
     else
     %>
         <h4>
-       If you have more than one goal to check in with at the same time, we will combine the check-in emails into one email.
+       Currently set to YES.
         <br>
-        <a href="/account?set_combine_daily_emails=0">Change that: Send a check-in email for each goal even if other goals are due for check-in at that same hour.</a>
+        <a href="/account?set_combine_daily_emails=0">Change to NO.</a>
         </h4>
     <%
     end

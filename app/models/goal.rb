@@ -268,7 +268,7 @@ class Goal < ActiveRecord::Base
   end
 
   ### success rate relative to days per week goal
-  def percent_of_checkpoints_with_answer_of_yes
+  def percent_of_checkpoints_with_answer_of_yes(calc_for_all_time = false)
     percent_yes = 0
 
     #if self.number_of_checkpoints > 0
@@ -279,6 +279,11 @@ class Goal < ActiveRecord::Base
 
             #### SUCCESSS RATES ARE NOW LAGGING RATES
             #### (it is baked into def success_rate_during_past_n_days )
+
+          if calc_for_all_time
+            percent_yes = self.success_rate_during_past_n_days(self.days_since_first_checkpoint)
+          else
+
             got_one = false
             age_counter = 30
             while age_counter > 0
@@ -289,8 +294,9 @@ class Goal < ActiveRecord::Base
                       got_one = true
                 end
                 age_counter = age_counter - 1
-            end   
+            end
 
+          end
 
     end
 
@@ -576,14 +582,17 @@ class Goal < ActiveRecord::Base
             output << "<p>"
             #output << ".: " + self.percent_of_checkpoints_with_answer_of_yes.to_s + "% Overall Success Rate"
 
-
-            how_long = Array.new()
-            how_long = [7, 21, 30]
-            for age in how_long
-                if self.days_since_first_checkpoint >= age
+              if self.days_since_first_checkpoint > 7
+                 output << " .: " + self.success_rate_during_past_n_days(self.days_since_first_checkpoint).to_s + "% Overall :."
+              end
+              how_long = Array.new()
+              how_long = [7, 21, 30]
+              for age in how_long
+                 if self.days_since_first_checkpoint >= age
                     output << " .: " + self.success_rate_during_past_n_days(age).to_s + "% during last #{age} days :."
-                end
-            end    
+                 end
+              end    
+
             #output << " :."        
             #if self.last_stats_badge_date != nil
             #    #output << "<h5>last tallied #{self.last_stats_badge_date}</h5>"
