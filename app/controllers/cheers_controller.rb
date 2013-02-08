@@ -16,7 +16,6 @@ class CheersController < ApplicationController
       if current_user_is_admin
         @cheers = Cheer.find(:all)
       else
-        @cheers = Cheer.find(:all, :conditions => "email = '#{current_user.email}'")
 
         if params[:stop_weekly_report]
           begin
@@ -45,6 +44,7 @@ class CheersController < ApplicationController
           end
         end
 
+        @cheers = Cheer.find(:all, :conditions => "email = '#{current_user.email}'")
       end
 
       respond_to do |format|
