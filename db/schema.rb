@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130209094705) do
+ActiveRecord::Schema.define(:version => 20130209103754) do
 
   create_table "achievemints", :force => true do |t|
     t.string   "name"
@@ -613,6 +613,7 @@ ActiveRecord::Schema.define(:version => 20130209094705) do
     t.integer  "update_number_active_goals_i_follow",                                :default => 0
     t.integer  "active_goals_i_follow_tallied_hour",                                 :default => 0
     t.date     "last_activity_date"
+    t.date     "active_goals_i_follow_tallied_date"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email"

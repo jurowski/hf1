@@ -32,6 +32,10 @@ class Checkpoint < ActiveRecord::Base
             #logger.info("sgj:checkpoint.rb:update_stats BACK")        
             self.goal.auto_extend_3_weeks_if_monitoring
             self.goal.update_bets_success_rates
+
+            ### update last activity date
+            self.goal.user.last_activity_date = self.goal.user.dtoday
+            self.goal.user.save
         else
             success = false
         end

@@ -13,6 +13,8 @@ class UserSessionsController < ApplicationController
     if @user_session.save
       flash[:notice] = "Login successful!"
       
+      current_user.last_activity_date = current_user.dtoday
+      current_user.save
 
       if current_user_is_admin
         redirect_back_or_default account_url

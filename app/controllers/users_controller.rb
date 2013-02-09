@@ -329,7 +329,11 @@ class UsersController < ApplicationController
       ### but set it now in case user is being created after that job runs
       user.update_number_active_goals = 1
 
+      ### update last activity date
+      user.last_activity_date = user.dtoday
+
       if user.save 
+
 
         stats_increment_new_user
 
@@ -449,11 +453,16 @@ class UsersController < ApplicationController
     ### but set it now in case user is being created after that job runs
     @user.update_number_active_goals = 1
 
+    ### update last activity date
+    @user.last_activity_date = @user.dtoday
+
 
     #### ALLOW FOR EMAIL ADDRESS CONFIRMATION
     random_confirm_token = rand(1000) + 1 #between 1 and 1000
     @user.confirmed_address_token = "xtynzsc" + random_confirm_token.to_s
     if @user.save
+
+
       flash[:notice] = "Account registered!"
      
       #### now that we have saved and have the user id, we can send the email 
@@ -518,6 +527,10 @@ class UsersController < ApplicationController
       if session[:sfm_virgin_need_to_confirm_timezone]
         session[:sfm_virgin_need_to_confirm_timezone] = false
       end
+
+
+      ### update last activity date
+      @user.last_activity_date = @user.dtoday
 
       @user.password_temp = ""
       @user.save

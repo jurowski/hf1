@@ -80,7 +80,7 @@ class UpdateUserNumberActiveGoals < ActiveRecord::Base
     #while (batch_size > 0) and (batch <= max_batches)
         batch = batch + 1
         puts "-----  BATCH #{batch} of qty #{per_run_limit} ------"
-        @all_users = User.find(:all, :limit => per_run_limit, :conditions => "(active_goals_tallied_hour is null or active_goals_tallied_hour != #{tnow_H})")
+        @all_users = User.find(:all, :limit => per_run_limit, :conditions => "last_activity_date > '#{dnow - 30}' and (active_goals_tallied_hour is null or active_goals_tallied_hour != #{tnow_H})")
         batch_size = @all_users.size 
         for user in @all_users
           goal_count = 0

@@ -189,6 +189,11 @@ class Goal < ActiveRecord::Base
         self.stop = self.start + self.days_to_form_a_habit
         self.daysstraight = 0
         self.save
+
+        ### update last activity date
+        self.user.last_activity_date = self.user.dtoday
+        self.user.save
+
       rescue
           success = false
           logger.error "SGJ failed to restart goal"

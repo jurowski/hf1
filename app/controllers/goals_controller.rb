@@ -451,6 +451,11 @@ logger.debug "SGJ2 2 #{goal.title}(#{goal.id}) #{goal.daysstraight} daysstraight
       respond_to do |format|
         if @goal.save
           flash[:notice] = 'Goal was successfully created.'
+
+
+          ### update last activity date
+          @goal.user.last_activity_date = @goal.user.dtoday
+          @goal.user.save
    
           ###############################################
           ###### START IF SFM_VIRGIN
@@ -642,6 +647,10 @@ logger.debug "SGJ2 2 #{goal.title}(#{goal.id}) #{goal.daysstraight} daysstraight
     @goal.status = "monitor" 
     @goal.save
 
+    ### update last activity date
+    @goal.user.last_activity_date = @goal.user.dtoday
+    @goal.user.save
+
     #redirect_to(goals_url)      
   end
   
@@ -709,7 +718,12 @@ logger.debug "SGJ2 2 #{goal.title}(#{goal.id}) #{goal.daysstraight} daysstraight
 
 
       @goal.save
-    
+
+
+      ### update last activity date
+      @goal.user.last_activity_date = @goal.user.dtoday
+      @goal.user.save
+
       redirect_to(goals_url)
     end
   end
@@ -753,8 +767,11 @@ logger.debug "SGJ2 2 #{goal.title}(#{goal.id}) #{goal.daysstraight} daysstraight
     
         respond_to do |format|
           if @goal.update_attributes(params[:goal])
+              
+            ### update last activity date
+            @goal.user.last_activity_date = @goal.user.dtoday
+            @goal.user.save
             
-
             @goal.title = @goal.response_question
 
             
