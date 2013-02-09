@@ -73,9 +73,11 @@ class UpdateUserNumberActiveGoals < ActiveRecord::Base
     active_goal_count = 0
     per_run_limit = 1000
     batch_size = 1 ### something greater than 0 to start
-    max_batches = 20
-    
-    while (batch_size > 0) and (batch <= max_batches)
+    #max_batches = 20
+
+    ### for some reason adding in max_batches didn't work as expected ??
+    while batch_size > 0
+    #while (batch_size > 0) and (batch <= max_batches)
         batch = batch + 1
         puts "-----  BATCH #{batch} of qty #{per_run_limit} ------"
         @all_users = User.find(:all, :limit => per_run_limit, :conditions => "(active_goals_tallied_hour != #{tnow_H})")
@@ -175,9 +177,11 @@ class UpdateUserNumberActiveGoals < ActiveRecord::Base
     active_goal_count = 0
     per_run_limit = 1000
     batch_size = 1 ### something greater than 0 to start
-    max_batches = 20
+    #max_batches = 20
     
-    while (batch_size > 0) and (batch <= max_batches)
+    ### for some reason doing max_batches didn't work as expected ??
+    #while (batch_size > 0) and (batch <= max_batches)
+    while batch_size > 0
         batch = batch + 1
         puts "-----  BATCH #{batch} of qty #{per_run_limit} ------"
         @all_users = User.find(:all, :limit => per_run_limit, :conditions => "(active_goals_i_follow_tallied_hour != #{tnow_H})")
