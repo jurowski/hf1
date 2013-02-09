@@ -5,7 +5,7 @@ class UpdateUserNumberGoalsIFollow < ActiveRecord::Base
   # 1. updates whether the user follows any active goals
 
   ### Whether to run the above steps
-  run_1 = "no" ### just do this manually when needed
+  run_1 = "yes" ### just do this manually when needed
   
   ### Careful, the below can kill if running from terminal and not cron
   #FileUtils.touch 'tmp/launched_update_user-number_active_goals_at'
@@ -53,7 +53,7 @@ class UpdateUserNumberGoalsIFollow < ActiveRecord::Base
     while batch_size > 0
         batch = batch + 1
         puts "-----  BATCH #{batch} of qty #{per_run_limit} ------"
-        @all_users = User.find(:all, :limit => per_run_limit, :conditions => "(active_goals_i_follow_tallied_hour is null or active_goals_i_follow_tallied_hour != #{tnow_H})")
+        @all_users = User.find(:all, :limit => per_run_limit, :conditions => "(active_goals_i_follow_tallied_date is null or active_goals_i_follow_tallied_date != #{dnow})")
         batch_size = @all_users.size 
         for user in @all_users
           goal_count = 0
@@ -72,7 +72,7 @@ class UpdateUserNumberGoalsIFollow < ActiveRecord::Base
             end
           end
           user.update_number_active_goals_i_follow = goal_count
-          user.active_goals_i_follow_tallied_hour = tnow_H
+          user.active_goals_i_follow_tallied_date = dnow
           user.save
           counter = counter + 1
         end
