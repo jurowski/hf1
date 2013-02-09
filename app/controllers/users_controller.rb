@@ -379,9 +379,7 @@ class UsersController < ApplicationController
   # GET /users/new
   # GET /users/new.xml
   def new
-    if params[:goal_template_text]
-        session[:goal_template_text] = params[:goal_template_text]
-    end
+
     @user = User.new
 
     
@@ -575,6 +573,8 @@ class UsersController < ApplicationController
   # DELETE /users/1.xml
   def destroy
     @user = User.find(params[:id])
+
+    session[:single_login] = nil
 
     destroy_me = false
 

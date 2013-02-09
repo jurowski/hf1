@@ -1,0 +1,11 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  coach_user_id: 1
+  emotion_id: 1
+  image_name: MyString
+
+two:
+  coach_user_id: 1
+  emotion_id: 1
+  image_name: MyString

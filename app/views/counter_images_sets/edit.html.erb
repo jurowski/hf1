@@ -1,0 +1,20 @@
+<h1>Editing counter_images_set</h1>
+
+<% form_for(@counter_images_set) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :counter_set_name %><br />
+    <%= f.text_field :counter_set_name %>
+  </p>
+  <p>
+    <%= f.label :counter_limit_number %><br />
+    <%= f.text_field :counter_limit_number %>
+  </p>
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @counter_images_set %> |
+<%= link_to 'Back', counter_images_sets_path %>

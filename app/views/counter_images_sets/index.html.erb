@@ -1,0 +1,22 @@
+<h1>Listing counter_images_sets</h1>
+
+<table>
+  <tr>
+    <th>Counter set name</th>
+    <th>Counter limit number</th>
+  </tr>
+
+<% @counter_images_sets.each do |counter_images_set| %>
+  <tr>
+    <td><%=h counter_images_set.counter_set_name %></td>
+    <td><%=h counter_images_set.counter_limit_number %></td>
+    <td><%= link_to 'Show', counter_images_set %></td>
+    <td><%= link_to 'Edit', edit_counter_images_set_path(counter_images_set) %></td>
+    <td><%= link_to 'Destroy', counter_images_set, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New counter_images_set', new_counter_images_set_path %>

@@ -1,0 +1,24 @@
+<h1>Listing coach_emotion_images</h1>
+
+<table>
+  <tr>
+    <th>Coach user</th>
+    <th>Emotion</th>
+    <th>Image name</th>
+  </tr>
+
+<% @coach_emotion_images.each do |coach_emotion_image| %>
+  <tr>
+    <td><%=h coach_emotion_image.coach_user_id %></td>
+    <td><%=h coach_emotion_image.emotion_id %></td>
+    <td><%=h coach_emotion_image.image_name %></td>
+    <td><%= link_to 'Show', coach_emotion_image %></td>
+    <td><%= link_to 'Edit', edit_coach_emotion_image_path(coach_emotion_image) %></td>
+    <td><%= link_to 'Destroy', coach_emotion_image, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New coach_emotion_image', new_coach_emotion_image_path %>

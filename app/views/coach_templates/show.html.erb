@@ -1,0 +1,13 @@
+<p>
+  <b>Coach user:</b>
+  <%=h @coach_template.coach_user_id %>
+</p>
+
+<p>
+  <b>Template goal:</b>
+  <%=h @coach_template.template_goal_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_coach_template_path(@coach_template) %> |
+<%= link_to 'Back', coach_templates_path %>

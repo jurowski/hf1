@@ -1,0 +1,2 @@
+module CoachTemplatesHelper
+end

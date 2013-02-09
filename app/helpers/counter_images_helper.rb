@@ -1,0 +1,2 @@
+module CounterImagesHelper
+end

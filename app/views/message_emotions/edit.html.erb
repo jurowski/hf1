@@ -1,0 +1,20 @@
+<h1>Editing message_emotion</h1>
+
+<% form_for(@message_emotion) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :message_id %><br />
+    <%= f.text_field :message_id %>
+  </p>
+  <p>
+    <%= f.label :emotion_id %><br />
+    <%= f.text_field :emotion_id %>
+  </p>
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @message_emotion %> |
+<%= link_to 'Back', message_emotions_path %>

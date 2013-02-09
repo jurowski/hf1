@@ -1,4 +1,26 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :counter_images
+
+  map.resources :counter_images_sets
+
+  map.resources :user_motivation_types
+
+  map.resources :program_motivation_types
+
+  map.resources :coach_motivation_types
+
+  map.resources :message_emotions
+
+  map.resources :message_motivations
+
+  map.resources :coach_emotion_images
+
+  map.resources :motivation_types
+
+  map.resources :emotions
+
+  map.resources :coach_templates
+
   map.resources :message_tags
 
   map.resources :message_goals

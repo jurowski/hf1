@@ -1,0 +1,11 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  counter_images_set_id: 1
+  count: 1
+  image_name: MyString
+
+two:
+  counter_images_set_id: 1
+  count: 1
+  image_name: MyString

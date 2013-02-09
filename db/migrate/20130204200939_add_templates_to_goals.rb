@@ -1,3 +1,6 @@
+
+
+
 class AddTemplatesToGoals < ActiveRecord::Migration
   def self.up
     add_column :goals, :template_owner_is_a_template, :boolean
@@ -13,6 +16,11 @@ class AddTemplatesToGoals < ActiveRecord::Migration
     add_column :goals, :template_on_level_success_stop_goal_bool, :boolean
     add_column :goals, :template_let_user_decide_when_to_move_to_next_goal_bool, :boolean
     add_column :goals, :template_next_template_goal_id, :integer
+
+    add_column :goals, :template_description, :text
+    add_column :goals, :template_tagline, :string
+    add_column :goals, :template_next_template_goal_random_bool, :boolean
+
 
   end
 
@@ -31,6 +39,11 @@ class AddTemplatesToGoals < ActiveRecord::Migration
     remove_column :goals, :template_on_level_success_stop_goal_bool
     remove_column :goals, :template_let_user_decide_when_to_move_to_next_goal_bool
     remove_column :goals, :template_next_template_goal_id
+
+
+    remove_column :goals, :template_description
+    remove_column :goals, :template_tagline
+    remove_column :goals, :template_next_template_goal_random_bool   
   end
 
 end

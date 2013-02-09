@@ -1,0 +1,22 @@
+<h1>Listing message_emotions</h1>
+
+<table>
+  <tr>
+    <th>Message</th>
+    <th>Emotion</th>
+  </tr>
+
+<% @message_emotions.each do |message_emotion| %>
+  <tr>
+    <td><%=h message_emotion.message_id %></td>
+    <td><%=h message_emotion.emotion_id %></td>
+    <td><%= link_to 'Show', message_emotion %></td>
+    <td><%= link_to 'Edit', edit_message_emotion_path(message_emotion) %></td>
+    <td><%= link_to 'Destroy', message_emotion, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New message_emotion', new_message_emotion_path %>

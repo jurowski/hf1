@@ -10,6 +10,11 @@ class CreatePrograms < ActiveRecord::Migration
       t.text :current_count
       t.integer :rating_stars
       t.integer :rating_votes
+      t.string :catch_phrase
+      t.integer :stale_after_days_of_silence_count
+      t.string :difficulty_rating
+      t.float :version_number
+      t.string :status
 
       t.timestamps
     end

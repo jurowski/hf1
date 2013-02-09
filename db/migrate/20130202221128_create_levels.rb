@@ -17,6 +17,7 @@ class CreateLevels < ActiveRecord::Migration
       t.string :prize_url
       t.integer :prize_message_id
       t.integer :trigger_id
+      t.integer :counter_images_set_id
 
       t.timestamps
     end

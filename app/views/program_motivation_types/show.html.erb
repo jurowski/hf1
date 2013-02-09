@@ -1,0 +1,13 @@
+<p>
+  <b>Program:</b>
+  <%=h @program_motivation_type.program_id %>
+</p>
+
+<p>
+  <b>Motivation:</b>
+  <%=h @program_motivation_type.motivation_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_program_motivation_type_path(@program_motivation_type) %> |
+<%= link_to 'Back', program_motivation_types_path %>

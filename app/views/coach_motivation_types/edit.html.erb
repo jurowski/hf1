@@ -1,0 +1,20 @@
+<h1>Editing coach_motivation_type</h1>
+
+<% form_for(@coach_motivation_type) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :coach_user_id %><br />
+    <%= f.text_field :coach_user_id %>
+  </p>
+  <p>
+    <%= f.label :motivation_id %><br />
+    <%= f.text_field :motivation_id %>
+  </p>
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @coach_motivation_type %> |
+<%= link_to 'Back', coach_motivation_types_path %>

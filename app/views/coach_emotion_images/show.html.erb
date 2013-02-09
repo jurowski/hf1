@@ -1,0 +1,18 @@
+<p>
+  <b>Coach user:</b>
+  <%=h @coach_emotion_image.coach_user_id %>
+</p>
+
+<p>
+  <b>Emotion:</b>
+  <%=h @coach_emotion_image.emotion_id %>
+</p>
+
+<p>
+  <b>Image name:</b>
+  <%=h @coach_emotion_image.image_name %>
+</p>
+
+
+<%= link_to 'Edit', edit_coach_emotion_image_path(@coach_emotion_image) %> |
+<%= link_to 'Back', coach_emotion_images_path %>

@@ -1,0 +1,22 @@
+<h1>Listing motivation_types</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Description</th>
+  </tr>
+
+<% @motivation_types.each do |motivation_type| %>
+  <tr>
+    <td><%=h motivation_type.name %></td>
+    <td><%=h motivation_type.description %></td>
+    <td><%= link_to 'Show', motivation_type %></td>
+    <td><%= link_to 'Edit', edit_motivation_type_path(motivation_type) %></td>
+    <td><%= link_to 'Destroy', motivation_type, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New motivation_type', new_motivation_type_path %>

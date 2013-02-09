@@ -1,0 +1,18 @@
+<p>
+  <b>Counter images set:</b>
+  <%=h @counter_image.counter_images_set_id %>
+</p>
+
+<p>
+  <b>Count:</b>
+  <%=h @counter_image.count %>
+</p>
+
+<p>
+  <b>Image name:</b>
+  <%=h @counter_image.image_name %>
+</p>
+
+
+<%= link_to 'Edit', edit_counter_image_path(@counter_image) %> |
+<%= link_to 'Back', counter_images_path %>

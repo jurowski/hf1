@@ -1,0 +1,13 @@
+<p>
+  <b>Name:</b>
+  <%=h @motivation_type.name %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%=h @motivation_type.description %>
+</p>
+
+
+<%= link_to 'Edit', edit_motivation_type_path(@motivation_type) %> |
+<%= link_to 'Back', motivation_types_path %>

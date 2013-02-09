@@ -7,6 +7,30 @@
 <!-- END FLASH MESSAGES END -->
 
 
+
+<!-- *********** -->
+<!-- *********** -->
+<!-- START TOO MANY ACTIVE HABITS -->
+<!-- *********** -->
+<% if params[:too_many_active_habits] %>
+    <div class="notice">
+        <h3>Free accounts are restricted to 1 active habit at a time. Unlock your potential 
+        <% if session[:goal_template_text] and session[:goal_template_text] != "" %> 
+          ... work on <%= session[:goal_template_text] %> and any other goals, all with premium features and no ads, 
+        <% end %>
+       with a Premium Membership!
+
+          <a href="https://www.securepublications.com/habit-gse3.php?ref=<%= current_user.id.to_s %>&email=<%= current_user.email %>" class="start_now" >Learn More</a>
+    </div>
+<% end %>
+<!-- *********** -->
+<!-- END TOO MANY ACTIVE HABITS -->
+<!-- *********** -->
+<!-- *********** -->
+
+
+
+
 <!-- *********** -->
 <!-- *********** -->
 <!-- START SUPPORTPOINTS -->

@@ -20,7 +20,14 @@ class CreateMessages < ActiveRecord::Migration
       t.date :not_after_this_date
       t.integer :trigger_id
       t.integer :allow_repeats_after_min_days
-
+      t.boolean :this_is_one_of_the_actual_checkin_questions_bool
+      t.boolean :this_is_a_random_congrats_message_bool
+      t.boolean :this_is_a_random_sorry_message_bool
+      t.boolean :this_is_a_random_push_bool
+      t.boolean :allow_from_coach_bool
+      t.boolean :allow_from_team_member_bool
+      t.boolean :allow_from_follower_bool
+      
       t.timestamps
     end
   end

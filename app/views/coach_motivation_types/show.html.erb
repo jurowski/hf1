@@ -1,0 +1,13 @@
+<p>
+  <b>Coach user:</b>
+  <%=h @coach_motivation_type.coach_user_id %>
+</p>
+
+<p>
+  <b>Motivation:</b>
+  <%=h @coach_motivation_type.motivation_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_coach_motivation_type_path(@coach_motivation_type) %> |
+<%= link_to 'Back', coach_motivation_types_path %>

@@ -1,0 +1,22 @@
+<h1>Listing message_motivations</h1>
+
+<table>
+  <tr>
+    <th>Message</th>
+    <th>Motivation</th>
+  </tr>
+
+<% @message_motivations.each do |message_motivation| %>
+  <tr>
+    <td><%=h message_motivation.message_id %></td>
+    <td><%=h message_motivation.motivation_id %></td>
+    <td><%= link_to 'Show', message_motivation %></td>
+    <td><%= link_to 'Edit', edit_message_motivation_path(message_motivation) %></td>
+    <td><%= link_to 'Destroy', message_motivation, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New message_motivation', new_message_motivation_path %>

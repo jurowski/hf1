@@ -291,7 +291,7 @@ logger.debug "SGJ2 2 #{goal.title}(#{goal.id}) #{goal.daysstraight} daysstraight
     end
 
     if restrict == true
-        redirect_to("/goals")
+        redirect_to("/goals?too_many_active_habits=1")
     else
       @goal = Goal.new
       @goal.reminder_time = DateTime.new(2009,1,1,0,0,0)
@@ -426,7 +426,7 @@ logger.debug "SGJ2 2 #{goal.title}(#{goal.id}) #{goal.daysstraight} daysstraight
       @show_sales_overlay = false
 
       if current_user and params[:first_name]
-	  current_user.first_name = params[:first_name]
+	        current_user.first_name = params[:first_name]
  
           ### having periods in the first name kills the attempts to email that person, so remove periods
           current_user.first_name = current_user.first_name.gsub(".", "")
@@ -435,17 +435,11 @@ logger.debug "SGJ2 2 #{goal.title}(#{goal.id}) #{goal.daysstraight} daysstraight
 
       @goal = Goal.new(params[:goal])
 
-
       @goal.title = @goal.response_question
 
       if !@goal.pushes_allowed_per_day
         @goal.pushes_allowed_per_day = 1
-      end
-
-
-
-
-    
+      end    
 
       ################################
       #Status Creation Business Rules
@@ -458,6 +452,8 @@ logger.debug "SGJ2 2 #{goal.title}(#{goal.id}) #{goal.daysstraight} daysstraight
         if @goal.save
           flash[:notice] = 'Goal was successfully created.'
    
+          ###############################################
+          ###### START IF SFM_VIRGIN
           if session[:sfm_virgin] and session[:sfm_virgin] == true
             session[:sfm_virgin] = false
             @show_sales_overlay = true
@@ -471,40 +467,38 @@ logger.debug "SGJ2 2 #{goal.title}(#{goal.id}) #{goal.daysstraight} daysstraight
               logger.error("sgj:email confirmation for user creation did not send")
             end
 
-	    begin
-        	#####################################################
-        	#####################################################
-		#### UPDATE THE CONTACT FOR THEM IN INFUSIONSOFT ######
-    ### SANDBOX GROUP/TAG IDS
-    #112: hf new signup funnel v2 free no goal yet
-    #120: hf new signup funnel v2 free created goal
-    #
-    ### PRODUCTION GROUP/TAG IDS
-    #400: hf new signup funnel v2 free no goal yet
-    #398: hf new signup funnel v2 free created goal
+	          begin
+        	     #####################################################
+        	     #####################################################
+      		      #### UPDATE THE CONTACT FOR THEM IN INFUSIONSOFT ######
+                ### SANDBOX GROUP/TAG IDS
+                #112: hf new signup funnel v2 free no goal yet
+                #120: hf new signup funnel v2 free created goal
+                #
+                ### PRODUCTION GROUP/TAG IDS
+                #400: hf new signup funnel v2 free no goal yet
+                #398: hf new signup funnel v2 free created goal
 
-		Infusionsoft.contact_update(session[:infusionsoft_contact_id].to_i, {:FirstName => current_user.first_name, :LastName => current_user.last_name})
-		Infusionsoft.contact_add_to_group(session[:infusionsoft_contact_id].to_i, 398)
-		Infusionsoft.contact_remove_from_group(session[:infusionsoft_contact_id].to_i, 400)
-        	####          END INFUSIONSOFT CONTACT           ####
-        	#####################################################
-        	#####################################################
+      		      Infusionsoft.contact_update(session[:infusionsoft_contact_id].to_i, {:FirstName => current_user.first_name, :LastName => current_user.last_name})
+      		      Infusionsoft.contact_add_to_group(session[:infusionsoft_contact_id].to_i, 398)
+                Infusionsoft.contact_remove_from_group(session[:infusionsoft_contact_id].to_i, 400)
+              	####          END INFUSIONSOFT CONTACT           ####
+              	#####################################################
+              	#####################################################
             rescue
-		logger.error("sgj:error updating contact in infusionsoft")
+          		logger.error("sgj:error updating contact in infusionsoft")
             end
-          end      
+          end    ### END IF SFM_VIRGIN
+          ###### END IF SFM_VIRGIN
+          ###############################################
+
+
           current_user.goal_temp = ""
           current_user.save
         
-          ##### SET THE HOUR THAT THE REMINDERS SHOULD GO OUT FOR THIS GOAL #############
-            #if @goal.user.email == "jurowski@gmail.com" or @goal.user.email == "jurowski@pediatrics.wisc.edu"
-	    #  puts "___ testing custom user send hour, so not assigning usersendhour here unless nil"
-              if @goal.usersendhour == nil
-	        @goal.usersendhour = 1
-              end
-            #else
-            #  @goal.usersendhour = 1
-	    #end
+          if @goal.usersendhour == nil
+	          @goal.usersendhour = 1
+          end
 
           Time.zone = @goal.user.time_zone
           utcoffset = Time.zone.formatted_offset(false)
@@ -560,36 +554,18 @@ logger.debug "SGJ2 2 #{goal.title}(#{goal.id}) #{goal.daysstraight} daysstraight
             @goal.start = Date.new(1900, 1, 1)
             @goal.stop = @goal.start 
           end
-
           @goal.established_on = Date.new(1900, 1, 1)
-
           if (@goal.status == "start" or @goal.status == "monitor")
-          
             start_day_offset = 1
             if params[:delay_start_for_this_many_days] 
               start_day_offset = params[:delay_start_for_this_many_days].to_i
             end
-
             ### Set the standard dates
             @goal.start = dnow + start_day_offset
-
-
             @goal.stop = @goal.start + @goal.days_to_form_a_habit
-  
-	    @goal.first_start_date = @goal.start
-          
+      	    @goal.first_start_date = @goal.start          
             @goal.save
-
-            ### Reset the dates based on days of the week chosen
-            #set_start_date(@goal.id, dnow)
-            #set_stop_date(@goal.id, 0)
           end
-
-
-          ### write timezone offset to goals
-          #Time.zone = goal.user.time_zone
-          #utcoffset = Time.zone.formatted_offset(false)
-          #goal.gmtoffset = utcoffset
 
 
           ### save date changes
@@ -614,7 +590,7 @@ logger.debug "SGJ2 2 #{goal.title}(#{goal.id}) #{goal.daysstraight} daysstraight
           end
 
           if @show_sales_overlay
-	    ### format.html { render :action => "edit" }
+      	    ### format.html { render :action => "edit" }
             format.html {redirect_to("https://www.securepublications.com/habit-gse3.php?ref=#{current_user.id.to_s}&email=#{current_user.email}")}
 
             format.xml  { render :xml => @goals }

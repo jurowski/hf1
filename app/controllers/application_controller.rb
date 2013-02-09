@@ -74,32 +74,39 @@ class ApplicationController < ActionController::Base
     def current_user_session
       return @current_user_session if defined?(@current_user_session)
 
-    #########################################################################
-    ##############  SGJ auto-log in (widget users) ##########################
-    ###if a URL contains a param called :diu and if there is a user.id = :diu
-    ###and if password_temp contains something
-    ###and if a URL params contain param of :ptm = "43" + the :password_temp value + "9cth" 
-    ###then auto-log them in
-    if params[:diu]
-      user = User.find(params[:diu].to_i)
-      if user
-        if user.password_temp != nil and user.password_temp != ""
-          if params[:ptm] and params[:ptm] == "43" + user.password_temp + "9cth"
-            ### auto-log them in
-            @user_session = UserSession.new
-            @user_session.password = user.password_temp
-            @user_session.email = user.email
-            @user_session.save
 
+      ### YOU CAN ONLY ACTUALLY LOG SOMEONE IN IF YOU KNOW THEIR PW
+      ### DO NOT TRY TO LOG IN W/ A DUMMY ACCOUNT AND THEN RETURN A DIFF. CURRENT USER
+      ### ...IT MAY WORK w/ ADMIN BUT WILL GET MESSY WITH MULTIPLE PEOPLE DOING THIS
+
+      #########################################################################
+      ##############  SGJ auto-log in (widget users) ##########################
+      ###if a URL contains a param called :diu and if there is a user.id = :diu
+      ###and if password_temp contains something
+      ###and if a URL params contain param of :ptm = "43" + the :password_temp value + "9cth" 
+      ###then auto-log them in
+      if params[:diu]
+        user = User.find(params[:diu].to_i)
+        if user
+          if user.password_temp != nil and user.password_temp != ""
+            if params[:ptm] and params[:ptm] == "43" + user.password_temp + "9cth"
+              ### auto-log them in
+              @user_session = UserSession.new
+              @user_session.password = user.password_temp
+              @user_session.email = user.email
+              @user_session.save
+
+            end
           end
         end
       end
-    end
-    ############################################################
-    ############################################################
+      ############################################################
+      ############################################################
+
 
 
       @current_user_session = UserSession.find
+
     end
     
     
@@ -127,38 +134,79 @@ class ApplicationController < ActionController::Base
     def current_user
       return @current_user if defined?(@current_user)      
      
+      if params[:single_login] and params[:email]
+        session[:email] = params[:email]
+        session[:single_login] = params[:single_login]
+      end
+
+
      if session[:current_user_is_admin] == true and (params[:impersonate] or session[:impersonate])
+        logger.debug("sgj:attempting impersonation")
        ######### ADMIN IMPERSONATE A USER ###################
        if params[:impersonate]
         session[:impersonate] = params[:impersonate]
        end       
        @current_user = User.find(session[:impersonate])
      else
+        logger.debug("sgj:no current user, check for fake/single logins")
         ### let user fake a login for one page, if they have enough correct info for coming in via email URL
         ### since there is no "current_user_session && current_user_session.record", it won't stay across requests
         
         ### EXAMPLE URL: /goals?update_checkpoint_status=no&date=2012-01-28&e0=106&f0=97&u=15706&goal_id=25855
         if params[:goal_id] and params[:u] and params[:e0] and params[:f0]
+            logger.debug("sgj:attempting single login w/ goal/user/email id info")
             goal = Goal.find(params[:goal_id].to_i)
             if goal
                 if goal.user
                     if goal.user.id == params[:u].to_i and goal.user.email[0] == params[:e0].to_i and goal.user.first_name[0] == params[:f0].to_i
                         session[:fake_login] = params[:u] + params[:e0] + params[:f0] 
                         @current_user = goal.user
+
+                            ### hey, let's LET them do the persistent
+                            ### "session[:email] and session[:single_login]" here
+
+                        session[:email] = goal.user.email
+                        session[:single_login] = true
                     end
                 end
             end
         else
-            if !fully_logged_in and params[:goal_id]
+          logger.debug("sgj:attempting single login via goal_id or email param")
+            if !fully_logged_in and (params[:goal_id] or (session[:email] and session[:single_login]))
+              if params[:goal_id]
                 goal = Goal.find(params[:goal_id].to_i)
                 if goal
                     if goal.user
                         fake_login = goal.user.id.to_s + goal.user.email[0].to_s + goal.user.first_name[0].to_s
                         if session[:fake_login] == fake_login
                             @current_user = goal.user
+                            ### hey, let's not let them do the persistent
+                            ### "session[:email] and session[:single_login]" here, b/c it is just too ease
+                            ### for someone to pop in just any goal id and then become that person
                         end 
                     end
                 end
+              end
+
+              ##############################################################
+              ###### Find user, grant temp login via email in param ####
+              ### this is the case often if we are coming from an
+              ### InfusionSoft email link where we only have their email address
+
+              #### DANGER ... restricting to all but "user" below ...
+              if session[:email] and session[:single_login] and (!request.url.to_s.include? "user" and !request.url.to_s.include? "account")
+                begin
+                  user = User.find(:first, :conditions => "email = '#{session[:email]}'")
+                  if user
+                     @current_user = user
+                  end
+                rescue
+                  logger.error("sgj:error finding user via params email")
+                end
+              end
+              ###### END Find user, grant temp login via email in param ####
+              ##############################################################
+
             else
                 ######### NORMAL USER
                 @current_user = current_user_session && current_user_session.record            

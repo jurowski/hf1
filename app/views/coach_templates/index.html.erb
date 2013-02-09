@@ -1,0 +1,22 @@
+<h1>Listing coach_templates</h1>
+
+<table>
+  <tr>
+    <th>Coach user</th>
+    <th>Template goal</th>
+  </tr>
+
+<% @coach_templates.each do |coach_template| %>
+  <tr>
+    <td><%=h coach_template.coach_user_id %></td>
+    <td><%=h coach_template.template_goal_id %></td>
+    <td><%= link_to 'Show', coach_template %></td>
+    <td><%= link_to 'Edit', edit_coach_template_path(coach_template) %></td>
+    <td><%= link_to 'Destroy', coach_template, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New coach_template', new_coach_template_path %>
