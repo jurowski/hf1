@@ -98,6 +98,8 @@ class UpdateUserNumberActiveGoals < ActiveRecord::Base
           counter = counter + 1
         end
     end
+    puts counter.to_s + " users were updated this hour"
+    
 
     ############################
     ### SAVE STATS
