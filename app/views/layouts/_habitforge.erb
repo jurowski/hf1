@@ -1438,14 +1438,14 @@ end
     			<%
     			#######################################
     			#####   SHOW VISLALUS ADS
-    			if current_user and current_user.sponsor == "habitforge" and !current_user.is_habitforge_supporting_member 
-        		    visalus_ad_number_qty = 8
-        		    random_ad = rand(visalus_ad_number_qty) + 1 #between 1 and visalus_ad_number_qty
-        		    %>
-        		    <a href="http://createhealthyhabits.myvi.net/index.html#Stories" target="_blank"><img src="/images/visalus_footer_<%= random_ad %>.jpg" height="350px" /></a>
-        		    <%
-        		    logger.warn("sgj:visalus footer ad" + random_ad.to_s + " shown")
-    			end ### end if habitforge 
+    			#if current_user and current_user.sponsor == "habitforge" and !current_user.is_habitforge_supporting_member 
+        	#	    visalus_ad_number_qty = 8
+        	#	    random_ad = rand(visalus_ad_number_qty) + 1 #between 1 and visalus_ad_number_qty
+        	#	    %>
+        	#	    <a href="http://createhealthyhabits.myvi.net/index.html#Stories" target="_blank"><img src="/images/visalus_footer_<%= random_ad %>.jpg" height="350px" /></a>
+        	#	    <%
+        	#	    logger.warn("sgj:visalus footer ad" + random_ad.to_s + " shown")
+    			#end ### end if habitforge 
     			#####    END SHOW VISALUS ADS
     			#######################################
                      	%>
