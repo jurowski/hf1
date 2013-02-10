@@ -12,6 +12,13 @@
 ###   SPONSORS
 ##############
 ## (ie habitforge, clearworth, etc.)
+
+
+### defaults
+session[:sponsor] = "habitforge"
+session[:site_name] = "habitforge"
+
+
 if params[:sponsor]
   session[:sponsor] = params[:sponsor]
 end

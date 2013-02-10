@@ -324,6 +324,9 @@ logger.debug "SGJ2 2 #{goal.title}(#{goal.id}) #{goal.daysstraight} daysstraight
         ### if they're not currently a premium member
         if !current_user.is_habitforge_supporting_member
           session[:sfm_virgin] = true
+          if params[:existing_user]
+            session[:existing_user] = true
+          end
         end
 
       end
@@ -481,6 +484,10 @@ logger.debug "SGJ2 2 #{goal.title}(#{goal.id}) #{goal.daysstraight} daysstraight
             @show_sales_overlay = true
 
             @user = current_user
+
+          ### existing_user will be true if coming from an infusionsoft email invite
+          ### in that case, do not send them another welcome email
+          if !session[:existing_user]
             #### now that we have their first name, we can send the email 
             the_subject = "Confirm your HabitForge Subscription"
             begin
@@ -488,6 +495,8 @@ logger.debug "SGJ2 2 #{goal.title}(#{goal.id}) #{goal.daysstraight} daysstraight
             rescue
               logger.error("sgj:email confirmation for user creation did not send")
             end
+          end
+
 
 	          begin
         	     #####################################################
