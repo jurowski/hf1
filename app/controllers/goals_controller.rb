@@ -293,6 +293,8 @@ logger.debug "SGJ2 2 #{goal.title}(#{goal.id}) #{goal.daysstraight} daysstraight
     if restrict == true
         redirect_to("/goals?too_many_active_habits=1")
     else
+
+
       @goal = Goal.new
       @goal.reminder_time = DateTime.new(2009,1,1,0,0,0)
 
@@ -314,11 +316,26 @@ logger.debug "SGJ2 2 #{goal.title}(#{goal.id}) #{goal.daysstraight} daysstraight
 
       @goal.publish = 1
 
+      if params[:goal_template_text]
+        session[:goal_template_text] = params[:goal_template_text]
+
+        ### only restrict features initially
+        ### and only redirect to sales page
+        ### if they're not currently a premium member
+        if !current_user.is_habitforge_supporting_member
+          session[:sfm_virgin] = true
+        end
+
+      end
+
       if session[:goal_template_text]
           @goal.title = session[:goal_template_text]
           @goal.response_question = @goal.title
       end
 
+      if params[:category]
+        @goal.category = params[:category]
+      end
 
       if current_user.goal_temp != nil and current_user.goal_temp != ""
         @goal.response_question = current_user.goal_temp
