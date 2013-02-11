@@ -773,18 +773,18 @@ testing_xml_resend_any = %{
                      end
                      user.sent_expire_warning_on = '1900-01-01'
 
-		     if xml_product_id == 49
-			user.kill_ads_until = '3000-01-01'
-                        if xml_variant_id == 27 or xml_variant_id == 31
-			  user.plan = "Yearly"
-			end
-                        if xml_variant_id == 29
-			  user.plan = "Monthly"
-			end
-                        if xml_variant_id == 99
-			  user.plan = "Lifetime"
-			end
-			user.plan = user.plan + " @ $" + xml_price
+		                 if xml_product_id == 49
+                			user.kill_ads_until = '3000-01-01'
+                      if xml_variant_id == 27 or xml_variant_id == 31
+                			  user.plan = "Yearly"
+                			end
+                      if xml_variant_id == 29
+                			  user.plan = "Monthly"
+                			end
+                      if xml_variant_id == 99 or xml_variant_id == 0
+                			  user.plan = "Lifetime"
+                			end
+                			user.plan = user.plan + " @ $" + xml_price
                      end
              
                      if user.payments == nil
