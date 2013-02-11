@@ -1448,6 +1448,38 @@ end
     			#end ### end if habitforge 
     			#####    END SHOW VISALUS ADS
     			#######################################
+
+
+                        #######################################
+                        #####   SHOW MYFOODDIARY ADS
+                        if current_user and current_user.sponsor == "habitforge" and !current_user.is_habitforge_supporting_member
+                           ad_number_qty = 3
+                           random_ad = rand(ad_number_qty) + 1 #between 1 and ad_number_qty
+
+                           if random_ad == 1
+                           %>
+<a href="https://www.myfooddiary.com/?aID=1128&amp;source=run_lr"><img src="//www.myfooddiary.com/affiliate/ads/run_lr.jpg" style="border:0;width:336px;height:280px;" alt="MyFoodDiary.com" /></a>
+                           <%
+                           end
+
+                           if random_ad == 2
+                           %>
+<a href="https://www.myfooddiary.com/?aID=1128&amp;source=field_lr"><img src="//www.myfooddiary.com/affiliate/ads/field_lr.jpg" style="border:0;width:336px;height:280px;" alt="MyFoodDiary.com" /></a>
+                           <%
+                           end
+
+                           if random_ad == 3
+                           %>
+<a href="https://www.myfooddiary.com/?aID=1128&amp;source=ipad_lr"><img src="//www.myfooddiary.com/affiliate/ads/ipad_lr.jpg" style="border:0;width:336px;height:280px;" alt="MyFoodDiary.com" /></a>
+                           <%
+                           end
+
+                           logger.warn("sgj:myfooddiary footer ad" + random_ad.to_s + " shown")
+                        end ### end if habitforge
+                        #####    END SHOW MYFOODDIARY ADS
+                        #######################################
+
+
                      	%>
                 <% end %>
 

@@ -316,12 +316,14 @@ class UsersController < ApplicationController
       ### having periods in the first name kills the attempts to email that person, so remove periods
       user.first_name = user.first_name.gsub(".", "")
 
-      if params[:affiliate_name] and params[:affiliate_name] != ""
-        affiliate = Affiliate.find(:first, :conditions => "affiliate_name = '#{params[:affiliate_name]}'")
+      if session[:affiliate_name] != nil and session[:affiliate_name] != ""
+        affiliate = Affiliate.find(:first, :conditions => "affiliate_name = '#{session[:affiliate_name]}'")
         if affiliate
           user.affiliate = affiliate
         end
       end
+
+
 
       ### Setting this to something other than 0 so that this person
       ### is included in the next morning's cron job to send emails
@@ -384,15 +386,18 @@ class UsersController < ApplicationController
   # GET /users/new.xml
   def new
 
-    @user = User.new
+
+    redirect_to("/")
+
+    #@user = User.new
 
     
-    if session[:affiliate_name] != nil and session[:affiliate_name] != ""
-      @affiliate = Affiliate.find(:first, :conditions => "affiliate_name = '#{session[:affiliate_name]}'")
-      if @affiliate
-          @user.affiliate = @affiliate
-      end
-    end
+    #if session[:affiliate_name] != nil and session[:affiliate_name] != ""
+    # @affiliate = Affiliate.find(:first, :conditions => "affiliate_name = '#{session[:affiliate_name]}'")
+    #  if @affiliate
+    #      @user.affiliate = @affiliate
+    #  end
+    #end
 
     #@user.yob = 1980
     #respond_to do |format|
