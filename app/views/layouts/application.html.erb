@@ -165,6 +165,11 @@ end
      <%= render :partial => "layouts/#{session[:sponsor]}.erb"%>
   <% end %>
 
+  <% if !main_content_rendered and @cn == "password_resets" %>
+     <% main_content_rendered = true %>
+     <%= render :partial => "layouts/#{session[:sponsor]}.erb"%>
+  <% end %>
+
   <% if !main_content_rendered %>
      <% main_content_rendered = true %>
     <!-- new home page --> 
