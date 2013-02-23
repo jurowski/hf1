@@ -53,8 +53,9 @@ class UserSessionsController < ApplicationController
 
         
       end
-      
+      session[:bad_password] = false      
     else
+      session[:bad_password] = true
       render :action => :new
     end
   end

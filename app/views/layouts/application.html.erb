@@ -153,16 +153,22 @@ end
 
 <!-- if session[:test_new_homepage] -->
 
-  <% if current_user or params[:user_id] or (@cn == "user_sessions" and @ca == "new" and params[:skip_intro])%>
-
-     <!-- default --> 
+  <% main_content_rendered = false %>
+  <% if !main_content_rendered and session[:bad_password] %>
+     <% main_content_rendered = true %>
      <%= render :partial => "layouts/#{session[:sponsor]}.erb"%>
+     <% session[:bad_password] = nil %>
+  <% end %>
 
-  <% else %>
+  <% if !main_content_rendered and (current_user or params[:user_id] or (@cn == "user_sessions" and @ca == "new" and params[:skip_intro])) %>
+     <% main_content_rendered = true %>
+     <%= render :partial => "layouts/#{session[:sponsor]}.erb"%>
+  <% end %>
 
+  <% if !main_content_rendered %>
+     <% main_content_rendered = true %>
     <!-- new home page --> 
     <%= render :partial => "layouts/habitforge_public_home.erb"%>
-
   <% end %>
 
 <!-- else -->
