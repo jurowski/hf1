@@ -1,3 +1,13 @@
+<% 
+retry_email_address = false
+if @email_duplicate or (@email_blank == true or (@email_valid != nil and @email_valid == false))
+    retry_email_address = true
+end 
+%>
+
+
+
+
 <!DOCTYPE html>
 <html dir="ltr" lang="en-US">
 <head>
@@ -152,6 +162,7 @@ $(document).ready(function(){
         <h3>Build Lasting Habits Quickly.</h3>
 
 
+
         <% if session[:goal_template_text] and session[:goal_template_text] != "" %>
 
             <div class="pane sucess">
@@ -178,7 +189,26 @@ $(document).ready(function(){
 
           <h2><a href="#" class="show_hide">Start your own</a> or <a href="#browse_recommended_habits">Browse Popular Habits</a></h2>
 
-          <div class="slidingDiv">
+<% if retry_email_address %>
+
+    <div>
+        <div class="pane error">
+            <% if @email_blank == true or (@email_valid != nil and @email_valid == false) %>
+            Please enter a valid email address.
+            <% end %>
+
+            <% if @email_duplicate %>
+            There is already a habitforge account with that email address. 
+            <br>
+            If it is yours, you may <a href="/users/login">log in here</a> or you may sign up with a new address below.
+            <% end %>
+        </div>
+<% else %>
+
+    <div class="slidingDiv">
+
+<% end %>
+
               <div class="pane sucess">
                   <h3>What could you do daily to improve your life?</h3>
 
