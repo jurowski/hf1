@@ -1066,9 +1066,9 @@ What could you do daily to improve your life?</div>
                             <br>
                             <br>
                             <p style="font-size:100%;">
-                            <a href="/popupex.html" onclick="return popitup_bigger1('/affiliate_program.html')">
+                            <!--<a href="/popupex.html" onclick="return popitup_bigger1('/affiliate_program.html')">
                             <span style="font-size:150%;color:#eeeeee;">Affiliates</span><br>Earn $ while helping others!
-                            </a>
+                            </a>-->
                             </p>
 
                 </div>
@@ -1376,7 +1376,7 @@ end
 
 
 
-<% if session[:sfm_virgin] and session[:sfm_virgin] != true %>
+<!-- if session[:sfm_virgin] and session[:sfm_virgin] != true -->
 
     <div class="footer">
 
@@ -1385,11 +1385,11 @@ end
 
         <!--Footer Testimonials Section-->
             <div class="grid_4">
-                            <p style="font-size:100%;">
+                            <!--<p style="font-size:100%;">
                             <a href="/popupex.html" onclick="return popitup_bigger1('/affiliate_program.html')">
                             <span style="font-size:150%;color:#eeeeee;">Affiliates</span><br>Earn $ while helping others!
                             </a>
-                            </p>
+                            </p>-->
 
                 <p><span style="font-size:150%;color:#eeeeee;">Share! </span></p>
                 <span  class='st_twitter_large' ></span><span  class='st_facebook_large' ></span><span  class='st_sharethis_large' ></span>
@@ -1424,19 +1424,6 @@ end
                 &nbsp
                 <% if show_ads == 1 %>
     			<%
-    			#######################################
-    			#####   SHOW VISLALUS ADS
-    			#if current_user and current_user.sponsor == "habitforge" and !current_user.is_habitforge_supporting_member 
-        	#	    visalus_ad_number_qty = 8
-        	#	    random_ad = rand(visalus_ad_number_qty) + 1 #between 1 and visalus_ad_number_qty
-        	#	    %>
-        	#	    <a href="http://createhealthyhabits.myvi.net/index.html#Stories" target="_blank"><img src="/images/visalus_footer_<%= random_ad %>.jpg" height="350px" /></a>
-        	#	    <%
-        	#	    logger.warn("sgj:visalus footer ad" + random_ad.to_s + " shown")
-    			#end ### end if habitforge 
-    			#####    END SHOW VISALUS ADS
-    			#######################################
-
 
                         #######################################
                         #####   SHOW MYFOODDIARY ADS
@@ -1499,7 +1486,7 @@ end
 <% end %>
 
 
-<% end ### end if session[:sfm_virgin] == true %>
+<!-- end ### end if session[:sfm_virgin] == true %> -->
 
 <!--Credits Section-->
 <div class="credits">
