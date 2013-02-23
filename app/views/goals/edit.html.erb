@@ -36,9 +36,10 @@ ARE YOU SURE YOU WANT TO DO THIS?' %>
     <%= f.error_messages %>
     <%= render :partial => "form", :object => f %>
   <% if @goal.status == "hold" %>
-        <div class="notice">
+        <!--<div class="notice">
             WARNING: By clicking "Save and Re-Activate" below, your history (the old checkpoint days and comments) WILL BE DELETED so that the success rate will stay relevant and accurate. THIS CAN NOT BE UNDONE.
         </div>
+      -->
     <%= f.submit 'Save and Re-Activate' %>
   <% else %>
     <input type="submit" value="Save Changes to My Habit" class="start_now" style="height:50px;">

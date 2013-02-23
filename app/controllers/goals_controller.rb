@@ -894,16 +894,16 @@ logger.debug "SGJ2 2 #{goal.title}(#{goal.id}) #{goal.daysstraight} daysstraight
                 ### If someone is going from "hold" to "re-activate"
                 ### delete the old checkpoints because keeping them messes up the success rate
                 ### they have been warned of this happening already
-                if old_status == "hold"
-                    ### Re-set days straight to 0
-                    @goal.daysstraight = 0
-                    
-                    ### Destroy any associated Checkpoints
-                    @checkpoints = Checkpoint.find(:all, :conditions => "goal_id = '#{@goal.id}'")
-                    for checkpoint in @checkpoints
-                      checkpoint.destroy
-                    end                    
-                end          
+                #if old_status == "hold"
+                #    ### Re-set days straight to 0
+                #    @goal.daysstraight = 0
+                #    
+                #    ### Destroy any associated Checkpoints
+                #    @checkpoints = Checkpoint.find(:all, :conditions => "goal_id = '#{@goal.id}'")
+                #    for checkpoint in @checkpoints
+                #      checkpoint.destroy
+                #   end                    
+                #end          
                 ############################
                 ############################
 
