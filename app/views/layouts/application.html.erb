@@ -151,7 +151,7 @@ end
 
 
 
-<% if session[:test_new_homepage] %>
+<!-- if session[:test_new_homepage] -->
 
   <% if current_user or params[:user_id] or (@cn == "user_sessions" and @ca == "new" and params[:skip_intro])%>
 
@@ -165,11 +165,11 @@ end
 
   <% end %>
 
-<% else %>
+<!-- else -->
      <!-- default --> 
-     <%= render :partial => "layouts/#{session[:sponsor]}.erb"%>
+     <!-- render :partial => "layouts/#{session[:sponsor]}.erb" -->
 
-<% end %>
+<!-- end -->
 
 
 

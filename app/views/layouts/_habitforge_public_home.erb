@@ -149,7 +149,7 @@ $(document).ready(function(){
 
 
     <div class="page_title">
-        <h3>Build <span>Lasting Habits</span> Quickly.</h3>
+        <h3>Build Lasting Habits Quickly.</h3>
 
 
         <% if session[:goal_template_text] and session[:goal_template_text] != "" %>
@@ -219,12 +219,12 @@ $(document).ready(function(){
         <!--Begin TESTIMONIALS Callout Section-->
 
 
-        <center><div style="width:80%;margin-top:-30px;">
+        <center><div style="width:90%;margin-top:-30px;">
 
         <div class="blog_post">
-            <div class="thumb_img">
+            <!--<div class="thumb_img">
                 <img src="/home/images/quote.png" alt="img" />
-            </div>
+            </div>-->
             <div class="description">
                 <em>
 
@@ -373,15 +373,73 @@ $(document).ready(function(){
 
 
 
+<article>
+
+    <a name="how" id="how" />
+
+    <h3>How <span>It Works</span></h3><br />
+    <div class="one_third">
+        <span class="teaser_icon alignleft">
+            <img src="/home/images/mointor_icon.png" alt="img"  />
+        </span>
+        <h4>1. Decide</h4>
+        <p>What could you do daily to improve your life? We all have room to improve. Pick one thing and get started! Life is short, so commit to taking action now!</p>
+    </div>
+    <div class="one_third">
+        <span class="teaser_icon alignleft">
+            <img src="/home/images/brush_icon.png" alt="img"  />
+        </span>
+        <h4>2. Build your first habit</h4>
+        <p>In under a minute you can be set up with your first habit. We'll check in on you as often as you want, and we'll keep track of how you're doing.</p>
+    </div>
+
+    <div class="one_third_last">
+        <span class="teaser_icon alignleft">
+            <img src="/home/images/paperplane_icon.png" alt="img"  />
+        </span>
+        <h4>3. Click "Yes" or "No"</h4>
+        <p>We'll check in via email to ask you if you were successful. Just click "yes" or "no" from that email and we'll keep track of how you're doing. Succeed for 21 days straight, and the new action will be easier than ever to maintain.</p>
+    </div>
+</article>
+
+
+
+<article>
+    <div>
+        <span class="teaser_icon alignleft">
+            <img src="/home/images/briefcase_icon.png" alt="img"  />
+        </span>
+        <br>
+        <h3>Choose <span>Extra Accountability</span> Features that Work for You</h3>
+          <p>
+          <br>>> Join a team of others working on a similar goal to yours (or go it alone).
+          <br>
+          >> Set up as many reminders each day as you'd like.
+          <br>>> Set the time of day you want us to "check in" to see if you succeeded.
+          
+          <br>>> Your habit goal can be public or private.
+          <br>>> You can invite others to follow your progress, and they'll get a weekly report showing your stats.
+          
+          <br>>> If you'd like, we'll incentivize other members to send you a "push"... they'll choose from one of five phrases that you create to use as a gentle "push" (or not so gentle, your choice) if you start to falter.
+          
+          <br>
+            >> Still not enough? Set up a wager to "have to pay" a friend, a randomly chosen user, or even an organization that you can't stand if you don't hit a certain success threshold.
+          
+      </p>
+    </div>
+</article>
+
     
     <a name="browse_recommended_habits" id="browse_recommended_habits" /> 
     <!-- Portfolio Start -->
     <ul class="splitter" id="filter">
         <li>
             <ul>
+                <!-- NEED TO KEEP A DUMMY ONE AT THE FRONT TO DEAL W/ A BUG!!-->
+                <li class="segment-0"><a href="#" data-value="all"></a></li>
                 <li class="segment-1 selected-1"><a href="#" data-value="all">All</a></li>
-                <li class="segment-0"><a href="#" data-value="exercise">Exercise</a></li>
-                <li class="segment-2"><a href="#" data-value="healthy_foods">Healthy Foods</a></li>
+                <li class="segment-2"><a href="#" data-value="exercise">Exercise</a></li>
+                <li class="segment-3"><a href="#" data-value="healthy_foods">Healthy Foods</a></li>
             </ul>
         </li>
     </ul>
@@ -449,62 +507,6 @@ $(document).ready(function(){
 </article>
 
 
-
-<article>
-
-    <a name="how" id="how" />
-
-    <h3>How <span>It Works</span></h3><br />
-    <div class="one_third">
-        <span class="teaser_icon alignleft">
-            <img src="/home/images/mointor_icon.png" alt="img"  />
-        </span>
-        <h4>1. Decide</h4>
-        <p>What could you do daily to improve your life? We all have room to improve. Pick one thing and get started! Life is short, so commit to taking action now!</p>
-    </div>
-    <div class="one_third">
-        <span class="teaser_icon alignleft">
-            <img src="/home/images/brush_icon.png" alt="img"  />
-        </span>
-        <h4>2. Build your first habit</h4>
-        <p>In under a minute you can be set up with your first habit. We'll check in on you as often as you want, and we'll keep track of how you're doing.</p>
-    </div>
-
-    <div class="one_third_last">
-        <span class="teaser_icon alignleft">
-            <img src="/home/images/paperplane_icon.png" alt="img"  />
-        </span>
-        <h4>3. Click "Yes" or "No"</h4>
-        <p>We'll check in via email to ask you if you were successful. Just click "yes" or "no" from that email and we'll keep track of how you're doing. Succeed for 21 days straight, and the new action will be easier than ever to maintain.</p>
-    </div>
-</article>
-
-
-
-<article>
-    <div>
-        <span class="teaser_icon alignleft">
-            <img src="/home/images/briefcase_icon.png" alt="img"  />
-        </span>
-        <br>
-        <h3>Choose <span>Extra Accountability</span> Features that Work for You</h3>
-          <br>
-          <h5>-- Join a team of others working on a similar goal to yours (or go it alone).</h5>
-          <h5>
-          -- Set up as many reminders each day as you'd like.</h5>
-          <h5>-- Set the time of day you want us to "check in" to see if you succeeded.</h5>
-          </h5>
-          <h5>-- Your habit goal can be public or private.</h5>
-          <h5>-- You can invite others to follow your progress, and they'll get a weekly report showing your stats.
-          </h5>
-          <h5>-- If you'd like, we'll incentivize other members to send you a "push"... they'll choose from one of five phrases that you create to use as a gentle "push" (or not so gentle, your choice) if you start to falter.
-          </h5>
-          <h5>
-            -- Still not enough? Set up a wager to "have to pay" an organization that you can't stand if you don't hit a certain success threshold.
-          </h5>
-    </div>
-
-</article>
 
 </section>
 <!-- Content End -->

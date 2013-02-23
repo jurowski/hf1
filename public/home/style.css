@@ -109,11 +109,13 @@ img {
  outline: none;
 }
 a:link, a {
-	color:#a29c9a;
+	color:#ff4000;
+
 	text-decoration:none;
 }
 a:hover {
-	color:#ff4000;
+	color:#a29c9a;
+
 }
 .thumb_img {
 	float: left;
