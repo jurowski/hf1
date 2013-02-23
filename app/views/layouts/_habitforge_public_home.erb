@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="initial-scale=1, maximum-scale=1" />
+<meta name="viewport" content="width=device-width" />
+<title>HabitForge - Simple Accountability. Positive Change.</title>
+<link rel="stylesheet" type="text/css" href="/home/css/reset.css" />
+<link rel="stylesheet" type="text/css" href="/home/css/layout.css" />
+<link rel="stylesheet" type="text/css" href="/home/css/jqueryslidemenu.css" />
+<link rel="stylesheet" type="text/css" href="/home/css/quicksand.css"/>
+<link rel="stylesheet" type="text/css" href="/home/css/elements.css"/>
+<link rel="stylesheet" type="text/css" href="/home/css/widget.css"/>
+<link rel="stylesheet" type="text/css" href="/home/css/hoverdir.css"/>
+<link rel="stylesheet" type="text/css" href="/home/css/blog.css"/>
+<link rel="stylesheet" type="text/css" href="/home/style.css" />
+<link rel="stylesheet" type="text/css" href="/home/css/responsive.css" />
+<link rel="stylesheet" type="text/css" href="/home/css/habitforge_custom.css" />
+
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,500,600,700' rel='stylesheet' type='text/css'>
+<script type="text/javascript" src="/home/js/jquery-1.8.1.js"></script>
+<script type="text/javascript" src="/home/js/jqueryslidemenu.js"></script>
+<script type="text/javascript" src="/home/js/jquery.easing.1.3.js"></script>
+<script type="text/javascript" src="/home/js/portfolio_sortable.js"></script>
+<script type="text/javascript" src="/home/js/quicksand.js"></script>
+<script type="text/javascript" src="/home/js/custom.js"></script>
+<script type="text/javascript" src="/home/js/jquery.hoverdir.js"></script>
+<script type="text/javascript">
+//Image Hover
+jQuery(document).ready(function(){
+jQuery(function() {
+  jQuery('#list > li').hoverdir();
+});
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){
+    $(".pane .delete").click(function(){
+        $(this).parents(".pane").animate({ opacity: 'hide' }, "slow");
+    });
+});
+</script>
+
+<script type="text/javascript"> 
+$(document).ready(function(){
+        $(".slidingDiv").hide();
+        $(".show_hide").show();
+    $('.show_hide').click(function(){
+    $(".slidingDiv").slideToggle();
+    });
+});
+</script>
+
+
+<!-- START bxSlider -->
+<!-- bxSlider Javascript file -->
+<script type="text/javascript" src="/home/js/jquery.bxslider.min.js"></script>
+<!-- bxSlider CSS file -->
+<link href="/home/css/jquery.bxslider.css" rel="stylesheet" />
+<script type="text/javascript">
+$(document).ready(function(){
+  $('.bxslider').bxSlider({
+    pager: false,
+    mode: 'fade',
+    auto: true,
+    pause: 5500,
+    ticker: false,
+    adaptiveHeight: true
+  });
+});
+</script>
+<!-- END bxSlider -->
+
+
+
+<script type="text/javascript">
+  var uvOptions = {};
+  (function() {
+    var uv = document.createElement('script'); uv.type = 'text/javascript'; uv.async = true;
+    uv.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'widget.uservoice.com/aWPKLvqP89KQQwa98KVxWw.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(uv, s);
+  })();
+</script>
+
+
+<script type="text/javascript" charset="utf-8">
+  var feedback_widget_options = {};
+
+  feedback_widget_options.display = "overlay";  
+  feedback_widget_options.company = "habitforge";
+  feedback_widget_options.placement = "right";
+  feedback_widget_options.color = "#222";
+  feedback_widget_options.style = "question";
+
+  var feedback_widget = new GSFN.feedback_widget(feedback_widget_options);
+</script>
+
+
+
+
+</head>
+<!--[if lt IE 9]>
+<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+<!--[if lt IE 9]>
+  <script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
+<![endif]-->
+<body>
+<!-- Header Start -->
+<section id="header_wrap">
+<nav id="myslidemenu" class="jqueryslidemenu clearfix">
+    <ul>
+        <li><a href="#" class="show_hide">Sign Up Free</a></li>
+        <li><a href="#how">How It Works</a></li>
+        <li><a href="#browse_recommended_habits">Browse Habits</a></li>
+        <li><a href="http://habitforge.wordpress.com">Blog</a></li>
+        <li><a href="#about">About Us</a></li>
+        <li><a href="/user_session/new?skip_intro=1">Log In</a></li>
+    </ul>
+</nav>
+</section>
+<!-- Header End -->
+
+
+        <!-- Press Logos Start -->
+        <center>
+        <div style="padding-top:0px;">
+            <a href="#press"><img src="/home/images/logos/press_logos_v1_transparent.png" width="800" alt="press logos" /></a>
+        </div>
+        </center>
+        <!-- Press Logos End -->
+
+<!-- Logo Start -->
+<figure>
+
+        <a href="/"><img src="/home/images/logos/habitforge_logo.png" width="300" alt="HabitForge logo" /></a>
+
+
+</figure>
+<!-- Logo End -->
+
+
+<div id="triangle-up"></div>
+
+<!-- Content Start -->
+<section id="content_wrap">
+
+
+    <div class="page_title">
+        <h3>Build <span>Lasting Habits</span> Quickly.</h3>
+
+
+        <% if session[:goal_template_text] and session[:goal_template_text] != "" %>
+
+            <div class="pane sucess">
+                <h3>Let's get you started with <%= session[:goal_template_text] %>! 
+                  <a href="?goal_template_text=&category=">(or, do something else)</a></h3>
+
+
+                <form action="/quicksignup_v2">
+                    <input type="submit" value="Sign Up Free!" class="start_now">
+                    <input type="text" name="email" style="padding-left:5px;font:2em Arial sans-serif;margin-top:14px;" placeholder="Enter your email address..." size="20">
+
+                    <!-- 
+                    <input type="text" name="email" style="padding-left:5px;font:2em Arial sans-serif;margin-top:14px;" placeholder="Enter your email address..." size="20">
+                    -->
+
+                    <input type="hidden" name="form_submitted" value=1>
+                </form>
+
+
+
+            </div>
+
+        <% else %>
+
+          <h2><a href="#" class="show_hide">Start your own</a> or <a href="#browse_recommended_habits">Browse Popular Habits</a></h2>
+
+          <div class="slidingDiv">
+              <div class="pane sucess">
+                  <h3>What could you do daily to improve your life?</h3>
+
+
+                  <form action="/quicksignup_v2">
+                      <input type="submit" value="Sign Up Free!" class="start_now">
+                      <input type="text" name="email" style="padding-left:5px;font:2em Arial sans-serif;margin-top:14px;" placeholder="Enter your email address..." size="20">
+
+                      <!-- 
+                      <input type="text" name="email" style="padding-left:5px;font:2em Arial sans-serif;margin-top:14px;" placeholder="Enter your email address..." size="20">
+                      -->
+
+                      <input type="hidden" name="form_submitted" value=1>
+                  </form>
+
+
+                  <br><a href="#" class="show_hide">close</a>
+
+              </div>
+          </div>
+        <% end %>
+
+
+
+
+
+    </div>
+
+
+
+    <center>
+            <h2><a href="#" class="show_hide">Join for free</a>, and add to our 1,206,273 Successful Days Logged!</h2>
+    </center>
+
+<article>
+
+
+        <!--Begin TESTIMONIALS Callout Section-->
+
+
+        <center><div style="width:80%;margin-top:-30px;">
+
+        <div class="blog_post">
+            <div class="thumb_img">
+                <img src="/home/images/quote.png" alt="img" />
+            </div>
+            <div class="description">
+                <em>
+
+
+            <ul class="bxslider" style="padding-left:50px;" >
+
+        <li><p style="padding-right:100px;">
+        "I got further with HF than with all other kind of motivational tool, to-do-list or similar. Thank you so much for your service!"
+        <span style="font-weight:bold;">--Julia Anton</span>
+        </p></li>
+
+        <li><p style="padding-right:100px;">
+        "I'm a goal oriented person but I need structure and motivation. In using HabitForge to manage a healthy diet I've lost weight and more importantly helped create a healthy life. I know that I need to check in daily and so I make wiser choices with that in mind."
+        <span style="font-weight:bold;"><br>--Lindsay Michaelian, San Francisco, CA</span>
+        </p></li>
+
+
+        <li><p style="padding-right:100px;">
+        "Great site! So good to see the progress you are making with a habit. Already helped me establish a couple of them one day at a time. Keep up the good work!"
+        <span style="font-weight:bold;">--Deepak</span>
+        </p></li>
+
+
+        <li><p style="padding-right:100px;">
+        "I'd also like to take this opportunity to sincerely thank those who make HabitForge possible. Using your site, I have been able to quit smoking for good, finally. The work you guys do has literally changed my life, and I think you need to know that. So simply, Thank you!"
+        <span style="font-weight:bold;">--Robert M</span>
+        </p></li>
+
+        <li><p style="padding-right:100px;">
+        "HabitForge is the best way to stay on top of my goals. Getting the encouraging email every day really helps!"
+        <span style="font-weight:bold;">--Ben W., St. Louis, MO</span>
+        </p></li>
+
+        <li><p style="padding-right:100px;">
+        HabitForge is really helpful for building new empowering habits or breaking old negative ones. I stopped watching TV and feel a lot more mindful now on a daily basis. I feel positive and working on my goals every day.
+        <span style="font-weight:bold;">--Dimitar Petrov</span>
+        </p></li>
+
+
+        <li><p style="padding-right:100px;">
+        "Even if you already have some self-discipline, it is easy to get distracted on the way to your goals. HabitForge has really helped me focus on making one change at a time. Using HabitForge has helped me get clearer about my goals, tighten my belt by two notches and have confidence about making the next changes in my life."
+        <span style="font-weight:bold;">--Ted, Singapore</span>
+        </p></li>
+
+
+         
+
+
+
+        <li><p style="padding-right:100px;">
+        "Thanks to this little bit of accountability each day I'm able to say I can break a life long habit. It's funny how one simple e-mail each day can give me the motivation to not eat anything after supper and I've never felt more healthier. I often recommend this to my friends who are seeking their own self improvement goals. Thanks!"
+        <span style="font-weight:bold;">--Dennis Early ... Puyallup,Washington</span>
+        </p></li>
+
+
+        <li><p style="padding-right:100px;">
+        "HabitForge has allowed me to commit to my 2012 New Year's resolution of "becoming more positive." Receiving daily notifications ("Don't forget to think positive thoughts today!" and "Were you successful in thinking positively yesterday?") for a little over a year has kept me focused, on-track and committed. I strongly believe it has made a difference! HabitForge is my go-to for daily inspiration." 
+        <span style="font-weight:bold;">--Victoria, Canada</span>
+        </p></li>
+
+
+        <li><p style="padding-right:100px;">
+        "Just having this little bit of accountability helps to keep me on track. I have recommended it to friends and patients."
+        <span style="font-weight:bold;">--Dr. Andrea</span>
+        </p></li>
+
+        <li><p style="padding-right:100px;">
+        "...For 387 days (so far) I have met my writing goal, and I plan to meet it every day for the rest of my life. In a business that breeds failure, HabitForge has helped me to find a way to achieve daily success, thank-you."
+        <span style="font-weight:bold;">--David from Toronto</span>
+        </p></li>
+
+        <li><p style="padding-right:100px;">
+        "HabitForge is an amazing tool!  It overcomes the main obstacle of creating a habit -- remembering to do it!  I've used it for several habits... and has fixed all kinds of unproductive and unhealthy habits of mine in the past.  Thanks for getting me together, HabitForge!"
+        <span style="font-weight:bold;">-- Greg, St. Louis, MO</span>
+        </p></li>
+
+        <li><p style="padding-right:100px;">
+        "HabitForge has been instrumental in my everyday success. I get a reminder to write every day and also an e-mail to check in about my progress. I think... I'd much rather click on Yes. So, I get moving and accomplish today's goals. HabitForge is a gentle yet profound way to keep on track and be successful."
+        <span style="font-weight:bold;">--Barb, Minneapolis</span>
+        </p></li>
+
+        <li><p style="padding-right:100px;">
+        "HF is a gentle electronic 'nudge' every morning! We have so many things 'on our plate' that forming good habits can easily get lost in the day's busi-ness...but HF at least gives forming a new habit traction:*D "
+        <span style="font-weight:bold;"><br>--Barbie B</span>
+        </p></li>
+
+        <li><p style="padding-right:100px;">
+        "A great tool for building a better you. Cheesy, I know, but nonetheless true. I'm going on day 67 of following my simple, but effective exercise plan."
+        <span style="font-weight:bold;">--Lauge, Denmark</span>
+        </p></li>
+
+
+
+
+        <li><p style="padding-right:100px;">
+        "I find HabitForge a great reminder for taking my water and vitamins...having the email reminders makes a big difference, i get the email, i get up and get my water and vitamins, it's that simple.  It's GREAT !! Plus, there are no excuses, it holds me accountable."
+        <span style="font-weight:bold;">--Cindy Small</span>
+        </p></li>
+
+        <li><p style="padding-right:100px;">
+        "HabitForge both gives me a goal and provides accountability day to day.  It's a fantastic tool to stay on track when establishing good habits."
+        <span style="font-weight:bold;">--Dave, Peoria IL</span>
+        </p></li>
+
+        <li><p style="padding-right:100px;">
+        "This is such a great site.  It has really helped me get focused with a couple of things that needed to be in my life.  It is very empowering."
+        <span style="font-weight:bold;">--Susan</span>
+        </p></li>
+
+
+        <li><p style="padding-right:100px;">
+        "HabitForge is awesome! It has helped me stay on track with my live saving medication I have to take."
+        <span style="font-weight:bold;">--Kendra K. CA</span>
+        </p></li>
+
+
+        <li><p style="padding-right:100px;">
+        "I have been remembering to attain my goal because HabitForge sends me an email every day.  Before I joined HabitForge I used to put off doing my goal and HabitForge keeps me on my toes!
+        If I do forget, then the email sent to check that I attained my goal for the day before, nudges me to do it today."
+        <span style="font-weight:bold;"> --Alvine - England</span>
+        </p></li>
+
+        <li><p style="padding-right:100px;">
+        "HabitForge was really helpful for helping me get out of the habit of late night snacking.  I was really ready for a change, and had clear benefits & detriments all thought out.  It's funny how just the thought: "I'd love to eat now, but I'd have to restart all over again," was enough to stop me on the most challenging nights."
+        <span style="font-weight:bold;">--Becky, Bend, Oregon</span>
+        </p></li>
+
+        <li><p style="padding-right:100px;">
+        "HabitForge has allowed me to stay true to my goals and to myself. No more excuses!"
+        <span style="font-weight:bold;">--Rutger</span>
+        </p></li>
+
+
+            </ul>
+
+
+                </em>
+            </div>
+        </div>
+
+
+        </div></center>
+
+
+    <div class="clear"></div>
+
+
+
+    
+    <a name="browse_recommended_habits" id="browse_recommended_habits" /> 
+    <!-- Portfolio Start -->
+    <ul class="splitter" id="filter">
+        <li>
+            <ul>
+                <li class="segment-1 selected-1"><a href="#" data-value="all">All</a></li>
+                <li class="segment-0"><a href="#" data-value="exercise">Exercise</a></li>
+                <li class="segment-2"><a href="#" data-value="healthy_foods">Healthy Foods</a></li>
+            </ul>
+        </li>
+    </ul>
+
+    <div id="portfolio_4col" class="image_grid">
+    <ul id="list" class="da-thumbs">
+        <li data-id="id-1" class="exercise all">
+            <img src="/home/images/categories/shoe.jpg" alt="img" />
+            <div>
+              <a href="?goal_template_text=walking%20briskly%20for%2020%20minutes&category=Exercise">
+                <h3>20 Minutes of Brisk Walking</h3>
+                <p>Walking fast for 20 minutes or more each day is a great way to burn calories and boost your immune system.</p>
+                </a>
+            </div>
+        </li>
+        <li data-id="id-2" class="healthy_foods">
+            <img src="/home/images/categories/tomato.jpg" alt="img" />
+            <div>
+                <a href="portfolio_single_page_1.html">
+                <h3>5 Servings of Fruits or Vegetables</h3>
+                <p>Make your mother proud. Eat your veggies, OK?</p>
+                </a>
+            </div>
+        </li>
+        <li data-id="id-3" class="exercise">
+            <img src="/home/images/categories/athlete.jpg" alt="img" />
+            <div>
+                <a href="portfolio_single_page_1.html">
+                <h3>Strength Training or Cardio</h3>
+                <p>Do something every day to get stronger and increase your endurance.</p>
+                </a>
+            </div>
+        </li>
+        <li data-id="id-4" class="exercise">
+            <img src="/home/images/categories/jogger.jpg" alt="img" />
+            <div>
+                <a href="portfolio_single_page_1.html">
+                <h3>Running or Jogging 20 Minutes</h3>
+                <p>A great way to recharge your batteries.</p>
+                </a>
+            </div>
+        </li>
+        <li data-id="id-5" class="healthy_foods">
+            <img src="/home/images/categories/water.jpg" alt="img" />
+            <div>
+                <a href="portfolio_single_page_1.html">
+                <h3>8 Glasses of Water</h3>
+                <p>It takes a lot of fluids to run a high-powered machine.</p>
+                </a>
+            </div>
+        </li>
+        <li data-id="id-6" class="healthy_foods exercise all">
+            <img src="/home/images/categories/question.jpg" alt="img" />
+            <div>
+              <a href="?goal_template_text=&category=s">
+                <h3>Build your own</h3>
+                <p>What could you do daily to improve your life?</p>
+                </a>
+            </div>
+        </li>
+    </ul>
+    </div>
+    <!-- Portfolio End -->
+</article>
+
+
+
+<article>
+
+    <a name="how" id="how" />
+
+    <h3>How <span>It Works</span></h3><br />
+    <div class="one_third">
+        <span class="teaser_icon alignleft">
+            <img src="/home/images/mointor_icon.png" alt="img"  />
+        </span>
+        <h4>1. Decide</h4>
+        <p>What could you do daily to improve your life? We all have room to improve. Pick one thing and get started! Life is short, so commit to taking action now!</p>
+    </div>
+    <div class="one_third">
+        <span class="teaser_icon alignleft">
+            <img src="/home/images/brush_icon.png" alt="img"  />
+        </span>
+        <h4>2. Build your first habit</h4>
+        <p>In under a minute you can be set up with your first habit. We'll check in on you as often as you want, and we'll keep track of how you're doing.</p>
+    </div>
+
+    <div class="one_third_last">
+        <span class="teaser_icon alignleft">
+            <img src="/home/images/paperplane_icon.png" alt="img"  />
+        </span>
+        <h4>3. Click "Yes" or "No"</h4>
+        <p>We'll check in via email to ask you if you were successful. Just click "yes" or "no" from that email and we'll keep track of how you're doing. Succeed for 21 days straight, and the new action will be easier than ever to maintain.</p>
+    </div>
+</article>
+
+
+
+<article>
+    <div>
+        <span class="teaser_icon alignleft">
+            <img src="/home/images/briefcase_icon.png" alt="img"  />
+        </span>
+        <h3>Choose <span>Extra Accountability</span> Features that Work for You</h3>
+          <li>Join a team of others working on a similar goal to yours (or go it alone).
+          <li>Set up as many reminders each day as you'd like.</li>
+          <li>Set the time of day you want us to "check in" to see if you succeeded.</li>
+          </li>
+          <li>Your habit goal can be public or private.</li>
+          <li>You can invite others to follow your progress, and they'll get a weekly report showing your stats.
+          </li>
+          <li>If you'd like, we'll incentivize other members to send you a "push"... they'll choose from one of five phrases that you create to use as a gentle "push" (or not so gentle, your choice) if you start to falter.
+          </li>
+          <li>
+            Still not enough? Set up a wager to "have to pay" an organization that you can't stand if you don't hit a certain success threshold.
+          </li>
+    </div>
+
+</article>
+
+</section>
+<!-- Content End -->
+<div id="triangle-down">&nbsp;</div>
+
+<!-- Footer Start -->
+<section id="footer_wrap">
+<footer>
+    <div class="widget_container">
+        <a name="about" id="about" />
+        <h3>About <span>HabitForge</span></h3>
+        <p>
+        At HabitForge we are on a mission... to change the world one habit at a time. By 
+        helping you at first to consciously make a better choice each and every day until 
+        eventually the "better choice" is an automatic response.</p>
+
+        <p>Our goal is simply to help you live more fully and enjoy a healthier, happier life.</p>
+
+        <p>During the coming year as we continue to develop HabitForge, we will be digging 
+        further into the nuts and bolts and nuances behind habit formation... converting 
+        the "what and how" that world-renowned scientists have revealed during their 
+        past 20 years of "positive psychology research" into simple, practical HabitForge 
+        features that will help you get there faster than ever.
+        </p>
+    </div>
+
+
+    <div class="bottom_sec">
+        <span>Copyright &copy; Habit Research LLC 2013</span>
+        <ul>
+        </ul>
+    </div>
+
+</footer>
+</section>
+<!-- Footer End -->
+</body>
+</html>

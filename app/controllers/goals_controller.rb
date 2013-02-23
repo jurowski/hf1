@@ -336,8 +336,8 @@ logger.debug "SGJ2 2 #{goal.title}(#{goal.id}) #{goal.daysstraight} daysstraight
           @goal.response_question = @goal.title
       end
 
-      if params[:category]
-        @goal.category = params[:category]
+      if session[:category]
+        @goal.category = session[:category]
       end
 
       if current_user.goal_temp != nil and current_user.goal_temp != ""

@@ -123,10 +123,54 @@ d2daysago = dnow - 2
 
 
 
+<%
+#################### TEMPLATE GOAL NAMES/TITLES ###########################
+    if params[:goal_template_text]
+        session[:goal_template_text] = params[:goal_template_text]
+    end
 
-<% if @ca != "view_goal_creation_email" and @ca != "view_checkpoint_single_email" and @ca != "view_checkpoint_multiple_email" %>
-  <%= render :partial => "layouts/#{session[:sponsor]}.erb"%>
+    if params[:category]
+        session[:category] = params[:category]
+    end
+
+################## END TEMPLATE GOAL NAMES/TITLES ########################
+
+#################### AFFILIATE ###########################
+if params[:affiliate_name]
+    session[:affiliate_name] = params[:affiliate_name]
+end 
+################## END AFFILIATE ########################
+
+#################### AFFILIATE ###########################
+if params[:test_new_homepage]
+    session[:test_new_homepage] = params[:test_new_homepage]
+end 
+################## END AFFILIATE ########################
+
+%>
+
+
+
+<% if session[:test_new_homepage] %>
+
+  <% if current_user or params[:user_id] or (@cn == "user_sessions" and @ca == "new" and params[:skip_intro])%>
+
+     <!-- default --> 
+     <%= render :partial => "layouts/#{session[:sponsor]}.erb"%>
+
+  <% else %>
+
+    <!-- new home page --> 
+    <%= render :partial => "layouts/habitforge_public_home.erb"%>
+
+  <% end %>
+
+<% else %>
+     <!-- default --> 
+     <%= render :partial => "layouts/#{session[:sponsor]}.erb"%>
+
 <% end %>
+
 
 
 

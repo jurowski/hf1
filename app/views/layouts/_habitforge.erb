@@ -248,13 +248,6 @@ end
 %>
 
 
-<%
-#################### TEMPLATE GOAL NAMES/TITLES ###########################
-    if params[:goal_template_text]
-        session[:goal_template_text] = params[:goal_template_text]
-    end
-################## END TEMPLATE GOAL NAMES/TITLES ########################
-%>
 
 </head>
 <body>
@@ -530,11 +523,6 @@ if params[:sfm]
 end
 if session[:sfm] == nil
   session[:sfm] = "v2"
-end 
-
-
-if params[:affiliate_name]
-    session[:affiliate_name] = params[:affiliate_name]
 end 
 %>
 
