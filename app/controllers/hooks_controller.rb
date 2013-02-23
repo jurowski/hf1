@@ -775,7 +775,7 @@ testing_xml_resend_any = %{
 
 		                 if xml_product_id == 49
                 			user.kill_ads_until = '3000-01-01'
-                      if xml_variant_id == 27 or xml_variant_id == 31
+                      if xml_variant_id == 27 or xml_variant_id == 31 or xml_variant_id == 32
                 			  user.plan = "Yearly"
                 			end
                       if xml_variant_id == 29
