@@ -181,9 +181,25 @@ UserVoice.push(['showTab', 'classic_widget', {
 
 
 
+<article>
+
+
+        <!--Begin TESTIMONIALS Callout Section-->
+
+
+        <center>
+            <div style="width:90%;margin-top:-30px;">
+
+        <div class="blog_post">
+            <!--<div class="thumb_img">
+                <img src="/home/images/quote.png" alt="img" />
+            </div>-->
+
+
+
         <% if session[:goal_template_text] and session[:goal_template_text] != "" %>
 
-            <div class="pane sucess">
+            <div>
                 <h3>Let's get you started with <%= session[:goal_template_text] %>! 
                   <a href="?goal_template_text=&category=">(or, do something else)</a></h3>
 
@@ -207,27 +223,27 @@ UserVoice.push(['showTab', 'classic_widget', {
 
           <h2><a href="#" class="show_hide">Start your own</a> or <a href="#browse_recommended_habits">Browse Popular Habits</a></h2>
 
-<% if retry_email_address %>
+            <% if retry_email_address %>
 
-    <div>
-        <div class="pane error">
-            <% if @email_blank == true or (@email_valid != nil and @email_valid == false) %>
-            Please enter a valid email address.
+                <div>
+                    <div class="pane error">
+                        <% if @email_blank == true or (@email_valid != nil and @email_valid == false) %>
+                        Please enter a valid email address.
+                        <% end %>
+
+                        <% if @email_duplicate %>
+                        There is already a habitforge account with that email address. 
+                        <br>
+                        If it is yours, you may <a href="/users/login">log in here</a> or you may sign up with a new address below.
+                        <% end %>
+                    </div>
+            <% else %>
+
+                <div class="slidingDiv">
+
             <% end %>
 
-            <% if @email_duplicate %>
-            There is already a habitforge account with that email address. 
-            <br>
-            If it is yours, you may <a href="/users/login">log in here</a> or you may sign up with a new address below.
-            <% end %>
-        </div>
-<% else %>
-
-    <div class="slidingDiv">
-
-<% end %>
-
-              <div class="pane sucess">
+              <div>
                   <h3>What could you do daily to improve your life?</h3>
 
 
@@ -261,18 +277,7 @@ UserVoice.push(['showTab', 'classic_widget', {
             <h2><a href="#" class="show_hide">Join for free</a>, and add to our 1,206,273 Successful Days Logged!</h2>
     </center>
 
-<article>
 
-
-        <!--Begin TESTIMONIALS Callout Section-->
-
-
-        <center><div style="width:90%;margin-top:-30px;">
-
-        <div class="blog_post">
-            <!--<div class="thumb_img">
-                <img src="/home/images/quote.png" alt="img" />
-            </div>-->
             <div class="description">
                 <em>
 
@@ -415,7 +420,7 @@ UserVoice.push(['showTab', 'classic_widget', {
 
 
         </div></center>
-
+</article>
 
     <div class="clear"></div>
 
@@ -477,6 +482,7 @@ UserVoice.push(['showTab', 'classic_widget', {
     </div>
 </article>
 
+<article>
     
     <a name="browse_recommended_habits" id="browse_recommended_habits" /> 
     <!-- Portfolio Start -->
