@@ -36,7 +36,7 @@ Reset and overrides
 ***/
 /* general body settings */
 body { 
-  color: #000; 
+  color: #000;
   font-family: 'Open Sans';
   padding: 0px !important;
   margin: 0px !important;
@@ -277,7 +277,8 @@ Header and header elements.
 }
 
 .header .nav > li.dropdown.user .dropdown-toggle .username {
-  color: #ddd;
+  /*color: #ddd;*/
+  color: #000;
 }
 
 .header .nav li.dropdown.user .dropdown-toggle i {
@@ -636,7 +637,10 @@ Page content
 .page-content {  
   margin-top: 0px;   
   padding: 0px;
-  background-color: #fff; 
+  background-color: #fff;
+  /*background-color: #000; */
+
+
 }
 
 .ie8 .page-content { 
@@ -704,7 +708,10 @@ Dashboard date range panel
   padding-bottom: 7px;
   cursor: pointer;
   min-width: 275x;
+
   color: #fff;
+  /*color: #000;*/
+
   background-color: #e02222;
 }
 
@@ -1471,7 +1478,9 @@ Custom icon buttons
 
 .dropdown-menu.extended li a:hover {
   background-image: none;
+
   background-color: #f5f5f5;
+
   color: #000;
   filter:none;
 }
