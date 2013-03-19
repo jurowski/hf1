@@ -151,7 +151,29 @@ class ApplicationController < ActionController::Base
         logger.debug("sgj:no current user, check for fake/single logins")
         ### let user fake a login for one page, if they have enough correct info for coming in via email URL
         ### since there is no "current_user_session && current_user_session.record", it won't stay across requests
-        
+
+
+
+        ### autoupdatemultiple
+        if params[:g] and params[:u]
+            logger.debug("sgj:attempting single login w/ goal/user info")
+            goal = Goal.find(params[:g].to_i)
+            if goal
+                if goal.user
+                    if goal.user.id == params[:u].to_i
+                        @current_user = goal.user
+
+                            ### hey, let's LET them do the persistent
+                            ### "session[:email] and session[:single_login]" here
+
+                        session[:email] = goal.user.email
+                        session[:single_login] = true
+                    end
+                end
+            end
+        end    
+
+
         ### EXAMPLE URL: /goals?update_checkpoint_status=no&date=2012-01-28&e0=106&f0=97&u=15706&goal_id=25855
         if params[:goal_id] and params[:u] and params[:e0] and params[:f0]
             logger.debug("sgj:attempting single login w/ goal/user/email id info")
