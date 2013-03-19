@@ -10,13 +10,12 @@
     ###  http://localhost:3000/checkpoints/1/autoupdatemultiple?d=2012-01-26&u=15706&g=25858
 
   session[:return_to_me] = request.request_uri
-  #if current_user == nil
+  if current_user == nil
   %>
-    <!-- link_to "Log in", new_user_session_path + "?skip_intro=1" %>  to view all of your goals and stats</center></strong></h3>
+    <%= link_to "Log in", new_user_session_path + "?skip_intro=1" %>  to view all of your goals and stats</center></strong></h3>
     <br>
-    -->
   <%
-  #end
+  end
   %>
 
 
