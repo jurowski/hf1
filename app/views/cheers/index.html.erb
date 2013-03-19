@@ -22,14 +22,14 @@ if current_user
     end
    if current_user.gender == nil
        %>
-       <div class="error">
+       <div class="alert">
        Are you <a href="/cheers?gender=male"><font color="red">Male</font></a> or <a href="/cheers?gender=female"><font color="red">Female</font></a> ? 
        </div>
        <%
    else
        if current_user.yob == nil
        %>
-           <div class="error">
+           <div class="alert">
            <form>
            <table>
            <tr>
@@ -88,16 +88,8 @@ if params[:show_winners] and params[:goal_id]
   #will render the partial _priordaycategorywinnersgoal.erb file from the checkpoints views  
 else
 %>
-  <h4>Sharing? Link to show others any active habits that I have "made public": </h4>
-  <p>&nbsp &nbsp &nbsp &nbsp &nbsp <a href="<%= session[:site_url] %>/cheers/1/shared?shared_u=<%= current_user.id %>" target="_blank"><%= session[:site_url] %>/cheers/1/shared?shared_u=<%= current_user.id %></a>
 
-        <br>
-        &nbsp &nbsp &nbsp &nbsp &nbsp 
-        <a name="fb_share" type="button" share_url="<%= session[:site_url] %>/cheers/1/shared?shared_u=<%= current_user.id %>" href="http://www.facebook.com/sharer.php">My <%= session[:site_name]%> Progress</a><script src="http://static.ak.fbcdn.net/connect.php/js/FB.Share" type="text/javascript"></script>
-        
-
-  </p>
-    <h4>Goals you're following</h4>
+    <h2>Goals you're following</h2>
     <h5>If someone invites you to follow their progress on a goal, it will be listed here. </h5>
     <p>
     <% if @cheers.size == 0 %>
@@ -161,7 +153,7 @@ begin
       %>
       <br>
       <br>
-      <h4>Who succeeded yesterday in the category of "<%= params[:category]%>"</h4>
+      <h2>Who succeeded yesterday in the category of "<%= params[:category]%>"</h2>
       <br>
       <br>
       <%
@@ -195,7 +187,7 @@ begin
     end
   else
   %>
-  <h4>Who Succeeded Yesterday?</h4>
+  <h2>Who Succeeded Yesterday?</h2>
   <h5>(Click a category to see the list)</h5>
   <%
   end

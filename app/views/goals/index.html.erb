@@ -65,13 +65,17 @@
 
 
 <% else %>
-    <%= link_to '<img src="/images/add_32.png" border="0" width=25px/>Start a New Habit', new_goal_path %>
+    <h2><%= link_to '<img src="/images/add_32.png" border="0" width=25px/> Start a New Habit', new_goal_path %></h2>
 <% end %>
+
 <div />
 <!-- *********** -->
 <!-- END HEADER -->
 <!-- *********** -->
 <!-- *********** -->
+
+
+
 
 
 
@@ -98,10 +102,8 @@ for goal in current_user.active_goals_sorted_by_next_action_day
         if !printed_today_actions_once
             printed_today_actions_once = true
             %>
-            <div class="date_goal_list">
-                <%= render :partial => "goals/date_badge", :locals => { :badge_date => @badge_date }  %>
+            <div>
                 <h2>
-                &nbsp &nbsp
                 <% if number_goals_today == 1 %>
                     Today I need to work on...
                 <% else %>
@@ -109,20 +111,19 @@ for goal in current_user.active_goals_sorted_by_next_action_day
                 <% end %>
                 </h2>
 
-                <div class="until_midnight">
-                    <h5> 
-                    If you have already succeeded today, click "I Already Succeeded Today!" below.
-                    <br>
-                    Otherwise you'll get a check-in email early tomorrow morning with yes/no links.
-                    </h5>
+                <div class="alert alert-success"> 
+                    <%= render :partial => "goals/date_badge", :locals => { :badge_date => @badge_date }  %>
+
+                &nbsp If you have already succeeded today, click "I Already Succeeded Today!" below.
+                <br>
+                &nbsp Otherwise you'll get a check-in email with yes/no links.
                 </div>
 
-                <br>
                 <br>
             </div>
             <%
         end
-    end ### End of: if number_goals_today == 0
+    end ### End of: if number_goals_today > 0
 
 
 
@@ -143,21 +144,15 @@ for goal in current_user.active_goals_sorted_by_next_action_day
             <br>
             <br>
 
-            <div class="date_goal_list">
-            <%= render :partial => "goals/date_badge", :locals => { :badge_date => @badge_date }  %>
-
             <h2>
-            &nbsp &nbsp
             Tomorrow is the next action day for...
             </h2>
-
-            <div class="until_midnight_tomorrow">
-                <h5> 
-                Once you succeed tomorrow, you can log in and click the "I Already Succeeded Today!" button that will appear.
+            <div class="alert alert-info"> 
+            <%= render :partial => "goals/date_badge", :locals => { :badge_date => @badge_date }  %>
+                &nbsp Once you succeed tomorrow, you can log in and click the "I Already Succeeded Today!" button that will appear.
                 <br>
-                Otherwise you'll get a check-in email early the next morning with yes/no links.
-                </h5>
-            </div>
+                &nbsp Otherwise you'll get a check-in email with yes/no links.
+        </div>
 
         <% end %>
 
@@ -168,20 +163,14 @@ for goal in current_user.active_goals_sorted_by_next_action_day
             <br>
             <br>
             <h2>Actions for this coming week</h2>
-
-            <div class="other_future_habits">
-                <h5> 
-                These show up here because today and tomorrow are unchecked (not "relevant"). 
-                <br>
-                To change that, click on the habit to edit the relevant days.
-                </h5>
-            </div>
-            <div class="date_goal_list">
+            <div class="alert">
             <%= render :partial => "goals/date_badge", :locals => { :badge_date => @badge_date }  %>
+
+
+                &nbsp These show up here because today and tomorrow are unchecked (not "relevant"). 
                 <br>
-                <br>
-                <br>
-                <br>
+                &nbsp To change that, click on the habit to edit the relevant days.
+            </div>
         <% 
         end 
         %>
@@ -200,33 +189,30 @@ for goal in current_user.active_goals_sorted_by_next_action_day
     <!-- *********** -->
     <!-- START PRINT HABIT -->    
     <!-- *********** -->
-    <div class="div_habit"><!-- START HABIT -->
+    <!-- BEGIN CUSTOM BUTTONS WITH ICONS PORTLET-->
+    <div class="portlet box blue">
+        <div class="portlet-title">
 
-    <DIV style="border-radius:20px;-moz-border-radius:20px;border-width:none;border-color:#eeeeee;background-color:#eeeeee;border-style:solid;padding:0px;margin:0px;width:300px;">
-        <p>
-        &nbsp
-        &nbsp
-        <%= link_to "Options", edit_goal_path(goal.id)  %>
-        |
-        <%= link_to "Delete", goal, :confirm => 'Are you sure you want to delete this goal?', :method => :delete %>
-        |
-        <%= link_to 'Hold a While', "/goals/hold/#{@goal.id}", :confirm => 'If you put a goal on hold, you will stop getting emails about it.' %>
-        |
-        <a href="/goals/single/<%= goal.id %>">My History</a>
-        </p>
-    </div>
+            <a name="jump_to_goal_id_<%= goal.id.to_s %>" />
+            <h4><span style="color:#ffffff;">
+            <% if goal.category and  goal.category != "None" and goal.category != "" and goal.category != "Other" %><%= goal.category %> <% end %>...<%= goal.title %>
+            &nbsp
+            </span>
+            </h4>
+
+        </div>
+
+        <div class="tools">
+            <a href="javascript:;" class="collapse"></a>
+        </div>
+
+        <div class="portlet-body">
+
+        <!-- START HABIT -->
+
+
+
     
-    <br>
-    <h2>
-    ...<%= goal.title %>
-    </h2>
-
-
-    <!-- START OPTIONS HEADER -->
-    <div id="options_<%= @goal.id %>">
-    <%= render :partial => "goals/options", :locals => { :options => @goal }  %>
-    </div>
-    <!-- END OPTONS HEADER -->
 
     <% if goal.is_this_a_relevant_day(dtoday) or goal.is_this_a_relevant_day(dyesterday) %>
         <%
@@ -241,7 +227,7 @@ for goal in current_user.active_goals_sorted_by_next_action_day
 
                 <div>
                 <p>
-                <img src="/images/checkmark_green.png" height=20px >
+                <img src="/images/checkmark_green.png" height="20px" width="20px">
                 <% if goal.publish %>
                         Congratulations on today's success! Share your stats: 
                         <a name="fb_share" type="button" share_url="<%= server_root_url%>/cheers/1/shared?shared_u=<%= goal.user.id %>&one_g=<%= goal.id%>" href="http://www.facebook.com/sharer.php">My <%= session[:site_name]%> Progress</a><script src="http://static.ak.fbcdn.net/connect.php/js/FB.Share" type="text/javascript"></script>
@@ -268,7 +254,7 @@ for goal in current_user.active_goals_sorted_by_next_action_day
                 <% if goal.get_daily_status_for(dyesterday) == "yes" %>        
                     <div>
                     <p>
-                    <img src="/images/checkmark_green.png" height=20px >
+                    <img src="/images/checkmark_green.png" height="20px" width="20px">
                     <% if goal.publish %>
                             Congratulations on yesterday's success! Share your stats: 
                             <a name="fb_share" type="button" share_url="<%= server_root_url%>/cheers/1/shared?shared_u=<%= goal.user.id %>&one_g=<%= goal.id%>" href="http://www.facebook.com/sharer.php">My <%= session[:site_name]%> Progress</a><script src="http://static.ak.fbcdn.net/connect.php/js/FB.Share" type="text/javascript"></script>
@@ -325,10 +311,10 @@ for goal in current_user.active_goals_sorted_by_next_action_day
 
             %>
             <p>
-            <%= link_to_function (add_note_text) {
-             |page| page.visual_effect :toggle_appear, "note_#{goal.id}" 
-            } 
-            %>
+
+            <a href="#undefined" onclick="toggle_show_hide('note_<%= goal.id %>')"><%= add_note_text %></a>
+
+
             <div id="note_<%= goal.id %>" style="display:none;">
                 <form>
                     <textarea cols="80" rows="4" name="comment_<%= goal.id %>"><%= goal.get_daily_comment_for(add_comment_date) %></textarea> 
@@ -354,44 +340,142 @@ for goal in current_user.active_goals_sorted_by_next_action_day
 
 
     <!-- CATCH UP -->
-    <div id="catch_up_on_checkpoints_goal_<%= @goal.id %>">
+    <div id="catch_up_on_checkpoints_goal_<%= @goal.id %>"class="alert alert-info">
     <%= render :partial => "goals/catch_up_on_checkpoints", :locals => { :catch_up_on_checkpoints => @goal }  %>
     </div>
     <!-- CATCH UP -->
 
+<%
+### STATS
+stats_name = "<i class='icon-dashboard'></i> Dashboard"
 
 
+### FOLLOWERS
+followers_image = "<i class='icon-user'></i>"
+followers_name = "#{followers_image} Followers (#{@goal.number_invites_sent_to_followers})"
+
+### Extra Accountability
+bets_image = ""
+if @goal.number_my_active_bets > 0
+  for bet in @goal.my_active_bets
+    bets_image = "<i class='icon-coins'></i>  $#{bet.wager} to #{bet.recipient_name}?"
+  end
+else
+  bets_image = "<i class='icon-money'></i>  Extra Accountability?"
+end
 
 
-    <!-- START STATS -->
-    <% if current_user.number_of_active_habits > 3 %>
-        <div id="stats_<%= @goal.id %>" class="div_stats" style="display:none;">  
-    <% else %>
-        <div id="stats_<%= @goal.id %>" class="div_stats"">  
-    <% end %>
-    <%= render :partial => "goals/stats", :locals => { :stats => @goal }  %>
-    </div>  
-    <!-- END STATS -->
+### TEAM
+team_name = ""
+team_image = "<i class='icon-group'></i> "
+if @goal.is_part_of_a_team 
+    my_teammates = @goal.get_teammate_names_sans_me
+    if my_teammates == ""
+        team_name = "#{team_image} (waiting)"        
+    else
+        team_name = "#{team_image} Team: (#{@goal.get_teammate_names_sans_me})"
+    end
+else
+    team_name = "#{team_image} Team"
+end
 
+### DEFAULT TAB STATUS
+tab_dashboard_active = "active"
+tab_followers_active = ""
+tab_bets_active = ""
+tab_team_active = ""
 
-    <!-- START WATCHERS -->
-    <%= render :partial => "goals/watchers", :locals => { :watchers => @goal }  %>
-    <!-- END WATCHERS -->
+if params[:start_fire_goal_id] and params[:start_fire_goal_id] == @goal.id.to_s
+    tab_dashboard_active = ""
+    tab_followers_active = ""
+    tab_bets_active = "active"
+    tab_team_active = ""
+end
 
-    <!-- START TEAM -->
-    <%= render :partial => "goals/team", :locals => { :team => @goal }  %>
-    <!-- END TEAM -->
+if params[:join_a_team] and params[:goal_id] and params[:goal_id] == @goal.id.to_s
+    tab_dashboard_active = ""
+    tab_followers_active = ""
+    tab_bets_active = ""
+    tab_team_active = "active"
+end
+
+%>
+
+<div class="tabbable tabbable-custom tabbable-custom-profile">
+    <ul class="nav nav-tabs" style="font-size:1.5em;">
+        <li class="<%= tab_dashboard_active %>"><a href="#tab_1_1_<%= @goal.id %>" data-toggle="tab"><%= stats_name %></a></li>
+        <li class="<%= tab_followers_active %>"><a href="#tab_1_2_<%= @goal.id %>" data-toggle="tab"><%= followers_name %></a></li>
+        <li class="<%= tab_bets_active %>"><a href="#tab_1_3_<%= @goal.id %>" data-toggle="tab"><%= bets_image %></a></li>
+        <li class="<%= tab_team_active %>"><a href="#tab_1_4_<%= @goal.id %>" data-toggle="tab"><%= team_name %></a></li>
+    </ul>
+    <div class="tab-content">
+        <div class="tab-pane <%= tab_dashboard_active %>" id="tab_1_1_<%= @goal.id %>">
+            <div class="portlet-body" style="display: block;">
+                <!-- START STATS -->
+                <div id="stats_<%= @goal.id %>" class="div_stats">  
+                    <DIV>
+                        <p>
+                        <i class='icon-pencil'></i> <%= link_to "Edit/Options", edit_goal_path(goal.id)  %>
+                        &nbsp
+                        <i class='icon-calendar'></i> <a href="/goals/single/<%= goal.id %>">My History</a>
+                        &nbsp
+                        <i class='icon-pause'></i> <%= link_to 'Hold a While', "/goals/hold/#{@goal.id}", :confirm => 'If you put a goal on hold, you will stop getting emails about it.' %>
+                        &nbsp
+                        <i class='icon-remove'></i> <%= link_to "Delete", goal, :confirm => 'Are you sure you want to delete this goal?', :method => :delete %>
+
+                        </p>
+                    </div>
+                    <h3>
+                    <%
+                    if @goal.days_since_first_checkpoint > 30
+                    %>
+                    <%= @goal.successful_days_in_a_row_without_9s %>straight, <%= @goal.percent_of_checkpoints_with_answer_of_yes(true) %>% Overall, <%= @goal.percent_of_checkpoints_with_answer_of_yes %>% last 30 days
+                    <%
+                    else
+                    %>
+                    Stats: <%= @goal.successful_days_in_a_row_without_9s %> straight, <%= @goal.percent_of_checkpoints_with_answer_of_yes %>% last 30 days
+                    <%
+                    end
+                    %>
+                    </h3>
+                <%= render :partial => "goals/stats", :locals => { :stats => @goal }  %>
+                </div>  
+                <!-- END STATS -->
+            </div>
+        </div>
+        <div class="tab-pane <%= tab_followers_active %>" id="tab_1_2_<%= @goal.id %>">
+            <div class="portlet-body" style="display: block;">
+                <!-- START WATCHERS -->
+                <%= render :partial => "goals/watchers", :locals => { :watchers => @goal }  %>
+                <!-- END WATCHERS -->
+            </div>
+        </div>
+        <div class="tab-pane <%= tab_bets_active %>" id="tab_1_3_<%= @goal.id %>">
+            <div class="portlet-body" style="display: block;">
+                <!-- START FIRE -->
+                <%=  render :partial => "goals/fire", :locals => { :fire => @goal }  %>
+                <!-- END FIRE -->
+            </div>
+        </div>
+        <div class="tab-pane <%= tab_team_active %>" id="tab_1_4_<%= @goal.id %>">
+            <div class="portlet-body" style="display: block;">
+                <!-- START TEAM -->
+                <%= render :partial => "goals/team", :locals => { :team => @goal }  %>
+                <!-- END TEAM -->
+            </div>
+        </div>
+
+    </div>
+</div>
+
 
 
     <!-- START COACH -->
     <!--  render :partial => "goals/coach", :locals => { :coach => @goal }  -->
     <!-- END COACH -->
     
-    <!-- START FIRE -->
-    <%=  render :partial => "goals/fire", :locals => { :fire => @goal }  %>
-    <!-- END FIRE -->
 
-    
+    </div>
     </div>
     <br>
     <!-- *********** -->
@@ -429,9 +513,7 @@ if current_user.number_of_stale_habits > 0
     for goal in current_user.stale_goals
         %>
         <h5>
-        <a href="/goals?restart_goal_id=<%= goal.id%>">Start again at Day 1.</a>
-        &nbsp | &nbsp
-        <%= link_to goal.title, edit_goal_path(goal.id)  %>
+        <i class='icon-play'></i> <a href="/goals?restart_goal_id=<%= goal.id%>">Start "<%= goal.title %>" again</a> or <%= link_to "Just view it", edit_goal_path(goal.id) %>
         </h5>
         <%
     end
@@ -500,13 +582,17 @@ TEST LOCALLY
 
 </div>
         <div id="goals_unsuccessful_lightbox_close" class="div_close_button">
-        <%= link_to_function ("<img src='/images/close.png' />") {
+
+         <a href="#undefined" onclick="toggle_show_hide('stats_lightbox_black');toggle_show_hide('stats_lightbox_white');toggle_show_hide('stats_lightbox_close');"><img src='/images/close.png' /></a>
+
+        <!-- link_to_function ("<img src='/images/close.png' />") {
             |page|
          page.visual_effect(:fade, "goals_unsuccessful_lightbox_black", :duration => 0.0)
          page.visual_effect(:fade, "goals_unsuccessful_lightbox_white", :duration => 0.0)
          page.visual_effect(:fade, "goals_unsuccessful_lightbox_close", :duration => 0.0)
         } 
-        %>
+        -->
+
         </div>
 
     <div id="goals_unsuccessful_lightbox_white" class="white_content">
@@ -564,14 +650,16 @@ TEST LOCALLY
     <%
     continue_phrase = "Let's get some stuff done. On to HabitForge! >>"
     %>
+
+         <a href="#undefined" onclick="toggle_show_hide('stats_lightbox_black');toggle_show_hide('stats_lightbox_white');toggle_show_hide('stats_lightbox_close');"><%= continue_phrase %></a>
     
-    <%= link_to_function (continue_phrase) {
+    <!-- link_to_function (continue_phrase) {
         |page|
      page.visual_effect(:fade, "goals_unsuccessful_lightbox_black", :duration => 0.0)
      page.visual_effect(:fade, "goals_unsuccessful_lightbox_white", :duration => 0.0)
      page.visual_effect(:fade, "goals_unsuccessful_lightbox_close", :duration => 0.0)
     } 
-    %>
+    -->
 
     </div>
 <% end %>
@@ -608,13 +696,16 @@ http://localhost:3000/goals?update_checkpoint_status=yes&date=2012-02-12&e0=106&
 
 </div>
         <div id="stats_lightbox_close" class="div_close_button">
-        <%= link_to_function ("<img src='/images/close.png' />") {
+
+         <a href="#undefined" onclick="toggle_show_hide('stats_lightbox_black');toggle_show_hide('stats_lightbox_white');toggle_show_hide('stats_lightbox_close');"><img src='/images/close.png' /></a>
+
+        <!-- link_to_function ("<img src='/images/close.png' />") {
             |page|
          page.visual_effect(:fade, "stats_lightbox_black", :duration => 0.0)
          page.visual_effect(:fade, "stats_lightbox_white", :duration => 0.0)
          page.visual_effect(:fade, "stats_lightbox_close", :duration => 0.0)
         } 
-        %>
+        -->
         </div>
 
     <div id="stats_lightbox_white" class="white_content">
@@ -784,14 +875,18 @@ http://localhost:3000/goals?update_checkpoint_status=yes&date=2012-02-12&e0=106&
         continue_phrase = "I wanna do more stuff. On to HabitForge! >>"
     end
     %>
+ 
     
-    <%= link_to_function (continue_phrase) {
+ <a href="#undefined" onclick="toggle_show_hide('stats_lightbox_black');toggle_show_hide('stats_lightbox_white');toggle_show_hide('stats_lightbox_close');"><%= continue_phrase %></a>
+
+    <!-- link_to_function (continue_phrase) {
         |page|
-     page.visual_effect(:fade, "stats_lightbox_black", :duration => 0.0)
-     page.visual_effect(:fade, "stats_lightbox_white", :duration => 0.0)
-     page.visual_effect(:fade, "stats_lightbox_close", :duration => 0.0)
+     #page.visual_effect(:fade, "stats_lightbox_black", :duration => 0.0)
+     #page.visual_effect(:fade, "stats_lightbox_white", :duration => 0.0)
+     #page.visual_effect(:fade, "stats_lightbox_close", :duration => 0.0)
+     page.hide()
     } 
-    %>
+    -->
 
     <br>
     <br>

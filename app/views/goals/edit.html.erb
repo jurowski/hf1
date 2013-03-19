@@ -18,12 +18,8 @@ begin
   %>   
   <% if @goal.status != "hold" %>
       | 
-      <%= link_to 'Place on Hold', "/goals/hold/#{@goal.id}", :confirm => 'If you put a goal on hold, you will stop getting emails about it.
-      
-------  WARNING  ------
-If you later choose to re-activate this goal, your history (the old checkpoint days and comments) WILL BE DELETED WHEN RE-ACTIVATED so that the success rate will stay relevant and accurate. 
-
-ARE YOU SURE YOU WANT TO DO THIS?' %> 
+      <%= link_to 'Place on Hold', "/goals/hold/#{@goal.id}", :confirm => 'If you put a goal on hold, you will stop getting emails about it. Are you sure you want to place it on hold?'
+       %> 
   <% end %>
 
   |

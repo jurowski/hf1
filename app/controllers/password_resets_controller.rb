@@ -48,6 +48,8 @@ before_filter :require_no_user
         if params[:user][:password] and params[:user][:password_confirmation]
             @user.password = params[:user][:password]  
             @user.password_confirmation = params[:user][:password_confirmation]  
+
+            @user.password_temp = nil
             if @user.save  
               flash[:notice] = "Password successfully updated"  
               redirect_to account_url  

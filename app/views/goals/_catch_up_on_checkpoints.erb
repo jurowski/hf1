@@ -5,9 +5,18 @@
         <p>
          	
          &nbsp  &nbsp Done for today? &nbsp
-                <%= link_to_remote 'I Already Succeeded Today!', :url => {:controller => "goals", :action => "index"}, :with => "'goal_id=#{@goal.id.to_s}&date=#{@goal.user.dtoday.to_s}&update_checkpoint_status=yes&e0=#{@goal.user.email[0]}&f0=#{@goal.user.first_name[0]}&u=#{@goal.user.id}'", :method => :put %>
+
+
+                <!-- works but only w/ older versions of js -->
+                <!-- link_to_remote 'I Already Succeeded Today!', :url => {:controller => "goals", :action => "index"}, :with => "'goal_id=#{@goal.id.to_s}&date=#{@goal.user.dtoday.to_s}&update_checkpoint_status=yes&e0=#{@goal.user.email[0]}&f0=#{@goal.user.first_name[0]}&u=#{@goal.user.id}'", :method => :put -->
+                <a href="/goals/?goal_id=<%= @goal.id.to_s %>&date=<%= @goal.user.dtoday.to_s %>&update_checkpoint_status=yes&e0=<%= @goal.user.email[0] %>&f0=<%= @goal.user.first_name[0] %>&u=<%= @goal.user.id %>#jump_to_goal_id_<%= @goal.id.to_s %>"  onclick="toggle_show_hide('spinner')">I Already Succeeded Today!</a>
+
                 &nbsp or &nbsp
-                <%= link_to_remote "I Didn't do this today.", :url => {:controller => "goals", :action => "index"}, :with => "'goal_id=#{@goal.id.to_s}&date=#{@goal.user.dtoday.to_s}&update_checkpoint_status=no&e0=#{@goal.user.email[0]}&f0=#{@goal.user.first_name[0]}&u=#{@goal.user.id}'", :method => :put %>
+
+                <!-- works but only w/ older versions of js -->  
+                <!-- link_to_remote "I Didn't do this today.", :url => {:controller => "goals", :action => "index"}, :with => "'goal_id=#{@goal.id.to_s}&date=#{@goal.user.dtoday.to_s}&update_checkpoint_status=no&e0=#{@goal.user.email[0]}&f0=#{@goal.user.first_name[0]}&u=#{@goal.user.id}'", :method => :put -->
+                <a href="/goals/?goal_id=<%= @goal.id.to_s %>&date=<%= @goal.user.dtoday.to_s %>&update_checkpoint_status=no&e0=<%= @goal.user.email[0] %>&f0=<%= @goal.user.first_name[0] %>&u=<%= @goal.user.id %>#jump_to_goal_id_<%= @goal.id.to_s %>"  onclick="toggle_show_hide('spinner')">I Didn't do this today.</a>
+
         </p>
         </div>
     <% end %>
@@ -54,9 +63,21 @@ if @goal.has_unanswered_checkpoints
                 <%
             end
             %>
-            <h2><%= link_to_remote 'Yes', :url => {:controller => "goals", :action => "index"}, :with => "'goal_id=#{@goal.id.to_s}&date=#{@checkin_date}&update_checkpoint_status=yes&e0=#{@goal.user.email[0]}&f0=#{@goal.user.first_name[0]}&u=#{@goal.user.id}'", :method => :put %>
+            <h2>
+
+                <!-- works but only w/ older versions of js -->
+                <!-- link_to_remote 'Yes', :url => {:controller => "goals", :action => "index"}, :with => "'goal_id=#{@goal.id.to_s}&date=#{@checkin_date}&update_checkpoint_status=yes&e0=#{@goal.user.email[0]}&f0=#{@goal.user.first_name[0]}&u=#{@goal.user.id}'", :method => :put -->
+ 
+
+                <a href="/goals/?goal_id=<%= @goal.id.to_s %>&date=<%= @checkin_date %>&update_checkpoint_status=yes&e0=<%= @goal.user.email[0] %>&f0=<%= @goal.user.first_name[0] %>&u=<%= @goal.user.id %>#jump_to_goal_id_<%= @goal.id.to_s %>"  onclick="toggle_show_hide('spinner')">Yes</a>
+
             &nbsp • &nbsp
-            <%= link_to_remote "No", :url => {:controller => "goals", :action => "index"}, :with => "'goal_id=#{@goal.id.to_s}&date=#{@checkin_date}&update_checkpoint_status=no&e0=#{@goal.user.email[0]}&f0=#{@goal.user.first_name[0]}&u=#{@goal.user.id}'", :method => :put %>
+
+            <!-- works but only w/ older versions of js -->
+            <!-- link_to_remote "No", :url => {:controller => "goals", :action => "index"}, :with => "'goal_id=#{@goal.id.to_s}&date=#{@checkin_date}&update_checkpoint_status=no&e0=#{@goal.user.email[0]}&f0=#{@goal.user.first_name[0]}&u=#{@goal.user.id}'", :method => :put -->
+
+                <a href="/goals/?goal_id=<%= @goal.id.to_s %>&date=<%= @checkin_date %>&update_checkpoint_status=no&e0=<%= @goal.user.email[0] %>&f0=<%= @goal.user.first_name[0] %>&u=<%= @goal.user.id %>#jump_to_goal_id_<%= @goal.id.to_s %>"  onclick="toggle_show_hide('spinner')">No</a>
+
             </h2>
             <%
         end
@@ -102,9 +123,19 @@ if @goal.has_unanswered_checkpoints
                 re: multiple ":with" params:
                 http://firstruby.wordpress.com/2008/11/03/remote_function-or-link_to_remote-with-multiple-parameters-in-ruby-on-rails/
                 -->
-                <%= link_to_remote 'Yes', :url => {:controller => "goals", :action => "index"}, :with => "'goal_id=#{@goal.id.to_s}&date=#{@checkin_date.to_s}&update_checkpoint_status=yes'", :method => :put %>
+
+                <!-- works but only w/ older versions of js -->
+                <!-- link_to_remote 'Yes', :url => {:controller => "goals", :action => "index"}, :with => "'goal_id=#{@goal.id.to_s}&date=#{@checkin_date.to_s}&update_checkpoint_status=yes'", :method => :put -->
+
+                <a href="/goals/?goal_id=<%= @goal.id.to_s %>&date=<%= @checkin_date %>&update_checkpoint_status=yes&e0=<%= @goal.user.email[0] %>&f0=<%= @goal.user.first_name[0] %>&u=<%= @goal.user.id %>#jump_to_goal_id_<%= @goal.id.to_s %>"  onclick="toggle_show_hide('spinner')">Yes</a>
+
                 &nbsp
-                <%= link_to_remote 'No', :url => {:controller => "goals", :action => "index"}, :with => "'goal_id=#{@goal.id.to_s}&date=#{@checkin_date.to_s}&update_checkpoint_status=no'", :method => :put %>
+
+                <!-- works but only w/ older versions of js -->
+                <!-- link_to_remote 'No', :url => {:controller => "goals", :action => "index"}, :with => "'goal_id=#{@goal.id.to_s}&date=#{@checkin_date.to_s}&update_checkpoint_status=no'", :method => :put -->
+
+
+                <a href="/goals/?goal_id=<%= @goal.id.to_s %>&date=<%= @checkin_date %>&update_checkpoint_status=no&e0=<%= @goal.user.email[0] %>&f0=<%= @goal.user.first_name[0] %>&u=<%= @goal.user.id %>#jump_to_goal_id_<%= @goal.id.to_s %>"  onclick="toggle_show_hide('spinner')">No</a>
                 </p>
             &nbsp
             </td>

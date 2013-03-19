@@ -12,10 +12,10 @@
     #end
 
     if @goal.days_since_first_checkpoint > 30
-    function_name = "<img src='/images/gear.png' height='30px'/> #{@goal.successful_days_in_a_row_without_9s} straight, #{@goal.percent_of_checkpoints_with_answer_of_yes(true)}% Overall, #{@goal.percent_of_checkpoints_with_answer_of_yes}% last 30 days"
+    function_name = "<img src='/images/gear.png' height='30px' width='30px'/> #{@goal.successful_days_in_a_row_without_9s} straight, #{@goal.percent_of_checkpoints_with_answer_of_yes(true)}% Overall, #{@goal.percent_of_checkpoints_with_answer_of_yes}% last 30 days"
 
     else
-    function_name = "<img src='/images/gear.png' height='30px'/> #{@goal.successful_days_in_a_row_without_9s} straight, #{@goal.percent_of_checkpoints_with_answer_of_yes}% last 30 days"
+    function_name = "<img src='/images/gear.png' height='30px' width='30px'/> #{@goal.successful_days_in_a_row_without_9s} straight, #{@goal.percent_of_checkpoints_with_answer_of_yes}% last 30 days"
 
     end
 
@@ -106,7 +106,7 @@
 
     <!-- TEAM OPTIONS HEADER START -->
     <% 
-    function_image = '<img src="/images/user-group-icon.png" height="25px" />'
+    function_image = '<img src="/images/user-group-icon.png" height="25px" width="35px" />'
     if @goal.is_part_of_a_team 
         my_teammates = @goal.get_teammate_names_sans_me
         if my_teammates == ""

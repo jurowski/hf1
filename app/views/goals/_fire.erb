@@ -3,7 +3,7 @@ START
 New Bets
 aka "Fire"
 -->
-<div id="fire_<%= @goal.id %>" style="display:none;">  
+<div id="fire_<%= @goal.id %>" style="display:block;"><!-- div_1.0 -->  
 
     <% this_one_was_submitted = false %> 
     <% if params[:start_fire_goal_id] == @goal.id.to_s %>
@@ -23,18 +23,16 @@ aka "Fire"
     ######################################################
     %>
 
-    <!-- <div class="grid_9 omega"> -->
 
-        <a name="form_<%= @goal.id %>" />	
-            <DIV>
-
+        <div name="form_<%= @goal.id %>" >	
+            <DIV><!-- div_1.1 -->
             <% if @goal.number_my_active_bets == 0 %>
 
                 <% if params[:start_fire_goal_id] == @goal.id.to_s %>
-                    <div id="bets_details<%= @goal.id %>" >
+                    <div id="bets_details<%= @goal.id %>" ><!-- div_1.1.1 -->
 
                 <% else %>
-                    <div id="bets_details<%= @goal.id %>" style="display:block;">
+                    <div id="bets_details<%= @goal.id %>" style="display:block;"><!-- div_1.1.1 -->
 
                 <% end %>
                 <p>
@@ -44,11 +42,14 @@ aka "Fire"
                 if @goal.number_my_active_bets > 0
                     for bet in @goal.my_active_bets
                     %>                        
-
-                        <div id="bets_details<%= @goal.id %>" style="display:block;">
+                        <div id="bets_details<%= @goal.id %>" style="display:block;"><!-- div_1.1.1 -->
 
                     <%
                     end
+                else
+                    %>
+                    <div><!-- div_1.1.1 -->
+                    <%
                 end 
             end 
             %>
@@ -61,16 +62,16 @@ aka "Fire"
             %>
                 <% if this_one_was_submitted %>
                     <% if params[:recipient] == "charity" and params[:charity] == "" %>
-                        <div class="error">Please select a charity</div>
+                        <div class="alert alert-error">Please select a charity</div>
                         <% found_error = 1 %>
                     <% end %> 
                     <% if params[:recipient] == "friend" %>
                         <% if !params[:friend_email] or !params[:friend_email].include? "@" or !params[:friend_email].include? "." %>
-                            <div class="error">Please enter a friend's valid email address</div>
+                            <div class="alert alert-error">Please enter a friend's valid email address</div>
                             <% found_error = 1 %>
                         <% end %> 
                         <% if !params[:friend_name] %>
-                            <div class="error">Please enter your friend's name.</div>
+                            <div class="alert alert-error">Please enter your friend's name.</div>
                             <% found_error = 1 %>
                         <% end %> 
                     <% end %> 
@@ -96,7 +97,7 @@ aka "Fire"
                             end  
                         else
                             %>
-                            <div class="error">
+                            <div class="alert alert-error">
                               Sorry, there was an error selecting a random user. Please contact support@habitforge.com or choose another recipient.
                             </div>
                             found_error = 1
@@ -174,7 +175,7 @@ aka "Fire"
                             end
 
                             %>
-                            <div class="notice">Your <%= length_days %>-day challenge for $<%= new_bet.wager %> starts tomorrow! We have sent an email to you and to <%= new_bet.recipient_name %> with the details. </div>
+                            <div class="alert alert-success">Your <%= length_days %>-day challenge for $<%= new_bet.wager %> starts tomorrow! We have sent an email to you and to <%= new_bet.recipient_name %> with the details. </div>
                             <%
                         end
                     end
@@ -184,7 +185,7 @@ aka "Fire"
 
                 <% if new_one_saved == 0 %>
                     <form action="/goals/#form_<%= @goal.id %>">
-                    <div style="background:#FFF6BF;padding:10px;margin:10px;width:500px;">
+                    <div><!-- div_1.1.2 -->
                         <p>If my success rate during the next
                         <select name="days" <% if !form_enabled %>DISABLED<% end %>>
                             <option value=21 <% if params[:days] == "21" %>SELECTED<% end %>>
@@ -260,6 +261,7 @@ aka "Fire"
                             </option>
                         </select>
                         to:
+                        <div class="well">
                         <p>
                         &nbsp &nbsp &nbsp &nbsp &nbsp <input type="radio" name="recipient" value="friend" <% if !form_enabled %>DISABLED<% end %> <% if params[:recipient] == "friend" %>CHECKED<% end %>>&nbsp A friend of mine named: <input type="textbox" name="friend_name" value="<%= params[:friend_name] %>" <% if !form_enabled %>DISABLED<% end %>> 
                         <br>
@@ -285,14 +287,15 @@ aka "Fire"
                         <br>
                         &nbsp &nbsp &nbsp &nbsp &nbsp <input type="radio" name="recipient" value="random" <% if !form_enabled %>DISABLED<% end %> <% if params[:recipient] == "random" %>CHECKED<% end %> >&nbsp Some lucky HabitForge Premium Member (choose one randomly for me)
                         </p>
+                        </div>
 
-                        <input type=hidden name="start_fire_goal_id" value="<%= @goal.id %>"
-                        <div style="padding:10px;margin:10px;width:500px;">
+                        <input type=hidden name="start_fire_goal_id" value="<%= @goal.id %>">
+                        <div>
                             <% if form_enabled %>
                                 <h6>
                                     By clicking the button below, you and the potential recipient will be sent an email laying out the terms of the challenge. See the "Details" below for those terms.
                                 </h6>
-                                <input type="submit" value="Start this challenge!">
+                                <input type="submit" value="Start this challenge!" class="btn green">
                             <% else %>
                                 <h6>
                                 <a href="http://habitforge.myshopify.com/collections/frontpage/products/habitforge-supporting-membership-1-year?ref=<%= @goal.user.id.to_s %>" class="button">
@@ -301,13 +304,11 @@ aka "Fire"
                                 <br>
                                 </h6>
                             <% end %>   
-                            <h6>
+                            <br><br><i class="icon-external-link"></i>
                             <a href="/popupex<%= @goal.id %>.html" onclick="return popitup_bigger1('/fire_rules.html')">
-                            Details and Rules of "Extra Accountability"
+                            Details and Rules
                             </a>
-                            </h6>
                         </div>
-
 
 
                        </div>
@@ -334,7 +335,7 @@ aka "Fire"
                 for bet in @goal.my_active_bets
                     %>
 
-                    <div class="notice">
+                    <div class="alert alert-info">
                     <p>
                     Your <%= bet.length_days %>-day challenge for $<%= bet.wager %> runs from <%= bet.start_date.strftime("%A, %b %d, %Y") %> through <%= bet.end_date.strftime("%A, %b %d, %Y") %>.
 
@@ -356,11 +357,10 @@ aka "Fire"
                     %>
                 
                 
-                    <h6><a href="/popupex<%= @goal.id %>.html" onclick="return popitup_bigger1('/fire_rules.html')">Details and Rules</a></h6>
-
-                
                     </p>
                     </div>
+
+                    <i class="icon-external-link"></i><a href="/popupex<%= @goal.id %>.html" onclick="return popitup_bigger1('/fire_rules.html')"> Details and Rules</a>
 
 
                     <% if request.env['HTTP_USER_AGENT'] =~ /[^\(]*[^\)]Chrome\// %>
@@ -383,10 +383,10 @@ aka "Fire"
 
         </div>
 
-
+    </div>
 
     <!-- </div> END of: div class="grid_9 omega" -->
-</div> <!-- END div that toggles (fire_XXXX) -->
+</div> <!-- /div_1.0 --><!-- END div that toggles (fire_XXXX) -->
 <!--  
 END 
 New Bets

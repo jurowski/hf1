@@ -82,36 +82,38 @@ show_monitor_option_details = 0
 
    
 <br>
-<div class="success" style="width:800px;border-radius:20px;-moz-border-radius:20px;">
+<div class="well">
 
 
 <% if session[:sfm_virgin] == true %> 
 <h2>What is the first habit you'd like to create?</h2>
 <% else %>
-<h2>Email me daily and ask:</h2>
+<h2><img src="/home/images/paperplane_icon.png" alt="img"  /> Email me daily and ask:</h2>
 <% end %>
+
+<div class="alert">
+<h4>
+  
+  "Were you successful at &nbsp
+<%= form.text_field :response_question, :placeholder => 'Ex: walking for at least 20 minutes', :style=>'width:400px;', :size => 40 %> ?"</h4>
+</div>
 
   <table border=0>
   <tr>
   <td valign=top align=right nowrap>
   </td>
   <td nowrap>
-  <p><image src="/images/lightbulb_32.png" height=25px /><i><span style="color:red;"><span style="font-size:120%;">Tip</span>: type a keyword (ex: "exercise", "carb" or "smoking") for popular goals</span></i></p>
+
   </td>
   </tr>
   <tr>
   <td colspan=3>
-  We will check in with you daily and ask:
   </td>
   <tr>
   <tr>
   <td valign=top align=right nowrap>
-  <h3>"Were you successful at &nbsp</h3>
   </td>
   <td nowrap>
-  <%= form.text_field :response_question, :class => 'autocomplete', 'data-autocomplete-url'=>autocomplete_for_goal_response_question_goals_path, :size => 40 %> ?"
-  &nbsp &nbsp &nbsp &nbsp &nbsp<p><i> Ex: walking for at least 20 minutes</i></p>
-  </strong>
   </td>
   </tr>
 
@@ -130,7 +132,7 @@ show_monitor_option_details = 0
 
   <tr>
   <td valign=top nowrap align=right>
-  <strong>What Category is this? &nbsp</strong>  
+  What Category is this? &nbsp 
   </td>
   <td nowrap>
     <%
@@ -161,7 +163,7 @@ show_monitor_option_details = 0
 
   <tr>
   <td valign=top nowrap align=right>
-  <strong>Remind me at: &nbsp</strong>  
+  <i class="icon-bell"></i> Remind me at: &nbsp  
   </td>
   <td nowrap>
 
@@ -199,10 +201,9 @@ show_monitor_option_details = 0
     <%
       if current_user.sponsor == "habitforge" and !@goal.more_reminders_enabled and !session[:sfm_virgin]
           %>
-            <strong><%= link_to_function ("<span style='text-decoration:underline;'>more reminders</span>") {
-             |page| page.visual_effect :toggle_appear, "multiple_reminders" 
-            } 
-            %></strong>
+          <strong>
+            <span style='text-decoration:underline;'><a href="#undefined" onclick="toggle_show_hide('multiple_reminders')">more reminders</a></span>
+          </strong>
         <%
       end
     %>
@@ -219,7 +220,7 @@ show_monitor_option_details = 0
   </tr>
   <tr>
   <td valign=top nowrap align=right>
-  <strong>Check in with me at: &nbsp</strong>  
+  <i class="icon-time"></i> Check in with me at: &nbsp  
   </td>
   <td nowrap>
 
@@ -273,14 +274,7 @@ show_monitor_option_details = 0
 <!-- end -->
 
 
-  <tr>
-  <td valign=top nowrap align=right>
-  &nbsp
-  </td>
-  <td nowrap>
-  &nbsp
-  </td>
-  </tr>
+
 
 
   <tr>
@@ -375,29 +369,15 @@ show_monitor_option_details = 0
         <%
         else
         %>
-                <div class="notice">
-                        <input type=checkbox disabled>
-                        Send me frequent reminders every  
-                        <select disabled><option>4</option></select> hours between 
-                        <select disabled><option>8:00am</option></select> and
-                        <select disabled><option>10:00pm</option></select> and
-
-                        <br>
-                        <br>
-                        <br>
-                    <p>
-                        "Frequent Reminders" available only to Premium Members:
-                        &nbsp &nbsp
-                        <% if session[:sfm] and session[:sfm] == "v2" %>
-                          <a href="https://www.securepublications.com/habit-gse3.php?ref=<%= current_user.id.to_s %>&email=<%= current_user.email %>" class="start_now" >Learn More</a>
-                        <% else %>
-                          <a href="https://www.securepublications.com/habit-1-year.php?ref=<%= current_user.id.to_s %>&email=<%= current_user.email %>" class="start_now" >Learn More</a>
-                        <% end %>
-                        <br>
-                        (Unlimited active habits, Frequent Reminders, No advertisements!)
-                    </p>
-
-                </div>
+          <div class="notice">
+            <a href="https://www.securepublications.com/habit-gse3.php?ref=<%= current_user.id.to_s %>&email=<%= current_user.email %>" >Enabling "Frequent Reminders" requires a Premium Membership</a>
+            <br>
+            <input type=checkbox disabled>
+            Send me frequent reminders every  
+            <select disabled style="width:auto;"><option>4</option></select> hours between 
+            <select disabled style="width:auto;"><option>8:00am</option></select> and
+            <select disabled style="width:auto;"><option>10:00pm</option></select>
+          </div>
         <%
         end
         %>
@@ -419,7 +399,7 @@ show_monitor_option_details = 0
 
 
 <% if @ca == "new" %>
-  When will you start doing it? <select id="delay_start_for_this_many_days" name="delay_start_for_this_many_days">
+  When will you start doing it? <select id="delay_start_for_this_many_days" name="delay_start_for_this_many_days" style="width:auto;">
 	<option value="0">Start Today</option>
 	<option value="1">Start Tomorrow</option>
   </select>
@@ -455,25 +435,29 @@ end
 <br>
 <br>
 
-<h2>Personal Motivation:
-<strong><%= link_to_function ("What's driving you?") {
- |page| page.visual_effect :toggle_appear, "advanced" 
-} 
-%></strong></h2>
-<div id="advanced" style="display:none;">
+<h2><i class="icon-fire"></i> Personal Motivation:
+<strong>
+
+
+
+        <a href="#undefined" onclick="toggle_show_hide('personal_motivation')" class="btn-add">What's driving you?</a>
+
+
+</strong></h2>
+<div id="personal_motivation" class="well" style="display:none;">
 <div class="notice">
 
   <strong>(This private information will never be shared with others, even if you "Share" your goal with other users.)</strong>
   <p>
     <br>
-    Describe the negative consequences:<br><i>...the "Pain" you'll feel long term if you don't follow through on forming this habit</i><br><%= form.text_area :pain, :cols => 60, :rows => 2 %>
+    <h4>Describe the negative consequences:</h4><i>...the "Pain" you'll feel long term if you don't follow through on forming this habit</i><br><%= form.text_area :pain, :rows => 2,  :style=>"width:auto;" %>
     <br>
     <br>
-    Talk about the upside:<br><i>...how you'll feel once the habit is formed, and in what ways your life will be improved</i><br><%= form.text_area :pleasure, :cols => 60, :rows => 2 %>
+    <h4>Talk about the upside:</h4><i>...how you'll feel once the habit is formed, and in what ways your life will be improved</i><br><%= form.text_area :pleasure, :rows => 2, :style=>"width:auto;" %>
     <br>
     <br>
   <%= check_box(:goal, :pp_remind, options = {}, checked_value = "true", unchecked_value = "false") %>
-  <strong>Every 3 days, insert this info in my daily email reminder (for single-goal users), or display it if I've clicked "no" (for multi-goal users).</strong>
+  Every 3 days, insert this info in my daily email reminder (for single-goal users), or display it if I've clicked "no" (for multi-goal users).
   </p>
 
 </div>
@@ -485,112 +469,114 @@ end
 </p>
 </p>
 
-<h2>Public Motivation: Put yourself out there!</h2>
+<h2>
+  <% if !@goal.publish or @goal.publish == true %>
+    <i class="icon-unlock"></i> 
+  <% else %>
+    <i class="icon-lock"></i> 
+  <% end %>
+  Visibility</h2>
 <p>
 <% if current_user.sponsor == "habitforge" and !current_user.is_habitforge_supporting_member and current_user.id > 79152 %>
-  <strong>Prefer "Private" habits as an option? Get a Premium Membership!</strong> 
-
-
-
-
-                        <% if session[:sfm] and session[:sfm] == "v2" %>
-                          <a href="https://www.securepublications.com/habit-gse3.php?ref=<%= current_user.id.to_s %>&email=<%= current_user.email %>" class="start_now" >Learn More</a>
-                        <% else %>
-                          <a href="https://www.securepublications.com/habit-1-year.php?ref=<%= current_user.id.to_s %>&email=<%= current_user.email %>" class="start_now" >Learn More</a>
-                        <% end %>
-
-
-  <br>
-  <br>
-
-
   <input disabled="disabled" id="publish" name="publish" type="checkbox" value="true" checked />
 <% else %>
   <%= check_box(:goal, :publish, options = {}, checked_value = "true", unchecked_value = "false") %>
 <% end %>
-<strong>Let the world see it, if they want. If I'm blogging or tweeting, they can find my progress</strong> at this address: </strong>
-<br><a href="<%= session[:site_url] %>/cheers/1/shared?shared_u=<%= current_user.id %>" target="_blank"><%= session[:site_url] %>/cheers/1/shared?shared_u=<%= current_user.id %></a>
+Public: Other people can see <a href="<%= session[:site_url] %>/cheers/1/shared?shared_u=<%= current_user.id %>" target="_blank">my progress</a>
+<% if current_user.sponsor == "habitforge" and !current_user.is_habitforge_supporting_member and current_user.id > 79152 %>
+  <br>
+    <input disabled="disabled" id="private" name="private" type="checkbox" />
+    Keep it Private 
+                          
+    <a href="https://www.securepublications.com/habit-gse3.php?ref=<%= current_user.id.to_s %>&email=<%= current_user.email %>" >(requires a Premium Membership)</a>
+<% end %>
 
 
 
 <% if session[:site_name] == "habitforge" %>
-<br>
-<br>
-<div class="notice" style="border-radius:20px;-moz-border-radius:20px;">
 
-<h2>Community Safety Net</h2>
-<span style="font-size:75%;font-style:italic;">There is real power in the simple knowledge that others will be notified when you start to get off track. After one or two lapses, your mind decides it's better to just take the action than be reminded by someone else of what you already know you need to do.
-<br>
-<br>
-If I don't succeed for a few days, other HabitForge members can earn points by sending me a "push". They can use one of the phrases below, and if I succeed within 48 hours after their "push", they earn additional points redeemable toward a Premium Membership.
-</span>
+  <div> 
+    &nbsp   
+  </div>  
+  <!-- BEGIN WELL -->
+  <h2><i class="icon-bullhorn"></i> Friendly Push</h2>
+  <div class="well">
+          <h4>What happens if you start to slack?</h4> If you don't succeed for a few days, other HabitForge members can earn points by sending you a "push". They can only use <strong>motivating phrases that you create</strong>. If you were slacking and then you succeed within 48 hours after their "push", they earn additional points redeemable toward a Premium Membership.
 
-<% if !current_user.is_habitforge_supporting_member %>
-  <br><br>(Available to Premium Members Only)
+        <a href="#undefined" onclick="toggle_show_hide('push_form')" class="btn-add">Show More</a>
+  
+        <div id="push_form" style="display:none;">
 
+          <br>
+          <br>
+          <h2>
+          <% if !current_user.is_habitforge_supporting_member %>
+            <a href="https://www.securepublications.com/habit-gse3.php?ref=<%= current_user.id.to_s %>&email=<%= current_user.email %>" >(Enable this feature with a Premium Membership)</a>
+          </h2>
 
-                        <% if session[:sfm] and session[:sfm] == "v2" %>
-                          <a href="https://www.securepublications.com/habit-gse3.php?ref=<%= current_user.id.to_s %>&email=<%= current_user.email %>" class="start_now" >Learn More</a>
-                        <% else %>
-                          <a href="https://www.securepublications.com/habit-1-year.php?ref=<%= current_user.id.to_s %>&email=<%= current_user.email %>" class="start_now" >Learn More</a>
-                        <% end %>
+          <% end %>
 
+          <br>
+          <br>
 
+         <div class="alert">
+            <p>
+            <% if !current_user.is_habitforge_supporting_member %>
+              <input disabled="disabled" id="allow_push" name="allow_push" type="checkbox" value="true" unchecked />
+            <% else %>
+                    <%= check_box(:goal, :allow_push, options = {}, checked_value = "true", unchecked_value = "false") %>
+            <% end %>
+            <%
+            @arr_max_pushes = Array.new
+            @arr_max_pushes.push(["1", 1])
+            @arr_max_pushes.push(["2", 2])
+            @arr_max_pushes.push(["3", 3])
+            @arr_max_pushes.push(["4", 4])
+            @arr_max_pushes.push(["5", 5])
+            %>
+            <span style="font-size:1.2em;">
+            Provide incentives for other members to "Push" me if I start to fail for a few days straight.
+            </span>
+
+            <br>If I do start slacking, get up to 
+            <% if !current_user.is_habitforge_supporting_member %>
+                <select disabled  style="width:auto;"><option>3</option></select> 
+            <% else %>
+                <%= select(:goal, :pushes_allowed_per_day, @arr_max_pushes) %> 
+            <% end %> 
+            member(s) to send me a push each day. <br>
+          </div> <!-- END ALERT -->
+
+            <h3>My Push Messages</h3>
+            </p>
+
+             <p>
+ 
+
+            <%= form.text_field :phrase1, :style=>"width:400px;", :size => 80, :placeholder=>"ex: What's going on? Have you forgotten how bad you want to have...", :readonly=>!current_user.is_habitforge_supporting_member %>
+
+            <br><br>
+            <%= form.text_field :phrase2, :style=>"width:400px;", :size => 80, :placeholder=>"ex: Remember how painful it will be if you don't...", :readonly=>!current_user.is_habitforge_supporting_member %>
+
+            <br><br>
+             <%= form.text_field :phrase3, :style=>"width:400px;", :size => 80, :placeholder=>"ex: What happened? I thought you were committed to...", :readonly=>!current_user.is_habitforge_supporting_member %>
+
+            <br><br>
+               <%= form.text_field :phrase4, :placeholder=>"ex: You can do it!!! It only takes a few minutes to...", :style=>"width:400px;", :size => 80, :readonly=>!current_user.is_habitforge_supporting_member %>
+
+            <br><br>
+             <%= form.text_field :phrase5, :placeholder=>"ex: Think of how awesome it's going to feel to...", :style=>"width:400px;", :size => 80, :readonly=>!current_user.is_habitforge_supporting_member %>
+
+            <br>
+           </p>
+
+        </div>
+      </div>
+  <!-- END WELLS PORTLET-->
 <% end %>
-<br>
-<br>
-
-<p>
-<span style="font-weight:bold;font-size:120%;">
-<% if !current_user.is_habitforge_supporting_member %>
-  <input disabled="disabled" id="allow_push" name="allow_push" type="checkbox" value="true" unchecked />
-<% else %>
-        <%= check_box(:goal, :allow_push, options = {}, checked_value = "true", unchecked_value = "false") %>
-<% end %>
 
 
-<%
-@arr_max_pushes = Array.new
 
-@arr_max_pushes.push(["1", 1])
-@arr_max_pushes.push(["2", 2])
-@arr_max_pushes.push(["3", 3])
-@arr_max_pushes.push(["4", 4])
-@arr_max_pushes.push(["5", 5])
-%>
-
-
-  Provide incentives for other members to "Push" me if I start to fail for a few days straight. If I do start slacking, get up to 
-  <% if !current_user.is_habitforge_supporting_member %>
-      <select disabled><option>3</option></select> 
-  <% else %>
-      <%= select(:goal, :pushes_allowed_per_day, @arr_max_pushes) %> 
-  <% end %> 
-member(s) to send me a push each day. They can choose a "push messages" below to get me back on track:</span>
-  </p>
-
-   <p>
-   <span style="font-weight:bold;font-size:120%;">Desire:</span> 
-
-  <%= form.text_field :phrase1, :size => 40, :readonly=>!current_user.is_habitforge_supporting_member %>
-  <br><span style="font-style:italic;">ex: What's going on? Have you forgotten how bad you want to have...</span>
-  <br><br>
-   <span style="font-weight:bold;font-size:120%;">Pain:</span> <%= form.text_field :phrase2, :size => 40, :readonly=>!current_user.is_habitforge_supporting_member %>
-  <br><span style="font-style:italic;">ex: Remember how painful it will be if you don't...</span>
-  <br><br>
-   <span style="font-weight:bold;font-size:120%;">Dismay:</span> <%= form.text_field :phrase3, :size => 40, :readonly=>!current_user.is_habitforge_supporting_member %>
-  <br><span style="font-style:italic;">ex: What happened? I thought you were committed to...</span>
-  <br><br>
-   <span style="font-weight:bold;font-size:120%;">Encouragement:</span> <%= form.text_field :phrase4, :size => 40, :readonly=>!current_user.is_habitforge_supporting_member %>
-  <br><span style="font-style:italic;">ex: You can do it!!! It only takes a few minutes to...</span>
-  <br><br>
-   <span style="font-weight:bold;font-size:120%;">Pleasure:</span> <%= form.text_field :phrase5, :size => 40, :readonly=>!current_user.is_habitforge_supporting_member %>
-  <br><span style="font-style:italic;">ex: Think of how awesome it's going to feel to...</span>
-  <br>
- </p>
-</div>
-
-<% end %>
 
 <% end ### end whether session[:sfm_virgin] == true %>
 
@@ -599,8 +585,9 @@ member(s) to send me a push each day. They can choose a "push messages" below to
 <%= form.hidden_field :reminder_time, :value => :reminder_time %>
 
 
-
-Some habits are daily and others are only a few days a week.</h2>
+<h2><i class="icon-calendar"></i> Frequency</h2>
+<div class="well">
+Some habits are daily and others are only a few days a week.
 
 Is your habit a daily or a less frequent one?
 
@@ -631,12 +618,19 @@ end
 
 <% if show_monitor_option_details %>
     <div id="daily" style="display:none;">
-      <input type='radio' disabled checked> Daily <%= link_to_function ("<input type='radio' disabled unchecked> Not Daily") {
+      <input type='radio' disabled checked> Daily 
+
+
+
+      <!-- link_to_function ("<input type='radio' disabled unchecked> Not Daily") {
        |page| 
        page.visual_effect :toggle_appear, "daily" 
        page.visual_effect :toggle_appear, "not_daily" 
       } 
-      %>
+      -->
+
+<a href="#undefined" onclick="toggle_show_hide('daily');toggle_show_hide('not_daily')">Not Daily</a>
+
     </div>
 
   <div id="not_daily" style="display:block;">
@@ -644,36 +638,48 @@ end
 <% else %>
 
     <div id="daily" style="display:block;">
-      <input type='radio' disabled checked> Daily <%= link_to_function ("<input type='radio' disabled unchecked> Not Daily") {
+      <input type='radio' disabled checked> Daily 
+
+
+      <!-- link_to_function ("<input type='radio' disabled unchecked> Not Daily") {
        |page| 
        page.visual_effect :toggle_appear, "daily" 
        page.visual_effect :toggle_appear, "not_daily" 
       } 
-      %>
+      -->
+
+<a href="#undefined" onclick="toggle_show_hide('daily');toggle_show_hide('not_daily')">Not Daily</a>
+
     </div>
   <div id="not_daily" style="display:none;">
 <% end %>
 
 
     <div id="daily" style="display:block;">
-      <%= link_to_function ("<input type='radio' disabled unchecked> Daily ") {
+
+      <!-- link_to_function ("<input type='radio' disabled unchecked> Daily ") {
        |page| 
        page.visual_effect :toggle_appear, "daily" 
        page.visual_effect :toggle_appear, "not_daily" 
       } 
-      %><input type='radio' disabled checked> Not Daily 
+      -->
+<input type='radio' disabled unchecked>
+<a href="#undefined" onclick="toggle_show_hide('daily');toggle_show_hide('not_daily')">Daily</a>
+
+
+      <input type='radio' disabled checked> Not Daily 
     </div>
 
-  <div class="notice" style="background-color:#eeeeee;border-radius:20px;-moz-border-radius:20px;">
+  <div>
 
 
 
-    &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp <strong>My goal is to succeed at this at least 
+    &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp My goal is to succeed at this at least 
     <%= select(:goal, :goal_days_per_week, @arr_goal_days_per_week) %> 
-    days each week.</strong>
+    days each week.
     <br>
     <br>
-  &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp <strong>I only want to receive check-in emails asking about these days:</strong>
+  &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp It's only realistic for me to succeed on these days:
 
       <br>
       <br>
@@ -705,7 +711,8 @@ end
 
 
   </div>
-</div
+</div>
+</div> <!-- END "WELL" -->
 
 
 

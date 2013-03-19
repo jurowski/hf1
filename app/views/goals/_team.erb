@@ -1,10 +1,12 @@
+
+
 <!-- START Team Section -->
 
 <%
 if params[:join_a_team] and (params[:goal_id].to_i == @goal.id)
     display_style = ""
 else
-    display_style = "display:none;"
+    display_style = "display:block;"
 end 
 %>
 <div id="team_<%= @goal.id %>" class="div_team" style="<%= display_style %>">                    
@@ -16,12 +18,15 @@ end
       if @team_goals.size < 2
           %>
           <p><h3>We're recruiting other people for your team.
-              | <a href="/goals?quit_a_team=1&goal_id=<%=@goal.id%>">Quit this team</a></h3></p>
+              </h3></p>
 
           </h3></p>
           <br>
           <%
       else
+        %>
+        <i class="icon-external-link"></i> <a href="popupex.html" onclick="return popitup('team_rules.html')">Team Rules</a> &nbsp &nbsp <i class="icon-remove"></i><a href='/goals?quit_a_team=1&goal_id=<%=@goal.id%>' onclick="return confirm('Are you sure you want to quit this team?');">Quit this team</a>
+        <%
           has_percentage = 0
           total_percentage = 0
           average_percentage = 0
@@ -35,8 +40,7 @@ end
               average_percentage = total_percentage / has_percentage
               %>
               <p><h3>My Team's Success Rate is <%= average_percentage %>% during the past 30 days
-              | <a href="popupex.html" onclick="return popitup('team_rules.html')">Team Rules</a>
-              | <a href="/goals?quit_a_team=1&goal_id=<%=@goal.id%>">Quit this team</a></h3></p>
+              </h3></p>
 
               <br>
               <%
@@ -72,6 +76,9 @@ end
         <%
       end
       %> 
+
+
+
 <% end %>
 
 <% if @goal.team == nil %>

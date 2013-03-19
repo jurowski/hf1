@@ -41,7 +41,7 @@ class SendCheckpointEmails < ActiveRecord::Base
     #send_emails = 0
     send_emails = 1
 
-    test_user_id1 = "44"
+    test_user_id1 = "83426"
     test_user_id2 = "44"
   end
 

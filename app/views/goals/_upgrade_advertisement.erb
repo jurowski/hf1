@@ -1,55 +1,36 @@
-<%= link_to_function ('<img src="/images/add_32.png" border="0" height="25px" />Start a New Habit  
-') {
-|page| page.visual_effect :toggle_appear, "advanced" 
-}%>
+
+	<h2><a href="#undefined" onclick="toggle_show_hide('upgrade_offer')"><img src="/images/add_32.png" border="0" height="50px" /> Start a New Habit</a></h2>
 </div>
-<div id="advanced" style="display:none;">
-<br>
-<br>
-<div class="notice" style="width:700px;border-width:1px;background-color:#eeeeee;">
-<strong>Your account is currently restricted to one active habit at a time...</strong>
-<h3>Get Unlimited Active Habits, ad-free, with a Premium Membership!</h3>
 
-</div> 
+<div id="upgrade_offer" class="alert" style="display:none;">
+	<br>
+	<br>
 
-
-<h5>Who's recommending HabitForge to their readers?
-<a href="http://www.fourhourbody.com/" target="_blank">The 4-Hour Body</a>
-&nbsp;
-<a href="http://www.familycircle.com/family-fun/technology/online-tools-for-achieving-goals/" target="_blank">Family Circle</a>
-&nbsp;
-<a href="http://www.shape.com/lifestyle/mind-and-body/5-ways-change-your-life-good?page=3" target="_blank">Shape Magazine</a>
-&nbsp;
-<a href="http://www.womansday.com/Articles/Health-Fitness/Make-Healthy-Habits-Stick.html" target="_blank">Woman's Day</a>
-&nbsp;
-<a href="http://tech.ca.msn.com/pcworld-article.aspx?cp-documentid=23549978" target="_blank">PC World</a>
-</h5
+		<strong>Your account is currently restricted to one active habit at a time...</strong>
+		<h3>Get Unlimited Active Habits, ad-free, with a Premium Membership!</h3>
 
 
+	<h5>Who's recommending HabitForge to their readers?
+	<a href="http://www.fourhourbody.com/" target="_blank">The 4-Hour Body</a>
+	&nbsp;
+	<a href="http://www.familycircle.com/family-fun/technology/online-tools-for-achieving-goals/" target="_blank">Family Circle</a>
+	&nbsp;
+	<a href="http://www.shape.com/lifestyle/mind-and-body/5-ways-change-your-life-good?page=3" target="_blank">Shape Magazine</a>
+	&nbsp;
+	<a href="http://www.womansday.com/Articles/Health-Fitness/Make-Healthy-Habits-Stick.html" target="_blank">Woman's Day</a>
+	&nbsp;
+	<a href="http://tech.ca.msn.com/pcworld-article.aspx?cp-documentid=23549978" target="_blank">PC World</a>
+	</h5
+	<br>
+	<a href="https://www.securepublications.com/habit-gse3.php?ref=<%= current_user.id.to_s %>&email=<%= current_user.email %>" class="start_now" >Learn More</a>
+	<br>
+	<br>
+	<p>
+	<a href="#undefined" onclick="toggle_show_hide('upgrade_offer')">Not now, thanks</a>
 
-
-<br>
-
-
-                        <% if session[:sfm] and session[:sfm] == "v2" %>
-                          <a href="https://www.securepublications.com/habit-gse3.php?ref=<%= current_user.id.to_s %>&email=<%= current_user.email %>" class="start_now" >Learn More</a>
-                        <% else %>
-                          <a href="https://www.securepublications.com/habit-1-year.php?ref=<%= current_user.id.to_s %>&email=<%= current_user.email %>" class="start_now" >Learn More</a>
-                        <% end %>
-
-
-<br>
-<br>
-<p><%= link_to_function ("Not now, thanks") {
-|page| page.visual_effect :toggle_appear, "advanced" 
-}%></p>                        
-<p />
-<p />
-
-
-<p />
-<p />
-
-
-
+	</p>                        
+	<p />
+	<p />
+	<p />
+	<p />
 </div>

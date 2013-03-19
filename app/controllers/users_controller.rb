@@ -386,25 +386,27 @@ class UsersController < ApplicationController
   # GET /users/new.xml
   def new
 
+      if !request.domain.include? 'mylearninghabit' and !request.domain.include? 'forittobe'
+        redirect_to("/")
+      end
 
-    redirect_to("/")
+    @user = User.new
 
-    #@user = User.new
 
-    
-    #if session[:affiliate_name] != nil and session[:affiliate_name] != ""
-    # @affiliate = Affiliate.find(:first, :conditions => "affiliate_name = '#{session[:affiliate_name]}'")
-    #  if @affiliate
-    #      @user.affiliate = @affiliate
-    #  end
-    #end
+    if session[:affiliate_name] != nil and session[:affiliate_name] != ""
+     @affiliate = Affiliate.find(:first, :conditions => "affiliate_name = '#{session[:affiliate_name]}'")
+      if @affiliate
+          @user.affiliate = @affiliate
+      end
+    end
 
-    #@user.yob = 1980
-    #respond_to do |format|
-    #  format.html # new.html.erb
-    #  format.xml  { render :xml => @user }
-    #end
+    @user.yob = 1980
+    respond_to do |format|
+      format.html # new.html.erb
+      format.xml  { render :xml => @user }
+    end
   end
+
 
   # GET /users/1/edit
   def edit

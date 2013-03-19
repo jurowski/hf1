@@ -1,4 +1,5 @@
 
+
 // Responsive Menu
 jQuery(document).ready(function(){				
 jQuery("<select />").appendTo(".jqueryslidemenu");
@@ -6,7 +7,7 @@ jQuery("<select />").appendTo(".jqueryslidemenu");
 jQuery("<option />", {
 	"selected": "selected",
 	"value"   : "",
-	"text"    : "Go to..."
+	"text"    : "Jump to..."
 	}).appendTo(".jqueryslidemenu select");
 
 // Populate dropdowns with the first menu items
@@ -17,6 +18,11 @@ jQuery(".jqueryslidemenu ul li a").each(function() {
 	"text"    : el.text()
 	}).appendTo(".jqueryslidemenu select");
 });
+
+
+
+
+
 //make responsive dropdown menu actually work			
 jQuery(".jqueryslidemenu select").change(function() {
 window.location = jQuery(this).find("option:selected").val();

@@ -13,6 +13,10 @@
   if params[:first_name] 
     first_name_value = params[:first_name]
   end
+
+  if session[:layout_number]
+  logger.info("sgj:got a signup from home page layout #" + session[:layout_number].to_s)
+  end  
   %>
         
 	<div style="float:left;">

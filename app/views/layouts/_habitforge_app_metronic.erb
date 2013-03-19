@@ -21,11 +21,22 @@ d3days_ago = dnow - 3
 @ca = controller.action_name 
 
 
-if @cn == "user_sessions" and @ca == "new" and !params[:skip_intro]
-  landing_page = true
+####################################
+#### SET THE USER ID FOR URL STRINGS
+the_user_id = "0"
+if current_user 
+  the_user_id = current_user.id.to_s
 else
-  landing_page = false
+  if @ca == "autoupdate"
+      the_user_id = @checkpoint.goal.user.id.to_s
+  end
+  if @ca == "autoupdatemultiple"
+      the_user_id = @goal.user.id.to_s
+  end
 end
+#### END SET THE USER ID FOR URL STRINGS
+####################################
+
 
 
 ### sfm = sales funnel method
@@ -47,6 +58,48 @@ if current_user
         random_quote_author = random_quote.author
     end
 end 
+
+
+######################  START ADVERTISING #########################
+show_ads = 0
+if current_user or @ca == "autoupdate" or @ca == "autoupdatemultiple" 
+  ### Don't advertise if they've paid to skip ads
+  if current_user
+      if (session[:site_name] == "habitforge" or session[:sponsor] == "habitforge") and (current_user.kill_ads_until == nil or dnow > current_user.kill_ads_until)
+
+
+        ### When Gather demographic data: don't show ads when asking for info (they might think it's an ad or be too distracted)
+        if @cn == "cheers" and (current_user.yob == nil or current_user.gender == nil)
+            show_ads = 0
+        else
+
+            ### don't show ads if they just signed up and haven't yet added a goal
+            all_active_goals = Goal.find(:all, :conditions => "user_id = #{current_user.id} and status != 'hold'")
+            if all_active_goals.size > 0
+                show_ads = 1
+            else
+                show_ads = 0
+            end
+        end
+
+      end
+  else
+      if @ca == "autoupdate"
+          if (session[:site_name] == "habitforge" or session[:sponsor] == "habitforge") and (@checkpoint.goal.user.kill_ads_until == nil or dnow > @checkpoint.goal.user.kill_ads_until)
+            show_ads = 1
+          end
+      end
+      if @ca == "autoupdatemultiple"
+          if @goal != nil
+              if (session[:site_name] == "habitforge" or session[:sponsor] == "habitforge") and (@goal.user.kill_ads_until == nil or dnow > @goal.user.kill_ads_until)
+                show_ads = 1
+              end
+          end
+      end
+  end #### END if current_user
+end ##### END if current_user or @ca == "autoupdate" or @ca == "autoupdatemultiple" 
+######################  END ADVERTISING #########################
+
 %>
 
 
@@ -75,6 +128,9 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
   <meta content="width=device-width, initial-scale=1.0" name="viewport" />
   <meta content="" name="description" />
   <meta content="" name="author" />
+
+
+
   <link href="/assets/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
   <link href="/assets/css/metro.css" rel="stylesheet" />
   <link href="/assets/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet" />
@@ -82,6 +138,8 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
   <link href="/assets/css/style.css" rel="stylesheet" />
   <link href="/assets/css/style_responsive.css" rel="stylesheet" />
   <link href="/assets/css/style_default.css" rel="stylesheet" id="style_color" />
+  <link href="/assets/glyphicons/css/glyphicons.css" rel="stylesheet" />
+  <link href="/assets/glyphicons_halflings/css/halflings.css" rel="stylesheet" />
   <link rel="stylesheet" type="text/css" href="/assets/gritter/css/jquery.gritter.css" />
   <link rel="stylesheet" type="text/css" href="/assets/uniform/css/uniform.default.css" />
   <link rel="stylesheet" type="text/css" href="/assets/bootstrap-daterangepicker/daterangepicker.css" />
@@ -96,75 +154,14 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
   <!-- ################################################## -->
   <!-- START CUSTOM SGJ CSS -->
   <!-- ################################################## -->
-  <link rel="/stylesheet" href="stylesheets/prettyPhoto.css" type="text/css" media="screen" title="prettyPhoto main stylesheet" charset="utf-8" /><!--Lightbox Styling-->
-  <link href="/stylesheets/jquery.autocomplete.css" rel="stylesheet" type="text/css" media="all" /><!--Auto Complete -->
 
-  <!-- SOME BUTTONS -->
-  <style type="text/css">
-  .signup_button {
-    -moz-box-shadow:inset 0px 1px 0px 0px #fce2c1;
-    -webkit-box-shadow:inset 0px 1px 0px 0px #fce2c1;
-    box-shadow:inset 0px 1px 0px 0px #fce2c1;
-    background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #ffc477), color-stop(1, #fb9e25) );
-    background:-moz-linear-gradient( center top, #ffc477 5%, #fb9e25 100% );
-    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffc477', endColorstr='#fb9e25');
-    background-color:#ffc477;
-    -moz-border-radius:6px;
-    -webkit-border-radius:6px;
-    border-radius:6px;
-    border:1px solid #eeb44f;
-    display:inline-block;
-    color:#ffffff;
-    font-family:arial;
-    font-size:18px;
-    font-weight:bold;
-    padding:6px 24px;
-    text-decoration:none;
-    text-shadow:1px 1px 0px #cc9f52;
-  }.signup_button:hover {
-    background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #fb9e25), color-stop(1, #ffc477) );
-    background:-moz-linear-gradient( center top, #fb9e25 5%, #ffc477 100% );
-    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#fb9e25', endColorstr='#ffc477');
-    background-color:#fb9e25;
-  }.signup_button:active {
-    position:relative;
-    top:1px;
-  }
-  /* This imageless css button was generated by CSSButtonGenerator.com */
-  </style>
 
-  <style type="text/css">
-  .start_now {
-          -moz-box-shadow:inset 0px 1px 0px 0px #fff6af;
-          -webkit-box-shadow:inset 0px 1px 0px 0px #fff6af;
-          box-shadow:inset 0px 1px 0px 0px #fff6af;
-          background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #ffec64), color-stop(1, #ffab23) );
-          background:-moz-linear-gradient( center top, #ffec64 5%, #ffab23 100% );
-          filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffec64', endColorstr='#ffab23');
-          background-color:#ffec64;
-          -moz-border-radius:6px;
-          -webkit-border-radius:6px;
-          border-radius:6px;
-          border:1px solid #ffaa22;
-          display:inline-block;
-          color:#333333;
-          font-family:arial;
-          font-size:15px;
-          font-weight:bold;
-          padding:6px 24px;
-          text-decoration:none;
-          text-shadow:1px 1px 0px #ffee66;
-  }.start_now:hover {
-          background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #ffab23), color-stop(1, #ffec64) );
-          background:-moz-linear-gradient( center top, #ffab23 5%, #ffec64 100% );
-          filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffab23', endColorstr='#ffec64');
-          background-color:#ffab23;
-  }.start_now:active {
-          position:relative;
-          top:1px;
-  }
-  /* This imageless css button was generated by CSSButtonGenerator.com */
-  </style>
+  <link href="/assets/css/hf_custom.css" rel="stylesheet" />
+
+  <link href="/stylesheets/prettyPhoto.css" rel="stylesheet" /><!--Lightbox Styling-->
+  <link href="/stylesheets/jquery.autocomplete.css" rel="stylesheet" /><!--Auto Complete -->
+
+
   <!-- ################################################## -->
   <!-- END CUSTOM SGJ CSS -->
   <!-- ################################################## -->
@@ -179,13 +176,36 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
   <!-- START CUSTOM SGJ JAVASCRIPT -->
   <!-- ################################################## -->
 
-  <!-- ShareThis -->
+
+  <!-- javascript_include_tag :defaults -->
+
+
+  <!-- ShareThis
   <script type="text/javascript">var switchTo5x=true;</script><script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script><script type="text/javascript">stLight.options({publisher:'6f618717-8285-4c8c-b5c7-4f9e1d5e2a92'});</script>
 
-  <script type="text/javascript" src="/javascripts/jquery.validate.min.js"></script><!--Jquery Form Validation-->
+  <script type="text/javascript" src="/javascripts/jquery.validate.min.js"></script> 
+  -->
+  <!--Jquery Form Validation-->
 
-  <script type="text/javascript" src="/javascripts/jquery.autocomplete.js"></script><!--Simple Auto Complete-->
+  <!--
+  <script type="text/javascript" src="/javascripts/jquery.autocomplete.js"></script>
+  -->
+  <!--Simple Auto Complete-->
 
+  <!-- LIKE IN ROSTINATOR -->
+  <!-- TOGGLE SHOW/HIDE A DIV FROM SCRATCH, EASY !!! -->
+  <script language="javascript" type="text/javascript">
+  function toggle_show_hide(id) {
+      var div = document.getElementById(id);
+      div.style.display = ( div.style.display == "none") ? "block" : "none";
+  }
+  // example usage:
+  //      <a href="#undefined" onclick="toggle_show_hide('rebuild_roster_form')" class="btn-add">Build Roster</a>
+  //
+  //      <div id="rebuild_roster_form" style="display:none;">
+  //        some content
+  //      <div>
+  </script>
 
   <script language="javascript" type="text/javascript">
   function popitup(url) {
@@ -194,7 +214,7 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
     return false;
   }
   function popitup_bigger1(url) {
-    newwindow=window.open(url,'name','height=300,width=1000');
+    newwindow=window.open(url,'name','height=600,width=1000');
     if (window.focus) {newwindow.focus()}
     return false;
   }
@@ -203,6 +223,7 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
 
 
 
+<script src="/javascripts/jquery.prettyPhoto.js" type="text/javascript" charset="utf-8"></script><!--Check-In Lightbox Script (for closing the box)-->
 
 
 <!-- ############ USERVOICE START  ########-->
@@ -214,6 +235,10 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(uv, s);
   })();
 </script>
+
+
+
+
 <!-- A tab to launch the Classic Widget -->
 <script>
 UserVoice = window.UserVoice || [];
@@ -230,6 +255,19 @@ UserVoice.push(['showTab', 'classic_widget', {
 }]);
 </script>
 
+<script type="text/javascript" charset="utf-8">
+  var feedback_widget_options = {};
+
+  feedback_widget_options.display = "overlay";  
+  feedback_widget_options.company = "habitforge";
+  feedback_widget_options.placement = "right";
+  feedback_widget_options.color = "#222";
+  feedback_widget_options.style = "question";
+
+  var feedback_widget = new GSFN.feedback_widget(feedback_widget_options);
+</script>
+
+
 <!-- ############ USERVOICE END  ########-->
 
 
@@ -245,10 +283,13 @@ UserVoice.push(['showTab', 'classic_widget', {
     fjs.parentNode.insertBefore(js, fjs);
   }(document, 'script', 'facebook-jssdk'));</script>
 
+
+
   <!-- ################################################## -->
   <!-- END CUSTOM SGJ JAVASCRIPT -->
   <!-- ################################################## -->
   <!-- ################################################## -->
+
 
 
 </head>
@@ -256,10 +297,13 @@ UserVoice.push(['showTab', 'classic_widget', {
 <!-- BEGIN BODY -->
 <body class="fixed-top">
 
+  <div id="spinner" class="spinner_overlay" style="display:none;">
+  &nbsp
+  </div>
 
 
   <!-- BEGIN HEADER -->
-  <div class="header navbar navbar-inverse navbar-fixed-top">
+  <div class="header navbar navbar-inverse">
     <!-- BEGIN TOP NAVIGATION BAR -->
     <div class="navbar-inner">
       <div class="container-fluid" style="background-color:#fff;">
@@ -348,31 +392,70 @@ UserVoice.push(['showTab', 'classic_widget', {
           %>
         <% end %>
 
-        <% if current_user and fully_logged_in and @ca != "edit" and (current_user.password_temp != nil and current_user.password_temp != "")
-              if current_user.last_activity_date != current_user.dtoday
-                current_user.last_activity_date = current_user.dtoday
-                current_user.save
-              end
-          if current_user.goal_temp != nil and current_user.goal_temp == "" 
-            if session[:sfm_virgin_need_to_email_temp_password] and session[:sfm_virgin_need_to_email_temp_password] == true %>
 
-              <div class="alert alert-error" id="noscript-warning">
-              <button class="close" data-dismiss="alert"></button>
-                  You have a temporary password set of: <%= current_user.password_temp %> <a href="/account/edit">Please change it now!</a>
-              </div>
-            <% else %>
-                <div class="alert alert-error" id="noscript-warning">
-                    <button class="close" data-dismiss="alert"></button>
-                      You are using the temporary password that was emailed to you. 
-                      <% if session[:sfm_virgin_need_to_confirm_timezone] and session[:sfm_virgin_need_to_confirm_timezone] == true %>
-                         <br>So that check-in and reminder emails come at the right time, <a href="/account/edit">Click here to set your time zone.</a>
-                      <% end %>
-                      <a href="/account/edit">Click here to set a new password.</a>
-                </div>
-              <% 
-            end 
+
+        <% 
+        ##########################################################
+        ######## START PASSWORD AND TIME ZONE SETTING ############
+        if current_user and fully_logged_in and @ca != "edit" and (current_user.password_temp != nil and current_user.password_temp != "")
+          if current_user.last_activity_date != current_user.dtoday
+            current_user.last_activity_date = current_user.dtoday
+            current_user.save
           end
+          %>
+          <div class="alert alert-error" id="noscript-warning">
+          <button class="close" data-dismiss="alert"></button>
+              You have a temporary password set of: <%= current_user.password_temp %> <a href="/account/edit">Please change it now!</a>
+          </div>
+        <%
         end 
+        ######## END PASSWORD AND TIME ZONE SETTING ############
+        ########################################################
+
+
+        ##################################################################
+        ##################################################################
+        ############# START ASK USER IF THEY WANT TO BE IN RANDOM $$ POOL ######
+        if current_user and current_user.is_habitforge_supporting_member
+            if params[:opt_in_random_fire]
+                if params[:opt_in_random_fire] == '1'
+                    current_user.opt_in_random_fire = 1
+                    current_user.save
+                end
+                if params[:opt_in_random_fire] == '0'
+                    current_user.opt_in_random_fire = 0
+                    current_user.save
+                end
+            end
+
+            ### comment this out if you aren't putting "fire" in anymore
+            #if current_user.opt_in_random_fire == "something that will never match"
+
+            if current_user.opt_in_random_fire == nil
+            %>
+                <div class="notice">
+                    <h4>Money for nothing?</h4>
+                    <p>
+                    As a Premium Member, you have the option of being chosen randomly to "get paid" if people choose to use "Extra Accountability" by placing a wager on their success rate but don't reach that goal (for some people this is a big motivator). 
+                    <br>
+                    <br>
+                    Do you wish to be part of this "random pool"? You don't have to do anything, but we don't want to bug you if you'd rather opt out.
+                
+                    <h6><a href="/popupex<%= @goal.id %>.html" onclick="return popitup_bigger1('/fire_rules_opt_in.html')">Learn More...</a></h6>
+
+                    <a href="/goals/?opt_in_random_fire=1"><font color="red">Sure, let me be in that "random pool"</font></a> or <a href="/goals/?opt_in_random_fire=0"><font color="red">I'd rather not, thanks</font></a>
+                    </p>
+                </div>
+            <%
+            end
+            %>
+            
+        <%
+        end
+        ############# END ASK USER IF THEY WANT TO BE IN RANDOM $$ POOL ######
+        ##################################################################
+        ##################################################################
+
         %>
 
         <!-- ############################################# -->
@@ -389,7 +472,7 @@ UserVoice.push(['showTab', 'classic_widget', {
 
 
         <!-- BEGIN LOGO -->
-        <a class="brand" href="index.html">
+        <a class="brand" href="/">
         <img src="/home/images/logos/habitforge_logo.png" alt="logo" width="150px"/>
         </a>
         <!-- END LOGO -->
@@ -398,221 +481,17 @@ UserVoice.push(['showTab', 'classic_widget', {
         <img src="/assets/img/menu-toggler.png" alt="" />
         </a>          
         <!-- END RESPONSIVE MENU TOGGLER -->        
-        <!-- BEGIN TOP NAVIGATION MENU -->          
-        <ul class="nav pull-right">
-          <!-- BEGIN NOTIFICATION DROPDOWN -->  
-          <li class="dropdown" id="header_notification_bar">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-            <i class="icon-warning-sign"></i>
-            <span class="badge">6</span>
-            </a>
-            <ul class="dropdown-menu extended notification">
-              <li>
-                <p>You have 14 new notifications</p>
-              </li>
-              <li>
-                <a href="javascript:;" onclick="App.onNotificationClick(1)">
-                <span class="label label-success"><i class="icon-plus"></i></span>
-                New user registered. 
-                <span class="time">Just now</span>
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                <span class="label label-important"><i class="icon-bolt"></i></span>
-                Server #12 overloaded. 
-                <span class="time">15 mins</span>
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                <span class="label label-warning"><i class="icon-bell"></i></span>
-                Server #2 not respoding.
-                <span class="time">22 mins</span>
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                <span class="label label-info"><i class="icon-bullhorn"></i></span>
-                Application error.
-                <span class="time">40 mins</span>
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                <span class="label label-important"><i class="icon-bolt"></i></span>
-                Database overloaded 68%. 
-                <span class="time">2 hrs</span>
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                <span class="label label-important"><i class="icon-bolt"></i></span>
-                2 user IP blocked.
-                <span class="time">5 hrs</span>
-                </a>
-              </li>
-              <li class="external">
-                <a href="#">See all notifications <i class="m-icon-swapright"></i></a>
-              </li>
-            </ul>
-          </li>
-          <!-- END NOTIFICATION DROPDOWN -->
-          <!-- BEGIN INBOX DROPDOWN -->
-          <li class="dropdown" id="header_inbox_bar">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-            <i class="icon-envelope-alt"></i>
-            <span class="badge">5</span>
-            </a>
-            <ul class="dropdown-menu extended inbox">
-              <li>
-                <p>You have 12 new messages</p>
-              </li>
-              <li>
-                <a href="#">
-                <span class="photo"><img src="/assets/img/avatar2.jpg" alt="" /></span>
-                <span class="subject">
-                <span class="from">Lisa Wong</span>
-                <span class="time">Just Now</span>
-                </span>
-                <span class="message">
-                Vivamus sed auctor nibh congue nibh. auctor nibh
-                auctor nibh...
-                </span>  
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                <span class="photo"><img src="/assets/img/avatar3.jpg" alt="" /></span>
-                <span class="subject">
-                <span class="from">Richard Doe</span>
-                <span class="time">16 mins</span>
-                </span>
-                <span class="message">
-                Vivamus sed congue nibh auctor nibh congue nibh. auctor nibh
-                auctor nibh...
-                </span>  
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                <span class="photo"><img src="/assets/img/avatar1.jpg" alt="" /></span>
-                <span class="subject">
-                <span class="from">Bob Nilson</span>
-                <span class="time">2 hrs</span>
-                </span>
-                <span class="message">
-                Vivamus sed nibh auctor nibh congue nibh. auctor nibh
-                auctor nibh...
-                </span>  
-                </a>
-              </li>
-              <li class="external">
-                <a href="#">See all messages <i class="m-icon-swapright"></i></a>
-              </li>
-            </ul>
-          </li>
-          <!-- END INBOX DROPDOWN -->
-          <!-- BEGIN TODO DROPDOWN -->
-          <li class="dropdown" id="header_task_bar">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-            <i class="icon-tasks"></i>
-            <span class="badge">5</span>
-            </a>
-            <ul class="dropdown-menu extended tasks">
-              <li>
-                <p>You have 12 pending tasks</p>
-              </li>
-              <li>
-                <a href="#">
-                <span class="task">
-                <span class="desc">New release v1.2</span>
-                <span class="percent">30%</span>
-                </span>
-                <span class="progress progress-success ">
-                <span style="width: 30%;" class="bar"></span>
-                </span>
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                <span class="task">
-                <span class="desc">Application deployment</span>
-                <span class="percent">65%</span>
-                </span>
-                <span class="progress progress-danger progress-striped active">
-                <span style="width: 65%;" class="bar"></span>
-                </span>
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                <span class="task">
-                <span class="desc">Mobile app release</span>
-                <span class="percent">98%</span>
-                </span>
-                <span class="progress progress-success">
-                <span style="width: 98%;" class="bar"></span>
-                </span>
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                <span class="task">
-                <span class="desc">Database migration</span>
-                <span class="percent">10%</span>
-                </span>
-                <span class="progress progress-warning progress-striped">
-                <span style="width: 10%;" class="bar"></span>
-                </span>
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                <span class="task">
-                <span class="desc">Web server upgrade</span>
-                <span class="percent">58%</span>
-                </span>
-                <span class="progress progress-info">
-                <span style="width: 58%;" class="bar"></span>
-                </span>
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                <span class="task">
-                <span class="desc">Mobile development</span>
-                <span class="percent">85%</span>
-                </span>
-                <span class="progress progress-success">
-                <span style="width: 85%;" class="bar"></span>
-                </span>
-                </a>
-              </li>
-              <li class="external">
-                <a href="#">See all tasks <i class="m-icon-swapright"></i></a>
-              </li>
-            </ul>
-          </li>
-          <!-- END TODO DROPDOWN -->
-          <!-- BEGIN USER LOGIN DROPDOWN -->
-          <li class="dropdown user">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-            <img alt="" src="/assets/img/avatar.png" width="30px"/>
-            <span class="username"><% if current_user %><%= current_user.first_name %><% else %>Log In<% end %> </span>
-            <i class="icon-angle-down"></i>
-            </a>
-            <ul class="dropdown-menu">
-              <li><a href="extra_profile.html"><i class="icon-user"></i> My Profile</a></li>
-              <li><a href="calendar.html"><i class="icon-calendar"></i> My Calendar</a></li>
-              <li><a href="#"><i class="icon-tasks"></i> My Tasks</a></li>
-              <li class="divider"></li>
-              <li><a href="login.html"><i class="icon-key"></i> Log Out</a></li>
-            </ul>
-          </li>
-          <!-- END USER LOGIN DROPDOWN -->
-        </ul>
-        <!-- END TOP NAVIGATION MENU -->  
+
+
+        <!-- ####################### -->
+        <!-- START RANDOM QUOTE -->
+        <blockquote class="pull-right" style="width:75%;">
+          <p>"<%= random_quote_thought %>" </p>
+          <small><%= random_quote_author %></small>
+        </blockquote>
+        <!-- END RANDOM QUOTE -->
+        <!-- ####################### -->
+
       </div>
     </div>
     <!-- END TOP NAVIGATION BAR -->
@@ -623,314 +502,9 @@ UserVoice.push(['showTab', 'classic_widget', {
     <!-- BEGIN SIDEBAR -->
     <div class="page-sidebar nav-collapse collapse">
       <!-- BEGIN SIDEBAR MENU -->
-      <ul>
-        <li>
-          <!-- BEGIN SIDEBAR TOGGLER BUTTON -->
-          <div class="sidebar-toggler hidden-phone"></div>
-          <!-- BEGIN SIDEBAR TOGGLER BUTTON -->
-        </li>
 
-        <li class="active start">
-          <a href="index.html">
-          <i class="icon-home"></i> 
-          <span class="title">Dashboard</span>
-          <span class="selected"></span>
-          </a>          
-        </li>
+      <%= render :partial => "layouts/menu", :locals => {:dnow => dnow} %>
 
-
-
-
-
-
-
-
-        <!-- #### START CUSTOM LIST MENU ITEMS SGJ #### -->
-
-        <% if current_user %>
-
-          <!-- TIME OF DAY GREETING -->
-          <% if !fully_logged_in %>
-          <li>
-          <a href="/user_session/new?skip_intro=1">Good <%= current_user.time_period_of_day_right_now %> <%= current_user.first_name %>! &nbsp &nbsp Log In Here.</a>
-          </li>
-          <% end %>
-
-          <!-- MESSAGES -->
-          <li>
-            <%
-            @tomessages = Tomessage.find(:all, :conditions => "to_id = '#{current_user.id}' and unread = 1")
-            if @tomessages
-                if @tomessages.size > 0 %>
-                 <a href="/tomessages"><font color="red"><%= @tomessages.size %></strong> New Messages</font></a>
-                <% else %>
-                  <a href="/tomessages">Messages (0 New)</font></a><%
-                end
-            end
-            %>
-          </li>
-          <!-- END MESSAGES -->
-
-        <% end ### end if current_user %>
-
-        <!-- BLOG -->
-        <li class="current"><a href="http://habitforge.wordpress.com" >Blog</a></li> 
-
-
-        <% if !current_user %>
-        <li 
-          <% if @cn == "user_sessions" and @ca == "new" %> 
-            class="current" 
-          <% end %>
-        ><%= link_to "About", "/" %></li>
-        <li 
-          <% if @cn == "users" and @ca == "new" %> 
-            class="current" 
-          <% end %>
-        >
-            <% if session[:sfm] == "v1" %>
-          <a href="/users/new" class="start_now" >Sign up Free!</a>
-            <% end %>
-        </li>
-
-        <li><%= link_to "Log In", new_user_session_path + "?skip_intro=1" %></li>
-
-        <% else %>
-          <li 
-          <% if @cn == "goals" or @cn == "checkpoints" %> 
-            class="current" 
-          <% end %>
-          >
-          <%= link_to 'My Habits', '/goals' %></li>
-          <li><a href="#" onclick="return popitup_bigger1('/support_points.html')" %>
-                                SupportPoints (
-            <% if !current_user.supportpoints %>
-                                    0     
-                                <% else %>
-                                      <%= current_user.supportpoints %>
-                                <% end %>
-              )
-              </a>
-              <li 
-              <% if @cn == "cheers" %> 
-                class="current" 
-              <% end %>
-              ><%= link_to 'Friends', '/cheers' %></li>
-
-                      <% 
-                      if current_user and current_user.is_affiliate != nil and current_user.is_affiliate == 1 
-                          affiliate = Affiliate.find(:first, :conditions => "email = '#{current_user.email}'")
-                          if affiliate
-                          %>
-                              <li>
-                                  <%=link_to 'Affiliate', '/affiliates/show/' + affiliate.id.to_s %>
-                              </li>                    
-                          <%
-                          end
-                      end
-                      %>
-
-
-
-                <% if current_user and current_user.is_a_coach != nil and current_user.is_a_coach == 1 and current_user.coach_id !=nil %>
-                    <li>
-                        <%=link_to 'Coaching', '/coaches/show/' + current_user.coach_id.to_s %>
-                    </li>
-                <% end %>
-          <li 
-          <% if @cn == "users" and @ca == "show" %> 
-            class="current" 
-          <% end %>
-        >
-        </li>
-
-        <% if current_user and fully_logged_in%>
-                <li>
-                    <%= link_to "Account Info", account_path %>
-                </li>
-                <li>
-                    <%= link_to "Log Out #{current_user.first_name}", user_session_path, :method => :delete %>            
-                </li>
-              <% end %>
-          <% if current_user and current_user.is_admin %>
-            <li><%= link_to 'Users', '/users' %></li>
-            <li><%= link_to 'New user', new_account_path %></li>
-            <li><%= link_to 'Affiliates', affiliates_path %></li>
-            <li><%= link_to 'Coaches', coaches_path %></li>
-
-            <p>
-            (<%= pluralize User.logged_in.count, "user" %> currently logged in)
-            </p> <!-- This based on last_request_at, if they were active < 10 minutes they are logged in -->
-          <% end %>
-          <% #"Current Page: " + @cn + "/" + @ca  %>
-        <% end %>
-
-
-
-
-              <% 
-              if (current_user or @ca == "autoupdate" or @ca == "autoupdatemultiple") and (session[:site_name] == "habitforge" or session[:sponsor] == "habitforge")
-              %>
-                <%
-                date_expire = dnow
-                    if current_user
-                        date_expire = current_user.kill_ads_until
-                    else
-                          if @ca == "autoupdate"
-                              if @checkpoint.goal != nil
-                                  date_expire = @checkpoint.goal.user.kill_ads_until
-                              end
-                          end
-                          if @ca == "autoupdatemultiple"
-                              if @goal != nil
-                                  date_expire = @goal.user.kill_ads_until
-                              end
-                          end
-                    end
-                    %>
-
-                <%
-                    if date_expire != nil
-                    %>
-                        <%
-                        if dnow <= date_expire
-                        %>
-                            <br>
-                            <li>
-                            <%
-                            if date_expire < (dnow + 60)
-                            %>                                
-                                    <%= link_to "<font color='red'>Renew Your Supporting Membership! (Expires #{date_expire.strftime("%b %d, %Y")})</font>", account_path %>
-                            <%
-                            end
-                            %>
-                            </li>
-                
-                        <%
-                        end
-                        %>
-                    <%
-                    end
-                    %>
-
-
-        <% 
-        end 
-        %>
-
-
-        <!-- #### END CUSTOM LIST MENU ITEMS SGJ ####### -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        <li class="has-sub">
-          <a href="javascript:;">
-          <i class="icon-bookmark-empty"></i> 
-          <span class="title">UI Features</span>
-          <span class="arrow"></span>
-          </a>
-          <ul class="sub">
-            <li><a href="ui_general.html">General</a></li>
-            <li><a href="ui_buttons.html">Buttons</a></li>
-            <li><a href="ui_tabs_accordions.html">Tabs & Accordions</a></li>
-            <li><a href="ui_typography.html">Typography</a></li>
-          </ul>
-        </li>
-        <li class="has-sub">
-          <a href="javascript:;">
-          <i class="icon-table"></i>
-          <span class="title">Form Stuff</span>
-          <span class="arrow"></span>
-          </a>
-          <ul class="sub">
-            <li><a href="form_layout.html">Form Layouts</a></li>
-            <li><a href="form_component.html">Form Components</a></li>
-            <li><a href="form_wizard.html">Form Wizard</a></li>
-            <li><a href="form_validation.html">Form Validation</a></li>
-          </ul>
-        </li>
-        <li class="has-sub">
-          <a href="javascript:;">
-          <i class="icon-th-list"></i> 
-          <span class="title">Data Tables</span>
-          <span class="arrow"></span>
-          </a>
-          <ul class="sub">
-            <li><a href="table_basic.html">Basic Tables</a></li>
-            <li><a href="table_managed.html">Managed Tables</a></li>
-          </ul>
-        </li>
-        <li>
-          <a href="grids.html">
-          <i class="icon-th"></i>
-          <span class="title">Grids & Portlets</span>
-          </a>
-        </li>
-        <li class="has-sub">
-          <a href="javascript:;">
-          <i class="icon-map-marker"></i>
-          <span class="title">Maps</span>
-          <span class="arrow"></span>
-          </a>
-          <ul class="sub">
-            <li><a href="maps_google.html">Google Maps</a></li>
-            <li><a href="maps_vector.html">Vector Maps</a></li>
-          </ul>
-        </li>
-        <li>
-          <a href="charts.html">
-          <i class="icon-bar-chart"></i>
-          <span class="title">Visual Charts</span>
-          </a>  
-        </li>
-        <li>
-          <a href="calendar.html">
-          <i class="icon-calendar"></i>
-          <span class="title">Calendar</span>
-          </a>
-        </li>
-        <li>
-          <a href="gallery.html">
-          <i class="icon-camera"></i>
-          <span class="title">Gallery</span>
-          </a>
-        </li>
-        <li class="has-sub">
-          <a href="javascript:;">
-          <i class="icon-briefcase"></i>
-          <span class="title">Extra</span>
-          <span class="arrow"></span>
-          </a>
-          <ul class="sub">
-            <li><a href="extra_profile.html">User Profile</a></li>
-            <li><a href="extra_faq.html">FAQ</a></li>
-            <li><a href="extra_search.html">Search Results</a></li>
-            <li><a href="extra_invoice.html">Invoice</a></li>
-            <li><a href="extra_pricing_table.html">Pricing Tables</a></li>
-            <li><a href="extra_404.html">404 Page</a></li>
-            <li><a href="extra_500.html">500 Page</a></li>
-            <li><a href="extra_blank.html">Blank Page</a></li>
-          </ul>
-        </li>
-        <li>
-          <a href="login.html">
-          <i class="icon-user"></i>
-          <span class="title">Login Page</span>
-          </a>
-        </li>
-      </ul>
       <!-- END SIDEBAR MENU -->
     </div>
     <!-- END SIDEBAR -->
@@ -946,190 +520,51 @@ UserVoice.push(['showTab', 'classic_widget', {
       <div class="container-fluid">
         <!-- BEGIN PAGE HEADER-->
         <div class="row-fluid">
-          <div class="span12">
-            <!-- BEGIN STYLE CUSTOMIZER -->
-            <div class="color-panel hidden-phone">
-              <div class="color-mode-icons icon-color"></div>
-              <div class="color-mode-icons icon-color-close"></div>
-              <div class="color-mode">
-                <p>THEME COLOR</p>
-                <ul class="inline">
-                  <li class="color-black current color-default" data-style="default"></li>
-                  <li class="color-blue" data-style="blue"></li>
-                  <li class="color-brown" data-style="brown"></li>
-                  <li class="color-purple" data-style="purple"></li>
-                  <li class="color-white color-light" data-style="light"></li>
-                </ul>
-                <label class="hidden-phone">
-                <input type="checkbox" class="header" checked value="" />
-                <span class="color-mode-label">Fixed Header</span>
-                </label>              
-              </div>
-            </div>
-            <!-- END BEGIN STYLE CUSTOMIZER -->     
-            <!-- BEGIN PAGE TITLE & BREADCRUMB-->   
-            <h3 class="page-title">
-              Dashboard
-              <small>statistics and more</small>
-            </h3>
-            <ul class="breadcrumb">
-              <li>
-                <i class="icon-home"></i>
-                <a href="index.html">Home</a> 
-                <span class="icon-angle-right"></span>
-              </li>
-              <li><a href="#">Dashboard</a></li>
-              <li class="pull-right no-text-shadow">
-                <div id="dashboard-report-range" class="dashboard-date-range tooltips no-tooltip-on-touch-device responsive" data-tablet="" data-desktop="tooltips" data-placement="top" data-original-title="Change dashboard date range">
-                  <i class="icon-calendar"></i>
-                  <span></span>
-                  <i class="icon-angle-down"></i>
-                </div>
-              </li>
-            </ul>
-            <!-- END PAGE TITLE & BREADCRUMB-->
+          <div class="span12"> 
+
+            <!-- ####################################### -->
+            <!-- START GOOGLE ADS -->
+            <% if show_ads == 1 %>
+              <% if production  %>
+                  <br>
+                  <script type="text/javascript"><!--
+                  google_ad_client = "ca-pub-8620829126449222";
+                  /* leaderboard_728x90 */
+                  google_ad_slot = "5373296000";
+                  google_ad_width = 728;
+                  google_ad_height = 90;
+                  //-->
+                  </script>
+                  <script type="text/javascript"
+                  src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+                  </script>
+                  <br>
+
+              <% else %>
+                  <br>
+                  <div class="well" style="height:35px;">
+                    When running in production mode you will see
+                    <br>Some ad from google here ... about 35px w/ this div class.
+                  </div>
+              <% end %>
+
+              <a href="https://www.securepublications.com/habit-gse3.php?ref=<%= current_user.id.to_s %>&email=<%= current_user.email %>">Hide the ads... go Premium!</a>
+            <% end %>            
+            <!-- END GOOGLE ADS -->
+            <!-- ####################################### -->
+
           </div>
         </div>
         <!-- END PAGE HEADER-->
-        <div id="dashboard">
-          <!-- BEGIN DASHBOARD STATS -->
-          <div class="row-fluid">
-            <div class="span3 responsive" data-tablet="span6" data-desktop="span3">
-              <div class="dashboard-stat blue">
-                <div class="visual">
-                  <i class="icon-comments"></i>
-                </div>
-                <div class="details">
-                  <div class="number">
-                    1349
-                  </div>
-                  <div class="desc">                  
-                    New Feedbacks
-                  </div>
-                </div>
-                <a class="more" href="#">
-                View more <i class="m-icon-swapright m-icon-white"></i>
-                </a>            
-              </div>
-            </div>
-            <div class="span3 responsive" data-tablet="span6" data-desktop="span3">
-              <div class="dashboard-stat green">
-                <div class="visual">
-                  <i class="icon-shopping-cart"></i>
-                </div>
-                <div class="details">
-                  <div class="number">549</div>
-                  <div class="desc">New Orders</div>
-                </div>
-                <a class="more" href="#">
-                View more <i class="m-icon-swapright m-icon-white"></i>
-                </a>            
-              </div>
-            </div>
-            <div class="span3 responsive" data-tablet="span6  fix-offset" data-desktop="span3">
-              <div class="dashboard-stat purple">
-                <div class="visual">
-                  <i class="icon-globe"></i>
-                </div>
-                <div class="details">
-                  <div class="number">+89%</div>
-                  <div class="desc">Brand Popularity</div>
-                </div>
-                <a class="more" href="#">
-                View more <i class="m-icon-swapright m-icon-white"></i>
-                </a>            
-              </div>
-            </div>
-            <div class="span3 responsive" data-tablet="span6" data-desktop="span3">
-              <div class="dashboard-stat yellow">
-                <div class="visual">
-                  <i class="icon-bar-chart"></i>
-                </div>
-                <div class="details">
-                  <div class="number">12,5M$</div>
-                  <div class="desc">Total Profit</div>
-                </div>
-                <a class="more" href="#">
-                View more <i class="m-icon-swapright m-icon-white"></i>
-                </a>            
-              </div>
-            </div>
-          </div>
-          <!-- END DASHBOARD STATS -->
-          <div class="clearfix"></div>
-          <div class="row-fluid">
-            <div class="span6">
-              <!-- BEGIN PORTLET-->
-              <div class="portlet solid bordered light-grey">
-                <div class="portlet-title">
-                  <h4><i class="icon-bar-chart"></i>Site Visits</h4>
-                  <div class="tools">
-                    <div class="btn-group pull-right" data-toggle="buttons-radio">
-                      <a href="javascript:;" class="btn mini">Users</a>
-                      <a href="javascript:;" class="btn mini active">Feedbacks</a>
-                    </div>
-                  </div>
-                </div>
-                <div class="portlet-body">
-                  <div id="site_statistics_loading">
-                    <img src="/assets/img/loading.gif" alt="loading" />
-                  </div>
-                  <div id="site_statistics_content" class="hide">
-                    <div id="site_statistics" class="chart"></div>
-                  </div>
-                </div>
-              </div>
-              <!-- END PORTLET-->
-            </div>
-            <div class="span6">
-              <!-- BEGIN PORTLET-->
-              <div class="portlet solid light-grey bordered">
-                <div class="portlet-title">
-                  <h4><i class="icon-bullhorn"></i>Activities</h4>
-                  <div class="tools">
-                    <div class="btn-group pull-right" data-toggle="buttons-radio">
-                      <a href="javascript:;" class="btn blue mini active">Users</a>
-                      <a href="javascript:;" class="btn blue mini">Orders</a>
-                    </div>
-                  </div>
-                </div>
-                <div class="portlet-body">
-                  <div id="site_activities_loading">
-                    <img src="/assets/img/loading.gif" alt="loading" />
-                  </div>
-                  <div id="site_activities_content" class="hide">
-                    <div id="site_activities" style="height:100px;"></div>
-                  </div>
-                </div>
-              </div>
-              <!-- END PORTLET-->
-              <!-- BEGIN PORTLET-->
-              <div class="portlet solid bordered light-grey">
-                <div class="portlet-title">
-                  <h4><i class="icon-signal"></i>Server Load</h4>
-                  <div class="tools">
-                    <div class="btn-group pull-right" data-toggle="buttons-radio">
-                      <a href="javascript:;" class="btn red mini active">
-                      <span class="hidden-phone">Database</span>
-                      <span class="visible-phone">DB</span></a>
-                      <a href="javascript:;" class="btn red mini">Web</a>
-                    </div>
-                  </div>
-                </div>
-                <div class="portlet-body">
-                  <div id="load_statistics_loading">
-                    <img src="/assets/img/loading.gif" alt="loading" />
-                  </div>
-                  <div id="load_statistics_content" class="hide">
-                    <div id="load_statistics" style="height:108px;"></div>
-                  </div>
-                </div>
-              </div>
-              <!-- END PORTLET-->
-            </div>
-          </div>
+        <div>
+          <!-- TIME OF DAY GREETING -->
+          <% if current_user and !fully_logged_in %>
+          Good <%= current_user.time_period_of_day_right_now %> <%= current_user.first_name %>! For full access, 
+          <a href="/user_session/new?skip_intro=1">log in here.</a>
+          <% end %>
 
-
+          <br>
+          <%= yield %>          
         </div>
       </div>
       <!-- END PAGE CONTAINER-->    
@@ -1139,10 +574,7 @@ UserVoice.push(['showTab', 'classic_widget', {
   <!-- END CONTAINER -->
   <!-- BEGIN FOOTER -->
   <div class="footer">
-    2013 &copy; Metronic by keenthemes.
-    <div class="span pull-right">
-      <span class="go-top"><i class="icon-angle-up"></i></span>
-    </div>
+    2013 &copy; Habit Research LLC
   </div>
   <!-- END FOOTER -->
   <!-- BEGIN JAVASCRIPTS -->
@@ -1180,7 +612,30 @@ UserVoice.push(['showTab', 'classic_widget', {
       App.init(); // init the rest of plugins and elements
     });
   </script>
+
+
+  <% if production %>
+
+
+      <!-- ### START GOOGLE ANALYTICS ### --> 
+      <script type="text/javascript">
+      var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+      document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+      </script>
+      <script type="text/javascript">
+      try {
+      var pageTracker = _gat._getTracker("UA-10841267-1");
+      pageTracker._trackPageview();
+      } catch(err) {}
+      </script>
+      <!-- ### END GOOGLE ANALYTICS ### --> 
+
+  <% end %>
+
+
+
   <!-- END JAVASCRIPTS -->
+
 </body>
 <!-- END BODY -->
 </html>

@@ -1,4 +1,4 @@
-<h3>Invite a Friend to Track My Progress</h3>
+<h2><i class="icon-envelope"></i> Invite a Friend to Track My Progress</h2>
 <% if params[:email] and params[:email] == "" %>
   <p><strong><font color=red>Email address is required</font></strong></p>
 <% end %>
@@ -59,20 +59,23 @@ if session[:emailsent] == 1
   <hr>
   <form>
   <br>
-  From: <%= current_user.email %>
+  <div class="well">
+  <strong>From:</strong> <%= current_user.email %>
   <br>
   <br>
-  Your friend's email address:
-  <input type="text" name="email"> <p>(Only accepts one email address at a time.)</p>
+  <strong>To:</strong>
+  <input type="text" name="email" size="40" style="width:auto;" placeholder="enter your friend's email address"> (Only accepts one email address at a time.)
+  </div>
+  
   <br>
   The subject of the email:
-  <input type="text" name="the_subject" size=50 value="Want to help me track something?">
+  <input type="text" name="the_subject" size=50 style="width:auto;" value="Want to help me track something?">
   <br>
   <br>
 
   The text of the email:
   <br>
-  <TEXTAREA NAME="the_body" COLS=60 ROWS=20>
+  <TEXTAREA NAME="the_body" COLS=60 ROWS=20 style="width:auto;">
 Hello... this is <%= current_user.first_name %>, and I'm using the <% if session[:sponsor] == "clearworth" %>"My Learning Habit"<% elsif session[:sponsor] == "reengagefocus" %>reEngage Focus<% elsif session[:sponsor] == "forittobe" %>For It To Be<% elsif session[:sponsor] == "marriagereminders" %>Marriage Reminders<% else %>HabitForge<% end %> web application<% if session[:sponsor] == "clearworth" %> from ClearWorth and HabitForge<% end %>.
 
 Would you mind keeping tabs on my progress with getting something done? For 21 days straight I'm trying to be successful at <%= @goal.response_question %>. If I miss a day, I have to start over. 
@@ -84,7 +87,7 @@ Thanks for your help!
   </TEXTAREA>
   <br>
   <br>
-  <p><input type="submit" value="Email this friend"></p>
+  <p><input type="submit" value="Email this friend" class="btn green"></p>
   </form>
 
 <% end %>

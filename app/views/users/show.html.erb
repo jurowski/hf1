@@ -1,232 +1,242 @@
-<p>
-
-  <h2>Account Info</h2>
-  <%
-  if session[:site_name] == "habitforge"
-  %>
-  <div class="notice" style="background-color:#ffffff;">
-  <%
-  if !current_user.is_habitforge_supporting_member
-  %>
-    <strong>Membership:</strong> Free (Ad-supported, limited to 1 active habit)
-        <p />
-
-        <%
-        if current_user.kill_ads_until == nil
-        %>
-
-            <div class="notice" style="width:400px;border-width:1px;background-color:#eeeeee;">
-
-                <p>
-                <h2>
-                Become a Premium Member!  
-                <br>
-                <span style="font-size:60%;">
-                (Work on unlimited habits at once, and hide the ads!)
-                </span
-
-                </h2>
 
 
-        <%
-        else
-        %>
-            <div class="notice" style="width:400px;border-width:1px;background-color:#eeeeee;">
+<!-- BEGIN TAB PORTLET-->   
+<div class="portlet box yellow tabbable">
+  <div class="portlet-title">
+    <h2>Account Info</h2>
+  </div>
+  <div class="portlet-body">
+    <div class="tabbable portlet-tabs">
+      <ul class="nav nav-tabs">
+        <li><a href="#portlet_tab3" data-toggle="tab">Sharing Info</a></li>
+        <li><a href="#portlet_tab2" data-toggle="tab">Account Details</a></li>
+        <li class="active"><a href="#portlet_tab1" data-toggle="tab">Membership Plan</a></li>
+      </ul>
+      <div class="tab-content">
+        <div class="tab-pane active" id="portlet_tab1">
 
-                <p>
-                <h2>
-                Your Premium Membership Expired on <%= current_user.kill_ads_until.strftime("%b %d, %Y") %>  
-                <br>
-                <span style="font-size:60%;">
-                (Renew now to work on unlimited active habits, ad-free!)
-                </span
+          <%
+          if session[:site_name] == "habitforge"
+          %>
+          <%
+          if !current_user.is_habitforge_supporting_member
+          %>
+            <strong>Current Membership:</strong> Free (Ad-supported, limited to 1 active habit)
+                <p />
 
-                </h2>
+                <%
+                if current_user.kill_ads_until == nil
+                %>
 
-        <%
-        end
-        %> 
-            <h5><span style="font-size:150%;">Who's recommending HabitForge to their readers?</span>
-            <br>
-            <a href="http://www.fourhourbody.com/" target="_blank">The 4-Hour Body</a>
-            &nbsp;
-            <a href="http://www.familycircle.com/family-fun/technology/online-tools-for-achieving-goals/" target="_blank">Family Circle</a>
-            &nbsp;
-            <a href="http://www.shape.com/lifestyle/mind-and-body/5-ways-change-your-life-good?page=3" target="_blank">Shape Magazine</a>
-            &nbsp;
-            <a href="http://www.womansday.com/Articles/Health-Fitness/Make-Healthy-Habits-Stick.html" target="_blank">Woman's Day</a>
-            &nbsp;
-            <a href="http://tech.ca.msn.com/pcworld-article.aspx?cp-documentid=23549978" target="_blank">PC World</a>
-            </h5
 
-            <br>
+                        <p>
+                        <h2>
+                        Become a Premium Member!  
+                        <br>
+                        <span style="font-size:60%;">
+                        (Work on unlimited habits at once, and hide the ads!)
+                        </span
 
-                        <% if session[:sfm] and session[:sfm] == "v2" %>
-		            <a href="https://www.securepublications.com/habit-gse3.php?ref=<%= current_user.id.to_s %>&email=<%= current_user.email %>" class="start_now">Learn More</a>
-                        <% else %>
-		            <a href="https://www.securepublications.com/habit-1-year.php?ref=<%= current_user.id.to_s %>&email=<%= current_user.email %>" class="start_now">Learn More</a>
-                        <% end %>
+                        </h2>
 
-            &nbsp &nbsp
+
+                <%
+                else
+                %>
+
+                        <p>
+                        <h2>
+                        Your Premium Membership Expired on <%= current_user.kill_ads_until.strftime("%b %d, %Y") %>  
+                        <br>
+                        <span style="font-size:60%;">
+                        (Renew now to work on unlimited active habits, ad-free!)
+                        </span
+
+                        </h2>
+
+                <%
+                end
+                %> 
+                    <h5><span style="font-size:150%;">Who's recommending HabitForge to their readers?</span>
+                    <br>
+                    <a href="http://www.fourhourbody.com/" target="_blank">The 4-Hour Body</a>
+                    &nbsp;
+                    <a href="http://www.familycircle.com/family-fun/technology/online-tools-for-achieving-goals/" target="_blank">Family Circle</a>
+                    &nbsp;
+                    <a href="http://www.shape.com/lifestyle/mind-and-body/5-ways-change-your-life-good?page=3" target="_blank">Shape Magazine</a>
+                    &nbsp;
+                    <a href="http://www.womansday.com/Articles/Health-Fitness/Make-Healthy-Habits-Stick.html" target="_blank">Woman's Day</a>
+                    &nbsp;
+                    <a href="http://tech.ca.msn.com/pcworld-article.aspx?cp-documentid=23549978" target="_blank">PC World</a>
+                    </h5
+
+                    <br>
+
+                        <a href="https://www.securepublications.com/habit-gse3.php?ref=<%= current_user.id.to_s %>&email=<%= current_user.email %>" class="start_now">Learn More</a>
+
+                    &nbsp &nbsp
+
+          <%
+          else
+          %>
+
+                <p />
+                <%
+                if current_user.kill_ads_until < (current_user.dtoday + 60)
+                %>
+                        <p>
+                        <h2>
+                        Your Premium Membership Will Expire on <%= current_user.kill_ads_until.strftime("%b %d, %Y") %> 
+                        <br>
+                        <span style="font-size:60%;">
+                        (Extend it now to keep working on unlimited active habits, ad-free!)
+                        </span
+
+                        </h2>
+
+                <%
+                else
+          %>
+                        <p>
+                        <h2>
+
+            <%    
+            if current_user.plan and (current_user.plan.include? 'Lifetime' or current_user.plan.include? 'Monthly' or current_user.plan.include? 'Yearly')
+            %>
+              You are a Premium Member! (<%= current_user.plan%>)
+            <%    
+            else
+                  %>
+
+                          Your Premium Membership is good through <%= current_user.kill_ads_until.strftime("%b %d, %Y") %>   
+                          <br>
+                          <span style="font-size:60%;">
+                          (You can work on unlimited active habits, ad-free!)
+                          </span>
+            <%
+            end
+            %>
+                        </h2>
+
+                <%
+                end
+                %> 
+                    <h5><span style="font-size:150%;">Who's recommending HabitForge to their readers?</span>
+                    <br>
+                    <a href="http://www.fourhourbody.com/" target="_blank">The 4-Hour Body</a>
+                    &nbsp;
+                    <a href="http://www.familycircle.com/family-fun/technology/online-tools-for-achieving-goals/" target="_blank">Family Circle</a>
+                    &nbsp;
+                    <a href="http://www.shape.com/lifestyle/mind-and-body/5-ways-change-your-life-good?page=3" target="_blank">Shape Magazine</a>
+                    &nbsp;
+                    <a href="http://www.womansday.com/Articles/Health-Fitness/Make-Healthy-Habits-Stick.html" target="_blank">Woman's Day</a>
+                    &nbsp;
+                    <a href="http://tech.ca.msn.com/pcworld-article.aspx?cp-documentid=23549978" target="_blank">PC World</a>
+                    </h5>
+
+                    <br>
+
+                    <a href="https://www.securepublications.com/habit-gse3.php?ref=<%= current_user.id.to_s %>&email=<%= current_user.email %>" class="start_now">Learn More</a>
+
+
+                    </h4>        
+
+          <%
+          end
+          %>
+          <%
+          end
+          %>
+
         </div>
+        <div class="tab-pane" id="portlet_tab2">
 
-  <%
-  else
-  %>
+          <p>
 
-        <p />
-        <%
-        if current_user.kill_ads_until < (current_user.dtoday + 60)
-        %>
-            <div class="notice" style="width:400px;border-width:1px;background-color:#eeeeee;">
-                <p>
-                <h2>
-                Your Premium Membership Will Expire on <%= current_user.kill_ads_until.strftime("%b %d, %Y") %> 
-                <br>
-                <span style="font-size:60%;">
-                (Extend it now to keep working on unlimited active habits, ad-free!)
-                </span
-
-                </h2>
-
-        <%
-        else
-	%>
-            <div class="notice" style="width:400px;border-width:1px;background-color:#eeeeee;">
-                <p>
-                <h2>
-
-		<%	  
-		if current_user.plan and (current_user.plan.include? 'Lifetime' or current_user.plan.include? 'Monthly' or current_user.plan.include? 'Yearly')
-		%>
-			You are a Premium Member! (<%= current_user.plan%>)
-		<%		
-		else
-	        %>
-
-	                Your Premium Membership is good through <%= current_user.kill_ads_until.strftime("%b %d, %Y") %>   
-	                <br>
-	                <span style="font-size:60%;">
-	                (You can work on unlimited active habits, ad-free!)
-	                </span>
-		<%
-		end
-		%>
-                </h2>
-
-        <%
-        end
-        %> 
-            <h5><span style="font-size:150%;">Who's recommending HabitForge to their readers?</span>
+            <strong>Name</strong>
+            <p>&nbsp &nbsp &nbsp &nbsp &nbsp <%=h @user.first_name %>   <%=h @user.last_name %>
+            </p>
             <br>
-            <a href="http://www.fourhourbody.com/" target="_blank">The 4-Hour Body</a>
-            &nbsp;
-            <a href="http://www.familycircle.com/family-fun/technology/online-tools-for-achieving-goals/" target="_blank">Family Circle</a>
-            &nbsp;
-            <a href="http://www.shape.com/lifestyle/mind-and-body/5-ways-change-your-life-good?page=3" target="_blank">Shape Magazine</a>
-            &nbsp;
-            <a href="http://www.womansday.com/Articles/Health-Fitness/Make-Healthy-Habits-Stick.html" target="_blank">Woman's Day</a>
-            &nbsp;
-            <a href="http://tech.ca.msn.com/pcworld-article.aspx?cp-documentid=23549978" target="_blank">PC World</a>
-            </h5>
+            <br>
+            <strong>User Name (Email address)</strong>
+            <p>&nbsp &nbsp &nbsp &nbsp &nbsp <%=h @user.email %>
+            </p>  
 
             <br>
+            <br>
+            <strong>Time Zone</strong>
+            <p>&nbsp &nbsp &nbsp &nbsp &nbsp <%=h @user.time_zone %>
+            </p>
+            <br>
+            <br>
 
-                        <% if session[:sfm] and session[:sfm] == "v2" %>
-		            <a href="https://www.securepublications.com/habit-gse3.php?ref=<%= current_user.id.to_s %>&email=<%= current_user.email %>" class="start_now">Learn More</a>
-                        <% else %>
-		            <a href="https://www.securepublications.com/habit-1-year.php?ref=<%= current_user.id.to_s %>&email=<%= current_user.email %>" class="start_now">Learn More</a>
-                        <% end %>
 
-            </h4>        
+            <%
+            if current_user.number_of_active_habits > 1
+            %>
+              <br>
+              <br>
+              <strong>Combine any same-hour email check-ins into 1 email?</strong>
+              <p>
+              <%
+              if current_user.combine_daily_emails == 0
+              %>
+                  <h4>
+                  Currently set to NO. 
+                  <br>
+                  <a href="/account?set_combine_daily_emails=1">Change to YES.</a>
+                  </h4>        
+              <%
+              else
+              %>
+                  <h4>
+                 Currently set to YES.
+                  <br>
+                  <a href="/account?set_combine_daily_emails=0">Change to NO.</a>
+                  </h4>
+              <%
+              end
+              %>
+              </p>
+            <%
+            end
+            %>
+
+            
+            <p>
+            <% 
+              if @current_user_is_admin == 1
+                %>
+                <br>Current server time is <%= Time.now %>
+                <% Time.zone = @user.time_zone %>
+                <br>User time is <%= Time.zone.now %>
+                <br>User UTC offset is <%= Time.zone.formatted_offset(false) %><% #Save this value in each goal, and use that to do checkpoint searches w/ cronjob  %>
+                <br>Checkpoint emails scheduled to arrive at 12:00am midnight your time, or XXXX server time.
+                <%
+              end
+            %>
+          </p>
         </div>
+        <div class="tab-pane" id="portlet_tab3">
+          <strong>Sharing? Link to show others any active habits that I have "made public": </strong>
+          <p>&nbsp &nbsp &nbsp &nbsp &nbsp <a href="<%= session[:site_url] %>/cheers/1/shared?shared_u=<%= current_user.id %>" target="_blank"><%= session[:site_url] %>/cheers/1/shared?shared_u=<%= current_user.id %></a>
+                <br>
+                &nbsp &nbsp &nbsp &nbsp &nbsp 
+                <a name="fb_share" type="button" share_url="<%= session[:site_url] %>/cheers/1/shared?shared_u=<%= current_user.id %>" href="http://www.facebook.com/sharer.php">My <%= session[:site_name]%> Progress</a><script src="http://static.ak.fbcdn.net/connect.php/js/FB.Share" type="text/javascript"></script>
+
+          </p>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- END TAB PORTLET-->
 
 
-  <%
-  end
-  %>
-  <%
-  end
-  %>
-
-
-  <strong>Name</strong>
-  <p>&nbsp &nbsp &nbsp &nbsp &nbsp <%=h @user.first_name %>   <%=h @user.last_name %>
-  </p>
-  <br>
-  <br>
-  <strong>User Name (Email address)</strong>
-  <p>&nbsp &nbsp &nbsp &nbsp &nbsp <%=h @user.email %>
-  </p>  
-
-  <br>
-  <br>
-  <strong>Time Zone</strong>
-  <p>&nbsp &nbsp &nbsp &nbsp &nbsp <%=h @user.time_zone %>
-  </p>
-  <br>
-  <br>
-  <strong>Sharing? Link to show others any active habits that I have "made public": </strong>
-  <p>&nbsp &nbsp &nbsp &nbsp &nbsp <a href="<%= session[:site_url] %>/cheers/1/shared?shared_u=<%= current_user.id %>" target="_blank"><%= session[:site_url] %>/cheers/1/shared?shared_u=<%= current_user.id %></a>
-        <br>
-        &nbsp &nbsp &nbsp &nbsp &nbsp 
-        <a name="fb_share" type="button" share_url="<%= session[:site_url] %>/cheers/1/shared?shared_u=<%= current_user.id %>" href="http://www.facebook.com/sharer.php">My <%= session[:site_name]%> Progress</a><script src="http://static.ak.fbcdn.net/connect.php/js/FB.Share" type="text/javascript"></script>
-
-  </p>
-
-
-  <%
-  if current_user.number_of_active_habits > 1
-  %>
-    <br>
-    <br>
-    <strong>Combine any same-hour email check-ins into 1 email?</strong>
-    <p>
-    <%
-    if current_user.combine_daily_emails == 0
-    %>
-        <h4>
-        Currently set to NO. 
-        <br>
-        <a href="/account?set_combine_daily_emails=1">Change to YES.</a>
-        </h4>        
-    <%
-    else
-    %>
-        <h4>
-       Currently set to YES.
-        <br>
-        <a href="/account?set_combine_daily_emails=0">Change to NO.</a>
-        </h4>
-    <%
-    end
-    %>
-    </p>
-  <%
-  end
-  %>
-
-  
-  <p>
-  <% 
-    if @current_user_is_admin == 1
-      %>
-      <br>Current server time is <%= Time.now %>
-      <% Time.zone = @user.time_zone %>
-      <br>User time is <%= Time.zone.now %>
-      <br>User UTC offset is <%= Time.zone.formatted_offset(false) %><% #Save this value in each goal, and use that to do checkpoint searches w/ cronjob  %>
-      <br>Checkpoint emails scheduled to arrive at 12:00am midnight your time, or XXXX server time.
-      <%
-    end
-  %>
-</p>
- </div>
  <%= link_to 'Edit My Account Info', edit_account_path %> &nbsp | &nbsp
  <%= link_to 'Remove My Account', @user, :confirm => 'This will remove your account '+@user.email+', along with all of your goals, checkpoints and stats. Are you sure you want to do this? (This can not be undone.)', :method => :delete %>
  </p>
-<br>
-<br>
-<br>
 <br>
 <h3>Privacy</h3>
 <p>We will never sell your email address or share it with anyone. 

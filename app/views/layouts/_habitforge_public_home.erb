@@ -66,6 +66,9 @@ $(document).ready(function(){
     $(".slidingDiv").slideToggle();
     });
 });
+
+
+
 </script>
 
 
@@ -131,7 +134,20 @@ UserVoice.push(['showTab', 'classic_widget', {
 </script>
 
 
-
+<!-- LIKE IN ROSTINATOR -->
+<!-- TOGGLE SHOW/HIDE A DIV FROM SCRATCH, EASY !!! -->
+<script language="javascript" type="text/javascript">
+function toggle_show_hide(id) {
+    var div = document.getElementById(id);
+    div.style.display = ( div.style.display == "none") ? "block" : "none";
+}
+// example usage:
+//      <a href="#undefined" onclick="toggle_show_hide('rebuild_roster_form')" class="btn-add">Build Roster</a>
+//
+//      <div id="rebuild_roster_form" style="display:none;">
+//        some content
+//      <div>
+</script>
 
 </head>
 <!--[if lt IE 9]>
@@ -168,6 +184,7 @@ UserVoice.push(['showTab', 'classic_widget', {
         <!-- Press Logos End -->
 
 <!-- Logo Start -->
+<div style="margin-top:-40px;">
 <figure>
 
         <a href="/"><img src="/home/images/logos/habitforge_logo.png" width="300" alt="HabitForge logo" /></a>
@@ -175,6 +192,7 @@ UserVoice.push(['showTab', 'classic_widget', {
 
 
 </figure>
+</div>
 <!-- Logo End -->
 
 
@@ -209,7 +227,7 @@ UserVoice.push(['showTab', 'classic_widget', {
 
             <div>
                 <h3>Let's get you started with <%= session[:goal_template_text] %>! 
-                  <a href="?goal_template_text=&category=">(or, do something else)</a></h3>
+                  <a href="?goal_template_text=&category=" style="text-decoration:underline;">(or, do something else)</a></h3>
 
 
                 <form action="/quicksignup_v2">
@@ -228,8 +246,7 @@ UserVoice.push(['showTab', 'classic_widget', {
             </div>
 
         <% else %>
-
-          <h2><a href="#" class="show_hide">Start a Habit</a> or <a href="#browse_recommended_habits">Browse Popular Habits</a></h2>
+          <h2><span>Join for free</span>, and add to our 1,206,273 Successful Days Logged!</h2>
 
             <% if retry_email_address %>
 
@@ -247,7 +264,7 @@ UserVoice.push(['showTab', 'classic_widget', {
                     </div>
             <% else %>
 
-                <div class="slidingDiv">
+                <div id="signup" style="display:block;">
 
             <% end %>
 
@@ -262,26 +279,21 @@ UserVoice.push(['showTab', 'classic_widget', {
                       -->
 
                       <input type="hidden" name="form_submitted" value=1>
+                       or <a href="#browse_recommended_habits" style="font-size:1.5em;text-decoration:underline;">Browse Popular Habits</a>
                   </form>
 
-
-                  <br><a href="#" class="show_hide">close</a>
 
               </div>
           </div>
         <% end %>
 
-
-
-
-
     </div>
 
-
-
-    <center>
-            <h2><a href="#" class="show_hide">Join for free</a>, and add to our 1,206,273 Successful Days Logged!</h2>
-    </center>
+  <div style="margin-top:-50px;">
+  <h4>Already a member? <a href='/user_session/new?skip_intro=1' ><span style="text-decoration:underline;">Log In</span></a>
+  </h4>
+  <p />
+  </div>
 
 
     <%= render :partial => "layouts/testimonials2" %>
@@ -303,14 +315,14 @@ UserVoice.push(['showTab', 'classic_widget', {
 
     <h3>How <span>It Works</span></h3><br />
     <div class="one_third">
-        <span class="teaser_icon alignleft">
+        <span class="alignleft">
             <img src="/home/images/mointor_icon.png" alt="img"  />
         </span>
         <h4>1. Decide</h4>
         <p>What could you do daily to improve your life? We all have room to improve. Pick one thing and get started! Life is short, so commit to taking action now!</p>
     </div>
     <div class="one_third">
-        <span class="teaser_icon alignleft">
+        <span class="alignleft">
             <img src="/home/images/brush_icon.png" alt="img"  />
         </span>
         <h4>2. Build your first habit</h4>
@@ -318,7 +330,7 @@ UserVoice.push(['showTab', 'classic_widget', {
     </div>
 
     <div class="one_third_last">
-        <span class="teaser_icon alignleft">
+        <span class="alignleft">
             <img src="/home/images/paperplane_icon.png" alt="img"  />
         </span>
         <h4>3. Click "Yes" or "No"</h4>
@@ -330,7 +342,7 @@ UserVoice.push(['showTab', 'classic_widget', {
 
 <article>
     <div>
-        <span class="teaser_icon alignleft">
+        <span class="alignleft">
             <img src="/home/images/briefcase_icon.png" alt="img"  />
         </span>
         <br>
@@ -361,10 +373,10 @@ UserVoice.push(['showTab', 'classic_widget', {
         <li>
             <ul>
                 <!-- NEED TO KEEP A DUMMY ONE AT THE FRONT TO DEAL W/ A BUG!!-->
-                <li class="segment-0"><a href="#" data-value="all"></a></li>
-                <li class="segment-1 selected-1"><a href="#" data-value="all">All</a></li>
-                <li class="segment-2"><a href="#" data-value="exercise">Exercise</a></li>
-                <li class="segment-3"><a href="#" data-value="healthy_foods">Healthy Foods</a></li>
+                <li class="segment-0"><a href="#" style="text-decoration:underline;" style="font-size:1.5em;text-decoration:underline;" data-value="all"></a></li>
+                <li class="segment-1 selected-1"><a href="#" style="font-size:1.5em;text-decoration:underline;" data-value="all">All</a></li>
+                <li class="segment-2"><a href="#" style="font-size:1.5em;text-decoration:underline;" data-value="exercise">Exercise</a></li>
+                <li class="segment-3"><a href="#" style="font-size:1.5em;text-decoration:underline;" data-value="healthy_foods">Healthy Foods</a></li>
             </ul>
         </li>
     </ul>
@@ -468,5 +480,32 @@ UserVoice.push(['showTab', 'classic_widget', {
 </footer>
 </section>
 <!-- Footer End -->
+
+
+  <!-- ### START GOOGLE ANALYTICS ### --> 
+  <script type="text/javascript">
+  var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+  document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+  </script>
+  <script type="text/javascript">
+  try {
+  var pageTracker = _gat._getTracker("UA-10841267-1");
+  pageTracker._trackPageview();
+  } catch(err) {}
+  </script>
+  <!-- ### END GOOGLE ANALYTICS ### --> 
+
+
+  <% if session[:production] %>
+  <!-- ### START CRAZY EGG HEAT MAP -->
+  <script type="text/javascript">
+  setTimeout(function(){var a=document.createElement("script");
+  var b=document.getElementsByTagName("script")[0];
+  a.src=document.location.protocol+"//dnn506yrbagrg.cloudfront.net/pages/scripts/0013/7909.js?"+Math.floor(new Date().getTime()/3600000);
+  a.async=true;a.type="text/javascript";b.parentNode.insertBefore(a,b)}, 1);
+  </script>
+  <!-- ### END CRAZY EGG HEAT MAP -->
+  <% end %>
+
 </body>
 </html>

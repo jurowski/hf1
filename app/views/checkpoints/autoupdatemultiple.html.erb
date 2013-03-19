@@ -71,22 +71,26 @@ else
 
           <table width=100% cellpadding=0 cellspacing=0 border=0>
             <tr>
-              <td  width=100%>
+              <td  width=100% nowrap>
                 <h2>...<%= goal_additional.title %>?</h2>
-                  <h3>  
-                  <label><input type="radio" name="status_<%= id %>" value="yes" <% if @checkpoint.status == "yes" %> checked="checked" <% end %> />   <font color="black">Yes</font></label>
+                  <h3>
+                    <input type="radio" name="status_<%= id %>" value="yes" <% if @checkpoint.status == "yes" %> checked="checked" <% end %> />   <font color="red">Yes</font>
                     &nbsp 
-                  <label><input type="radio" name="status_<%= id %>" value="no" <% if @checkpoint.status == "no" %> checked="checked" <% end %> />   <font color="black">No</font></label>
-                  </h3>
+                  <input type="radio" name="status_<%= id %>" value="no" <% if @checkpoint.status == "no" %> checked="checked" <% end %> />   <font color="red">No</font>
+                </h3>
               </td>
             </tr>
           </table>
           <br>
 
-        <h4><%= link_to_function ("Add a Note") {
+        <h4>
+        <a href="#undefined" onclick="toggle_show_hide('note_<%= @checkpoint.id %>');">Add a Note</a>
+
+          <!-- link_to_function ("Add a Note") {
          |page| page.visual_effect :toggle_appear, "note_#{@checkpoint.id}" 
         } 
-        %></h4>
+        -->
+        </h4>
         <div id="note_<%= @checkpoint.id %>" style="display:none;">
             <br>
             <textarea cols="80" rows="4" name="comment_<%= id %>"><%= @checkpoint.comment %></textarea> 

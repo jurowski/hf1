@@ -1,0 +1,197 @@
+
+      <ul>
+        <li>
+          <!-- BEGIN SIDEBAR TOGGLER BUTTON -->
+          <div class="sidebar-toggler hidden-phone"></div>
+          <!-- BEGIN SIDEBAR TOGGLER BUTTON -->
+        </li>
+
+
+
+        <!-- #### START CUSTOM LIST MENU ITEMS SGJ #### -->
+        <% if current_user %>
+
+          <!-- MESSAGES -->
+          <li <% if @cn == "tomessages" or @cn == "frommessages" %>class="active"<% end %>>
+
+
+            <%
+            @tomessages = Tomessage.find(:all, :conditions => "to_id = '#{current_user.id}' and unread = 1")
+            if @tomessages %>
+               <a href="/tomessages">
+	            <i class="icon-envelope"></i> 
+	            <%
+                if @tomessages.size > 0 %>
+	              <span class="title"><%= @tomessages.size %> New Messages</span>
+                 </a>
+                <% else %>
+	              <span class="title"> Messages (0 New)</span>
+                <% end %>
+				</a>
+            <%
+            end
+            %>
+          </li>
+          <!-- END MESSAGES -->
+
+        <% end ### end if current_user %>
+
+        <!-- BLOG -->
+        <li><a href="http://habitforge.wordpress.com" >Blog</a>
+        </li> 
+
+
+        <% if !current_user %>
+          <li>
+          	<%= link_to "<i class='icon-home'></i>About", "/" %>
+          </li>
+
+          <li>
+            <a href="/" ><i class='icon-plus'></i>Sign up Free!</a>
+          </li>
+
+          <li
+            <% if @cn == "user_sessions" and @ca == "new" %> 
+              class="active" 
+            <% end %>
+          >
+          	<%= link_to "<i class='icon-signin'></i>Log In", new_user_session_path + "?skip_intro=1" %>
+          </li>
+
+        <% else %>
+
+          <% if @cn == "goals" or @cn == "checkpoints" %> 
+            <li class="active">
+              <a href="/goals">
+              <i class="icon-cogs"></i> 
+              <span class="title">My Habits</span>
+              <span class="selected"></span>
+              </a>   
+            </li>
+          <% else %>
+            <li>
+              <a href="/goals">
+              <i class="icon-cogs"></i> 
+              <span class="title">My Habits</span>
+              </a>   
+            </li>
+          <% end %>
+
+
+
+
+
+        
+        <% if current_user and fully_logged_in %>
+          <li <% if @cn == "users" %>class="active" <% end %>>
+
+              <%= link_to "<i class='icon-user'></i>Account Info", account_path %>
+          </li>
+        <% end %>
+
+              <li 
+              <% if @cn == "cheers" %> 
+                class="active" 
+              <% end %>
+              ><%= link_to "<i class='icon-group'></i>Friends", "/cheers" %></li>
+
+
+          <li><a href="#" onclick="return popitup_bigger1('/support_points.html')" %>
+                                <i class='icon-trophy'></i>SupportPoints (
+            <% if !current_user.supportpoints %>
+                                    0     
+                                <% else %>
+                                      <%= current_user.supportpoints %>
+                                <% end %>
+              )
+              </a>
+            </li>
+
+
+                      <% 
+                      if current_user and current_user.is_affiliate != nil and current_user.is_affiliate == 1 
+                          affiliate = Affiliate.find(:first, :conditions => "email = '#{current_user.email}'")
+                          if affiliate
+                          %>
+                              <li>
+                                  <%=link_to 'Affiliate', '/affiliates/show/' + affiliate.id.to_s %>
+                              </li>                    
+                          <%
+                          end
+                      end
+                      %>
+
+
+
+                <% if current_user and current_user.is_a_coach != nil and current_user.is_a_coach == 1 and current_user.coach_id !=nil %>
+                    <li>
+                        <%=link_to 'Coaching', '/coaches/show/' + current_user.coach_id.to_s %>
+                    </li>
+                <% end %>
+          <li 
+          <% if @cn == "users" and @ca == "show" %> 
+            class="active" 
+          <% end %>
+        >
+        </li>
+
+
+
+
+
+        <% if current_user and current_user.is_admin %>
+            <li><%= link_to 'Users', '/users' %></li>
+            <li><%= link_to 'New user', new_account_path %></li>
+            <li><%= link_to 'Affiliates', affiliates_path %></li>
+            <li><%= link_to 'Coaches', coaches_path %></li>
+            <p>
+            (<%= pluralize User.logged_in.count, "user" %> currently logged in)
+            </p> <!-- This based on last_request_at, if they were active < 10 minutes they are logged in -->
+          <% end %>
+          <% #"Current Page: " + @cn + "/" + @ca  %>
+        <% end %>
+
+        <% if (current_user or @ca == "autoupdate" or @ca == "autoupdatemultiple") and (session[:site_name] == "habitforge" or session[:sponsor] == "habitforge")
+              date_expire = dnow
+              if current_user
+                  date_expire = current_user.kill_ads_until
+              else
+                if @ca == "autoupdate"
+                    if @checkpoint.goal != nil
+                        date_expire = @checkpoint.goal.user.kill_ads_until
+                    end
+                end
+                if @ca == "autoupdatemultiple"
+                    if @goal != nil
+                        date_expire = @goal.user.kill_ads_until
+                    end
+                end
+              end
+              if date_expire != nil
+                  if dnow <= date_expire
+                  %>
+                      <br>
+                      <li>
+                      <%
+                      if date_expire < (dnow + 60)
+                      %>                                
+                              <%= link_to "<font color='red'>Renew Now! (Expires #{date_expire.strftime("%b %d, %Y")})</font>", account_path %>
+                      <%
+                      end
+                      %>
+                      </li>
+                  <%
+                  end
+              end
+        end 
+        %>
+        <% if current_user and fully_logged_in %>
+          <li>
+              <%= link_to "<i class='icon-off'></i>Log Out #{current_user.first_name}", user_session_path, :method => :delete %>            
+          </li>
+        <% end %>
+
+        <!-- #### END CUSTOM LIST MENU ITEMS SGJ ####### -->
+
+
+      </ul>
