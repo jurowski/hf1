@@ -29,9 +29,11 @@ if current_user
 else
   if @ca == "autoupdate"
       the_user_id = @checkpoint.goal.user.id.to_s
+      current_user = @checkpoint.goal.user
   end
   if @ca == "autoupdatemultiple"
       the_user_id = @goal.user.id.to_s
+      current_user = @goal.user
   end
 end
 #### END SET THE USER ID FOR URL STRINGS
