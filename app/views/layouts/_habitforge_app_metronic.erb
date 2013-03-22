@@ -403,7 +403,7 @@ UserVoice.push(['showTab', 'classic_widget', {
         <% 
         ##########################################################
         ######## START PASSWORD AND TIME ZONE SETTING ############
-        if current_user and fully_logged_in and @ca != "edit" and (current_user.password_temp != nil and current_user.password_temp != "")
+        if current_user and fully_logged_in and @ca != "edit" and @ca != "new" and (current_user.password_temp != nil and current_user.password_temp != "")
           if current_user.last_activity_date != current_user.dtoday
             current_user.last_activity_date = current_user.dtoday
             current_user.save
