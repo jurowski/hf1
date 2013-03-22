@@ -216,7 +216,7 @@ class ApplicationController < ActionController::Base
               ### InfusionSoft email link where we only have their email address
 
               #### DANGER ... restricting to all but "user" below ...
-              if session[:email] and session[:single_login] and (!request.url.to_s.include? "/user" and !request.url.to_s.include? "/account")
+              if session[:email] and session[:single_login] and ((!request.url.to_s.include? "/user") and (!request.url.to_s.include? "/account"))
                 begin
                   user = User.find(:first, :conditions => "email = '#{session[:email]}'")
                   if user
