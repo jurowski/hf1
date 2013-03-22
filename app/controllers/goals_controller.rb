@@ -285,7 +285,7 @@ logger.debug "SGJ2 2 #{goal.title}(#{goal.id}) #{goal.daysstraight} daysstraight
     
     if current_user
       logger.info("sgj:fumfin:current_user.email = " + current_user.email)
-      logger.info("sgj:fumfin:!current_user.is_habitforge_supporting_member.to_s = " + !current_user.is_habitforge_supporting_member)
+      #logger.info("sgj:fumfin:!current_user.is_habitforge_supporting_member.to_s = " + !current_user.is_habitforge_supporting_member)
       if session[:site_name]
         logger.info("sgj:fumfin:session[:site_name] = " + session[:site_name].to_s)
       end
@@ -296,6 +296,7 @@ logger.debug "SGJ2 2 #{goal.title}(#{goal.id}) #{goal.daysstraight} daysstraight
     end ### end if current_user
 
     if (session[:site_name] == "habitforge" or session[:sponsor] == "habitforge") and !current_user.is_habitforge_supporting_member
+      logger.info("sgj:fumfin:got in 1")
 
       if current_user.number_of_active_habits > 0
           restrict = true
