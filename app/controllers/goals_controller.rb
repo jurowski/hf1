@@ -283,6 +283,18 @@ logger.debug "SGJ2 2 #{goal.title}(#{goal.id}) #{goal.daysstraight} daysstraight
     ### If they are restricted to 1 active goal, redirect away
     restrict = false
     
+    if current_user
+      logger.info("sgj:fumfin:current_user.email = " + current_user.email)
+      logger.info("sgj:fumfin:!current_user.is_habitforge_supporting_member.to_s = " + !current_user.is_habitforge_supporting_member.to_s)
+      if session[:site_name]
+        logger.info("sgj:fumfin:session[:site_name] = " + session[:site_name].to_s)
+      end
+      if session[:sponsor]
+        logger.info("sgj:fumfin:session[:sponsor] = " + session[:sponsor].to_s)
+      end
+      logger.info("sgj:fumfin:current_user.number_of_active_habits = " + current_user.number_of_active_habits.to_s)
+    end ### end if current_user
+
     if (session[:site_name] == "habitforge" or session[:sponsor] == "habitforge") and !current_user.is_habitforge_supporting_member
 
       if current_user.number_of_active_habits > 0
