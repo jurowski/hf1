@@ -320,6 +320,12 @@ UserVoice.push(['showTab', 'classic_widget', {
           </div>
         </noscript>
 
+        <% if request.env['HTTP_USER_AGENT'] =~ /MSIE/i %>
+          <div class="alert alert-error" id="noscript-warning">
+          <button class="close" data-dismiss="alert"></button>
+          <strong>Site not looking quite right? Please consider using Firefox or Chrome!</strong> <%= @site_name %> works best with browsers that conform to web standards. Internet Explorer (IE) is not one of those browsers. While we are  working to develop workarounds for the 12% of our users who come to us with IE, as all web developers know, it is a huge undertaking, so please pardon the dust in the meantime, or come back via Firefox, Chrome, Safari, or another standards-based browser!" --Sorry for that ... Sandon Jurowski (support@habitforge.com)
+          </div>
+        <% end %>
 
         <% if current_user and current_user.is_admin and (params[:impersonate] or session[:impersonate]) %>
             <div class="alert alert-error" id="noscript-warning">
@@ -473,7 +479,7 @@ UserVoice.push(['showTab', 'classic_widget', {
 
         <!-- BEGIN LOGO -->
         <a class="brand" href="/">
-        <img src="/home/images/logos/habitforge_logo.png" alt="logo" width="150px"/>
+        <img src="/home/images/logos/habitforge_logo_small.png" alt="logo"/>
         </a>
         <!-- END LOGO -->
         <!-- BEGIN RESPONSIVE MENU TOGGLER -->

@@ -1,5 +1,12 @@
 /*  SGJ CUSTOM  */
 
+/*  
+http://www.maratz.com/blog/archives/2010/07/06/fix-html-resized-images-in-internet-explorer/
+HTML resized images in Internet Explorer look like crap, unless you add the following line in IE-speciffic CSS:
+*/
+img { -ms-interpolation-mode: bicubic; }
+
+
 .the_date {
 display:block;
 text-align: center;
