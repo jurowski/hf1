@@ -284,10 +284,23 @@ logger.debug "SGJ2 2 #{goal.title}(#{goal.id}) #{goal.daysstraight} daysstraight
     restrict = false
     
     if (session[:site_name] == "habitforge" or session[:sponsor] == "habitforge") and !current_user.is_habitforge_supporting_member
-    
-      if current_user.number_of_active_habits > 0
-          restrict = true
-      end
+
+
+      if current_user
+        if current_user.number_of_active_habits > 0
+            restrict = true
+        end
+      else
+        if params[:email]
+          user = User.find(:first, :conditions => "email = '#{params[:email]}'")
+          if user
+            if user.number_of_active_habits > 0
+                restrict = true
+            end
+          end
+        end
+      end    
+      
     end
 
     if restrict == true
@@ -336,6 +349,9 @@ logger.debug "SGJ2 2 #{goal.title}(#{goal.id}) #{goal.daysstraight} daysstraight
           @goal.response_question = @goal.title
       end
 
+      if params[:category]
+        session[:category] = params[:category]
+      end
       if session[:category]
         @goal.category = session[:category]
       end
