@@ -181,9 +181,9 @@ end
         session[:layout_number] = 2
         sponsor_layout = "layouts/habitforge_public_home.erb"
       end
-      if !current_user
-        logger.info("sgj:showing home page layout #" + session[:layout_number].to_s)
-      end
+      #if !current_user
+      # logger.info("sgj:showing home page layout #" + session[:layout_number].to_s)
+      #end
     end
     %>
     <%= render :partial => sponsor_layout %>

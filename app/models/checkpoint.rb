@@ -7,8 +7,13 @@ class Checkpoint < ActiveRecord::Base
 
   def update_status(status, comment = "")
       if self.goal
-        logger.info("sgj:checkpoint.rb:update_status for " + self.goal.title)
+        if status == "yes"
+          logger.info("sgj:checkpoint.rb:update_status: " + self.goal.user.first_name + " succeeded at " + self.goal.title + " on " + self.checkin_date.to_s)
+        else
+          logger.info("sgj:checkpoint.rb:update_status: " + self.goal.user.first_name + " did not succeed with " + self.goal.title + " on " + self.checkin_date.to_s)
+        end
       end
+      
       success = true
       begin    
         self.status = status
