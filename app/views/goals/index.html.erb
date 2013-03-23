@@ -825,9 +825,18 @@ http://localhost:3000/goals?update_checkpoint_status=yes&date=2012-02-12&e0=106&
 				      end
 
 
+                      slacker_really_is_slacking = true
+                      begin
+                          ### do not prompt to push this person if they are meeting their 
+                          ### days-per-week goal
+                          if slacker_goal.success_count_during_past_n_days(7) >= slacker_goal.goal_days_per_week
+                            slacker_really_is_slacking = false
+                          end
+                      rescue
+                        logger.error("sgj:goal view:index.html error when seeing if slacker is really slacking goal_id:" + slacker_goal.id.to_s)
+                      end
 
-
-				      if slacker_has_at_least_one_button
+				      if slacker_really_is_slacking and slacker_has_at_least_one_button
 					%>
                 	                <div style="background-color:#F7F8E0;padding:5px;">	
 					<p>

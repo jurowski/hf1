@@ -733,7 +733,7 @@ class Goal < ActiveRecord::Base
     ### do not allow creation of checkpoints prior to the original start date
     if self.first_start_date != nil
       if check_date < self.start
-	return false
+	      return false
       end
     end
 
@@ -899,8 +899,32 @@ logger.debug "SGJ 3"
         if checkpoint.status == "yes"
           if (self.last_success_date == nil) or (checkpoint.checkin_date > self.last_success_date)
 	    self.last_success_date = checkpoint.checkin_date
+
             self.next_push_on_or_after_date = self.last_success_date + 3
             self.save
+
+            begin
+              ### now check to see what days are relevant, and bump the next push date as needed
+              check_date_relevant = self.next_push_on_or_after_date - 2
+              if !self.is_this_a_relevant_day(check_date_relevant.to_s)
+                self.next_push_on_or_after_date = self.next_push_on_or_after_date + 1
+              end
+
+              check_date_relevant = check_date_relevant + 1
+              if !self.is_this_a_relevant_day(check_date_relevant.to_s)
+                self.next_push_on_or_after_date = self.next_push_on_or_after_date + 1
+              end
+
+              check_date_relevant = check_date_relevant + 1
+              if !self.is_this_a_relevant_day(check_date_relevant.to_s)
+                self.next_push_on_or_after_date = self.next_push_on_or_after_date + 1
+              end
+
+              self.save
+            rescue
+              logger.error("sgj:goal.rb:error trying to move the push date forward for goal_id:" + self.id.to_s)
+            end
+
           end
         end
 
