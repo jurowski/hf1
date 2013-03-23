@@ -57,19 +57,7 @@ if request.domain.include? 'forittobe' or session[:sponsor] == "forittobe"
   @warnings = ""
   session[:site_url] = "http://forittobe.com"
 end
-if request.domain.include? 'marriagereminders' or session[:sponsor] == "marriagereminders"
-  session[:sponsor] = "marriagereminders"
-	session[:site_name] = "Marriage Reminders"
-  @support_email = "support@marriagereminders.com"
-	@site_name = "Marriage Reminders"
-  session[:support_email] = "support@marriagereminders.com"	
-  @site_name_format = "<h1><a href='#'><font color=#FFFFFF>#{@site_name}</font></a><font color=#eeeeee> [under construction]</font></h1>"
-	@tagline = "Your tagline here!"
-	@new_features = ""
-  @warnings = ""
 
-  session[:site_url] = "http://marriagereminders.com"
-end
 
 
 
@@ -91,14 +79,6 @@ else
 end
 
 
-##### TAKE THIS OUT ONCE reengagefocus is in production! !!!!
-#if session[:sponsor] == "reengagefocus"
-#  @hardware = "dev"
-#end
-
-
-
-
 ### GET DATE NOW ###
 jump_forward_days = 0
 
@@ -115,17 +95,9 @@ dyesterday = dnow - 1
 d2daysago = dnow - 2
 ######
 
-%>
-
-
-<%
 @cn = controller.controller_name 
 @ca = controller.action_name 
-%>
 
-
-
-<%
 #################### TEMPLATE GOAL NAMES/TITLES ###########################
     if params[:goal_template_text]
         session[:goal_template_text] = params[:goal_template_text]
@@ -141,17 +113,10 @@ d2daysago = dnow - 2
 if params[:affiliate_name]
     session[:affiliate_name] = params[:affiliate_name]
 end 
-################## END AFFILIATE ########################
-
-#################### AFFILIATE ###########################
 if params[:test_new_homepage]
     session[:test_new_homepage] = params[:test_new_homepage]
 end 
 ################## END AFFILIATE ########################
-
-%>
-
-<%
 
 ### default
 sponsor_layout = "layouts/#{session[:sponsor]}.erb"

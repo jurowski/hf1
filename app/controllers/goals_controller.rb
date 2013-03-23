@@ -295,7 +295,8 @@ logger.debug "SGJ2 2 #{goal.title}(#{goal.id}) #{goal.daysstraight} daysstraight
       logger.info("sgj:fumfin:current_user.number_of_active_habits = " + current_user.number_of_active_habits.to_s)
     end ### end if current_user
 
-    if (session[:site_name] == "habitforge" or session[:sponsor] == "habitforge") and !current_user.is_habitforge_supporting_member
+
+    if (session[:site_name] == nil or session[:site_name] == "" or session[:sponsor] == "") or (session[:site_name] == "habitforge" or session[:sponsor] == "habitforge") and !current_user.is_habitforge_supporting_member
       logger.info("sgj:fumfin:got in 1")
 
       if current_user.number_of_active_habits > 0
