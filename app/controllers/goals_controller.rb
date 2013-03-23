@@ -306,7 +306,11 @@ logger.debug "SGJ2 2 #{goal.title}(#{goal.id}) #{goal.daysstraight} daysstraight
     end
 
     if restrict == true
-        redirect_to("/goals?too_many_active_habits=1")
+        if params[:goal_template_text]
+          redirect_to("/goals?too_many_active_habits=1&goal_template_text=#{params[:goal_template_text]}")
+        else
+          redirect_to("/goals?too_many_active_habits=1")
+        end
     else
 
 

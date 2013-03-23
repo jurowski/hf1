@@ -98,6 +98,13 @@ if current_user or @ca == "autoupdate" or @ca == "autoupdatemultiple"
       end
   end #### END if current_user
 end ##### END if current_user or @ca == "autoupdate" or @ca == "autoupdatemultiple" 
+
+
+### do not distract them with ads if already asking them to upgrade
+if params[:too_many_active_habits]
+  show_ads = 0
+end
+
 ######################  END ADVERTISING #########################
 
 %>

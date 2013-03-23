@@ -14,9 +14,14 @@
 <!-- *********** -->
 <% if params[:too_many_active_habits] %>
     <div class="notice">
-        <h3>Free accounts are restricted to 1 active habit at a time. Unlock your potential 
+
+        <h3>Free accounts are restricted to 1 active habit at a time. <br>Unlock your potential 
         <% if session[:goal_template_text] and session[:goal_template_text] != "" %> 
           ... work on <%= session[:goal_template_text] %> and any other goals, all with premium features and no ads, 
+        <% else %>
+            <% if params[:goal_template_text] and params[:goal_template_text] != "" %>
+              ... work on <%= params[:goal_template_text] %> and any other goals, all with premium features and no ads, 
+            <% end %>
         <% end %>
        with a Premium Membership!
 
