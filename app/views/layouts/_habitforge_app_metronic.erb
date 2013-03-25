@@ -131,6 +131,9 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
 <!-- BEGIN HEAD -->
 <head>
   <meta charset="utf-8" />
+
+  <meta http-equiv="X-UA-Compatible" content="IE=9">
+
   <title>HabitForge | Simple Accountability. Positive Change.</title>
   <meta content="width=device-width, initial-scale=1.0" name="viewport" />
   <meta content="" name="description" />
@@ -330,7 +333,7 @@ UserVoice.push(['showTab', 'classic_widget', {
         <% if request.env['HTTP_USER_AGENT'] =~ /MSIE/i %>
           <div class="alert alert-error" id="noscript-warning">
           <button class="close" data-dismiss="alert"></button>
-          <strong>Site not looking quite right? Please consider using Firefox or Chrome!</strong> <%= @site_name %> works best with browsers that conform to web standards. Internet Explorer (IE) is not one of those browsers. While we are  working to develop workarounds for the 12% of our users who come to us with IE, as all web developers know, it is a huge undertaking, so please pardon the dust in the meantime, or come back via Firefox, Chrome, Safari, or another standards-based browser!" --Sorry for that ... Sandon Jurowski (support@habitforge.com)
+          <strong>IE users: Site not looking quite right? <a href="#" onclick="return popitup_bigger1('/ie.html')">Click for info.</a>
           </div>
         <% end %>
 
