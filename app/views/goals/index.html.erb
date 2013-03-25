@@ -907,38 +907,38 @@ http://localhost:3000/goals?update_checkpoint_status=yes&date=2012-02-12&e0=106&
     <br>
     <center>
     <%
-    #######################################
-    #####   SHOW MYFOODDIARY ADS
-    #if current_user.sponsor == "habitforge" and !current_user.is_habitforge_supporting_member and @lightbox_goal.get_daily_status_for(params[:date]) == "no" and params[:u] and params[:u] == "81847"
-    if current_user.sponsor == "habitforge" and !current_user.is_habitforge_supporting_member and @lightbox_goal.get_daily_status_for(params[:date]) == "no"
-      if @lightbox_goal.category == "Exercise" or @lightbox_goal.category == "Diet, Healthy Foods and Water"
-        ad_number_qty = 3
-        random_ad = rand(ad_number_qty) + 1 #between 1 and ad_number_qty
+#     #######################################
+#     #####   SHOW MYFOODDIARY ADS
+#     #if current_user.sponsor == "habitforge" and !current_user.is_habitforge_supporting_member and @lightbox_goal.get_daily_status_for(params[:date]) == "no" and params[:u] and params[:u] == "81847"
+#     if current_user.sponsor == "habitforge" and !current_user.is_habitforge_supporting_member and @lightbox_goal.get_daily_status_for(params[:date]) == "no"
+#       if @lightbox_goal.category == "Exercise" or @lightbox_goal.category == "Diet, Healthy Foods and Water"
+#         ad_number_qty = 3
+#         random_ad = rand(ad_number_qty) + 1 #between 1 and ad_number_qty
 
-                           if random_ad == 1
-                           %>
-<a href="https://www.myfooddiary.com/?aID=1128&amp;source=run_lr"><img src="//www.myfooddiary.com/affiliate/ads/run_lr.jpg" style="border:0;width:336px;height:280px;" alt="MyFoodDiary.com" /></a>
-                           <%
-                           end
+#                            if random_ad == 1
+#                            %>
+<!-- <a href="https://www.myfooddiary.com/?aID=1128&amp;source=run_lr"><img src="//www.myfooddiary.com/affiliate/ads/run_lr.jpg" style="border:0;width:336px;height:280px;" alt="MyFoodDiary.com" /></a>-->
+                            <%
+#                            end
 
-                           if random_ad == 2
-                           %>
-<a href="https://www.myfooddiary.com/?aID=1128&amp;source=field_lr"><img src="//www.myfooddiary.com/affiliate/ads/field_lr.jpg" style="border:0;width:336px;height:280px;" alt="MyFoodDiary.com" /></a>
-                           <%
-                           end
+#                            if random_ad == 2
+#                            %>
+<!-- <a href="https://www.myfooddiary.com/?aID=1128&amp;source=field_lr"><img src="//www.myfooddiary.com/affiliate/ads/field_lr.jpg" style="border:0;width:336px;height:280px;" alt="MyFoodDiary.com" /></a>-->
+                            <%
+#                            end
 
-                           if random_ad == 3
-                           %>
-<a href="https://www.myfooddiary.com/?aID=1128&amp;source=ipad_lr"><img src="//www.myfooddiary.com/affiliate/ads/ipad_lr.jpg" style="border
-:0;width:336px;height:280px;" alt="MyFoodDiary.com" /></a>
-                           <%
-                           end
+#                            if random_ad == 3
+#                            %>
+<!-- <a href="https://www.myfooddiary.com/?aID=1128&amp;source=ipad_lr"><img src="//www.myfooddiary.com/affiliate/ads/ipad_lr.jpg" style="border
+# :0;width:336px;height:280px;" alt="MyFoodDiary.com" /></a> -->
+                            <%
+#                            end
 
-        logger.warn("sgj:myfooddiary ad" + random_ad.to_s + " shown")
-      end ### end if exercise or diet
-    end ### end if habitforge and daily_status == no
-    #####    END SHOW MYFOODDIARY ADS
-    #######################################
+#         logger.warn("sgj:myfooddiary ad" + random_ad.to_s + " shown")
+#       end ### end if exercise or diet
+#     end ### end if habitforge and daily_status == no
+#     #####    END SHOW MYFOODDIARY ADS
+#     #######################################
     %>
     </center>
 

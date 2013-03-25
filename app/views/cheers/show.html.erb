@@ -165,10 +165,12 @@ if @my_checkpoints.size == 0
 <%
 else
 %>
-  <%= link_to_function ("All Checkpoints") {
+  <!-- link_to_function ("All Checkpoints") {
    |page| page.visual_effect :toggle_appear, "checkpoints_for_goal_#{goal.id}" 
   } 
-  %>
+  -->
+
+  <a href="#undefined" onclick="toggle_show_hide('checkpoints_for_goal_<%= goal.id %>')">All Checkpoints</a>
 
   <div id="checkpoints_for_goal_<%=goal.id %>" style="display:none;">
 
