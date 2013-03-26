@@ -139,6 +139,14 @@ UserVoice.push(['showTab', 'classic_widget', {
 <!-- LIKE IN ROSTINATOR -->
 <!-- TOGGLE SHOW/HIDE A DIV FROM SCRATCH, EASY !!! -->
 <script language="javascript" type="text/javascript">
+
+
+function toggle_show(id) {
+    var div = document.getElementById(id);
+    div.style.display = "block";
+}
+
+
 function toggle_show_hide(id) {
     var div = document.getElementById(id);
     div.style.display = ( div.style.display == "none") ? "block" : "none";
@@ -150,6 +158,22 @@ function toggle_show_hide(id) {
 //        some content
 //      <div>
 </script>
+
+<script language="javascript" type="text/javascript">
+function popitup(url) {
+  newwindow=window.open(url,'name','height=300,width=600');
+  if (window.focus) {newwindow.focus()}
+  return false;
+}
+function popitup_bigger1(url) {
+  newwindow=window.open(url,'name','height=600,width=1000');
+  if (window.focus) {newwindow.focus()}
+  return false;
+}
+
+</script>
+
+
 
 </head>
 <!--[if lt IE 9]>
@@ -168,8 +192,13 @@ function toggle_show_hide(id) {
         <li><a href="#" class="show_hide">Sign Up Free</a></li>
         <li><a href="#how">How It Works</a></li>
         <li><a href="#browse_recommended_habits">Browse Habits</a></li>
-        <li><a href="http://habitforge.wordpress.com">Blog</a></li>
-        <li><a href="#about">About Us</a></li>
+        <li><a href="http://habitforge.wordpress.com">Motivation</a></li>
+        <li>
+          <a href="#all_testimonials_anchor" onclick="toggle_show('all_testimonials')">
+          Testimonials
+          </a>
+        </li>
+        <li><a href="#about">About</a></li>
         <li><a href="/user_session/new?skip_intro=1">Log In</a></li>
     </ul>
 </nav>
@@ -291,25 +320,27 @@ function toggle_show_hide(id) {
 
     </div>
 
-  <div style="margin-top:-50px;">
-  <h4>Already a member? <a href='/user_session/new?skip_intro=1' ><span style="text-decoration:underline;">Log In</span></a>
-  </h4>
-  <p />
+    <div style="margin-top:-50px;">
+      <h4>Already a member? <a href='/user_session/new?skip_intro=1' ><span style="text-decoration:underline;">Log In</span></a>
+      </h4>
+      <p />
+    </div>
+
+    <div class="description">
+        <em>
+        <ul class="bxslider" style="padding-left:50px;" >
+        <%= render :partial => "layouts/testimonials2" %>
+        </ul>
+        </em>
+    </div>
+
   </div>
 
 
-    <%= render :partial => "layouts/testimonials2" %>
-
-
-        </div>
-
-
-        </div></center>
+  </div></center>
 </article>
 
-    <div class="clear"></div>
-
-
+<div class="clear"></div>
 
 <article>
 
@@ -445,7 +476,17 @@ function toggle_show_hide(id) {
     <!-- Portfolio End -->
 </article>
 
-
+<article>
+      <a name="all_testimonials_anchor" id="all_testimonials_anchor" />
+      <div id="all_testimonials" style="display:none;" class="description">
+        <h3>Testimonials</h3>
+        <em>
+        <ul>
+        <%= render :partial => "layouts/testimonials2" %>
+        </ul>
+        </em>
+      </div>
+</article>
 
 </section>
 <!-- Content End -->
