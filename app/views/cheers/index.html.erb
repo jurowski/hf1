@@ -145,7 +145,8 @@ begin
     dyesterday = dnow - 1
     d2daysago = dnow - 2
 
-    my_conditions = "category = '#{params[:category]}' and publish = '1' and daysstraight <> '9999' and laststatus = 'yes' and (laststatusdate = '#{dyesterday}' or laststatusdate = '#{d2daysago}')"
+    #my_conditions = "category = '#{params[:category]}' and publish = '1' and daysstraight <> '9999' and laststatus = 'yes' and (laststatusdate = '#{dyesterday}' or laststatusdate = '#{d2daysago}')"
+    my_conditions = "category = '#{params[:category]}' and publish = '1' and status != 'hold'"
 
     @goals = Goal.find(:all, :conditions => my_conditions, :order => "daysstraight desc")
     if @goals.size == 0 
@@ -153,28 +154,47 @@ begin
       %>
       <br>
       <br>
-      <h2>Who succeeded yesterday in the category of "<%= params[:category]%>"</h2>
+      <h2>Publicly Shared Active "<%= params[:category]%>" Habits:</h2>
       <br>
       <br>
       <%
       @goals.each do |goal| 
 
-        if goal.category != nil 
-          %>    
-          &nbsp &nbsp <strong><a href="/cheers/<%= goal.id %>/shared?shared_u=<%= goal.user.id %>"<% if current_user == nil %> target="_blank"<% end %>><%= goal.user.first_name %></a></strong>:  
-          <%= goal.title %>
-          <% 
-          if goal.daysstraight > 1 
-          %>
-            <strong><%= goal.daysstraight %></strong> days straight.              
-          <% 
-          end  
-          %>
-          <br>  
-          <% 
-        end 
+        begin
+          if goal.category != nil and goal.user.first_name != "unknown" and goal.user.id != current_user.id
+            %>    
 
 
+              <p><img src="/images/comment_user_add_32.png" /> <a href="/tomessages/new?gid=<%=goal.id.to_s%>&tomessage_subject=<%= goal.response_question %>&to_id=<%= goal.user.id %>" >Send <%= goal.user.first_name %> a Message about <%= goal.response_question %></a>
+              • 
+              <% if goal.success_rate_percentage != nil %>
+                   <%= goal.success_rate_percentage %>% Success Rate 
+              <% end %>
+              <% if goal.days_into_it != nil %>
+                   during the last 30 days
+              <% end %>
+
+              <% if goal.daysstraight != nil and goal.daysstraight != 9999 %>
+                  ... <%= goal.daysstraight %> days in a row
+              <% end %>
+
+              <% if goal.laststatusdate != nil and goal.laststatus != nil %>
+              <% else %>              
+                   (has not yet checked in)
+              <% end %> 
+              </p>
+
+
+            <!--&nbsp &nbsp <strong><a href="/cheers/<%= goal.id %>/shared?shared_u=<%= goal.user.id %>" -->
+            <!-- if !current_user %> target="_blank"< end >><= goal.user.first_name ></a></strong>:  
+            < goal.title -->
+
+            <% 
+          end 
+
+        rescue
+          logger.error("sgj:views:cheers:index.html.erb: error displaying goal.id:" + goal.id.to_s)
+        end
 
       end 
 
@@ -186,10 +206,10 @@ begin
       <%
     end
   else
-  %>
-  <h2>Who Succeeded Yesterday?</h2>
-  <h5>(Click a category to see the list)</h5>
-  <%
+    %>
+    <h2>Who's Working on What?</h2>
+    <h5>(Click a category to see the list)</h5>
+    <%
   end
   %>
 </p>

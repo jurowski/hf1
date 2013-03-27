@@ -34,13 +34,65 @@
 <% else %>
     <h1>New message to <%= @to_user.first_name %></h1>
 
+    <%
+    subject_value = "You can do it!!!"
+
+    arr_subject = Array.new
+
+    if params[:tomessage_subject] and params[:gid]
+      begin
+
+        goal = Goal.find(params[:gid].to_i)
+        if goal and goal.success_rate_percentage != nil
+
+          if (goal.goal_days_per_week/7).to_i >= goal.success_rate_percentage
+
+            arr_subject.push(["Great job with your '" + params[:tomessage_subject] + "' goal!"])
+            arr_subject.push(["You can do it! Keep up your '" + params[:tomessage_subject] + "' habit!"])
+            arr_subject.push(["Keep up the good work with '" + params[:tomessage_subject] + "'!"])
+
+            random_number = 0
+            random_number = rand(arr_subject.size) + 0 #between 0 and arr_subject.size
+            random_subject = arr_subject[random_number]
+
+            subject_value = random_subject.to_s
+
+          else
+            arr_subject.push(["Good luck with " + params[:tomessage_subject] + "!"])
+            arr_subject.push(["You can do it! Keep " + params[:tomessage_subject] + "!"])
+            arr_subject.push(["Remember how important it is to keep " + params[:tomessage_subject] + "!"])
+
+            random_number = 0
+            random_number = rand(arr_subject.size) + 0 #between 0 and arr_subject.size
+            random_subject = arr_subject[random_number]
+
+            subject_value = random_subject.to_s
+
+          end
+
+
+        end
+
+      rescue
+        logger.error("sgj:view:tomessages:view:error getting random subject")
+      end
+    end
+
+    simple_subject = "a little support"
+    if current_user and current_user.first_name != "unknown"
+      simple_subject = simple_subject + " from " + current_user.first_name
+    end
+    %>
+
       <p>
         <%= f.label :subject %><br />
-        <%= f.text_field(:subject, :size => "80") %>
+
+
+        <input id="tomessage_subject" name="tomessage[subject]" value="<%= simple_subject %>" type="text" length="100">
       </p>
       <p>
         <%= f.label :body %><br />
-        <%= f.text_area(:body, :size => "80x20") %>
+        <textarea cols="80" id="tomessage_body" name="tomessage[body]" rows="20"><%= subject_value %></textarea>
       </p>
       <p>
 
