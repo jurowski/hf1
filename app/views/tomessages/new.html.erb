@@ -36,6 +36,7 @@
 
     <%
     subject_value = "You can do it!!!"
+    subject_value_default = true
 
     arr_subject = Array.new
 
@@ -56,6 +57,7 @@
             random_subject = arr_subject[random_number]
 
             subject_value = random_subject.to_s
+            subject_value_default = false
 
           else
             arr_subject.push(["Good luck with " + params[:tomessage_subject] + "!"])
@@ -67,6 +69,7 @@
             random_subject = arr_subject[random_number]
 
             subject_value = random_subject.to_s
+            subject_value_default = false
 
           end
 
@@ -92,7 +95,14 @@
       </p>
       <p>
         <%= f.label :body %><br />
-        <textarea cols="80" id="tomessage_body" name="tomessage[body]" rows="20"><%= subject_value %></textarea>
+        <textarea cols="80" id="tomessage_body" name="tomessage[body]" rows="20">
+          <% if !subject_value_default and params[:tomessage_subject] %>
+            I just wanted to send you some words of encouragement regarding your '<%= params[:tomessage_subject]%>' goal! You can do it! I really want to see you succeed!
+          <% else %>
+            <%= subject_value %>
+          <% end %>
+
+        </textarea>
       </p>
       <p>
 
