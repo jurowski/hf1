@@ -195,12 +195,12 @@ for goal in current_user.active_goals_sorted_by_next_action_day
     <!-- START PRINT HABIT -->    
     <!-- *********** -->
     <!-- BEGIN CUSTOM BUTTONS WITH ICONS PORTLET-->
-    <div class="portlet box blue">
+    <div class="portlet box blue" style="padding-top:5px;">
         <div class="portlet-title">
 
             <a name="jump_to_goal_id_<%= goal.id.to_s %>" />
-            <h4><span style="color:#ffffff;">
-            <% if goal.category and  goal.category != "None" and goal.category != "" and goal.category != "Other" %><%= goal.category %> <% end %>...<%= goal.title %>
+            <h4><span style="color:#ffffff;font-weight:bold;font-size:1.5em;">
+            <% if goal.category and  goal.category != "None" and goal.category != "" and goal.category != "Other" %><%= goal.category %>: <% end %>"<%= goal.title %>"
             &nbsp
             </span>
             </h4>
@@ -422,7 +422,7 @@ end
                         <p>
                         <i class='icon-pencil'></i> <%= link_to "Edit/Options", edit_goal_path(goal.id)  %>
                         &nbsp
-                        <i class='icon-calendar'></i> <a href="/goals/single/<%= goal.id %>">My History</a>
+                        <i class='icon-calendar'></i> <a href="/goals/single/<%= goal.id %>">All Checkpoints</a>
                         &nbsp
                         <i class='icon-pause'></i> <%= link_to 'Hold a While', "/goals/hold/#{@goal.id}", :confirm => 'If you put a goal on hold, you will stop getting emails about it.' %>
                         &nbsp
@@ -434,7 +434,7 @@ end
                     <%
                     if @goal.days_since_first_checkpoint > 30
                     %>
-                    <%= @goal.successful_days_in_a_row_without_9s %>straight, <%= @goal.percent_of_checkpoints_with_answer_of_yes(true) %>% Overall, <%= @goal.percent_of_checkpoints_with_answer_of_yes %>% last 30 days
+                    <%= @goal.successful_days_in_a_row_without_9s %> straight, <%= @goal.percent_of_checkpoints_with_answer_of_yes(true) %>% Overall, <%= @goal.percent_of_checkpoints_with_answer_of_yes %>% last 30 days
                     <%
                     else
                     %>
