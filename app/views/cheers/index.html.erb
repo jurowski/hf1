@@ -100,34 +100,38 @@ else
       @cheers.each do |cheer| 
         begin
           i = i + 1
-          %>
-          <div style="background-color:#eeeeee;border-width:medium;border-color:#eeeeee;">
-          <%=h cheer.goal.user.first_name %> <%=h cheer.goal.user.last_name %> is <%= cheer.goal.title %>.
-          <br>
-          <%= link_to "View Progress", cheer %>
-          &nbsp; 
-          •
-          &nbsp;
-          <a href="/tomessages/new?from_type=follower&to_id=<%= cheer.goal.user.id %>">Send <%= cheer.goal.user.first_name %> a Message!</a>
-          &nbsp; 
-          •
-          &nbsp;
-          <% if cheer.weekly_report %>
-            <a href="/cheers?stop_weekly_report=<%= cheer.id %>">Stop Emailing Weekly Report For This Goal</a>
-          <% else %>
-            <a href="/cheers?start_weekly_report=<%= cheer.id %>">Email Me a Weekly Report For This Goal</a>
-          <% end %>
+          if cheer.goal
+            %>
+            <div style="background-color:#eeeeee;border-width:medium;border-color:#eeeeee;">
+            <%=h cheer.goal.user.first_name %> <%=h cheer.goal.user.last_name %> is <%= cheer.goal.title %>.
+            <br>
+            <%= link_to "View Progress", cheer %>
+            &nbsp; 
+            •
+            &nbsp;
+            <a href="/tomessages/new?from_type=follower&to_id=<%= cheer.goal.user.id %>">Send <%= cheer.goal.user.first_name %> a Message!</a>
+            &nbsp; 
+            •
+            &nbsp;
+            <% if cheer.weekly_report %>
+              <a href="/cheers?stop_weekly_report=<%= cheer.id %>">Stop Emailing Weekly Report For This Goal</a>
+            <% else %>
+              <a href="/cheers?start_weekly_report=<%= cheer.id %>">Email Me a Weekly Report For This Goal</a>
+            <% end %>
 
-          •
-          &nbsp;
-          <%= link_to 'Stop Following', cheer, :confirm => 'Are you sure?', :method => :delete %>
-          </div>
-          <br>
-        <%
+            •
+            &nbsp;
+            <%= link_to 'Stop Following', cheer, :confirm => 'Are you sure?', :method => :delete %>
+            </div>
+            <br>
+            <%
+          end
         rescue
         %>
-          <i>This goal has been removed</i>
+          <!--This goal has been removed -->
+          </div>
           <% #cheer.destroy %>
+
         <%
         end
         %>
@@ -165,7 +169,14 @@ begin
             %>    
 
 
-              <p><img src="/images/comment_user_add_32.png" /> <a href="/tomessages/new?gid=<%=goal.id.to_s%>&from_type=member&tomessage_subject=<%= goal.response_question %>&to_id=<%= goal.user.id %>" >Send <%= goal.user.first_name %> a Message about <%= goal.response_question %></a>
+              <p>
+
+
+                <% if current_user %>
+                <a href="/cheers?start_following_goal_id=<%= goal.id.to_s %>&email=<%= current_user.email %>">Follow</a> or  
+                <% end %>
+
+                 <a href="/tomessages/new?gid=<%=goal.id.to_s%>&from_type=member&tomessage_subject=<%= goal.response_question %>&to_id=<%= goal.user.id %>" >Send <%= goal.user.first_name %> a Message about <%= goal.response_question %></a>
               • 
               <% if goal.success_rate_percentage != nil %>
                    <%= goal.success_rate_percentage %>% Success Rate 
@@ -229,7 +240,8 @@ end
 for arr in @arr
   %>
   <p>
-  &nbsp &nbsp &nbsp &nbsp &nbsp <a href='<%= session[:current_page] %>?show_winners=1&category=<%= arr[0] %>'><%= arr[0] %></a>
+    <!-- was making the link session[:current_page] -->
+  &nbsp &nbsp &nbsp &nbsp &nbsp <a href='/cheers?show_winners=1&category=<%= arr[0] %>'><%= arr[0] %></a>
   </p>
   <%
 end

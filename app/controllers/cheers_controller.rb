@@ -17,6 +17,14 @@ class CheersController < ApplicationController
         @cheers = Cheer.find(:all)
       else
 
+        if params[:start_following_goal_id] and params[:email] and current_user and current_user.email == params[:email]
+          new_cheer = Cheer.new()
+          new_cheer.email = params[:email]
+          new_cheer.goal_id = params[:goal_id].to_i
+          new_cheer.save
+          flash[:notice] = 'You are following a new goal!'
+        end
+
         if params[:stop_weekly_report]
           begin
             stop_cheer = Cheer.find(params[:stop_weekly_report].to_i)
