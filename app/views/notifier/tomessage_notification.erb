@@ -28,7 +28,27 @@ Subject: <%= @tomessage.subject %></strong>
                  <p>
                  (If the reply link doesn't work, log into HabitForge ( http://habitforge.com ) and click "Messages" in the top right corner.)
                  <br>
-                 You are receiving this message because <%= @from_user.first_name %> is either on your team or "following" your progress on a goal in HabitForge.
+                   You are receiving this message because <%= @from_user.first_name %> 
+                    <%
+                    case @from_type
+                    when "member"
+                      %>
+                      saw your public goal under the "Friends" tab in HabitForge and wanted to send you a message.
+                      <%
+                    when "follower"
+                      %>
+                      is following one of your goals in HabitForge.
+                      <%
+                    when "team"
+                      %>
+                      is on a team for one of your goals in HabitForge.
+                      <%
+                    else
+                      %>
+                      wanted to send you a message about one of your goals in HabitForge.
+                      <%
+                    end
+                    %>
                  <br>
                  </p>
                 </td>
@@ -36,7 +56,28 @@ Subject: <%= @tomessage.subject %></strong>
              <tr>
                 <td align="center">
                    <p>
-                   To manage your team membership, account or goals, log into <a href="http://habitforge.com">http://habitforge.com</a>
+
+                    <%
+                    case @from_type
+                    when "member"
+                      %>
+                     To change your goal to "Private" so that others cannot send messages, or to invite specific people to follow your goal (or to change your goal or account settings), log into <a href="http://habitforge.com">http://habitforge.com</a>
+                      <%
+                    when "follower"
+                      %>
+                     To remove a follower or to invite more people to follow (or to change your goal or account settings), log into <a href="http://habitforge.com">http://habitforge.com</a>
+                      <%
+                    when "team"
+                      %>
+                     To manage your team membership, account or goals, log into <a href="http://habitforge.com">http://habitforge.com</a>
+                      <%
+                    else
+                      %>
+                     To manage your goal settings or your account, log into <a href="http://habitforge.com">http://habitforge.com</a>
+                      <%
+                    end
+                    %>
+
                    </p>
 
                 </td>

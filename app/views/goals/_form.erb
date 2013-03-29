@@ -483,7 +483,7 @@ end
 <% else %>
   <%= check_box(:goal, :publish, options = {}, checked_value = "true", unchecked_value = "false") %>
 <% end %>
-Public: Other people can see <a href="<%= session[:site_url] %>/cheers/1/shared?shared_u=<%= current_user.id %>" target="_blank">my progress</a>
+Public: Anyone can see <a href="<%= session[:site_url] %>/cheers/1/shared?shared_u=<%= current_user.id %>" target="_blank">my progress</a>, and members can send messages about my goal.
 <% if current_user.sponsor == "habitforge" and !current_user.is_habitforge_supporting_member and current_user.id > 79152 %>
   <br>
     <input disabled="disabled" id="private" name="private" type="checkbox" />

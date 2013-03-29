@@ -86,24 +86,28 @@
       simple_subject = simple_subject + " from " + current_user.first_name
     end
     %>
-
+          <div class="alert info">Customize the subject and body below to give <%= @to_user.first_name %> some encouragement or to say "keep up the good work"!</div>
       <p>
         <%= f.label :subject %><br />
 
 
-        <input id="tomessage_subject" name="tomessage[subject]" value="<%= simple_subject %>" type="text" length="100">
+        <input id="tomessage_subject" name="tomessage[subject]" value="<%= simple_subject %>" type="text" length="100" style="width:95%;">
       </p>
       <p>
         <%= f.label :body %><br />
-        <textarea cols="80" id="tomessage_body" name="tomessage[body]" rows="20"><% if subject_value_default  and params[:tomessage_subject] %>I just wanted to send you some words of encouragement regarding your '<%= params[:tomessage_subject]%>' goal! You can do it! I really want to see you succeed!<% else %><%= subject_value %><% end %></textarea>
+        <textarea cols="80" id="tomessage_body" name="tomessage[body]" rows="10" style="width:95%;"><% if subject_value_default  and params[:tomessage_subject] %>I just wanted to send you some words of encouragement regarding your '<%= params[:tomessage_subject]%>' goal! You can do it! I really want to see you succeed!<% else %><%= subject_value %><% end %></textarea>
+
       </p>
       <p>
 
 <% end %>
 
+    <% if params[:from_type] %>
+    <input type=hidden name="from_type" value="<%= params[:from_type]%>">
+    <% end %>
 
     <input type=hidden name="to_id" value="<%= params[:to_id] %>">
-    <%= f.submit 'Send' %>
+    <input type="submit" value="Send My Message" class="start_now">
   </p>
 <% end %>
 

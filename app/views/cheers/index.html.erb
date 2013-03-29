@@ -108,7 +108,7 @@ else
           &nbsp; 
           •
           &nbsp;
-          <a href="/tomessages/new?to_id=<%= cheer.goal.user.id %>">Send <%= cheer.goal.user.first_name %> a Message!</a>
+          <a href="/tomessages/new?from_type=follower&to_id=<%= cheer.goal.user.id %>">Send <%= cheer.goal.user.first_name %> a Message!</a>
           &nbsp; 
           •
           &nbsp;
@@ -165,7 +165,7 @@ begin
             %>    
 
 
-              <p><img src="/images/comment_user_add_32.png" /> <a href="/tomessages/new?gid=<%=goal.id.to_s%>&tomessage_subject=<%= goal.response_question %>&to_id=<%= goal.user.id %>" >Send <%= goal.user.first_name %> a Message about <%= goal.response_question %></a>
+              <p><img src="/images/comment_user_add_32.png" /> <a href="/tomessages/new?gid=<%=goal.id.to_s%>&from_type=member&tomessage_subject=<%= goal.response_question %>&to_id=<%= goal.user.id %>" >Send <%= goal.user.first_name %> a Message about <%= goal.response_question %></a>
               • 
               <% if goal.success_rate_percentage != nil %>
                    <%= goal.success_rate_percentage %>% Success Rate 

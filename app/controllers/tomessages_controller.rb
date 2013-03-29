@@ -123,7 +123,13 @@ class TomessagesController < ApplicationController
 
         ### Notify the recipient that they have a message
         @from_user = current_user
-        Notifier.deliver_tomessage_notification(@to_user, @from_user, @tomessage) # sends the email
+
+
+        @from_type = "team"
+        if params[:from_type]
+          @from_type = params[:from_type]
+        end
+        Notifier.deliver_tomessage_notification(@to_user, @from_user, @tomessage, @from_type) # sends the email
 
         @frommessage = Frommessage.new()
         @frommessage.to_id = @tomessage.to_id
