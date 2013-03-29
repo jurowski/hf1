@@ -98,7 +98,7 @@ else
       <% 
       i = 0
       @cheers.each do |cheer| 
-        begin
+        #begin
           i = i + 1
           if cheer.goal
             %>
@@ -126,14 +126,16 @@ else
             <br>
             <%
           end
-        rescue
+        #rescue
         %>
-          <!--This goal has been removed -->
+          <!--This goal has been removed 
           </div>
+
+        -->
           <% #cheer.destroy %>
 
         <%
-        end
+        #end
         %>
       <% end %>
     <% end %>
