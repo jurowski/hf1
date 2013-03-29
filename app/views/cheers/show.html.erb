@@ -187,7 +187,7 @@ else
       <br>
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
       <%=h checkpoint.checkin_date.strftime("%a, %b %d, %Y") %>
-      <b><%=h checkpoint.status %></b>
+      <b><%=h checkpoint.status %></b> <% if checkpoint.comment %> <%= checkpoing.comment %> <% end %>
   <% end %>
   </div>
 <%
