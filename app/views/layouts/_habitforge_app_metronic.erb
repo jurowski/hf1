@@ -215,6 +215,12 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
   //      <div id="rebuild_roster_form" style="display:none;">
   //        some content
   //      <div>
+
+  function toggle_show(id) {
+      var div = document.getElementById(id);
+      div.style.display = "block";
+  }
+
   </script>
 
   <script language="javascript" type="text/javascript">
@@ -551,13 +557,28 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
     2013 &copy; Habit Research LLC
 
 
-    <a name="support" />
+
+
+
+
+    <!-- START USERVOICE DIV -->
+    <a name="jump_to_support" />
+    <div id="support" name="support" style="display:none;">
 
     <!-- UserVoice JavaScript SDK (only needed once on a page) -->
     <script>(function(){var uv=document.createElement('script');uv.type='text/javascript';uv.async=true;uv.src='//widget.uservoice.com/P2B1jKXL521DMteQKFTbQ.js';var s=document.getElementsByTagName('script')[0];s.parentNode.insertBefore(uv,s)})()</script>
 
     <!-- The Classic Widget will be embeded wherever this div is placed -->
     <div data-uv-inline="classic_widget" data-uv-mode="full" data-uv-primary-color="#cc6d00" data-uv-link-color="#007dbf" data-uv-default-mode="support" data-uv-forum-id="137021" data-uv-width="100%" data-uv-height="550px"></div>
+
+    </div> <!-- END USERVOICE DIV -->
+
+
+
+
+
+
+
 
   </div>
   <!-- END FOOTER -->
