@@ -185,6 +185,9 @@
               end
         end 
         %>
+        <li>
+          <a href="#support"><i class='icon-bullhorn'></i>Support and Feedback</a>
+        </li>
         <% if current_user and fully_logged_in %>
           <li>
               <%= link_to "<i class='icon-off'></i>Log Out #{current_user.first_name}", user_session_path, :method => :delete %>            
