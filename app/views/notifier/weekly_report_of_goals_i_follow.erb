@@ -75,7 +75,7 @@
       for goal in @arr_goals_to_email_me_about
         %>
 
-            <p><img src="/images/comment_user_add_32.png" /> <a href="/tomessages/new?to_id=<%= goal.user.id %>" >Send <%= goal.user.first_name %> a Message about <%= goal.response_question %></a>
+            <p><img src="/images/comment_user_add_32.png" /> <a href="/tomessages/new?from_type=follower&to_id=<%= goal.user.id %>" >Send <%= goal.user.first_name %> a Message about <%= goal.response_question %></a>
             • 
             <% if goal.success_rate_percentage != nil %>
                  Succeeding <%= goal.success_rate_percentage %>% of the last

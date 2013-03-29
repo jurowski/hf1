@@ -30,8 +30,9 @@ totalsize = @checkpoints.size
 
 <br>
 <br>
+
 <h3><%=h @cheer.goal.user.first_name %>'s Progress with "<%= @cheer.goal.title %>"</h3>
-<a href="/tomessages/new?to_id=<%= @cheer.goal.user.id %>">Send <%= @cheer.goal.user.first_name %> a Message!</a>
+<a href="/tomessages/new?from_type=follower&to_id=<%= @cheer.goal.user.id %>">Send <%= @cheer.goal.user.first_name %> a Message!</a>
 
 <br>
 <br>
