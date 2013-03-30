@@ -526,6 +526,12 @@ class UsersController < ApplicationController
       @user = @current_user # makes our views "cleaner" and more consistent      
     end
     
+
+    email_original = @user.email
+
+
+
+
     ### having periods in the first name kills the attempts to email that person, so remove periods
     @user.first_name = @user.first_name.gsub(".", "")
     
@@ -541,6 +547,16 @@ class UsersController < ApplicationController
 
       @user.password_temp = ""
       @user.save
+
+      email_now = @user.email
+      #### since we save cheers by email address, update it when that changes
+      if email_original != email_now
+        my_cheers = Cheer.find(:all, :conditions => "email = '#{email_original}'")
+        my_cheers.each do |cheer|
+          cheer.email = email_now
+          cheer.save
+        end
+      end
 
       @goals = Goal.find(:all, :conditions => "user_id = '#{@user.id}'")
       for goal in @goals

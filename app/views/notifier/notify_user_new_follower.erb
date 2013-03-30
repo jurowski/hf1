@@ -1,0 +1,133 @@
+<%
+    sitename = "habitforge.com"
+
+    arr_subject = Array.new
+    arr_subject.push(["Someone new is following your progress with '#{@goal.response_question} today!'"])
+    arr_subject.push(["You have a new follower for your '#{@goal.response_question}' goal!"])
+
+    if @follower.first_name != "unknown"
+      arr_subject.push(["#{@follower.first_name} is now following your #{@goal.response_question} habit!"])
+    end
+
+    random_number = 0
+    random_number = rand(arr_subject.size) + 0 #between 0 and arr_subject.size
+    random_subject = arr_subject[random_number]
+%>
+
+
+
+
+
+<html>
+<head>
+   <base href="http://<%= sitename %>/"/>
+   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <title>HabitForge Follower</title>
+   <style type="text/css" media="screen">
+      body {
+      	margin: 0;
+      	padding: 0;
+      }
+   </style>
+
+</head>
+<body>
+<a name="top" id="top"></a>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+   <tr>
+      <td align="left">         
+         <table width="580" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+               <td class="header" height="30">
+                  <img src="/images/habitforge_logo.png" alt="You have a new follower!" height="30" />
+               </td>
+            </tr>
+            <tr>
+               <td>  
+                  <table width="580" border="0" cellspacing="20" cellpadding="0">     
+                     <tr>
+                        <td width="580" align="left" valign="top" class="mainbar">
+                            <table border=0><tr><td valign=top align=center width=1%>
+                            
+                            
+                            <img src="/images/gear.png" alt=" " width="65px">
+                                </td>
+                                <td valign=top align=left width=99%>
+                                  <div style="padding:.8em;margin-bottom:1em;border:2px solid #ddd;background:#FFFFCC;color:#514721;border-color:#BBBBBB;">
+
+                                     <h3>Good <%= @goal.user.time_period_of_day_right_now %> <%= @goal.user.first_name %>!</h3>
+
+                                     <%= random_subject %>
+                                     <br>
+                                     <!-- (now hiding) random_closing -->
+                                 </div>
+                                </td></tr>
+
+
+
+
+                                
+                                <tr>
+                                <td>
+                                <br>
+                                </td>
+                                <td>                                
+                                <br>
+                                </td>
+                                </tr>
+                                
+
+                                
+                                
+                                
+                                
+                                                                
+                                
+                                
+                                
+                                </table>
+                        </td>
+                     </tr>
+                  </table>
+                  
+               </td>
+            </tr>
+            <tr>
+                <td colspan=100>
+                    
+                </td>
+            </tr>
+            <tr>
+                <td colspan=100>
+                    
+                </td>
+            </tr>
+            <tr>
+                <td colspan=100>
+                    
+                </td>
+            </tr>
+            <tr>
+                <td align="center" valign="top" class="footer">
+                   <p><i>If you do not want "<%= @follower.first_name %>" to follow your progress, you can remove them from the "Followers" tab in your goal. If you would like to make your goal "Private" so that no HabitForge members can follow it, log into http://<%= sitename %> and edit your goal's Visibility settings.</i></p>
+                </td>
+            </tr>
+            <tr>
+                <td colspan=100>
+                    
+                </td>
+            </tr>
+            <tr>
+                <td align="center" colspan=100>
+                    Questions? Email support@<%= sitename %>
+                </td>
+            </tr>
+         </table>
+         
+      </td>
+   </tr>
+</table>
+
+</body>
+</html>
+

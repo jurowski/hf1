@@ -401,6 +401,16 @@ class Notifier < ActionMailer::Base
     content_type "text/html"
   end
 
+
+  def notify_user_new_follower(goal, follower)
+    recipients  goal.user.email
+    bcc         ["jurowski@gmail.com"]
+    from        "HabitForge <noreply-messages@habitforge.com>"
+    subject     "[HF] You have a new follower!"
+    body        :goal => goal, :follower => follower
+    content_type "text/html"
+  end
+
   def daily_reminder_to_user(goal)
     recipients goal.user.email
     #recipients checkpoint.goal.user.first_name + "<" + checkpoint.goal.user.email + ">"
@@ -410,6 +420,9 @@ class Notifier < ActionMailer::Base
     body       :goal => goal
     content_type "text/html"
   end
+
+
+
 
   def daily_reminder_to_user_clearworth(goal)
     recipients goal.user.email
