@@ -190,9 +190,10 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
   <!-- javascript_include_tag :defaults -->
 
 
-  <!-- ShareThis
+  <!-- ShareThis-->  
   <script type="text/javascript">var switchTo5x=true;</script><script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script><script type="text/javascript">stLight.options({publisher:'6f618717-8285-4c8c-b5c7-4f9e1d5e2a92'});</script>
 
+  <!--
   <script type="text/javascript" src="/javascripts/jquery.validate.min.js"></script> 
   -->
   <!--Jquery Form Validation-->
@@ -272,6 +273,17 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
   <div id="spinner" class="spinner_overlay" style="display:none;">
   &nbsp
   </div>
+
+
+  <div id="fb-root"></div>
+  <script>(function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));</script>
+
 
 
   <!-- BEGIN HEADER -->
@@ -466,10 +478,13 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
         <blockquote class="pull-right" style="width:75%;">
           <p>"<%= random_quote_thought %>" </p>
           <small><%= random_quote_author %></small>
+         <span style="font-size:.8em;font-weight:light;" class= "pull-right"><-- (psst... spread the word!)</span><span  class='st_twitter pull-right' ></span><span  class='st_facebook pull-right' ></span><span  class='st_sharethis pull-right' ></span>
+
         </blockquote>
         <!-- END RANDOM QUOTE -->
         <!-- ####################### -->
 
+        
       </div>
     </div>
     <!-- END TOP NAVIGATION BAR -->
@@ -534,6 +549,9 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
           </div>
         </div>
         <!-- END PAGE HEADER-->
+
+
+
         <div>
           <!-- TIME OF DAY GREETING -->
           <% if current_user and !fully_logged_in %>
@@ -546,6 +564,20 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
           <br>
           <%= yield %>          
         </div>
+
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+
+        <hr />
+        <center>
+
+
+        <div class="fb-like-box" data-href="http://www.facebook.com/pages/habitforgecom/281059421608" data-width="292" data-show-faces="false" data-stream="false" data-header="true"></div>
+        </center>
       </div>
       <!-- END PAGE CONTAINER-->    
     </div>
@@ -572,7 +604,6 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
     <div data-uv-inline="classic_widget" data-uv-mode="full" data-uv-primary-color="#cc6d00" data-uv-link-color="#007dbf" data-uv-default-mode="support" data-uv-forum-id="137021" data-uv-width="100%" data-uv-height="550px"></div>
 
     </div> <!-- END USERVOICE DIV -->
-
 
 
 
