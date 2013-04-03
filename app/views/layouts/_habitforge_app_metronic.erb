@@ -190,10 +190,6 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
   <!-- javascript_include_tag :defaults -->
 
 
-  <!-- ShareThis-->  
-  <script type="text/javascript">var switchTo5x=true;</script>
-  <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
-  <script type="text/javascript" src="http://s.sharethis.com/loader.js"></script>
 
 
   <!--
@@ -260,6 +256,9 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
   }(document, 'script', 'facebook-jssdk'));</script>
 
 
+  <!-- ShareThis-->  
+  <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+  <script type="text/javascript">stLight.options({publisher: "6f618717-8285-4c8c-b5c7-4f9e1d5e2a92", doNotHash: true, doNotCopy: true, hashAddressBar: false});</script>
 
   <!-- ################################################## -->
   <!-- END CUSTOM SGJ JAVASCRIPT -->
@@ -481,6 +480,9 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
         <blockquote class="pull-right" style="width:75%;">
           <p>"<%= random_quote_thought %>" </p>
           <small><%= random_quote_author %></small>
+          <span class='st_pinterest pull-right' displayText='Pin!'></span>
+          <span class='st_twitter pull-right' displayText='Tweet!'></span>
+          <span class='st_facebook pull-right' displayText='Share!'></span>
         </blockquote>
         <!-- END RANDOM QUOTE -->
         <!-- ####################### -->
@@ -577,7 +579,12 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
         <center>
 
 
-        <div class="fb-like-box" data-href="http://www.facebook.com/pages/habitforgecom/281059421608" data-width="292" data-show-faces="false" data-stream="false" data-header="true"></div>
+        <div class="fb-like-box" data-href="http://www.facebook.com/pages/habitforgecom/281059421608" data-width="292" data-show-faces="true" data-stream="false" data-header="true"></div>
+        <br>
+          <span class='st_facebook_hcount' displayText='Share on Facebook'></span>
+          <span class='st_twitter_hcount' displayText='Tweet'></span>
+          <span class='st_pinterest_hcount' displayText='Pinterest'></span>
+
         </center>
       </div>
       <!-- END PAGE CONTAINER-->    
@@ -670,14 +677,6 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
   <% end %>
 
 
-  <!-- SHARETHIS -->
-  <!-- SHARETHIS -->
-
-  <script type="text/javascript">stLight.options({publisher: "6f618717-8285-4c8c-b5c7-4f9e1d5e2a92", doNotHash: false, doNotCopy: false, hashAddressBar: true});</script>
-  <script>
-  var options={ "publisher": "6f618717-8285-4c8c-b5c7-4f9e1d5e2a92", "logo": { "visible": true, "url": "http://habitforge.com", "img": "http://habitforge.com/home/images/logos/habitforge_logo_small.png", "height": 25}, "ad": { "visible": false, "openDelay": "5", "closeDelay": "0"}, "livestream": { "domain": "", "type": "sharethis", "customColors": { "widgetBackgroundColor": "#555555", "articleLinkColor": "#00acee"}}, "ticker": { "visible": false, "domain": "", "title": "", "type": "sharethis", "customColors": { "widgetBackgroundColor": "#555555", "articleLinkColor": "#00acee"}}, "facebook": { "visible": false, "profile": "habitforge"}, "fblike": { "visible": true, "url": "http://habitforge.com"}, "twitter": { "visible": false, "user": "habitforge"}, "twfollow": { "visible": true, "url": "http://twitter.com/habitforge"}, "custom": [{ "visible": false, "title": "Custom 1", "url": "", "img": "", "popup": false, "popupCustom": { "width": 300, "height": 250}}, { "visible": false, "title": "Custom 2", "url": "", "img": "", "popup": false, "popupCustom": { "width": 300, "height": 250}}, { "visible": false, "title": "Custom 3", "url": "", "img": "", "popup": false, "popupCustom": { "width": 300, "height": 250}}], "chicklets": { "items": ["facebook", "twitter", "pinterest", "googleplus", "email", "sharethis"]}, "background": "#c2c2c2", "color": "#555555"};
-  var st_bar_widget = new sharethis.widgets.sharebar(options);
-  </script>
 
   <!-- END JAVASCRIPTS -->
 
