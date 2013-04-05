@@ -1,0 +1,83 @@
+
+    <!--Begin HABIT_LIBRARY Section-->
+
+    <% 
+    url_prefix = "" 
+    if current_user
+    	url_prefix = "/goals/new"
+    end
+    %>
+
+    <a name="browse_recommended_habits" id="browse_recommended_habits" /> 
+    <!-- Portfolio Start -->
+    <ul class="splitter" id="filter">
+        <li>
+            <ul>
+                <!-- NEED TO KEEP A DUMMY ONE AT THE FRONT TO DEAL W/ A BUG!!-->
+                <li class="segment-0"><a href="#" style="text-decoration:underline;" style="font-size:1.5em;text-decoration:underline;" data-value="all"></a></li>
+                <li class="segment-1 selected-1"><a href="#" style="font-size:1.5em;text-decoration:underline;" data-value="all">All</a></li>
+                <li class="segment-2"><a href="#" style="font-size:1.5em;text-decoration:underline;" data-value="exercise">Exercise</a></li>
+                <li class="segment-3"><a href="#" style="font-size:1.5em;text-decoration:underline;" data-value="healthy_foods">Healthy Foods</a></li>
+            </ul>
+        </li>
+    </ul>
+
+    <div id="portfolio_4col" class="image_grid">
+    <ul id="list" class="da-thumbs">
+        <li data-id="id-1" class="exercise all">
+            <img src="/home/images/categories/shoe.jpg" alt="img" />
+            <div>
+              <a href="<%= url_prefix %>?goal_template_text=walking%20briskly%20for%2020%20minutes&category=Exercise">
+                <h3>20 Minutes of Brisk Walking</h3>
+                <p>Walking fast for 20 minutes or more each day is a great way to burn calories and boost your immune system.</p>
+                </a>
+            </div>
+        </li>
+        <li data-id="id-2" class="healthy_foods">
+            <img src="/home/images/categories/tomato.jpg" alt="img" />
+            <div>
+                <a href="<%= url_prefix %>?goal_template_text=eating%205%20servings%20of%20fruits%20or%20vegetables&category=Diet%2C%20Healthy%20Foods%20and%20Water">
+
+                <h3>5 Servings of Fruits or Vegetables</h3>
+                <p>Make your mother proud. Eat your veggies, OK?</p>
+                </a>
+            </div>
+        </li>
+        <li data-id="id-3" class="exercise">
+            <img src="/home/images/categories/athlete.jpg" alt="img" />
+            <div>
+                <a href="<%= url_prefix %>?goal_template_text=doing%20strength%20training%20or%20cardio&category=Exercise">
+                <h3>Strength Training or Cardio</h3>
+                <p>Do something every day to get stronger and increase your endurance.</p>
+                </a>
+            </div>
+        </li>
+        <li data-id="id-4" class="exercise">
+            <img src="/home/images/categories/jogger.jpg" alt="img" />
+            <div>
+                <a href="<%= url_prefix %>?goal_template_text=going%20for%20a%20run&category=Exercise">
+                <h3>Going for a Run</h3>
+                <p>A great way to recharge your batteries.</p>
+                </a>
+            </div>
+        </li>
+        <li data-id="id-5" class="healthy_foods">
+            <img src="/home/images/categories/water.jpg" alt="img" />
+            <div>
+                <a href="<%= url_prefix %>?goal_template_text=drinking%208%20glasses%20of%20water&category=Diet%2C%20Healthy%20Foods%20and%20Water">
+                <h3>8 Glasses of Water</h3>
+                <p>It takes a lot of fluids to run a high-powered machine.</p>
+                </a>
+            </div>
+        </li>
+        <li data-id="id-6" class="healthy_foods exercise all">
+            <img src="/home/images/categories/question.jpg" alt="img" />
+            <div>
+              <a href="<%= url_prefix %>?goal_template_text=&category=s">
+                <h3>Build your own</h3>
+                <p>What could you do daily to improve your life?</p>
+                </a>
+            </div>
+        </li>
+    </ul>
+    </div>

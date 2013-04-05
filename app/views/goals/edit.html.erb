@@ -2,10 +2,15 @@
 begin
 %>
 
-  <h1>Habit Options</h1>
+  <% if @goal.template_owner_is_a_template %>
+    <h1>Template Habit Options</h1>
+    <hr>
+  <% else %>
+    <h1>My Habit Options</h1>
+    <hr>
+    <a href="/goals/single/<%= @goal.id %>">My History</a>
+  <% end %>
 
-  <hr>
-  <a href="/goals/single/<%= @goal.id %>">My History</a>
 
 
   <% 
@@ -31,15 +36,22 @@ begin
   <% form_for(@goal) do |f| %>
     <%= f.error_messages %>
     <%= render :partial => "form", :object => f %>
-  <% if @goal.status == "hold" %>
-        <!--<div class="notice">
-            WARNING: By clicking "Save and Re-Activate" below, your history (the old checkpoint days and comments) WILL BE DELETED so that the success rate will stay relevant and accurate. THIS CAN NOT BE UNDONE.
-        </div>
-      -->
-    <%= f.submit 'Save and Re-Activate' %>
+
+
+  <% if @goal.template_owner_is_a_template %>
+    <input type="submit" value="Save Changes to This Template" class="start_now" style="height:50px;">
   <% else %>
-    <input type="submit" value="Save Changes to My Habit" class="start_now" style="height:50px;">
+    <% if @goal.status == "hold" %>
+          <!--<div class="notice">
+              WARNING: By clicking "Save and Re-Activate" below, your history (the old checkpoint days and comments) WILL BE DELETED so that the success rate will stay relevant and accurate. THIS CAN NOT BE UNDONE.
+          </div>
+        -->
+      <input type="submit" value="Save and Re-Activate" class="start_now" style="height:50px;">    
+    <% else %>
+      <input type="submit" value="Save Changes to My Habit" class="start_now" style="height:50px;">
+    <% end %>
   <% end %>
+
 
     </p>
   <% end %>

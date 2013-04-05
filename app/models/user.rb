@@ -10,6 +10,21 @@ class User < ActiveRecord::Base
   has_many :goals        
   has_many :messages
   
+  has_many :organization_users
+  has_many :organizations, :through => :organization_users
+
+  ### might not work, will have to test
+  belongs_to :template_current_level, :class_name => 'Level', :foreign_key => 'template_current_level_id'
+
+  ### might not work, will have to test
+  belongs_to :coach_organization, :class_name => 'Organization', :foreign_key => 'coach_organization_id'
+
+
+  ### might not work, need to test
+  has_many :coach_templates
+  has_many :coach_template_goals, :through => :coach_templates
+
+  
   acts_as_authentic
   #acts_as_authentic do |c|
   #  c.my_config_option = my_value # for available options see documentation in: Authlogic::ActsAsAuthentic
@@ -264,10 +279,21 @@ class User < ActiveRecord::Base
   end
 
 
+  def templates_i_own
+      my_goals = Array.new()
+      for goal in all_goals
+          if goal.template_owner_is_a_template
+              my_goals << goal
+          end
+      end
+      return my_goals
+  end
+
+
   def hold_goals
       my_goals = Array.new()
       for goal in all_goals
-          if goal.status == 'hold'
+          if goal.status == 'hold' and !goal.template_owner_is_a_template
               my_goals << goal
           end
       end
@@ -335,6 +361,16 @@ class User < ActiveRecord::Base
       end
       return size
   end 
+
+  def number_of_templates_i_own
+      size = 0
+      if self.templates_i_own
+          size = self.templates_i_own.size
+      end
+      return size
+  end 
+
+
 
   def dstop_after_stale_days
       dstop_after = dtoday - 15

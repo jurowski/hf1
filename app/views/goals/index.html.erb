@@ -65,14 +65,15 @@
 <!-- *********** -->
 
 <div />
-<% if current_user.sponsor == "habitforge" and !current_user.is_habitforge_supporting_member and current_user.number_of_active_habits > 0 %>
-      <%= render :partial => "goals/upgrade_advertisement"  %>
-
-
+<% if current_user and current_user.is_admin %>
+    <h2><a href="/goals/new?template_owner_is_a_template=1"><img src="/images/add_32.png" border="0" width=25px/> Make a Template</a></h2>
 <% else %>
-    <h2><%= link_to '<img src="/images/add_32.png" border="0" width=25px/> Start a New Habit', new_goal_path %></h2>
+    <% if current_user.sponsor == "habitforge" and !current_user.is_habitforge_supporting_member and current_user.number_of_active_habits > 0 %>
+          <%= render :partial => "goals/upgrade_advertisement"  %>
+    <% else %>
+        <h2><%= link_to '<img src="/images/add_32.png" border="0" width=25px/> Start a New Habit', new_goal_path %></h2>
+    <% end %>
 <% end %>
-
 <div />
 <!-- *********** -->
 <!-- END HEADER -->
@@ -560,6 +561,36 @@ end
 <!-- END SHOW HOLD HABITS -->    
 <!-- *********** -->
 <!-- *********** -->
+
+
+
+<!-- *********** -->
+<!-- *********** -->
+<!-- START SHOW TEMPLATES I OWN -->    
+<!-- *********** -->
+<%
+if current_user.number_of_templates_i_own > 0
+    %>
+    <h2>
+    Templates you Created
+    </h2>
+    <p>
+    <%
+    for goal in current_user.templates_i_own
+        %>
+        <%= link_to goal.title, edit_goal_path(goal.id)  %>
+        • <%
+    end
+    %>
+    </p>
+    <%
+end
+%>
+<!-- *********** -->
+<!-- END SHOW TEMPLATES I OWN -->    
+<!-- *********** -->
+<!-- *********** -->
+
 
 </div> <!-- Not a necessary DIV, but FireFox seems happier w/ it here, doesn't hurt Safari and Chrome's render -->
 

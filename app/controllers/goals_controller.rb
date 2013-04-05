@@ -477,6 +477,10 @@ logger.debug "SGJ2 2 #{goal.title}(#{goal.id}) #{goal.daysstraight} daysstraight
 
       @goal = Goal.new(params[:goal])
 
+      if @goal.template_owner_is_a_template
+        @goal.status = "hold"
+      end
+
       @goal.title = @goal.response_question
 
       if !@goal.pushes_allowed_per_day
@@ -492,62 +496,68 @@ logger.debug "SGJ2 2 #{goal.title}(#{goal.id}) #{goal.daysstraight} daysstraight
     
       respond_to do |format|
         if @goal.save
-          flash[:notice] = 'Goal was successfully created.'
+
+          if @goal.template_owner_is_a_template
+            flash[:notice] = 'Template was successfully created.'
+          else
+            flash[:notice] = 'Goal was successfully created.'
 
 
-          ### update last activity date
-          @goal.user.last_activity_date = @goal.user.dtoday
-          @goal.user.save
-   
-          ###############################################
-          ###### START IF SFM_VIRGIN
-          if session[:sfm_virgin] and session[:sfm_virgin] == true
-            session[:sfm_virgin] = false
-            @show_sales_overlay = true
+            ### update last activity date
+            @goal.user.last_activity_date = @goal.user.dtoday
+            @goal.user.save
+     
+            ###############################################
+            ###### START IF SFM_VIRGIN
+            if session[:sfm_virgin] and session[:sfm_virgin] == true
+              session[:sfm_virgin] = false
+              @show_sales_overlay = true
 
-            @user = current_user
+              @user = current_user
 
-          ### existing_user will be true if coming from an infusionsoft email invite
-          ### in that case, do not send them another welcome email
-          if !session[:existing_user]
-            #### now that we have their first name, we can send the email 
-            the_subject = "Confirm your HabitForge Subscription"
-            begin
-              Notifier.deliver_user_confirm(@user, the_subject) # sends the email
-            rescue
-              logger.error("sgj:email confirmation for user creation did not send")
-            end
-          end
-
-
-	          begin
-        	     #####################################################
-        	     #####################################################
-      		      #### UPDATE THE CONTACT FOR THEM IN INFUSIONSOFT ######
-                ### SANDBOX GROUP/TAG IDS
-                #112: hf new signup funnel v2 free no goal yet
-                #120: hf new signup funnel v2 free created goal
-                #
-                ### PRODUCTION GROUP/TAG IDS
-                #400: hf new signup funnel v2 free no goal yet
-                #398: hf new signup funnel v2 free created goal
-
-      		      Infusionsoft.contact_update(session[:infusionsoft_contact_id].to_i, {:FirstName => current_user.first_name, :LastName => current_user.last_name})
-      		      Infusionsoft.contact_add_to_group(session[:infusionsoft_contact_id].to_i, 398)
-                Infusionsoft.contact_remove_from_group(session[:infusionsoft_contact_id].to_i, 400)
-              	####          END INFUSIONSOFT CONTACT           ####
-              	#####################################################
-              	#####################################################
-            rescue
-          		logger.error("sgj:error updating contact in infusionsoft")
-            end
-          end    ### END IF SFM_VIRGIN
-          ###### END IF SFM_VIRGIN
-          ###############################################
+              ### existing_user will be true if coming from an infusionsoft email invite
+              ### in that case, do not send them another welcome email
+              if !session[:existing_user]
+                #### now that we have their first name, we can send the email 
+                the_subject = "Confirm your HabitForge Subscription"
+                begin
+                  Notifier.deliver_user_confirm(@user, the_subject) # sends the email
+                rescue
+                  logger.error("sgj:email confirmation for user creation did not send")
+                end
+              end
 
 
-          current_user.goal_temp = ""
-          current_user.save
+              begin
+                 #####################################################
+                 #####################################################
+                  #### UPDATE THE CONTACT FOR THEM IN INFUSIONSOFT ######
+                  ### SANDBOX GROUP/TAG IDS
+                  #112: hf new signup funnel v2 free no goal yet
+                  #120: hf new signup funnel v2 free created goal
+                  #
+                  ### PRODUCTION GROUP/TAG IDS
+                  #400: hf new signup funnel v2 free no goal yet
+                  #398: hf new signup funnel v2 free created goal
+
+                  Infusionsoft.contact_update(session[:infusionsoft_contact_id].to_i, {:FirstName => current_user.first_name, :LastName => current_user.last_name})
+                  Infusionsoft.contact_add_to_group(session[:infusionsoft_contact_id].to_i, 398)
+                  Infusionsoft.contact_remove_from_group(session[:infusionsoft_contact_id].to_i, 400)
+                  ####          END INFUSIONSOFT CONTACT           ####
+                  #####################################################
+                  #####################################################
+              rescue
+                logger.error("sgj:error updating contact in infusionsoft")
+              end
+            end    ### END IF SFM_VIRGIN
+            ###### END IF SFM_VIRGIN
+            ###############################################
+
+
+            current_user.goal_temp = ""
+            current_user.save
+          end ### end if goal != a template
+
         
           if @goal.usersendhour == nil
 	          @goal.usersendhour = 1
@@ -589,12 +599,13 @@ logger.debug "SGJ2 2 #{goal.title}(#{goal.id}) #{goal.daysstraight} daysstraight
             @goal.dayn = true
           end
 
-          if @goal.status != "hold" and @goal.daym and @goal.dayt and @goal.dayw and @goal.dayr and @goal.dayf and @goal.days and @goal.dayn and (@goal.goal_days_per_week == nil or @goal.goal_days_per_week == 7)
-            @goal.status = "start"
-          else
-            @goal.status = "monitor"
+          if !@goal.template_owner_is_a_template
+            if @goal.status != "hold" and @goal.daym and @goal.dayt and @goal.dayw and @goal.dayr and @goal.dayf and @goal.days and @goal.dayn and (@goal.goal_days_per_week == nil or @goal.goal_days_per_week == 7)
+              @goal.status = "start"
+            else
+              @goal.status = "monitor"
+            end
           end
-
 
 
           #########
@@ -824,15 +835,9 @@ logger.debug "SGJ2 2 #{goal.title}(#{goal.id}) #{goal.daysstraight} daysstraight
 
             
             ##### SET THE HOUR THAT THE REMINDERS SHOULD GO OUT FOR THIS GOAL #############
-            #@goal.usersendhour = 1
-            #if @goal.user.email == "jurowski@gmail.com" or @goal.user.email == "jurowski@pediatrics.wisc.edu"
-	    #  puts "___ testing custom user send hour, so not assigning usersendhour here unless nil"
               if @goal.usersendhour == nil
-	        @goal.usersendhour = 1
+	             @goal.usersendhour = 1
               end
-            #else
-            #  @goal.usersendhour = 1
-	    #end
 
             Time.zone = @goal.user.time_zone
             utcoffset = Time.zone.formatted_offset(false)
@@ -870,16 +875,21 @@ logger.debug "SGJ2 2 #{goal.title}(#{goal.id}) #{goal.daysstraight} daysstraight
               @goal.dayn = true
             end
 
-            if @goal.status != "hold" and @goal.daym and @goal.dayt and @goal.dayw and @goal.dayr and @goal.dayf and @goal.days and @goal.dayn and (@goal.goal_days_per_week == nil or @goal.goal_days_per_week == 7)
-              @goal.status = "start"
+            if @goal.template_owner_is_a_template
+              @goal.save            
+              flash[:notice] = 'Template was successfully updated.'
+              logger.info 'SGJ Template was successfully updated.'
             else
-              @goal.status = "monitor"
+              if @goal.status != "hold" and @goal.daym and @goal.dayt and @goal.dayw and @goal.dayr and @goal.dayf and @goal.days and @goal.dayn and (@goal.goal_days_per_week == nil or @goal.goal_days_per_week == 7)
+                @goal.status = "start"
+              else
+                @goal.status = "monitor"
+              end
+              @goal.save            
+              flash[:notice] = 'Goal was successfully updated.'
+              logger.info 'SGJ Goal was successfully updated.'
             end
 
-            @goal.save
-            
-            flash[:notice] = 'Goal was successfully updated.'
-            logger.info 'SGJ Goal was successfully updated.'
 
 
 
@@ -939,7 +949,14 @@ logger.debug "SGJ2 2 #{goal.title}(#{goal.id}) #{goal.daysstraight} daysstraight
               #format.html { render :action => "index" } # index.html.erb
               #format.xml  { render :xml => @goals }
             end
-            flash[:notice] = 'Goal was successfully updated.' + flash[:notice]
+
+            if @goal.template_owner_is_a_template
+              flash[:notice] = 'Template was successfully updated.' + flash[:notice]
+            else
+              flash[:notice] = 'Goal was successfully updated.' + flash[:notice]
+            end
+
+
             format.html { render :action => "index" } # index.html.erb
             format.xml  { render :xml => @goal.errors, :status => :unprocessable_entity }            
           end

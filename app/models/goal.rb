@@ -14,6 +14,33 @@ class Goal < ActiveRecord::Base
   has_many :goaltags
   has_many :tags, :through => :goaltags
 
+  has_many :level_goals
+  has_many :levels, :through => :level_goals
+
+
+  ### might not work, need to test
+  has_many :coach_templates
+  has_many :coach_users, :through => :coach_templates
+
+
+
+
+  ### might not work, will have to test
+  has_many :triggers
+
+  ### might not work, will have to test
+  belongs_to :template_user_parent_goal, :class_name => 'Goal', :foreign_key => 'template_user_parent_goal_id'  
+
+  ### might not work, will have to test
+  belongs_to :template_current_level, :class_name => 'Level', :foreign_key => 'template_current_level_id'
+
+  ### might not work, will have to test
+  belongs_to :template_next_template_goal, :class_name => 'Goal', :foreign_key => 'template_next_template_goal_id'
+
+
+  has_many :message_goals
+  has_many :messages, :through => :message_goals
+
   attr_accessor :number_invites_sent_to_followers, :invites_sent_to_followers, :number_of_checkpoints_missing_after_start_date, :checkpoints_missing_after_start_date, :date_next_to_take_action, :has_unanswered_checkpoints, :days_to_form_a_habit, :successful_days_in_a_row, :number_of_checkpoints_with_answer_of_no, :number_of_checkpoints_with_answer_of_yes, :percent_of_checkpoints_with_answer_of_no, :percent_of_checkpoints_with_answer_of_yes, :number_of_checkpoints, :days_left_until_habit_is_formed, :get_dnow
 
   validates_presence_of :response_question

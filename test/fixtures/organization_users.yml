@@ -1,0 +1,17 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  organization_id: 1
+  user_id: 1
+  admin: false
+  coach: false
+  editor: false
+  publisher: false
+
+two:
+  organization_id: 1
+  user_id: 1
+  admin: false
+  coach: false
+  editor: false
+  publisher: false

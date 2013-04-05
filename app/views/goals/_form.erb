@@ -1,36 +1,33 @@
 <hr>
-<%
-if current_user.first_name == "Admin" && current_user.email == "jurowski2@gmail.com" 
-  current_user_is_admin = true
-else
-  current_user_is_admin = false
-end
 
-if current_user_is_admin
-  @users = User.find(:all, :order => "last_name").map {|u| [u.last_name + ", " + u.first_name, u.id] }
+
+<!-- TEMPLATE STUFF -->
+<% them_or_me = "me" %>
+<% if @goal.template_owner_is_a_template or (params[:template_owner_is_a_template] and params[:template_owner_is_a_template] == "1") 
+  @goal.template_owner_is_a_template = true
+  them_or_me = "them"
   %>
-  <%= form.select(:user_id, @users) %>
-<%
-else
-%>
-  <%= form.hidden_field :user_id, :value => current_user.id %>
-<%
-end
-%>
+  <%= form.hidden_field :template_owner_is_a_template, :value => true %>
+<% else
+  @goal.template_owner_is_a_template = false
+  %>
+  <%= form.hidden_field :template_owner_is_a_template, :value => false %>
+<% end %>
+<!-- END TEMPLATE STUFF -->
 
+
+<%= form.hidden_field :user_id, :value => current_user.id %>
 <%
 @cn = controller.controller_name 
 @ca = controller.action_name 
-%>
 
-
-
-<% 
 #end
 
 #<br>
 #&nbsp;&nbsp;&nbsp;&nbsp;<%= check_box(:goal, :share, options = {}, checked_value = "true", unchecked_value = "false") 
 #<b>Share</b> <i>Invite someone via email to help me stay on track</i>
+
+
 dest = Date.new(1900,01,01)
 if @goal.established_on == nil
   @goal.established_on = "1900-01-01"
@@ -39,11 +36,7 @@ if @goal.status == nil
     @goal.status = "start"
 end
 
-%>
 
-
-
-<% 
 @arrStatus = Array.new
 
 if @goal.status == "start"
@@ -64,8 +57,7 @@ if @goal.status == "hold"
 end
 
 
-#if current_user_is_admin or @goal.status == "monitor" or (@goal.status =="hold" and @goal.established_on > dest)
-if current_user_is_admin or @goal.status == "monitor" or @goal.established_on == dest
+if current_user.is_admin or @goal.status == "monitor" or @goal.established_on == dest
   @arrStatus.push(["Just monitor success rate (more options)", "monitor"])  
   %>
   <%
@@ -85,12 +77,12 @@ show_monitor_option_details = 0
 <div class="well">
 
 
-<% if session[:sfm_virgin] == true %> 
-<h1>What is the first habit you'd like to create?</h1>
-<br>
+<% if session[:sfm_virgin] == true and !@goal.template_owner_is_a_template %> 
+  <h1>What is the first habit you'd like to create?</h1>
+  <br>
 <% end %>
 
-<h2><img src="/home/images/paperplane_icon.png" alt="img"  /> Email me daily and ask:</h2>
+<h2><img src="/home/images/paperplane_icon.png" alt="img"  /> Email <%= them_or_me %> daily and ask:</h2>
 
 <div class="alert">
 <h4>
@@ -164,7 +156,7 @@ show_monitor_option_details = 0
 
   <tr>
   <td valign=top nowrap align=right>
-  <i class="icon-bell"></i> Remind me at: &nbsp  
+  <i class="icon-bell"></i> Remind <%= them_or_me %> at: &nbsp  
   </td>
   <td nowrap>
 
@@ -221,7 +213,7 @@ show_monitor_option_details = 0
   </tr>
   <tr>
   <td valign=top nowrap align=right>
-  <i class="icon-time"></i> Check in with me at: &nbsp  
+  <i class="icon-time"></i> Check in with <%= them_or_me %> at: &nbsp  
   </td>
   <td nowrap>
 
@@ -292,7 +284,7 @@ show_monitor_option_details = 0
     
         <% if current_user.is_habitforge_supporting_member or @goal.more_reminders_enabled %>
                     <%= check_box(:goal, :more_reminders_enabled, options = {}, checked_value = "true", unchecked_value = "false") %>
-                    Send me frequent reminders every  
+                    Send <%= them_or_me %> frequent reminders every  
         
 
                 <%
@@ -374,7 +366,7 @@ show_monitor_option_details = 0
             <a href="https://www.securepublications.com/habit-gse3.php?ref=<%= current_user.id.to_s %>&email=<%= current_user.email %>" >Enabling "Frequent Reminders" requires a Premium Membership</a>
             <br>
             <input type=checkbox disabled>
-            Send me frequent reminders every  
+            Send <%= them_or_me %> frequent reminders every  
             <select disabled style="width:auto;"><option>4</option></select> hours between 
             <select disabled style="width:auto;"><option>8:00am</option></select> and
             <select disabled style="width:auto;"><option>10:00pm</option></select>
@@ -398,18 +390,18 @@ show_monitor_option_details = 0
   </table>
 </div>
 
-
-<% if @ca == "new" %>
-  When will you start doing it? <select id="delay_start_for_this_many_days" name="delay_start_for_this_many_days" style="width:auto;">
-	<option value="0">Start Today</option>
-	<option value="1">Start Tomorrow</option>
-  </select>
-  <br>
-<% end %>
-  
-  
 <% 
-if @ca == "new" 
+if @ca == "new" and !@goal.template_owner_is_a_template
+    %>
+
+    When will you start doing it? <select id="delay_start_for_this_many_days" name="delay_start_for_this_many_days" style="width:auto;">
+  	<option value="0">Start Today</option>
+  	<option value="1">Start Tomorrow</option>
+    </select>
+    <br>
+
+
+    <% 
     @arr_pre_start_days_per_week = Array.new
 
     @arr_pre_start_days_per_week.push(["0", 0])
@@ -423,163 +415,168 @@ if @ca == "new"
     %>
     
     <br>
-    <% if !session[:sfm_virgin]  %>
+    <% 
+    if !session[:sfm_virgin]  
+        %>
         <strong>On average, how many days per week are you already succeeding at this?</strong>
         <%= select(:goal, :pre_start_days_per_week, @arr_pre_start_days_per_week) %> 
-    <% end %>
-<%
+        <% 
+    end 
+
+
 end
 %>
 
 
-<% if !session[:sfm_virgin]  %>
-<br>
-<br>
-
-<h2><i class="icon-fire"></i> Personal Motivation:
-<strong>
 
 
 
-        <a href="#undefined" onclick="toggle_show_hide('personal_motivation')" class="btn-add">What's driving you?</a>
+<!-- HIDE THE FOLLOWING IF FIRST NEW GOAL VIRGIN SETUP SCREEN -->
+<% if !session[:sfm_virgin] and !@goal.template_owner_is_a_template  %>
+  <br>
+  <br>
+
+  <h2><i class="icon-fire"></i> Personal Motivation:
+  <strong>
 
 
-</strong></h2>
-<div id="personal_motivation" class="well" style="display:none;">
-<div class="notice">
 
-  <strong>(This private information will never be shared with others, even if you "Share" your goal with other users.)</strong>
-  <p>
-    <br>
-    <h4>Describe the negative consequences:</h4><i>...the "Pain" you'll feel long term if you don't follow through on forming this habit</i><br><%= form.text_area :pain, :rows => 2,  :style=>"width:auto;" %>
-    <br>
-    <br>
-    <h4>Talk about the upside:</h4><i>...how you'll feel once the habit is formed, and in what ways your life will be improved</i><br><%= form.text_area :pleasure, :rows => 2, :style=>"width:auto;" %>
-    <br>
-    <br>
-  <%= check_box(:goal, :pp_remind, options = {}, checked_value = "true", unchecked_value = "false") %>
-  Every 3 days, insert this info in my daily email reminder (for single-goal users), or display it if I've clicked "no" (for multi-goal users).
+          <a href="#undefined" onclick="toggle_show_hide('personal_motivation')" class="btn-add">What's driving you?</a>
+
+
+  </strong></h2>
+  <div id="personal_motivation" class="well" style="display:none;">
+  <div class="notice">
+
+    <strong>(This private information will never be shared with others, even if you "Share" your goal with other users.)</strong>
+    <p>
+      <br>
+      <h4>Describe the negative consequences:</h4><i>...the "Pain" you'll feel long term if you don't follow through on forming this habit</i><br><%= form.text_area :pain, :rows => 2,  :style=>"width:auto;" %>
+      <br>
+      <br>
+      <h4>Talk about the upside:</h4><i>...how you'll feel once the habit is formed, and in what ways your life will be improved</i><br><%= form.text_area :pleasure, :rows => 2, :style=>"width:auto;" %>
+      <br>
+      <br>
+    <%= check_box(:goal, :pp_remind, options = {}, checked_value = "true", unchecked_value = "false") %>
+    Every 3 days, insert this info in my daily email reminder (for single-goal users), or display it if I've clicked "no" (for multi-goal users).
+    </p>
+
+  </div>
+  </div>
+
+
+  <br>
+  <br>
+  </p>
   </p>
 
-</div>
-</div>
-
-
-<br>
-<br>
-</p>
-</p>
-
-<h2>
-  <% if !@goal.publish or @goal.publish == true %>
-    <i class="icon-unlock"></i> 
+  <h2>
+    <% if !@goal.publish or @goal.publish == true %>
+      <i class="icon-unlock"></i> 
+    <% else %>
+      <i class="icon-lock"></i> 
+    <% end %>
+    Visibility</h2>
+  <p>
+  <% if current_user.sponsor == "habitforge" and !current_user.is_habitforge_supporting_member %>
+    <input disabled="disabled" id="publish" name="publish" type="checkbox" value="true" checked />
   <% else %>
-    <i class="icon-lock"></i> 
+    <%= check_box(:goal, :publish, options = {}, checked_value = "true", unchecked_value = "false") %>
   <% end %>
-  Visibility</h2>
-<p>
-<% if current_user.sponsor == "habitforge" and !current_user.is_habitforge_supporting_member and current_user.id > 79152 %>
-  <input disabled="disabled" id="publish" name="publish" type="checkbox" value="true" checked />
-<% else %>
-  <%= check_box(:goal, :publish, options = {}, checked_value = "true", unchecked_value = "false") %>
-<% end %>
-Public: Anyone can see <a href="<%= session[:site_url] %>/cheers/1/shared?shared_u=<%= current_user.id %>" target="_blank">my progress</a>, and members can send messages about my goal and can "follow" my progress.
-<% if current_user.sponsor == "habitforge" and !current_user.is_habitforge_supporting_member and current_user.id > 79152 %>
-  <br>
-    <input disabled="disabled" id="private" name="private" type="checkbox" />
-    Keep it Private 
-                          
-    <a href="https://www.securepublications.com/habit-gse3.php?ref=<%= current_user.id.to_s %>&email=<%= current_user.email %>" >(requires a Premium Membership)</a>
-<% end %>
+  Public: Anyone can see <a href="<%= session[:site_url] %>/cheers/1/shared?shared_u=<%= current_user.id %>" target="_blank">my progress</a>, and members can send messages about my goal and can "follow" my progress.
+  <% if current_user.sponsor == "habitforge" and !current_user.is_habitforge_supporting_member %>
+    <br>
+      <input disabled="disabled" id="private" name="private" type="checkbox" />
+      Keep it Private 
+                            
+      <a href="https://www.securepublications.com/habit-gse3.php?ref=<%= current_user.id.to_s %>&email=<%= current_user.email %>" >(requires a Premium Membership)</a>
+  <% end %>
 
 
+  <!-- START FRIENDLY PUSHES -->
+  <% if session[:site_name] == "habitforge" %>
+    <div> 
+      &nbsp   
+    </div>  
+    <!-- BEGIN WELL -->
+    <h2><i class="icon-bullhorn"></i> Friendly Push</h2>
+    <div class="well">
+            <h4>What happens if you start to slack?</h4> If you don't succeed for a few days, other HabitForge members can earn points by sending you a "push". They can only use <strong>motivating phrases that you create</strong>. If you were slacking and then you succeed within 48 hours after their "push", they earn additional points redeemable toward a Premium Membership.
 
-<% if session[:site_name] == "habitforge" %>
-
-  <div> 
-    &nbsp   
-  </div>  
-  <!-- BEGIN WELL -->
-  <h2><i class="icon-bullhorn"></i> Friendly Push</h2>
-  <div class="well">
-          <h4>What happens if you start to slack?</h4> If you don't succeed for a few days, other HabitForge members can earn points by sending you a "push". They can only use <strong>motivating phrases that you create</strong>. If you were slacking and then you succeed within 48 hours after their "push", they earn additional points redeemable toward a Premium Membership.
-
-        <a href="#undefined" onclick="toggle_show_hide('push_form')" class="btn-add">Show More</a>
-  
-        <div id="push_form" style="display:none;">
-
-          <br>
-          <br>
-          <h2>
-          <% if !current_user.is_habitforge_supporting_member %>
-            <a href="https://www.securepublications.com/habit-gse3.php?ref=<%= current_user.id.to_s %>&email=<%= current_user.email %>" >(Enable this feature with a Premium Membership)</a>
-          </h2>
-
-          <% end %>
-
-          <br>
-          <br>
-
-         <div class="alert">
-            <p>
-            <% if !current_user.is_habitforge_supporting_member %>
-              <input disabled="disabled" id="allow_push" name="allow_push" type="checkbox" value="true" unchecked />
-            <% else %>
-                    <%= check_box(:goal, :allow_push, options = {}, checked_value = "true", unchecked_value = "false") %>
-            <% end %>
-            <%
-            @arr_max_pushes = Array.new
-            @arr_max_pushes.push(["1", 1])
-            @arr_max_pushes.push(["2", 2])
-            @arr_max_pushes.push(["3", 3])
-            @arr_max_pushes.push(["4", 4])
-            @arr_max_pushes.push(["5", 5])
-            %>
-            <span style="font-size:1.2em;">
-            Provide incentives for other members to "Push" me if I start to fail for a few days straight.
-            </span>
-
-            <br>If I do start slacking, get up to 
-            <% if !current_user.is_habitforge_supporting_member %>
-                <select disabled  style="width:auto;"><option>3</option></select> 
-            <% else %>
-                <%= select(:goal, :pushes_allowed_per_day, @arr_max_pushes) %> 
-            <% end %> 
-            member(s) to send me a push each day. <br>
-          </div> <!-- END ALERT -->
-
-            <h3>My Push Messages</h3>
-            </p>
-
-             <p>
- 
-
-            <%= form.text_field :phrase1, :style=>"width:400px;", :size => 80, :placeholder=>"ex: What's going on? Have you forgotten how bad you want to have...", :readonly=>!current_user.is_habitforge_supporting_member %>
-
-            <br><br>
-            <%= form.text_field :phrase2, :style=>"width:400px;", :size => 80, :placeholder=>"ex: Remember how painful it will be if you don't...", :readonly=>!current_user.is_habitforge_supporting_member %>
-
-            <br><br>
-             <%= form.text_field :phrase3, :style=>"width:400px;", :size => 80, :placeholder=>"ex: What happened? I thought you were committed to...", :readonly=>!current_user.is_habitforge_supporting_member %>
-
-            <br><br>
-               <%= form.text_field :phrase4, :placeholder=>"ex: You can do it!!! It only takes a few minutes to...", :style=>"width:400px;", :size => 80, :readonly=>!current_user.is_habitforge_supporting_member %>
-
-            <br><br>
-             <%= form.text_field :phrase5, :placeholder=>"ex: Think of how awesome it's going to feel to...", :style=>"width:400px;", :size => 80, :readonly=>!current_user.is_habitforge_supporting_member %>
+          <a href="#undefined" onclick="toggle_show_hide('push_form')" class="btn-add">Show More</a>
+    
+          <div id="push_form" style="display:none;">
 
             <br>
-           </p>
+            <br>
+            <h2>
+            <% if !current_user.is_habitforge_supporting_member %>
+              <a href="https://www.securepublications.com/habit-gse3.php?ref=<%= current_user.id.to_s %>&email=<%= current_user.email %>" >(Enable this feature with a Premium Membership)</a>
+            </h2>
 
+            <% end %>
+
+            <br>
+            <br>
+
+           <div class="alert">
+              <p>
+              <% if !current_user.is_habitforge_supporting_member %>
+                <input disabled="disabled" id="allow_push" name="allow_push" type="checkbox" value="true" unchecked />
+              <% else %>
+                      <%= check_box(:goal, :allow_push, options = {}, checked_value = "true", unchecked_value = "false") %>
+              <% end %>
+              <%
+              @arr_max_pushes = Array.new
+              @arr_max_pushes.push(["1", 1])
+              @arr_max_pushes.push(["2", 2])
+              @arr_max_pushes.push(["3", 3])
+              @arr_max_pushes.push(["4", 4])
+              @arr_max_pushes.push(["5", 5])
+              %>
+              <span style="font-size:1.2em;">
+              Provide incentives for other members to "Push" <%= them_or_me %> if I start to fail for a few days straight.
+              </span>
+
+              <br>If I do start slacking, get up to 
+              <% if !current_user.is_habitforge_supporting_member %>
+                  <select disabled  style="width:auto;"><option>3</option></select> 
+              <% else %>
+                  <%= select(:goal, :pushes_allowed_per_day, @arr_max_pushes) %> 
+              <% end %> 
+              member(s) to send <%= them_or_me %> a push each day. <br>
+            </div> <!-- END ALERT -->
+
+              <h3>My Push Messages</h3>
+              </p>
+
+               <p>
+   
+
+              <%= form.text_field :phrase1, :style=>"width:400px;", :size => 80, :placeholder=>"ex: What's going on? Have you forgotten how bad you want to have...", :readonly=>!current_user.is_habitforge_supporting_member %>
+
+              <br><br>
+              <%= form.text_field :phrase2, :style=>"width:400px;", :size => 80, :placeholder=>"ex: Remember how painful it will be if you don't...", :readonly=>!current_user.is_habitforge_supporting_member %>
+
+              <br><br>
+               <%= form.text_field :phrase3, :style=>"width:400px;", :size => 80, :placeholder=>"ex: What happened? I thought you were committed to...", :readonly=>!current_user.is_habitforge_supporting_member %>
+
+              <br><br>
+                 <%= form.text_field :phrase4, :placeholder=>"ex: You can do it!!! It only takes a few minutes to...", :style=>"width:400px;", :size => 80, :readonly=>!current_user.is_habitforge_supporting_member %>
+
+              <br><br>
+               <%= form.text_field :phrase5, :placeholder=>"ex: Think of how awesome it's going to feel to...", :style=>"width:400px;", :size => 80, :readonly=>!current_user.is_habitforge_supporting_member %>
+
+              <br>
+             </p>
+
+          </div>
         </div>
-      </div>
-  <!-- END WELLS PORTLET-->
-<% end %>
-
-
-
-
+    <!-- END WELLS PORTLET-->
+  <% end %>
+  <!-- END FRIENDLY PUSHES -->
 <% end ### end whether session[:sfm_virgin] == true %>
+<!-- END HIDE THE ABOVE IF FIRST NEW GOAL VIRGIN SETUP SCREEN -->
 
 </p>
 <br>
@@ -590,7 +587,7 @@ Public: Anyone can see <a href="<%= session[:site_url] %>/cheers/1/shared?shared
 <div class="well">
 Some habits are daily and others are only a few days a week.
 
-Is your habit a daily or a less frequent one?
+Is this habit a daily or a less frequent one?
 
 
 <% 
@@ -603,6 +600,21 @@ if @goal.status == "monitor" or params["monitor"] or (params[:weekdays_only] and
       end
       show_monitor_option_details = true
 end
+
+
+if @goal.template_owner_is_a_template
+  if @goal.daym == true and @goal.dayt == true \
+    and @goal.dayw == true and @goal.dayr == true \
+    and @goal.dayf == true and @goal.days == true \
+    and @goal.dayn == true and @goal.goal_days_per_week == 7
+      show_monitor_option_details = false
+  else
+    show_monitor_option_details = true
+  end
+end
+
+
+
 
 @arr_goal_days_per_week = Array.new
 @arr_goal_days_per_week.push(["7", 7])
@@ -675,12 +687,12 @@ end
 
 
 
-    &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp My goal is to succeed at this at least 
+    &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp The goal is to succeed at this at least 
     <%= select(:goal, :goal_days_per_week, @arr_goal_days_per_week) %> 
     days each week.
     <br>
     <br>
-  &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp It's only realistic for me to succeed on these days:
+  &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp It's only realistic for <%= them_or_me %> to succeed on these days:
 
       <br>
       <br>

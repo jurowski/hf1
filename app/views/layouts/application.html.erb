@@ -128,6 +128,10 @@ if session[:sponsor] == "habitforge"
 
   ### internal: new metronic app template
   sponsor_layout = "layouts/habitforge_app_metronic.erb"
+
+  if params[:browse_recommended_habits]
+    sponsor_layout = "layouts/habitforge_public_home.erb"
+  end
 end
 %>
 

@@ -1,4 +1,8 @@
-<h3>...a start of something new</h3>
+<% if (params[:template_owner_is_a_template] and params[:template_owner_is_a_template] == "1") %>
+  <h3>...a new template for others to use</h3>
+<% else %>
+  <h3>...a start of something new</h3>
+<% end %>
 
 <% form_for(@goal) do |f| %>
     <%= f.error_messages %>
@@ -35,7 +39,12 @@
 
     <p>
     <br>
-    <input type="submit" value="Create My New Habit" class="start_now" style="height:50px;">
+
+    <% if @goal.template_owner_is_a_template %>
+      <input type="submit" value="Create This New Template" class="start_now" style="height:50px;">
+    <% else %>
+      <input type="submit" value="Create My New Habit" class="start_now" style="height:50px;">
+    <% end %>
     </p>
 
 <% end %>

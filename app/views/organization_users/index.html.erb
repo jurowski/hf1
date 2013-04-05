@@ -1,0 +1,30 @@
+<h1>Listing organization_users</h1>
+
+<table>
+  <tr>
+    <th>Organization</th>
+    <th>User</th>
+    <th>Admin</th>
+    <th>Coach</th>
+    <th>Editor</th>
+    <th>Publisher</th>
+  </tr>
+
+<% @organization_users.each do |organization_user| %>
+  <tr>
+    <td><%=h organization_user.organization_id %></td>
+    <td><%=h organization_user.user_id %></td>
+    <td><%=h organization_user.admin %></td>
+    <td><%=h organization_user.coach %></td>
+    <td><%=h organization_user.editor %></td>
+    <td><%=h organization_user.publisher %></td>
+    <td><%= link_to 'Show', organization_user %></td>
+    <td><%= link_to 'Edit', edit_organization_user_path(organization_user) %></td>
+    <td><%= link_to 'Destroy', organization_user, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New organization_user', new_organization_user_path %>

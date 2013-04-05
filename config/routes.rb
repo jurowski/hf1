@@ -1,4 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :organization_users
+
   map.resources :counter_images
 
   map.resources :counter_images_sets

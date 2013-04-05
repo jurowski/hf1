@@ -1,9 +1,10 @@
 <% 
+@production = true
 if `uname -n`.strip == 'adv.adventurino.com'
   #### HABITFORGE SETTINGS ON VPS
-  production = true
+  @production = true
 else
-  production = false
+  @production = false
 end
 
 ### GET DATE NOW ###
@@ -160,6 +161,8 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
 
 
 
+
+
   <!-- ################################################## -->
   <!-- ################################################## -->
   <!-- START CUSTOM SGJ CSS -->
@@ -170,6 +173,9 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
 
   <link href="/stylesheets/prettyPhoto.css" rel="stylesheet" /><!--Lightbox Styling-->
   <link href="/stylesheets/jquery.autocomplete.css" rel="stylesheet" /><!--Auto Complete -->
+
+  <link rel="stylesheet" type="text/css" href="/home/css/quicksand.css"/>
+
 
 
   <!-- ################################################## -->
@@ -242,9 +248,6 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
 <script src="/javascripts/jquery.prettyPhoto.js" type="text/javascript" charset="utf-8"></script><!--Check-In Lightbox Script (for closing the box)-->
 
 
-
-
-
   <!-- direct to facebook 
   <div id="fb-root"></div>
   <script>(function(d, s, id) {
@@ -256,10 +259,11 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
   }(document, 'script', 'facebook-jssdk'));</script>
   -->
 
-  <!-- ShareThis-->  
-  <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
-  <script type="text/javascript">stLight.options({publisher: "6f618717-8285-4c8c-b5c7-4f9e1d5e2a92", doNotHash: true, doNotCopy: true, hashAddressBar: false});</script>
-
+  <% if @production %>
+    <!-- ShareThis-->  
+    <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+    <script type="text/javascript">stLight.options({publisher: "6f618717-8285-4c8c-b5c7-4f9e1d5e2a92", doNotHash: true, doNotCopy: true, hashAddressBar: false});</script>
+  <% end %>
   <!-- ################################################## -->
   <!-- END CUSTOM SGJ JAVASCRIPT -->
   <!-- ################################################## -->
@@ -472,9 +476,9 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
         <blockquote class="pull-right" style="width:75%;">
           <p>"<%= random_quote_thought %>" </p>
           <small><%= random_quote_author %></small>
-          <span class='st_pinterest' displayText='Pin!'></span>
+<!--           <span class='st_pinterest' displayText='Pin!'></span>
           <span class='st_twitter' displayText='Tweet!'></span>
-          <span class='st_facebook' displayText='Share!'></span>
+          <span class='st_facebook' displayText='Share!'></span> -->
         </blockquote>
         <!-- END RANDOM QUOTE -->
         <!-- ####################### -->
@@ -513,7 +517,7 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
             <!-- ####################################### -->
             <!-- START GOOGLE ADS -->
             <% if show_ads == 1 %>
-              <% if production  %>
+              <% if @production  %>
                   <br>
                   <script type="text/javascript"><!--
                   google_ad_client = "ca-pub-8620829126449222";
@@ -560,6 +564,15 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
           <%= yield %>          
         </div>
 
+
+        <% if current_user and current_user.sponsor == "habitforge" %>  
+          <center>
+            <hr>
+            <a href="/goals?browse_recommended_habits=1#browse_recommended_habits" class="btn green">Browse Popular Habits</a>
+          </center>
+        <% end %>
+
+
         <br>
         <br>
         <br>
@@ -573,12 +586,15 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
 
         <!--<div class="fb-like-box" data-href="http://www.facebook.com/pages/habitforgecom/281059421608" data-width="292" data-show-faces="true" data-stream="false" data-header="true"></div>
       -->
+        <% if @production %>
           <span class='st_fblike_hcount' displayText='Like HabitForge!'></span>
           <br>
           <span class='st_facebook_hcount' displayText='Share on Facebook'></span>
           <span class='st_twitter_hcount' displayText='Tweet'></span>
           <span class='st_pinterest_hcount' displayText='Pinterest'></span>
-
+        <% else %>
+          In production we'd have some facebook, twitter and pinterest links here.
+        <% end %>
         </center>
       </div>
       <!-- END PAGE CONTAINER-->    
@@ -599,12 +615,15 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
     <a name="jump_to_support" />
     <div id="support" name="support" style="display:none;">
 
-    <!-- UserVoice JavaScript SDK (only needed once on a page) -->
-    <script>(function(){var uv=document.createElement('script');uv.type='text/javascript';uv.async=true;uv.src='//widget.uservoice.com/P2B1jKXL521DMteQKFTbQ.js';var s=document.getElementsByTagName('script')[0];s.parentNode.insertBefore(uv,s)})()</script>
+      <% if @production %>
+      <!-- UserVoice JavaScript SDK (only needed once on a page) -->
+      <script>(function(){var uv=document.createElement('script');uv.type='text/javascript';uv.async=true;uv.src='//widget.uservoice.com/P2B1jKXL521DMteQKFTbQ.js';var s=document.getElementsByTagName('script')[0];s.parentNode.insertBefore(uv,s)})()</script>
 
-    <!-- The Classic Widget will be embeded wherever this div is placed -->
-    <div data-uv-inline="classic_widget" data-uv-mode="full" data-uv-primary-color="#cc6d00" data-uv-link-color="#007dbf" data-uv-default-mode="support" data-uv-forum-id="137021" data-uv-width="100%" data-uv-height="550px"></div>
-
+      <!-- The Classic Widget will be embeded wherever this div is placed -->
+      <div data-uv-inline="classic_widget" data-uv-mode="full" data-uv-primary-color="#cc6d00" data-uv-link-color="#007dbf" data-uv-default-mode="support" data-uv-forum-id="137021" data-uv-width="100%" data-uv-height="550px"></div>
+      <% else %>
+        In production we'd have uservocie stuff here.
+      <% end %>
     </div> <!-- END USERVOICE DIV -->
 
 
@@ -652,7 +671,7 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
   </script>
 
 
-  <% if production %>
+  <% if @production %>
 
 
       <!-- ### START GOOGLE ANALYTICS ### --> 

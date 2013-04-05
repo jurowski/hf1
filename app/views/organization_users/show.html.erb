@@ -1,0 +1,33 @@
+<p>
+  <b>Organization:</b>
+  <%=h @organization_user.organization_id %>
+</p>
+
+<p>
+  <b>User:</b>
+  <%=h @organization_user.user_id %>
+</p>
+
+<p>
+  <b>Admin:</b>
+  <%=h @organization_user.admin %>
+</p>
+
+<p>
+  <b>Coach:</b>
+  <%=h @organization_user.coach %>
+</p>
+
+<p>
+  <b>Editor:</b>
+  <%=h @organization_user.editor %>
+</p>
+
+<p>
+  <b>Publisher:</b>
+  <%=h @organization_user.publisher %>
+</p>
+
+
+<%= link_to 'Edit', edit_organization_user_path(@organization_user) %> |
+<%= link_to 'Back', organization_users_path %>
