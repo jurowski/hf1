@@ -404,7 +404,7 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
         ##################################################################
         ##################################################################
         ############# START ASK USER IF THEY WANT TO BE IN RANDOM $$ POOL ######
-        if current_user and current_user.is_habitforge_supporting_member
+        if ( current_user and current_user.is_habitforge_supporting_member )
             if params[:opt_in_random_fire]
                 if params[:opt_in_random_fire] == '1'
                     current_user.opt_in_random_fire = 1
@@ -421,19 +421,35 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
 
             if current_user.opt_in_random_fire == nil
             %>
-                <div class="notice">
-                    <h4>Money for nothing?</h4>
-                    <p>
-                    As a Premium Member, you have the option of being chosen randomly to "get paid" if people choose to use "Extra Accountability" by placing a wager on their success rate but don't reach that goal (for some people this is a big motivator). 
-                    <br>
-                    <br>
-                    Do you wish to be part of this "random pool"? You don't have to do anything, but we don't want to bug you if you'd rather opt out.
-                
-                    <h6><a href="/popupex<%= @goal.id %>.html" onclick="return popitup_bigger1('/fire_rules_opt_in.html')">Learn More...</a></h6>
 
-                    <a href="/goals/?opt_in_random_fire=1"><font color="red">Sure, let me be in that "random pool"</font></a> or <a href="/goals/?opt_in_random_fire=0"><font color="red">I'd rather not, thanks</font></a>
-                    </p>
-                </div>
+              <div id="premium_pool_lightbox_black" class="black_overlay">
+              </div>
+
+                      <div id="premium_pool_lightbox_close" class="div_close_button">
+
+                         <a href="#undefined" onclick="toggle_show_hide('premium_pool_lightbox_black');toggle_show_hide('premium_pool_lightbox_white');toggle_show_hide('premium_pool_lightbox_close');"><img src='/images/close.png' /></a>
+
+                      </div>
+
+                  <div id="premium_pool_lightbox_white" class="white_content">
+
+                    <div class="notice">
+                        <h4>Money for nothing?</h4>
+                        <p>
+                        As a Premium Member, you have the option of being chosen randomly to "get paid" if people choose to use "Extra Accountability" by placing a wager on their success rate but don't reach that goal (for some people this is a big motivator). 
+                        <br>
+                        <br>
+                        Do you wish to be part of this "random pool"? You don't have to do anything, but we don't want to bug you if you'd rather opt out.
+                    
+                        <h6><a href="/popupex<%= @goal.id %>.html" onclick="return popitup_bigger1('/fire_rules_opt_in.html')">Learn More...</a></h6>
+
+                        <a href="/goals/?opt_in_random_fire=1"><font color="red">Sure, let me be in that "random pool"</font></a> or <a href="/goals/?opt_in_random_fire=0"><font color="red">I'd rather not, thanks</font></a>
+                        </p>
+                    </div>
+
+                  </div>
+
+
             <%
             end
             %>
