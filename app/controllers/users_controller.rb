@@ -372,7 +372,7 @@ class UsersController < ApplicationController
         end
 
         ### route them to goal creation page (which should reference session[:sfm] for quick goal-creation options)
-        redirect_to("/goals/new")
+        redirect_to("/goals/new?welcome=1")
       else
         ### Problem saving user: ask them to contact support
       end ### end if user.save
