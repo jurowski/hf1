@@ -368,8 +368,43 @@ class UsersController < ApplicationController
 	        #####################################################
 	        #####################################################
         rescue
-	  logger.error("sgj:error creating infusionsoft contact")
+	  logger.error("sgj:users_controller:error creating infusionsoft contact")
         end
+
+
+        ############## ADD THEM TO FOLLOWUP SEQUENCE
+        ############## http://help.infusionsoft.com/api-docs/funnelservice
+        ############## http://stackoverflow.com/questions/629632/ruby-posting-xml-to-restful-web-service-using-nethttppost
+        begin
+          url = URI.parse('http://sdc90018.infusionsoft.com:80')
+          #request = Net::HTTP::Post.new(url.path)
+
+          request = Net::HTTP::Post.new("http://sdc90018.infusionsoft.com")
+
+          request.content_type = 'text/xml'
+          request.body = "<?xml version='1.0' encoding='UTF-8'?>\
+          <methodCall>\
+          <methodName>FunnelService.achieveGoal</methodName>\
+          <params>\
+          <param><value><string>d541e86effd15eb57f1f9f6344fc8eee</string></value></param>\
+          <param><value><string>sdc90018</string></value></param>\
+          <param><value><string>HabitForgeFollowUp</string></value></param>\
+          <param><value><int>#{session[:infusionsoft_contact_id]}</int></value></param>\
+          </params>\
+          </methodCall>"
+
+          #response = Net::HTTP.start(url.host, url.port) {|http| http.request(request)}
+
+          response = Net::HTTP.start("sdc90018.infusionsoft.com", 80) {|http| http.request(request)}
+
+
+          assert_equal '201 Created', response.get_fields('Status')[0]
+
+        rescue
+         logger.error("sgj:users_controller:error adding to infusionsoft followup funnel sequence")
+        end
+
+
 
         ### route them to goal creation page (which should reference session[:sfm] for quick goal-creation options)
         redirect_to("/goals/new?welcome=1")
