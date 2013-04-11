@@ -178,6 +178,9 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
 
 
 
+  
+  <link rel="stylesheet" href="/stylesheets/tipsy.css" type="text/css" /><!-- ToolTips (tipsy) -->
+
   <!-- ################################################## -->
   <!-- END CUSTOM SGJ CSS -->
   <!-- ################################################## -->
@@ -245,8 +248,9 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
 
 
 
-<script src="/javascripts/jquery.prettyPhoto.js" type="text/javascript" charset="utf-8"></script><!--Check-In Lightbox Script (for closing the box)-->
+  <script src="/javascripts/jquery.prettyPhoto.js" type="text/javascript" charset="utf-8"></script><!--Check-In Lightbox Script (for closing the box)-->
 
+  <script type='text/javascript' src='/javascripts/jquery.tipsy.js'></script><!-- ToolTips (tipsy) -->
 
   <!-- direct to facebook 
   <div id="fb-root"></div>
@@ -280,6 +284,16 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
   &nbsp
   </div>
 
+  <!--
+  Initialize ToolTips (Tipsy)
+  In the document on load
+  https://github.com/jaz303/tipsy#readme
+  -->
+  <script type='text/javascript'>
+   $(function() {
+     $('a[rel=tipsy]').tipsy({fade: true, gravity: 'n'});
+   });
+  </script>
 
 
 
