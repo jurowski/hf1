@@ -1,4 +1,9 @@
 require "mail"
+
+### for sending xml to infusionsoft
+require 'net/https'
+require 'uri'
+
 class UsersController < ApplicationController
   layout "application"
 
@@ -374,15 +379,42 @@ class UsersController < ApplicationController
 
         ############## ADD THEM TO FOLLOWUP SEQUENCE
         ############## http://help.infusionsoft.com/api-docs/funnelservice
-        ############## http://stackoverflow.com/questions/629632/ruby-posting-xml-to-restful-web-service-using-nethttppost
+
         begin
-          url = URI.parse('http://sdc90018.infusionsoft.com:80')
+
+          logger.info("sgj:users_controller:will try adding to infusionsoft followup funnel sequence the infusionsoft_contact_id: " + session[:infusionsoft_contact_id].to_s + " for current_user.id of " + current_user.id.to_s)
+
+
+          ### TRY #1
+          ############## http://stackoverflow.com/questions/629632/ruby-posting-xml-to-restful-web-service-using-nethttppost        
+          #url = URI.parse('http://sdc90018.infusionsoft.com:80')
           #request = Net::HTTP::Post.new(url.path)
+          # request = Net::HTTP::Post.new("https://sdc90018.infusionsoft.com/api/xmlrpc")
+          # request.use_ssl = true
+          # request.content_type = 'text/xml'
+          # request.body = "<?xml version='1.0' encoding='UTF-8'?>\
+          # <methodCall>\
+          # <methodName>FunnelService.achieveGoal</methodName>\
+          # <params>\
+          # <param><value><string>d541e86effd15eb57f1f9f6344fc8eee</string></value></param>\
+          # <param><value><string>sdc90018</string></value></param>\
+          # <param><value><string>HabitForgeFollowUp</string></value></param>\
+          # <param><value><int>#{session[:infusionsoft_contact_id]}</int></value></param>\
+          # </params>\
+          # </methodCall>"
+          # #response = Net::HTTP.start(url.host, url.port) {|http| http.request(request)}
+          # response = Net::HTTP.start("sdc90018.infusionsoft.com", 80) {|http| http.request(request)}
+          # assert_equal '201 Created', response.get_fields('Status')[0]
 
-          request = Net::HTTP::Post.new("http://sdc90018.infusionsoft.com")
-
-          request.content_type = 'text/xml'
-          request.body = "<?xml version='1.0' encoding='UTF-8'?>\
+          ### TRY #2
+          ### http://www.ruby-forum.com/topic/121529
+          #require 'net/https'
+          #require 'uri'
+          url = "https://sdc90018.infusionsoft.com/api/xmlrpc"
+          uri = URI.parse(url)
+          http = Net::HTTP.new(uri.host, uri.port)
+          http.use_ssl = true if (uri.scheme == 'https')
+          data = "<?xml version='1.0' encoding='UTF-8'?>\
           <methodCall>\
           <methodName>FunnelService.achieveGoal</methodName>\
           <params>\
@@ -392,16 +424,14 @@ class UsersController < ApplicationController
           <param><value><int>#{session[:infusionsoft_contact_id]}</int></value></param>\
           </params>\
           </methodCall>"
+          headers = {'Content-Type' => 'text/xml'}
+          # warning, uri.path will drop queries, use uri.path + uri.query if you need to
+          resp, body = http.post(uri.path, data, headers)
 
-          #response = Net::HTTP.start(url.host, url.port) {|http| http.request(request)}
-
-          response = Net::HTTP.start("sdc90018.infusionsoft.com", 80) {|http| http.request(request)}
-
-
-          assert_equal '201 Created', response.get_fields('Status')[0]
+          logger.info("sgj:users_controller:xml response from adding new person to infusionsoft sequence: " + resp.to_s + body.to_s)
 
         rescue
-         logger.error("sgj:users_controller:error adding to infusionsoft followup funnel sequence")
+          logger.error("sgj:users_controller:error adding to infusionsoft followup funnel sequence")
         end
 
 
