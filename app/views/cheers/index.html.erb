@@ -172,7 +172,7 @@ else
       slacker_goals = Goal.paginate(:page => params[:page],
         :per_page => 20,
         :order => 'laststatusdate DESC',
-        :conditions => "publish = '1' and status <> 'hold' and laststatusdate > '#{current_user.dtoday - 17}' and laststatusdate < '#{current_user.dtoday - 7}'")
+        :conditions => "publish = '1' and status <> 'hold' and laststatusdate > '#{current_user.dtoday - 60}' and laststatusdate < '#{current_user.dtoday - 7}'")
       
         if slacker_goals.size > 0
           %>
