@@ -930,6 +930,8 @@ http://localhost:3000/goals?update_checkpoint_status=yes&date=2012-02-12&e0=106&
                     <div style="background-color:#F7F8E0;padding:5px;"> 
                     <p>
                     Hey <%= current_user.first_name %>, <%= slacker_goal.user.first_name %> hasn't been "<%= slacker_goal.title %>" for more than a few days now, and could use a little "nudge". Could you help out?
+                    </p>
+                    <p>
                     <% if slacker_goal.is_active %>
                         <a href="/cheers?start_following_goal_id=<%= slacker_goal.id.to_s %>&email=<%= current_user.email %>" id='follow_<%= slacker_goal.id.to_s %>'  class="btn blue" title="Follow <%= slacker_goal.user.first_name %>'s Progress" ><i class="icon-plus"></i> Follow</a>
                         <script type='text/javascript'>
@@ -942,8 +944,8 @@ http://localhost:3000/goals?update_checkpoint_status=yes&date=2012-02-12&e0=106&
                     <script type='text/javascript'>
                     $('#encourage_<%= slacker_goal.id.to_s %>').tipsy();
                     </script>                  
-
                     </p>
+                    
                     </div>
                     <br>
                    <%
