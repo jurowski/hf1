@@ -151,10 +151,32 @@ begin
     d2daysago = dnow - 2
 
     #my_conditions = "category = '#{params[:category]}' and publish = '1' and daysstraight <> '9999' and laststatus = 'yes' and (laststatusdate = '#{dyesterday}' or laststatusdate = '#{d2daysago}')"
+
+    ### PROD 
     my_conditions = "category = '#{params[:category]}' and publish = '1' and status != 'hold'"
 
-    @goals = Goal.find(:all, :conditions => my_conditions, :order => "daysstraight desc")
+    ### TEST
+    #my_conditions = "category = '#{params[:category]}' and publish = '1'"
+
+    #@products = Product.paginate(:page => params[:page], :per_page => 25)
+    #@goals = Goal.paginate(:all, :conditions => my_conditions, :order => "daysstraight desc", :page => params[:page], :per_page => 25)
+
+
+
+    @goals = Goal.paginate(:page => params[:page],
+                               :per_page   => 20,
+                               :order      => 'daysstraight DESC',
+                               :conditions => my_conditions)
+
+    #@goals = Goal.find(:all, :conditions => my_conditions, :order => "daysstraight desc")
     if @goals.size == 0 
+      %>
+      <br>
+      <br>
+      <h2>There are currently no Publicly Shared Active "<%= params[:category]%>" Habits.</h2>
+      <br>
+      <br>
+      <%
     else 
       %>
       <br>
@@ -165,14 +187,23 @@ begin
 
 
 
+      <% if @goals.current_page != 1 %>
+         <a href="/cheers?show_winners=1&category=<%=params[:category]%>&page=1">Page 1</a> ... 
 
-
+         <a href="/cheers?show_winners=1&category=<%=params[:category]%>&page=<%=@goals.current_page-1%>"><< Previous</a> 
+      <% end %>
+      | Page <%= @goals.current_page %> of <%= @goals.total_pages %> |
+      <% if @goals.current_page < @goals.total_pages %>
+          <a href="/cheers?show_winners=1&category=<%=params[:category]%>&page=<%=@goals.current_page+1%>">Next >></a> 
+         <a href="/cheers?show_winners=1&category=<%=params[:category]%>&page=<%=@goals.total_pages%>"> ... Page <%= @goals.total_pages%></a>
+      <% end %>
+      <hr>
 
       <%
       @goals.each do |goal| 
 
         ### do not advertise it if it is now stale
-        if goal.is_active
+        #if goal.is_active
           begin
             if goal.category != nil and goal.user.first_name != "unknown" and goal.user.id != current_user.id
               %>    
@@ -183,16 +214,23 @@ begin
 
 
                   <% if current_user %>
-                    <a href="/cheers?start_following_goal_id=<%= goal.id.to_s %>&email=<%= current_user.email %>" id='follow_<%= goal.id.to_s %>' class="glyphicons icon-plus" title="Follow <%= goal.user.first_name %>'s Progress" style="font-size:2em;padding:0;color:#3333cc;" ><i></i><span style="font-size:.6em;"> Follow</span></a>
+                    <% if goal.is_active %>
+
+
+                    <a href="/cheers?start_following_goal_id=<%= goal.id.to_s %>&email=<%= current_user.email %>" id='follow_<%= goal.id.to_s %>'  class="btn blue" title="Follow <%= goal.user.first_name %>'s Progress" ><i class="icon-plus"></i> Follow</a>
                       <script type='text/javascript'>
                         $('#follow_<%= goal.id.to_s %>').tipsy();
                       </script>
+                    <% else %>
+                      <a href="#" class="btn disabled">Stale</a>
+
+                    <% end %>
                   <% end %>
-                   <a href="/tomessages/new?gid=<%=goal.id.to_s%>&from_type=member&tomessage_subject=<%= goal.response_question %>&to_id=<%= goal.user.id %>" id='encourage_<%= goal.id.to_s %>' class="glyphicons icon-heart" title='Encourage <%= goal.user.first_name %>!' style="font-size:2em;padding:0;color:#ff3333;" ><i></i><span style="font-size:.6em;"> Boost</span></a> <%= goal.user.first_name %> is working on ... <%= goal.response_question %>
+                   <a href="/tomessages/new?gid=<%=goal.id.to_s%>&from_type=member&tomessage_subject=<%= goal.response_question %>&to_id=<%= goal.user.id %>" id='encourage_<%= goal.id.to_s %>' class="btn red" title='Encourage <%= goal.user.first_name %>!'> <i class="icon-heart-empty"></i> Boost</a> <span style="font-weight:bold;font-size:1.2em;"> <%= goal.user.first_name %></span> is working on ... <span style="background-color:#FFFF99;"><%= goal.response_question %></span>
                       <script type='text/javascript'>
                         $('#encourage_<%= goal.id.to_s %>').tipsy();
                       </script>                  
-
+                <span style="color:#666666;">
                 • 
                 <% if goal.success_rate_percentage != nil %>
                      <%= goal.success_rate_percentage %>% Success Rate 
@@ -209,6 +247,7 @@ begin
                 <% else %>              
                      (has not yet checked in)
                 <% end %> 
+                </span>
                 </p>
 
 
@@ -222,10 +261,25 @@ begin
           rescue
             logger.error("sgj:views:cheers:index.html.erb: error displaying goal.id:" + goal.id.to_s)
           end
-        end
+        #end
 
       end 
 
+      %>
+
+      <hr>
+      <% if @goals.current_page != 1 %>
+         <a href="/cheers?show_winners=1&category=<%=params[:category]%>&page=1">Page 1</a> ... 
+
+         <a href="/cheers?show_winners=1&category=<%=params[:category]%>&page=<%=@goals.current_page-1%>"><< Previous</a> 
+      <% end %>
+      | Page <%= @goals.current_page %> of <%= @goals.total_pages %> |
+      <% if @goals.current_page < @goals.total_pages %>
+          <a href="/cheers?show_winners=1&category=<%=params[:category]%>&page=<%=@goals.current_page+1%>">Next >></a> 
+         <a href="/cheers?show_winners=1&category=<%=params[:category]%>&page=<%=@goals.total_pages%>"> ... Page <%= @goals.total_pages%></a>
+      <% end %>
+
+      <%
       
       %>
       <br>
@@ -246,7 +300,9 @@ begin
 rescue
 %>
   <br>
+  <div class="alert">
   <p>Something went wrong. Go back to the <a href="<%= server_root_url %>">home page</a> and try again, or <a href="mailto:support@habitforge.com">Contact Support</a></p>
+  </div>
 <%
 end
 %>
@@ -288,7 +344,9 @@ end
 rescue
 %>
   <br>
-  <p>Something went wrong. Go back to the <a href="http://habitforge.com">home page</a> and try again, or <a href="mailto:support@habitforge.com">Contact Support</a></p>
+  <div class="alert">
+  <p>Something went wrong. Go back to the <a href="http://habitforge.com">home page</a> and try again, or <a href="mailto:support@habitforge.com">Contact Support</a></p> 
+  </div>
 <%
 end
 %>

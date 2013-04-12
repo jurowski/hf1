@@ -11,6 +11,7 @@ RAILS_GEM_VERSION = '2.3.2' unless defined? RAILS_GEM_VERSION
 # Bootstrap the Rails environment, frameworks, and default configuration
 require File.join(File.dirname(__FILE__), 'boot')
 
+
 Rails::Initializer.run do |config|
   # Settings in config/environments/* take precedence over those specified here.
   # Application configuration should go into files in config/initializers
@@ -50,5 +51,11 @@ Rails::Initializer.run do |config|
   config.gem "simple_autocomplete"
   config.gem "fast_gettext" ### needed for simple_autocomplete 
   config.gem "infusionsoft"
-  
+  config.gem 'will_paginate', :version => '~> 2.3.16'
+
+
 end
+
+### will_paginate must be at the very end of this file
+### http://www.ruby-forum.com/topic/157135
+require 'will_paginate'
