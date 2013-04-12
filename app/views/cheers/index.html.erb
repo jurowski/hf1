@@ -286,14 +286,14 @@ begin
 
       <hr>
       <% if @goals.current_page != 1 %>
-         <a href="/cheers?show_winners=1&category=<%=params[:category]%>&page=1">Page 1</a> ... 
+         <a href="/cheers?show_winners=1&category=<%=params[:category]%>&page=1#winners">Page 1</a> ... 
 
-         <a href="/cheers?show_winners=1&category=<%=params[:category]%>&page=<%=@goals.current_page-1%>"><< Previous</a> 
+         <a href="/cheers?show_winners=1&category=<%=params[:category]%>&page=<%=@goals.current_page-1%>#winners"><< Previous</a> 
       <% end %>
       | Page <%= @goals.current_page %> of <%= @goals.total_pages %> |
       <% if @goals.current_page < @goals.total_pages %>
-          <a href="/cheers?show_winners=1&category=<%=params[:category]%>&page=<%=@goals.current_page+1%>">Next >></a> 
-         <a href="/cheers?show_winners=1&category=<%=params[:category]%>&page=<%=@goals.total_pages%>"> ... Page <%= @goals.total_pages%></a>
+          <a href="/cheers?show_winners=1&category=<%=params[:category]%>&page=<%=@goals.current_page+1%>#winners">Next >></a> 
+         <a href="/cheers?show_winners=1&category=<%=params[:category]%>&page=<%=@goals.total_pages%>#winners"> ... Page <%= @goals.total_pages%></a>
       <% end %>
 
       <%
