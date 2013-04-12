@@ -154,6 +154,66 @@ else
     <% end %>
     </p>
   <br>  
+
+
+
+
+  <p>
+    <h2>Who could use a boost?</h2>
+  </p>
+  <p>
+        <blockquote>
+          <p>"When somebody else succeeds at achieving their goal, it feels like you're succeeding too. That's the neat thing about a community." </p>
+          <small>Bill Phillips (writer of Body for Life)</small>
+        </blockquote>
+  </p>
+  <p>
+      <%
+      slacker_goals = Goal.paginate(:page => params[:page],
+        :per_page => 20,
+        :order => 'laststatusdate DESC',
+        :conditions => "publish = '1' and status <> 'hold' and laststatusdate > '#{current_user.dtoday - 17}' and laststatusdate < '#{current_user.dtoday - 7}'")
+      
+        if slacker_goals.size > 0
+          %>
+          <div style="background-color:#F7F8E0;padding:5px;"> 
+          <p>
+          Hey <%= current_user.first_name %>... the people below haven't checked in for at least a week. Help them stay on track by clicking "boost" to send a quick message!
+          </p>
+          </div>
+
+          <%
+          slacker_goals.each do |slacker_goal|
+
+            ### do this for Free users only (to keep them involved)
+            if slacker_goal and !slacker_goal.user.is_habitforge_supporting_member
+
+                if slacker_goal.user.first_name != "unknown"
+                %>
+
+                    <p>
+                    <% if slacker_goal.is_active %>
+                        <a href="/cheers?start_following_goal_id=<%= slacker_goal.id.to_s %>&email=<%= current_user.email %>" id='follow_<%= slacker_goal.id.to_s %>'  class="btn blue" title="Follow <%= slacker_goal.user.first_name %>'s Progress" ><i class="icon-plus"></i> Follow</a>
+                        <script type='text/javascript'>
+                            $('#follow_<%= slacker_goal.id.to_s %>').tipsy();
+                        </script>
+                    <% else %>
+                      <a href="#" class="btn disabled">Stale</a>
+                    <% end %>
+                    <a href="/tomessages/new?gid=<%=slacker_goal.id.to_s%>&from_type=member&tomessage_subject=<%= slacker_goal.response_question %>&to_id=<%= slacker_goal.user.id %>" id='encourage_<%= slacker_goal.id.to_s %>' class="btn red" title='Encourage <%= slacker_goal.user.first_name %>!'> <i class="icon-heart-empty"></i> Boost</a> <span style="font-weight:bold;font-size:1.2em;"> <%= slacker_goal.user.first_name %></span> is working on ... <span style="background-color:#FFFF99;"><%= slacker_goal.response_question %></span>
+                    <script type='text/javascript'>
+                    $('#encourage_<%= slacker_goal.id.to_s %>').tipsy();
+                    </script>                  
+                    </p>                    
+                   <%
+                end ### end if slacker goal user has a real name (vs. unknown)
+             end ### end if there's still a slacker goal
+          end ### end each slacker goal
+        end ### end all slacker goals
+
+
+%>
+
 <p>
 <%
 begin
@@ -314,8 +374,11 @@ begin
     end
   else
     %>
+    <br>
+    <p>
     <h2>Who's Working on What?</h2>
-    <h5>(Click a category to see the list)</h5>
+    <h5>(Click a category to see the list of all active goals for that category.)</h5>
+    </p>
     <%
   end
   %>
