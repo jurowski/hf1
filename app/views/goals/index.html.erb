@@ -907,52 +907,51 @@ http://localhost:3000/goals?update_checkpoint_status=yes&date=2012-02-12&e0=106&
 			     end ### end each slacker goal
             end ### end if they can fake a login to send the email
 		end ### end if they haven't pushed a slacker in a while
-	else ### end if they've been a member long enough to push a slacker (a few days)
+	end ### end if they've been a member long enough to push a slacker (a few days)
         
-        ############# BASIC BOOSTING AND FOLLOWING BUTTON PROMPTS of Free Users
-        #### Ask them to message a "free user" who's slacking
+    ############# BASIC BOOSTING AND FOLLOWING BUTTON PROMPTS of Free Users
+    #### Ask them to message a "free user" who's slacking
 
 
-        ### make sure we can fake a log-in to send the email
-        if params[:goal_id] and params[:u] and params[:e0] and params[:f0]
+    ### make sure we can fake a log-in to send the email
+    if params[:goal_id] and params[:u] and params[:e0] and params[:f0]
 
-          slacker_goals = Goal.find(:all, :conditions => "publish = '1' and status <> 'hold' and laststatusdate > '#{dtoday - 17}' and laststatusdate < '#{dtoday - 7}'")
-          
-            if slacker_goals.size > 0
-                random_index = rand(slacker_goals.size) #between 0 and (size - 1)
-                slacker_goal = slacker_goals[random_index]
+      slacker_goals = Goal.find(:all, :conditions => "publish = '1' and status <> 'hold' and laststatusdate > '#{dtoday - 17}' and laststatusdate < '#{dtoday - 7}'")
+      
+        if slacker_goals.size > 0
+            random_index = rand(slacker_goals.size) #between 0 and (size - 1)
+            slacker_goal = slacker_goals[random_index]
 
-                ### do this for Free users only (to keep them involved)
-                if slacker_goal and !slacker_goal.user.is_habitforge_supporting_member
+            ### do this for Free users only (to keep them involved)
+            if slacker_goal and !slacker_goal.user.is_habitforge_supporting_member
 
-                    if slacker_goal.user.first_name != "unknown"
-                    %>
-                        <div style="background-color:#F7F8E0;padding:5px;"> 
-                        <p>
-                        Hey <%= current_user.first_name %>, <%= slacker_goal.user.first_name %> hasn't been "<%= slacker_goal.title %>" for more than a few days now, and could use a little "nudge". Could you help out?
-                        <% if slacker_goal.is_active %>
-                            <a href="/cheers?start_following_goal_id=<%= slacker_goal.id.to_s %>&email=<%= current_user.email %>" id='follow_<%= slacker_goal.id.to_s %>'  class="btn blue" title="Follow <%= slacker_goal.user.first_name %>'s Progress" ><i class="icon-plus"></i> Follow</a>
-                            <script type='text/javascript'>
-                                $('#follow_<%= slacker_goal.id.to_s %>').tipsy();
-                            </script>
-                        <% else %>
-                          <a href="#" class="btn disabled">Stale</a>
-                        <% end %>
-                        <a href="/tomessages/new?gid=<%=slacker_goal.id.to_s%>&from_type=member&tomessage_subject=<%= slacker_goal.response_question %>&to_id=<%= slacker_goal.user.id %>" id='encourage_<%= slacker_goal.id.to_s %>' class="btn red" title='Encourage <%= slacker_goal.user.first_name %>!'> <i class="icon-heart-empty"></i> Boost</a> <span style="font-weight:bold;font-size:1.2em;"> <%= slacker_goal.user.first_name %></span> is working on ... <span style="background-color:#FFFF99;"><%= slacker_goal.response_question %></span>
+                if slacker_goal.user.first_name != "unknown"
+                %>
+                    <div style="background-color:#F7F8E0;padding:5px;"> 
+                    <p>
+                    Hey <%= current_user.first_name %>, <%= slacker_goal.user.first_name %> hasn't been "<%= slacker_goal.title %>" for more than a few days now, and could use a little "nudge". Could you help out?
+                    <% if slacker_goal.is_active %>
+                        <a href="/cheers?start_following_goal_id=<%= slacker_goal.id.to_s %>&email=<%= current_user.email %>" id='follow_<%= slacker_goal.id.to_s %>'  class="btn blue" title="Follow <%= slacker_goal.user.first_name %>'s Progress" ><i class="icon-plus"></i> Follow</a>
                         <script type='text/javascript'>
-                        $('#encourage_<%= slacker_goal.id.to_s %>').tipsy();
-                        </script>                  
+                            $('#follow_<%= slacker_goal.id.to_s %>').tipsy();
+                        </script>
+                    <% else %>
+                      <a href="#" class="btn disabled">Stale</a>
+                    <% end %>
+                    <a href="/tomessages/new?gid=<%=slacker_goal.id.to_s%>&from_type=member&tomessage_subject=<%= slacker_goal.response_question %>&to_id=<%= slacker_goal.user.id %>" id='encourage_<%= slacker_goal.id.to_s %>' class="btn red" title='Encourage <%= slacker_goal.user.first_name %>!'> <i class="icon-heart-empty"></i> Boost</a> <span style="font-weight:bold;font-size:1.2em;"> <%= slacker_goal.user.first_name %></span> is working on ... <span style="background-color:#FFFF99;"><%= slacker_goal.response_question %></span>
+                    <script type='text/javascript'>
+                    $('#encourage_<%= slacker_goal.id.to_s %>').tipsy();
+                    </script>                  
 
-                        </p>
-                        </div>
-                        <br>
-                       <%
-                    end ### end if slacker goal user has a real name (vs. unknown)
-                 end ### end if there's still a slacker goal
-             end ### end each slacker goal
-        end ### end if they can fake a login to send the email
+                    </p>
+                    </div>
+                    <br>
+                   <%
+                end ### end if slacker goal user has a real name (vs. unknown)
+             end ### end if there's still a slacker goal
+         end ### end each slacker goal
+    end ### end if they can fake a login to send the email
 
-    end
 	%>
    <% end %>
     
