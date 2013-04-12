@@ -140,7 +140,12 @@ class TomessagesController < ApplicationController
         
         
         flash[:notice] = 'Message Sent.'
-        format.html { redirect_to("/goals?flash=message_sent") }
+
+        if session[:return_to_me] and session[:return_to_me] != ""
+          format.html { redirect_to(session[:return_to_me]) }
+        else
+          format.html { redirect_to("/goals?flash=message_sent") }
+        end
         format.xml  { render :xml => @tomessage, :status => :created, :location => @tomessage }
       else
         format.html { render :action => "new" }
