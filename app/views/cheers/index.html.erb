@@ -2,11 +2,26 @@
 <%
 begin
 %>
+
+<!-- START FLASH MESSAGES -->
+<% if params[:flash] == "message_sent" %>
+    <div class="alert">
+        <h3>Message sent.</font> 
+    </div>
+<% end %>
+<!-- END FLASH MESSAGES END -->
+
+
 <%= request.request_uri %>
 <%
 
 ################################################
 ####### WHAT PAGES SHOULD WE RETURN TO?
+
+if params[:show_winners]
+  session[:show_winners_return_to_me] = request.request_uri
+end
+
 session[:current_page] = request.request_uri
 session[:return_to_me] = request.request_uri
 ################################################

@@ -141,8 +141,8 @@ class TomessagesController < ApplicationController
         
         flash[:notice] = 'Message Sent.'
 
-        if session[:return_to_me] and session[:return_to_me] != ""
-          format.html { redirect_to(session[:return_to_me]) }
+        if session[:show_winners_return_to_me] and session[:show_winners_return_to_me] != ""
+          format.html { redirect_to(session[:show_winners_return_to_me] + "&flash=message_sent") }
         else
           format.html { redirect_to("/goals?flash=message_sent") }
         end
