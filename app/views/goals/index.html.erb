@@ -837,18 +837,18 @@ http://localhost:3000/goals?update_checkpoint_status=yes&date=2012-02-12&e0=106&
 				      if slacker_goal.phrase1 and slacker_goal.phrase1 != ""
 					phrase1_good = true
 				      end
-                                      if slacker_goal.phrase2 and slacker_goal.phrase2 != ""
-                                        phrase2_good = true
-                                      end
-                                      if slacker_goal.phrase3 and slacker_goal.phrase3 != ""
-                                        phrase3_good = true
-                                      end
-                                      if slacker_goal.phrase4 and slacker_goal.phrase4 != ""
-                                        phrase4_good = true
-                                      end
-                                      if slacker_goal.phrase5 and slacker_goal.phrase5 != ""
-                                        phrase5_good = true
-                                      end
+                      if slacker_goal.phrase2 and slacker_goal.phrase2 != ""
+                        phrase2_good = true
+                      end
+                      if slacker_goal.phrase3 and slacker_goal.phrase3 != ""
+                        phrase3_good = true
+                      end
+                      if slacker_goal.phrase4 and slacker_goal.phrase4 != ""
+                        phrase4_good = true
+                      end
+                      if slacker_goal.phrase5 and slacker_goal.phrase5 != ""
+                        phrase5_good = true
+                      end
 
 				      if phrase1_good or phrase2_good or phrase3_good or phrase4_good or phrase5_good                             
 				        slacker_has_at_least_one_button = true
@@ -867,17 +867,17 @@ http://localhost:3000/goals?update_checkpoint_status=yes&date=2012-02-12&e0=106&
                       end
 
 				      if slacker_really_is_slacking and slacker_has_at_least_one_button
-					%>
+					  %>
                 	                <div style="background-color:#F7F8E0;padding:5px;">	
-					<p>
-					Hey <%= current_user.first_name %>, <%= slacker_goal.user.first_name %> hasn't been "<%= slacker_goal.title %>" for more than a few days now, and could use a little "push".
-					Push one of their buttons below to send them some motivation, and you'll earn 5 "SupportPoints". 
-					If they succeed either today or tomorrow, you'll earn an additional 10 "SupportPoints"!
-					<h4>Every 100 SupportPoints earns you a free Premium Membership for you or a friend!</h4>
-					Push one of their buttons to send them a message!
-					<% if phrase1_good  %>
-					  <br><a href="/goals?goal_id=<%= params[:goal_id]%>&u=<%= params[:u] %>&e0=<%= params[:e0] %>&f0=<%= params[:f0] %>&push_message_id=<%=1%>&push_message_goal_id=<%=slacker_goal.id%>" class="start_now"><%= slacker_goal.phrase1 %></a>
-					<% end %>
+    					<p>
+    					Hey <%= current_user.first_name %>, <%= slacker_goal.user.first_name %> hasn't been "<%= slacker_goal.title %>" for more than a few days now, and could use a little "push".
+    					Push one of their buttons below to send them some motivation, and you'll earn 5 "SupportPoints". 
+    					If they succeed either today or tomorrow, you'll earn an additional 10 "SupportPoints"!
+    					<h4>Every 100 SupportPoints earns you a free Premium Membership for you or a friend!</h4>
+    					Push one of their buttons to send them a message!
+    					<% if phrase1_good  %>
+    					  <br><a href="/goals?goal_id=<%= params[:goal_id]%>&u=<%= params[:u] %>&e0=<%= params[:e0] %>&f0=<%= params[:f0] %>&push_message_id=<%=1%>&push_message_goal_id=<%=slacker_goal.id%>" class="start_now"><%= slacker_goal.phrase1 %></a>
+    					<% end %>
 
                                         <% if phrase2_good  %>
                                           <br><a href="/goals?goal_id=<%= params[:goal_id]%>&u=<%= params[:u] %>&e0=<%= params[:e0] %>&f0=<%= params[:f0] %>&push_message_id=<%=2%>&push_message_goal_id=<%=slacker_goal.id%>" class="start_now"><%= slacker_goal.phrase2 %></a>
@@ -895,19 +895,64 @@ http://localhost:3000/goals?update_checkpoint_status=yes&date=2012-02-12&e0=106&
                                           <br><a href="/goals?goal_id=<%= params[:goal_id]%>&u=<%= params[:u] %>&e0=<%= params[:e0] %>&f0=<%= params[:f0] %>&push_message_id=<%=5%>&push_message_goal_id=<%=slacker_goal.id%>" class="start_now"><%= slacker_goal.phrase5 %></a>
                                         <% end %>
 
-					</p>
-					</div>
+					       </p>
+					       </div>
 
                 			<br>
-					<%
-                                	current_user.date_last_prompted_to_push_a_slacker = dtoday
-                                	current_user.save
-                                end ### end slacker_has_at_least_one_button
-			     end
-			  end
-                        end
-		end
-	end
+					       <%
+                        	current_user.date_last_prompted_to_push_a_slacker = dtoday
+                        	current_user.save
+                        end ### end slacker_has_at_least_one_button
+			         end ### end if there's still a slacker goal
+			     end ### end each slacker goal
+            end ### end if they can fake a login to send the email
+		end ### end if they haven't pushed a slacker in a while
+	else ### end if they've been a member long enough to push a slacker (a few days)
+        
+        ############# BASIC BOOSTING AND FOLLOWING BUTTON PROMPTS of Free Users
+        #### Ask them to message a "free user" who's slacking
+
+
+        ### make sure we can fake a log-in to send the email
+        if params[:goal_id] and params[:u] and params[:e0] and params[:f0]
+
+          slacker_goals = Goal.find(:all, :conditions => "publish = '1' and status <> 'hold' and laststatusdate > '#{dtoday - 17}' and laststatusdate < '#{dtoday - 7}'")
+          
+            if slacker_goals.size > 0
+                random_index = rand(slacker_goals.size) #between 0 and (size - 1)
+                slacker_goal = slacker_goals[random_index]
+
+                ### do this for Free users only (to keep them involved)
+                if slacker_goal and !slacker_goal.user.is_habitforge_supporting_member
+
+                    if slacker_goal.user.first_name != "unknown"
+                    %>
+                        <div style="background-color:#F7F8E0;padding:5px;"> 
+                        <p>
+                        Hey <%= current_user.first_name %>, <%= slacker_goal.user.first_name %> hasn't been "<%= slacker_goal.title %>" for more than a few days now, and could use a little "nudge". Could you help out?
+                        <% if slacker_goal.is_active %>
+                            <a href="/cheers?start_following_goal_id=<%= slacker_goal.id.to_s %>&email=<%= current_user.email %>" id='follow_<%= slacker_goal.id.to_s %>'  class="btn blue" title="Follow <%= slacker_goal.user.first_name %>'s Progress" ><i class="icon-plus"></i> Follow</a>
+                            <script type='text/javascript'>
+                                $('#follow_<%= slacker_goal.id.to_s %>').tipsy();
+                            </script>
+                        <% else %>
+                          <a href="#" class="btn disabled">Stale</a>
+                        <% end %>
+                        <a href="/tomessages/new?gid=<%=slacker_goal.id.to_s%>&from_type=member&tomessage_subject=<%= slacker_goal.response_question %>&to_id=<%= slacker_goal.user.id %>" id='encourage_<%= slacker_goal.id.to_s %>' class="btn red" title='Encourage <%= slacker_goal.user.first_name %>!'> <i class="icon-heart-empty"></i> Boost</a> <span style="font-weight:bold;font-size:1.2em;"> <%= slacker_goal.user.first_name %></span> is working on ... <span style="background-color:#FFFF99;"><%= slacker_goal.response_question %></span>
+                        <script type='text/javascript'>
+                        $('#encourage_<%= slacker_goal.id.to_s %>').tipsy();
+                        </script>                  
+
+                        </p>
+                        </div>
+                        <br>
+                       <%
+                    end ### end if slacker goal user has a real name (vs. unknown)
+                 end ### end if there's still a slacker goal
+             end ### end each slacker goal
+        end ### end if they can fake a login to send the email
+
+    end
 	%>
    <% end %>
     

@@ -178,8 +178,6 @@ begin
     #@products = Product.paginate(:page => params[:page], :per_page => 25)
     #@goals = Goal.paginate(:all, :conditions => my_conditions, :order => "daysstraight desc", :page => params[:page], :per_page => 25)
 
-
-
     @goals = Goal.paginate(:page => params[:page],
                                :per_page   => 20,
                                :order      => 'daysstraight DESC',
