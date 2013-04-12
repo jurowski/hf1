@@ -198,9 +198,19 @@ begin
       %>
       <br>
       <br>
-      <h2>Publicly Shared Active "<%= params[:category]%>" Habits:</h2>
+      <h2>Publicly Shared "<%= params[:category]%>" Habits:</h2>
       <br>
       <br>
+
+
+<!-- START FLASH MESSAGES -->
+<% if params[:flash] == "message_sent" %>
+    <div class="alert">
+        <h3>Message sent.</font> 
+    </div>
+<% end %>
+<!-- END FLASH MESSAGES END -->
+
 
 
 
