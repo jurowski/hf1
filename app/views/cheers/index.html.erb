@@ -166,6 +166,8 @@ begin
 
 
 
+
+
       <%
       @goals.each do |goal| 
 
@@ -181,12 +183,12 @@ begin
 
 
                   <% if current_user %>
-                    <a href="/cheers?start_following_goal_id=<%= goal.id.to_s %>&email=<%= current_user.email %>" id='follow_<%= goal.id.to_s %>' class="glyphicons icon-plus" title='Follow <%= goal.user.first_name %>' style="font-size:2em;padding:0;" ><i></i></a>
+                    <a href="/cheers?start_following_goal_id=<%= goal.id.to_s %>&email=<%= current_user.email %>" id='follow_<%= goal.id.to_s %>' class="glyphicons icon-plus" title="Follow <%= goal.user.first_name %>'s Progress" style="font-size:2em;padding:0;color:#3333cc;" ><i></i><span style="font-size:.6em;"> Follow</span></a>
                       <script type='text/javascript'>
                         $('#follow_<%= goal.id.to_s %>').tipsy();
                       </script>
                   <% end %>
-                   <a href="/tomessages/new?gid=<%=goal.id.to_s%>&from_type=member&tomessage_subject=<%= goal.response_question %>&to_id=<%= goal.user.id %>" id='encourage_<%= goal.id.to_s %>' class="glyphicons icon-heart-empty" title='Encourage <%= goal.user.first_name %>' style="font-size:2em;padding:0;" ><i></i></a> <%= goal.user.first_name %> is working on ... <%= goal.response_question %>
+                   <a href="/tomessages/new?gid=<%=goal.id.to_s%>&from_type=member&tomessage_subject=<%= goal.response_question %>&to_id=<%= goal.user.id %>" id='encourage_<%= goal.id.to_s %>' class="glyphicons icon-heart" title='Encourage <%= goal.user.first_name %>!' style="font-size:2em;padding:0;color:#ff3333;" ><i></i><span style="font-size:.6em;"> Boost</span></a> <%= goal.user.first_name %> is working on ... <%= goal.response_question %>
                       <script type='text/javascript'>
                         $('#encourage_<%= goal.id.to_s %>').tipsy();
                       </script>                  
