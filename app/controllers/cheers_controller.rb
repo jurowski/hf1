@@ -23,11 +23,15 @@ class CheersController < ApplicationController
           new_cheer.email = params[:email]
           new_cheer.goal_id = params[:start_following_goal_id].to_i
           new_cheer.save
-          flash[:notice] = 'You are following a new goal!'
 
           begin
             goal = Goal.find(params[:start_following_goal_id].to_i)
             Notifier.deliver_notify_user_new_follower(goal, current_user) # sends the email
+
+            flash[:notice] = 'You are following a new goal!'
+            if session[:show_winners_return_to_me] and session[:show_winners_return_to_me] != ""
+              redirect_to(session[:show_winners_return_to_me] + "&flash=message_sent#winners")
+            end
           rescue
             logger.error("sgj:cheers_controller:error emailing re: new follower")
           end
