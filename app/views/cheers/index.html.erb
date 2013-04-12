@@ -12,7 +12,6 @@ begin
 <!-- END FLASH MESSAGES END -->
 
 
-<%= request.request_uri %>
 <%
 
 ################################################
@@ -159,6 +158,9 @@ else
 <%
 begin
   if params[:show_winners] and params[:category]
+    %>
+    <a name="winners" />
+    <%
     offset = 0
     dnow = get_dnow
     dnow = dnow + offset
@@ -329,7 +331,7 @@ for arr in @arr
   %>
   <p>
     <!-- was making the link session[:current_page] -->
-  &nbsp &nbsp &nbsp &nbsp &nbsp <a href='/cheers?show_winners=1&category=<%= arr[0] %>'><%= arr[0] %></a>
+  &nbsp &nbsp &nbsp &nbsp &nbsp <a href='/cheers?show_winners=1&category=<%= arr[0] %>'><%= arr[0] %>#winners</a>
   </p>
   <%
 end
