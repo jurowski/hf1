@@ -179,9 +179,16 @@ else
         if slacker_goals.size > 0
           %>
 
+                        <div style="background-color:#F7F8E0;padding:5px;"> 
+                        <p>
+                        Hey <%= current_user.first_name %>... We've listed a few people below who haven't checked in for at least a week. Help them stay on track by clicking "boost" to send a quick message!
+                        </p>
+                        </div>
 
           <%
           keep_looking = true
+          counter = 0
+          max_counter = 3
           slacker_goals.each do |slacker_goal|
               break if !keep_looking
               random_index = rand(slacker_goals.size) #between 0 and (size - 1)
@@ -191,14 +198,13 @@ else
               if slacker_goal and !slacker_goal.user.is_habitforge_supporting_member
 
                 if slacker_goal.user.first_name != "unknown"
-                  keep_looking = false
+                  counter = counter + 1
+                  if counter == max_counter
+                    keep_looking = false
+                  end
                     %>
                     <p>
-                        <div style="background-color:#F7F8E0;padding:5px;"> 
-                        <p>
-                        Hey <%= current_user.first_name %>... <%= slacker_goal.user.first_name %> hasn't checked in for at least a week. Help them stay on track by clicking "boost" to send a quick message!
-                        </p>
-                        </div>
+
 
                     <% if slacker_goal.is_active %>
                         <a href="/cheers?start_following_goal_id=<%= slacker_goal.id.to_s %>&email=<%= current_user.email %>" id='follow_<%= slacker_goal.id.to_s %>'  class="btn blue" title="Follow <%= slacker_goal.user.first_name %>'s Progress" ><i class="icon-plus"></i> Follow</a>
