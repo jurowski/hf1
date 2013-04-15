@@ -174,7 +174,7 @@ else
       #   :order => 'laststatusdate DESC',
       #   :conditions => "publish = '1' and status <> 'hold' and laststatusdate > '#{current_user.dtoday - 460}' and laststatusdate < '#{current_user.dtoday - 7}'")
 
-      slacker_goals = Goal.find(:all, :conditions => "publish = '1' and status <> 'hold' and laststatusdate > '#{current_user.dtoday - 60}' and laststatusdate < '#{current_user.dtoday - 7}'")
+      slacker_goals = Goal.find(:all, :conditions => "publish = '1' and status <> 'hold' and laststatusdate > '#{current_user.dtoday - 600}' and laststatusdate < '#{current_user.dtoday - 7}'")
 
         if slacker_goals.size > 0
           %>
@@ -189,6 +189,7 @@ else
           keep_looking = true
           counter = 0
           max_counter = 3
+          arr_chosen_goals = Array.new()
           slacker_goals.each do |slacker_goal|
               break if !keep_looking
               random_index = rand(slacker_goals.size) #between 0 and (size - 1)
@@ -197,7 +198,8 @@ else
               ### do this for Free users only (to keep them involved)
               if slacker_goal and !slacker_goal.user.is_habitforge_supporting_member
 
-                if slacker_goal.user.first_name != "unknown"
+                if slacker_goal.user.first_name != "unknown" and !arr_chosen_goals.include? slacker_goal.id
+                  arr_chosen_goals << slacker_goal.id
                   counter = counter + 1
                   if counter == max_counter
                     keep_looking = false

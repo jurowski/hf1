@@ -238,9 +238,17 @@ logger.debug "SGJ2 2 #{goal.title}(#{goal.id}) #{goal.daysstraight} daysstraight
          my_first_goal_id = current_user.active_goals[0].id
        end 
        if my_first_goal_id != 0
-         redirect_to("/goals/#{my_first_goal_id}/edit")
+          if params[:ga_goal] and params[:email]
+           redirect_to("/goals/#{my_first_goal_id}/edit?ga_goal=#{params[:ga_goal]}&email=#{params[:email]}")
+          else
+           redirect_to("/goals/#{my_first_goal_id}/edit")
+          end
        else
-         redirect_to("/goals")
+          if params[:ga_goal] and params[:email]
+           redirect_to("/goals?ga_goal=#{params[:ga_goal]}&email=#{params[:email]}")
+          else
+           redirect_to("/goals")
+          end
        end 
      else
           ### http://firstruby.wordpress.com/2008/11/03/remote_function-or-link_to_remote-with-multiple-parameters-in-ruby-on-rails/
