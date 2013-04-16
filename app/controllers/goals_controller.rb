@@ -48,7 +48,11 @@ class GoalsController < ApplicationController
     #test index page
   end
 
-
+  #def catch_up
+  #
+  #  ### test for ajax-loading of partial without prototype and newer javascript
+  # render :partial => "goals/catch_up_on_checkpoints", :locals => { :catch_up_on_checkpoints => @goal }
+  #end
 
 
 
@@ -88,7 +92,7 @@ class GoalsController < ApplicationController
             goal = Goal.find(params[:goal_id].to_i)
             @goal = goal
         end
-                    
+         
         ### If coming from an autoupdatemultiple screen
         if params[:coming_from] == "multiple" and session[:d]
             ### if any of today's answers are "no", then show personal motivation for those

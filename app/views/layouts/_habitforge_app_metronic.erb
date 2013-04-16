@@ -252,6 +252,35 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
 
   <script type='text/javascript' src='/javascripts/jquery.tipsy.js'></script><!-- ToolTips (tipsy) -->
 
+
+  <!-- TEST Reload AJAX content for updating partials w/out Prototype (newer JS library) 
+  http://www.tutorialspoint.com/cgi-bin/practice.cgi?file=jquery_109
+  -->    
+   <script type="text/javascript" language="javascript">
+   //$(document).ready(function() {
+   //   $("#driver").click(function(event){
+   //       $('#stage').load('/.html');
+   //   });
+   //});
+
+   // Or, refresh at intervals:
+   // http://stackoverflow.com/questions/10539143/reloading-partial-in-an-rails-app
+   // $(document).ready(function() {
+   //  setInterval(function() {
+   //    $('.dynamic').load('/controller_name/action_name');
+   //    }, 3000);
+   //  });
+
+    function reload_catch_up_goal_id(id) {
+        var div = document.getElementById(id);
+        div.style.display = "block";
+    }
+
+   </script>
+   <!-- END TEST RELOAD AJAX CONTENT FOR UPDATING PARTIALS w/out Prototype -->
+
+
+
   <!-- direct to facebook 
   <div id="fb-root"></div>
   <script>(function(d, s, id) {
@@ -268,6 +297,8 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
     <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
     <script type="text/javascript">stLight.options({publisher: "6f618717-8285-4c8c-b5c7-4f9e1d5e2a92", doNotHash: true, doNotCopy: true, hashAddressBar: false});</script>
   <% end %>
+
+
   <!-- ################################################## -->
   <!-- END CUSTOM SGJ JAVASCRIPT -->
   <!-- ################################################## -->
