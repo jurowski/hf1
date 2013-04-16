@@ -13,7 +13,9 @@
 Subject: <%= @tomessage.subject %></strong>
 <br>
 <br>
+<div style="padding:.8em;margin-bottom:1em;border:2px solid #ddd;background:#FFFFCC;color:#514721;border-color:#BBBBBB;">
 <%= @tomessage.body.gsub("\n", "<br>") %>
+</div>
 <hr>
 <a href= "http://habitforge.com/user_session/new?skip_intro=1&after_login_cn=tomessages&after_login_ca=new&after_login_param_1_name=to_id&after_login_param_1_val=<%= @from_user.id %>&after_login_param_2_name=replying_to_message_id&after_login_param_2_val=<%= @tomessage.id %>">Reply to <%= @from_user.first_name %>.</a>
 

@@ -29,7 +29,10 @@
       if cheer.save
         puts "Email sent."
       end
-      Notifier.deliver_invite_a_friend_to_track(current_user, params[:email], params[:the_body] + "\n The HabitForge URL is: http://habitforge.com", params[:the_subject]) # sends the email      
+
+
+
+      Notifier.deliver_invite_a_friend_to_track(current_user, params[:email], params[:the_body].gsub("\n", "<br>") + "\n The HabitForge URL is: http://habitforge.com", params[:the_subject]) # sends the email      
       session[:emailsent] = 1
     end
   rescue
