@@ -54,7 +54,7 @@ end
       for team_goal in @team_goals
         %>
         <% if team_goal.user.id != current_user.id %>
-            <p><img src="/images/comment_user_add_32.png" /> <a href="/tomessages/new?from_type=team&to_id=<%= team_goal.user.id %>" >Send <%= team_goal.user.first_name %> a Message about <%= team_goal.response_question %></a>
+            <p><img src="/images/comment_user_add_32.png" /> <a href="/tomessages/new?goal_id=<%=team_goal.id.to_s%>&from_type=team&to_id=<%= team_goal.user.id %>" >Send <%= team_goal.user.first_name %> a Message about <%= team_goal.response_question %></a>
             • 
             <% if team_goal.success_rate_percentage != nil %>
                  Succeeding <%= team_goal.success_rate_percentage %>% of the last

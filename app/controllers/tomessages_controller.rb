@@ -129,7 +129,12 @@ class TomessagesController < ApplicationController
         if params[:from_type]
           @from_type = params[:from_type]
         end
-        Notifier.deliver_tomessage_notification(@to_user, @from_user, @tomessage, @from_type) # sends the email
+
+        @goal_id = 0
+        if params[:goal_id]
+          @goal_id = params[:goal_id].to_i
+        end
+        Notifier.deliver_tomessage_notification(@to_user, @from_user, @tomessage, @from_type, @goal_id) # sends the email
 
         @frommessage = Frommessage.new()
         @frommessage.to_id = @tomessage.to_id

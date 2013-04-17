@@ -6,7 +6,9 @@
 <body>
 
 
-<a href= "http://habitforge.com/user_session/new?skip_intro=1&after_login_cn=tomessages&after_login_ca=new&after_login_param_1_name=to_id&after_login_param_1_val=<%= @from_user.id %>&after_login_param_2_name=replying_to_message_id&after_login_param_2_val=<%= @tomessage.id %>">Send a Reply!</a>
+<!-- <a href= "http://habitforge.com/user_session/new?skip_intro=1&after_login_cn=tomessages&after_login_ca=new&after_login_param_1_name=to_id&after_login_param_1_val=<%= @from_user.id %>&after_login_param_2_name=replying_to_message_id&after_login_param_2_val=<%= @tomessage.id %>">Send a Reply!</a>
+ -->
+<a href= "http://habitforge.com/tomessages/new?to_id=<%= @from_user.id.to_s %>&replying_to_message_id=<%= @tomessage.id %>&u=<%= @to_user.id.to_s %>&e0=<%= @to_user.email[0] %>&f0=<%= @to_user.first_name[0] %>&goal_id=<%= @goal_id %>">Send a Reply!</a>
 <hr>
 <strong>From: <%= @from_user.first_name %> <%= @from_user.last_name %>
 <br>
@@ -17,9 +19,9 @@ Subject: <%= @tomessage.subject %></strong>
 <%= @tomessage.body.gsub("\n", "<br>") %>
 </div>
 <hr>
-<a href= "http://habitforge.com/user_session/new?skip_intro=1&after_login_cn=tomessages&after_login_ca=new&after_login_param_1_name=to_id&after_login_param_1_val=<%= @from_user.id %>&after_login_param_2_name=replying_to_message_id&after_login_param_2_val=<%= @tomessage.id %>">Reply to <%= @from_user.first_name %>.</a>
+<!-- <a href= "http://habitforge.com/user_session/new?skip_intro=1&after_login_cn=tomessages&after_login_ca=new&after_login_param_1_name=to_id&after_login_param_1_val=<%= @from_user.id %>&after_login_param_2_name=replying_to_message_id&after_login_param_2_val=<%= @tomessage.id %>">Reply to <%= @from_user.first_name %>.</a> -->
 
-
+<a href= "http://habitforge.com/tomessages/new?to_id=<%= @from_user.id.to_s %>&replying_to_message_id=<%= @tomessage.id %>&u=<%= @to_user.id.to_s %>&e0=<%= @to_user.email[0] %>&f0=<%= @to_user.first_name[0] %>&goal_id=<%= @goal_id %>">Reply to <%= @from_user.first_name %>.</a>
 
 <br>
 <br>

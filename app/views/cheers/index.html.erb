@@ -123,7 +123,7 @@ else
             &nbsp; 
             •
             &nbsp;
-            <a href="/tomessages/new?from_type=follower&to_id=<%= cheer.goal.user.id %>">Send <%= cheer.goal.user.first_name %> a Message!</a>
+            <a href="/tomessages/new?goal_id=<%=cheer.goal.id.to_s%>&from_type=follower&to_id=<%= cheer.goal.user.id %>">Send <%= cheer.goal.user.first_name %> a Message!</a>
             &nbsp; 
             •
             &nbsp;
@@ -216,7 +216,7 @@ else
                     <% else %>
                       <a href="#" class="btn disabled">Stale</a>
                     <% end %>
-                    <a href="/tomessages/new?gid=<%=slacker_goal.id.to_s%>&from_type=member&tomessage_subject=<%= slacker_goal.response_question %>&to_id=<%= slacker_goal.user.id %>" id='encourage_<%= slacker_goal.id.to_s %>' class="btn red" title='Encourage <%= slacker_goal.user.first_name %>!'> <i class="icon-heart-empty"></i> Boost</a> <span style="font-weight:bold;font-size:1.2em;"> <%= slacker_goal.user.first_name %></span> is working on ... <span style="background-color:#FFFF99;"><%= slacker_goal.response_question %></span>
+                    <a href="/tomessages/new?goal_id=<%=slacker_goal.id.to_s%>&gid=<%=slacker_goal.id.to_s%>&from_type=member&tomessage_subject=<%= slacker_goal.response_question %>&to_id=<%= slacker_goal.user.id %>" id='encourage_<%= slacker_goal.id.to_s %>' class="btn red" title='Encourage <%= slacker_goal.user.first_name %>!'> <i class="icon-heart-empty"></i> Boost</a> <span style="font-weight:bold;font-size:1.2em;"> <%= slacker_goal.user.first_name %></span> is working on ... <span style="background-color:#FFFF99;"><%= slacker_goal.response_question %></span>
                     <script type='text/javascript'>
                     $('#encourage_<%= slacker_goal.id.to_s %>').tipsy();
                     </script>                  
@@ -327,7 +327,7 @@ begin
 
                     <% end %>
                   <% end %>
-                   <a href="/tomessages/new?gid=<%=goal.id.to_s%>&from_type=member&tomessage_subject=<%= goal.response_question %>&to_id=<%= goal.user.id %>" id='encourage_<%= goal.id.to_s %>' class="btn red" title='Encourage <%= goal.user.first_name %>!'> <i class="icon-heart-empty"></i> Boost</a> <span style="font-weight:bold;font-size:1.2em;"> <%= goal.user.first_name %></span> is working on ... <span style="background-color:#FFFF99;"><%= goal.response_question %></span>
+                   <a href="/tomessages/new?goal_id=<%=goal.id.to_s%>&gid=<%=goal.id.to_s%>&from_type=member&tomessage_subject=<%= goal.response_question %>&to_id=<%= goal.user.id %>" id='encourage_<%= goal.id.to_s %>' class="btn red" title='Encourage <%= goal.user.first_name %>!'> <i class="icon-heart-empty"></i> Boost</a> <span style="font-weight:bold;font-size:1.2em;"> <%= goal.user.first_name %></span> is working on ... <span style="background-color:#FFFF99;"><%= goal.response_question %></span>
                       <script type='text/javascript'>
                         $('#encourage_<%= goal.id.to_s %>').tipsy();
                       </script>                  

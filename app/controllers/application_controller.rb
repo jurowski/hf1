@@ -173,7 +173,7 @@ class ApplicationController < ActionController::Base
             end
         end    
 
-
+        ### now works if coming from a tomessages-generated email
         ### EXAMPLE URL: /goals?update_checkpoint_status=no&date=2012-01-28&e0=106&f0=97&u=15706&goal_id=25855
         if params[:goal_id] and params[:u] and params[:e0] and params[:f0]
             logger.debug("sgj:attempting single login w/ goal/user/email id info")

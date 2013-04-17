@@ -785,18 +785,18 @@ http://localhost:3000/goals?update_checkpoint_status=yes&date=2012-02-12&e0=106&
                 if !team_goal.last_success_date
                   if team_goal.start < (dtoday - 3)
                     %>
-                    <p><img src="/images/comment_user_add_32.png" /> <%= team_goal.user.first_name %> from your team hasn't succeeded in a while! <a href="/tomessages/new?to_id=<%= team_goal.user.id %>" >Send <%= team_goal.user.first_name %> a Message about <%= team_goal.response_question %></a></p>
+                    <p><img src="/images/comment_user_add_32.png" /> <%= team_goal.user.first_name %> from your team hasn't succeeded in a while! <a href="/tomessages/new?goal_id=<%= team_goal.id.to_s %>&to_id=<%= team_goal.user.id %>" >Send <%= team_goal.user.first_name %> a Message about <%= team_goal.response_question %></a></p>
                     <%
                   end
                 else
                   if team_goal.last_success_date < (dtoday - 3)
 			%>
-                    <p><img src="/images/comment_user_add_32.png" /> Your teammate <%= team_goal.user.first_name %> hasn't succeeded in a while! <a href="/tomessages/new?to_id=<%= team_goal.user.id %>" >Send <%= team_goal.user.first_name %> a Message about <%= team_goal.response_question %></a></p>
+                    <p><img src="/images/comment_user_add_32.png" /> Your teammate <%= team_goal.user.first_name %> hasn't succeeded in a while! <a href="/tomessages/new?goal_id=<%= team_goal.id.to_s %>&to_id=<%= team_goal.user.id %>" >Send <%= team_goal.user.first_name %> a Message about <%= team_goal.response_question %></a></p>
 			<%
 		  end
                   if team_goal.last_success_date == (dtoday - 1)
                         %>
-                    <p><img src="/images/comment_user_add_32.png" /> Congrats to <%= team_goal.user.first_name %> for succeeding yesterday! <a href="/tomessages/new?to_id=<%= team_goal.user.id %>" >Send <%= team_goal.user.first_name %> a Message about <%= team_goal.response_question %></a></p>
+                    <p><img src="/images/comment_user_add_32.png" /> Congrats to <%= team_goal.user.first_name %> for succeeding yesterday! <a href="/tomessages/new?goal_id=<%= team_goal.id.to_s %>&to_id=<%= team_goal.user.id %>" >Send <%= team_goal.user.first_name %> a Message about <%= team_goal.response_question %></a></p>
                         <%
                   end
                 end 
@@ -940,7 +940,7 @@ http://localhost:3000/goals?update_checkpoint_status=yes&date=2012-02-12&e0=106&
                     <% else %>
                       <a href="#" class="btn disabled">Stale</a>
                     <% end %>
-                    <a href="/tomessages/new?gid=<%=slacker_goal.id.to_s%>&from_type=member&tomessage_subject=<%= slacker_goal.response_question %>&to_id=<%= slacker_goal.user.id %>" id='encourage_<%= slacker_goal.id.to_s %>' class="btn red" title='Encourage <%= slacker_goal.user.first_name %>!'> <i class="icon-heart-empty"></i> Boost</a> <span style="font-weight:bold;font-size:1.2em;"> <%= slacker_goal.user.first_name %></span> is working on ... <span style="background-color:#FFFF99;"><%= slacker_goal.response_question %></span>
+                    <a href="/tomessages/new?gid=<%=slacker_goal.id.to_s%>&goal_id=<%=slacker_goal.id.to_s%>&from_type=member&tomessage_subject=<%= slacker_goal.response_question %>&to_id=<%= slacker_goal.user.id %>" id='encourage_<%= slacker_goal.id.to_s %>' class="btn red" title='Encourage <%= slacker_goal.user.first_name %>!'> <i class="icon-heart-empty"></i> Boost</a> <span style="font-weight:bold;font-size:1.2em;"> <%= slacker_goal.user.first_name %></span> is working on ... <span style="background-color:#FFFF99;"><%= slacker_goal.response_question %></span>
                     <script type='text/javascript'>
                     $('#encourage_<%= slacker_goal.id.to_s %>').tipsy();
                     </script>                  

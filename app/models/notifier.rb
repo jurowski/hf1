@@ -284,23 +284,23 @@ class Notifier < ActionMailer::Base
     content_type "text/html"
   end
 
-  def tomessage_notification(to_user, from_user, tomessage, from_type)
+  def tomessage_notification(to_user, from_user, tomessage, from_type, goal_id = 0)
     recipients	to_user.email
     bcc        ["jurowski@gmail.com"]
     from       "No Reply-Messages <noreply-messages@habitforge.com>"
 
     case from_type
     when "member"
-      subject    "You have a message from a member! (send replies via the habitforge.com website)"
+      subject    "[HF] #{from_user.first_name} @ HabitForge sent you a boost"
     when "follower"
-      subject    "You have a message from a follower! (send replies via the habitforge.com website)" 
+      subject    "[HF] You have a message from a HabitForge follower!" 
     when "team"
-      subject    "You have a message from a team mate! (send replies via the habitforge.com website)"
+      subject    "[HF] You have a message from a HabitForge team mate!"
     else
-      subject    "You have a message from a supporter! (send replies via the habitforge.com website)"
+      subject    "[HF] You have a message from a HabitForge supporter!"
     end
 
-    body       :from_user => from_user, :tomessage => tomessage, :from_type => from_type
+    body       :goal_id => goal_id, :to_user => to_user, :from_user => from_user, :tomessage => tomessage, :from_type => from_type
     content_type "text/html"
   end
 
