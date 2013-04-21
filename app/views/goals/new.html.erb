@@ -11,7 +11,7 @@
 
     <%= render :partial => "form", :object => f %>
 
-<% if session[:sfm_virgin] == true and current_user.first_name == "unknown"%>
+<% if current_user.first_name == "unknown"%>
   <% first_name_value = "" %>
   <% 
   if params[:first_name] 
@@ -23,12 +23,14 @@
   end  
   %>
         
-	<div style="float:left;">
-	  <span style="font:2em Arial sans-serif;">What's your first name?</span>
-	</div>
-	<div style="float:left;">
-	  &nbsp <input type="textbox" name="first_name" value="<%= first_name_value %>" placeholder="ex: Steven" size=15 style="font:2em Arial sans-serif;">
-	</div>
+  <% if !@goal.template_owner_is_a_template %>
+  	<div style="float:left;">
+  	  <span style="font:2em Arial sans-serif;">What's your first name?</span>
+  	</div>
+  	<div style="float:left;">
+  	  &nbsp <input type="textbox" name="first_name" value="<%= first_name_value %>" placeholder="ex: Steven" size=15 style="font:2em Arial sans-serif;">
+  	</div>
+  <% end %>
 
 <div >
 &nbsp

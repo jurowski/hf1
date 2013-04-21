@@ -32,17 +32,6 @@ class User < ActiveRecord::Base
   validates_presence_of :first_name
   validates_confirmation_of :email
   
-  
-  ###### SQL to show count of each group of sponsors
-  ## SELECT sponsor, COUNT( * )
-  ## FROM users
-  ## GROUP BY sponsor
-
-    ##sponsor 	COUNT(*)
-    ##clearworth 	603
-    ##forittobe 	100
-    ##habitforge 	69848
-    ##marriagereminders 	1
 
   def get_quote_random
 
@@ -279,6 +268,28 @@ class User < ActiveRecord::Base
   end
 
 
+  def can_use_templates
+    case self.email
+    when "jurowski23@gmail.com"
+      return true
+    when "jurowski3@gmail.com"
+      return true
+    else
+      return false
+    end
+  end
+
+  def can_make_templates
+    case self.email
+    when "jurowski2@gmail.com"
+      return true
+    when "jurowski@gmail.com"
+      return true
+    else
+      return false
+    end
+  end
+
   def templates_i_own
       my_goals = Array.new()
       for goal in all_goals
@@ -288,6 +299,14 @@ class User < ActiveRecord::Base
       end
       return my_goals
   end
+
+  def number_of_templates_i_own
+      size = 0
+      if self.templates_i_own
+          size = self.templates_i_own.size
+      end
+      return size
+  end 
 
 
   def hold_goals
@@ -362,13 +381,7 @@ class User < ActiveRecord::Base
       return size
   end 
 
-  def number_of_templates_i_own
-      size = 0
-      if self.templates_i_own
-          size = self.templates_i_own.size
-      end
-      return size
-  end 
+
 
 
 

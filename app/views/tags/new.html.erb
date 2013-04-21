@@ -1,3 +1,18 @@
+<table>
+  <tr>
+    <th>All Tags</th>
+  </tr>
+
+<% @tags.each do |tag| %>
+  <tr>
+    <td><%= link_to 'Delete', tag, :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%= link_to tag.name, edit_tag_path(tag) %> <% if tag.shared %> (shared) <% end %></td>
+  </tr>
+<% end %>
+</table>
+
+
+
 <h1>New tag</h1>
 
 <% form_for(@tag) do |f| %>
@@ -6,6 +21,7 @@
   <p>
     <%= f.label :name %><br />
     <%= f.text_field :name %>
+    <%= f.check_box :shared %> Shared
   </p>
   <p>
     <%= f.submit 'Create' %>

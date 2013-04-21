@@ -107,6 +107,8 @@ ActionController::Routing::Routes.draw do |map|
 
   map.connect 'quicksignup_v2', :controller => 'users', :action => 'quicksignup_v2'
 
+
+
   map.connect 'goals/:id/shared', :controller => 'goals', :action => 'shared'
 
   map.resources :cheers

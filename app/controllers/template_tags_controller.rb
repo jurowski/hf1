@@ -1,4 +1,14 @@
 class TemplateTagsController < ApplicationController
+
+
+  ### http://stackoverflow.com/questions/10539143/reloading-partial-in-an-rails-app
+  # GET /template_tags/manage
+  def manage
+    @goal = Goal.new()
+    render :partial => "template_tags/manage", :locals => { :goal => @goal } 
+  end
+
+
   # GET /template_tags
   # GET /template_tags.xml
   def index

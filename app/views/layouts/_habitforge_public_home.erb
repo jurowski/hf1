@@ -32,6 +32,8 @@ end
 <title>HabitForge - Simple Accountability. Positive Change.</title>
 <link rel="stylesheet" type="text/css" href="/home/css/reset.css" />
 <link rel="stylesheet" type="text/css" href="/home/css/layout.css" />
+
+
 <link rel="stylesheet" type="text/css" href="/home/css/jqueryslidemenu.css" />
 <link rel="stylesheet" type="text/css" href="/home/css/quicksand.css"/>
 <link rel="stylesheet" type="text/css" href="/home/css/elements.css"/>
@@ -43,6 +45,11 @@ end
 <link rel="stylesheet" type="text/css" href="/home/css/habitforge_custom.css" />
 
 <link href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,500,600,700' rel='stylesheet' type='text/css'>
+
+<!-- BORROWING FROM APP METRO FOR THE BUTTONS -->
+<link href="/assets/css/metro.css" rel="stylesheet" />
+
+
 <script type="text/javascript" src="/home/js/jquery-1.8.1.js"></script>
 <script type="text/javascript" src="/home/js/jqueryslidemenu.js"></script>
 <script type="text/javascript" src="/home/js/jquery.easing.1.3.js"></script>
@@ -214,9 +221,17 @@ function popitup_bigger1(url) {
   <!-- START DECIDE IF ONLY SHOW HABIT LIBRARY -->
   <% if params[:browse_recommended_habits] %>
 
-    <article>
-        <%= render :partial => "layouts/habit_library" %>
-    </article>
+
+    <% if params[:templates] %>
+      <article>
+          <%= render :partial => "layouts/habit_library_templates" %>
+      </article>
+    <% else %>
+      <article>
+          <%= render :partial => "layouts/habit_library" %>
+      </article>
+    <% end %>
+
   <% else %>
 
     <!-- Header Start -->

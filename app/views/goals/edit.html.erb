@@ -1,5 +1,5 @@
 <%
-begin
+#begin
 %>
 
   <% if @goal.template_owner_is_a_template %>
@@ -39,6 +39,21 @@ begin
 
 
   <% if @goal.template_owner_is_a_template %>
+
+    <p>
+      <% @tags = Tag.find(:all, :order => "name DESC") %>
+      <% @tags.each do |tag| %>
+        <a onclick="reload_template_tags();"><%= tag.name %></a>
+      <% end %>
+    </p>
+    <div class="manage">
+       <%= render :partial => "template_tags/manage", :locals => { :goal => @goal }  %>
+    </div>
+
+
+
+
+
     <input type="submit" value="Save Changes to This Template" class="start_now" style="height:50px;">
   <% else %>
     <% if @goal.status == "hold" %>
@@ -59,10 +74,10 @@ begin
   <p><%= link_to 'Back (Cancel Changes)', goals_path %></p>
 
 <%
-rescue
+#rescue
 %>
-  <br>
-  <p>Something went wrong. Go back to the <a href="http://habitforge.com">home page</a> and try again, or <a href="mailto:support@habitforge.com">Contact Support</a></p>
+<!--   <br>
+  <p>Something went wrong. Go back to the <a href="http://habitforge.com">home page</a> and try again, or <a href="mailto:support@habitforge.com">Contact Support</a></p> -->
 <%
-end
+#end
 %>

@@ -1,0 +1,6 @@
+
+<%= Time.now.getutc %>
+<% @template_tags = TemplateTag.find(:all, :conditions => "template_goal_id = '#{@goal.id}'") %>
+<% @template_tags.each do |template_tag| %>
+  <%= template_tag.tag.name %><%= link_to 'x', template_tag, :confirm => 'Are you sure?', :method => :delete %> 
+<% end %>

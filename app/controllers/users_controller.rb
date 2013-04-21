@@ -294,8 +294,7 @@ class UsersController < ApplicationController
 
     if @email_valid
       ### validate email
-      user = User.find(:first, :conditions => "email = '#{params[:email]}'"
-)
+      user = User.find(:first, :conditions => "email = '#{params[:email]}'")
       if user != nil
         @email_duplicate = true
       end
@@ -339,6 +338,12 @@ class UsersController < ApplicationController
       ### update last activity date
       user.last_activity_date = user.dtoday
 
+      if params[:ga_goal]
+        session[:sfm_virgin] = false ### they are a newly paid user          
+        user.kill_ads_until = "3000-01-01"
+        user.unlimited_goals = true
+      end
+
       if user.save 
 
 
@@ -347,7 +352,11 @@ class UsersController < ApplicationController
         ### do something like the below once we know what their goal is
         #@user = user
         #Notifier.deliver_widget_user_creation(@user) # sends the email
-        session[:sfm_virgin] = true ### they are setting up their first goal ... allows you to hide or show certain things
+
+        if !params[:ga_goal]
+          session[:sfm_virgin] = true ### they are setting up their first goal ... allows you to hide or show certain things
+        end
+
         session[:sfm_virgin_need_to_confirm_timezone] = true
         session[:sfm_virgin_need_to_email_temp_password] = true
         @account_created = true
@@ -380,64 +389,70 @@ class UsersController < ApplicationController
         ############## ADD THEM TO FOLLOWUP SEQUENCE
         ############## http://help.infusionsoft.com/api-docs/funnelservice
 
-        begin
+        if !params[:ga_goal]
+          begin
 
-          logger.info("sgj:users_controller:will try adding to infusionsoft followup funnel sequence the infusionsoft_contact_id: " + session[:infusionsoft_contact_id].to_s + " for current_user.id of " + current_user.id.to_s)
+            logger.info("sgj:users_controller:will try adding to infusionsoft followup funnel sequence the infusionsoft_contact_id: " + session[:infusionsoft_contact_id].to_s + " for current_user.id of " + current_user.id.to_s)
 
 
-          ### TRY #1
-          ############## http://stackoverflow.com/questions/629632/ruby-posting-xml-to-restful-web-service-using-nethttppost        
-          #url = URI.parse('http://sdc90018.infusionsoft.com:80')
-          #request = Net::HTTP::Post.new(url.path)
-          # request = Net::HTTP::Post.new("https://sdc90018.infusionsoft.com/api/xmlrpc")
-          # request.use_ssl = true
-          # request.content_type = 'text/xml'
-          # request.body = "<?xml version='1.0' encoding='UTF-8'?>\
-          # <methodCall>\
-          # <methodName>FunnelService.achieveGoal</methodName>\
-          # <params>\
-          # <param><value><string>d541e86effd15eb57f1f9f6344fc8eee</string></value></param>\
-          # <param><value><string>sdc90018</string></value></param>\
-          # <param><value><string>HabitForgeFollowUp</string></value></param>\
-          # <param><value><int>#{session[:infusionsoft_contact_id]}</int></value></param>\
-          # </params>\
-          # </methodCall>"
-          # #response = Net::HTTP.start(url.host, url.port) {|http| http.request(request)}
-          # response = Net::HTTP.start("sdc90018.infusionsoft.com", 80) {|http| http.request(request)}
-          # assert_equal '201 Created', response.get_fields('Status')[0]
+            ### TRY #1
+            ############## http://stackoverflow.com/questions/629632/ruby-posting-xml-to-restful-web-service-using-nethttppost        
+            #url = URI.parse('http://sdc90018.infusionsoft.com:80')
+            #request = Net::HTTP::Post.new(url.path)
+            # request = Net::HTTP::Post.new("https://sdc90018.infusionsoft.com/api/xmlrpc")
+            # request.use_ssl = true
+            # request.content_type = 'text/xml'
+            # request.body = "<?xml version='1.0' encoding='UTF-8'?>\
+            # <methodCall>\
+            # <methodName>FunnelService.achieveGoal</methodName>\
+            # <params>\
+            # <param><value><string>d541e86effd15eb57f1f9f6344fc8eee</string></value></param>\
+            # <param><value><string>sdc90018</string></value></param>\
+            # <param><value><string>HabitForgeFollowUp</string></value></param>\
+            # <param><value><int>#{session[:infusionsoft_contact_id]}</int></value></param>\
+            # </params>\
+            # </methodCall>"
+            # #response = Net::HTTP.start(url.host, url.port) {|http| http.request(request)}
+            # response = Net::HTTP.start("sdc90018.infusionsoft.com", 80) {|http| http.request(request)}
+            # assert_equal '201 Created', response.get_fields('Status')[0]
 
-          ### TRY #2
-          ### http://www.ruby-forum.com/topic/121529
-          #require 'net/https'
-          #require 'uri'
-          url = "https://sdc90018.infusionsoft.com/api/xmlrpc"
-          uri = URI.parse(url)
-          http = Net::HTTP.new(uri.host, uri.port)
-          http.use_ssl = true if (uri.scheme == 'https')
-          data = "<?xml version='1.0' encoding='UTF-8'?>\
-          <methodCall>\
-          <methodName>FunnelService.achieveGoal</methodName>\
-          <params>\
-          <param><value><string>d541e86effd15eb57f1f9f6344fc8eee</string></value></param>\
-          <param><value><string>sdc90018</string></value></param>\
-          <param><value><string>HabitForgeFollowUp</string></value></param>\
-          <param><value><int>#{session[:infusionsoft_contact_id]}</int></value></param>\
-          </params>\
-          </methodCall>"
-          headers = {'Content-Type' => 'text/xml'}
-          # warning, uri.path will drop queries, use uri.path + uri.query if you need to
-          resp, body = http.post(uri.path, data, headers)
+            ### TRY #2
+            ### http://www.ruby-forum.com/topic/121529
+            #require 'net/https'
+            #require 'uri'
+            url = "https://sdc90018.infusionsoft.com/api/xmlrpc"
+            uri = URI.parse(url)
+            http = Net::HTTP.new(uri.host, uri.port)
+            http.use_ssl = true if (uri.scheme == 'https')
+            data = "<?xml version='1.0' encoding='UTF-8'?>\
+            <methodCall>\
+            <methodName>FunnelService.achieveGoal</methodName>\
+            <params>\
+            <param><value><string>d541e86effd15eb57f1f9f6344fc8eee</string></value></param>\
+            <param><value><string>sdc90018</string></value></param>\
+            <param><value><string>HabitForgeFollowUp</string></value></param>\
+            <param><value><int>#{session[:infusionsoft_contact_id]}</int></value></param>\
+            </params>\
+            </methodCall>"
+            headers = {'Content-Type' => 'text/xml'}
+            # warning, uri.path will drop queries, use uri.path + uri.query if you need to
+            resp, body = http.post(uri.path, data, headers)
 
-          logger.info("sgj:users_controller:xml response from adding new person to infusionsoft sequence: " + resp.to_s + body.to_s)
+            logger.info("sgj:users_controller:xml response from adding new person to infusionsoft sequence: " + resp.to_s + body.to_s)
 
-        rescue
-          logger.error("sgj:users_controller:error adding to infusionsoft followup funnel sequence")
+          rescue
+            logger.error("sgj:users_controller:error adding to infusionsoft followup funnel sequence")
+          end
+        end ### end whether they are a newly paid user
+
+
+        if !params[:ga_goal]
+          ### route them to goal creation page (which should reference session[:sfm] for quick goal-creation options)
+          redirect_to("/goals/new?welcome=1")
+        else
+          redirect_to("/goals")
         end
 
-
-
-        ### route them to goal creation page (which should reference session[:sfm] for quick goal-creation options)
-        redirect_to("/goals/new?welcome=1")
       else
         ### Problem saving user: ask them to contact support
       end ### end if user.save

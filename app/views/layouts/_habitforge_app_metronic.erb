@@ -276,6 +276,10 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
         div.style.display = "block";
     }
 
+    function reload_template_tags() {
+        $('.manage').load('/template_tags/manage/1');
+    }
+
    </script>
    <!-- END TEST RELOAD AJAX CONTENT FOR UPDATING PARTIALS w/out Prototype -->
 
@@ -632,6 +636,11 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
           <center>
             <hr>
             <a href="/goals?browse_recommended_habits=1#browse_recommended_habits" class="btn green">Browse Popular Habits</a>
+
+            <% if current_user.can_use_templates %> 
+              <a href="/goals?templates=1&browse_recommended_habits=1#browse_recommended_habits" class="btn yellow">Habit Templates</a>
+            <% end %>
+
             <a href="/cheers" class="btn blue">Who Could Use a Boost?</a>
 
           </center>

@@ -11,8 +11,8 @@ class GoalsController < ApplicationController
   ### goal_id, user id (as "u"), first letter of first name and first letter of email
   ### ex: URL params: &e0=<%= @goal.user.email[0] %>&f0=<%= @goal.user.first_name[0] %>
   
-  before_filter :require_user, :only => [:single, :index, :show, :new, :edit, :destroy, :update, :invite_a_friend_to_track]
-
+  before_filter :require_user, :only => [:single, :show, :new, :edit, :destroy, :update, :invite_a_friend_to_track]
+  before_filter :require_user_unless_newly_paid, :only => [:index]
   autocomplete_for :goal, :response_question
 
   def get_dnow

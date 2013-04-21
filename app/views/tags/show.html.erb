@@ -1,8 +1,6 @@
 <p>
-  <b>Name:</b>
-  <%=h @tag.name %>
+	<%= link_to @tag.name, edit_tag_path(@tag) %>  	
+	<% if @tag.shared %> (shared) <% end %>
 </p>
-
-
-<%= link_to 'Edit', edit_tag_path(@tag) %> |
-<%= link_to 'Back', tags_path %>
+<hr>
+<a href="/tags/new">+ Add a Tag</a> <%= link_to 'Back', tags_path %>

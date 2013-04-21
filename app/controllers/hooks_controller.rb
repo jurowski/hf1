@@ -570,21 +570,56 @@ testing_xml_resend_any = %{
             logger.info 'XML SUCCESS order from found user ' + user.email
             account_located = 1
         else
-            logger.info 'XML WARN order from unknown user ' + xml_email + '...will search for user.id of ' + xml_user_id.to_s
-            user = User.find(:first, :conditions => "id = #{xml_user_id}") 
-            if user != nil
-                logger.info 'XML SUCCESS order received from found user (located by user.id) ' + user.email
-                account_located = 1
+
+
+            user = User.new
+            user.first_name = "unknown"
+            user.last_name = ""
+            user.email = xml_email
+            user.email_confirmation = xml_email
+            random_pw_number = rand(1000) + 1 #between 1 and 1000
+            user.password = "xty" + random_pw_number.to_s
+            user.password_confirmation = user.password
+            user.password_temp = user.password
+            user.sponsor = "habitforge"
+            user.time_zone = "Central Time (US & Canada)"
+            ### having periods in the first name kills the attempts to email that person, so remove periods
+            user.first_name = user.first_name.gsub(".", "")
+            ### Setting this to something other than 0 so that this person
+            ### is included in the next morning's cron job to send emails
+            ### this will get reset to the right number once each day via cron
+            ### but set it now in case user is being created after that job runs
+            user.update_number_active_goals = 1
+            ### update last activity date
+            user.last_activity_date = user.dtoday
+
+            if user.save
+              account_located = 1
+              logger.info "XML Created User who did not exist: " + xml_email
             else
-                logger.info 'XML WARN order from unknown user ' + xml_email + '...will search for browser_ip of ' + xml_browser_ip
-                user = User.find(:first, :conditions => "current_login_ip = '#{xml_browser_ip}'") 
-                if user != nil
-                    logger.info 'XML SUCCESS order received from found user (located by IP) ' + user.email
-                    account_located = 1
-                else
-                    logger.info 'XML NOTICE order from unknown user ' + xml_email + ' and unknown user_id ' + xml_user_id.to_s + ' and unknown browser_ip ' + xml_browser_ip
-                end
+              logger.info "XML failed to create User who did not exist: " + xml_email
             end
+
+
+            # logger.info 'XML WARN order from unknown user ' + xml_email + '...will search for user.id of ' + xml_user_id.to_s
+            # user = User.find(:first, :conditions => "id = #{xml_user_id}") 
+            # if user != nil
+            #     logger.info 'XML SUCCESS order received from found user (located by user.id) ' + user.email
+            #     account_located = 1
+            # else
+            #     logger.info 'XML WARN order from unknown user ' + xml_email + '...will search for browser_ip of ' + xml_browser_ip
+            #     user = User.find(:first, :conditions => "current_login_ip = '#{xml_browser_ip}'") 
+            #     if user != nil
+            #         logger.info 'XML SUCCESS order received from found user (located by IP) ' + user.email
+            #         account_located = 1
+            #     else
+
+            #         logger.info 'XML NOTICE order from unknown user ' + xml_email + ' and unknown user_id ' + xml_user_id.to_s + ' and unknown browser_ip ' + xml_browser_ip
+            #     end
+            # end
+
+
+
         end
         ###########################################################
         #### END FIND THE USER

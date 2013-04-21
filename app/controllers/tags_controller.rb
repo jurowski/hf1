@@ -28,8 +28,10 @@ class TagsController < ApplicationController
   # GET /tags/new
   # GET /tags/new.xml
   def new
+    @tags = Tag.all
+    
     @tag = Tag.new
-
+    @tag.shared = true
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @tag }

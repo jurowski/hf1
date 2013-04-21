@@ -65,15 +65,16 @@
 <!-- *********** -->
 
 <div />
-<% if current_user and current_user.is_admin %>
-    <h2><a href="/goals/new?template_owner_is_a_template=1"><img src="/images/add_32.png" border="0" width=25px/> Make a Template</a></h2>
-<% else %>
     <% if current_user.sponsor == "habitforge" and !current_user.is_habitforge_supporting_member and current_user.number_of_active_habits > 0 %>
           <%= render :partial => "goals/upgrade_advertisement"  %>
     <% else %>
         <h2><%= link_to '<img src="/images/add_32.png" border="0" width=25px/> Start a New Habit', new_goal_path %></h2>
     <% end %>
-<% end %>
+
+    <% if current_user and current_user.can_make_templates %>
+        <h2><a href="/goals/new?template_owner_is_a_template=1"><img src="/images/add_32.png" border="0" width=25px/> Make a Template</a></h2>
+    <% end %>
+
 <div />
 <!-- *********** -->
 <!-- END HEADER -->
@@ -569,7 +570,7 @@ end
 <!-- START SHOW TEMPLATES I OWN -->    
 <!-- *********** -->
 <%
-if current_user.number_of_templates_i_own > 0
+if current_user.can_make_templates and current_user.number_of_templates_i_own > 0
     %>
     <h2>
     Templates you Created
