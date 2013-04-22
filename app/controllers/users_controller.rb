@@ -394,11 +394,11 @@ class UsersController < ApplicationController
       		Infusionsoft.email_optin(user.email, 'HabitForge signup')
       		Infusionsoft.contact_add_to_group(new_contact_id, 400)
 
-          if params[:subscribe_etr] == 1
+          if params[:subscribe_etr]
             Infusionsoft.contact_add_to_group(new_contact_id, 103)
-            logger.error("sgj:users_controller:user chose to be an etr newsletter subscriber")      
+            logger.error("sgj:users_controller:YES user chose to be an etr newsletter subscriber")      
           else
-            logger.error("sgj:users_controller:user chose not to be an etr newsletter subscriber")      
+            logger.error("sgj:users_controller:NO user chose not to be an etr newsletter subscriber")      
           end
 
       		session[:infusionsoft_contact_id] = new_contact_id
