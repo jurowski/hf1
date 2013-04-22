@@ -4,7 +4,22 @@ class TemplateTagsController < ApplicationController
   ### http://stackoverflow.com/questions/10539143/reloading-partial-in-an-rails-app
   # GET /template_tags/manage
   def manage
+
     @goal = Goal.new()
+    if params[:add_tag_to_template] and params[:goal_id] and params[:tag_id]
+        @goal = Goal.find(params[:goal_id].to_i)
+        template_tag = TemplateTag.new()
+        template_tag.tag_id = params[:tag_id].to_i
+        template_tag.template_goal_id = params[:goal_id].to_i
+        template_tag.save
+    end
+
+    if params[:remove_tag_from_template] and params[:goal_id] and params[:tag_id]
+        @goal = Goal.find(params[:goal_id].to_i)
+        template_tag = TemplateTag.find(:first, :conditions => "template_goal_id = '#{params[:goal_id]}' and tag_id = '#{params[:tag_id]}'")
+        template_tag.destroy if template_tag
+    end
+
     render :partial => "template_tags/manage", :locals => { :goal => @goal } 
   end
 

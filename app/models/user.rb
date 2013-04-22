@@ -270,9 +270,9 @@ class User < ActiveRecord::Base
 
   def can_use_templates
     case self.email
-    when "jurowski23@gmail.com"
+    when "jurowski2@gmail.com"
       return true
-    when "jurowski3@gmail.com"
+    when "jurowski@gmail.com"
       return true
     else
       return false

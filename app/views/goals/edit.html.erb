@@ -41,14 +41,17 @@
   <% if @goal.template_owner_is_a_template %>
 
     <p>
+      <h3>Available Tags</h3>
       <% @tags = Tag.find(:all, :order => "name DESC") %>
       <% @tags.each do |tag| %>
-        <a onclick="reload_template_tags();"><%= tag.name %></a>
+        <a onclick="add_tag_to_template_then_reload_template_tags('<%= tag.id %>','<%= @goal.id %>');"><%= tag.name %></a>
       <% end %>
     </p>
     <div class="manage">
        <%= render :partial => "template_tags/manage", :locals => { :goal => @goal }  %>
     </div>
+    <br>
+    <br>
 
 
 

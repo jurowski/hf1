@@ -1,6 +1,7 @@
 
-<%= Time.now.getutc %>
+<!-- Time.now.getutc -->
+<h3>Tagged with:</h3>
 <% @template_tags = TemplateTag.find(:all, :conditions => "template_goal_id = '#{@goal.id}'") %>
 <% @template_tags.each do |template_tag| %>
-  <%= template_tag.tag.name %><%= link_to 'x', template_tag, :confirm => 'Are you sure?', :method => :delete %> 
+  <span class="btn"><%= template_tag.tag.name %> <a onclick="remove_tag_from_template_then_reload_template_tags('<%= template_tag.tag.id %>','<%= template_tag.template_goal_id %>');">x</a></span><br>
 <% end %>
