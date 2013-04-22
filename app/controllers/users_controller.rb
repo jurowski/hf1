@@ -377,25 +377,36 @@ class UsersController < ApplicationController
         begin	
 	        #####################################################
 	        #####################################################
-		#### CREATE A CONTACT FOR THEM IN INFUSIONSOFT ######
-    ### SANDBOX GROUP/TAG IDS
-		#112: hf new signup funnel v2 free no goal yet
-		#120: hf new signup funnel v2 free created goal
-    #
-    ### PRODUCTION GROUP/TAG IDS
-    #400: hf new signup funnel v2 free no goal yet
-    #398: hf new signup funnel v2 free created goal
+      		#### CREATE A CONTACT FOR THEM IN INFUSIONSOFT ######
+          ### SANDBOX GROUP/TAG IDS
+      		#112: hf new signup funnel v2 free no goal yet
+      		#120: hf new signup funnel v2 free created goal
+          #
+          ### PRODUCTION GROUP/TAG IDS
+          #400: hf new signup funnel v2 free no goal yet
+          #398: hf new signup funnel v2 free created goal
 
-                session[:infusionsoft_contact_id] = 0
-		new_contact_id = Infusionsoft.contact_add({:FirstName => user.first_name, :LastName => user.last_name, :Email => user.email})
-		Infusionsoft.email_optin(user.email, 'HabitForge signup')
-		Infusionsoft.contact_add_to_group(new_contact_id, 400)
-		session[:infusionsoft_contact_id] = new_contact_id
+          # USERVOICE TICKET#529:
+          #103: add to ETR "Newsletter Subscriber"
+
+          session[:infusionsoft_contact_id] = 0
+      		new_contact_id = Infusionsoft.contact_add({:FirstName => user.first_name, :LastName => user.last_name, :Email => user.email})
+      		Infusionsoft.email_optin(user.email, 'HabitForge signup')
+      		Infusionsoft.contact_add_to_group(new_contact_id, 400)
+
+          if params[:subscribe_etr] == 1
+            Infusionsoft.contact_add_to_group(new_contact_id, 103)
+            logger.error("sgj:users_controller:user chose to be an etr newsletter subscriber")      
+          else
+            logger.error("sgj:users_controller:user chose not to be an etr newsletter subscriber")      
+          end
+
+      		session[:infusionsoft_contact_id] = new_contact_id
 	        ####          END INFUSIONSOFT CONTACT           ####
 	        #####################################################
 	        #####################################################
         rescue
-	  logger.error("sgj:users_controller:error creating infusionsoft contact")
+      	  logger.error("sgj:users_controller:error creating infusionsoft contact")
         end
 
 
