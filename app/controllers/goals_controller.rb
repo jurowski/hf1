@@ -41,8 +41,17 @@ class GoalsController < ApplicationController
     return dnow
   end
   
+
+  ### http://stackoverflow.com/questions/10539143/reloading-partial-in-an-rails-app
+  # GET /goalss/catch_up_on_checkpoints
+  def catch_up_on_checkpoints_v2
+    @goal = Goal.find(params[:goal_id].to_i)
+    render :partial => "goals/catch_up_on_checkpoints_v2", :locals => { :catch_up_on_checkpoints => @goal } 
+  end
+
   # GET /goals
   # GET /goals.xml
+
 
   def index2
     #test index page

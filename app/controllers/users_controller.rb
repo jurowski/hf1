@@ -344,8 +344,21 @@ class UsersController < ApplicationController
         user.unlimited_goals = true
       end
 
+
       if user.save 
 
+        begin
+          #### ALLOW FOR EMAIL ADDRESS CONFIRMATION
+          random_confirm_token = rand(1000) + 1 #between 1 and 1000
+          user.confirmed_address_token = "xtynzsc" + random_confirm_token.to_s
+          user.save
+          #### now that we have saved and have the user id, we can send the email 
+          the_subject = "Confirm your HabitForge Subscription"
+          Notifier.deliver_user_confirm(user, the_subject) # sends the email
+        rescue
+          logger.error("sgj:email confirmation for user creation did not send")
+        end
+      
 
         stats_increment_new_user
 

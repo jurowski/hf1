@@ -280,6 +280,10 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
         $('.manage').load('/template_tags/manage/1');
     }
 
+    function reload_catch_up_on_checkpints_v2(id) {
+      $('.class_catch_up_on_checkpoints_v2_goal_id_'+id).load('/goals/class_catch_up_on_checkpoints_v2?goal_id='+id);
+    }
+
    </script>
    <!-- END TEST RELOAD AJAX CONTENT FOR UPDATING PARTIALS w/out Prototype -->
 

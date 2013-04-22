@@ -482,6 +482,11 @@ testing_xml_resend_any = %{
         xml_user_id = 0
         xml_goal_id = 0
         xml_coach_id = 0
+        xml_first_name = 'unknown'
+
+        if doc.elements["order/billing-address/first-name"] != nil
+          xml_first_name = doc.elements["order/billing-address/first-name"].text
+        end
         
         ### Note that sometimes the landing-site-ref info doesn't come through
         ### So we have to do some digging to figure out who this is for
@@ -571,34 +576,69 @@ testing_xml_resend_any = %{
             account_located = 1
         else
 
-
-            user = User.new
-            user.first_name = "unknown"
-            user.last_name = ""
-            user.email = xml_email
-            user.email_confirmation = xml_email
-            random_pw_number = rand(1000) + 1 #between 1 and 1000
-            user.password = "xty" + random_pw_number.to_s
-            user.password_confirmation = user.password
-            user.password_temp = user.password
-            user.sponsor = "habitforge"
-            user.time_zone = "Central Time (US & Canada)"
-            ### having periods in the first name kills the attempts to email that person, so remove periods
-            user.first_name = user.first_name.gsub(".", "")
-            ### Setting this to something other than 0 so that this person
-            ### is included in the next morning's cron job to send emails
-            ### this will get reset to the right number once each day via cron
-            ### but set it now in case user is being created after that job runs
-            user.update_number_active_goals = 1
-            ### update last activity date
-            user.last_activity_date = user.dtoday
-
-            if user.save
-              account_located = 1
-              logger.info "XML Created User who did not exist: " + xml_email
+            logger.info 'XML WARN order from unknown user ' + xml_email + '...will search for user.id of ' + xml_user_id.to_s
+            user = User.find(:first, :conditions => "id = #{xml_user_id}") 
+            if user != nil
+                logger.info 'XML SUCCESS order received from found user (located by user.id) ' + user.email
+                account_located = 1
             else
-              logger.info "XML failed to create User who did not exist: " + xml_email
+                logger.info 'XML WARN order from unknown user ' + xml_email + '...will search for browser_ip of ' + xml_browser_ip
+                user = User.find(:first, :conditions => "current_login_ip = '#{xml_browser_ip}'") 
+                if user != nil
+                    logger.info 'XML SUCCESS order received from found user (located by IP) ' + user.email
+                    account_located = 1
+                else
+
+                  ### WE COULD NOT FIND A USER W/ THAT EMAIL OR THAT ID OR THAT BROWSER IP
+                  ### SO LET's CREATE THAT USER NOW
+                  user = User.new
+                  user.first_name = xml_first_name
+                  user.last_name = ""
+                  user.email = xml_email
+                  user.email_confirmation = xml_email
+                  random_pw_number = rand(1000) + 1 #between 1 and 1000
+                  user.password = "xty" + random_pw_number.to_s
+                  user.password_confirmation = user.password
+                  user.password_temp = user.password
+                  user.sponsor = "habitforge"
+                  user.time_zone = "Central Time (US & Canada)"
+                  ### having periods in the first name kills the attempts to email that person, so remove periods
+                  user.first_name = user.first_name.gsub(".", "")
+                  ### Setting this to something other than 0 so that this person
+                  ### is included in the next morning's cron job to send emails
+                  ### this will get reset to the right number once each day via cron
+                  ### but set it now in case user is being created after that job runs
+                  user.update_number_active_goals = 1
+                  ### update last activity date
+                  user.last_activity_date = user.dtoday
+
+                  if user.save
+                    account_located = 1
+                    logger.info "XML Created User who did not exist: " + xml_email
+
+
+                    begin
+                      #### ALLOW FOR EMAIL ADDRESS CONFIRMATION
+                      random_confirm_token = rand(1000) + 1 #between 1 and 1000
+                      user.confirmed_address_token = "xtynzsc" + random_confirm_token.to_s
+                      user.save
+
+                      #### now that we have saved and have the user id, we can send the email 
+                      the_subject = "Confirm your HabitForge Subscription"
+                      Notifier.deliver_user_confirm(user, the_subject) # sends the email
+                    rescue
+                      logger.error("sgj:email confirmation for user creation did not send")
+                    end
+
+                  else
+                    logger.info "XML failed to create User who did not exist: " + xml_email
+                  end
+
+                end
             end
+
+
+
 
 
             # logger.info 'XML WARN order from unknown user ' + xml_email + '...will search for user.id of ' + xml_user_id.to_s
