@@ -3,7 +3,7 @@
 
 class AddTemplatesToGoals < ActiveRecord::Migration
   def self.up
-    #add_column :goals, :template_owner_is_a_template, :boolean
+    add_column :goals, :template_owner_is_a_template, :boolean
     add_column :goals, :template_owner_advertise_me, :boolean
     add_column :goals, :template_user_parent_goal_id, :integer
     add_column :goals, :achievemint_points_earned, :integer
