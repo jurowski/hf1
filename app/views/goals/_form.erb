@@ -91,6 +91,27 @@ show_monitor_option_details = 0
 <%= form.text_field :response_question, :placeholder => 'Ex: walking for at least 20 minutes', :style=>'width:400px;', :size => 40 %> ?"</h4>
 </div>
 
+
+
+  <% if @ca == "edit" and @goal.template_owner_is_a_template %>
+
+    <p>
+      <span style='text-decoration:underline;'><a href="#undefined" onclick="toggle_show_hide('show_available_tags')">Show Available Tags</a></span>
+      <div id="show_available_tags" style="display:none">
+        <% @tags = Tag.find(:all, :order => "name") %>
+        <% @tags.each do |tag| %>
+          <a onclick="add_tag_to_template_then_reload_template_tags('<%= tag.id %>','<%= @goal.id %>');" class="btn" style="padding:2px;"><%= tag.name %></a>
+        <% end %>
+      </div>
+    </p>
+    <div class="manage">
+       <%= render :partial => "template_tags/manage", :locals => { :goal => @goal }  %>
+    </div>
+    <br>
+    <br>
+  <% end %>
+
+
   <table border=0>
   <tr>
   <td valign=top align=right nowrap>

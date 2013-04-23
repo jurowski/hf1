@@ -11,7 +11,13 @@ class TemplateTagsController < ApplicationController
         template_tag = TemplateTag.new()
         template_tag.tag_id = params[:tag_id].to_i
         template_tag.template_goal_id = params[:goal_id].to_i
-        template_tag.save
+
+        ### do not allow duplicates
+        check_template_tag = TemplateTag.find(:first, :conditions => "template_goal_id = '#{@goal.id.to_i}' and tag_id = '#{params[:tag_id].to_i}'")
+        if !check_template_tag
+          template_tag.save
+        end
+
     end
 
     if params[:remove_tag_from_template] and params[:goal_id] and params[:tag_id]
