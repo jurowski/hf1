@@ -10,6 +10,14 @@ before_filter :load_user_using_perishable_token, :only => [:edit, :update]
 #http://localhost:3000/password_resets/h2zkwDrqmbC4bCpU6W5f/edit
 before_filter :require_no_user
   def new  
+
+    ### were having some issues w/ some people clicking pw reset and the page just reloading
+    ### but if they restarted the browser it seemed to work
+    ### so it must be session related
+    ### clear all session variables first to see if that helps as per:
+    ### http://stackoverflow.com/questions/2405635/how-to-empty-destroy-a-session-in-rails
+    reset_session
+    
     render  
   end  
 
