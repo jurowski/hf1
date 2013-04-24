@@ -5,12 +5,26 @@
 
 <% @tags.each do |tag| %>
   <tr>
-    <td><%= link_to 'Delete', tag, :confirm => 'Are you sure?', :method => :delete %></td>
-    <td><%= link_to tag.name, edit_tag_path(tag) %> <% if tag.shared %> (shared) <% end %></td>
+    <td>
+      <%
+      still_assigned_so_do_not_delete_tag = TemplateTag.find(:all, :conditions => "tag_id = '#{tag.id}'")
+      if still_assigned_so_do_not_delete_tag
+        %>
+        (<%= still_assigned_so_do_not_delete_tag.size.to_s %>)
+        <%
+      end
+      %>
+      <% if tag.shared %> (shared) <% end %>
+
+      <%= link_to tag.name, edit_tag_path(tag) %>
+
+      <% if still_assigned_so_do_not_delete_tag and still_assigned_so_do_not_delete_tag.size == 0 %><%= link_to '(x)', tag, :confirm => 'Are you sure?', :method => :delete %><% end %>
+      <% if tag.name.include? "_" %>
+        (the "_" converts to a space when being displayed)
+      <% end %>
+    </td>
   </tr>
 <% end %>
-</table>
-
 
 
 <h1>New tag</h1>

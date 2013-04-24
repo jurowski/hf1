@@ -93,33 +93,26 @@ show_monitor_option_details = 0
 
 
 
-  <% if @ca == "edit" and @goal.template_owner_is_a_template %>
-
-  <h2>Tagline</h2><span style="font-style:italic;">This is how this goal will be advertised to others.</span><br>
-  <%= form.text_field :template_tagline, :placeholder => 'Ex: Take a Walk!', :style=>'width:400px;', :size => 40 %>
-
-  <h2>Description</h2><span style="font-style:italic;">Some text about this goal, or a fact about why they should do this.</span><br>
-  <%= form.text_field :template_description, :placeholder => 'Ex: Walking for 20 minutes each day burns calories and increases a sense of well-being!', :style=>'width:600px;', :size => 80 %>
-
-    <p>
-      <span style='text-decoration:underline;'><a href="#undefined" onclick="toggle_show_hide('show_available_tags')">Show Available Tags</a></span>
-      <div id="show_available_tags" style="display:none">
-        <% @tags = Tag.find(:all, :order => "name") %>
-        <% @tags.each do |tag| %>
-          <a onclick="add_tag_to_template_then_reload_template_tags('<%= tag.id %>','<%= @goal.id %>');" class="btn" style="padding:2px;"><%= tag.name %></a>
-        <% end %>
-      </div>
-    </p>
-    <div class="manage">
-       <%= render :partial => "template_tags/manage", :locals => { :goal => @goal }  %>
-    </div>
-    <br>
-    <br>
-  <% end %>
-
-
   <% if @goal.template_owner_is_a_template %>
 
+    <h2>Tagline</h2><span style="font-style:italic;">This is how this goal will be advertised to others.</span><br>
+    <%= form.text_field :template_tagline, :placeholder => 'Ex: Take a Walk!', :style=>'width:400px;', :size => 40 %>
+
+    <h2>Description</h2><span style="font-style:italic;">Some text about this goal, or a fact about why they should do this.</span><br>
+    <%= form.text_field :template_description, :placeholder => 'Ex: Walking for 20 minutes each day burns calories and increases a sense of well-being!', :style=>'width:600px;', :size => 80 %>
+
+  <% end %>
+
+  <% if @ca == "new" and @goal.template_owner_is_a_template %>
+    <h3>You can add tags once the template is saved.</h3>
+  <% end %>
+
+  <% if @ca == "edit" and @goal.template_owner_is_a_template %>
+
+    <div class="manage">
+       <%= render :partial => "template_tags/manage", :locals => { :goal => @goal }  %>
+    </div>
+
     <p>
       <span style='text-decoration:underline;'><a href="#undefined" onclick="toggle_show_hide('show_available_tags')">Show Available Tags</a></span>
       <div id="show_available_tags" style="display:none">
@@ -129,9 +122,6 @@ show_monitor_option_details = 0
         <% end %>
       </div>
     </p>
-    <div class="manage">
-       <%= render :partial => "template_tags/manage", :locals => { :goal => @goal }  %>
-    </div>
     <br>
     <br>
   <% end %>

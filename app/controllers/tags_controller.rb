@@ -6,12 +6,7 @@ class TagsController < ApplicationController
   # GET /tags
   # GET /tags.xml
   def index
-    @tags = Tag.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render :xml => @tags }
-    end
+    redirect_to "/tags/new"
   end
 
   # GET /tags/1
@@ -28,7 +23,7 @@ class TagsController < ApplicationController
   # GET /tags/new
   # GET /tags/new.xml
   def new
-    @tags = Tag.all
+    @tags = Tag.find(:all, :order => "name")
     
     @tag = Tag.new
     @tag.shared = true
@@ -48,6 +43,7 @@ class TagsController < ApplicationController
   def create
     @tag = Tag.new(params[:tag])
 
+    @tag.name = @tag.name.gsub(" ", "_")
     respond_to do |format|
       if @tag.save
         flash[:notice] = 'Tag was successfully created.'
@@ -67,8 +63,13 @@ class TagsController < ApplicationController
 
     respond_to do |format|
       if @tag.update_attributes(params[:tag])
+
+        ### re-save but w/ spaces changed
+        @tag.name = @tag.name.gsub(" ", "_")
+        @tag.save
+
         flash[:notice] = 'Tag was successfully updated.'
-        format.html { redirect_to(@tag) }
+        format.html { redirect_to("/tags/new") }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
@@ -81,10 +82,18 @@ class TagsController < ApplicationController
   # DELETE /tags/1.xml
   def destroy
     @tag = Tag.find(params[:id])
-    @tag.destroy
+
+
+    @still_assigned_so_do_not_delete_tag = TemplateTag.find(:all, :conditions => "tag_id = '#{@tag.id}'")
+    if @still_assigned_so_do_not_delete_tag and @still_assigned_so_do_not_delete_tag.size > 0
+      flash[:error] = 'Tag could not be deleted. (It is assigned to ' + @still_assigned_so_do_not_delete_tag.size.to_s + ' templates.'
+    else
+      @tag.destroy
+    end
+
 
     respond_to do |format|
-      format.html { redirect_to(tags_url) }
+      format.html { redirect_to("/tags/new") }
       format.xml  { head :ok }
     end
   end
