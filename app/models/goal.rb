@@ -44,7 +44,9 @@ class Goal < ActiveRecord::Base
   attr_accessor :number_invites_sent_to_followers, :invites_sent_to_followers, :number_of_checkpoints_missing_after_start_date, :checkpoints_missing_after_start_date, :date_next_to_take_action, :has_unanswered_checkpoints, :days_to_form_a_habit, :successful_days_in_a_row, :number_of_checkpoints_with_answer_of_no, :number_of_checkpoints_with_answer_of_yes, :percent_of_checkpoints_with_answer_of_no, :percent_of_checkpoints_with_answer_of_yes, :number_of_checkpoints, :days_left_until_habit_is_formed, :get_dnow
 
   validates_presence_of :response_question
-  validates_uniqueness_of :response_question, :scope => :user_id
+
+  ### for now, allowing duplicates in case user creates a template and then adopts it
+  #validates_uniqueness_of :response_question, :scope => :user_id
 
   validate :deny_hackers
   def deny_hackers

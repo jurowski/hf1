@@ -1,5 +1,12 @@
 <hr>
 
+<!-- IF THIS GOAL IS BASED ON A TEMPLATE, DO NOT ALLOW MODIFICATIONS OF SOME THINGS -->
+<% 
+based_on_a_template = false
+if @goal.template_user_parent_goal_id
+  based_on_a_template = true
+end
+%>
 
 <!-- TEMPLATE STUFF -->
 <% them_or_me = "me" %>
@@ -77,18 +84,31 @@ show_monitor_option_details = 0
 <div class="well">
 
 
-<% if session[:sfm_virgin] == true and !@goal.template_owner_is_a_template %> 
+<% if session[:sfm_virgin] == true and !@goal.template_owner_is_a_template and !based_on_a_template%> 
   <h1>What is the first habit you'd like to create?</h1>
   <br>
 <% end %>
+
+
+
+
 
 <h2><img src="/home/images/paperplane_icon.png" alt="img"  /> Email <%= them_or_me %> daily and ask:</h2>
 
 <div class="alert">
 <h4>
   
-  "Were you successful at &nbsp
-<%= form.text_field :response_question, :placeholder => 'Ex: walking for at least 20 minutes', :style=>'width:400px;', :size => 40 %> ?"</h4>
+  "Were you successful at
+<% if !based_on_a_template %>
+ &nbsp
+  <%= form.text_field :response_question, :placeholder => 'Ex: walking for at least 20 minutes', :style=>'width:400px;', :size => 40 %> ?"
+<% else %>
+  <%= @goal.response_question %>?"
+  <%= form.hidden_field :response_question, :value => @goal.response_question %>
+  <%= form.hidden_field :template_user_parent_goal_id, :value => @goal.template_user_parent_goal_id %>
+
+<% end %>
+</h4>
 </div>
 
 
@@ -164,10 +184,16 @@ show_monitor_option_details = 0
   What Category is this? &nbsp 
   </td>
   <td nowrap>
-    <%
-    @arr = arr_goal_categories  
-    %>
-    <%= select(:goal, :category, @arr)%>
+
+    <% if !based_on_a_template %>
+      <%
+      @arr = arr_goal_categories  
+      %>
+      <%= select(:goal, :category, @arr)%>
+    <% else %>
+      <%= @goal.category %>
+    <% end %>
+
   </td>
   </tr>
 
@@ -649,6 +675,16 @@ if @goal.template_owner_is_a_template
   end
 end
 
+if based_on_a_template
+  if @goal.daym == true and @goal.dayt == true \
+    and @goal.dayw == true and @goal.dayr == true \
+    and @goal.dayf == true and @goal.days == true \
+    and @goal.dayn == true and @goal.goal_days_per_week == 7
+      show_monitor_option_details = false
+  else
+    show_monitor_option_details = true
+  end
+end
 
 
 

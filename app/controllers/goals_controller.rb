@@ -386,7 +386,36 @@ logger.debug "SGJ2 2 #{goal.title}(#{goal.id}) #{goal.daysstraight} daysstraight
       if current_user.goal_temp != nil and current_user.goal_temp != ""
         @goal.response_question = current_user.goal_temp
       end
-                                
+
+
+      #### if we are basing our goal on a template, then copy those values
+      if params[:template_user_parent_goal_id]
+        template_user_parent_goal = Goal.find(params[:template_user_parent_goal_id].to_i)
+        if template_user_parent_goal
+          @goal.template_user_parent_goal_id = template_user_parent_goal.id
+          @goal.title = template_user_parent_goal.title
+          @goal.response_question = template_user_parent_goal.response_question
+          @goal.category = template_user_parent_goal.category
+          @goal.reminder_time = template_user_parent_goal.reminder_time
+          @goal.daym = template_user_parent_goal.daym
+          @goal.dayt = template_user_parent_goal.dayt
+          @goal.dayw = template_user_parent_goal.dayw
+          @goal.dayr = template_user_parent_goal.dayr
+          @goal.dayf = template_user_parent_goal.dayf
+          @goal.days = template_user_parent_goal.days
+          @goal.dayn = template_user_parent_goal.dayn
+          @goal.goal_days_per_week = template_user_parent_goal.goal_days_per_week
+          @goal.remind_me = template_user_parent_goal.remind_me
+          @goal.reminder_send_hour = template_user_parent_goal.reminder_send_hour
+          @goal.check_in_same_day = template_user_parent_goal.check_in_same_day
+          @goal.usersendhour = template_user_parent_goal.usersendhour
+
+          ### do not save here, because if you do, all of the stuff in "def create" won't get applied
+          #@goal.save
+        end
+      end
+
+
       respond_to do |format|
         format.html # new.html.erb
         format.xml  { render :xml => @goal }

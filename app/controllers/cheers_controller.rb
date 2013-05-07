@@ -17,6 +17,7 @@ class CheersController < ApplicationController
         @cheers = Cheer.find(:all)
       else
 
+        redirect_me = false
         
         if params[:start_following_goal_id] and params[:email] and current_user and current_user.email == params[:email]
           new_cheer = Cheer.new()
@@ -30,7 +31,8 @@ class CheersController < ApplicationController
 
             flash[:notice] = 'You are following a new goal!'
             if session[:show_winners_return_to_me] and session[:show_winners_return_to_me] != ""
-              redirect_to(session[:show_winners_return_to_me] + "&flash=message_sent#winners")
+              #redirect_to(session[:show_winners_return_to_me] + "&flash=message_sent#winners")
+              redirect_me = true
             end
           rescue
             logger.error("sgj:cheers_controller:error emailing re: new follower")
@@ -67,10 +69,15 @@ class CheersController < ApplicationController
         @cheers = Cheer.find(:all, :conditions => "email = '#{current_user.email}'")
       end
 
-      respond_to do |format|
-        format.html # index.html.erb
-        format.xml  { render :xml => @cheers }
+      if redirect_me and session[:show_winners_return_to_me]
+        redirect_to(session[:show_winners_return_to_me] + "&flash=message_sent#winners")
+      else
+        respond_to do |format|
+          format.html # index.html.erb
+          format.xml  { render :xml => @cheers }
+        end
       end
+
   end
 
   # GET /cheers/1
