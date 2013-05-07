@@ -70,7 +70,7 @@ class CheersController < ApplicationController
       end
 
       if redirect_me and session[:show_winners_return_to_me]
-        redirect_to(session[:show_winners_return_to_me] + "&flash=message_sent#winners")
+        redirect_to(session[:show_winners_return_to_me] + "&flash=new_follow#winners")
       else
         respond_to do |format|
           format.html # index.html.erb

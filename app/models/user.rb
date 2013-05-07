@@ -309,6 +309,23 @@ class User < ActiveRecord::Base
   end 
 
 
+  def number_of_goal_ids_that_i_follow
+    size = 0
+    if self.goal_ids_that_i_follow
+      size = self.goal_ids_that_i_follow.size
+    end
+    return size
+  end
+
+  def goal_ids_that_i_follow
+    goal_ids = Array.new()
+    cheers = Cheer.find(:all, :conditions => "email = '#{self.email}'")
+    cheers.each do |cheer|
+      goal_ids << cheer.goal_id 
+    end
+    return goal_ids
+  end
+
   def hold_goals
       my_goals = Array.new()
       for goal in all_goals
