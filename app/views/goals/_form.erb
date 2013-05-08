@@ -181,7 +181,13 @@ show_monitor_option_details = 0
 
   <tr>
   <td valign=top nowrap align=right>
-  What Category is this? &nbsp 
+  <% if based_on_a_template %>
+    <% if @goal.category and @goal.category != "" %>
+      Category: 
+    <% end %>
+  <% else %>
+    What Category is this? &nbsp 
+  <% end %>
   </td>
   <td nowrap>
 
@@ -646,6 +652,9 @@ end
 
 
 <h2><i class="icon-calendar"></i> Frequency</h2>
+<% if based_on_a_template %>
+  <h6>(Values below are locked because this goal is based off of a template.)</h6>
+<% end %>
 <div class="well">
 Some habits are daily and others are only a few days a week.
 
@@ -714,7 +723,13 @@ end
       } 
       -->
 
-<a href="#undefined" onclick="toggle_show_hide('daily');toggle_show_hide('not_daily')">Not Daily</a>
+
+      <% if based_on_a_template %>
+         <!-- Not Daily DO NOT SHOW IT AT ALL-->
+      <% else %>
+        <a href="#undefined" onclick="toggle_show_hide('daily');toggle_show_hide('not_daily')">Not Daily</a>
+      <% end %>
+
 
     </div>
 
@@ -733,34 +748,45 @@ end
       } 
       -->
 
-<a href="#undefined" onclick="toggle_show_hide('daily');toggle_show_hide('not_daily')">Not Daily</a>
+
+      <% if based_on_a_template %>
+        <!-- Not Daily DO NOT SHOW IT AT ALL-->
+      <% else %>
+        <a href="#undefined" onclick="toggle_show_hide('daily');toggle_show_hide('not_daily')">Not Daily</a>
+      <% end %>
 
     </div>
   <div id="not_daily" style="display:none;">
 <% end %>
 
-
     <div id="daily" style="display:block;">
-
       <!-- link_to_function ("<input type='radio' disabled unchecked> Daily ") {
        |page| 
        page.visual_effect :toggle_appear, "daily" 
        page.visual_effect :toggle_appear, "not_daily" 
       } 
       -->
-<input type='radio' disabled unchecked>
-<a href="#undefined" onclick="toggle_show_hide('daily');toggle_show_hide('not_daily')">Daily</a>
-
-
+      <input type='radio' disabled unchecked>
+      <% if based_on_a_template %>
+        Daily
+      <% else %>
+        <a href="#undefined" onclick="toggle_show_hide('daily');toggle_show_hide('not_daily')">Daily</a>
+      <% end %>
       <input type='radio' disabled checked> Not Daily 
     </div>
-
   <div>
 
 
 
     &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp The goal is to succeed at this at least 
-    <%= select(:goal, :goal_days_per_week, @arr_goal_days_per_week) %> 
+    <% if based_on_a_template %>
+      <span style="font-weight:900;"><%= @goal.goal_days_per_week %></span>
+      <%= form.hidden_field :goal_days_per_week, :value => @goal.goal_days_per_week %>
+    <% else %>
+      <%= select(:goal, :goal_days_per_week, @arr_goal_days_per_week) %> 
+    <% end %>
+
+
     days each week.
     <br>
     <br>
@@ -768,31 +794,57 @@ end
 
       <br>
       <br>
-      &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp <%= check_box(:goal, :daym, options = {}, checked_value = "true", unchecked_value = "false") %>
-      <strong>Mon</strong> &nbsp;
-
-      <%= check_box(:goal, :dayt, options = {}, checked_value = "true", unchecked_value = "false") %>
-      <strong>Tue</strong> &nbsp;
-
-      <%= check_box(:goal, :dayw, options = {}, checked_value = "true", unchecked_value = "false") %>
-      <strong>Wed</strong> &nbsp;
-
-      <%= check_box(:goal, :dayr, options = {}, checked_value = "true", unchecked_value = "false") %>
-      <strong>Thu</strong> &nbsp;
-
-      <%= check_box(:goal, :dayf, options = {}, checked_value = "true", unchecked_value = "false") %>
-      <strong>Fri</strong> &nbsp;
-
-      <br>
-
-      &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+      &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp 
 
 
-      <%= check_box(:goal, :days, options = {}, checked_value = "true", unchecked_value = "false") %>
-      <strong>Sat</strong> &nbsp;
+      <% if based_on_a_template %>
+        <%= check_box(:goal, :daym, :checked_value => true, :unchecked_value => false, :disabled => true, :readonly => true) %>
+        <strong>Mon</strong> &nbsp;
+        <%= check_box(:goal, :dayt, :checked_value => true, :unchecked_value => false, :disabled => true, :readonly => true) %>
+        <strong>Tue</strong> &nbsp;
+        <%= check_box(:goal, :dayw, :checked_value => true, :unchecked_value => false, :disabled => true, :readonly => true) %>
+        <strong>Wed</strong> &nbsp;
+        <%= check_box(:goal, :dayr, :checked_value => true, :unchecked_value => false, :disabled => true, :readonly => true) %>
+        <strong>Thu</strong> &nbsp;
+        <%= check_box(:goal, :dayf, :checked_value => true, :unchecked_value => false, :disabled => true, :readonly => true) %>
+        <strong>Fri</strong> &nbsp;
+        <br>
 
-      <%= check_box(:goal, :dayn, options = {}, checked_value = "true", unchecked_value = "false") %>
-      <strong>Sun</strong> &nbsp;
+        &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+        <%= check_box(:goal, :days, :checked_value => true, :unchecked_value => false, :disabled => true, :readonly => true) %>
+        <strong>Sat</strong> &nbsp;
+        <%= check_box(:goal, :dayn, :checked_value => true, :unchecked_value => false, :disabled => true, :readonly => true) %>
+        <strong>Sun</strong> &nbsp;
+
+
+      <% else %>
+        <%= check_box(:goal, :daym, options = {}, checked_value = "true", unchecked_value = "false") %>
+        <strong>Mon</strong> &nbsp;
+
+        <%= check_box(:goal, :dayt, options = {}, checked_value = "true", unchecked_value = "false") %>
+        <strong>Tue</strong> &nbsp;
+
+        <%= check_box(:goal, :dayw, options = {}, checked_value = "true", unchecked_value = "false") %>
+        <strong>Wed</strong> &nbsp;
+
+        <%= check_box(:goal, :dayr, options = {}, checked_value = "true", unchecked_value = "false") %>
+        <strong>Thu</strong> &nbsp;
+
+        <%= check_box(:goal, :dayf, options = {}, checked_value = "true", unchecked_value = "false") %>
+        <strong>Fri</strong> &nbsp;
+        <br>
+
+        &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+
+
+        <%= check_box(:goal, :days, options = {}, checked_value = "true", unchecked_value = "false") %>
+        <strong>Sat</strong> &nbsp;
+
+        <%= check_box(:goal, :dayn, options = {}, checked_value = "true", unchecked_value = "false") %>
+        <strong>Sun</strong> &nbsp;
+      <% end %>
+
+
 
 
   </div>
