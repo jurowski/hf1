@@ -213,15 +213,22 @@ else
                     %>
                     <p>
 
-
-                    <% if slacker_goal.is_active %>
-                        <a href="/cheers?start_following_goal_id=<%= slacker_goal.id.to_s %>&email=<%= current_user.email %>" id='follow_<%= slacker_goal.id.to_s %>'  class="btn blue" title="Follow <%= slacker_goal.user.first_name %>'s Progress" ><i class="icon-plus"></i> Follow</a>
-                        <script type='text/javascript'>
-                            $('#follow_<%= slacker_goal.id.to_s %>').tipsy();
-                        </script>
+                    <% if current_user.goal_ids_that_i_follow.include?(slacker_goal.id) %>
+                      <a href="#" class="btn disabled">Following</a>
                     <% else %>
-                      <a href="#" class="btn disabled">Stale</a>
+
+                      <% if slacker_goal.is_active %>
+                          <a href="/cheers?start_following_goal_id=<%= slacker_goal.id.to_s %>&email=<%= current_user.email %>" id='follow_<%= slacker_goal.id.to_s %>'  class="btn blue" title="Follow <%= slacker_goal.user.first_name %>'s Progress" ><i class="icon-plus"></i> Follow</a>
+                          <script type='text/javascript'>
+                              $('#follow_<%= slacker_goal.id.to_s %>').tipsy();
+                          </script>
+                      <% else %>
+                        <a href="#" class="btn disabled">Stale</a>
+                      <% end %>
+
                     <% end %>
+
+
                     <a href="/tomessages/new?goal_id=<%=slacker_goal.id.to_s%>&gid=<%=slacker_goal.id.to_s%>&from_type=member&tomessage_subject=<%= slacker_goal.response_question %>&to_id=<%= slacker_goal.user.id %>" id='encourage_<%= slacker_goal.id.to_s %>' class="btn red" title='Encourage <%= slacker_goal.user.first_name %>!'> <i class="icon-heart-empty"></i> Boost</a> <span style="font-weight:bold;font-size:1.2em;"> <%= slacker_goal.user.first_name %></span> is working on ... <span style="background-color:#FFFF99;"><%= slacker_goal.response_question %></span>
                     <script type='text/javascript'>
                     $('#encourage_<%= slacker_goal.id.to_s %>').tipsy();
