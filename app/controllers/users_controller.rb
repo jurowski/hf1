@@ -490,9 +490,11 @@ class UsersController < ApplicationController
   # GET /users/new.xml
   def new
 
-      if !request.domain.include? 'mylearninghabit' and !request.domain.include? 'forittobe'
-        redirect_to("/")
-      end
+    redirect_me = false
+    if !request.domain.include? 'mylearninghabit' and !request.domain.include? 'forittobe'
+      redirect_me = true
+      #redirect_to("/")
+    end
 
     @user = User.new
 
@@ -505,10 +507,16 @@ class UsersController < ApplicationController
     end
 
     @user.yob = 1980
-    respond_to do |format|
-      format.html # new.html.erb
-      format.xml  { render :xml => @user }
+
+    if redirect_me
+      redirect_to("/")
+    else
+      respond_to do |format|
+        format.html # new.html.erb
+        format.xml  { render :xml => @user }
+      end
     end
+
   end
 
 
