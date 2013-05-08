@@ -1,4 +1,8 @@
 class ProgramsController < ApplicationController
+
+
+  before_filter :require_user_can_make_templates
+
   # GET /programs
   # GET /programs.xml
   def index
@@ -41,6 +45,8 @@ class ProgramsController < ApplicationController
   # POST /programs.xml
   def create
     @program = Program.new(params[:program])
+
+    @program.managed_by_user_id = current_user.id
 
     respond_to do |format|
       if @program.save

@@ -4,16 +4,13 @@
   <%= f.error_messages %>
 
   <p>
-    <%= f.label :organization_id %><br />
-    <%= f.text_field :organization_id %>
+    <%= f.label :organization_id %> <%= @program.organization_id %><br />
   </p>
   <p>
-    <%= f.label :managed_by_user_id %><br />
-    <%= f.text_field :managed_by_user_id %>
+    <%= f.label :managed_by_user_id %> <%= @program.managed_by_user_id %><br />
   </p>
   <p>
     <%= f.label :image_logo %><br />
-    <%= f.text_field :image_logo %>
   </p>
   <p>
     <%= f.label :name %><br />
@@ -24,20 +21,16 @@
     <%= f.text_area :about %>
   </p>
   <p>
-    <%= f.label :joined_count %><br />
-    <%= f.text_area :joined_count %>
+    <%= f.label :joined_count %> <%= @program.joined_count %><br />
   </p>
   <p>
-    <%= f.label :current_count %><br />
-    <%= f.text_area :current_count %>
+    <%= f.label :current_count %> <%= @program.current_count %><br />
   </p>
   <p>
-    <%= f.label :rating_stars %><br />
-    <%= f.text_field :rating_stars %>
+    <%= f.label :rating_stars %> <%= @program.rating_stars %><br />
   </p>
   <p>
-    <%= f.label :rating_votes %><br />
-    <%= f.text_field :rating_votes %>
+    <%= f.label :rating_votes %> <%= @program.rating_votes %><br />
   </p>
   <p>
     <%= f.submit 'Update' %>

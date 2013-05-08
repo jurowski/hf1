@@ -270,6 +270,14 @@ class ApplicationController < ActionController::Base
       end
     end
 
+    def require_user_can_make_templates
+      unless (current_user and current_user.can_make_templates)
+          flash[:notice] = "You do not have rights to access that page."
+          redirect_to "/"
+          return false
+      end
+    end
+
     def require_user
       unless current_user
         store_location
