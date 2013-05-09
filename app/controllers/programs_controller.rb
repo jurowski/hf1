@@ -1,12 +1,20 @@
 class ProgramsController < ApplicationController
 
+  layout "application"
 
   before_filter :require_user_can_make_templates
+  before_filter :require_program_scope
 
   # GET /programs
   # GET /programs.xml
   def index
-    @programs = Program.all
+
+    @programs = Array.new()
+    if current_user.is_admin
+      @programs = Program.all
+    else
+      @programs = Program.find(:all, :conditions => "managed_by_user_id = '#{current_user.id}'")
+    end
 
     respond_to do |format|
       format.html # index.html.erb

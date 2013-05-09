@@ -278,6 +278,17 @@ class ApplicationController < ActionController::Base
       end
     end
 
+    def require_program_scope
+      if params[:id]
+        program = Program.find(params[:id].to_i)
+        unless (current_user and program and (current_user.is_admin or (current_user.id == program.managed_by_user_id)))
+          flash[:notice] = "You do not have rights to access that page."
+          redirect_to "/"
+          return false          
+        end
+      end
+    end
+
     def require_user
       unless current_user
         store_location
