@@ -486,6 +486,7 @@ ActiveRecord::Schema.define(:version => 20130403185429) do
   create_table "program_templates", :force => true do |t|
     t.integer  "program_id"
     t.integer  "template_goal_id"
+    t.integer  "listing_position"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

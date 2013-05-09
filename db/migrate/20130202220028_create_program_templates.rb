@@ -3,6 +3,7 @@ class CreateProgramTemplates < ActiveRecord::Migration
     create_table :program_templates do |t|
       t.integer :program_id
       t.integer :template_goal_id
+      t.integer :listing_position
 
       t.timestamps
     end
