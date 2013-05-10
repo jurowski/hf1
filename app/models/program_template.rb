@@ -12,4 +12,6 @@ class ProgramTemplate < ActiveRecord::Base
 
   belongs_to :managed_by_user, :class_name => 'User', :foreign_key => 'managed_by_user_id'
 
+
+  validates_uniqueness_of :template_goal_id, :scope => :program_id
 end

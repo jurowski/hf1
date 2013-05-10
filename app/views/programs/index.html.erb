@@ -1,36 +1,9 @@
-<h1>Listing programs</h1>
-
-<table>
-  <tr>
-    <th>Organization</th>
-    <th>Managed by user</th>
-    <th>Image logo</th>
-    <th>Name</th>
-    <th>About</th>
-    <th>Joined count</th>
-    <th>Current count</th>
-    <th>Rating stars</th>
-    <th>Rating votes</th>
-  </tr>
+<h3>My Programs</h3>
 
 <% @programs.each do |program| %>
-  <tr>
-    <td><%=h program.organization_id %></td>
-    <td><%=h program.managed_by_user_id %></td>
-    <td><%=h program.image_logo %></td>
-    <td><%=h program.name %></td>
-    <td><%=h program.about %></td>
-    <td><%=h program.joined_count %></td>
-    <td><%=h program.current_count %></td>
-    <td><%=h program.rating_stars %></td>
-    <td><%=h program.rating_votes %></td>
-    <td><%= link_to 'Show', program %></td>
-    <td><%= link_to 'Edit', edit_program_path(program) %></td>
-    <td><%= link_to 'Destroy', program, :confirm => 'Are you sure?', :method => :delete %></td>
-  </tr>
+    <br><%= link_to program.name, program %>
 <% end %>
-</table>
 
 <br />
 
-<%= link_to 'New program', new_program_path %>
+<a href="/programs/new" class="btn">+ Create a Program</a>

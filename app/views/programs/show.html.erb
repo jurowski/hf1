@@ -1,4 +1,9 @@
 <p>
+  <b>Name:</b>
+  <%=h @program.name %>
+</p>
+
+<p>
   <b>Organization:</b>
   <%=h @program.organization_id %>
 </p>
@@ -13,10 +18,7 @@
   <%=h @program.image_logo %>
 </p>
 
-<p>
-  <b>Name:</b>
-  <%=h @program.name %>
-</p>
+
 
 <p>
   <b>About:</b>
@@ -44,5 +46,14 @@
 </p>
 
 
-<%= link_to 'Edit', edit_program_path(@program) %> |
-<%= link_to 'Back', programs_path %>
+<%= link_to 'Edit', edit_program_path(@program) %>
+<hr>
+<h3>Action Items for this Program</h3>
+<% counter = 1 %>
+<% @program.templates.each do |template| %>
+  <br><%= counter.to_s %>. <%= template.template_tagline %>
+  <% counter += 1 %>
+<% end %>
+<br>
+<a href="/program_templates/new?program_id=<%= @program.id.to_s %>" class="btn">+ Add an Action Item</a>
+<hr>

@@ -1,15 +1,27 @@
-<h1>New program_template</h1>
+
+
+  <% if @program_template.program_id %>
+    <h3>Add a Template to "<%= @program_template.program.name %>"</h3>
+  <% else %>
+    <h3>Add a Template to a Program</h3>
+  <% end %>
 
 <% form_for(@program_template) do |f| %>
   <%= f.error_messages %>
 
+
+
+  <% if @program_template.program_id %>
+    <%= f.hidden_field :program_id, :value => @program_template.program_id %>
+  <% else %>
+    <p>
+      <%= f.collection_select :program_id, current_user.programs_i_own, :id, :name, :prompt => "Select a program" %>
+    </p>
+  <% end %>
+
   <p>
-    <%= f.label :program_id %><br />
-    <%= f.text_field :program_id %>
-  </p>
-  <p>
-    <%= f.label :template_goal_id %><br />
-    <%= f.text_field :template_goal_id %>
+    <%= f.collection_select :template_goal_id, current_user.templates_i_own, :id, :template_tagline, :prompt => "Select a template" %>
+
   </p>
   <p>
     <%= f.submit 'Create' %>

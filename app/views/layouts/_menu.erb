@@ -77,6 +77,25 @@
             </li>
           <% end %>
 
+          <% if current_user and current_user.can_make_templates %>
+            <% if @cn == "programs" %> 
+              <li class="active">
+                <a href="/programs">
+                <i class="icon-cogs"></i> 
+                <span class="title">My Programs</span>
+                <span class="selected"></span>
+                </a>   
+              </li>
+            <% else %>
+              <li>
+                <a href="/programs">
+                <i class="icon-cogs"></i> 
+                <span class="title">My Programs</span>
+                </a>   
+              </li>
+            <% end %>
+          <% end %>
+
 
 
 

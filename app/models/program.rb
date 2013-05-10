@@ -23,4 +23,7 @@ class Program < ActiveRecord::Base
   has_many :levels
   has_many :triggers
   has_many :messages
+
+
+  validates_uniqueness_of :name, :scope => :managed_by_user_id
 end

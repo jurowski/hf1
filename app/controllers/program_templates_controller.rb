@@ -1,4 +1,9 @@
 class ProgramTemplatesController < ApplicationController
+
+
+  layout "application"
+
+
   # GET /program_templates
   # GET /program_templates.xml
   def index
@@ -26,6 +31,9 @@ class ProgramTemplatesController < ApplicationController
   def new
     @program_template = ProgramTemplate.new
 
+    if params[:program_id]
+      @program_template.program_id = params[:program_id].to_i
+    end
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @program_template }

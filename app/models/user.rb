@@ -290,6 +290,26 @@ class User < ActiveRecord::Base
     end
   end
 
+  def programs_i_own
+      programs = Array.new()
+
+      if self.is_admin
+        programs = Program.find(:all)
+      else
+        programs = Program.find(:all, :conditions => "managed_by_user_id = '#{self.id}'")
+      end
+
+      return programs
+  end
+
+  def number_of_programs_i_own
+      size = 0
+      if self.programs_i_own
+          size = self.programs_i_own.size
+      end
+      return size
+  end 
+
   def templates_i_own
       my_goals = Array.new()
       for goal in all_goals
