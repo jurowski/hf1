@@ -173,25 +173,47 @@ class ApplicationController < ActionController::Base
             end
         end    
 
-        ### now works if coming from a tomessages-generated email
-        ### EXAMPLE URL: /goals?update_checkpoint_status=no&date=2012-01-28&e0=106&f0=97&u=15706&goal_id=25855
+
         if params[:goal_id] and params[:u] and params[:e0] and params[:f0]
-            logger.debug("sgj:attempting single login w/ goal/user/email id info")
-            goal = Goal.find(params[:goal_id].to_i)
-            if goal
-                if goal.user
-                    if goal.user.id == params[:u].to_i and goal.user.email[0] == params[:e0].to_i and goal.user.first_name[0] == params[:f0].to_i
-                        session[:fake_login] = params[:u] + params[:e0] + params[:f0] 
-                        @current_user = goal.user
 
-                            ### hey, let's LET them do the persistent
-                            ### "session[:email] and session[:single_login]" here
 
-                        session[:email] = goal.user.email
-                        session[:single_login] = true
-                    end
-                end
+            ### let them in if they are replying to a "tomessage"
+            ### ex: http://habitforge.com/tomessages/new?to_id=88281&replying_to_message_id=5587&u=89491&e0=99&f0=67&goal_id=0
+            user = User.find(params[:u].to_i)
+            if user
+              if user.id == params[:u].to_i and user.email[0] == params[:e0].to_i and user.first_name[0] == params[:f0].to_i
+                  session[:fake_login] = params[:u] + params[:e0] + params[:f0] 
+                  @current_user = user
+
+                      ### hey, let's LET them do the persistent
+                      ### "session[:email] and session[:single_login]" here
+
+                  session[:email] = user.email
+                  session[:single_login] = true
+              end
+            else
+
+              ### EXAMPLE URL: /goals?update_checkpoint_status=no&date=2012-01-28&e0=106&f0=97&u=15706&goal_id=25855
+              logger.debug("sgj:attempting single login w/ goal/user/email id info")
+              goal = Goal.find(params[:goal_id].to_i)
+              if goal
+                  if goal.user
+                      if goal.user.id == params[:u].to_i and goal.user.email[0] == params[:e0].to_i and goal.user.first_name[0] == params[:f0].to_i
+                          session[:fake_login] = params[:u] + params[:e0] + params[:f0] 
+                          @current_user = goal.user
+
+                              ### hey, let's LET them do the persistent
+                              ### "session[:email] and session[:single_login]" here
+
+                          session[:email] = goal.user.email
+                          session[:single_login] = true
+                      end
+                  end
+              end
+
             end
+
+
         else
           logger.debug("sgj:attempting single login via goal_id or email param")
             if !fully_logged_in and (params[:goal_id] or (session[:email] and session[:single_login]))
