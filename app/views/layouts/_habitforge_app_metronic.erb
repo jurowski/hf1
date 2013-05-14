@@ -276,15 +276,28 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
         div.style.display = "block";
     }
 
+
+
     function add_tag_to_template_then_reload_template_tags(tag_id,goal_id) {
         //reload div
         $('.manage').load('/template_tags/manage/1?add_tag_to_template=1&tag_id='+tag_id+'&goal_id='+goal_id);
     }
-
     function remove_tag_from_template_then_reload_template_tags(tag_id,goal_id) {
         //reload div
         $('.manage').load('/template_tags/manage/1?remove_tag_from_template=1&tag_id='+tag_id+'&goal_id='+goal_id);
     }
+
+
+    function add_tag_to_program_then_reload_program_tags(tag_id,program_id) {
+        //reload div
+        $('.manage').load('/program_tags/manage/1?add_tag_to_program=1&tag_id='+tag_id+'&program_id='+program_id);
+    }
+    function remove_tag_from_program_then_reload_program_tags(tag_id,program_id) {
+        //reload div
+        $('.manage').load('/program_tags/manage/1?remove_tag_from_program=1&tag_id='+tag_id+'&program_id='+program_id);
+    }
+
+
 
     function reload_catch_up_on_checkpints_v2(id) {
       $('.class_catch_up_on_checkpoints_v2_goal_id_'+id).load('/goals/class_catch_up_on_checkpoints_v2?goal_id='+id);
@@ -553,9 +566,6 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
         <blockquote class="pull-right" style="width:75%;">
           <p>"<%= random_quote_thought %>" </p>
           <small><%= random_quote_author %></small>
-<!--           <span class='st_pinterest' displayText='Pin!'></span>
-          <span class='st_twitter' displayText='Tweet!'></span>
-          <span class='st_facebook' displayText='Share!'></span> -->
         </blockquote>
         <!-- END RANDOM QUOTE -->
         <!-- ####################### -->

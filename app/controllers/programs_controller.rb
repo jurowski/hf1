@@ -59,7 +59,8 @@ class ProgramsController < ApplicationController
     respond_to do |format|
       if @program.save
         flash[:notice] = 'Program was successfully created.'
-        format.html { redirect_to(@program) }
+        #format.html { redirect_to(@program) }
+        format.html { render :action => "edit" }
         format.xml  { render :xml => @program, :status => :created, :location => @program }
       else
         format.html { render :action => "new" }

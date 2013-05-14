@@ -1,0 +1,105 @@
+<!-- Content Start -->
+<section id="content_wrap" class="typography">
+
+<article>
+
+<% 
+begin
+@program = Program.find(params[:program_id]) 
+rescue
+### no program with that id
+end
+%>
+
+<% if @program %> 
+
+    <div class="sub_header" style="padding-top:0px;">
+
+        <!-- BEGIN LOGO -->
+        <a class="brand" href="/">
+        <img src="/home/images/logos/habitforge_logo_small.png" alt="logo"/>
+        </a>
+        <!-- END LOGO -->
+        <br>
+        <br>
+        <h2><%= @program.name %></h2>
+        <br>
+        <br>
+        <p>
+            <% if @program.managed_by_user %>
+                Author: <%= @program.managed_by_user.first_name %> <%= @program.managed_by_user.last_name %>
+            <% end %>
+        </p>
+    </div>
+    
+      
+<!--     <div class="portfolio_top">
+    <h3>Actions in this Challenge</h3>
+
+    <div class="portfolio_nav">
+
+
+        <a class="pf_prev" href="#"></a> <a href="#"> View All Success Programs</a>
+
+        <a class="pf_prev" href="portfolio_single_page_2.html"></a>
+        <a class="pf_page" href="index.html"></a>
+        <a class="pf_next" href="portfolio_single_page_4.html"></a>
+
+    </div>
+    </div> -->
+
+    <!-- Portfolio Single Page 3 Start -->
+    <div class="two_third">
+        <h3>Actions in this Challenge</h3>
+        <ul class="project_list">
+            <% @program.templates.each do |template| %>
+                <li>
+                    <a href="#undefined" onclick="toggle_show_hide('more_<%= template.id.to_s %>')">
+                        <%= template.template_tagline %>
+                    </a>
+                </li>
+                <div id="more_<%= template.id.to_s %>" style="display:none;margin-left:20px;">
+                <div style="padding:5px;background-color:#eeeddd;">
+                    <p>
+                        <%= template.template_description %>
+                        <br>
+                        <br>
+                        <span style="color:#000000;">Check-in question:</span> "Were you successful today at <%= template.response_question %>?"
+                        <br>
+                        <span style="color:#000000;">Days per week:</span> <%= template.goal_days_per_week %>
+                        <br>
+                        <br>
+                        <a href="#" class="btn start">+ Start Doing This One</a> or <a href="#" class="btn start">Start the Full Challenge</a>
+                    </p>
+                </div>
+                <br>
+                </div>
+            <% end %>
+        </ul>
+
+
+
+          <br><br>
+
+    </div>
+    <div class="one_third_last">
+        <h3>About This Challenge</h3>
+        <%= @program.about %>
+        <br>
+        <br>
+        <a href="#" class="button">Take the Full Challenge</a>
+    </div>
+    <!-- Portfolio Single Page 3 End -->
+    
+
+<!-- Content End -->
+<% else %>
+    <br>
+    <div class="error">
+        <br>
+        <h2>No Program Found with that ID.</h2>
+    </div>
+<% end %>
+
+</article>
+</section>

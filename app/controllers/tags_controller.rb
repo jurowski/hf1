@@ -84,13 +84,26 @@ class TagsController < ApplicationController
     @tag = Tag.find(params[:id])
 
 
+    destroy_me = false
+
     @still_assigned_so_do_not_delete_tag = TemplateTag.find(:all, :conditions => "tag_id = '#{@tag.id}'")
     if @still_assigned_so_do_not_delete_tag and @still_assigned_so_do_not_delete_tag.size > 0
       flash[:error] = 'Tag could not be deleted. (It is assigned to ' + @still_assigned_so_do_not_delete_tag.size.to_s + ' templates.'
     else
-      @tag.destroy
+      destroy_me = true
     end
 
+    @still_assigned_so_do_not_delete_tag = ProgramTag.find(:all, :conditions => "tag_id = '#{@tag.id}'")
+    if @still_assigned_so_do_not_delete_tag and @still_assigned_so_do_not_delete_tag.size > 0
+      flash[:error] = 'Tag could not be deleted. (It is assigned to ' + @still_assigned_so_do_not_delete_tag.size.to_s + ' programs.'
+    else
+      destroy_me = true
+    end
+
+
+    if destroy_me
+      @tag.destroy
+    end
 
     respond_to do |format|
       format.html { redirect_to("/tags/new") }

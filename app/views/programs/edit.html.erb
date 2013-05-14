@@ -32,6 +32,24 @@
   <p>
     <%= f.label :rating_votes %> <%= @program.rating_votes %><br />
   </p>
+
+
+
+    <div class="manage">
+       <%= render :partial => "program_tags/manage", :locals => { :program => @program }  %>
+    </div>
+
+    <p>
+      <span style='text-decoration:underline;'><a href="#undefined" onclick="toggle_show_hide('show_available_tags')">Show Available Tags</a></span>
+      <div id="show_available_tags" style="display:none">
+        <% @tags = Tag.find(:all, :order => "name") %>
+        <% @tags.each do |tag| %>
+          <a onclick="add_tag_to_program_then_reload_program_tags('<%= tag.id %>','<%= @program.id %>');" class="btn" style="padding:2px;"><%= tag.name %></a>
+        <% end %>
+      </div>
+    </p>
+    <br>
+
   <p>
     <%= f.submit 'Update' %>
   </p>

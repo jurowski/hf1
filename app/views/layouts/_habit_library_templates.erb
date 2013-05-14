@@ -13,117 +13,66 @@
     end
     %>
 
-    <a href="/goals?templates=1&browse_recommended_habits=1&popular=1#browse_recommended_habits" class="btn<% if params[:popular]%> red<% end %>">Popular</a> <a href="/goals?templates=1&browse_recommended_habits=1&books=1#browse_recommended_habits" class="btn<% if params[:books]%> red<% end %>">Books</a> <a href="/goals?templates=1&browse_recommended_habits=1&success_coaches=1#browse_recommended_habits" class="btn<% if params[:success_coaches]%> red<% end %>">Success Coaches</a> <a href="/goals?templates=1&browse_recommended_habits=1&just_templates=1#browse_recommended_habits" class="btn<% if params[:just_templates]%> red<% end %>">Templates</a>
+    <a href="/goals?templates=1&browse_recommended_habits=1&popular=1#browse_recommended_habits" class="btn<% if params[:popular]%> red<% end %>">Popular</a> <a href="/goals?programs=1&templates=1&browse_recommended_habits=1#browse_recommended_habits" class="btn<% if params[:programs]%> red<% end %>">Success Programs</a> <a href="/goals?templates=1&browse_recommended_habits=1&just_templates=1#browse_recommended_habits" class="btn<% if params[:just_templates]%> red<% end %>">All Habit Templates</a>
 
     <p />
 
-    <% if params[:books] %>
+    <% if params[:programs] %>
+        <% all_tags = "" %>
     <!-- Portfolio Start -->
         <ul class="splitter" id="filter">
             <li>
                 <ul>
                     <!-- NEED TO KEEP A DUMMY ONE AT THE FRONT TO DEAL W/ A BUG!!-->
                     <li class="segment-0"><a href="#" style="text-decoration:underline;" style="font-size:1.5em;text-decoration:underline;" data-value="all"></a></li>
-                    <li class="segment-1 selected-1"><a href="#" style="font-size:1.5em;text-decoration:underline;" data-value="all">All</a></li>
-                    <li class="segment-2"><a href="#" style="font-size:1.5em;text-decoration:underline;" data-value="4_hour_body">4 Hour Body</a></li>
-                    <li class="segment-3"><a href="#" style="font-size:1.5em;text-decoration:underline;" data-value="mars_venus">Men are From Mars, Women are from Venus</a></li>
+                    <li class="segment-1 selected-1"><a href="#" style="font-size:1em;text-decoration:underline;" data-value="all">All</a></li>
+                    <% tags = Tag.find(:all, :conditions => "shared = '1'", :order => "name") %>
+                    <% tag_counter = 0 %>
+                    <% tags.each do |tag| %>
+                        <% if tag.programs.size > 0  %>
+                            <% tag_counter += 1 %>
+                            <% all_tags = all_tags + " " + tag.name %>
+                            <li class="segment-<%= tag_counter + 1 %> btn" style="padding:2px;margin:2px;"><a href="#" style="font-size:1em;text-decoration:underline;" data-value="<%= tag.name %>"><%= tag.name %></a></li>
+                        <% end %>
+                    <% end %>
+                    <% all_tags = all_tags + " all" %>
+<!--                     <li class="segment-2"><a href="#" style="font-size:1.5em;text-decoration:underline;" data-value="tag1">tag1</a></li>
+                    <li class="segment-3"><a href="#" style="font-size:1.5em;text-decoration:underline;" data-value="tag2">tag2</a></li> -->
                 </ul>
             </li>
         </ul>
 
-        <div id="portfolio_4col" class="image_grid">
-        <ul id="list" class="da-thumbs">
-            <li data-id="id-1" class="4_hour_body all">
-                <img src="/home/images/categories/slow_carb_diet.jpg" alt="img" />
-                <div>
-                  <a href="<%= url_prefix %>?goal_template_text=following%20the%20slow%20carb%20diet&category=Diet%2C%20Healthy%20Foods%20and%20Water">
-                    <h3>Slow Carb Diet</h3>
-                    <p>Something about the slow carb diet.</p>
-                    </a>
-                </div>
-            </li>
-            <li data-id="id-2" class="4_hour_body all">
-                <img src="/home/images/categories/cold_shower.jpg" alt="img" />
-                <div>
-                    <a href="<%= url_prefix %>?goal_template_text=taking%20a%20cold%20shower&category=Other">
+        <div id="portfolio_4col" class="">
+<!--         <div id="portfolio_4col" class="image_grid"> -->
 
-                    <h3>Cold Shower</h3>
-                    <p>Take a cold shower, OK?</p>
-                    </a>
-                </div>
-            </li>
-        </ul>
-        </div>
+<!--         <ul id="list" class="da-thumbs"> -->
+        <ul id="list" class="">
+            <% programs = Program.find(:all) %>
+            <% program_counter = 0 %>
+            <% programs.each do |program| %>
+                <% program_counter += 1 %>
+                <!-- style="background-color:#F5ECCE;padding:5px;" -->
+                <% 
+                class_value = ""
+                program_tags = ProgramTag.find(:all, :conditions => "program_id = '#{program.id}'")
+                program_tags.each do |program_tag|
+                  class_value = class_value + " " + program_tag.tag.name
+                end
+                %>
+                <li data-id="id-<%= program_counter %>" class="<%= class_value %>" >
+                    <div style="background-color:#efefef;margin-top:3px;padding:5px;">
+                        <a href="/goals?program_id=<%= program.id.to_s %>&programs=1&templates=1&browse_recommended_habits=1#browse_recommended_habits">
+                        <h3><%= program.name %></h3>
+                        <p><% if program.about %><%= program.about %><% end %></p>
+                        </a>
+                    </div>
+                </li>
+            <% end %>
 
-    <% elsif params[:success_coaches] %>
-    <!-- Portfolio Start -->
-        <ul class="splitter" id="filter">
-            <li>
-                <ul>
-                    <!-- NEED TO KEEP A DUMMY ONE AT THE FRONT TO DEAL W/ A BUG!!-->
-                    <li class="segment-0"><a href="#" style="text-decoration:underline;" style="font-size:1.5em;text-decoration:underline;" data-value="all"></a></li>
-                    <li class="segment-1 selected-1"><a href="#" style="font-size:1.5em;text-decoration:underline;" data-value="all">All</a></li>
-                    <li class="segment-2"><a href="#" style="font-size:1.5em;text-decoration:underline;" data-value="craig_ballantyne">Craig Ballantyne</a></li>
-                    <li class="segment-3"><a href="#" style="font-size:1.5em;text-decoration:underline;" data-value="john_rowley">John Rowley</a></li>
-                </ul>
-            </li>
-        </ul>
-
-        <div id="portfolio_4col" class="image_grid">
-        <ul id="list" class="da-thumbs">
-            <li data-id="id-1" class="exercise all">
-                <img src="/home/images/categories/shoe.jpg" alt="img" />
-                <div>
-                  <a href="<%= url_prefix %>?goal_template_text=walking%20briskly%20for%2020%20minutes&category=Exercise">
-                    <h3>20 Minutes of Brisk Walking</h3>
-                    <p>Walking fast for 20 minutes or more each day is a great way to burn calories and boost your immune system.</p>
-                    </a>
-                </div>
-            </li>
-            <li data-id="id-2" class="healthy_foods">
-                <img src="/home/images/categories/tomato.jpg" alt="img" />
-                <div>
-                    <a href="<%= url_prefix %>?goal_template_text=eating%205%20servings%20of%20fruits%20or%20vegetables&category=Diet%2C%20Healthy%20Foods%20and%20Water">
-
-                    <h3>5 Servings of Fruits or Vegetables</h3>
-                    <p>Make your mother proud. Eat your veggies, OK?</p>
-                    </a>
-                </div>
-            </li>
-            <li data-id="id-3" class="exercise">
-                <img src="/home/images/categories/athlete.jpg" alt="img" />
-                <div>
-                    <a href="<%= url_prefix %>?goal_template_text=doing%20strength%20training%20or%20cardio&category=Exercise">
-                    <h3>Strength Training or Cardio</h3>
-                    <p>Do something every day to get stronger and increase your endurance.</p>
-                    </a>
-                </div>
-            </li>
-            <li data-id="id-4" class="exercise">
-                <img src="/home/images/categories/jogger.jpg" alt="img" />
-                <div>
-                    <a href="<%= url_prefix %>?goal_template_text=going%20for%20a%20run&category=Exercise">
-                    <h3>Going for a Run</h3>
-                    <p>A great way to recharge your batteries.</p>
-                    </a>
-                </div>
-            </li>
-            <li data-id="id-5" class="healthy_foods">
-                <img src="/home/images/categories/water.jpg" alt="img" />
-                <div>
-                    <a href="<%= url_prefix %>?goal_template_text=drinking%208%20glasses%20of%20water&category=Diet%2C%20Healthy%20Foods%20and%20Water">
-                    <h3>8 Glasses of Water</h3>
-                    <p>It takes a lot of fluids to run a high-powered machine.</p>
-                    </a>
-                </div>
-            </li>
-            <li data-id="id-6" class="healthy_foods exercise all">
-                <img src="/home/images/categories/question.jpg" alt="img" />
-                <div>
-                  <a href="<%= url_prefix %>?goal_template_text=&category=s">
-                    <h3>Build your own</h3>
-                    <p>What could you do daily to improve your life?</p>
-                    </a>
+            <li data-id="id-<%= program_counter + 1 %>" class="<%= all_tags %>" >
+                <div style="background-color:#dddddd;margin-top:3px;padding:5px;">
+                    <h3>Build your own program (coming)</h3>
+                    <p>What could you help others do daily to improve their lives?</p>
                 </div>
             </li>
         </ul>
@@ -140,9 +89,11 @@
                     <% tags = Tag.find(:all, :conditions => "shared = '1'", :order => "name") %>
                     <% tag_counter = 0 %>
                     <% tags.each do |tag| %>
-                        <% tag_counter += 1 %>
-                        <% all_tags = all_tags + " " + tag.name %>
-                        <li class="segment-<%= tag_counter + 1 %> btn" style="padding:2px;margin:2px;"><a href="#" style="font-size:1em;text-decoration:underline;" data-value="<%= tag.name %>"><%= tag.name %></a></li>
+                        <% if tag.templates.size > 0  %>
+                            <% tag_counter += 1 %>
+                            <% all_tags = all_tags + " " + tag.name %>
+                            <li class="segment-<%= tag_counter + 1 %> btn" style="padding:2px;margin:2px;"><a href="#" style="font-size:1em;text-decoration:underline;" data-value="<%= tag.name %>"><%= tag.name %></a></li>
+                        <% end %>
                     <% end %>
                     <% all_tags = all_tags + " all" %>
 <!--                     <li class="segment-2"><a href="#" style="font-size:1.5em;text-decoration:underline;" data-value="tag1">tag1</a></li>
@@ -151,7 +102,7 @@
             </li>
         </ul>
 
-        <div id="portfolio_4col" class="image_grid">
+        <div id="portfolio_4col" class="">
 <!--         <div id="portfolio_4col" class="image_grid"> -->
 
 <!--         <ul id="list" class="da-thumbs"> -->
@@ -169,7 +120,7 @@
                 end
                 %>
                 <li data-id="id-<%= template_counter %>" class="<%= class_value %>" >
-                    <div>
+                    <div style="background-color:#efefef;margin-top:3px;padding:5px;">
                       <a href="<%= url_prefix %>?goal_template_text=<%= template.response_question%>&category=<%= template.category%>&template_user_parent_goal_id=<%=template.id.to_s%>">
                         <h3><% if template.template_tagline %><%= template.template_tagline %><% else %>...<%= template.response_question%><% end %></h3>
                         <p><% if template.template_description %><%= template.template_description %><% end %></p>
@@ -179,7 +130,7 @@
             <% end %>
 
             <li data-id="id-<%= template_counter + 1 %>" class="<%= all_tags %>" >
-                <div>
+                <div style="background-color:#dddddd;margin-top:3px;padding:5px;">
                   <a href="<%= url_prefix %>?goal_template_text=&category=s">
                     <h3>Build your own</h3>
                     <p>What could you do daily to improve your life?</p>

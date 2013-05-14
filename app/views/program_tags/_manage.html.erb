@@ -1,0 +1,11 @@
+
+<!-- Time.now.getutc -->
+<h3>Tags for this program:</h3>
+<% @program_tags = ProgramTag.find(:all, :conditions => "program_id = '#{@program.id}'") %>
+<% if @program_tags.size == 0 %>
+	No tags yet.
+<% else %>
+	<% @program_tags.each do |program_tag| %>
+	  <span class="btn" style="padding:2px;"><%= program_tag.tag.name.gsub('_',' ') %> <a onclick="remove_tag_from_program_then_reload_program_tags('<%= program_tag.tag.id %>','<%= program_tag.program_id %>');">x</a></span>
+	<% end %>
+<% end %>
