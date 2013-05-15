@@ -63,7 +63,7 @@
                 %>
                 <li data-id="id-<%= program_counter %>" class="<%= class_value %>" >
                     <div style="background-color:#efefef;margin-top:3px;padding:5px;">
-                        <a href="<%= url_prefix %>?program_id=<%= program.id.to_s %>&programs=1&browse_recommended_habits=1#browse_recommended_habits">
+                        <a href="<%= url_prefix_header %>?program_id=<%= program.id.to_s %>&programs=1&browse_recommended_habits=1#browse_recommended_habits">
                         <h3><%= program.name %></h3>
                         <p><% if program.about %><%= program.about %><% end %></p>
                         </a>
