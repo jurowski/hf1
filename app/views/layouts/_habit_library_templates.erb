@@ -13,7 +13,7 @@
     end
     %>
 
-    <a href="/goals?templates=1&browse_recommended_habits=1&popular=1#browse_recommended_habits" class="btn<% if params[:popular]%> red<% end %>">Popular</a> <a href="/goals?programs=1&templates=1&browse_recommended_habits=1#browse_recommended_habits" class="btn<% if params[:programs]%> red<% end %>">Success Programs</a> <a href="/goals?templates=1&browse_recommended_habits=1&just_templates=1#browse_recommended_habits" class="btn<% if params[:just_templates]%> red<% end %>">All Habit Templates</a>
+    <a href="<%= url_prefix %>?templates=1&browse_recommended_habits=1&popular=1#browse_recommended_habits" class="btn<% if params[:popular]%> red<% end %>">Popular</a> <a href="<%= url_prefix %>?programs=1&templates=1&browse_recommended_habits=1#browse_recommended_habits" class="btn<% if params[:programs]%> red<% end %>">Success Programs</a> <a href="<%= url_prefix %>?templates=1&browse_recommended_habits=1&just_templates=1#browse_recommended_habits" class="btn<% if params[:just_templates]%> red<% end %>">All Habit Templates</a>
 
     <p />
 
@@ -61,7 +61,7 @@
                 %>
                 <li data-id="id-<%= program_counter %>" class="<%= class_value %>" >
                     <div style="background-color:#efefef;margin-top:3px;padding:5px;">
-                        <a href="/goals?program_id=<%= program.id.to_s %>&programs=1&templates=1&browse_recommended_habits=1#browse_recommended_habits">
+                        <a href="<%= url_prefix %>?program_id=<%= program.id.to_s %>&programs=1&browse_recommended_habits=1#browse_recommended_habits">
                         <h3><%= program.name %></h3>
                         <p><% if program.about %><%= program.about %><% end %></p>
                         </a>

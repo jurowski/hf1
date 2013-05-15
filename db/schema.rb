@@ -9,8 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-
-ActiveRecord::Schema.define(:version => 20130403185429) do
+ActiveRecord::Schema.define(:version => 20130515110026) do
 
   create_table "achievemints", :force => true do |t|
     t.string   "name"
@@ -22,7 +21,6 @@ ActiveRecord::Schema.define(:version => 20130403185429) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
-
 
   create_table "affiliates", :force => true do |t|
     t.string   "email"
@@ -309,6 +307,7 @@ ActiveRecord::Schema.define(:version => 20130403185429) do
     t.text     "template_description"
     t.string   "template_tagline"
     t.boolean  "template_next_template_goal_random_bool"
+    t.integer  "goal_added_through_template_from_program_id"
   end
 
   add_index "goals", ["allow_push", "last_success_date", "next_push_on_or_after_date", "pushes_remaining_on_next_push_date"], :name => "allow_push"

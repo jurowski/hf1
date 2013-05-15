@@ -206,7 +206,11 @@ for goal in current_user.active_goals_sorted_by_next_action_day
 
             <a name="jump_to_goal_id_<%= goal.id.to_s %>" />
             <h4><span style="color:#ffffff;font-weight:bold;font-size:1.5em;">
-            <% if goal.category and  goal.category != "None" and goal.category != "" and goal.category != "Other" %><%= goal.category %>: <% end %>"<%= goal.title %>"
+            <% if goal.template_user_parent_goal and goal.template_user_parent_goal.template_tagline %>
+                <%= goal.template_user_parent_goal.template_tagline %>
+            <% else %>
+                <% if goal.category and  goal.category != "None" and goal.category != "" and goal.category != "Other" %><%= goal.category %>: <% end %>"<%= goal.title %>"
+            <% end %>
             &nbsp
             </span>
             </h4>

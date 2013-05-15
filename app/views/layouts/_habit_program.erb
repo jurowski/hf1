@@ -13,6 +13,13 @@ end
 
 <% if @program %> 
 
+    <% 
+    url_prefix = "" 
+    if current_user
+        url_prefix = "/goals/new"
+    end
+    %>
+
     <div class="sub_header" style="padding-top:0px;">
 
         <!-- BEGIN LOGO -->
@@ -22,14 +29,18 @@ end
         <!-- END LOGO -->
         <br>
         <br>
-        <h2><%= @program.name %></h2>
+        <a href="<%= url_prefix %>?programs=1&templates=1&browse_recommended_habits=1#browse_recommended_habits"> <-- All Success Programs</a>
         <br>
         <br>
-        <p>
+        <h2>
             <% if @program.managed_by_user %>
-                Author: <%= @program.managed_by_user.first_name %> <%= @program.managed_by_user.last_name %>
+                <% if current_user and @program.managed_by_user == current_user %>
+                    <a href="/programs/<%= @program.id.to_s %>/edit" class="btn">Edit Program</a>
+                <% end %>
             <% end %>
-        </p>
+            <%= @program.name %></h2>
+        <br>
+        <br>
     </div>
     
       
@@ -69,7 +80,7 @@ end
                         <span style="color:#000000;">Days per week:</span> <%= template.goal_days_per_week %>
                         <br>
                         <br>
-                        <a href="#" class="btn start">+ Start Doing This One</a> or <a href="#" class="btn start">Start the Full Challenge</a>
+                        <a href="<%= url_prefix %>?goal_template_text=<%= template.response_question%>&category=<%= template.category%>&template_user_parent_goal_id=<%=template.id.to_s%>" class="btn start">+ Start Doing This One</a> or <a href="#" class="btn start">Start the Full Challenge</a>
                     </p>
                 </div>
                 <br>
@@ -87,6 +98,24 @@ end
         <%= @program.about %>
         <br>
         <br>
+
+        <p>
+            <% if @program.managed_by_user %>
+                Author: <%= @program.managed_by_user.first_name %> <%= @program.managed_by_user.last_name %>
+            <% end %>
+        </p>
+        <% max = @program.tags.size %>
+        <% if max > 0 %>
+            <h4>Tagged with</h4>
+            <% counter = 1 %>
+            <% @program.tags.each do |tag| %>
+                <%= tag.name %>
+                <% counter += 1 %>
+                <% if counter <= max %>,<% end %>
+            <% end %>
+            <br>
+            <br>
+        <% end %>
         <a href="#" class="button">Take the Full Challenge</a>
     </div>
     <!-- Portfolio Single Page 3 End -->
