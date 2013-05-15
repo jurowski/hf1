@@ -80,7 +80,7 @@ end
                         <span style="color:#000000;">Days per week:</span> <%= template.goal_days_per_week %>
                         <br>
                         <br>
-                        <a href="<%= url_prefix %>?goal_template_text=<%= template.response_question%>&category=<%= template.category%>&template_user_parent_goal_id=<%=template.id.to_s%>" class="btn start">+ Start Doing This One</a> or <a href="#" class="btn start">Start the Full Challenge</a>
+                        <a href="<%= url_prefix %>?goal_template_text=<%= template.response_question%>&category=<%= template.category%>&template_user_parent_goal_id=<%=template.id.to_s%>&goal_added_through_template_from_program_id=<%= @program.id.to_s %>" class="btn start">+ Start Doing This One</a><!-- or <a href="#" class="btn start">Start the Full Challenge</a>-->
                     </p>
                 </div>
                 <br>
@@ -116,7 +116,7 @@ end
             <br>
             <br>
         <% end %>
-        <a href="#" class="button">Take the Full Challenge</a>
+        <!--<a href="#" class="button">Take the Full Challenge</a>-->
     </div>
     <!-- Portfolio Single Page 3 End -->
     

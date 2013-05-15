@@ -37,6 +37,8 @@ class Goal < ActiveRecord::Base
   ### might not work, will have to test
   belongs_to :template_next_template_goal, :class_name => 'Goal', :foreign_key => 'template_next_template_goal_id'
 
+  belongs_to :program, :class_name => 'Program', :foreign_key => 'goal_added_through_template_from_program_id'
+
 
   has_many :message_goals
   has_many :messages, :through => :message_goals

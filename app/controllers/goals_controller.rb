@@ -410,6 +410,14 @@ logger.debug "SGJ2 2 #{goal.title}(#{goal.id}) #{goal.daysstraight} daysstraight
           @goal.check_in_same_day = template_user_parent_goal.check_in_same_day
           @goal.usersendhour = template_user_parent_goal.usersendhour
 
+          if params[:goal_added_through_template_from_program_id]
+            goal_added_through_template_from_program = Program.find(params[:goal_added_through_template_from_program_id].to_i)
+            if goal_added_through_template_from_program
+              @goal.goal_added_through_template_from_program_id = goal_added_through_template_from_program.id
+            end
+          end
+
+
           ### do not save here, because if you do, all of the stuff in "def create" won't get applied
           #@goal.save
         end

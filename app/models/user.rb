@@ -275,7 +275,12 @@ class User < ActiveRecord::Base
     when "jurowski@gmail.com"
       return true
     else
-      return false
+
+      ### restrict
+      #return false
+
+      ### let everyone in
+      return true
     end
   end
 

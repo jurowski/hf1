@@ -106,6 +106,7 @@ show_monitor_option_details = 0
   <%= @goal.response_question %>?"
   <%= form.hidden_field :response_question, :value => @goal.response_question %>
   <%= form.hidden_field :template_user_parent_goal_id, :value => @goal.template_user_parent_goal_id %>
+  <%= form.hidden_field :goal_added_through_template_from_program_id, :value => @goal.goal_added_through_template_from_program_id %>
 
 <% end %>
 </h4>
