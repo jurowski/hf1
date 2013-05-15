@@ -4,8 +4,10 @@
     <a name="browse_recommended_habits" id="browse_recommended_habits" /> 
     <% 
     url_prefix = "" 
+    url_prefix_header = ""
     if current_user
     	url_prefix = "/goals/new"
+        url_prefix_header = "/goals"
 
         %>
         <a href="/goals"><-- Back</a> 
@@ -13,7 +15,7 @@
     end
     %>
 
-    <a href="<%= url_prefix %>?templates=1&browse_recommended_habits=1&popular=1#browse_recommended_habits" class="btn<% if params[:popular]%> red<% end %>">Popular</a> <a href="<%= url_prefix %>?programs=1&templates=1&browse_recommended_habits=1#browse_recommended_habits" class="btn<% if params[:programs]%> red<% end %>">Success Programs</a> <a href="<%= url_prefix %>?templates=1&browse_recommended_habits=1&just_templates=1#browse_recommended_habits" class="btn<% if params[:just_templates]%> red<% end %>">All Habit Templates</a>
+    <a href="<%= url_prefix_header %>?templates=1&browse_recommended_habits=1&popular=1#browse_recommended_habits" class="btn<% if params[:popular]%> red<% end %>">Popular</a> <a href="<%= url_prefix_header %>?programs=1&templates=1&browse_recommended_habits=1#browse_recommended_habits" class="btn<% if params[:programs]%> red<% end %>">Success Programs</a> <a href="<%= url_prefix_header %>?templates=1&browse_recommended_habits=1&just_templates=1#browse_recommended_habits" class="btn<% if params[:just_templates]%> red<% end %>">All Habit Templates</a>
 
     <p />
 
