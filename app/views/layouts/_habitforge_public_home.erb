@@ -229,31 +229,9 @@ function popitup_bigger1(url) {
       -->
       <%= render :partial => "layouts/habit_program" %>
     <% else %>
-
         <article>
             <%= render :partial => "layouts/habit_library_templates" %>
         </article>
-
-      <!-- if params[:templates] -->
-
-        <!-- 
-        http://localhost:3000/goals?templates=1&browse_recommended_habits=1
-        -->
-<!--         <article>
-            render :partial => "layouts/habit_library_templates"
-        </article>
- -->
-      <!-- else -->
-
-          <!-- 
-          The default view
-          http://localhost:3000/goals?browse_recommended_habits=1
-          -->
-<!--           <article>
-              <-- render :partial => "layouts/habit_library" >
-          </article>
- -->
-      <!-- end -->
     <% end %>
 
 
@@ -494,10 +472,18 @@ function popitup_bigger1(url) {
 
 
 
-    <article>
-        <!-- render :partial => "layouts/habit_library" -->
-        <%= render :partial => "layouts/habit_library_templates" %>
-    </article>
+    <% if params[:program_id] %>
+      <!-- 
+      http://localhost:3000/goals?programs=1&browse_recommended_habits=1&program_id=2
+      -->
+      <%= render :partial => "layouts/habit_program" %>
+    <% else %>
+      <article>
+          <!-- render :partial => "layouts/habit_library" -->
+          <%= render :partial => "layouts/habit_library_templates" %>
+      </article>
+    <% end %>
+
 
     <article>
           <a name="all_testimonials_anchor" id="all_testimonials_anchor" />
