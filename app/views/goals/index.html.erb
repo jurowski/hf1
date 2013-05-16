@@ -36,6 +36,20 @@
             <% end %>
            with a Premium Membership!</h2>
                 <br>
+
+                <h5>Who's recommending HabitForge to their readers?
+                <a href="http://www.fourhourbody.com/" target="_blank">The 4-Hour Body</a>
+                &nbsp;
+                <a href="http://www.familycircle.com/family-fun/technology/online-tools-for-achieving-goals/" target="_blank">Family Circle</a>
+                &nbsp;
+                <a href="http://www.shape.com/lifestyle/mind-and-body/5-ways-change-your-life-good?page=3" target="_blank">Shape Magazine</a>
+                &nbsp;
+                <a href="http://www.womansday.com/Articles/Health-Fitness/Make-Healthy-Habits-Stick.html" target="_blank">Woman's Day</a>
+                &nbsp;
+                <a href="http://tech.ca.msn.com/pcworld-article.aspx?cp-documentid=23549978" target="_blank">PC World</a>
+                </h5
+                <br>
+
                   <a href="https://www.securepublications.com/habit-gse3.php?ref=<%= current_user.id.to_s %>&email=<%= current_user.email %>" class="btn yellow" >Learn More</a>
                  <br>
                  <a href="#undefined" onclick="toggle_show_hide('upgrade_lightbox_black');toggle_show_hide('upgrade_lightbox_white');toggle_show_hide('upgrade_lightbox_close');">Not now, thanks.</a>              
@@ -82,7 +96,8 @@
 
 <div />
     <% if current_user.sponsor == "habitforge" and !current_user.is_habitforge_supporting_member and current_user.number_of_active_habits > 0 %>
-          <%= render :partial => "goals/upgrade_advertisement"  %>
+          <!-- render :partial => "goals/upgrade_advertisement"  -->
+        <h2><a href="/goals?too_many_active_habits=1"><img src="/images/add_32.png" border="0" width=25px/> Start a New Habit</a></h2>
     <% else %>
         <h2><%= link_to '<img src="/images/add_32.png" border="0" width=25px/> Start a New Habit', new_goal_path %></h2>
     <% end %>
