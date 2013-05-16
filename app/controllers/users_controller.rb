@@ -475,6 +475,16 @@ class UsersController < ApplicationController
         end ### end whether they are a newly paid user
 
 
+        ### grab these vars from the URL so they are available on goal creation
+        if params[:template_user_parent_goal_id]
+          session[:template_user_parent_goal_id] = params[:template_user_parent_goal_id]
+        end
+        if params[:goal_added_through_template_from_program_id]
+          session[:goal_added_through_template_from_program_id] = params[:goal_added_through_template_from_program_id].to_i
+        end
+
+
+
         if !params[:ga_goal]
           ### route them to goal creation page (which should reference session[:sfm] for quick goal-creation options)
           redirect_to("/goals/new?welcome=1")

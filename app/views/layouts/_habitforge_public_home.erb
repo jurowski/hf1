@@ -317,7 +317,15 @@ function popitup_bigger1(url) {
 
 
             <% if session[:goal_template_text] and session[:goal_template_text] != "" %>
-
+              <%
+              ### grab these vars from the URL so they are available on goal creation
+              if params[:template_user_parent_goal_id]
+                session[:template_user_parent_goal_id] = params[:template_user_parent_goal_id]
+              end
+              if params[:goal_added_through_template_from_program_id]
+                session[:goal_added_through_template_from_program_id] = params[:goal_added_through_template_from_program_id].to_i
+              end
+              %>
                 <div>
                     <h3>Let's get you started with <%= session[:goal_template_text] %>! 
                       <a href="?goal_template_text=&category=" style="text-decoration:underline;">(or, do something else)</a></h3>
