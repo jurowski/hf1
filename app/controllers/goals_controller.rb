@@ -376,6 +376,22 @@ logger.debug "SGJ2 2 #{goal.title}(#{goal.id}) #{goal.daysstraight} daysstraight
           @goal.response_question = @goal.title
       end
 
+      if params[:template_user_parent_goal_id]
+        session[:template_user_parent_goal_id] = params[:template_user_parent_goal_id]
+      end
+      if session[:template_user_parent_goal_id]
+        @goal.template_user_parent_goal_id = session[:template_user_parent_goal_id].to_i
+      end
+
+      if params[:goal_added_through_template_from_program_id]
+        session[:goal_added_through_template_from_program_id] = params[:goal_added_through_template_from_program_id].to_i
+      end
+      if session[:goal_added_through_template_from_program_id]
+        @goal.goal_added_through_template_from_program_id = session[:goal_added_through_template_from_program_id].to_i
+      end
+
+
+
       if params[:category]
         session[:category] = params[:category]
       end
@@ -579,7 +595,9 @@ logger.debug "SGJ2 2 #{goal.title}(#{goal.id}) #{goal.daysstraight} daysstraight
                 #### now that we have their first name, we can send the email 
                 the_subject = "Confirm your HabitForge Subscription"
                 begin
+                  if Rails.env.production
                   Notifier.deliver_user_confirm(@user, the_subject) # sends the email
+                  end
                 rescue
                   logger.error("sgj:email confirmation for user creation did not send")
                 end
@@ -692,6 +710,14 @@ logger.debug "SGJ2 2 #{goal.title}(#{goal.id}) #{goal.daysstraight} daysstraight
 
           ### save date changes
           @goal.save
+
+
+          ### we don't need/want these anymore
+          ### destroy them so that they don't mess up a future new goal
+          session[:goal_added_through_template_from_program_id] = nil
+          session[:template_user_parent_goal_id] = nil
+          session[:goal_template_text] = nil
+
         
           if @goal.status == "hold"
             ### don't send an email if it's on hold
