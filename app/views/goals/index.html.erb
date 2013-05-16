@@ -13,20 +13,36 @@
 <!-- START TOO MANY ACTIVE HABITS -->
 <!-- *********** -->
 <% if params[:too_many_active_habits] %>
-    <div class="notice">
 
-        <h3>Free accounts are restricted to 1 active habit at a time. <br>Unlock your potential 
-        <% if session[:goal_template_text] and session[:goal_template_text] != "" %> 
-          ... work on <%= session[:goal_template_text] %> and any other goals, all with premium features and no ads, 
-        <% else %>
-            <% if params[:goal_template_text] and params[:goal_template_text] != "" %>
-              ... work on <%= params[:goal_template_text] %> and any other goals, all with premium features and no ads, 
-            <% end %>
-        <% end %>
-       with a Premium Membership!
 
-          <a href="https://www.securepublications.com/habit-gse3.php?ref=<%= current_user.id.to_s %>&email=<%= current_user.email %>" class="start_now" >Learn More</a>
+    <div id="upgrade_lightbox_black" class="black_overlay">
     </div>
+    <div id="upgrade_lightbox_close" class="div_close_button">
+         <a href="#undefined" onclick="toggle_show_hide('upgrade_lightbox_black');toggle_show_hide('upgrade_lightbox_white');toggle_show_hide('upgrade_lightbox_close');"><img src='/images/close.png' /></a>
+    </div>
+    <div id="upgrade_lightbox_white" class="white_content">
+
+        <h3>Free accounts are restricted to 1 active habit at a time.</h3>
+        <div class="alert">
+
+
+            <h2>Unlock your potential 
+            <% if session[:goal_template_text] and session[:goal_template_text] != "" %> 
+              ... work on <%= session[:goal_template_text] %> and any other goals, all with premium features and no ads, 
+            <% else %>
+                <% if params[:goal_template_text] and params[:goal_template_text] != "" %>
+                  ... work on <%= params[:goal_template_text] %> and any other goals, all with premium features and no ads, 
+                <% end %>
+            <% end %>
+           with a Premium Membership!</h2>
+                <br>
+                  <a href="https://www.securepublications.com/habit-gse3.php?ref=<%= current_user.id.to_s %>&email=<%= current_user.email %>" class="btn yellow" >Learn More</a>
+                 <br>
+                 <a href="#undefined" onclick="toggle_show_hide('upgrade_lightbox_black');toggle_show_hide('upgrade_lightbox_white');toggle_show_hide('upgrade_lightbox_close');">Not now, thanks.</a>              
+        </div>
+    </div>
+
+
 <% end %>
 <!-- *********** -->
 <!-- END TOO MANY ACTIVE HABITS -->
