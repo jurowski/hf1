@@ -1,3 +1,9 @@
+<% if session[:dev_mode_just_returned_from_sales_page] %>
+  <% session[:dev_mode_just_returned_from_sales_page] = nil %>
+  <div class="alert">
+    Dev Mode: in prod you would be returning from the Sales page.
+  </div>
+<% end %>
 <hr>
 
 <!-- IF THIS GOAL IS BASED ON A TEMPLATE, DO NOT ALLOW MODIFICATIONS OF SOME THINGS -->

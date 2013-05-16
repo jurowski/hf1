@@ -354,8 +354,8 @@ class UsersController < ApplicationController
           user.save
           #### now that we have saved and have the user id, we can send the email 
           the_subject = "Confirm your HabitForge Subscription"
-          if Rails.env.production
-          Notifier.deliver_user_confirm(user, the_subject) # sends the email
+          if Rails.env.production?
+            Notifier.deliver_user_confirm(user, the_subject) # sends the email
           end
         rescue
           logger.error("sgj:email confirmation for user creation did not send")
@@ -391,7 +391,7 @@ class UsersController < ApplicationController
           # USERVOICE TICKET#529:
           #103: add to ETR "Newsletter Subscriber"
 
-          if Rails.env.production
+          if Rails.env.production?
             session[:infusionsoft_contact_id] = 0
         		new_contact_id = Infusionsoft.contact_add({:FirstName => user.first_name, :LastName => user.last_name, :Email => user.email})
         		Infusionsoft.email_optin(user.email, 'HabitForge signup')
@@ -422,7 +422,7 @@ class UsersController < ApplicationController
 
             logger.info("sgj:users_controller:will try adding to infusionsoft followup funnel sequence the infusionsoft_contact_id: " + session[:infusionsoft_contact_id].to_s + " for current_user.id of " + current_user.id.to_s)
 
-            if Rails.env.production
+            if Rails.env.production?
 
               ### TRY #1
               ############## http://stackoverflow.com/questions/629632/ruby-posting-xml-to-restful-web-service-using-nethttppost        
@@ -592,8 +592,8 @@ class UsersController < ApplicationController
       #### now that we have saved and have the user id, we can send the email 
       the_subject = "Confirm your HabitForge Subscription"
       begin
-        if Rails.env.production
-        Notifier.deliver_user_confirm(@user, the_subject) # sends the email
+        if Rails.env.production?
+          Notifier.deliver_user_confirm(@user, the_subject) # sends the email
         end
       rescue
         logger.error("sgj:email confirmation for user creation did not send")
@@ -609,7 +609,15 @@ class UsersController < ApplicationController
       
       if params[:account_type] and params[:account_type] == "supporting"
           #redirect_to("http://habitforge.myshopify.com/collections/frontpage/products/habitforge-supporting-membership-1-year?ref=#{@user.id.to_s}")
-          redirect_to("https://www.securepublications.com/habit-1-year.php?ref=#{@user.id.to_s}&email=#{@user.email}")
+
+          if Rails.env.production?
+            redirect_to("https://www.securepublications.com/habit-1-year.php?ref=#{@user.id.to_s}&email=#{@user.email}")
+          else
+            session[:dev_mode_just_returned_from_sales_page] = true
+            format.html {redirect_to("/goals/new?dev_mode_just_returned_from_sales_page=1")}
+          end
+
+
       else
           redirect_to("/goals/new")
       end

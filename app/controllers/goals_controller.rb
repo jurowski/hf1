@@ -595,8 +595,8 @@ logger.debug "SGJ2 2 #{goal.title}(#{goal.id}) #{goal.daysstraight} daysstraight
                 #### now that we have their first name, we can send the email 
                 the_subject = "Confirm your HabitForge Subscription"
                 begin
-                  if Rails.env.production
-                  Notifier.deliver_user_confirm(@user, the_subject) # sends the email
+                  if Rails.env.production?
+                    Notifier.deliver_user_confirm(@user, the_subject) # sends the email
                   end
                 rescue
                   logger.error("sgj:email confirmation for user creation did not send")
@@ -615,10 +615,10 @@ logger.debug "SGJ2 2 #{goal.title}(#{goal.id}) #{goal.daysstraight} daysstraight
                   ### PRODUCTION GROUP/TAG IDS
                   #400: hf new signup funnel v2 free no goal yet
                   #398: hf new signup funnel v2 free created goal
-                  if Rails.env.production
-                  Infusionsoft.contact_update(session[:infusionsoft_contact_id].to_i, {:FirstName => current_user.first_name, :LastName => current_user.last_name})
-                  Infusionsoft.contact_add_to_group(session[:infusionsoft_contact_id].to_i, 398)
-                  Infusionsoft.contact_remove_from_group(session[:infusionsoft_contact_id].to_i, 400)
+                  if Rails.env.production?
+                    Infusionsoft.contact_update(session[:infusionsoft_contact_id].to_i, {:FirstName => current_user.first_name, :LastName => current_user.last_name})
+                    Infusionsoft.contact_add_to_group(session[:infusionsoft_contact_id].to_i, 398)
+                    Infusionsoft.contact_remove_from_group(session[:infusionsoft_contact_id].to_i, 400)
                   end
                   ####          END INFUSIONSOFT CONTACT           ####
                   #####################################################
@@ -718,6 +718,7 @@ logger.debug "SGJ2 2 #{goal.title}(#{goal.id}) #{goal.daysstraight} daysstraight
           session[:goal_added_through_template_from_program_id] = nil
           session[:template_user_parent_goal_id] = nil
           session[:goal_template_text] = nil
+          session[:category] = nil
 
         
           if @goal.status == "hold"
@@ -740,7 +741,13 @@ logger.debug "SGJ2 2 #{goal.title}(#{goal.id}) #{goal.daysstraight} daysstraight
 
           if @show_sales_overlay
       	    ### format.html { render :action => "edit" }
-            format.html {redirect_to("https://www.securepublications.com/habit-gse3.php?ref=#{current_user.id.to_s}&email=#{current_user.email}")}
+
+            if Rails.env.production?
+              format.html {redirect_to("https://www.securepublications.com/habit-gse3.php?ref=#{current_user.id.to_s}&email=#{current_user.email}")}
+            else
+              session[:dev_mode_just_returned_from_sales_page] = true
+              format.html {redirect_to("/goals?optimize_my_first_goal=1&email=#{current_user.email}&single_login=1")}
+            end
 
             format.xml  { render :xml => @goals }
           else
