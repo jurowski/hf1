@@ -391,19 +391,21 @@ class UsersController < ApplicationController
           # USERVOICE TICKET#529:
           #103: add to ETR "Newsletter Subscriber"
 
-          session[:infusionsoft_contact_id] = 0
-      		new_contact_id = Infusionsoft.contact_add({:FirstName => user.first_name, :LastName => user.last_name, :Email => user.email})
-      		Infusionsoft.email_optin(user.email, 'HabitForge signup')
-      		Infusionsoft.contact_add_to_group(new_contact_id, 400)
+          if Rails.env.production
+            session[:infusionsoft_contact_id] = 0
+        		new_contact_id = Infusionsoft.contact_add({:FirstName => user.first_name, :LastName => user.last_name, :Email => user.email})
+        		Infusionsoft.email_optin(user.email, 'HabitForge signup')
+        		Infusionsoft.contact_add_to_group(new_contact_id, 400)
 
-          if params[:subscribe_etr]
-            Infusionsoft.contact_add_to_group(new_contact_id, 103)
-            logger.error("sgj:users_controller:YES user chose to be an etr newsletter subscriber")      
-          else
-            logger.error("sgj:users_controller:NO user chose not to be an etr newsletter subscriber")      
+            if params[:subscribe_etr]
+              Infusionsoft.contact_add_to_group(new_contact_id, 103)
+              logger.error("sgj:users_controller:YES user chose to be an etr newsletter subscriber")      
+            else
+              logger.error("sgj:users_controller:NO user chose not to be an etr newsletter subscriber")      
+            end
+
+        		session[:infusionsoft_contact_id] = new_contact_id
           end
-
-      		session[:infusionsoft_contact_id] = new_contact_id
 	        ####          END INFUSIONSOFT CONTACT           ####
 	        #####################################################
 	        #####################################################
@@ -420,52 +422,53 @@ class UsersController < ApplicationController
 
             logger.info("sgj:users_controller:will try adding to infusionsoft followup funnel sequence the infusionsoft_contact_id: " + session[:infusionsoft_contact_id].to_s + " for current_user.id of " + current_user.id.to_s)
 
+            if Rails.env.production
 
-            ### TRY #1
-            ############## http://stackoverflow.com/questions/629632/ruby-posting-xml-to-restful-web-service-using-nethttppost        
-            #url = URI.parse('http://sdc90018.infusionsoft.com:80')
-            #request = Net::HTTP::Post.new(url.path)
-            # request = Net::HTTP::Post.new("https://sdc90018.infusionsoft.com/api/xmlrpc")
-            # request.use_ssl = true
-            # request.content_type = 'text/xml'
-            # request.body = "<?xml version='1.0' encoding='UTF-8'?>\
-            # <methodCall>\
-            # <methodName>FunnelService.achieveGoal</methodName>\
-            # <params>\
-            # <param><value><string>d541e86effd15eb57f1f9f6344fc8eee</string></value></param>\
-            # <param><value><string>sdc90018</string></value></param>\
-            # <param><value><string>HabitForgeFollowUp</string></value></param>\
-            # <param><value><int>#{session[:infusionsoft_contact_id]}</int></value></param>\
-            # </params>\
-            # </methodCall>"
-            # #response = Net::HTTP.start(url.host, url.port) {|http| http.request(request)}
-            # response = Net::HTTP.start("sdc90018.infusionsoft.com", 80) {|http| http.request(request)}
-            # assert_equal '201 Created', response.get_fields('Status')[0]
+              ### TRY #1
+              ############## http://stackoverflow.com/questions/629632/ruby-posting-xml-to-restful-web-service-using-nethttppost        
+              #url = URI.parse('http://sdc90018.infusionsoft.com:80')
+              #request = Net::HTTP::Post.new(url.path)
+              # request = Net::HTTP::Post.new("https://sdc90018.infusionsoft.com/api/xmlrpc")
+              # request.use_ssl = true
+              # request.content_type = 'text/xml'
+              # request.body = "<?xml version='1.0' encoding='UTF-8'?>\
+              # <methodCall>\
+              # <methodName>FunnelService.achieveGoal</methodName>\
+              # <params>\
+              # <param><value><string>d541e86effd15eb57f1f9f6344fc8eee</string></value></param>\
+              # <param><value><string>sdc90018</string></value></param>\
+              # <param><value><string>HabitForgeFollowUp</string></value></param>\
+              # <param><value><int>#{session[:infusionsoft_contact_id]}</int></value></param>\
+              # </params>\
+              # </methodCall>"
+              # #response = Net::HTTP.start(url.host, url.port) {|http| http.request(request)}
+              # response = Net::HTTP.start("sdc90018.infusionsoft.com", 80) {|http| http.request(request)}
+              # assert_equal '201 Created', response.get_fields('Status')[0]
 
-            ### TRY #2
-            ### http://www.ruby-forum.com/topic/121529
-            #require 'net/https'
-            #require 'uri'
-            url = "https://sdc90018.infusionsoft.com/api/xmlrpc"
-            uri = URI.parse(url)
-            http = Net::HTTP.new(uri.host, uri.port)
-            http.use_ssl = true if (uri.scheme == 'https')
-            data = "<?xml version='1.0' encoding='UTF-8'?>\
-            <methodCall>\
-            <methodName>FunnelService.achieveGoal</methodName>\
-            <params>\
-            <param><value><string>d541e86effd15eb57f1f9f6344fc8eee</string></value></param>\
-            <param><value><string>sdc90018</string></value></param>\
-            <param><value><string>HabitForgeFollowUp</string></value></param>\
-            <param><value><int>#{session[:infusionsoft_contact_id]}</int></value></param>\
-            </params>\
-            </methodCall>"
-            headers = {'Content-Type' => 'text/xml'}
-            # warning, uri.path will drop queries, use uri.path + uri.query if you need to
-            resp, body = http.post(uri.path, data, headers)
+              ### TRY #2
+              ### http://www.ruby-forum.com/topic/121529
+              #require 'net/https'
+              #require 'uri'
+              url = "https://sdc90018.infusionsoft.com/api/xmlrpc"
+              uri = URI.parse(url)
+              http = Net::HTTP.new(uri.host, uri.port)
+              http.use_ssl = true if (uri.scheme == 'https')
+              data = "<?xml version='1.0' encoding='UTF-8'?>\
+              <methodCall>\
+              <methodName>FunnelService.achieveGoal</methodName>\
+              <params>\
+              <param><value><string>d541e86effd15eb57f1f9f6344fc8eee</string></value></param>\
+              <param><value><string>sdc90018</string></value></param>\
+              <param><value><string>HabitForgeFollowUp</string></value></param>\
+              <param><value><int>#{session[:infusionsoft_contact_id]}</int></value></param>\
+              </params>\
+              </methodCall>"
+              headers = {'Content-Type' => 'text/xml'}
+              # warning, uri.path will drop queries, use uri.path + uri.query if you need to
+              resp, body = http.post(uri.path, data, headers)
 
-            logger.info("sgj:users_controller:xml response from adding new person to infusionsoft sequence: " + resp.to_s + body.to_s)
-
+              logger.info("sgj:users_controller:xml response from adding new person to infusionsoft sequence: " + resp.to_s + body.to_s)
+            end
           rescue
             logger.error("sgj:users_controller:error adding to infusionsoft followup funnel sequence")
           end

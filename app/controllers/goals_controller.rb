@@ -615,10 +615,11 @@ logger.debug "SGJ2 2 #{goal.title}(#{goal.id}) #{goal.daysstraight} daysstraight
                   ### PRODUCTION GROUP/TAG IDS
                   #400: hf new signup funnel v2 free no goal yet
                   #398: hf new signup funnel v2 free created goal
-
+                  if Rails.env.production
                   Infusionsoft.contact_update(session[:infusionsoft_contact_id].to_i, {:FirstName => current_user.first_name, :LastName => current_user.last_name})
                   Infusionsoft.contact_add_to_group(session[:infusionsoft_contact_id].to_i, 398)
                   Infusionsoft.contact_remove_from_group(session[:infusionsoft_contact_id].to_i, 400)
+                  end
                   ####          END INFUSIONSOFT CONTACT           ####
                   #####################################################
                   #####################################################
