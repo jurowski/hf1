@@ -15,10 +15,13 @@ end
 
 <% if @program %> 
 
+
     <% 
     url_prefix = "" 
+    url_prefix_header = ""
     if current_user
         url_prefix = "/goals/new"
+        url_prefix_header = "/goals"
     end
     %>
 
@@ -31,7 +34,7 @@ end
         <!-- END LOGO -->
         <br>
         <br>
-        <a href="<%= url_prefix %>?programs=1&templates=1&browse_recommended_habits=1#browse_recommended_habits"> <-- All Success Programs</a>
+        <a href="<%= url_prefix_header %>?programs=1&templates=1&browse_recommended_habits=1#browse_recommended_habits"> <-- All Success Programs</a>
         <br>
         <br>
         <h2>
