@@ -409,7 +409,7 @@ end
                  <br>
                    <p>
 
-                   <p><i>To stop receiving check-in emails for this goal, you can <a href="http://<%= sitename %>/goals/hold/<%= @checkpoint.goal.id %>?&e0=<%= @checkpoint.goal.user.email[0] %>&f0=<%= @checkpoint.goal.user.first_name[0] %>&u=<%= @checkpoint.goal.user.id %>&goal_id=<%= @checkpoint.goal.id %>">place it on hold</a> (or log into http://<%= sitename %> and modify your goal settings.</i></p>
+                   <p><i>To stop receiving check-in emails for this goal, you can <a href="http://<%= @sitename %>/goals/hold/<%= @checkpoint.goal.id %>?&e0=<%= @checkpoint.goal.user.email[0] %>&f0=<%= @checkpoint.goal.user.first_name[0] %>&u=<%= @checkpoint.goal.user.id %>&goal_id=<%= @checkpoint.goal.id %>">place it on hold</a> (or log into http://<%= @sitename %> and modify your goal settings.</i></p>
 
                   </p>
                 </td>
