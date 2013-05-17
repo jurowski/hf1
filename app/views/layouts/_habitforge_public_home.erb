@@ -276,7 +276,11 @@ function popitup_bigger1(url) {
             <h5>Build lasting habits quickly and easily! 
             </h5>
 
-            
+            <% if params[:account_removed] %>
+              <div class="error alert">
+                <h3>Your account has been removed.</h3>
+              </div>
+            <% end %>
             <!-- 
             <span class='st_facebook_hcount' displayText='Facebook'></span>
             <span class='st_twitter_hcount' displayText='Tweet'></span>

@@ -686,6 +686,52 @@ class UsersController < ApplicationController
       @user.save
 
       email_now = @user.email
+
+
+      #####################################################
+      #####################################################
+      ##### update their email address in InfusionSoft
+      if Rails.env.production?
+        begin 
+          logger.info("sgj:users_controller:will attempt to update their email address in infusionsoft")
+          ### https://github.com/nateleavitt/infusionsoft/pull/9
+          ### Usage:
+          ###    selected_fields = ['Id', 'FirstName', 'LastName']
+          ###    contact = Infusionsoft.contact_find_by_email('user@example.com', selected_fields)
+          selected_fields = ['Id']
+          contact = Infusionsoft.contact_find_by_email(email_original, selected_fields)
+          if contact
+            Infusionsoft.contact_update(contact[0], { :Email => email_now})
+            logger.info("sgj:users_controller:success updating user email in infusionsoft from " + email_original + " to " + email_now )
+          else
+            logger.error("sgj:users_controller:could not find infusionsoft user " + email_original )
+          end
+
+
+        rescue
+          logger.error("sgj:users_controller:error opting-out infusionsoft contact")
+        end
+      else
+          logger.info("sgj:users_controller:in production we would have attempted to opt-out infusionsoft contact")          
+      end
+      ####          END udpate their email address in INFUSIONSOFT  ####
+      #####################################################
+      #####################################################
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
       #### since we save cheers by email address, update it when that changes
       if email_original != email_now
         my_cheers = Cheer.find(:all, :conditions => "email = '#{email_original}'")
@@ -694,6 +740,7 @@ class UsersController < ApplicationController
           cheer.save
         end
       end
+
 
       @goals = Goal.find(:all, :conditions => "user_id = '#{@user.id}'")
       for goal in @goals
@@ -762,6 +809,43 @@ class UsersController < ApplicationController
     end
   
     if destroy_me == true
+
+
+
+        #####################################################
+        #####################################################
+        #### Add them to an OPT OUT group IN INFUSIONSOFT ######
+        if Rails.env.production?
+          begin 
+            #
+            ### PRODUCTION GROUP/TAG IDS
+            #291: OPT-OUT
+
+            logger.info("sgj:users_controller:will attempt to opt-out infusionsoft contact")
+            ### https://github.com/nateleavitt/infusionsoft/pull/9
+            ### Usage:
+            ###    selected_fields = ['Id', 'FirstName', 'LastName']
+            ###    contact = Infusionsoft.contact_find_by_email('user@example.com', selected_fields)
+            selected_fields = ['Id']
+            contact = Infusionsoft.contact_find_by_email(@user.email, selected_fields)
+            if contact
+              Infusionsoft.contact_add_to_group(contact[0], 291)
+              logger.info("sgj:users_controller:success removing " + @user.email + " from infusionsoft (added them to OPT-OUT group 291")
+            else
+              logger.error("sgj:users_controller:could not find infusionsoft user " + @user.email + " to OPT-OUT")
+            end
+          rescue
+            logger.error("sgj:users_controller:error opting-out infusionsoft contact")
+          end
+        else
+            logger.info("sgj:users_controller:in production we would have attempted to opt-out infusionsoft contact")          
+        end
+        ####          END INFUSIONSOFT OPT-OUT CONTACT   ####
+        #####################################################
+        #####################################################
+
+
+
         ### do not delete user account, just put "xxx_date" in front of email so we have a history
         #@user.email = "xxx_" + get_dnow.to_s + "_" + @user.email
         #@user.save
