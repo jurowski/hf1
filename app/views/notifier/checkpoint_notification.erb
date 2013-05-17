@@ -407,10 +407,11 @@ end
                  <p>
                  No longer working on this goal? 
                  <br>
-                 <i>To put this goal on hold and stop receiving emails about it, click <a href="http://<%= @sitename %>/goals/hold/<%= @checkpoint.goal.id %>?u=<%= @checkpoint.goal.user.id %>">here</a>. </i>
-                   <p><i>
-                   If the Yes/No links in this email don't work: <br>1) log into your account at http://<%= @sitename %>  <br>2) Beneath your goal, click on "Edit Checkpoints"  <br>3) Next to <%= @checkpoint.checkin_date.strftime("%a, %b %d, %Y") %>, click "Yes" or "No".
-                   </i></p>
+                   <p>
+
+                   <p><i>To stop receiving check-in emails for this goal, you can <a href="http://<%= sitename %>/goals/hold/<%= @checkpoint.goal.id %>?&e0=<%= @checkpoint.goal.user.email[0] %>&f0=<%= @checkpoint.goal.user.first_name[0] %>&u=<%= @checkpoint.goal.user.id %>&goal_id=<%= @checkpoint.goal.id %>">place it on hold</a> (or log into http://<%= sitename %> and modify your goal settings.</i></p>
+
+                  </p>
                 </td>
              </tr>
              <tr>
