@@ -51,11 +51,12 @@
             </li>
         </ul>
 
-        <div id="portfolio_4col" class="">
-<!--         <div id="portfolio_4col" class="image_grid"> -->
 
-<!--         <ul id="list" class="da-thumbs"> -->
-        <ul id="list" class="">
+        <!-- <div id="portfolio_4col" class=""> -->
+        <div id="portfolio_4col" class="image_grid">
+
+        <ul id="list" class="da-thumbs">
+<!--         <ul id="list" class=""> -->
             <% programs = Program.find(:all) %>
             <% program_counter = 0 %>
             <% programs.each do |program| %>
@@ -68,22 +69,47 @@
                   class_value = class_value + " " + program_tag.tag.name
                 end
                 %>
-                <li data-id="id-<%= program_counter %>" class="<%= class_value %>" >
-                    <div style="background-color:#efefef;margin-top:3px;padding:5px;">
-                        <a href="<%= url_prefix_header %>?program_id=<%= program.id.to_s %>&programs=1&browse_recommended_habits=1#browse_recommended_habits">
-                        <h3><%= program.name %></h3>
-                        <p><% if program.about %><%= program.about %><% end %></p>
+                <li data-id="id-<%= program_counter %>" class="<%= class_value %>" style="height:250px;width:250px;padding:20px;border-style:solid;border-color:#dddddd;border-width:1px;">
+                <span style="position:relative;z-index:100;top:50px;">
+                        <span style="color:#000000;font-size:1.5em;"><%= program.name %></span>
+                        <br>
+                        <br>
+                        <span style="color:#585858;background-color:#eeeeee;">
+                        <% if program.about %> <%= program.about %> <% end %>
+                        </span>
+                </span>
+                <img src="/home/images/categories/blank_image.jpg" alt="img" style="position:relative;z-index:-200;"/>
+
+                    <div>
+<!--                <div style="background-color:#efefef;margin-top:3px;padding:5px;"> -->
+                        <a href="<%= url_prefix_header %>?program_id=<%= program.id.to_s %>&programs=1&browse_recommended_habits=1#browse_recommended_habits" style="font-size:2em;">
+                        More Info
                         </a>
                     </div>
                 </li>
             <% end %>
 
-            <li data-id="id-<%= program_counter + 1 %>" class="<%= all_tags %>" >
-                <div style="background-color:#dddddd;margin-top:3px;padding:5px;">
-                    <h3>Build your own program (coming)</h3>
-                    <p>What could you help others do daily to improve their lives?</p>
-                </div>
-            </li>
+
+
+
+                <li data-id="id-<%= program_counter %>" class="<%= all_tags %>" style="height:250px;width:250px;padding:20px;border-style:solid;border-color:#dddddd;border-width:1px;">
+                <span style="position:relative;z-index:100;top:50px;">
+                        <span style="color:#000000;font-size:1.5em;">Build your own program (coming)</span>
+                        <br>
+                        <span style="color:#585858;background-color:#eeeeee;">
+                        What could you help others do daily to improve their lives?
+                        </span>
+                </span>
+                <img src="/home/images/categories/blank_image.jpg" alt="img" style="position:relative;z-index:-200;"/>
+
+                    <div>
+<!--                <div style="background-color:#efefef;margin-top:3px;padding:5px;"> -->
+                        <a href="#">
+                        (Coming Soon)
+                        </a>
+                    </div>
+                </li>
+
         </ul>
         </div>
     <% elsif params[:just_templates] %>
