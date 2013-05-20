@@ -100,14 +100,23 @@ end
     </div>
     <div class="one_third_last">
         <h3>About This Challenge</h3>
+
+
+        <p>
+            <% if @program.image_logo %> 
+                <img src="/home/images/programs/<%= @program.image_logo %>" />
+            <% end %>
+            <!--
+            < if @program.managed_by_user >
+                Author: <= @program.managed_by_user.first_name %> <= @program.managed_by_user.last_name >
+            < end >
+            -->
+        <br>
+        <br>
         <%= @program.about %>
         <br>
         <br>
 
-        <p>
-            <% if @program.managed_by_user %>
-                Author: <%= @program.managed_by_user.first_name %> <%= @program.managed_by_user.last_name %>
-            <% end %>
         </p>
         <% max = @program.tags.size %>
         <% if max > 0 %>
