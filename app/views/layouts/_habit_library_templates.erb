@@ -75,7 +75,7 @@
                         <br>
                         <br>
                         <span style="color:#585858;">
-                        <% if program.about %> <%= program.about[0...75] %>... <% end %>
+                        <% if program.about %> <% if program.about.size > 75 %><%= program.about[0...75] %>...<% else %><%=program.about%><% end%> <% end %>
                         </span>
                 </span>
                 <img src="/home/images/categories/blank_image.jpg" alt="img" style="position:relative;z-index:-200;"/>
