@@ -180,7 +180,7 @@ else
       #   :order => 'laststatusdate DESC',
       #   :conditions => "publish = '1' and status <> 'hold' and laststatusdate > '#{current_user.dtoday - 460}' and laststatusdate < '#{current_user.dtoday - 7}'")
 
-      slacker_goals = Goal.find(:all, :conditions => "publish = '1' and status <> 'hold' and laststatusdate > '#{current_user.dtoday - 600}' and laststatusdate < '#{current_user.dtoday - 7}'")
+      slacker_goals = Goal.find(:all, :conditions => "publish = '1' and status <> 'hold' and laststatusdate > '#{current_user.dtoday - 30}' and laststatusdate < '#{current_user.dtoday - 7}'")
 
         if slacker_goals.size > 0
           %>
@@ -259,7 +259,8 @@ begin
     #my_conditions = "category = '#{params[:category]}' and publish = '1' and daysstraight <> '9999' and laststatus = 'yes' and (laststatusdate = '#{dyesterday}' or laststatusdate = '#{d2daysago}')"
 
     ### PROD 
-    my_conditions = "category = '#{params[:category]}' and publish = '1' and status != 'hold'"
+    #my_conditions = "category = '#{params[:category]}' and publish = '1' and status != 'hold'"
+    my_conditions = "category = '#{params[:category]}' and publish = '1' and status != 'hold' and laststatusdate > '#{current_user.dtoday - 30}'"
 
     ### TEST
     #my_conditions = "category = '#{params[:category]}' and publish = '1'"
@@ -320,6 +321,8 @@ begin
         #if goal.is_active
           begin
             if goal.category != nil and goal.user.first_name != "unknown" and goal.user.id != current_user.id
+
+
               %>    
 
 

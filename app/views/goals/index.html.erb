@@ -967,7 +967,7 @@ http://localhost:3000/goals?update_checkpoint_status=yes&date=2012-02-12&e0=106&
     ### make sure we can fake a log-in to send the email
     if params[:goal_id] and params[:u] and params[:e0] and params[:f0]
 
-      slacker_goals = Goal.find(:all, :conditions => "publish = '1' and status <> 'hold' and laststatusdate > '#{dtoday - 60}' and laststatusdate < '#{dtoday - 7}'")
+      slacker_goals = Goal.find(:all, :conditions => "publish = '1' and status <> 'hold' and laststatusdate > '#{dtoday - 30}' and laststatusdate < '#{dtoday - 7}'")
       
         if slacker_goals.size > 0
             random_index = rand(slacker_goals.size) #between 0 and (size - 1)
