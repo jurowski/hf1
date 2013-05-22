@@ -1,9 +1,9 @@
 
 
   <% if @program_template.program_id %>
-    <h3>Add a Template to "<%= @program_template.program.name %>"</h3>
+    <h3>Add an Action to the "<%= @program_template.program.name %>" Program</h3>
   <% else %>
-    <h3>Add a Template to a Program</h3>
+    <h3>Add an Action to a Program</h3>
   <% end %>
 
 <% form_for(@program_template) do |f| %>
@@ -15,16 +15,16 @@
     <%= f.hidden_field :program_id, :value => @program_template.program_id %>
   <% else %>
     <p>
-      <%= f.collection_select :program_id, current_user.programs_i_own, :id, :name, :prompt => "Select a program" %>
+      <%= f.collection_select :program_id, current_user.programs_i_own, :id, :name, :prompt => "Choose a program" %>
     </p>
   <% end %>
 
   <p>
-    <%= f.collection_select :template_goal_id, current_user.templates_i_own, :id, :template_tagline, :prompt => "Select a template" %>
+    <%= f.collection_select :template_goal_id, current_user.templates_i_own, :id, :template_tagline, :prompt => "Choose an Action" %>     <%= f.submit 'Add it' %> or
+    <% if @program_template.program_id %>
+      <a href="/goals/new?template_owner_is_a_template=1&program_id=<%= @program_template.program_id %>"> Create a New Action</a>
+    <% end %>
 
-  </p>
-  <p>
-    <%= f.submit 'Create' %>
   </p>
 <% end %>
 

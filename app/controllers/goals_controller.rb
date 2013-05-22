@@ -301,6 +301,11 @@ logger.debug "SGJ2 2 #{goal.title}(#{goal.id}) #{goal.daysstraight} daysstraight
   # GET /goals/new
   # GET /goals/new.xml
   def new
+
+
+    ### not sure why this will not die so putting it here
+    session[:goal_template_text] = nil
+
     ### If they are restricted to 1 active goal, redirect away
     restrict = false
     
@@ -573,6 +578,15 @@ logger.debug "SGJ2 2 #{goal.title}(#{goal.id}) #{goal.daysstraight} daysstraight
 
           if @goal.template_owner_is_a_template
             flash[:notice] = 'Template was successfully created.'
+
+            ### if this new template was created to be part of an existing program
+            if params[:program_id]
+              program_template = ProgramTemplate.new()
+              program_template.program_id = params[:program_id].to_i
+              program_template.template_goal_id = @goal.id
+              program_template.save
+            end
+
           else
             flash[:notice] = 'Goal was successfully created.'
 
@@ -720,6 +734,7 @@ logger.debug "SGJ2 2 #{goal.title}(#{goal.id}) #{goal.daysstraight} daysstraight
           session[:goal_template_text] = nil
           session[:category] = nil
 
+
         
           if @goal.status == "hold"
             ### don't send an email if it's on hold
@@ -739,21 +754,33 @@ logger.debug "SGJ2 2 #{goal.title}(#{goal.id}) #{goal.daysstraight} daysstraight
             end
           end
 
-          if @show_sales_overlay
-      	    ### format.html { render :action => "edit" }
 
-            if Rails.env.production?
-              format.html {redirect_to("https://www.securepublications.com/habit-gse3.php?ref=#{current_user.id.to_s}&email=#{current_user.email}")}
+
+          ### if this new template was created to be part of an existing program
+          if params[:program_id]
+            format.html {redirect_to("/programs/#{params[:program_id]}")}
+          else
+
+            if @show_sales_overlay
+              ### format.html { render :action => "edit" }
+
+              if Rails.env.production?
+                format.html {redirect_to("https://www.securepublications.com/habit-gse3.php?ref=#{current_user.id.to_s}&email=#{current_user.email}")}
+              else
+                session[:dev_mode_just_returned_from_sales_page] = true
+                format.html {redirect_to("/goals?optimize_my_first_goal=1&email=#{current_user.email}&single_login=1")}
+              end
+
+              format.xml  { render :xml => @goals }
             else
-              session[:dev_mode_just_returned_from_sales_page] = true
-              format.html {redirect_to("/goals?optimize_my_first_goal=1&email=#{current_user.email}&single_login=1")}
+              format.html { render :action => "index" } # index.html.erb
+              format.xml  { render :xml => @goals }
             end
 
-            format.xml  { render :xml => @goals }
-          else
-            format.html { render :action => "index" } # index.html.erb
-            format.xml  { render :xml => @goals }
-          end
+          end          
+
+
+
           
 
         else

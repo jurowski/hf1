@@ -52,9 +52,12 @@ class ProgramTemplatesController < ApplicationController
 
     respond_to do |format|
       if @program_template.save
-        flash[:notice] = 'ProgramTemplate was successfully created.'
-        format.html { redirect_to(@program_template) }
-        format.xml  { render :xml => @program_template, :status => :created, :location => @program_template }
+
+        format.html {redirect_to("/programs/#{@program_template.program_id}")}
+
+        # flash[:notice] = 'ProgramTemplate was successfully created.'
+        # format.html { redirect_to(@program_template) }
+        # format.xml  { render :xml => @program_template, :status => :created, :location => @program_template }
       else
         format.html { render :action => "new" }
         format.xml  { render :xml => @program_template.errors, :status => :unprocessable_entity }

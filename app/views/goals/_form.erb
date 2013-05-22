@@ -21,6 +21,12 @@ end
   them_or_me = "them"
   %>
   <%= form.hidden_field :template_owner_is_a_template, :value => true %>
+
+  <!-- Used when creating a new template for a particular program -->
+  <% if params[:program_id] %>
+    <input type="hidden" name="program_id" value="<%= params[:program_id] %>">
+  <% end %>
+
 <% else
   @goal.template_owner_is_a_template = false
   %>
@@ -205,6 +211,7 @@ show_monitor_option_details = 0
       <%= select(:goal, :category, @arr)%>
     <% else %>
       <%= @goal.category %>
+      <%= form.hidden_field :category, :value => @goal.category %>
     <% end %>
 
   </td>
