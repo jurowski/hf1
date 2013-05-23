@@ -352,7 +352,7 @@ begin
 
                    <a href="/tomessages/new?goal_id=<%=goal.id.to_s%>&gid=<%=goal.id.to_s%>&from_type=member&tomessage_subject=<%= goal.response_question %>&to_id=<%= goal.user.id %>" id='encourage_<%= goal.id.to_s %>' class="btn red" title='Encourage <%= goal.user.first_name %>!'> <i class="icon-heart-empty"></i> Boost</a> <span style="font-weight:bold;font-size:1.2em;"> 
 
-                  <% if goal.user..show_gravatar %>
+                  <% if goal.user.show_gravatar %>
                     <% gravatar = "http://www.gravatar.com/avatar/#{Digest::MD5.hexdigest(goal.user.email.downcase)}?d=mm" %>
                     <img src="<%= gravatar %>&s=30" />            
                   <% else %>
