@@ -1,5 +1,11 @@
 class FrommessagesController < ApplicationController
 
+
+
+  ### for gravatar
+  ### http://stackoverflow.com/questions/5822912/how-do-i-display-an-avatar-in-rails
+  require 'digest/md5'
+
   layout "application"
 
 

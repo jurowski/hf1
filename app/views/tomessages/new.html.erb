@@ -26,7 +26,16 @@
 
   <% if params[:replying_to_message_id] %>
 
-      <h1>Replying to <%= @to_user.first_name %></h1>
+      <h1>Replying to <%= @to_user.first_name %>
+
+        <% if @to_user.show_gravatar %>
+          <% gravatar = "http://www.gravatar.com/avatar/#{Digest::MD5.hexdigest(@to_user.email.downcase)}?d=mm" %>
+          <img src="<%= gravatar %>&s=30" />            
+        <% else %>
+          <img src="/home/images/default_gravatar.png" height="30px"/>
+        <% end %>
+
+      </h1>
 
 
         <p>
@@ -44,7 +53,17 @@
         <p>
       
   <% else %>
-      <h1>New message to <%= @to_user.first_name %></h1>
+      <h1>New message to <%= @to_user.first_name %>
+
+        <% if @to_user.show_gravatar %>
+          <% gravatar = "http://www.gravatar.com/avatar/#{Digest::MD5.hexdigest(@to_user.email.downcase)}?d=mm" %>
+          <img src="<%= gravatar %>&s=30" />            
+        <% else %>
+          <img src="/home/images/default_gravatar.png" height="30px"/>
+        <% end %>
+
+
+      </h1>
 
       <%
       subject_value = "You can do it!!!"

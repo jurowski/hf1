@@ -1,6 +1,11 @@
 class GoalsController < ApplicationController
   require 'date'
   require 'logger'
+
+  ### for gravatar
+  ### http://stackoverflow.com/questions/5822912/how-do-i-display-an-avatar-in-rails
+  require 'digest/md5'
+
   include GoalsHelper
   include CoachgoalsHelper
 

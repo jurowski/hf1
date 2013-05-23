@@ -743,7 +743,7 @@ ActiveRecord::Schema.define(:version => 20130523110540) do
     t.string   "coach_contact_email"
     t.string   "coach_contact_phone"
     t.date     "last_activity_date"
-    t.boolean  "show_gravatar",                                                      :default => false
+    t.boolean  "show_gravatar",                                                      :default => true
   end
 
   add_index "users", ["email"], :name => "index_users_on_email"

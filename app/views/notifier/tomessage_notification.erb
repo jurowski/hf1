@@ -10,6 +10,14 @@
  -->
 <a href= "http://habitforge.com/tomessages/new?to_id=<%= @from_user.id.to_s %>&replying_to_message_id=<%= @tomessage.id %>&u=<%= @to_user.id.to_s %>&e0=<%= @to_user.email[0] %>&f0=<%= @to_user.first_name[0] %>&goal_id=<%= @goal_id %>">Send a Reply!</a>
 <hr>
+
+<% if @from_user.show_gravatar %>
+  <% gravatar = "http://www.gravatar.com/avatar/#{Digest::MD5.hexdigest(@from_user.email.downcase)}?d=mm" %>
+  <img src="<%= gravatar %>&s=30" />            
+<% else %>
+  <img src="http://habitforge.com/home/images/default_gravatar.png" height="30px"/>
+<% end %>
+
 <strong>From: <%= @from_user.first_name %> <%= @from_user.last_name %>
 <br>
 Subject: <%= @tomessage.subject %></strong>

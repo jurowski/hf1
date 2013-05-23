@@ -22,6 +22,14 @@
               &nbsp &nbsp 
               <a href= "/tomessages/new?to_id=<%= @to_user.id %>" class="button">Send a New Message to <%= @to_user.first_name %></a>
               &nbsp &nbsp 
+
+              <% if @to_user.show_gravatar %>
+                <% gravatar = "http://www.gravatar.com/avatar/#{Digest::MD5.hexdigest(@to_user.email.downcase)}?d=mm" %>
+                <img src="<%= gravatar %>&s=30" />            
+              <% else %>
+                <img src="/home/images/default_gravatar.png" height="30px"/>
+              <% end %>
+
             </td>
 
             <% if frommessage.unread == 1 %>

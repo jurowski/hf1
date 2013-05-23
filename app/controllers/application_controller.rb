@@ -3,6 +3,11 @@
 
 
 class ApplicationController < ActionController::Base
+
+  ### for gravatar
+  ### http://stackoverflow.com/questions/5822912/how-do-i-display-an-avatar-in-rails
+  require 'digest/md5'
+
   helper :all # include all helpers, all the time
   #protect_from_forgery # See ActionController::RequestForgeryProtection for details
   

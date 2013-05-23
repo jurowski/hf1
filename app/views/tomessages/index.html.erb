@@ -24,6 +24,14 @@
               <%= link_to '<img src="/images/close_32.png" height="20px" alt="Delete" border="0" />', tomessage, :confirm => 'Delete this message?', :method => :delete %>
 
               &nbsp &nbsp
+
+              <% if @from_user.show_gravatar %>
+                <% gravatar = "http://www.gravatar.com/avatar/#{Digest::MD5.hexdigest(@from_user.email.downcase)}?d=mm" %>
+                <img src="<%= gravatar %>&s=30" />            
+              <% else %>
+                <img src="/home/images/default_gravatar.png" height="30px"/>
+              <% end %>
+
               <a href= "/tomessages/new?to_id=<%= @from_user.id %>&replying_to_message_id=<%= tomessage.id %>" class="button" >Reply to <%= from_user_first_name%></a>
               &nbsp &nbsp
               
