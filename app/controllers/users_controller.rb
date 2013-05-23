@@ -4,6 +4,10 @@ require "mail"
 require 'net/https'
 require 'uri'
 
+### for gravatar
+### http://stackoverflow.com/questions/5822912/how-do-i-display-an-avatar-in-rails
+require 'digest/md5'
+
 class UsersController < ApplicationController
   layout "application"
 

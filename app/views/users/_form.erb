@@ -57,6 +57,18 @@
     <tr><td>&nbsp</td></tr>
 
     <td valign=top nowrap>
+    Show your Avatar?
+    </td>
+    <td valign=top nowrap>
+        <% gravatar = "http://www.gravatar.com/avatar/#{Digest::MD5.hexdigest(current_user.email.downcase)}?d=mm" %>
+        <a href="http://gravatar.com" target="_blank"><img src="<%= gravatar %>&s=60" /></a>
+    </td>
+    </tr>
+    <tr>
+    <tr><td>&nbsp</td></tr>
+
+
+    <td valign=top nowrap>
     Your Time Zone<font color=red>*</font>
     </td>
     <td valign=top nowrap>

@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130515110026) do
+ActiveRecord::Schema.define(:version => 20130523110540) do
 
   create_table "achievemints", :force => true do |t|
     t.string   "name"
@@ -743,6 +743,7 @@ ActiveRecord::Schema.define(:version => 20130515110026) do
     t.string   "coach_contact_email"
     t.string   "coach_contact_phone"
     t.date     "last_activity_date"
+    t.boolean  "show_gravatar",                                                      :default => false
   end
 
   add_index "users", ["email"], :name => "index_users_on_email"
