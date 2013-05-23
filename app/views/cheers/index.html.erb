@@ -354,9 +354,9 @@ begin
 
                   <% if goal.user.show_gravatar %>
                     <% gravatar = "http://www.gravatar.com/avatar/#{Digest::MD5.hexdigest(goal.user.email.downcase)}?d=mm" %>
-                    <img src="<%= gravatar %>&s=30" />            
+                    <img src="<%= gravatar %>&s=20" />            
                   <% else %>
-                    <img src="/home/images/default_gravatar.png" height="30px"/>
+                    <img src="/home/images/default_gravatar.png" height="20px"/>
                   <% end %>
 
                    <%= goal.user.first_name %></span> is working on ... <span style="background-color:#FFFF99;"><%= goal.response_question %></span>
