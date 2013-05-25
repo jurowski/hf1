@@ -9,6 +9,7 @@
       arr_subject.push(["#{@follower.first_name} is now following your #{@goal.response_question} habit!"])
     end
 
+
     random_number = 0
     random_number = rand(arr_subject.size) + 0 #between 0 and arr_subject.size
     random_subject = arr_subject[random_number]
@@ -56,6 +57,18 @@
                                   <div style="padding:.8em;margin-bottom:1em;border:2px solid #ddd;background:#FFFFCC;color:#514721;border-color:#BBBBBB;">
 
                                      <h3>Good <%= @goal.user.time_period_of_day_right_now %> <%= @goal.user.first_name %>!</h3>
+
+                                      <% if @follower.first_name != "unknown" %>
+                                        <br>
+                                        <br>
+                                        <% if @follower.show_gravatar %>
+                                          <% gravatar = "http://www.gravatar.com/avatar/#{Digest::MD5.hexdigest(@follower.email.downcase)}?d=mm" %>
+                                          <img src="<%= gravatar %>&s=30" />            
+                                        <% else %>
+                                          <img src="http://habitforge.com/home/images/default_gravatar.png" height="30px"/>
+                                        <% end %>
+                                         
+                                      <% end %>
 
                                      <%= random_subject %>
                                      <br>
