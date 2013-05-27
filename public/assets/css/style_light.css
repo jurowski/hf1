@@ -15,7 +15,8 @@ Page header
 .header .navbar-inner {
   filter:none !important;
   background-image: none !important;
-  background-color: #434343 !important;
+  background-color: #eeeeee !important;
+/*  background-color: #434343 !important;*/
 }
 
 .header .btn-navbar {  
