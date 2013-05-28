@@ -481,8 +481,9 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
           <li class="dropdown" id="header_inbox_bar">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
             <i class="icon-envelope-alt"></i>
+            <% max = 3 %>
             <% messages_count = 0 %>
-            <% @tomessages = Tomessage.find(:all, :conditions => "to_id = '#{current_user.id}' and unread = 1") %>
+            <% @tomessages = Tomessage.find(:all, :conditions => "to_id = '#{current_user.id}' and unread = 1", :order => "id DESC") %>
             <% if @tomessages and @tomessages.size > 0 %>
               <% messages_count = @tomessages.size %>
               <span class="badge"><%= messages_count %></span>
@@ -490,17 +491,26 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
             </a>
             <ul class="dropdown-menu extended inbox">
               <li>
-                <p>You have <%= messages_count %> new messages</p>
+                <% if messages_count > max %>
+                  <p>Latest <%= max %> of <%= messages_count %> messages...</p>
+                <% else %>
+                  <p>You have <%= messages_count %> new messages</p>
+                <% end %>       
+
               </li>
-              <% if messages_count > 4 %>
+              <% if messages_count > 3 %>
                 <li class="external">
                   <a href="/tomessages">See all messages <i class="m-icon-swapright"></i></a>
                 </li>
               <% end %>
 
+
+              <% counter = 0 %>
               <% @tomessages.each do |message| %>
+
                 <% from_user = User.find(message.from_id) %>
-                <% if from_user %>
+                <% if from_user and counter <= max %>
+                  <% counter += 1 %>
                   <li>
                     <a href="/tomessages/<%= message.id %>">
                     <span class="photo">
