@@ -498,7 +498,7 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
                 <% end %>       
 
               </li>
-              <% if messages_count > 3 %>
+              <% if messages_count > max %>
                 <li class="external">
                   <a href="/tomessages">See all messages <i class="m-icon-swapright"></i></a>
                 </li>
@@ -509,7 +509,7 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
               <% @tomessages.each do |message| %>
 
                 <% from_user = User.find(message.from_id) %>
-                <% if from_user and counter <= max %>
+                <% if from_user and counter < max %>
                   <% counter += 1 %>
                   <li>
                     <a href="/tomessages/<%= message.id %>">
@@ -525,7 +525,7 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
 <!--                     <span class="time">Just Now</span> -->
                     </span>
                     <span class="message">
-                    <%= message.body[0...50] %>...
+                    <%= message.subject[0...25] %>...
                     </span>  
                     </a>
                   </li>
