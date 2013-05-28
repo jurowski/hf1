@@ -502,7 +502,7 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
                 <% from_user = User.find(message.from_id) %>
                 <% if from_user %>
                   <li>
-                    <a href="/tomessages/<%= message_id %>">
+                    <a href="/tomessages/<%= message.id %>">
                     <span class="photo">
                       <% from_gravatar_img = '<img src="/home/images/default_gravatar.png" width="30px"/>' %>
                       <% if from_user.show_gravatar %>
@@ -533,7 +533,7 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
 
 
           <!-- BEGIN TODO DROPDOWN -->
-          <li class="dropdown" id="header_task_bar">
+<!--           <li class="dropdown" id="header_task_bar">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
             <i class="icon-tasks"></i>
             <span class="badge">5</span>
@@ -612,7 +612,7 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
                 <a href="#">See all tasks <i class="m-icon-swapright"></i></a>
               </li>
             </ul>
-          </li>
+          </li> -->
           <!-- END TODO DROPDOWN -->
           <!-- BEGIN USER LOGIN DROPDOWN -->
           <% if current_user %>
