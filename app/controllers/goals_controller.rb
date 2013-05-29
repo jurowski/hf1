@@ -770,7 +770,13 @@ logger.debug "SGJ2 2 #{goal.title}(#{goal.id}) #{goal.daysstraight} daysstraight
               ### format.html { render :action => "edit" }
 
               if Rails.env.production?
-                format.html {redirect_to("https://www.securepublications.com/habit-gse3.php?ref=#{current_user.id.to_s}&email=#{current_user.email}")}
+
+                ### show the sales page and eventually kick back to optimize when they cancel
+                #format.html {redirect_to("https://www.securepublications.com/habit-gse3.php?ref=#{current_user.id.to_s}&email=#{current_user.email}")}
+
+                ### do not show the sales page first, just kick to optimize
+                format.html {redirect_to("/goals?optimize_my_first_goal=1&email=#{current_user.email}&single_login=1")}
+
               else
                 session[:dev_mode_just_returned_from_sales_page] = true
                 format.html {redirect_to("/goals?optimize_my_first_goal=1&email=#{current_user.email}&single_login=1")}
