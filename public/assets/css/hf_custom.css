@@ -6,7 +6,6 @@ HTML resized images in Internet Explorer look like crap, unless you add the foll
 */
 img { -ms-interpolation-mode: bicubic; }
 
-
 .the_date {
 display:block;
 text-align: center;
