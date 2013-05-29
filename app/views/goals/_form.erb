@@ -1,3 +1,13 @@
+<!-- TESTING OUT SHOWING EVERYTHING NO MATTER WHAT -->
+<% if session[:sfm_virgin] %>
+  <% session[:sfm_virgin] = false %>
+<% end %>
+<!-- END TESTING OUT SHOWING EVERYTHING NO MATTER WHAT -->
+
+
+
+
+
 <% if session[:dev_mode_just_returned_from_sales_page] %>
   <% session[:dev_mode_just_returned_from_sales_page] = nil %>
   <div class="alert">
