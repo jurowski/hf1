@@ -553,8 +553,12 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
 
               <% counter = 0 %>
               <% @tomessages.each do |message| %>
-
-                <% from_user = User.find(message.from_id) %>
+                <% from_user = nil %>
+                <% begin %>
+                  <% from_user = User.find(message.from_id) %>
+                <% rescue %>
+                  <% logger.info("sgj:_habitforge_app_metronic.erb:no user found for message.id of " + message.id.to_s) %>
+                <% end %>
                 <% if from_user and counter < max %>
                   <% counter += 1 %>
                   <li>
