@@ -61,8 +61,17 @@
     </td>
     <td valign=top nowrap>
 
-        <% gravatar = "http://www.gravatar.com/avatar/#{Digest::MD5.hexdigest(current_user.email.downcase)}?d=mm" %>
-        <a href="http://gravatar.com" target="_blank"><img src="<%= gravatar %>&s=60" /></a>
+
+        <% gravatar_img = '<img src="/home/images/default_gravatar.png" width="30px"/>' %>
+        <% if current_user %>
+          <% gravatar = "http://www.gravatar.com/avatar/#{Digest::MD5.hexdigest(current_user.email.downcase)}?d=mm" %>
+          <% gravatar_img = '<img src="' + gravatar + '&s=30" />' %>
+        <% end %>
+
+        <a href="http://gravatar.com" target="_blank">
+            <%= gravatar_img %>
+        </a>
+
         <br>
             <%= form.check_box(:show_gravatar, options = {}, checked_value = "true", unchecked_value = "false") %> Show my Gravatar to other users?
     </td>
