@@ -828,13 +828,13 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
           </div>
         </noscript>
 
-        <% if request.env['HTTP_USER_AGENT'] =~ /MSIE/i %>
+<!--         < if request.env['HTTP_USER_AGENT'] =~ /MSIE/i >
           <div class="alert alert-error" id="noscript-warning">
           <button class="close" data-dismiss="alert"></button>
           <strong>IE users: Site not looking quite right? <a href="#" onclick="return popitup_bigger1('/ie.html')">Click for info.</a>
           </div>
-        <% end %>
-
+        < end >
+ -->
         <% if current_user and current_user.is_admin and (params[:impersonate] or session[:impersonate]) %>
             <div class="alert alert-error" id="noscript-warning">
               <a href="users?impersonate=3>">Become Admin Again</a>
