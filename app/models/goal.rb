@@ -544,10 +544,10 @@ class Goal < ActiveRecord::Base
           image << '<img src="/images/question.png" alt="Missing checkpoints" width=' + width.to_s + 'px border="0"/>'
         else
             if self.forged_in
-                image << '<img src="/images/ring_buttons21.png" alt="Established Habit" width=' + width.to_s + 'px border=0/>'
+                image << '<img src="/images/ring_buttons21_100w.png" alt="Established Habit" width=' + width.to_s + 'px border=0/>'
             else
                 if self.status == 'start'
-                    image << '<img src="/images/ring_buttons' + self.successful_days_in_a_row_without_9s.to_s + '.png" alt="" width=' + width.to_s + 'px border="0"/>'
+                    image << '<img src="/images/ring_buttons' + self.successful_days_in_a_row_without_9s.to_s + '_100w.png" alt="" width=' + width.to_s + 'px border="0"/>'
                 end
             end
         end
@@ -564,10 +564,10 @@ class Goal < ActiveRecord::Base
           image << '<a href="/goals#jump_to_catchup_on_goal_id_' + self.id.to_s + '" class="glyphicons no-js warning_sign"><i></i><font color=red>Catch up to see full stats.</font></a></strong></br>'
         else
             if self.forged_in
-              image << '<img src="/images/ring_buttons21.png" alt="Established Habit" width=' + width.to_s + 'px border=0/>'
+              image << '<img src="/images/ring_buttons21_100w.png" alt="Established Habit" width=' + width.to_s + 'px border=0/>'
             else
                 if self.status == 'start'
-                    image << '<img src="/images/ring_buttons' + self.successful_days_in_a_row_without_9s.to_s + '.png" alt="" width=' + width.to_s + 'px border="0"/>'
+                    image << '<img src="/images/ring_buttons' + self.successful_days_in_a_row_without_9s.to_s + '_100w.png" alt="" width=' + width.to_s + 'px border="0"/>'
                 end
             end
         end

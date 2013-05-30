@@ -104,6 +104,18 @@ $(document).ready(function(){
     adaptiveHeight: true
   });
 });
+
+$(document).ready(function(){
+  $('.bxslider_teaser').bxSlider({
+    pager: false,
+    mode: 'fade',
+    auto: true,
+    pause: 2000,
+    ticker: false,
+    adaptiveHeight: false,
+    controls: false
+  });
+});
 </script>
 <!-- END bxSlider -->
 
@@ -242,7 +254,7 @@ function popitup_bigger1(url) {
 
     <!-- Header Start -->
     <section id="header_wrap">
-    <nav id="myslidemenu" class="jqueryslidemenu clearfix">
+    <nav id="myslidemenu" class="jqueryslidemenu clearfix" >
         <ul>
             <li><a href="#" class="show_hide">Sign Up Free</a></li>
             <li><a href="#how">How It Works</a></li>
@@ -261,13 +273,7 @@ function popitup_bigger1(url) {
     <!-- Header End -->
 
 
-            <!-- Press Logos Start -->
-            <center>
-            <div style="padding-top:0px;">
-                <img src="/home/images/logos/press_logos_v1_transparent.png" width="800" alt="press logos" />
-            </div>
-            </center>
-            <!-- Press Logos End -->
+
 
     <!-- Logo Start -->
     <div style="margin-top:-40px;">
@@ -276,6 +282,19 @@ function popitup_bigger1(url) {
             <a href="/"><img src="/home/images/logos/habitforge_logo.png" width="300" alt="HabitForge logo" /></a>
             <h5>Build lasting habits quickly and easily! 
             </h5>
+
+
+            <div class="description">
+                <em>
+                <ul class="bxslider_teaser" style="padding-left:50px;" >
+                <%= render :partial => "layouts/testimonials_teaser" %>
+                </ul> 
+                <a href="#all_testimonials_anchor" onclick="toggle_show('all_testimonials')">
+                (...read the full testimonials)
+                </a>
+
+                </em>
+            </div>
 
             <% if params[:account_removed] %>
               <div class="error alert">
@@ -293,6 +312,13 @@ function popitup_bigger1(url) {
     </div>
     <!-- Logo End -->
 
+            <!-- Press Logos Start -->
+            <center>
+            <div style="padding-top:0px;">
+                <img src="/home/images/logos/press_logos_v1_transparent.png" width="600" alt="press logos" />
+            </div>
+            </center>
+            <!-- Press Logos End -->
 
     <div id="triangle-up"></div>
 
@@ -353,7 +379,7 @@ function popitup_bigger1(url) {
                 </div>
 
             <% else %>
-              <h2><span>Join for free</span>, and add to our 1,206,273 Successful Days Logged!</h2>
+              <h2><span>Join for free</span>, and add to our 1,315,242 Successful Days Logged!</h2>
 
                 <% if retry_email_address %>
 
