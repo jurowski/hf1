@@ -232,30 +232,33 @@ for goal in current_user.active_goals_sorted_by_next_action_day
     <!-- START PRINT HABIT -->    
     <!-- *********** -->
     <!-- BEGIN CUSTOM BUTTONS WITH ICONS PORTLET-->
-    <div class="portlet box blue" style="padding-top:5px;">
+    <div class="portlet box blue" >
         <div class="portlet-title">
 
-            <a name="jump_to_goal_id_<%= goal.id.to_s %>" />
-            <h4><span style="color:#ffffff;font-weight:bold;font-size:1.5em;">
-            <% if goal.template_user_parent_goal and goal.template_user_parent_goal.template_tagline %>
-                <!-- if this goal was added through a template that belongs to a program -->
-                <!-- via goal_added_through_template_from_program_id -->
-                <% if goal.program %>
-                    <a href="/goals/?program_id=<%= goal.program.id.to_s %>&programs=1&browse_recommended_habits=1#browse_recommended_habits"><%= goal.program.name %> >></a> 
+           <div class="caption">
+
+                <a name="jump_to_goal_id_<%= goal.id.to_s %>"></a>
+
+                <% if goal.template_user_parent_goal and goal.template_user_parent_goal.template_tagline %>
+                    <!-- if this goal was added through a template that belongs to a program -->
+                    <!-- via goal_added_through_template_from_program_id -->
+                    <% if goal.program %>
+                        <a href="/goals/?program_id=<%= goal.program.id.to_s %>&programs=1&browse_recommended_habits=1#browse_recommended_habits"><%= goal.program.name %> >></a> 
+                    <% end %>
+                    <%= goal.template_user_parent_goal.template_tagline %>
+                <% else %>
+                    <% if goal.category and  goal.category != "None" and goal.category != "" and goal.category != "Other" %><%= goal.category %>: <% end %>"<%= goal.title %>"
                 <% end %>
-                <%= goal.template_user_parent_goal.template_tagline %>
-            <% else %>
-                <% if goal.category and  goal.category != "None" and goal.category != "" and goal.category != "Other" %><%= goal.category %>: <% end %>"<%= goal.title %>"
-            <% end %>
-            &nbsp
-            </span>
-            </h4>
 
+            </div>
+            <div class="tools">
+              <a href="javascript:;" class="collapse"></a>
+              <!-- <a href="#portlet-config" data-toggle="modal" class="config"></a> -->
+              <!-- <a href="javascript:;" class="reload"></a> -->
+              <!-- <a href="javascript:;" class="remove"></a> -->
+            </div>
         </div>
 
-        <div class="tools">
-            <a href="javascript:;" class="collapse"></a>
-        </div>
 
         <div class="portlet-body">
 
@@ -481,20 +484,54 @@ end
 
                         </p>
                     </div>
-                    <h3>
+
+
+
+                   <div class="row-fluid">
+                      <div class="span4">
+                            <%= render :partial => "goals/stats", :locals => { :stats => @goal }  %>
+                      </div>
+                      <div class="margin-bottom-10 visible-phone"></div>
                     <%
                     if @goal.days_since_first_checkpoint > 30
                     %>
-                    <%= @goal.successful_days_in_a_row_without_9s %> straight, <%= @goal.percent_of_checkpoints_with_answer_of_yes(true) %>% Overall, <%= @goal.percent_of_checkpoints_with_answer_of_yes %>% last 30 days
-                    <%
-                    else
-                    %>
-                    Stats: <%= @goal.successful_days_in_a_row_without_9s %> straight, <%= @goal.percent_of_checkpoints_with_answer_of_yes %>% last 30 days
+
+                      <div class="span4">
+                         <div class="easy-pie-chart">
+                            <div class="number visits"  data-percent="<%= @goal.percent_of_checkpoints_with_answer_of_yes(true) %>"><span><%= @goal.percent_of_checkpoints_with_answer_of_yes(true) %></span>%</div>Overall
+                         </div>
+                      </div>
+                      <div class="margin-bottom-10 visible-phone"></div>
+                      <div class="span4">
+                         <div class="easy-pie-chart">
+                            <div class="number visits"  data-percent="<%= @goal.percent_of_checkpoints_with_answer_of_yes %>"><span><%= @goal.percent_of_checkpoints_with_answer_of_yes %></span>%</div>
+                            Last 30 Days
+                         </div>
+                      </div>
+
                     <%
                     end
                     %>
-                    </h3>
-                <%= render :partial => "goals/stats", :locals => { :stats => @goal }  %>
+
+                    <%
+                    if @goal.days_since_first_checkpoint <= 30
+                    %>
+                     <div class="margin-bottom-10 visible-phone"></div>
+                     <div class="span4">
+                     <div class="easy-pie-chart">
+                        <div class="number visits"  data-percent="<%= @goal.percent_of_checkpoints_with_answer_of_yes %>"><span><%= @goal.percent_of_checkpoints_with_answer_of_yes %></span>%</div>
+                        <%= @goal.successful_days_in_a_row_without_9s %> straight
+                     </div>
+                     </div>
+                    <%
+                    end
+                    %>
+
+                   </div>
+
+
+
+
                 </div>  
                 <!-- END STATS -->
             </div>

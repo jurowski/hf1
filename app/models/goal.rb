@@ -561,7 +561,7 @@ class Goal < ActiveRecord::Base
 
         if self.has_unanswered_checkpoints
           ### used to click to: <a href="goals/single/' + self.id.to_s + '">
-          image << '<a href="/goals#jump_to_catchup_on_goal_id_' + self.id.to_s + '" class="glyphicons no-js warning_sign"><i></i><font color=red>Catch up to see full stats.</font></a></strong></br>'
+          image << '<a href="/goals#jump_to_catchup_on_goal_id_' + self.id.to_s + '" class="btn red"><i class="icon-warning-sign"></i> Catch up to see full stats.</a></strong></br>'
         else
             if self.forged_in
               image << '<img src="/images/ring_buttons21_100w.png" alt="Established Habit" width=' + width.to_s + 'px border=0/>'
