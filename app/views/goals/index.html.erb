@@ -140,17 +140,18 @@
     <p>
     <% max = 3 %>
     <% counter = 0 %>
-    <% members = User.find(:all, :conditions => "first_name <> 'unknown'", :order => "id DESC", :limit => 25) %>
+    <% members = User.find(:all, :conditions => "first_name <> 'unknown' and id <> '#{current_user.id}'", :order => "id DESC", :limit => 25) %>
     <% members.each do |member| %>
         <% if counter <= max %>
-            <% if member.number_of_active_public_habits > 0 %>
+            <% if member.number_of_public_habits > 0 %>
                 <% if counter == 0 %>
-                    Send a Welcome to our Newest Members!
-                    <br>
+
+                    <h3>Welcome to our Newest Members!</h3>
+
                 <% end %>
                 <% counter += 1 %>
 
-                <% member_goal = member.active_public_goals[0] %>
+                <% member_goal = member.public_goals[0] %>
 
 
                 <% if current_user.goal_ids_that_i_follow.include?(member_goal.id) %>
@@ -174,7 +175,7 @@
                 <img src="/home/images/default_gravatar.png" height="20px"/>
                 <% end %>
 
-                <%= member_goal.user.first_name %></span> is working on ... <span style="background-color:#FFFF99;"><%= member_goal.response_question %></span>
+                <%= member_goal.user.first_name %></span> joined <%= time_ago_in_words(member_goal.user.created_at) %> ago and is working on ... <span style="background-color:#FFFF99;"><%= member_goal.response_question %></span>
                 <script type='text/javascript'>
                 $('#encourage_<%= member_goal.id.to_s %>').tipsy();
                 </script>       

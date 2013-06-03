@@ -379,6 +379,26 @@ class User < ActiveRecord::Base
       return my_goals
   end
 
+
+  def public_goals
+      my_goals = Array.new()
+      for goal in all_goals
+          if goal.publish
+              my_goals << goal
+          end
+      end
+      return my_goals
+  end
+
+  def number_of_public_habits
+      size = 0
+      if self.public_goals
+          size = self.public_goals.size
+      end
+      return size
+  end
+
+
   def active_public_goals
       my_goals = Array.new()
       for goal in all_goals

@@ -1,8 +1,7 @@
 <!-- Time.now() -->
-Latest check-ins...
 <div style="background-color:#F7F8E0;padding:5px;"> 
 	<p>
-	<% max = 5 %>
+	<% max = 3 %>
 	<% counter = 0 %>
 	<% arr_goal_ids_shown = Array.new() %>
 
@@ -14,6 +13,7 @@ Latest check-ins...
 				<% counter += 1 %>
 				<% member_goal = checkpoint.goal %>
 
+				<%= time_ago_in_words(checkpoint.updated_at) %> ago...
 				<% if current_user.goal_ids_that_i_follow.include?(member_goal.id) %>
 				    <a href="#" class="btn disabled">Following</a>
 				<% else %>
