@@ -145,6 +145,15 @@ class ApplicationController < ActionController::Base
       end
 
 
+      if session[:email] and session[:single_login]
+        user = User.find(:first, :conditions => "email = '#{session[:email]}'")
+        if user
+          @current_user = user
+          return @current_user
+        end
+      end
+
+
      if session[:current_user_is_admin] == true and (params[:impersonate] or session[:impersonate])
         logger.debug("sgj:attempting impersonation")
        ######### ADMIN IMPERSONATE A USER ###################
