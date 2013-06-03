@@ -97,16 +97,18 @@
 <div />
     <% if current_user.sponsor == "habitforge" and !current_user.is_habitforge_supporting_member and current_user.number_of_active_habits > 0 %>
           <!-- render :partial => "goals/upgrade_advertisement"  -->
-        <h2><a href="/goals?too_many_active_habits=1"><img src="/images/add_32.png" border="0" width=25px/> Start a New Habit</a></h2>
+        <a href="/goals?too_many_active_habits=1" class="btn green">Start a New Habit</a>
+
     <% else %>
-        <h2><%= link_to '<img src="/images/add_32.png" border="0" width=25px/> Start a New Habit', new_goal_path %></h2>
+        <a href="/goals/new" class="btn green"> Start a New Habit</a>
+
     <% end %>
 
     <% if current_user and current_user.can_make_templates %>
     
-        <h2><a href="/programs/new"><img src="/images/add_32.png" border="0" width=25px/> Start a Program</a></h2>
+        <a href="/programs/new" class="btn"> Start a Program</a>
 
-        <h2><a href="/goals/new?template_owner_is_a_template=1"><img src="/images/add_32.png" border="0" width=25px/> Make a Template</a></h2>
+        <a href="/goals/new?template_owner_is_a_template=1" class="btn"> Make a Template</a>
 
     <% end %>
 
@@ -117,7 +119,10 @@
 <!-- *********** -->
 
 
-
+<!-- SHOW LATEST PUBLIC CHECKINS -->
+<div class="dynamic_latest_public_checkins">
+    <%= render :partial => 'goals/dynamic_latest_public_checkins' %>
+</div>
 
 
 
@@ -145,23 +150,19 @@ for goal in current_user.active_goals_sorted_by_next_action_day
             printed_today_actions_once = true
             %>
             <div>
+
+
+                <div class="alert alert-success"> 
+                    <%= render :partial => "goals/date_badge", :locals => { :badge_date => @badge_date }  %>
+
                 <h2>
+                    &nbsp
                 <% if number_goals_today == 1 %>
                     Today I need to work on...
                 <% else %>
                     Today I'm working on these <%= number_goals_today %> habits...
                 <% end %>
                 </h2>
-
-                <div class="alert alert-success"> 
-                    <%= render :partial => "goals/date_badge", :locals => { :badge_date => @badge_date }  %>
-
-                &nbsp If you have already succeeded today, click "I Already Succeeded Today!" below.
-                <br>
-                &nbsp Otherwise you'll get a check-in email with yes/no links.
-                </div>
-
-                <br>
             </div>
             <%
         end
@@ -186,14 +187,12 @@ for goal in current_user.active_goals_sorted_by_next_action_day
             <br>
             <br>
 
-            <h2>
-            Tomorrow is the next action day for...
-            </h2>
+
             <div class="alert alert-info"> 
             <%= render :partial => "goals/date_badge", :locals => { :badge_date => @badge_date }  %>
-                &nbsp Once you succeed tomorrow, you can log in and click the "I Already Succeeded Today!" button that will appear.
-                <br>
-                &nbsp Otherwise you'll get a check-in email with yes/no links.
+            <h2>
+            &nbsp Tomorrow is the next action day for...
+            </h2>
         </div>
 
         <% end %>

@@ -341,6 +341,17 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
    //    }, 3000);
    //  });
 
+
+   // Refresh at intervals:
+   // http://stackoverflow.com/questions/10539143/reloading-partial-in-an-rails-app
+   $(document).ready(function() {
+    setInterval(function() {
+      $('.dynamic_latest_public_checkins').load('goals/dynamic_latest_public_checkins/1');
+      }, 3000);
+    });
+
+
+
     function reload_catch_up_goal_id(id) {
         var div = document.getElementById(id);
         div.style.display = "block";

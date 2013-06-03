@@ -1,6 +1,17 @@
 <% form_for(@tomessage) do |f| %>
   <%= f.error_messages %>
 
+
+
+  <!-- TO ALLOW SINGLE USE SIGNON TO FAKE CURRENT_USER -->
+  <% if params[:u] and params[:e0] and params[:f0] %>
+    <input type=hidden name="u" value="<%= params[:u] %>">
+    <input type=hidden name="e0" value="<%= params[:e0] %>">    
+    <input type=hidden name="f0" value="<%= params[:f0] %>">
+  <% end %>
+
+
+
   <%
   goal_id = 0
   begin
