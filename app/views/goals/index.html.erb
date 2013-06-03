@@ -138,15 +138,18 @@
 <!-- START SHOW NEWEST MEMBERS --> 
 <div style="background-color:#ffffff;padding:5px;"> 
     <p>
-    Send a Welcome to our Newest Members!
-    <br>
     <% max = 3 %>
     <% counter = 0 %>
     <% members = User.find(:all, :conditions => "first_name <> 'unknown'", :order => "id DESC", :limit => 25) %>
     <% members.each do |member| %>
         <% if counter <= max %>
             <% if member.number_of_active_public_habits > 0 %>
+                <% if counter == 0 %>
+                    Send a Welcome to our Newest Members!
+                    <br>
+                <% end %>
                 <% counter += 1 %>
+
                 <% member_goal = member.active_public_goals[0] %>
 
 
@@ -175,7 +178,7 @@
                 <script type='text/javascript'>
                 $('#encourage_<%= member_goal.id.to_s %>').tipsy();
                 </script>       
-
+                <br>
             <% end %>
 
 
