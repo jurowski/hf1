@@ -347,7 +347,7 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
    $(document).ready(function() {
     setInterval(function() {
       $('.dynamic_latest_public_checkins').load('goals/dynamic_latest_public_checkins/1');
-      }, 3000);
+      }, 10000);
     });
 
 
@@ -1069,18 +1069,6 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
         <br>
         <br>
         <br>
-
-        <center>
-        <% if current_user and current_user.sponsor == "habitforge" %>  
-            <a href="/goals?templates=1&popular=1&browse_recommended_habits=1#browse_recommended_habits" class="btn green">Habit Library (beta)</a>
-
-            <!-- #if current_user.can_use_templates --> 
-<!--               <a href="/goals?templates=1&browse_recommended_habits=1&just_templates=1#browse_recommended_habits" class="btn yellow">Habit Templates</a> -->
-            <!-- end -->
-
-            <a href="/cheers" class="btn blue">Who Could Use a Boost?</a>
-        <% end %>
-        </center>
 
 
         <hr />
