@@ -47,7 +47,7 @@ class DeleteOldAccountData < ActiveRecord::Base
     users = User.find(:all, :conditions => "kill_ads_until is null and last_request_at < '#{dlastyear}'", :order => "id DESC", :limit => "#{limit}")
 
     users.each do |user|
-      puts "old user = " + user.email + " and updated_at: " + user.updated_at.to_s 
+      puts "old user = " + user.email + " and last_request_at: " + user.last_request_at.to_s 
       keep_user = false
 
       if user.number_of_active_habits == 0 and user.number_of_templates_i_own == 0
