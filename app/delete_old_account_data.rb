@@ -41,8 +41,11 @@ class DeleteOldAccountData < ActiveRecord::Base
   #######
   if run_1 == "yes"
 
-    limit = 25
-    users = User.find(:all, :conditions => "kill_ads_until is null and updated_at < '#{dlastyear}'", :order => "id DESC", :limit => "#{limit}")
+    limit = 10
+
+    ### can't use "updated_at" since any user migration changes that for all
+    users = User.find(:all, :conditions => "kill_ads_until is null and last_request_at < '#{dlastyear}'", :order => "id DESC", :limit => "#{limit}")
+
     users.each do |user|
       puts "old user = " + user.email + " and updated_at: " + user.updated_at.to_s 
       keep_user = false
