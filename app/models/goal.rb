@@ -1395,6 +1395,7 @@ logger.debug "SGJ 3"
     return yes_count
   end
 
+
   def success_rate_during_past_n_days(number_of_days)
     yes_percent = 0
     relative_success_rate = 0
