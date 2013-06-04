@@ -136,8 +136,11 @@
 
 
 <!-- START SHOW NEWEST MEMBERS --> 
+<% run_this_code = false %>
+<% if run_this_code %>
 <div style="background-color:#ffffff;padding:5px;"> 
     <p>
+
     <% max = 3 %>
     <% counter = 0 %>
     <% members = User.find(:all, :conditions => "first_name <> 'unknown' and id <> '#{current_user.id}'", :order => "id DESC", :limit => 25) %>
@@ -191,16 +194,19 @@
     <% end %>
     </p>
 </div>
+<% end ### end if run_this_code %>
 <br>
 <!-- END SHOW NEWEST MEMBERS -->
 
 
 
 <!-- SHOW LATEST PUBLIC CHECKINS -->
+<% run_this_code = true %>
+<% if run_this_code %>
 <div class="dynamic_latest_public_checkins">
     <%= render :partial => 'goals/dynamic_latest_public_checkins' %>
 </div>
-
+<% end ### end if run_this_code %>
 
 
 

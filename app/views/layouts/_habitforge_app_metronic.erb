@@ -344,11 +344,13 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
 
    // Refresh at intervals:
    // http://stackoverflow.com/questions/10539143/reloading-partial-in-an-rails-app
-   $(document).ready(function() {
-    setInterval(function() {
-      $('.dynamic_latest_public_checkins').load('goals/dynamic_latest_public_checkins/1');
-      }, 100000);
-    });
+   // took this out b/c it was not enough bang for the buck for this usage
+   // since people will see latest when refreshing page
+   // $(document).ready(function() {
+   //  setInterval(function() {
+   //    $('.dynamic_latest_public_checkins').load('goals/dynamic_latest_public_checkins/1');
+   //    }, 100000);
+   //  });
 
 
 
