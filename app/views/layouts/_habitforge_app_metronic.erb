@@ -381,9 +381,9 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
     }
 
 
-
-    function reload_catch_up_on_checkpints_v2(id) {
-      $('.class_catch_up_on_checkpoints_v2_goal_id_'+id).load('/goals/class_catch_up_on_checkpoints_v2?goal_id='+id);
+    function update_checkpoint_then_reload_goal_catch_up(goal_id, checkin_date, status, e0, f0, u) {
+      $('.class_catch_up_on_checkpoints_goal_id_'+goal_id).load('/goals/catch_up_on_checkpoints/1?goal_id='+goal_id+'&date='+checkin_date+'&update_checkpoint_status='+status+'&e0='+e0+'&f0='+f0+'&u='+u);
+      toggle_show_hide('spinner');
     }
 
    </script>

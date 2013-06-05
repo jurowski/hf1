@@ -9,13 +9,26 @@
 
                 <!-- works but only w/ older versions of js -->
                 <!-- link_to_remote 'I Already Succeeded Today!', :url => {:controller => "goals", :action => "index"}, :with => "'goal_id=#{@goal.id.to_s}&date=#{@goal.user.dtoday.to_s}&update_checkpoint_status=yes&e0=#{@goal.user.email[0]}&f0=#{@goal.user.first_name[0]}&u=#{@goal.user.id}'", :method => :put -->
-                <a href="/goals/?goal_id=<%= @goal.id.to_s %>&date=<%= @goal.user.dtoday.to_s %>&update_checkpoint_status=yes&e0=<%= @goal.user.email[0] %>&f0=<%= @goal.user.first_name[0] %>&u=<%= @goal.user.id %>"  onclick="toggle_show_hide('spinner');reload_catch_up_on_checkpoints_v2('<%= @goal.id.to_s %>');">I Already Succeeded Today!</a>
+
+                <!-- MANUAL PAGE RELOAD METHOD -->
+                <!--
+                <a href="/goals/?goal_id=<= @goal.id.to_s >&date=<= @goal.user.dtoday.to_s >&update_checkpoint_status=yes&e0=<= @goal.user.email[0] >&f0=<= @goal.user.first_name[0] >&u=<= @goal.user.id >"  onclick="toggle_show_hide('spinner');reload_catch_up_on_checkpoints_BETA('<= @goal.id.to_s >');">I Already Succeeded Today!</a>
+                -->
+
+              <a onclick="toggle_show_hide('spinner');update_checkpoint_then_reload_goal_catch_up('<%= @goal.id %>','<%= @goal.user.dtoday.to_s %>','yes','<%= @goal.user.email[0] %>','<%= @goal.user.first_name[0] %>','<%= @goal.user.id %>');" class="btn green" style="padding:2px;">I Already Succeeded Today!</a>
 
                 &nbsp or &nbsp
 
                 <!-- works but only w/ older versions of js -->  
                 <!-- link_to_remote "I Didn't do this today.", :url => {:controller => "goals", :action => "index"}, :with => "'goal_id=#{@goal.id.to_s}&date=#{@goal.user.dtoday.to_s}&update_checkpoint_status=no&e0=#{@goal.user.email[0]}&f0=#{@goal.user.first_name[0]}&u=#{@goal.user.id}'", :method => :put -->
-                <a href="/goals/?goal_id=<%= @goal.id.to_s %>&date=<%= @goal.user.dtoday.to_s %>&update_checkpoint_status=no&e0=<%= @goal.user.email[0] %>&f0=<%= @goal.user.first_name[0] %>&u=<%= @goal.user.id %>"  onclick="toggle_show_hide('spinner');reload_catch_up_on_checkpoints_v2('<%= @goal.id.to_s %>');">I Didn't do this today.</a>
+
+
+                <!-- MANUAL PAGE RELOAD METHOD -->
+                <!--
+                <a href="/goals/?goal_id=<= @goal.id.to_s >&date=<= @goal.user.dtoday.to_s >&update_checkpoint_status=no&e0=<= @goal.user.email[0] >&f0=<= @goal.user.first_name[0] >&u=<= @goal.user.id >"  onclick="toggle_show_hide('spinner');reload_catch_up_on_checkpoints_BETA('<= @goal.id.to_s >');">I didn't do this today.</a>
+                -->
+
+              <a onclick="toggle_show_hide('spinner');update_checkpoint_then_reload_goal_catch_up('<%= @goal.id %>','<%= @goal.user.dtoday.to_s %>','no','<%= @goal.user.email[0] %>','<%= @goal.user.first_name[0] %>','<%= @goal.user.id %>');" class="btn red" style="padding:2px;">I didn't do this today.</a>
 
         </h3>
         </div>
@@ -68,15 +81,27 @@ if @goal.has_unanswered_checkpoints
                 <!-- works but only w/ older versions of js -->
                 <!-- link_to_remote 'Yes', :url => {:controller => "goals", :action => "index"}, :with => "'goal_id=#{@goal.id.to_s}&date=#{@checkin_date}&update_checkpoint_status=yes&e0=#{@goal.user.email[0]}&f0=#{@goal.user.first_name[0]}&u=#{@goal.user.id}'", :method => :put -->
  
+                <!-- MANUAL RELOAD METHOD -->
+                <!--
+                <a href="/goals/?goal_id=<= @goal.id.to_s >&date=<= @checkin_date >&update_checkpoint_status=yes&e0=<= @goal.user.email[0] >&f0=<= @goal.user.first_name[0] >&u=<= @goal.user.id >"  onclick="toggle_show_hide('spinner');reload_catch_up_on_checkpoints_BETA('<= @goal.id.to_s >');">Yes</a>
+                -->
 
-                <a href="/goals/?goal_id=<%= @goal.id.to_s %>&date=<%= @checkin_date %>&update_checkpoint_status=yes&e0=<%= @goal.user.email[0] %>&f0=<%= @goal.user.first_name[0] %>&u=<%= @goal.user.id %>"  onclick="toggle_show_hide('spinner');reload_catch_up_on_checkpoints_v2('<%= @goal.id.to_s %>');">Yes</a>
+              <a onclick="toggle_show_hide('spinner');update_checkpoint_then_reload_goal_catch_up('<%= @goal.id %>','<%= @checkin_date %>','yes','<%= @goal.user.email[0] %>','<%= @goal.user.first_name[0] %>','<%= @goal.user.id %>');" class="btn green" style="padding:2px;">Yes</a>
 
             &nbsp • &nbsp
 
             <!-- works but only w/ older versions of js -->
             <!-- link_to_remote "No", :url => {:controller => "goals", :action => "index"}, :with => "'goal_id=#{@goal.id.to_s}&date=#{@checkin_date}&update_checkpoint_status=no&e0=#{@goal.user.email[0]}&f0=#{@goal.user.first_name[0]}&u=#{@goal.user.id}'", :method => :put -->
 
-                <a href="/goals/?goal_id=<%= @goal.id.to_s %>&date=<%= @checkin_date %>&update_checkpoint_status=no&e0=<%= @goal.user.email[0] %>&f0=<%= @goal.user.first_name[0] %>&u=<%= @goal.user.id %>"  onclick="toggle_show_hide('spinner');reload_catch_up_on_checkpoints_v2('<%= @goal.id.to_s %>');">No</a>
+
+ 
+                <!-- MANUAL RELOAD METHOD -->
+                <!--
+                <a href="/goals/?goal_id=<= @goal.id.to_s >&date=<= @checkin_date >&update_checkpoint_status=no&e0=<= @goal.user.email[0] >&f0=<= @goal.user.first_name[0] >&u=<= @goal.user.id >"  onclick="toggle_show_hide('spinner');reload_catch_up_on_checkpoints_BETA('<= @goal.id.to_s >');">No</a>
+                -->
+
+              <a onclick="toggle_show_hide('spinner');update_checkpoint_then_reload_goal_catch_up('<%= @goal.id %>','<%= @checkin_date %>','no','<%= @goal.user.email[0] %>','<%= @goal.user.first_name[0] %>','<%= @goal.user.id %>');" class="btn red" style="padding:2px;">No</a>
+
 
             </h2>
             <%
@@ -128,7 +153,12 @@ if @goal.has_unanswered_checkpoints
                 <!-- works but only w/ older versions of js -->
                 <!-- link_to_remote 'Yes', :url => {:controller => "goals", :action => "index"}, :with => "'goal_id=#{@goal.id.to_s}&date=#{@checkin_date.to_s}&update_checkpoint_status=yes'", :method => :put -->
 
-                <a href="/goals/?goal_id=<%= @goal.id.to_s %>&date=<%= @checkin_date %>&update_checkpoint_status=yes&e0=<%= @goal.user.email[0] %>&f0=<%= @goal.user.first_name[0] %>&u=<%= @goal.user.id %>"  onclick="toggle_show_hide('spinner');reload_catch_up_on_checkpoints_v2('<%= @goal.id.to_s %>');">Yes</a>
+                <!-- MANUAL RELOAD METHOD -->
+                <!--
+                <a href="/goals/?goal_id=<= @goal.id.to_s >&date=<= @checkin_date >&update_checkpoint_status=yes&e0=<= @goal.user.email[0] >&f0=<= @goal.user.first_name[0] >&u=<= @goal.user.id >"  onclick="toggle_show_hide('spinner');reload_catch_up_on_checkpoints_BETA('<= @goal.id.to_s >');"> Yes</a>
+                -->
+
+              <a onclick="toggle_show_hide('spinner');update_checkpoint_then_reload_goal_catch_up('<%= @goal.id %>','<%= @checkin_date %>','yes','<%= @goal.user.email[0] %>','<%= @goal.user.first_name[0] %>','<%= @goal.user.id %>');" class="btn green" style="padding:2px;">Yes</a>
  
                 <!-- works but only w/ older versions of js -->
                 <!-- link_to_remote 'No', :url => {:controller => "goals", :action => "index"}, :with => "'goal_id=#{@goal.id.to_s}&date=#{@checkin_date.to_s}&update_checkpoint_status=no'", :method => :put -->
@@ -136,7 +166,14 @@ if @goal.has_unanswered_checkpoints
                 &nbsp
                 &nbsp
  
-                <a href="/goals/?goal_id=<%= @goal.id.to_s %>&date=<%= @checkin_date %>&update_checkpoint_status=no&e0=<%= @goal.user.email[0] %>&f0=<%= @goal.user.first_name[0] %>&u=<%= @goal.user.id %>"  onclick="toggle_show_hide('spinner');reload_catch_up_on_checkpoints_v2('<%= @goal.id.to_s %>');"> No</a>
+                <!-- MANUAL RELOAD METHOD -->
+                <!--
+                <a href="/goals/?goal_id=<= @goal.id.to_s >&date=<= @checkin_date >&update_checkpoint_status=no&e0=<= @goal.user.email[0] >&f0=<= @goal.user.first_name[0] >&u=<= @goal.user.id >"  onclick="toggle_show_hide('spinner');reload_catch_up_on_checkpoints_BETA('<= @goal.id.to_s >');"> No</a>
+                -->
+
+              <a onclick="toggle_show_hide('spinner');update_checkpoint_then_reload_goal_catch_up('<%= @goal.id %>','<%= @checkin_date %>','no','<%= @goal.user.email[0] %>','<%= @goal.user.first_name[0] %>','<%= @goal.user.id %>');" class="btn red" style="padding:2px;">No</a>
+
+
                 </p>
             &nbsp
             </td>

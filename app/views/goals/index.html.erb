@@ -472,19 +472,10 @@ for goal in current_user.active_goals_sorted_by_next_action_day
 
 
 
-
-
-
     <!-- CATCH UP -->
-    <% if current_user.email == "jurowski@gmail.com" %>
-        <div class="class_catch_up_on_checkpoints_v2_goal_id_<%= @goal.id.to_s %> alert alert-info">
-            <%= render :partial => "goals/catch_up_on_checkpoints_BETA", :locals => { :catch_up_on_checkpoints => @goal }  %>
-        </div>
-    <% else %> 
-        <div id="catch_up_on_checkpoints_goal_<%= @goal.id %>" class="alert alert-info">
-            <%= render :partial => "goals/catch_up_on_checkpoints", :locals => { :catch_up_on_checkpoints => @goal }  %>
-        </div>
-    <% end %>
+    <div class="class_catch_up_on_checkpoints_goal_id_<%= @goal.id.to_s %> alert alert-info">
+        <%= render :partial => "goals/catch_up_on_checkpoints", :locals => { :catch_up_on_checkpoints => @goal }  %>
+    </div>
     <!-- CATCH UP -->
 
 <%

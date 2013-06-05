@@ -57,10 +57,21 @@ class GoalsController < ApplicationController
 
   ### http://stackoverflow.com/questions/10539143/reloading-partial-in-an-rails-app
   # GET /goalss/catch_up_on_checkpoints
-  def catch_up_on_checkpoints_v2
+  def catch_up_on_checkpoints_BETA
     @goal = Goal.find(params[:goal_id].to_i)
-    render :partial => "goals/catch_up_on_checkpoints_v2", :locals => { :catch_up_on_checkpoints => @goal } 
+
+    comment = ""
+    if @goal.update_checkpoint(params[:date], params[:update_checkpoint_status], comment)
+      flash[:notice] = 'Checkpoint Updated.'
+    else
+      logger.debug"SGJ error updating checkpoint"
+      flash[:notice] = 'Error updating checkpoint.'
+    end
+
+    render :partial => "goals/catch_up_on_checkpoints_BETA", :locals => { :goal => @goal } 
   end
+
+
 
   # GET /goals
   # GET /goals.xml

@@ -6,7 +6,9 @@
     and 
     @goal.get_latest_stats_badge_details 
 -->
+
 <%= @goal.stats_image %>
+ <a href="/goals?#jump_to_goal_id_<%= @goal.id.to_s %>"><i class='icon-refresh'></i> Refresh Stats</a> 
 <%= @goal.stats_output %>
 
 <% if session[:refresh_stats] == true %>
