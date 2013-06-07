@@ -1,0 +1,52 @@
+Custom Teams
+-----------------
+i want to build my own custom team related to a goal
+let me choose whether the team is for the goal itself (team-goal) or for the goal's general category (team-category)
+if team-goal, make each team goal the child of a template (if my goal is not yet a child, copy it to a parent template)
+suggest a team name, and let me edit it
+do not allow random assignments to my custom team
+let me be the owner of my team
+let me choose how many people are on my custom team
+let me craft an invite that has a link to start my goal (and if I have chosen category-level vs. goal-level, a link to start a custom or click from an array of templated goals in the same category)
+let me send invites to team members
+let my invite go to multiple email addresses separated by commas
+(teamgoals) do not kick people off of my custom team for not checking in
+do not let me quit a team that I am the leader of if there are other members
+allow me to transfer ownership to another member of the team
+notify every team member when a new member arrives
+notify every team member when a member leaves
+let me email the whole team
+when emailing one team member ask me to consider including each of the others
+
+when an invitee logs in, have an "invites" link at the top showing a red number and a listing of invites to review
+when an invitee accepts, take them to goal creation
+allow an invitee to silently ignore an invite (do not email me)
+allow an invitee to decline an invite (email me)
+keep reminding an invitee for a while until they take action
+
+(later: add an icon/mascot/avatar for our team)
+(later: add a "fade or not" photo mosaic linked to each team member's last 7 days ... one row per person)
+
+----------------------
+mod table "teams"
+----------------------
+goal_template_parent_id (nil if category only)
+custom # boolean, nil or false if randomized team)
+owner_user_id
+
+--------------
+new table "team_invites"
+--------------
+team_id ### which team is this invite for
+email_original ### email it was originally sent to
+user_id ### once they sign up or if already signed up
+goal_id ### once they accept the goal, which of their own goals is in the team
+first_sent_date ### invite creation date
+remind_until_date ### how long should we send reminders for
+remind_every_n_days ### how frequently should we send reminders
+last_reminded_date ### the last time a reminder was sent
+declined_date ### if the end user declines (send notice to inviter)
+ignored_date ### if the end user silently declines (do not send notice to inviter)
+accepted_date ### if the end user accepts (send notice to all team members)
+
+

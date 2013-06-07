@@ -1,7 +1,125 @@
 
-<script type="text/javascript" language="javascript">
-  toggle_show_hide('spinner');
-</script>
+
+<!-- START comments section --> 
+<% if @goal.is_this_a_relevant_day(current_user.dtoday) or @goal.is_this_a_relevant_day(current_user.dyesterday) %>
+    <%
+    show_add_comment = false
+    add_comment_date = current_user.dtoday
+    %>
+    <% if @goal.is_this_a_relevant_day(current_user.dtoday) and (@goal.get_daily_status_for(current_user.dtoday) == "yes" or @goal.get_daily_status_for(current_user.dtoday) == "no") %>
+            <%
+            show_add_comment = true
+            %>            
+            <% if @goal.get_daily_status_for(current_user.dtoday) == "yes" %>
+
+            <div>
+            <p>
+            <img src="/images/checkmark_green.png" height="20px" width="20px">
+            <% if @goal.publish %>
+                    Congratulations on today's success! Share your stats: 
+                    <a name="fb_share" type="button" share_url="<%= server_root_url%>/cheers/1/shared?shared_u=<%= @goal.user.id %>&one_g=<%= @goal.id%>" href="http://www.facebook.com/sharer.php">My <%= session[:site_name]%> Progress</a><script src="http://static.ak.fbcdn.net/connect.php/js/FB.Share" type="text/javascript"></script>
+            <% else %>
+                Congratulations on today's success!
+            <% end %>
+            </p>
+            </div>
+        <% end %>
+        <% if @goal.get_daily_status_for(current_user.dtoday) == "no" %>
+            <div>
+            <p>
+            <img src="/images/delete.png" height=20px>
+            I didn't take action on this today.
+            </p>
+            </div>
+        <% end %>
+    <% else %>
+        <% if @goal.is_this_a_relevant_day(current_user.dyesterday) and (@goal.get_daily_status_for(current_user.dyesterday) == "yes" or @goal.get_daily_status_for(current_user.dyesterday) == "no") %>
+            <%
+            show_add_comment = true
+            add_comment_date = current_user.dyesterday
+            %>  
+            <% if @goal.get_daily_status_for(current_user.dyesterday) == "yes" %>        
+                <div>
+                <p>
+                <img src="/images/checkmark_green.png" height="20px" width="20px">
+                <% if @goal.publish %>
+                        Congratulations on yesterday's success! Share your stats: 
+                        <a name="fb_share" type="button" share_url="<%= server_root_url%>/cheers/1/shared?shared_u=<%= @goal.user.id %>&one_g=<%= @goal.id%>" href="http://www.facebook.com/sharer.php">My <%= session[:site_name]%> Progress</a><script src="http://static.ak.fbcdn.net/connect.php/js/FB.Share" type="text/javascript"></script>
+                <% else %>
+                    Congratulations on yesterday's success!
+                <% end %>
+                </p>
+                </div>
+            <% end %>
+
+            <% if @goal.get_daily_status_for(current_user.dyesterday) == "no" %>
+                <div>
+                <p>
+                <img src="/images/delete.png" height=20px>
+                I didn't take action on this yesterday.
+                </p>
+                </div>
+            <% end %>
+        <% end %>
+    <% end %>
+    <%
+    if show_add_comment
+        add_note_text = ""
+        if add_comment_date == current_user.dtoday
+            if @goal.get_daily_status_for(current_user.dtoday) == "yes"
+                if @goal.get_daily_comment_for(current_user.dtoday) == ""
+                    add_note_text = "Notes: How did it feel to follow through today?"
+                else
+                    add_note_text = "Today's notes"
+                end
+            else
+                if @goal.get_daily_comment_for(current_user.dtoday) == ""
+                    add_note_text = "Notes: Add a note about today."
+                else
+                    add_note_text = "Today's notes"
+                end
+            end
+        end
+        if add_comment_date == current_user.dyesterday
+            if @goal.get_daily_status_for(current_user.dyesterday) == "yes"
+                if @goal.get_daily_comment_for(current_user.dyesterday) == ""
+                    add_note_text = "Notes: How did it feel yesterday to follow through?"
+                else
+                    add_note_text = "Yesterday's notes"
+                end
+            else
+                if @goal.get_daily_comment_for(current_user.dtoday) == ""
+                    add_note_text = "Notes: Add a note about yesterday."
+                else
+                    add_note_text = "Yesterday's notes"
+                end
+            end
+        end
+
+        %>
+        <p>
+
+        <a href="#undefined" onclick="toggle_show('note_<%= @goal.id %>')"><%= add_note_text %></a>
+
+
+        <div id="note_<%= @goal.id %>" style="display:none;">
+            <form>
+                <textarea cols="80" rows="4" name="comment_<%= @goal.id %>"><%= @goal.get_daily_comment_for(add_comment_date) %></textarea> 
+                <p>Add a note or comment above, which will be saved when you click "Save Answers" at the bottom.</p>
+                <center><input type="submit" class="button dark" value="Save Note" /></center>
+                <input type="hidden" name="update_comment" value="1">
+                <input type="hidden" name="@goal_id" value="<%= @goal.id %>">
+                <input type="hidden" name="date" value="<%= add_comment_date %>">
+            </form>
+        </div>
+        </p>
+
+    <%
+    end
+    %>
+<% end %>
+
+<!-- END comments section --> 
 
 
 <% if @goal.date_next_to_take_action == @goal.user.dtoday %>
@@ -17,10 +135,10 @@
 
                 <!-- MANUAL PAGE RELOAD METHOD -->
                 <!--
-                <a href="/goals/?goal_id=<= @goal.id.to_s >&date=<= @goal.user.dtoday.to_s >&update_checkpoint_status=yes&e0=<= @goal.user.email[0] >&f0=<= @goal.user.first_name[0] >&u=<= @goal.user.id >"  onclick="toggle_show_hide('spinner');reload_catch_up_on_checkpoints_BETA('<= @goal.id.to_s >');">I Already Succeeded Today!</a>
+                <a href="/goals/?goal_id=<= @goal.id.to_s >&date=<= @goal.user.dtoday.to_s >&update_checkpoint_status=yes&e0=<= @goal.user.email[0] >&f0=<= @goal.user.first_name[0] >&u=<= @goal.user.id >"  onclick="toggle_show('spinner');reload_catch_up_on_checkpoints_BETA('<= @goal.id.to_s >');">I Already Succeeded Today!</a>
                 -->
 
-              <a onclick="update_checkpoint_then_reload_goal_catch_up('<%= @goal.id %>','<%= @goal.user.dtoday.to_s %>','yes','<%= @goal.user.email[0] %>','<%= @goal.user.first_name[0] %>','<%= @goal.user.id %>');" class="btn green" style="padding:2px;">I Already Succeeded Today!</a>
+              <a onclick="toggle_show('spinner_catchup_goal_id_<%= @goal.id %>');update_checkpoint_then_reload_goal_catch_up('<%= @goal.id %>','<%= @goal.user.dtoday.to_s %>','yes','<%= @goal.user.email[0] %>','<%= @goal.user.first_name[0] %>','<%= @goal.user.id %>');" class="btn green" style="padding:2px;">I Already Succeeded Today!</a>
 
                 &nbsp or &nbsp
 
@@ -30,10 +148,10 @@
 
                 <!-- MANUAL PAGE RELOAD METHOD -->
                 <!--
-                <a href="/goals/?goal_id=<= @goal.id.to_s >&date=<= @goal.user.dtoday.to_s >&update_checkpoint_status=no&e0=<= @goal.user.email[0] >&f0=<= @goal.user.first_name[0] >&u=<= @goal.user.id >"  onclick="toggle_show_hide('spinner');reload_catch_up_on_checkpoints_BETA('<= @goal.id.to_s >');">I didn't do this today.</a>
+                <a href="/goals/?goal_id=<= @goal.id.to_s >&date=<= @goal.user.dtoday.to_s >&update_checkpoint_status=no&e0=<= @goal.user.email[0] >&f0=<= @goal.user.first_name[0] >&u=<= @goal.user.id >"  onclick="toggle_show('spinner');reload_catch_up_on_checkpoints_BETA('<= @goal.id.to_s >');">I didn't do this today.</a>
                 -->
 
-              <a onclick="update_checkpoint_then_reload_goal_catch_up('<%= @goal.id %>','<%= @goal.user.dtoday.to_s %>','no','<%= @goal.user.email[0] %>','<%= @goal.user.first_name[0] %>','<%= @goal.user.id %>');" class="btn red" style="padding:2px;">I didn't do this today.</a>
+              <a onclick="toggle_show('spinner_catchup_goal_id_<%= @goal.id %>');update_checkpoint_then_reload_goal_catch_up('<%= @goal.id %>','<%= @goal.user.dtoday.to_s %>','no','<%= @goal.user.email[0] %>','<%= @goal.user.first_name[0] %>','<%= @goal.user.id %>');" class="btn red" style="padding:2px;">I didn't do this today.</a>
 
         </h3>
         </div>
@@ -88,10 +206,10 @@ if @goal.has_unanswered_checkpoints
  
                 <!-- MANUAL RELOAD METHOD -->
                 <!--
-                <a href="/goals/?goal_id=<= @goal.id.to_s >&date=<= @checkin_date >&update_checkpoint_status=yes&e0=<= @goal.user.email[0] >&f0=<= @goal.user.first_name[0] >&u=<= @goal.user.id >"  onclick="toggle_show_hide('spinner');reload_catch_up_on_checkpoints_BETA('<= @goal.id.to_s >');">Yes</a>
+                <a href="/goals/?goal_id=<= @goal.id.to_s >&date=<= @checkin_date >&update_checkpoint_status=yes&e0=<= @goal.user.email[0] >&f0=<= @goal.user.first_name[0] >&u=<= @goal.user.id >"  onclick="toggle_show('spinner');reload_catch_up_on_checkpoints_BETA('<= @goal.id.to_s >');">Yes</a>
                 -->
 
-              <a onclick="update_checkpoint_then_reload_goal_catch_up('<%= @goal.id %>','<%= @checkin_date %>','yes','<%= @goal.user.email[0] %>','<%= @goal.user.first_name[0] %>','<%= @goal.user.id %>');" class="btn green" style="padding:2px;">Yes</a>
+              <a onclick="toggle_show('spinner_catchup_goal_id_<%= @goal.id %>');update_checkpoint_then_reload_goal_catch_up('<%= @goal.id %>','<%= @checkin_date %>','yes','<%= @goal.user.email[0] %>','<%= @goal.user.first_name[0] %>','<%= @goal.user.id %>');" class="btn green" style="padding:2px;">Yes</a>
 
             &nbsp • &nbsp
 
@@ -102,10 +220,10 @@ if @goal.has_unanswered_checkpoints
  
                 <!-- MANUAL RELOAD METHOD -->
                 <!--
-                <a href="/goals/?goal_id=<= @goal.id.to_s >&date=<= @checkin_date >&update_checkpoint_status=no&e0=<= @goal.user.email[0] >&f0=<= @goal.user.first_name[0] >&u=<= @goal.user.id >"  onclick="toggle_show_hide('spinner');reload_catch_up_on_checkpoints_BETA('<= @goal.id.to_s >');">No</a>
+                <a href="/goals/?goal_id=<= @goal.id.to_s >&date=<= @checkin_date >&update_checkpoint_status=no&e0=<= @goal.user.email[0] >&f0=<= @goal.user.first_name[0] >&u=<= @goal.user.id >"  onclick="toggle_show('spinner');reload_catch_up_on_checkpoints_BETA('<= @goal.id.to_s >');">No</a>
                 -->
 
-              <a onclick="update_checkpoint_then_reload_goal_catch_up('<%= @goal.id %>','<%= @checkin_date %>','no','<%= @goal.user.email[0] %>','<%= @goal.user.first_name[0] %>','<%= @goal.user.id %>');" class="btn red" style="padding:2px;">No</a>
+              <a onclick="toggle_show('spinner_catchup_goal_id_<%= @goal.id %>');update_checkpoint_then_reload_goal_catch_up('<%= @goal.id %>','<%= @checkin_date %>','no','<%= @goal.user.email[0] %>','<%= @goal.user.first_name[0] %>','<%= @goal.user.id %>');" class="btn red" style="padding:2px;">No</a>
 
 
             </h2>
@@ -160,10 +278,10 @@ if @goal.has_unanswered_checkpoints
 
                 <!-- MANUAL RELOAD METHOD -->
                 <!--
-                <a href="/goals/?goal_id=<= @goal.id.to_s >&date=<= @checkin_date >&update_checkpoint_status=yes&e0=<= @goal.user.email[0] >&f0=<= @goal.user.first_name[0] >&u=<= @goal.user.id >"  onclick="toggle_show_hide('spinner');reload_catch_up_on_checkpoints_BETA('<= @goal.id.to_s >');"> Yes</a>
+                <a href="/goals/?goal_id=<= @goal.id.to_s >&date=<= @checkin_date >&update_checkpoint_status=yes&e0=<= @goal.user.email[0] >&f0=<= @goal.user.first_name[0] >&u=<= @goal.user.id >"  onclick="toggle_show('spinner');reload_catch_up_on_checkpoints_BETA('<= @goal.id.to_s >');"> Yes</a>
                 -->
 
-              <a onclick="update_checkpoint_then_reload_goal_catch_up('<%= @goal.id %>','<%= @checkin_date %>','yes','<%= @goal.user.email[0] %>','<%= @goal.user.first_name[0] %>','<%= @goal.user.id %>');" class="btn green" style="padding:2px;">Yes</a>
+              <a onclick="toggle_show('spinner_catchup_goal_id_<%= @goal.id %>');update_checkpoint_then_reload_goal_catch_up('<%= @goal.id %>','<%= @checkin_date %>','yes','<%= @goal.user.email[0] %>','<%= @goal.user.first_name[0] %>','<%= @goal.user.id %>');" class="btn green" style="padding:2px;">Yes</a>
  
                 <!-- works but only w/ older versions of js -->
                 <!-- link_to_remote 'No', :url => {:controller => "goals", :action => "index"}, :with => "'goal_id=#{@goal.id.to_s}&date=#{@checkin_date.to_s}&update_checkpoint_status=no'", :method => :put -->
@@ -173,10 +291,10 @@ if @goal.has_unanswered_checkpoints
  
                 <!-- MANUAL RELOAD METHOD -->
                 <!--
-                <a href="/goals/?goal_id=<= @goal.id.to_s >&date=<= @checkin_date >&update_checkpoint_status=no&e0=<= @goal.user.email[0] >&f0=<= @goal.user.first_name[0] >&u=<= @goal.user.id >"  onclick="toggle_show_hide('spinner');reload_catch_up_on_checkpoints_BETA('<= @goal.id.to_s >');"> No</a>
+                <a href="/goals/?goal_id=<= @goal.id.to_s >&date=<= @checkin_date >&update_checkpoint_status=no&e0=<= @goal.user.email[0] >&f0=<= @goal.user.first_name[0] >&u=<= @goal.user.id >"  onclick="toggle_show('spinner');reload_catch_up_on_checkpoints_BETA('<= @goal.id.to_s >');"> No</a>
                 -->
 
-              <a onclick="update_checkpoint_then_reload_goal_catch_up('<%= @goal.id %>','<%= @checkin_date %>','no','<%= @goal.user.email[0] %>','<%= @goal.user.first_name[0] %>','<%= @goal.user.id %>');" class="btn red" style="padding:2px;">No</a>
+              <a onclick="toggle_show('spinner_catchup_goal_id_<%= @goal.id %>');update_checkpoint_then_reload_goal_catch_up('<%= @goal.id %>','<%= @checkin_date %>','no','<%= @goal.user.email[0] %>','<%= @goal.user.first_name[0] %>','<%= @goal.user.id %>');" class="btn red" style="padding:2px;">No</a>
 
 
                 </p>
@@ -201,6 +319,8 @@ if @goal.has_unanswered_checkpoints
 end
 
 %>
-<script type="text/javascript" language="javascript">
-  toggle_show_hide('spinner');
+
+<!-- HIDE THE SPINNER NOW THAT THE PAGE IS DONE LOADING -->
+<script>
+toggle_hide('spinner_catchup_goal_id_<%= @goal.id %>');
 </script>

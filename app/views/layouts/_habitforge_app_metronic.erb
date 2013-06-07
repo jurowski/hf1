@@ -300,6 +300,10 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
       div.style.display = "block";
   }
 
+  function toggle_hide(id) {
+      var div = document.getElementById(id);
+      div.style.display = "none";
+  }
   </script>
 
   <script language="javascript" type="text/javascript">
@@ -435,9 +439,9 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
 
 
 
-  <div id="spinner" class="spinner_overlay" style="display:none;">
+<div id="spinner" class="spinner_overlay" style="display:none;">
   &nbsp
-  </div>
+</div>
 
   <!--
   Initialize ToolTips (Tipsy)
@@ -1034,9 +1038,9 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
 
 
         <!-- SGJ CUSTOM SPINNER OVERLAY -->
-        <div id="spinner" class="spinner_overlay" style="display:none;">
+<!--         <div id="spinner" class="spinner_overlay" style="display:none;">
         &nbsp
-        </div>
+        </div> -->
 
 
 
@@ -1083,13 +1087,19 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
         <% if @production %>
 
           <div id="fb-root"></div>
-          <script>(function(d, s, id) {
-            var js, fjs = d.getElementsByTagName(s)[0];
-            if (d.getElementById(id)) return;
-            js = d.createElement(s); js.id = id;
-            js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
-            fjs.parentNode.insertBefore(js, fjs);
-          }(document, 'script', 'facebook-jssdk'));</script>
+          <script>
+            // Load the SDK Asynchronously
+            (function(d, s, id){
+               var js, fjs = d.getElementsByTagName(s)[0];
+               if (d.getElementById(id)) {return;}
+               js = d.createElement(s); js.id = id;
+               js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+               fjs.parentNode.insertBefore(js, fjs);
+             }(document, 'script', 'facebook-jssdk'));
+          </script>
+
+
+
 
           <div class="fb-like-box" data-href="http://www.facebook.com/pages/habitforgecom/281059421608" data-width="292" data-show-faces="true" data-stream="false" data-header="true"></div>
       

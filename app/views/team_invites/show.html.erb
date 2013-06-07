@@ -1,0 +1,58 @@
+<p>
+  <b>Team:</b>
+  <%=h @team_invite.team_id %>
+</p>
+
+<p>
+  <b>Email original:</b>
+  <%=h @team_invite.email_original %>
+</p>
+
+<p>
+  <b>User:</b>
+  <%=h @team_invite.user_id %>
+</p>
+
+<p>
+  <b>Goal:</b>
+  <%=h @team_invite.goal_id %>
+</p>
+
+<p>
+  <b>First sent date:</b>
+  <%=h @team_invite.first_sent_date %>
+</p>
+
+<p>
+  <b>Remind until date:</b>
+  <%=h @team_invite.remind_until_date %>
+</p>
+
+<p>
+  <b>Remind every n days:</b>
+  <%=h @team_invite.remind_every_n_days %>
+</p>
+
+<p>
+  <b>Last reminded date:</b>
+  <%=h @team_invite.last_reminded_date %>
+</p>
+
+<p>
+  <b>Declined date:</b>
+  <%=h @team_invite.declined_date %>
+</p>
+
+<p>
+  <b>Ignored date:</b>
+  <%=h @team_invite.ignored_date %>
+</p>
+
+<p>
+  <b>Accepted date:</b>
+  <%=h @team_invite.accepted_date %>
+</p>
+
+
+<%= link_to 'Edit', edit_team_invite_path(@team_invite) %> |
+<%= link_to 'Back', team_invites_path %>

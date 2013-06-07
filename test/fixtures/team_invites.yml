@@ -1,0 +1,27 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  team_id: 1
+  email_original: MyString
+  user_id: 1
+  goal_id: 1
+  first_sent_date: 2013-06-06
+  remind_until_date: 2013-06-06
+  remind_every_n_days: 1
+  last_reminded_date: 2013-06-06
+  declined_date: 2013-06-06
+  ignored_date: 2013-06-06
+  accepted_date: 2013-06-06
+
+two:
+  team_id: 1
+  email_original: MyString
+  user_id: 1
+  goal_id: 1
+  first_sent_date: 2013-06-06
+  remind_until_date: 2013-06-06
+  remind_every_n_days: 1
+  last_reminded_date: 2013-06-06
+  declined_date: 2013-06-06
+  ignored_date: 2013-06-06
+  accepted_date: 2013-06-06

@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130523110540) do
+ActiveRecord::Schema.define(:version => 20130606111337) do
 
   create_table "achievemints", :force => true do |t|
     t.string   "name"
@@ -563,6 +563,22 @@ ActiveRecord::Schema.define(:version => 20130523110540) do
     t.datetime "updated_at"
   end
 
+  create_table "team_invites", :force => true do |t|
+    t.integer  "team_id"
+    t.string   "email_original"
+    t.integer  "user_id"
+    t.integer  "goal_id"
+    t.date     "first_sent_date"
+    t.date     "remind_until_date"
+    t.integer  "remind_every_n_days"
+    t.date     "last_reminded_date"
+    t.date     "declined_date"
+    t.date     "ignored_date"
+    t.date     "accepted_date"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "teamgoals", :force => true do |t|
     t.integer  "team_id"
     t.integer  "goal_id"
@@ -592,6 +608,9 @@ ActiveRecord::Schema.define(:version => 20130523110540) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "has_opening"
+    t.integer  "goal_template_parent_id"
+    t.boolean  "custom"
+    t.integer  "owner_user_id"
   end
 
   create_table "template_achievemints", :force => true do |t|

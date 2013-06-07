@@ -1,0 +1,56 @@
+<h1>Editing team_invite</h1>
+
+<% form_for(@team_invite) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :team_id %><br />
+    <%= f.text_field :team_id %>
+  </p>
+  <p>
+    <%= f.label :email_original %><br />
+    <%= f.text_field :email_original %>
+  </p>
+  <p>
+    <%= f.label :user_id %><br />
+    <%= f.text_field :user_id %>
+  </p>
+  <p>
+    <%= f.label :goal_id %><br />
+    <%= f.text_field :goal_id %>
+  </p>
+  <p>
+    <%= f.label :first_sent_date %><br />
+    <%= f.date_select :first_sent_date %>
+  </p>
+  <p>
+    <%= f.label :remind_until_date %><br />
+    <%= f.date_select :remind_until_date %>
+  </p>
+  <p>
+    <%= f.label :remind_every_n_days %><br />
+    <%= f.text_field :remind_every_n_days %>
+  </p>
+  <p>
+    <%= f.label :last_reminded_date %><br />
+    <%= f.date_select :last_reminded_date %>
+  </p>
+  <p>
+    <%= f.label :declined_date %><br />
+    <%= f.date_select :declined_date %>
+  </p>
+  <p>
+    <%= f.label :ignored_date %><br />
+    <%= f.date_select :ignored_date %>
+  </p>
+  <p>
+    <%= f.label :accepted_date %><br />
+    <%= f.date_select :accepted_date %>
+  </p>
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @team_invite %> |
+<%= link_to 'Back', team_invites_path %>

@@ -1,0 +1,40 @@
+<h1>Listing team_invites</h1>
+
+<table>
+  <tr>
+    <th>Team</th>
+    <th>Email original</th>
+    <th>User</th>
+    <th>Goal</th>
+    <th>First sent date</th>
+    <th>Remind until date</th>
+    <th>Remind every n days</th>
+    <th>Last reminded date</th>
+    <th>Declined date</th>
+    <th>Ignored date</th>
+    <th>Accepted date</th>
+  </tr>
+
+<% @team_invites.each do |team_invite| %>
+  <tr>
+    <td><%=h team_invite.team_id %></td>
+    <td><%=h team_invite.email_original %></td>
+    <td><%=h team_invite.user_id %></td>
+    <td><%=h team_invite.goal_id %></td>
+    <td><%=h team_invite.first_sent_date %></td>
+    <td><%=h team_invite.remind_until_date %></td>
+    <td><%=h team_invite.remind_every_n_days %></td>
+    <td><%=h team_invite.last_reminded_date %></td>
+    <td><%=h team_invite.declined_date %></td>
+    <td><%=h team_invite.ignored_date %></td>
+    <td><%=h team_invite.accepted_date %></td>
+    <td><%= link_to 'Show', team_invite %></td>
+    <td><%= link_to 'Edit', edit_team_invite_path(team_invite) %></td>
+    <td><%= link_to 'Destroy', team_invite, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New team_invite', new_team_invite_path %>
