@@ -106,9 +106,9 @@
             <form>
                 <textarea cols="80" rows="4" name="comment_<%= @goal.id %>"><%= @goal.get_daily_comment_for(add_comment_date) %></textarea> 
                 <p>Add a note or comment above, which will be saved when you click "Save Answers" at the bottom.</p>
-                <center><input type="submit" class="button dark" value="Save Note" /></center>
+                <center><input type="submit" class="btn" value="Save Note" /></center>
                 <input type="hidden" name="update_comment" value="1">
-                <input type="hidden" name="@goal_id" value="<%= @goal.id %>">
+                <input type="hidden" name="goal_id" value="<%= @goal.id %>">
                 <input type="hidden" name="date" value="<%= add_comment_date %>">
             </form>
         </div>
