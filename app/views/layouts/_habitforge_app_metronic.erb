@@ -394,6 +394,31 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
 
 
 
+<!-- http://www.professorcloud.com/mainsite/carousel-integration.htm -->
+<!-- Load the CloudCarousel JavaScript file -->
+<script type="text/JavaScript" src="/javascripts/cloud-carousel.1.0.5.js"></script>
+<script>
+$(document).ready(function(){
+               
+  // This initialises carousels on the container elements specified, in this case, carousel1.
+  $("#carousel1").CloudCarousel(    
+    {     
+      xPos: 128,
+      yPos: 32,
+      buttonLeft: $("#left-but"),
+      buttonRight: $("#right-but"),
+      altBox: $("#alt-text"),
+      titleBox: $("#title-text")
+    }
+  );
+});
+ 
+</script>
+
+
+
+
+
   <!-- direct to facebook 
   <div id="fb-root"></div>
   <script>(function(d, s, id) {
@@ -1080,11 +1105,35 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
         <hr />
 
 
-        <center>
 
+        <div class="row-fluid">
+          <div class="span6"> 
+          <center>
+          <!-- START CAROUSEL -->
+          <!-- This is the container for the carousel. -->
+          <h2>Recommended Reading</h2>
+          <div id = "carousel1" style="width:256px; height:200px;background:#FFF;">            
+              <!-- All images with class of "cloudcarousel" will be turned into carousel items -->
+              <!-- You can place links around these images -->
+              <a href="http://www.amazon.com/gp/product/1400069289/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=1400069289&linkCode=as2&tag=habitforge-20" target="_blank"><img class = "cloudcarousel" src="/images/carousel_book_the_power_of_habit.jpg" alt="The Power of Habit" title="The Power of Habit" /></a>
+              <a href="http://www.amazon.com/gp/product/0767920082/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=0767920082&linkCode=as2&tag=habitforge-20" target="_blank"><img class = "cloudcarousel" src="/images/carousel_book_this_year_i_will.jpg" alt="This Year I Will" title="This Year I Will" /></a>
+              <a href="http://www.amazon.com/gp/product/0307591549/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=0307591549&linkCode=as2&tag=habitforge-20" target="_blank"><img class = "cloudcarousel" src="/images/carousel_book_the_happiness_advantage.jpg" alt="The Happiness Advantage" title="The Happiness Advantage" /></a>
+              <a href="http://www.amazon.com/gp/product/030746363X/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=030746363X&linkCode=as2&tag=habitforge-20" target="_blank"><img class = "cloudcarousel" src="/images/carousel_book_4_hour_body.jpg" alt="4 Hour Body" title="4 Hour Body" /></a>
+          </div>
 
+          <!-- Define left and right buttons. -->
+          <input id="left-but"  type="button" class="btn blue" value="<<" />
+          <input id="right-but" type="button" class="btn blue" value=">>" />
 
-        <% if @production %>
+          <!-- Define elements to accept the alt and title text from the images. -->
+          <p id="title-text"></p>
+          </center>
+          <!-- END CAROUSEL -->
+
+        </div>
+        <div class="span6"> 
+
+        <% if !@production %>
 
           <div id="fb-root"></div>
           <script>
@@ -1113,8 +1162,10 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
         <% else %>
           In production we'd have some facebook, twitter and pinterest links here.
         <% end %>
-        
-        </center>
+        </div>
+      </div>
+
+
       </div>
       <!-- END PAGE CONTAINER-->    
     </div>
