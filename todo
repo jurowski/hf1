@@ -27,6 +27,11 @@ keep reminding an invitee for a while until they take action
 (later: add an icon/mascot/avatar for our team)
 (later: add a "fade or not" photo mosaic linked to each team member's last 7 days ... one row per person)
 
+
+---------------------------------------------------------------
+DONE BELOW
+---------------------------------------------------------------
+
 ----------------------
 mod table "teams"
 ----------------------

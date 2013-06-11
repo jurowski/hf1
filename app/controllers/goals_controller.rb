@@ -633,9 +633,10 @@ logger.debug "SGJ2 2 #{goal.title}(#{goal.id}) #{goal.daysstraight} daysstraight
                 #### now that we have their first name, we can send the email 
                 the_subject = "Confirm your HabitForge Subscription"
                 begin
-                  if Rails.env.production?
+                  #if Rails.env.production?
+                    logger.error("sgj:goals_controller:about to send user confirmation to user " + @user.email)
                     Notifier.deliver_user_confirm(@user, the_subject) # sends the email
-                  end
+                  #end
                 rescue
                   logger.error("sgj:email confirmation for user creation did not send")
                 end

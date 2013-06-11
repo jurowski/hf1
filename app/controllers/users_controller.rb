@@ -358,9 +358,10 @@ class UsersController < ApplicationController
           user.save
           #### now that we have saved and have the user id, we can send the email 
           the_subject = "Confirm your HabitForge Subscription"
-          if Rails.env.production?
+          #if Rails.env.production?
+          logger.error("sgj:users_controller:create:about to send user confirmation to user " + user.email)
             Notifier.deliver_user_confirm(user, the_subject) # sends the email
-          end
+          #end
         rescue
           logger.error("sgj:email confirmation for user creation did not send")
         end
@@ -606,9 +607,10 @@ class UsersController < ApplicationController
       #### now that we have saved and have the user id, we can send the email 
       the_subject = "Confirm your HabitForge Subscription"
       begin
-        if Rails.env.production?
+        #if Rails.env.production?
+          logger.error("sgj:users_controller:create:about to send user confirmation to user " + @user.email)
           Notifier.deliver_user_confirm(@user, the_subject) # sends the email
-        end
+        #end
       rescue
         logger.error("sgj:email confirmation for user creation did not send")
       end

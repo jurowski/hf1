@@ -5,14 +5,14 @@ let me choose whether the team is for the goal itself (team-goal) or for the goa
 if team-goal, make each team goal the child of a template (if my goal is not yet a child, copy it to a parent template)
 suggest a team name, and let me edit it
 do not allow random assignments to my custom team
-let me be the leader of my team
+let me be the owner of my team
 let me choose how many people are on my custom team
 let me craft an invite that has a link to start my goal (and if I have chosen category-level vs. goal-level, a link to start a custom or click from an array of templated goals in the same category)
 let me send invites to team members
 let my invite go to multiple email addresses separated by commas
 (teamgoals) do not kick people off of my custom team for not checking in
 do not let me quit a team that I am the leader of if there are other members
-allow me to transfer leadership to another member of the team
+allow me to transfer ownership to another member of the team
 notify every team member when a new member arrives
 notify every team member when a member leaves
 let me email the whole team
@@ -32,7 +32,7 @@ mod table "teams"
 ----------------------
 goal_template_parent_id (nil if category only)
 custom # boolean, nil or false if randomized team)
-leader_user_id
+owner_user_id
 
 --------------
 new table "team_invites"

@@ -941,6 +941,43 @@ $(document).ready(function(){
             logger.error("sgj problem confirming user with id" + params[:user_id])
           end
           %>
+        <% else %>
+            <%
+              ##################################################################
+              ##################################################################
+              ############# START USER IS NOT YET CONFIRMED               ######
+              ### didn't really start checking until 20130611 ... so every account
+              ### created prior to that was changed to confirmed_address = 1
+              if ( current_user and !current_user.confirmed_address and current_user.number_of_active_habits > 0 and @cn == "goals")
+                %>
+                <div id="not_confirmed_lightbox_black" class="black_overlay">
+                </div>
+
+                <div id="not_confirmed_lightbox_close" class="div_close_button">
+
+                   <a href="#undefined" onclick="toggle_show_hide('not_confirmed_lightbox_black');toggle_show_hide('not_confirmed_lightbox_white');toggle_show_hide('not_confirmed_lightbox_close');"><img src='/images/close.png' /></a>
+
+                </div>
+
+                <div id="not_confirmed_lightbox_white" class="white_content">
+
+                  <div class="notice">
+                      <h4>Please check your email and click your confirmation link!</h4>
+                      <p>
+                      As soon as you confirm your account, you can start getting email check-ins and reminders from HabitForge.
+                      <br>
+                      <br>
+                      </p>
+                  </div>
+
+                </div>
+                  
+              <%
+              end
+              ############# END USER IS NOT YET CONFIRMED                 ######
+              ##################################################################
+              ##################################################################
+            %>
         <% end %>
 
 
@@ -992,6 +1029,8 @@ $(document).ready(function(){
         end 
         ######## END PASSWORD AND TIME ZONE SETTING ############
         ########################################################
+
+
 
 
         ##################################################################
