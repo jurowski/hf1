@@ -83,7 +83,7 @@ class SendRemindersFrequent < ActiveRecord::Base
     if testing == 1 ### assuming adminuseremail of "jurowski@gmail.com" or "jurowski@pediatrics.wisc.edu"
       user_conditions = "id = '#{test_user_id1}' or id = '#{test_user_id2}'"
     else
-      user_conditions = "update_number_active_goals > 0"
+      user_conditions = "update_number_active_goals > 0 and confirmed_address = '1'"
     end
 
     @users = User.find(:all, :conditions => user_conditions)
