@@ -1,16 +1,16 @@
 
 
 <!-- START comments section --> 
-<% if @goal.is_this_a_relevant_day(current_user.dtoday) or @goal.is_this_a_relevant_day(current_user.dyesterday) %>
+<% if @goal.is_this_a_relevant_day(@goal.user.dtoday) or @goal.is_this_a_relevant_day(@goal.user.dyesterday) %>
     <%
     show_add_comment = false
-    add_comment_date = current_user.dtoday
+    add_comment_date = @goal.user.dtoday
     %>
-    <% if @goal.is_this_a_relevant_day(current_user.dtoday) and (@goal.get_daily_status_for(current_user.dtoday) == "yes" or @goal.get_daily_status_for(current_user.dtoday) == "no") %>
+    <% if @goal.is_this_a_relevant_day(@goal.user.dtoday) and (@goal.get_daily_status_for(@goal.user.dtoday) == "yes" or @goal.get_daily_status_for(@goal.user.dtoday) == "no") %>
             <%
             show_add_comment = true
             %>            
-            <% if @goal.get_daily_status_for(current_user.dtoday) == "yes" %>
+            <% if @goal.get_daily_status_for(@goal.user.dtoday) == "yes" %>
 
             <div>
             <p>
@@ -24,7 +24,7 @@
             </p>
             </div>
         <% end %>
-        <% if @goal.get_daily_status_for(current_user.dtoday) == "no" %>
+        <% if @goal.get_daily_status_for(@goal.user.dtoday) == "no" %>
             <div>
             <p>
             <img src="/images/delete.png" height=20px>
@@ -33,12 +33,12 @@
             </div>
         <% end %>
     <% else %>
-        <% if @goal.is_this_a_relevant_day(current_user.dyesterday) and (@goal.get_daily_status_for(current_user.dyesterday) == "yes" or @goal.get_daily_status_for(current_user.dyesterday) == "no") %>
+        <% if @goal.is_this_a_relevant_day(@goal.user.dyesterday) and (@goal.get_daily_status_for(@goal.user.dyesterday) == "yes" or @goal.get_daily_status_for(@goal.user.dyesterday) == "no") %>
             <%
             show_add_comment = true
-            add_comment_date = current_user.dyesterday
+            add_comment_date = @goal.user.dyesterday
             %>  
-            <% if @goal.get_daily_status_for(current_user.dyesterday) == "yes" %>        
+            <% if @goal.get_daily_status_for(@goal.user.dyesterday) == "yes" %>        
                 <div>
                 <p>
                 <img src="/images/checkmark_green.png" height="20px" width="20px">
@@ -52,7 +52,7 @@
                 </div>
             <% end %>
 
-            <% if @goal.get_daily_status_for(current_user.dyesterday) == "no" %>
+            <% if @goal.get_daily_status_for(@goal.user.dyesterday) == "no" %>
                 <div>
                 <p>
                 <img src="/images/delete.png" height=20px>
@@ -65,30 +65,30 @@
     <%
     if show_add_comment
         add_note_text = ""
-        if add_comment_date == current_user.dtoday
-            if @goal.get_daily_status_for(current_user.dtoday) == "yes"
-                if @goal.get_daily_comment_for(current_user.dtoday) == ""
+        if add_comment_date == @goal.user.dtoday
+            if @goal.get_daily_status_for(@goal.user.dtoday) == "yes"
+                if @goal.get_daily_comment_for(@goal.user.dtoday) == ""
                     add_note_text = "Notes: How did it feel to follow through today?"
                 else
                     add_note_text = "Today's notes"
                 end
             else
-                if @goal.get_daily_comment_for(current_user.dtoday) == ""
+                if @goal.get_daily_comment_for(@goal.user.dtoday) == ""
                     add_note_text = "Notes: Add a note about today."
                 else
                     add_note_text = "Today's notes"
                 end
             end
         end
-        if add_comment_date == current_user.dyesterday
-            if @goal.get_daily_status_for(current_user.dyesterday) == "yes"
-                if @goal.get_daily_comment_for(current_user.dyesterday) == ""
+        if add_comment_date == @goal.user.dyesterday
+            if @goal.get_daily_status_for(@goal.user.dyesterday) == "yes"
+                if @goal.get_daily_comment_for(@goal.user.dyesterday) == ""
                     add_note_text = "Notes: How did it feel yesterday to follow through?"
                 else
                     add_note_text = "Yesterday's notes"
                 end
             else
-                if @goal.get_daily_comment_for(current_user.dtoday) == ""
+                if @goal.get_daily_comment_for(@goal.user.dtoday) == ""
                     add_note_text = "Notes: Add a note about yesterday."
                 else
                     add_note_text = "Yesterday's notes"
