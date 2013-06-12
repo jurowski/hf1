@@ -15,7 +15,7 @@
 <% if params[:too_many_active_habits] %>
 
 
-    <div id="upgrade_lightbox_black" class="black_overlay">
+    <div id="upgrade_lightbox_blagck" class="black_overlay">
     </div>
     <div id="upgrade_lightbox_close" class="div_close_button">
          <a href="#undefined" onclick="toggle_show_hide('upgrade_lightbox_black');toggle_show_hide('upgrade_lightbox_white');toggle_show_hide('upgrade_lightbox_close');"><img src='/images/close.png' /></a>
@@ -968,7 +968,7 @@ http://localhost:3000/goals?update_checkpoint_status=yes&date=2012-02-12&e0=106&
             slacker_goal = slacker_goals[random_index]
 
             ### do this for Free users only (to keep them involved)
-            if slacker_goal and !slacker_goal.user.is_habitforge_supporting_member
+            if slacker_goal and slacker_goal.user and !slacker_goal.user.is_habitforge_supporting_member
 
                 if slacker_goal.user.first_name != "unknown"
                 %>
@@ -1010,7 +1010,7 @@ http://localhost:3000/goals?update_checkpoint_status=yes&date=2012-02-12&e0=106&
                     <br>
                    <%
                 end ### end if slacker goal user has a real name (vs. unknown)
-             end ### end if there's still a slacker goal
+             end ### end if there's still a slacker goal and a slacker user
          end ### end each slacker goal
     end ### end if they can fake a login to send the email
 

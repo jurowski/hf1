@@ -871,7 +871,9 @@ class UsersController < ApplicationController
       redirect_to(users_url)
     else
       ### Log out
-      current_user_session.destroy
+      if current_user_session
+        current_user_session.destroy
+      end
       redirect_to("/?account_removed=1")
     end
   
