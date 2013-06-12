@@ -163,75 +163,85 @@ class SendReminders < ActiveRecord::Base
       #don't send the reminder on the goal creation day!
       #so if user.today < goal.start_date, don't send
 
-    #logtext = "running #{goal_conditions}"              
-    #puts logtext
-    #logger.info logtext 
+      #logtext = "running #{goal_conditions}"              
+      #puts logtext
+      #logger.info logtext 
 
       
       @goals = Goal.find(:all, :conditions => goal_conditions)
       for goal in @goals
+
+        @checkpoints_at_least_one = Checkpoint.find(:all, :conditions => "goal_id = '#{goal.id}' and checkin_date = '#{dnow}'")
+        @checkpoints = Checkpoint.find(:all, :conditions => "goal_id = '#{goal.id}' and checkin_date = '#{dnow}' and status = 'email not yet sent'")
+        if !@checkpoints_at_least_one or @checkpoints.size > 0
+
+
+
+          ### don't let a reminder go out if it's > 4 hours too late
+          max_time_to_send = goal.reminder_send_hour + 4
+          if tnow_hour <= max_time_to_send 
+
+              ### Send reminder email
+              logtext = "About to send user_id of #{goal.user.id.to_s} ( #{goal.user.email} ) a reminder email for today (#{today_dayname}), #{dnow}. Their time is #{tnow.to_s} or hour number #{tnow_hour}."              
+              puts logtext
+              logger.info logtext 
+
+              reminder_sent = false
           
-        ### don't let a reminder go out if it's > 4 hours too late
-        max_time_to_send = goal.reminder_send_hour + 4
-        if tnow_hour <= max_time_to_send 
+              if goal.user.sponsor == "habitforge"
+                      begin
+                          Notifier.deliver_daily_reminder_to_user(goal) # sends the email
+                          logger.debug "reminder sent for " + goal.user.email + " " + goal.title
+                          reminder_sent = true
+                      rescue
+                          the_message = "SGJerror failed to send HF reminder for goal " + goal.id.to_s + " entitled " + goal.title + " to " + goal.user.email 
+                          puts the_message
+                          logger.error the_message
+                      end
+              end
+              if goal.user.sponsor == "forittobe"
+                      begin
+                          Notifier.deliver_daily_reminder_to_user_forittobe(goal) # sends the email 
+                          logger.debug "reminder sent for " + goal.user.email + " " + goal.title
+                          reminder_sent = true
+                      rescue
+                          the_message = "SGJerror failed to send FORITTOBE reminder to " + goal.user.email 
+                          puts the_message
+                          logger.error the_message
+                      end
+              end
+              if goal.user.sponsor == "clearworth"
+                      begin 
+                          Notifier.deliver_daily_reminder_to_user_clearworth(goal) # sends the email 
+                          logger.debug "reminder sent for " + goal.user.email + " " + goal.title
+                          reminder_sent = true
+                      rescue
+                          the_message = "SGJerror failed to send CLEARWORTH reminder to " + goal.user.email 
+                          puts the_message
+                          logger.error the_message
+                      end
+              end
+          
+              if reminder_sent
+                  goal.reminder_last_sent_date = dnow
+                  goal.save
 
-            ### Send reminder email
-            logtext = "About to send user_id of #{goal.user.id.to_s} ( #{goal.user.email} ) a reminder email for today (#{today_dayname}), #{dnow}. Their time is #{tnow.to_s} or hour number #{tnow_hour}."              
-            puts logtext
-            logger.info logtext 
-
-            reminder_sent = false
-        
-            if goal.user.sponsor == "habitforge"
-                    begin
-                        Notifier.deliver_daily_reminder_to_user(goal) # sends the email
-                        logger.debug "reminder sent for " + goal.user.email + " " + goal.title
-                        reminder_sent = true
-                    rescue
-                        the_message = "SGJerror failed to send HF reminder for goal " + goal.id.to_s + " entitled " + goal.title + " to " + goal.user.email 
-                        puts the_message
-                        logger.error the_message
-                    end
-            end
-            if goal.user.sponsor == "forittobe"
-                    begin
-                        Notifier.deliver_daily_reminder_to_user_forittobe(goal) # sends the email 
-                        logger.debug "reminder sent for " + goal.user.email + " " + goal.title
-                        reminder_sent = true
-                    rescue
-                        the_message = "SGJerror failed to send FORITTOBE reminder to " + goal.user.email 
-                        puts the_message
-                        logger.error the_message
-                    end
-            end
-            if goal.user.sponsor == "clearworth"
-                    begin 
-                        Notifier.deliver_daily_reminder_to_user_clearworth(goal) # sends the email 
-                        logger.debug "reminder sent for " + goal.user.email + " " + goal.title
-                        reminder_sent = true
-                    rescue
-                        the_message = "SGJerror failed to send CLEARWORTH reminder to " + goal.user.email 
-                        puts the_message
-                        logger.error the_message
-                    end
-            end
-        
-            if reminder_sent
-                goal.reminder_last_sent_date = dnow
-                goal.save
-
-                logtext = "Success emailing #{goal.user.email}."              
-                puts logtext
-                logger.info logtext 
-            end
+                  logtext = "Success emailing #{goal.user.email}."              
+                  puts logtext
+                  logger.info logtext 
+              end
 
 
-        else
-            ### it's too late in the day, don't bother sending this reminder
-        end
+          else
+              ### it's too late in the day, don't bother sending this reminder
+          end ### end whether too late in the day to send reminder
 
-      end
-    end
+
+          
+        end ## end whether we have a qualifying checkpoint
+
+      end ### end for each goal
+    end ### end for each user
     
     puts "end of script"
   rescue Timeout::Error

@@ -170,46 +170,53 @@ class SendRemindersFrequent < ActiveRecord::Base
       for goal in @goals
           
 
-        next_time_to_send = goal.more_reminders_last_sent + goal.more_reminders_every_n_hours
+        @checkpoints_at_least_one = Checkpoint.find(:all, :conditions => "goal_id = '#{goal.id}' and checkin_date = '#{dnow}'")
+        @checkpoints = Checkpoint.find(:all, :conditions => "goal_id = '#{goal.id}' and checkin_date = '#{dnow}' and status = 'email not yet sent'")
+        if !@checkpoints_at_least_one or @checkpoints.size > 0
 
-        ### send if now >= (last_sent_hour + send_every)
-        ### also send if last_sent_hour > now 
-        ### (this means it was last sent yesterday)
 
-        if (tnow_hour >= next_time_to_send) or (goal.more_reminders_last_sent > tnow_hour) 
+          next_time_to_send = goal.more_reminders_last_sent + goal.more_reminders_every_n_hours
 
-            ### Send reminder email
-            logtext = "About to send user_id of #{goal.user.id.to_s} ( #{goal.user.email} ) a 'frequent' reminder email for today (#{today_dayname}), #{dnow}. Their time is #{tnow.to_s} or hour number #{tnow_hour}."              
-            puts logtext
-            logger.info logtext 
+          ### send if now >= (last_sent_hour + send_every)
+          ### also send if last_sent_hour > now 
+          ### (this means it was last sent yesterday)
 
-            reminder_sent = false
-        
-            if goal.user.sponsor == "habitforge"
-                    begin
-                        Notifier.deliver_daily_reminder_to_user(goal) # sends the email
-                        logger.debug "reminder sent for " + goal.user.email + " " + goal.title
-                        reminder_sent = true
-                    rescue
-                        the_message = "SGJerror failed to send HF reminder to " + goal.user.email 
-                        puts the_message
-                        logger.error the_message
-                    end
-            end
-        
-            if reminder_sent
-                goal.more_reminders_last_sent = tnow_hour
-                goal.save
+          if (tnow_hour >= next_time_to_send) or (goal.more_reminders_last_sent > tnow_hour) 
 
-                logtext = "Success emailing #{goal.user.email}."              
-                puts logtext
-                logger.info logtext 
-            end
+              ### Send reminder email
+              logtext = "About to send user_id of #{goal.user.id.to_s} ( #{goal.user.email} ) a 'frequent' reminder email for today (#{today_dayname}), #{dnow}. Their time is #{tnow.to_s} or hour number #{tnow_hour}."              
+              puts logtext
+              logger.info logtext 
 
-        end
+              reminder_sent = false
+          
+              if goal.user.sponsor == "habitforge"
+                      begin
+                          Notifier.deliver_daily_reminder_to_user(goal) # sends the email
+                          logger.debug "reminder sent for " + goal.user.email + " " + goal.title
+                          reminder_sent = true
+                      rescue
+                          the_message = "SGJerror failed to send HF reminder to " + goal.user.email 
+                          puts the_message
+                          logger.error the_message
+                      end
+              end
+          
+              if reminder_sent
+                  goal.more_reminders_last_sent = tnow_hour
+                  goal.save
 
-      end
-    end
+                  logtext = "Success emailing #{goal.user.email}."              
+                  puts logtext
+                  logger.info logtext 
+              end
+
+          end ## end if time to send
+
+        end ### end if qualifying checkpoint
+
+      end ### end for each goal
+    end ### end for each user
     
     puts "end of script"
   rescue Timeout::Error
