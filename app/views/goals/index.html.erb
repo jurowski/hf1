@@ -137,16 +137,27 @@
 
 
 <!-- START SHOW NEWEST MEMBERS --> 
-<% run_this_code = true %>
+<% run_this_code = false %>
 <% if run_this_code %>
 <div style="background-color:#ffffff;padding:5px;"> 
     <p>
 
     <% max = 3 %>
     <% counter = 0 %>
-    <% members = User.find(:all, :conditions => "first_name <> 'unknown' and id <> '#{current_user.id}'", :order => "id DESC", :limit => 25) %>
+
+    <% members = User.find(:all, :order => "id ASC", :limit => 25) %>
+
+    <!--
+    my_conditions = ""
+    members = User.paginate(:page => 1,
+                               :per_page   => 100,
+                               :order      => 'id desc',
+                               :conditions => my_conditions)
+
+    -->                               
     <% members.each do |member| %>
-        <% if counter <= max %>
+        <%= member.id %>
+        <% if member.id != current_user.id and member.first_name != "unknown" and counter <= max %>
             <% if member.number_of_public_habits > 0 %>
                 <% if counter == 0 %>
 
