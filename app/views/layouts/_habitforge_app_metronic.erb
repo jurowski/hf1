@@ -753,10 +753,17 @@ $(document).ready(function(){
                 <li class="divider"></li>
 
 
-                <% if current_user and fully_logged_in %>
+                <% if fully_logged_in %>
                   <li>
                       <%= link_to "<i class='icon-off'></i> Log Out", user_session_path, :method => :delete %>            
                   </li>
+                <% else %>
+                  <li>
+                    <a href="/user_session/new?skip_intro=1">
+                      <i class="icon-off"></i>
+                      Log In Fully
+                    </a>
+                  </li>             
                 <% end %>
 
               </ul>
@@ -1114,20 +1121,20 @@ $(document).ready(function(){
 
 
           <!-- TIME OF DAY GREETING -->
-          <% if current_user and !fully_logged_in %>
+<!--           < if current_user and !fully_logged_in >
             <div class="alert">
 
-            <% if current_user.show_gravatar %>
-              <% gravatar = "http://www.gravatar.com/avatar/#{Digest::MD5.hexdigest(current_user.email.downcase)}?d=mm" %>
-              <img src="<%= gravatar %>&s=30" />            
-            <% else %>
+            < if current_user.show_gravatar >
+              < gravatar = "http://www.gravatar.com/avatar/#{Digest::MD5.hexdigest(current_user.email.downcase)}?d=mm" >
+              <img src="<= gravatar >&s=30" />            
+            < else >
               <img src="/home/images/default_gravatar.png" height="30px"/>
-            <% end %>
+            < end >
 
-            Good <%= current_user.time_period_of_day_right_now %> <%= current_user.first_name %>! For full account access, 
+            Good <= current_user.time_period_of_day_right_now > <= current_user.first_name >! For full account access, 
             <a href="/user_session/new?skip_intro=1">log in here.</a>
             </div>
-          <% end %>
+          < end > -->
 
 
 
