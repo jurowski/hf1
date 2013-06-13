@@ -228,11 +228,14 @@ printed_today_actions_once = false
 printed_tomorrow_actions_once = false
 printed_future_actions_once = false
 for goal in current_user.active_goals_sorted_by_next_action_day
+
+    collapse = true
     @goal = goal
     
     if number_goals_today > 0
         if !printed_today_actions_once
             printed_today_actions_once = true
+            collapse = false
             %>
             <div>
 
@@ -316,7 +319,7 @@ for goal in current_user.active_goals_sorted_by_next_action_day
     <!-- START PRINT HABIT -->    
     <!-- *********** -->
     <!-- BEGIN CUSTOM BUTTONS WITH ICONS PORTLET-->
-    <div class="portlet box blue" >
+    <div class="portlet box blue " >
         <div class="portlet-title">
 
            <div class="caption">
@@ -336,7 +339,12 @@ for goal in current_user.active_goals_sorted_by_next_action_day
 
             </div>
             <div class="tools">
-              <a href="javascript:;" class="collapse"></a>
+              <% if collapse %>
+                  <a href="javascript:;" class="expand"></a>
+              <% else %>
+                  <a href="javascript:;" class="collapse"></a>
+              <% end %>
+
               <!-- <a href="#portlet-config" data-toggle="modal" class="config"></a> -->
               <!-- <a href="javascript:;" class="reload"></a> -->
               <!-- <a href="javascript:;" class="remove"></a> -->
@@ -344,7 +352,11 @@ for goal in current_user.active_goals_sorted_by_next_action_day
         </div>
 
 
-        <div class="portlet-body">
+        <% if collapse %>
+            <div class="portlet-body hide">
+        <% else %>
+            <div class="portlet-body">
+        <% end %>
 
         <!-- START HABIT -->
 
@@ -356,7 +368,7 @@ for goal in current_user.active_goals_sorted_by_next_action_day
     <div id="spinner_catchup_goal_id_<%= @goal.id%>" style="display:none;">
         <center><img src="/images/spinner.gif"/></center>
     </div>
-    <div class="class_catch_up_on_checkpoints_goal_id_<%= @goal.id.to_s %> alert alert-info">
+    <div class="class_catch_up_on_checkpoints_goal_id_<%= @goal.id.to_s %> ">
         <%= render :partial => "goals/catch_up_on_checkpoints", :locals => { :catch_up_on_checkpoints => @goal }  %>
     </div>
     <!-- CATCH UP -->

@@ -138,7 +138,7 @@
                 <a href="/goals/?goal_id=<= @goal.id.to_s >&date=<= @goal.user.dtoday.to_s >&update_checkpoint_status=yes&e0=<= @goal.user.email[0] >&f0=<= @goal.user.first_name[0] >&u=<= @goal.user.id >"  onclick="toggle_show('spinner');reload_catch_up_on_checkpoints_BETA('<= @goal.id.to_s >');">I Already Succeeded Today!</a>
                 -->
 
-              <a onclick="toggle_show('spinner_catchup_goal_id_<%= @goal.id %>');update_checkpoint_then_reload_goal_catch_up('<%= @goal.id %>','<%= @goal.user.dtoday.to_s %>','yes','<%= @goal.user.email[0] %>','<%= @goal.user.first_name[0] %>','<%= @goal.user.id %>');" class="btn green" >I Already Succeeded Today!</a>
+              <a onclick="toggle_show('spinner_catchup_goal_id_<%= @goal.id %>');update_checkpoint_then_reload_goal_catch_up('<%= @goal.id %>','<%= @goal.user.dtoday.to_s %>','yes','<%= @goal.user.email[0] %>','<%= @goal.user.first_name[0] %>','<%= @goal.user.id %>');" class="btn " >I Already Succeeded Today!</a>
 
                 &nbsp or &nbsp
 
@@ -151,7 +151,7 @@
                 <a href="/goals/?goal_id=<= @goal.id.to_s >&date=<= @goal.user.dtoday.to_s >&update_checkpoint_status=no&e0=<= @goal.user.email[0] >&f0=<= @goal.user.first_name[0] >&u=<= @goal.user.id >"  onclick="toggle_show('spinner');reload_catch_up_on_checkpoints_BETA('<= @goal.id.to_s >');">I didn't do this today.</a>
                 -->
 
-              <a onclick="toggle_show('spinner_catchup_goal_id_<%= @goal.id %>');update_checkpoint_then_reload_goal_catch_up('<%= @goal.id %>','<%= @goal.user.dtoday.to_s %>','no','<%= @goal.user.email[0] %>','<%= @goal.user.first_name[0] %>','<%= @goal.user.id %>');" class="btn red" >I didn't do this today.</a>
+              <a onclick="toggle_show('spinner_catchup_goal_id_<%= @goal.id %>');update_checkpoint_then_reload_goal_catch_up('<%= @goal.id %>','<%= @goal.user.dtoday.to_s %>','no','<%= @goal.user.email[0] %>','<%= @goal.user.first_name[0] %>','<%= @goal.user.id %>');" class="btn " >I didn't do this today.</a>
 
         </h3>
         </div>
@@ -209,7 +209,7 @@ if @goal.has_unanswered_checkpoints
                 <a href="/goals/?goal_id=<= @goal.id.to_s >&date=<= @checkin_date >&update_checkpoint_status=yes&e0=<= @goal.user.email[0] >&f0=<= @goal.user.first_name[0] >&u=<= @goal.user.id >"  onclick="toggle_show('spinner');reload_catch_up_on_checkpoints_BETA('<= @goal.id.to_s >');">Yes</a>
                 -->
 
-              <a onclick="toggle_show('spinner_catchup_goal_id_<%= @goal.id %>');update_checkpoint_then_reload_goal_catch_up('<%= @goal.id %>','<%= @checkin_date %>','yes','<%= @goal.user.email[0] %>','<%= @goal.user.first_name[0] %>','<%= @goal.user.id %>');" class="btn green" >Yes</a>
+              <a onclick="toggle_show('spinner_catchup_goal_id_<%= @goal.id %>');update_checkpoint_then_reload_goal_catch_up('<%= @goal.id %>','<%= @checkin_date %>','yes','<%= @goal.user.email[0] %>','<%= @goal.user.first_name[0] %>','<%= @goal.user.id %>');" class="btn " >Yes</a>
 
             &nbsp • &nbsp
 
@@ -223,7 +223,7 @@ if @goal.has_unanswered_checkpoints
                 <a href="/goals/?goal_id=<= @goal.id.to_s >&date=<= @checkin_date >&update_checkpoint_status=no&e0=<= @goal.user.email[0] >&f0=<= @goal.user.first_name[0] >&u=<= @goal.user.id >"  onclick="toggle_show('spinner');reload_catch_up_on_checkpoints_BETA('<= @goal.id.to_s >');">No</a>
                 -->
 
-              <a onclick="toggle_show('spinner_catchup_goal_id_<%= @goal.id %>');update_checkpoint_then_reload_goal_catch_up('<%= @goal.id %>','<%= @checkin_date %>','no','<%= @goal.user.email[0] %>','<%= @goal.user.first_name[0] %>','<%= @goal.user.id %>');" class="btn red" >No</a>
+              <a onclick="toggle_show('spinner_catchup_goal_id_<%= @goal.id %>');update_checkpoint_then_reload_goal_catch_up('<%= @goal.id %>','<%= @checkin_date %>','no','<%= @goal.user.email[0] %>','<%= @goal.user.first_name[0] %>','<%= @goal.user.id %>');" class="btn " >No</a>
 
 
             </h2>
@@ -281,7 +281,7 @@ if @goal.has_unanswered_checkpoints
                 <a href="/goals/?goal_id=<= @goal.id.to_s >&date=<= @checkin_date >&update_checkpoint_status=yes&e0=<= @goal.user.email[0] >&f0=<= @goal.user.first_name[0] >&u=<= @goal.user.id >"  onclick="toggle_show('spinner');reload_catch_up_on_checkpoints_BETA('<= @goal.id.to_s >');"> Yes</a>
                 -->
 
-              <a onclick="toggle_show('spinner_catchup_goal_id_<%= @goal.id %>');update_checkpoint_then_reload_goal_catch_up('<%= @goal.id %>','<%= @checkin_date %>','yes','<%= @goal.user.email[0] %>','<%= @goal.user.first_name[0] %>','<%= @goal.user.id %>');" class="btn green" >Yes</a>
+              <a onclick="toggle_show('spinner_catchup_goal_id_<%= @goal.id %>');update_checkpoint_then_reload_goal_catch_up('<%= @goal.id %>','<%= @checkin_date %>','yes','<%= @goal.user.email[0] %>','<%= @goal.user.first_name[0] %>','<%= @goal.user.id %>');" class="btn " >Yes</a>
  
                 <!-- works but only w/ older versions of js -->
                 <!-- link_to_remote 'No', :url => {:controller => "goals", :action => "index"}, :with => "'goal_id=#{@goal.id.to_s}&date=#{@checkin_date.to_s}&update_checkpoint_status=no'", :method => :put -->
@@ -294,7 +294,7 @@ if @goal.has_unanswered_checkpoints
                 <a href="/goals/?goal_id=<= @goal.id.to_s >&date=<= @checkin_date >&update_checkpoint_status=no&e0=<= @goal.user.email[0] >&f0=<= @goal.user.first_name[0] >&u=<= @goal.user.id >"  onclick="toggle_show('spinner');reload_catch_up_on_checkpoints_BETA('<= @goal.id.to_s >');"> No</a>
                 -->
 
-              <a onclick="toggle_show('spinner_catchup_goal_id_<%= @goal.id %>');update_checkpoint_then_reload_goal_catch_up('<%= @goal.id %>','<%= @checkin_date %>','no','<%= @goal.user.email[0] %>','<%= @goal.user.first_name[0] %>','<%= @goal.user.id %>');" class="btn red" >No</a>
+              <a onclick="toggle_show('spinner_catchup_goal_id_<%= @goal.id %>');update_checkpoint_then_reload_goal_catch_up('<%= @goal.id %>','<%= @checkin_date %>','no','<%= @goal.user.email[0] %>','<%= @goal.user.first_name[0] %>','<%= @goal.user.id %>');" class="btn " >No</a>
 
 
                 </p>
