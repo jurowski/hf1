@@ -93,6 +93,8 @@
         <div class="tab-pane" id="portlet_tab2">
 
           <%
+          recurring_payment = false
+
           if session[:site_name] == "habitforge"
           %>
           <%
@@ -179,8 +181,20 @@
 
             <%    
             if current_user.plan and (current_user.plan.include? 'Lifetime' or current_user.plan.include? 'Monthly' or current_user.plan.include? 'Yearly')
-            %>
+  
+              if current_user.plan.include? 'Monthly' or current_user.plan.include? 'Yearly'
+                recurring_payment = true
+              end
+              %>
+
               You are a Premium Member! (<%= current_user.plan%>)
+              <% if recurring_payment %>
+
+
+                 <br>
+                 <input type="button" class="btn" value="Downgrade" onclick="alert('To Downgrade your account to a Free account, simply send an email to support@habitforge.com with the subject DOWNGRADE, and someone will be in touch to assist within 24 hours.');" />
+
+              <% end %>
             <%    
             else
                   %>
@@ -244,8 +258,17 @@
 <!-- END TAB PORTLET-->
 
 
- <%= link_to 'Edit My Account Info', edit_account_path %> &nbsp | &nbsp
- <%= link_to 'Remove My Account', @user, :confirm => 'This will remove your account '+@user.email+', along with all of your goals, checkpoints and stats. Are you sure you want to do this? (This can not be undone.)', :method => :delete %>
+ <a href="/account/edit" class="btn">Edit My Account Info</a>
+ &nbsp &nbsp
+
+ <% if recurring_payment %>
+
+    <input type="button" class="btn" value="Remove My Account" onclick="alert('You must first Downgrade your account to cancel recurring payments. To Downgrade your account to a Free account, simply send an email to support@habitforge.com with the subject DOWNGRADE, and someone will be in touch to assist within 24 hours.');" />
+
+ <% else %>
+   <%= link_to 'Remove My Account', @user, :confirm => 'This will remove your account '+@user.email+', along with all of your goals, checkpoints and stats. Are you sure you want to do this? (This can not be undone.)', :method => :delete %>
+ <% end %>
+
  </p>
 <br>
 <h3>Privacy</h3>
