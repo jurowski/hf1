@@ -106,7 +106,7 @@
             <form>
                 <textarea cols="80" rows="4" name="comment_<%= @goal.id %>"><%= @goal.get_daily_comment_for(add_comment_date) %></textarea> 
                 <p>Add a note or comment above, which will be saved when you click "Save Answers" at the bottom.</p>
-                <center><input type="submit" class="btn" value="Save Note" /></center>
+                <center><input type="submit" class="btn blue" value="Save Note" /></center>
                 <input type="hidden" name="update_comment" value="1">
                 <input type="hidden" name="goal_id" value="<%= @goal.id %>">
                 <input type="hidden" name="date" value="<%= add_comment_date %>">
@@ -209,7 +209,7 @@ if @goal.has_unanswered_checkpoints
                 <a href="/goals/?goal_id=<= @goal.id.to_s >&date=<= @checkin_date >&update_checkpoint_status=yes&e0=<= @goal.user.email[0] >&f0=<= @goal.user.first_name[0] >&u=<= @goal.user.id >"  onclick="toggle_show('spinner');reload_catch_up_on_checkpoints_BETA('<= @goal.id.to_s >');">Yes</a>
                 -->
 
-              <a onclick="toggle_show('spinner_catchup_goal_id_<%= @goal.id %>');update_checkpoint_then_reload_goal_catch_up('<%= @goal.id %>','<%= @checkin_date %>','yes','<%= @goal.user.email[0] %>','<%= @goal.user.first_name[0] %>','<%= @goal.user.id %>');" class="btn " >Yes</a>
+              <a onclick="toggle_show('spinner_catchup_goal_id_<%= @goal.id %>');update_checkpoint_then_reload_goal_catch_up('<%= @goal.id %>','<%= @checkin_date %>','yes','<%= @goal.user.email[0] %>','<%= @goal.user.first_name[0] %>','<%= @goal.user.id %>');" class="" >Yes</a>
 
             &nbsp • &nbsp
 
@@ -223,7 +223,7 @@ if @goal.has_unanswered_checkpoints
                 <a href="/goals/?goal_id=<= @goal.id.to_s >&date=<= @checkin_date >&update_checkpoint_status=no&e0=<= @goal.user.email[0] >&f0=<= @goal.user.first_name[0] >&u=<= @goal.user.id >"  onclick="toggle_show('spinner');reload_catch_up_on_checkpoints_BETA('<= @goal.id.to_s >');">No</a>
                 -->
 
-              <a onclick="toggle_show('spinner_catchup_goal_id_<%= @goal.id %>');update_checkpoint_then_reload_goal_catch_up('<%= @goal.id %>','<%= @checkin_date %>','no','<%= @goal.user.email[0] %>','<%= @goal.user.first_name[0] %>','<%= @goal.user.id %>');" class="btn " >No</a>
+              <a onclick="toggle_show('spinner_catchup_goal_id_<%= @goal.id %>');update_checkpoint_then_reload_goal_catch_up('<%= @goal.id %>','<%= @checkin_date %>','no','<%= @goal.user.email[0] %>','<%= @goal.user.first_name[0] %>','<%= @goal.user.id %>');" class="" >No</a>
 
 
             </h2>
@@ -281,7 +281,7 @@ if @goal.has_unanswered_checkpoints
                 <a href="/goals/?goal_id=<= @goal.id.to_s >&date=<= @checkin_date >&update_checkpoint_status=yes&e0=<= @goal.user.email[0] >&f0=<= @goal.user.first_name[0] >&u=<= @goal.user.id >"  onclick="toggle_show('spinner');reload_catch_up_on_checkpoints_BETA('<= @goal.id.to_s >');"> Yes</a>
                 -->
 
-              <a onclick="toggle_show('spinner_catchup_goal_id_<%= @goal.id %>');update_checkpoint_then_reload_goal_catch_up('<%= @goal.id %>','<%= @checkin_date %>','yes','<%= @goal.user.email[0] %>','<%= @goal.user.first_name[0] %>','<%= @goal.user.id %>');" class="btn " >Yes</a>
+              <a onclick="toggle_show('spinner_catchup_goal_id_<%= @goal.id %>');update_checkpoint_then_reload_goal_catch_up('<%= @goal.id %>','<%= @checkin_date %>','yes','<%= @goal.user.email[0] %>','<%= @goal.user.first_name[0] %>','<%= @goal.user.id %>');" class="" >Yes</a>
  
                 <!-- works but only w/ older versions of js -->
                 <!-- link_to_remote 'No', :url => {:controller => "goals", :action => "index"}, :with => "'goal_id=#{@goal.id.to_s}&date=#{@checkin_date.to_s}&update_checkpoint_status=no'", :method => :put -->
@@ -294,7 +294,7 @@ if @goal.has_unanswered_checkpoints
                 <a href="/goals/?goal_id=<= @goal.id.to_s >&date=<= @checkin_date >&update_checkpoint_status=no&e0=<= @goal.user.email[0] >&f0=<= @goal.user.first_name[0] >&u=<= @goal.user.id >"  onclick="toggle_show('spinner');reload_catch_up_on_checkpoints_BETA('<= @goal.id.to_s >');"> No</a>
                 -->
 
-              <a onclick="toggle_show('spinner_catchup_goal_id_<%= @goal.id %>');update_checkpoint_then_reload_goal_catch_up('<%= @goal.id %>','<%= @checkin_date %>','no','<%= @goal.user.email[0] %>','<%= @goal.user.first_name[0] %>','<%= @goal.user.id %>');" class="btn " >No</a>
+              <a onclick="toggle_show('spinner_catchup_goal_id_<%= @goal.id %>');update_checkpoint_then_reload_goal_catch_up('<%= @goal.id %>','<%= @checkin_date %>','no','<%= @goal.user.email[0] %>','<%= @goal.user.first_name[0] %>','<%= @goal.user.id %>');" class="" >No</a>
 
 
                 </p>
