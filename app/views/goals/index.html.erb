@@ -15,7 +15,7 @@
 <% if params[:too_many_active_habits] %>
 
 
-    <div id="upgrade_lightbox_blagck" class="black_overlay">
+    <div id="upgrade_lightbox_black" class="black_overlay">
     </div>
     <div id="upgrade_lightbox_close" class="div_close_button">
          <a href="#undefined" onclick="toggle_show_hide('upgrade_lightbox_black');toggle_show_hide('upgrade_lightbox_white');toggle_show_hide('upgrade_lightbox_close');"><img src='/images/close.png' /></a>
@@ -92,86 +92,11 @@
 
 
 
-<!-- START SHOW NEWEST MEMBERS --> 
-<% run_this_code = false %>
-<% if run_this_code %>
-<div style="background-color:#ffffff;padding:5px;"> 
-    <p>
-
-    <% max = 3 %>
-    <% counter = 0 %>
-
-    <% members = User.find(:all, :order => "id ASC", :limit => 25) %>
-
-    <!--
-    my_conditions = ""
-    members = User.paginate(:page => 1,
-                               :per_page   => 100,
-                               :order      => 'id desc',
-                               :conditions => my_conditions)
-
-    -->                               
-    <% members.each do |member| %>
-        <%= member.id %>
-        <% if member.id != current_user.id and member.first_name != "unknown" and counter <= max %>
-            <% if member.number_of_public_habits > 0 %>
-                <% if counter == 0 %>
-
-                    <h3>Welcome to our Newest Members!</h3>
-
-                <% end %>
-                <% counter += 1 %>
-
-                <% member_goal = member.public_goals[0] %>
-
-
-                <% if current_user.goal_ids_that_i_follow.include?(member_goal.id) %>
-                    <a href="#" class="btn disabled">Following</a>
-                <% else %>
-                    <a href="/cheers?start_following_goal_id=<%= member_goal.id.to_s %>&email=<%= current_user.email %>" id='follow_<%= member_goal.id.to_s %>'  class="btn blue" title="Follow <%= member_goal.user.first_name %>'s Progress" ><i class="icon-plus"></i> Follow</a>
-                    <script type='text/javascript'>
-                        $('#follow_<%= member_goal.id.to_s %>').tipsy();
-                    </script>
-                <% end %>
-
-
-
-                <a href="/tomessages/new?gid=<%=member_goal.id.to_s%>&goal_id=<%=member_goal.id.to_s%>&from_type=member&tomessage_subject=<%= member_goal.response_question %>&to_id=<%= member_goal.user.id %>" id='encourage_<%= member_goal.id.to_s %>' class="btn red" title='Encourage <%= member_goal.user.first_name %>!'> <i class="icon-heart-empty"></i> Encourage</a> <span style="font-weight:bold;font-size:1.2em;"> 
-
-
-                <% if member_goal.user.show_gravatar %>
-                <% gravatar = "http://www.gravatar.com/avatar/#{Digest::MD5.hexdigest(member_goal.user.email.downcase)}?d=mm" %>
-                <img src="<%= gravatar %>&s=20" />            
-                <% else %>
-                <img src="/home/images/default_gravatar.png" height="20px"/>
-                <% end %>
-
-                <%= member_goal.user.first_name %></span> joined <%= time_ago_in_words(member_goal.user.created_at) %> ago and is working on ... <span style="background-color:#FFFF99;"><%= member_goal.response_question %></span>
-                <script type='text/javascript'>
-                $('#encourage_<%= member_goal.id.to_s %>').tipsy();
-                </script>       
-                <br>
-            <% end %>
-
-
-        <% else %>
-            <% break %>
-        <% end %>
-
-
-    <% end %>
-    </p>
-</div>
-<% end ### end if run_this_code %>
-<br>
-<!-- END SHOW NEWEST MEMBERS -->
-
 
 
 <!-- SHOW LATEST PUBLIC CHECKINS -->
 <% run_this_code = true %>
 <% if run_this_code %>
-<br>
 <div class="dynamic_latest_public_checkins">
     <%= render :partial => 'goals/dynamic_latest_public_checkins' %>
 </div>

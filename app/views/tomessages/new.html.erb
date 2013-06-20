@@ -82,41 +82,68 @@
 
       arr_subject = Array.new
 
-
-
-
       if params[:tomessage_subject] and goal_id != 0
         begin
 
           goal = Goal.find(goal_id)
           if goal and goal.success_rate_percentage != nil
 
-            if (goal.goal_days_per_week/7).to_i >= goal.success_rate_percentage
+            if params[:message_type] and params[:message_type] == "congrats"
 
               arr_subject.push(["Great job with your '" + params[:tomessage_subject] + "' goal!"])
-              arr_subject.push(["You can do it! Keep up your '" + params[:tomessage_subject] + "' habit!"])
+
+
+              arr_subject.push(["Way to go with your '" + params[:tomessage_subject] + "' goal!"])
+
+
               arr_subject.push(["Keep up the good work with '" + params[:tomessage_subject] + "'!"])
 
+              arr_subject.push(["Nice work with '" + params[:tomessage_subject] + "'!"])
+
+              arr_subject.push(["Nice job with '" + params[:tomessage_subject] + "'!"])
+
+              arr_subject.push(["You did it! Keep up the good job with '" + params[:tomessage_subject] + "'!"])
+
+
               random_number = 0
               random_number = rand(arr_subject.size) + 0 #between 0 and arr_subject.size
               random_subject = arr_subject[random_number]
 
               subject_value = random_subject.to_s
               subject_value_default = false
+
 
             else
-              arr_subject.push(["Good luck with " + params[:tomessage_subject] + "!"])
-              arr_subject.push(["You can do it! Keep " + params[:tomessage_subject] + "!"])
-              arr_subject.push(["Remember how important it is to keep " + params[:tomessage_subject] + "!"])
 
-              random_number = 0
-              random_number = rand(arr_subject.size) + 0 #between 0 and arr_subject.size
-              random_subject = arr_subject[random_number]
+              if (goal.goal_days_per_week/7).to_i >= goal.success_rate_percentage
 
-              subject_value = random_subject.to_s
-              subject_value_default = false
+                arr_subject.push(["Great job with your '" + params[:tomessage_subject] + "' goal!"])
+                arr_subject.push(["You can do it! Keep up your '" + params[:tomessage_subject] + "' habit!"])
+                arr_subject.push(["Keep up the good work with '" + params[:tomessage_subject] + "'!"])
 
+                random_number = 0
+                random_number = rand(arr_subject.size) + 0 #between 0 and arr_subject.size
+                random_subject = arr_subject[random_number]
+
+                subject_value = random_subject.to_s
+                subject_value_default = false
+
+              else
+                arr_subject.push(["Good luck with " + params[:tomessage_subject] + "!"])
+                arr_subject.push(["You can do it! Keep " + params[:tomessage_subject] + "!"])
+                arr_subject.push(["Remember how important it is to keep " + params[:tomessage_subject] + "!"])
+
+                random_number = 0
+                random_number = rand(arr_subject.size) + 0 #between 0 and arr_subject.size
+                random_subject = arr_subject[random_number]
+
+                subject_value = random_subject.to_s
+                subject_value_default = false
+
+              end
             end
+
+
 
 
           end
@@ -127,6 +154,10 @@
       end
 
       simple_subject = "a little support"
+      if params[:message_type] and params[:message_type] == "congrats"
+        simple_subject = "Good work"
+      end
+
       if current_user and current_user.first_name != "unknown"
         simple_subject = simple_subject + " from " + current_user.first_name
       end
