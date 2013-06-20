@@ -90,50 +90,6 @@
 
 
 
-<!-- *********** -->
-<!-- *********** -->
-<!-- START HEADER -->    
-<!-- *********** -->
-
-<div />
-    <% if current_user.sponsor == "habitforge" and !current_user.is_habitforge_supporting_member and current_user.number_of_active_habits > 0 %>
-          <!-- render :partial => "goals/upgrade_advertisement"  -->
-        <a href="/goals?too_many_active_habits=1" class="btn green">Start a New Habit</a>
-
-    <% else %>
-        <a href="/goals/new" class="btn green"> Start a New Habit</a>
-
-    <% end %>
-
-
-
-    <% if current_user and current_user.sponsor == "habitforge" %>  
-        <a href="/cheers" class="btn blue">Who Could Use a Boost?</a>
-
-        <a href="/goals?templates=1&popular=1&browse_recommended_habits=1#browse_recommended_habits" class="btn green">Habit Library (beta)</a>
-
-        <!-- #if current_user.can_use_templates --> 
-<!--               <a href="/goals?templates=1&browse_recommended_habits=1&just_templates=1#browse_recommended_habits" class="btn yellow">Habit Templates</a> -->
-        <!-- end -->
-
-
-    <% end %>
-
-    <% if current_user and current_user.can_make_templates %>
-    
-        <a href="/programs/new" class="btn"> Start a Program</a>
-
-        <a href="/goals/new?template_owner_is_a_template=1" class="btn"> Make a Template</a>
-
-    <% end %>
-
-
-<div />
-<!-- *********** -->
-<!-- END HEADER -->
-<!-- *********** -->
-<!-- *********** -->
-
 
 
 <!-- START SHOW NEWEST MEMBERS --> 
@@ -223,6 +179,42 @@
 
 
 
+<!-- *********** -->
+<!-- *********** -->
+<!-- START HEADER -->    
+<!-- *********** -->
+
+<div />
+    <% if current_user.sponsor == "habitforge" and !current_user.is_habitforge_supporting_member and current_user.number_of_active_habits > 0 %>
+          <!-- render :partial => "goals/upgrade_advertisement"  -->
+        <a href="/goals?too_many_active_habits=1" class="btn "><i class="icon-plus"></i>  Start a New Habit</a>
+
+    <% else %>
+        <a href="/goals/new" class="btn "><i class="icon-plus"></i>  Start a New Habit</a>
+
+    <% end %>
+
+
+
+    <% if current_user and current_user.sponsor == "habitforge" %>  
+        <a href="/cheers" class="btn "><i class="icon-heart-empty"></i> Encourage Others</a>
+    <% end %>
+
+    <% if 1 == 2 and current_user and current_user.can_make_templates %>
+    
+        <a href="/programs/new" class="btn"> Start a Program</a>
+
+        <a href="/goals/new?template_owner_is_a_template=1" class="btn"> Make a Template</a>
+
+    <% end %>
+
+
+<div />
+<!-- *********** -->
+<!-- END HEADER -->
+<!-- *********** -->
+<!-- *********** -->
+
 
 <!-- *********** -->
 <!-- *********** -->
@@ -251,7 +243,7 @@ for goal in current_user.active_goals_sorted_by_next_action_day
             <div>
 
 
-                <div class="alert alert-success"> 
+                <div class=" " style="padding:10px;"> 
                     <%= render :partial => "goals/date_badge", :locals => { :badge_date => @badge_date }  %>
 
                 <h2>
@@ -287,7 +279,7 @@ for goal in current_user.active_goals_sorted_by_next_action_day
             <br>
 
 
-            <div class="alert alert-info"> 
+            <div class=" " style="padding:10px;"> 
             <%= render :partial => "goals/date_badge", :locals => { :badge_date => @badge_date }  %>
             <h2>
             &nbsp Tomorrow is the next action day for...

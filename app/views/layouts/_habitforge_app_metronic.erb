@@ -350,11 +350,11 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
    // http://stackoverflow.com/questions/10539143/reloading-partial-in-an-rails-app
    // took this out b/c it was not enough bang for the buck for this usage
    // since people will see latest when refreshing page
-   // $(document).ready(function() {
-   //  setInterval(function() {
-   //    $('.dynamic_latest_public_checkins').load('goals/dynamic_latest_public_checkins/1');
-   //    }, 100000);
-   //  });
+   $(document).ready(function() {
+    setInterval(function() {
+      $('.dynamic_latest_public_checkins').load('goals/dynamic_latest_public_checkins/1');
+      }, 100000);
+    });
 
 
 
@@ -1167,6 +1167,26 @@ $(document).ready(function(){
 
         <div class="row-fluid">
           <div class="span6"> 
+          <% if current_user and current_user.sponsor == "habitforge" %>  
+
+
+              <a href="/goals?templates=1&popular=1&browse_recommended_habits=1#browse_recommended_habits" class="btn ">Habit Library (beta)</a>
+
+              <!-- #if current_user.can_use_templates --> 
+      <!--               <a href="/goals?templates=1&browse_recommended_habits=1&just_templates=1#browse_recommended_habits" class="btn yellow">Habit Templates</a> -->
+              <!-- end -->
+
+
+          <% end %>
+
+          <% if current_user and current_user.can_make_templates %>
+          
+              <a href="/programs/new" class="btn"> Start a Program</a>
+
+              <a href="/goals/new?template_owner_is_a_template=1" class="btn"> Make a Template</a>
+
+          <% end %>
+
           <center>
           <!-- START CAROUSEL -->
           <!-- This is the container for the carousel. -->

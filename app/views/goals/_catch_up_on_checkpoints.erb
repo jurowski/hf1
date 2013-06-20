@@ -27,7 +27,7 @@
         <% if @goal.get_daily_status_for(@goal.user.dtoday) == "no" %>
             <div>
             <p>
-            <img src="/images/delete.png" height=20px>
+            <img src="/images/delete.png" >
             I didn't take action on this today.
             </p>
             </div>
@@ -55,7 +55,7 @@
             <% if @goal.get_daily_status_for(@goal.user.dyesterday) == "no" %>
                 <div>
                 <p>
-                <img src="/images/delete.png" height=20px>
+                <img src="/images/delete.png" >
                 I didn't take action on this yesterday.
                 </p>
                 </div>
