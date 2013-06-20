@@ -1,0 +1,18 @@
+<h1>Listing encourage_items</h1>
+
+<table>
+  <tr>
+  </tr>
+
+<% @encourage_items.each do |encourage_item| %>
+  <tr>
+    <td><%= link_to 'Show', encourage_item %></td>
+    <td><%= link_to 'Edit', edit_encourage_item_path(encourage_item) %></td>
+    <td><%= link_to 'Destroy', encourage_item, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New encourage_item', new_encourage_item_path %>

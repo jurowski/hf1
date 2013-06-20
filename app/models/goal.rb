@@ -67,7 +67,15 @@ class Goal < ActiveRecord::Base
   end
 
   def is_active_and_public
-    if self.is_active and self.publish
+    if self.is_active and self.is_public
+        return true
+    else
+        return false
+    end
+  end
+
+  def is_public
+    if self.publish
         return true
     else
         return false

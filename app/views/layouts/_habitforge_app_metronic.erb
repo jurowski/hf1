@@ -757,13 +757,22 @@ $(document).ready(function(){
                   <li>
                       <%= link_to "<i class='icon-off'></i> Log Out", user_session_path, :method => :delete %>            
                   </li>
-                <% else %>
+                <!-- 
+                < else >
+
+                  used to ask them to log in fully but
+                  we no longer have spots where logging in fully matters
+                  and furthermore, asking them to log in will no longer work
+                  since a user session variable gets set now which
+                  fakes them being logged in anyway 
+
                   <li>
                     <a href="/user_session/new?skip_intro=1">
                       <i class="icon-off"></i>
                       Log In Fully
                     </a>
                   </li>             
+                  -->
                 <% end %>
 
               </ul>
@@ -1026,7 +1035,7 @@ $(document).ready(function(){
         <% 
         ##########################################################
         ######## START PASSWORD AND TIME ZONE SETTING ############
-        if current_user and fully_logged_in and @ca != "edit" and @ca != "new" and (current_user.password_temp != nil and current_user.password_temp != "")
+        if current_user and @ca != "edit" and @ca != "new" and (current_user.password_temp != nil and current_user.password_temp != "")
           if current_user.last_activity_date != current_user.dtoday
             current_user.last_activity_date = current_user.dtoday
             current_user.save

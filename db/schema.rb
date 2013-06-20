@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130606111337) do
+ActiveRecord::Schema.define(:version => 20130617110145) do
 
   create_table "achievemints", :force => true do |t|
     t.string   "name"
@@ -187,6 +187,29 @@ ActiveRecord::Schema.define(:version => 20130606111337) do
 
   create_table "emotions", :force => true do |t|
     t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "encourage_items", :force => true do |t|
+    t.boolean  "encourage_type_new_checkpoint_bool"
+    t.boolean  "encourage_type_new_goal_bool"
+    t.integer  "checkpoint_id"
+    t.string   "checkpoint_status"
+    t.date     "checkpoint_date"
+    t.datetime "checkpoint_updated_at_datetime"
+    t.integer  "goal_id"
+    t.string   "goal_name"
+    t.string   "goal_category"
+    t.datetime "goal_created_at_datetime"
+    t.boolean  "goal_publish"
+    t.date     "goal_first_start_date"
+    t.integer  "goal_daysstraight"
+    t.integer  "goal_days_into_it"
+    t.integer  "goal_success_rate_percentage"
+    t.integer  "user_id"
+    t.string   "user_name"
+    t.string   "user_email"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

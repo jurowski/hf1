@@ -1,0 +1,12 @@
+<h1>Editing encourage_item</h1>
+
+<% form_for(@encourage_item) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @encourage_item %> |
+<%= link_to 'Back', encourage_items_path %>

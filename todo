@@ -1,3 +1,58 @@
+
+Encourage New Goals and Checkpoints
+---------------------
+
+(
+when a new checkpoint is answered,
+or when a new public goal is created
+and if username != unknown
+)
+
+
+:::TODO:::
+when a checkpoint is updated,
+if username != unknown,
+if it is a yes, and if the goal is public,
+then enter it into encourage_items
+
+when a goal is created,
+if username != unknown,
+if it is public,
+then enter it into encourage_items
+
+when a goal is saved by user, if it's "private", remove any entries from "encourage_items"
+
+daily cron, remove any "encourage_items" of type checkpoint,
+that have a checkpoint_date of > 1 day,
+and remove any of type goal that have va goal_first_start_date of > 1 day
+
+:::DONE:::
+
+create table:
+--- encourage_item ---
+encourage_type_new_checkpoint_bool (index)
+encourage_type_new_goal_bool (index)
+checkpoint_id
+checkpoint_status
+checkpoint_date (index)
+checkpoint_updated_at_datetime
+goal_id (index)
+goal_name
+goal_category
+goal_created_at_datetime
+goal_publish
+goal_first_start_date (index)
+goal_daysstraight
+goal_days_into_it
+goal_success_rate_percentage
+user_id (index)
+user_name
+user_email
+
+
+
+
+
 Custom Teams
 -----------------
 i want to build my own custom team related to a goal

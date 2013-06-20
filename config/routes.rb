@@ -1,4 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :encourage_items
+
   map.resources :team_invites
 
   map.resources :organization_users

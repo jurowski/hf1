@@ -1,6 +1,52 @@
-<!-- took out the real code because there were still some clients out there with pages open that were still trying to load this page every few seconds, and it was affecting performance greatly. To see the code, go to the REALCODE file w/ the same name 
-
-if you need to, remove everything below here since it is in the RALCODE file
--->
-
 <!-- Time.now() -->
+<div style="background-color:#F7F8E0;padding:5px;"> 
+	<p>
+	<% max = 3 %>
+	<% counter = 0 %>
+
+	<% encourage_items = EncourageItem.find(:all, :conditions => "checkpoint_date >= '#{current_user.dyesterday }'", :order => "id DESC", :limit => 5) %>
+	<% encourage_items.each do |e| %>
+		<% if counter <= max %>
+
+			<% counter += 1 %>
+
+			<%= time_ago_in_words(e.updated_at) %> ago...
+
+			<% if current_user.goal_ids_that_i_follow.include?(e.goal_id) %>
+			    <a href="#" class="btn disabled">Following</a>
+			<% else %>
+		        <a href="/cheers?start_following_goal_id=<%= e.goal_id.to_s %>&email=<%= current_user.email %>" id='follow_<%= e.goal_id.to_s %>'  class="btn blue" title="Follow <%= e.user_name %>'s Progress" ><i class="icon-plus"></i> Follow</a>
+		        <script type='text/javascript'>
+		            $('#follow_<%= e.goal_id.to_s %>').tipsy();
+		        </script>
+			<% end %>
+
+
+
+			<a href="/tomessages/new?gid=<%=e.goal_id.to_s%>&goal_id=<%=e.goal_id.to_s%>&from_type=member&tomessage_subject=<%= e.goal_name %>&to_id=<%= e.user_id %>" id='encourage_<%= e.goal_id.to_s %>' class="btn red" title='Encourage <%= e.user_name %>!'> <i class="icon-heart-empty"></i> Encourage</a> <span style="font-weight:bold;font-size:1.2em;"> 
+
+
+			<!-- if member_goal.user.show_gravatar -->
+			<% gravatar = "http://www.gravatar.com/avatar/#{Digest::MD5.hexdigest(e.user_email.downcase)}?d=mm" %>
+			<img src="<%= gravatar %>&s=20" />            
+			<!-- else -->
+			<!--img src="/home/images/default_gravatar.png" height="20px"/-->
+			<!-- end -->
+
+			<%= e.user_name %></span> succeeded at <span style="background-color:#FFFF99;"><%= e.goal_name %></span> <% if current_user.dtoday == e.checkpoint_date %>today! <% elsif current_user.dyesterday == e.checkpoint_date %>yesterday! <% else %>on <%= e.checkpoint_date %><% end %>
+			<script type='text/javascript'>
+			$('#encourage_<%= e.goal_id.to_s %>').tipsy();
+			</script>       
+			<br>
+			<br>
+
+
+		<% else %>
+			<% break %>
+		<% end %>
+
+
+	<% end %>
+	</p>
+</div>
+<br>
