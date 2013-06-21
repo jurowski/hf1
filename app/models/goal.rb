@@ -102,6 +102,38 @@ class Goal < ActiveRecord::Base
   end  
 
 
+
+  def get_quote_random
+
+
+      random_quote = false
+      some_conditions = ""
+      if self.category and self.category != ""
+        some_conditions = "category = '#{self.category}'"
+      else
+
+        quote_sponsor = "habitforge"
+        if self.sponsor == "forittobe"
+            quote_sponsor = self.sponsor
+        end
+        some_conditions = "sponsor = '#{quote_sponsor}' and category is null"
+
+      end
+      quotes = Quote.find(:all, :conditions => some_conditions)
+
+
+      if quotes.size > 0  
+          random_quote_number = rand(quotes.size) + 1 #between 1 and quotes.size
+          quote = Quote.find(random_quote_number)
+          if quote
+              random_quote = quote
+          end
+      end
+      return random_quote
+
+  end
+
+
   def date_created
       tcreated = self.created_at
 
