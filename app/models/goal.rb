@@ -108,13 +108,13 @@ class Goal < ActiveRecord::Base
 
       random_quote = false
       some_conditions = ""
-      if self.category and self.category != ""
+      if self.category != nil and self.category != ""
         some_conditions = "category = '#{self.category}'"
       else
 
         quote_sponsor = "habitforge"
-        if self.sponsor == "forittobe"
-            quote_sponsor = self.sponsor
+        if self.user.sponsor == "forittobe"
+            quote_sponsor = self.user.sponsor
         end
         some_conditions = "sponsor = '#{quote_sponsor}' and category is null"
 
