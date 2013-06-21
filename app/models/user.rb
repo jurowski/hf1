@@ -40,11 +40,9 @@ class User < ActiveRecord::Base
       ## habitforge 	58
 
       random_quote = false
-      
+      quote_sponsor = "habitforge"
       if self.sponsor == "forittobe"
-          quote_sponsor = self.sponsor
-      else
-          quote_sponsor = "habitforge"
+        quote_sponsor = self.sponsor
       end
 
         lucky_user_email = ""
