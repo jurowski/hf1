@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130617110145) do
+ActiveRecord::Schema.define(:version => 20130621105423) do
 
   create_table "achievemints", :force => true do |t|
     t.string   "name"
@@ -542,6 +542,9 @@ ActiveRecord::Schema.define(:version => 20130617110145) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "sponsor"
+    t.string   "category"
+    t.string   "source"
+    t.string   "subject"
   end
 
   create_table "quotetags", :force => true do |t|

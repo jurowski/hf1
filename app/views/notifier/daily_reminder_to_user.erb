@@ -143,8 +143,22 @@
                                             <tr><td valign=top align=center width=1%>
                                             <br>
                                             <br>
-                                            
+
+
+
+                                        <% if @goal.user.show_gravatar %>
+                                          <% gravatar = "http://www.gravatar.com/avatar/#{Digest::MD5.hexdigest(@goal.user.email.downcase)}?d=mm" %>
+                                          <img src="<%= gravatar %>&s=60" />            
+                                        <% else %>
                                             <img src="/images/default_avatar.jpg" alt=" " width="80px"> 
+                                        <% end %>
+
+                                            
+
+
+
+
+
                                             <br>
                                             <strong><%= @goal.user.first_name %></strong> 
                                             </td>

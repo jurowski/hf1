@@ -1168,6 +1168,10 @@ $(document).ready(function(){
 
               <a href="/goals?templates=1&popular=1&browse_recommended_habits=1#browse_recommended_habits" class="btn ">Habit Library (beta)</a>
 
+              <% if current_user and current_user.sponsor == "habitforge" %>  
+                <a href="/cheers" class="btn "><i class="icon-heart-empty"></i> Encourage Others</a>
+              <% end %>
+
               <!-- #if current_user.can_use_templates --> 
       <!--               <a href="/goals?templates=1&browse_recommended_habits=1&just_templates=1#browse_recommended_habits" class="btn yellow">Habit Templates</a> -->
               <!-- end -->
