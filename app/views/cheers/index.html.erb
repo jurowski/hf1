@@ -210,7 +210,7 @@ else
               slacker_goal = slacker_goals[random_index]
 
               ### do this for Free users only (to keep them involved)
-              if slacker_goal and !slacker_goal.user.is_habitforge_supporting_member
+              if slacker_goal and slacker_goal.user and !slacker_goal.user.is_habitforge_supporting_member
 
                 if slacker_goal.user.first_name != "unknown" and !arr_chosen_goals.include? slacker_goal.id
                   arr_chosen_goals << slacker_goal.id
@@ -338,7 +338,7 @@ begin
         ### do not advertise it if it is now stale
         #if goal.is_active
           begin
-            if goal.category != nil and goal.user.first_name != "unknown" and goal.user.id != current_user.id
+            if goal.user and goal.category != nil and goal.user.first_name != "unknown" and goal.user.id != current_user.id
 
 
               %>    
