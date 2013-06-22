@@ -105,20 +105,24 @@ class Goal < ActiveRecord::Base
 
   def get_quote_random
 
-
       random_quote = false
+
+      logger.info("sgj:goal.rb:get_random_quote:goal.category = " + goal.category)
+
       some_conditions = ""
       if self.category != nil and self.category != ""
         some_conditions = "category = '#{self.category}'"
       else
-
         quote_sponsor = "habitforge"
         if self.user.sponsor == "forittobe"
             quote_sponsor = self.user.sponsor
         end
         some_conditions = "sponsor = '#{quote_sponsor}' and category is null"
-
       end
+
+
+      logger.info("sgj:goal.rb:get_random_quote:conditions = " + some_conditions)
+
       quotes = Quote.find(:all, :conditions => some_conditions)
 
 
