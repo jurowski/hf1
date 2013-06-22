@@ -112,10 +112,10 @@
 <div />
     <% if current_user.sponsor == "habitforge" and !current_user.is_habitforge_supporting_member and current_user.number_of_active_habits > 0 %>
           <!-- render :partial => "goals/upgrade_advertisement"  -->
-        <a href="/goals?too_many_active_habits=1" class="btn "><i class="icon-plus"></i>  Start a New Habit</a>
+        <a href="/goals?too_many_active_habits=1" class="btn yellow "><i class="icon-plus"></i>  Start a New Habit</a>
 
     <% else %>
-        <a href="/goals/new" class="btn "><i class="icon-plus"></i>  Start a New Habit</a>
+        <a href="/goals/new" class="btn yellow"><i class="icon-plus"></i>  Start a New Habit</a>
 
     <% end %>
 

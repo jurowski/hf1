@@ -18,7 +18,7 @@
 			<% if current_user.goal_ids_that_i_follow.include?(e.goal_id) %>
 			    <a href="#" class="btn disabled"><i class="icon-rss"></i></a>
 			<% else %>
-		        <a href="/cheers?start_following_goal_id=<%= e.goal_id.to_s %>&email=<%= current_user.email %>" id='follow_<%= e.goal_id.to_s %>'  class="btn blue " style="font-size:1.5em;" title="Follow <%= e.user_name %>'s Progress" ><i class="icon-rss"></i></a>
+		        <a href="/cheers?start_following_goal_id=<%= e.goal_id.to_s %>&email=<%= current_user.email %>" id='follow_<%= e.goal_id.to_s %>'  class="btn " style="font-size:1.5em;" title="Follow <%= e.user_name %>'s Progress" ><i class="icon-rss"></i></a>
 		        <script type='text/javascript'>
 		            $('#follow_<%= e.goal_id.to_s %>').tipsy();
 		        </script>
@@ -26,7 +26,7 @@
 
 
 
-			<a href="/tomessages/new?gid=<%=e.goal_id.to_s%>&goal_id=<%=e.goal_id.to_s%>&from_type=member&message_type=congrats&tomessage_subject=<%= e.goal_name %>&to_id=<%= e.user_id %>" id='encourage_<%= e.goal_id.to_s %>' class="btn blue" style="font-size:1.5em;" title='Congratulate <%= e.user_name %>!'> <i class="icon-thumbs-up"></i></a> <span style="font-weight:bold;font-size:1.2em;"> 
+			<a href="/tomessages/new?gid=<%=e.goal_id.to_s%>&goal_id=<%=e.goal_id.to_s%>&from_type=member&message_type=congrats&tomessage_subject=<%= e.goal_name %>&to_id=<%= e.user_id %>" id='encourage_<%= e.goal_id.to_s %>' class="btn " style="font-size:1.5em;" title='Congratulate <%= e.user_name %>!'> <i class="icon-thumbs-up"></i></a> <span style="font-weight:bold;font-size:1.2em;"> 
 
 
 			<!-- if member_goal.user.show_gravatar -->
@@ -44,7 +44,7 @@
 		            $('#start_<%= e.goal_id.to_s %>').tipsy();
 		        </script>
 
-		</span> <% if current_user.dtoday == e.checkpoint_date %>today! <% elsif current_user.dyesterday == e.checkpoint_date %>yesterday! <% else %>on <%= e.checkpoint_date %><% end %>
+		</span> <% if current_user.dtoday >= e.checkpoint_date %> today! <% elsif current_user.dyesterday == e.checkpoint_date %> yesterday! <% else %> on <%= e.checkpoint_date %><% end %>
 			<script type='text/javascript'>
 			$('#encourage_<%= e.goal_id.to_s %>').tipsy();
 			</script>       
