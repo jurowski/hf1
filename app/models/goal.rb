@@ -107,8 +107,6 @@ class Goal < ActiveRecord::Base
 
       random_quote = false
 
-      logger.info("sgj:goal.rb:get_quote_random:goal.category = " + goal.category)
-
       some_conditions = ""
       if self.category != nil and self.category != ""
         some_conditions = "category = '#{self.category}'"
@@ -121,18 +119,34 @@ class Goal < ActiveRecord::Base
       end
 
 
-      logger.info("sgj:goal.rb:get_quote_random:conditions = " + some_conditions)
 
       quotes = Quote.find(:all, :conditions => some_conditions)
 
 
       if quotes.size > 0  
-          random_quote_number = rand(quotes.size) + 1 #between 1 and quotes.size
-          quote = Quote.find(random_quote_number)
+          random_quote_number = rand(quotes.size) #between 0 and quotes.size
+          quote = quotes[random_quote_number]
           if quote
               random_quote = quote
           end
+      else
+
+        ### there are not any quotes yet for that category, so grab a random one
+        quote_sponsor = "habitforge"
+        if self.user.sponsor == "forittobe"
+            quote_sponsor = self.user.sponsor
+        end
+        some_conditions = "sponsor = '#{quote_sponsor}' and category is null"
+        quotes = Quote.find(:all, :conditions => some_conditions)
+        if quotes.size > 0  
+            random_quote_number = rand(quotes.size) #between 0 and quotes.size
+            quote = quotes[random_quote_number]
+            if quote
+                random_quote = quote
+            end
+        end
       end
+
       return random_quote
 
   end
