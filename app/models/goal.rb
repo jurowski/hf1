@@ -43,7 +43,7 @@ class Goal < ActiveRecord::Base
   has_many :message_goals
   has_many :messages, :through => :message_goals
 
-  attr_accessor :number_invites_sent_to_followers, :invites_sent_to_followers, :number_of_checkpoints_missing_after_start_date, :checkpoints_missing_after_start_date, :date_next_to_take_action, :has_unanswered_checkpoints, :days_to_form_a_habit, :successful_days_in_a_row, :number_of_checkpoints_with_answer_of_no, :number_of_checkpoints_with_answer_of_yes, :percent_of_checkpoints_with_answer_of_no, :percent_of_checkpoints_with_answer_of_yes, :number_of_checkpoints, :days_left_until_habit_is_formed, :get_dnow
+  attr_accessor :number_invites_sent_to_followers, :invites_sent_to_followers, :number_of_checkpoints_missing_after_start_date, :checkpoints_missing_after_start_date, :date_next_to_take_action, :has_unanswered_checkpoints, :days_to_form_a_habit, :successful_days_in_a_row, :number_of_checkpoints_with_answer_of_no, :number_of_checkpoints_with_answer_of_yes, :percent_of_checkpoints_with_answer_of_no, :percent_of_checkpoints_with_answer_of_yes, :number_of_checkpoints, :days_left_until_habit_is_formed, :get_dnow, :get_quote_random
 
   validates_presence_of :response_question
 
@@ -107,7 +107,7 @@ class Goal < ActiveRecord::Base
 
       random_quote = false
 
-      logger.info("sgj:goal.rb:get_random_quote:goal.category = " + goal.category)
+      logger.info("sgj:goal.rb:get_quote_random:goal.category = " + goal.category)
 
       some_conditions = ""
       if self.category != nil and self.category != ""
@@ -121,7 +121,7 @@ class Goal < ActiveRecord::Base
       end
 
 
-      logger.info("sgj:goal.rb:get_random_quote:conditions = " + some_conditions)
+      logger.info("sgj:goal.rb:get_quote_random:conditions = " + some_conditions)
 
       quotes = Quote.find(:all, :conditions => some_conditions)
 
