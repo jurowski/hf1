@@ -73,10 +73,17 @@
 
 	<% end %> <!-- end for each encourgement item-->
 
-	 <a href="#" onclick="toggle_show('spinner_dynamic_latest_public_checkins');reload_show_latest_mod_qty('5');">more</a>
-	 <% if max > 3 %>
-		 <a href="#" onclick="toggle_show('spinner_dynamic_latest_public_checkins');reload_show_latest_mod_qty('-3');">fewer</a>
-	 <% end %>
+	 &nbsp &nbsp &nbsp &nbsp
+	 <a onclick="toggle_show('spinner_dynamic_latest_public_checkins');reload_show_latest_mod_qty('5');" class="glyphicons more"><i clas="icon-more"></i></a>
+
+
+	 <!--
+	 < if max > 3 >
+	 	 
+		 <a onclick="toggle_show('spinner_dynamic_latest_public_checkins');reload_show_latest_mod_qty('-3');">show less</a> 
+	 < end >
+	-->
+
 	</p>
 </div>
 <br>
