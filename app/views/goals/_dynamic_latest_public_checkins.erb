@@ -2,8 +2,22 @@
 <div style="padding:5px;"> 
 <!-- <div style="background-color:#F7F8E0;padding:5px;">  -->
 	<p>
-	<% max = 3 %>
+	<% 
+	##### controls how many to show at once
+	if session[:dynamic_latest_public_checkins_max] == nil
+		session[:dynamic_latest_public_checkins_max] = 3
+	end
+
+
+	if params[:mod_qty]
+		session[:dynamic_latest_public_checkins_max] += params[:mod_qty].to_i
+	end
+	%>
+
+	<% max = session[:dynamic_latest_public_checkins_max] %>
 	<% counter = 0 %>
+
+	<!--Latest <= max - 1 > Successes...<br> -->
 
 	<% encourage_items = EncourageItem.find(:all, :conditions => "checkpoint_date >= '#{current_user.dyesterday }'", :order => "id DESC", :limit => 5) %>
 	<% encourage_items.each do |e| %>
@@ -54,10 +68,20 @@
 
 		<% else %>
 			<% break %>
-		<% end %>
+		<% end %> <!-- end if counter <= max -->
 
 
-	<% end %>
+	<% end %> <!-- end for each encourgement item-->
+
+	 <a href="#" onclick="toggle_show('spinner_dynamic_latest_public_checkins');reload_show_latest_mod_qty('5');">more</a>
+	 <% if max > 3 %>
+		 <a href="#" onclick="toggle_show('spinner_dynamic_latest_public_checkins');reload_show_latest_mod_qty('-3');">fewer</a>
+	 <% end %>
 	</p>
 </div>
 <br>
+
+<!-- HIDE THE SPINNER NOW THAT THE PAGE IS DONE LOADING -->
+<script>
+toggle_hide('spinner_dynamic_latest_public_checkins');
+</script>

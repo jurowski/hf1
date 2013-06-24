@@ -63,6 +63,9 @@ class UserSessionsController < ApplicationController
   def destroy
     session[:single_login] = nil
     current_user_session.destroy
+
+    session[:dynamic_latest_public_checkins_max] = nil
+    
     flash[:notice] = "Logout successful!"
     redirect_back_or_default new_user_session_url
   end
