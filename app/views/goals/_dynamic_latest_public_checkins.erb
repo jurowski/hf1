@@ -19,7 +19,7 @@
 
 	<!--Latest <= max - 1 > Successes...<br> -->
 
-	<% encourage_items = EncourageItem.find(:all, :conditions => "checkpoint_date >= '#{current_user.dyesterday }'", :order => "id DESC", :limit => 5) %>
+	<% encourage_items = EncourageItem.find(:all, :conditions => "checkpoint_date >= '#{current_user.dyesterday }'", :order => "id DESC", :limit => (max + 10)) %>
 	<% encourage_items.each do |e| %>
 		<% if counter <= max %>
 
