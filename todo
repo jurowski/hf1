@@ -56,16 +56,40 @@ user_email
 Custom Teams
 -----------------
 i want to build my own custom team related to a goal
-let me choose whether the team is for the goal itself (team-goal) or for the goal's general category (team-category)
+
+
+beneath my goal's team section it currently says:
+
+
+Find an Open Team
+(put me on a team with 3 others committed to an "Exercise" goal)
+
+Start a 
+
+Allow for someone to Build a Custom Team in which there are openings ... so that people can seek out open teams and choose rather than having to be randomly assigned
+
+
+
+let me choose whether the team should restrict access for that goal itself (team-goal) or for the goal's general category (team-category)
+
 if team-goal, make each team goal the child of a template (if my goal is not yet a child, copy it to a parent template)
+
 suggest a team name, and let me edit it
+
 do not allow random assignments to my custom team
+
 let me be the owner of my team
+
 let me choose how many people are on my custom team
+
 let me craft an invite that has a link to start my goal (and if I have chosen category-level vs. goal-level, a link to start a custom or click from an array of templated goals in the same category)
+
 let me send invites to team members
+
 let my invite go to multiple email addresses separated by commas
+
 (teamgoals) do not kick people off of my custom team for not checking in
+
 do not let me quit a team that I am the leader of if there are other members
 allow me to transfer ownership to another member of the team
 notify every team member when a new member arrives
@@ -79,6 +103,7 @@ allow an invitee to silently ignore an invite (do not email me)
 allow an invitee to decline an invite (email me)
 keep reminding an invitee for a while until they take action
 
+later: team chat board
 (later: add an icon/mascot/avatar for our team)
 (later: add a "fade or not" photo mosaic linked to each team member's last 7 days ... one row per person)
 

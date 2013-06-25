@@ -321,7 +321,12 @@ stats_name = "<i class='icon-dashboard'></i> Dashboard"
 
 ### FOLLOWERS
 followers_image = "<i class='icon-user'></i>"
+
 followers_name = "#{followers_image} Followers (#{@goal.number_invites_sent_to_followers})"
+if @goal.number_invites_sent_to_followers == 0
+    followers_name = "#{followers_image} Invite a Friend to Keep You On Track"
+end
+
 
 ### Extra Accountability
 bets_image = ""
