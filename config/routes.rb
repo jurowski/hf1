@@ -97,6 +97,7 @@ ActionController::Routing::Routes.draw do |map|
 
 
   map.connect '/', :controller => "user_sessions", :action => "new"
+  #map.connect '/', :controller => "goals", :action => "index"
 
   map.resources :checkpoints
   
@@ -105,7 +106,7 @@ ActionController::Routing::Routes.draw do |map|
   map.connect 'checkpoints/:id/autoupdatemultipleradio', :controller => 'checkpoints', :action => 'autoupdatemultipleradio'
 
 
-  map.resources :goals, :collection => { :autocomplete_for_goal_response_question => :get}
+  #map.resources :goals, :collection => { :autocomplete_for_goal_response_question => :get}
   
   map.resources :goals
 
