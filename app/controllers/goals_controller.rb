@@ -54,6 +54,12 @@ class GoalsController < ApplicationController
     render :partial => "goals/dynamic_latest_public_checkins"
   end
 
+  # GET /goals/ads
+  def dynamic_ads
+
+    render :partial => "goals/dynamic_ads"
+  end
+
 
   ### http://stackoverflow.com/questions/10539143/reloading-partial-in-an-rails-app
   # GET /goalss/catch_up_on_checkpoints

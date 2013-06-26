@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
   #protect_from_forgery # See ActionController::RequestForgeryProtection for details
   
   ### Any private variables that you create must be listed here to be accessed elsewhere (unless they're in the helper file, in which they're public):
-  helper_method :current_user_session, :current_user, :current_user_is_admin, :server_root_url, :fully_logged_in
+  helper_method :current_user_session, :current_user, :current_user_is_admin, :server_root_url, :fully_logged_in, :mobile_device?
 
   filter_parameter_logging :password, :password_confirmation
 
@@ -26,6 +26,15 @@ class ApplicationController < ActionController::Base
 
 
   private
+
+
+    def mobile_device?
+      if session[:mobile_param]
+        session[:mobile_param] == "1"
+      else
+        request.user_agent =~ /Mobile|android|webos|iphone|ipad|ipod|blackberry/
+      end
+    end
 
     def save_referer
         if !session[:referer]
