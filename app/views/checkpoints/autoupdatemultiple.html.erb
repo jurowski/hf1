@@ -75,9 +75,9 @@ else
             <tr>
               <td  width=100% nowrap>
                 <h2>...<%= goal_additional.title %>?</h2>
-                    <input type="radio" id="status_<%= id %>_yes" name="status_<%= id %>" value="yes" <% if @checkpoint.status == "yes" %> checked<% end %>><label for="status_<%= id %>_yes" style="display:inline;">Yes</label>
+                    <input type="radio" id="status_<%= id %>_yes" name="status_<%= id %>" value="yes" <% if @checkpoint.status == "yes" %> checked<% end %> style="margin-left:0px;"><label for="status_<%= id %>_yes" style="display:inline;">Yes</label>
                     &nbsp &nbsp
-                   <input type="radio" id="status_<%= id %>_no" name="status_<%= id %>" value="no" <% if @checkpoint.status == "no" %> checkeds<% end %>><label for="status_<%= id %>_no" style="display:inline;">No</label>
+                   <input type="radio" id="status_<%= id %>_no" name="status_<%= id %>" value="no" <% if @checkpoint.status == "no" %> checked<% end %> style="margin-left:0px;"><label for="status_<%= id %>_no" style="display:inline;">No</label>
               </td>
             </tr>
           </table>
