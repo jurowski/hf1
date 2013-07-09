@@ -107,10 +107,6 @@ class CheckpointsController < ApplicationController
     	session[:site_name] = "My Learning Habit"
       session[:support_email] = "support@habitforge.com"
     end
-    if request.domain.include? 'reengagefocus' or session[:sponsor] == "reengagefocus"
-    	session[:site_name] = "ReEngage Focus"
-      session[:support_email] = "support@reengagefocus.com"	
-    end
     if request.domain.include? 'forittobe' or session[:sponsor] == "forittobe"
     	session[:site_name] = "For It To Be"
       session[:support_email] = "support@forittobe.com"	

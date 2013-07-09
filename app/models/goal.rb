@@ -821,9 +821,12 @@ class Goal < ActiveRecord::Base
     check_date = check_date_string.to_date
     ### do not allow creation of checkpoints prior to the original start date
     if self.first_start_date != nil
-      if check_date < self.start
+
+      #if check_date < self.start
+      if check_date < self.first_start_date
 	      return false
       end
+
     end
 
     dayname = check_date.strftime("%A")  
