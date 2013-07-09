@@ -43,6 +43,8 @@ else
     <%
     for goal_additional in @goals_additional
 
+      logger.info("sgj:view:autoupdatemultiple:goal_additional.title = " + goal_additional.title)
+
       Time.zone = @goal.user.time_zone
       if Time.zone
         tnow = Time.zone.now #User time

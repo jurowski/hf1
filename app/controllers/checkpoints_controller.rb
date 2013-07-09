@@ -138,12 +138,15 @@ class CheckpointsController < ApplicationController
     @goal = Goal.find(session[:g])  
 
 
-      #@goals_additional = Goal.find(:all, :conditions => "user_id = '#{@goal.user_id}' and status !='hold' ")
-      @day_of_checkpoints = Date.parse(session[:d]).strftime("%a, %b %d, %Y")
-      @goals_additional = @goal.user.all_goals_working_on_for_date(Date.parse(session[:d]))
+    #@goals_additional = Goal.find(:all, :conditions => "user_id = '#{@goal.user_id}' and status !='hold' ")
+    @day_of_checkpoints = Date.parse(session[:d]).strftime("%a, %b %d, %Y")
+    @goals_additional = @goal.user.all_goals_working_on_for_date(Date.parse(session[:d]))
 
   
     for goal_additional in @goals_additional
+
+      logger.info("sgj:controller:checkpoints:autoupdatemultiple:goal_additional.title = " + goal_additional.title)
+
       @checkpoint = Checkpoint.find(:first, :conditions => "goal_id = '#{goal_additional.id}' and checkin_date = '#{session[:d]}'")
       if @checkpoint != nil
         id = @checkpoint.id
