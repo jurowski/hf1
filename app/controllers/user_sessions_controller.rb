@@ -62,7 +62,10 @@ class UserSessionsController < ApplicationController
   
   def destroy
     session[:single_login] = nil
-    current_user_session.destroy
+    session[:fake_login] = nil
+    @current_user = nil
+
+    current_user_session.destroy if current_user_session
 
     session[:dynamic_latest_public_checkins_max] = nil
     

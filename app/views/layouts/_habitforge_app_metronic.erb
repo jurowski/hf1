@@ -778,9 +778,14 @@ $(document).ready(function(){
                   <li>
                       <%= link_to "<i class='icon-off'></i> Log Out", user_session_path, :method => :delete %>            
                   </li>
-                <!-- 
-                < else >
+                 
+                <% else %>
 
+                  <li>
+                      <%= link_to "<i class='icon-off'></i> Log Out", user_session_path, :method => :delete %>            
+                  </li>
+
+                  <!--
                   used to ask them to log in fully but
                   we no longer have spots where logging in fully matters
                   and furthermore, asking them to log in will no longer work
