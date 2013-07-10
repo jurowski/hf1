@@ -38,13 +38,13 @@
             <% if current_user.show_gravatar %>
               <% gravatar = "http://www.gravatar.com/avatar/#{Digest::MD5.hexdigest(current_user.email.downcase)}?d=mm" %>
                           
-              <a href="http://gravatar.com" target="_blank">
+              <a href="https://habitforge.uservoice.com/knowledgebase/articles/223282-how-can-i-change-my-picture-my-avatar-" target="_blank">
                   <img src="<%= gravatar %>&s=60" />
               </a>
 
             <% else %>
 
-              <a href="http://gravatar.com" target="_blank">
+              <a href="https://habitforge.uservoice.com/knowledgebase/articles/223282-how-can-i-change-my-picture-my-avatar-" target="_blank">
                 <img src="/home/images/default_gravatar.png" />
               </a>
 
