@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130621105423) do
+ActiveRecord::Schema.define(:version => 20130715104255) do
 
   create_table "achievemints", :force => true do |t|
     t.string   "name"
@@ -331,6 +331,15 @@ ActiveRecord::Schema.define(:version => 20130621105423) do
     t.string   "template_tagline"
     t.boolean  "template_next_template_goal_random_bool"
     t.integer  "goal_added_through_template_from_program_id"
+    t.integer  "success_rate_during_past_7_days"
+    t.integer  "success_rate_during_past_14_days"
+    t.integer  "success_rate_during_past_21_days"
+    t.integer  "success_rate_during_past_30_days"
+    t.integer  "success_rate_during_past_60_days"
+    t.integer  "success_rate_during_past_90_days"
+    t.integer  "success_rate_during_past_180_days"
+    t.integer  "success_rate_during_past_270_days"
+    t.integer  "success_rate_during_past_365_days"
   end
 
   add_index "goals", ["allow_push", "last_success_date", "next_push_on_or_after_date", "pushes_remaining_on_next_push_date"], :name => "allow_push"

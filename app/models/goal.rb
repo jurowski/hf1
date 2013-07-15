@@ -634,6 +634,7 @@ class Goal < ActiveRecord::Base
   
   def stats_output
       output = ""
+      save_here_because_found_difference = false
       show_longest_run_disclaimer = false
         if self.number_of_checkpoints > 0
           if !self.has_unanswered_checkpoints
@@ -643,9 +644,9 @@ class Goal < ActiveRecord::Base
 
                 if self.longestrun != nil and self.longestrun > 2
                     if self.daysstraight == self.longestrun
-                      output << " your longest run yet!* <br>"
+                      output << " your longest run yet! <br>"
                     else
-                      output << " <font style='font-size:80%;'>(Your longest run so far is #{self.longestrun}*)</font><br>"
+                      output << " <font style='font-size:80%;'>(Your longest run so far is #{self.longestrun})</font><br>"
                     end
                     #output << "<h5>*(Longest run since we started tracking that stat on Jan. 27, 2012)</h5"
                 end
@@ -679,13 +680,129 @@ class Goal < ActiveRecord::Base
               if self.days_since_first_checkpoint > 7
                  output << " .: " + self.success_rate_during_past_n_days(self.days_since_first_checkpoint).to_s + "% Overall :."
               end
-              how_long = Array.new()
-              how_long = [7, 21, 30]
-              for age in how_long
-                 if self.days_since_first_checkpoint >= age
-                    output << " .: " + self.success_rate_during_past_n_days(age).to_s + "% during last #{age} days :."
-                 end
-              end    
+
+
+           past_n_days = 7
+           if self.days_since_first_checkpoint >= past_n_days
+              success_rate_n = self.success_rate_during_past_n_days(past_n_days)
+              output << " .: " + success_rate_n.to_s + "% during last #{past_n_days} days :."
+
+              if self.success_rate_during_past_7_days and (self.success_rate_during_past_7_days != success_rate_n)
+                self.success_rate_during_past_7_days = success_rate_n
+                save_here_because_found_difference = true
+              end
+
+           end
+
+           past_n_days = 21
+           if self.days_since_first_checkpoint >= past_n_days
+              success_rate_n = self.success_rate_during_past_n_days(past_n_days)
+              output << " .: " + success_rate_n.to_s + "% during last #{past_n_days} days :."
+
+              if self.success_rate_during_past_21_days and (self.success_rate_during_past_21_days != success_rate_n)
+                self.success_rate_during_past_21_days = success_rate_n
+                save_here_because_found_difference = true
+              end
+
+
+           end
+
+           past_n_days = 30
+           if self.days_since_first_checkpoint >= past_n_days
+              success_rate_n = self.success_rate_during_past_n_days(past_n_days)
+              output << " .: " + success_rate_n.to_s + "% during last #{past_n_days} days :."
+
+              if self.success_rate_during_past_30_days and (self.success_rate_during_past_30_days != success_rate_n)
+                self.success_rate_during_past_30_days = success_rate_n
+                save_here_because_found_difference = true
+              end
+
+
+           end
+
+           ### not going to write the 14-day and others to output since it gets too long
+           ### but do save it in the db
+           past_n_days = 14
+           if self.days_since_first_checkpoint >= past_n_days
+              success_rate_n = self.success_rate_during_past_n_days(past_n_days)
+
+              if self.success_rate_during_past_14_days and (self.success_rate_during_past_14_days != success_rate_n)
+                self.success_rate_during_past_14_days = success_rate_n
+                save_here_because_found_difference = true
+              end
+
+           end
+
+
+           past_n_days = 60
+           if self.days_since_first_checkpoint >= past_n_days
+              success_rate_n = self.success_rate_during_past_n_days(past_n_days)
+
+              if self.success_rate_during_past_60_days and (self.success_rate_during_past_60_days != success_rate_n)
+                self.success_rate_during_past_60_days = success_rate_n
+                save_here_because_found_difference = true
+              end
+
+           end
+
+           past_n_days = 90
+           if self.days_since_first_checkpoint >= past_n_days
+              success_rate_n = self.success_rate_during_past_n_days(past_n_days)
+
+              if self.success_rate_during_past_90_days and (self.success_rate_during_past_90_days != success_rate_n)
+                self.success_rate_during_past_90_days = success_rate_n
+                save_here_because_found_difference = true
+              end
+
+           end
+
+           past_n_days = 180
+           if self.days_since_first_checkpoint >= past_n_days
+              success_rate_n = self.success_rate_during_past_n_days(past_n_days)
+
+              if self.success_rate_during_past_180_days and (self.success_rate_during_past_180_days != success_rate_n)
+                self.success_rate_during_past_180_days = success_rate_n
+                save_here_because_found_difference = true
+              end
+
+           end
+
+           past_n_days = 270
+           if self.days_since_first_checkpoint >= past_n_days
+              success_rate_n = self.success_rate_during_past_n_days(past_n_days)
+
+              if self.success_rate_during_past_270_days and (self.success_rate_during_past_270_days != success_rate_n)
+                self.success_rate_during_past_270_days = success_rate_n
+                save_here_because_found_difference = true
+              end
+
+           end
+
+           past_n_days = 365
+           if self.days_since_first_checkpoint >= past_n_days
+              success_rate_n = self.success_rate_during_past_n_days(past_n_days)
+
+              if self.success_rate_during_past_365_days and (self.success_rate_during_past_365_days != success_rate_n)
+                self.success_rate_during_past_365_days = success_rate_n
+                save_here_because_found_difference = true
+              end
+
+           end
+
+
+
+
+
+
+
+
+            # how_long = Array.new()
+            # how_long = [7, 21, 30]
+            # for age in how_long
+            #    if self.days_since_first_checkpoint >= age
+            #       output << " .: " + self.success_rate_during_past_n_days(age).to_s + "% during last #{age} days :."
+            #    end
+            # end    
 
             #output << " :."        
             #if self.last_stats_badge_date != nil
@@ -699,6 +816,10 @@ class Goal < ActiveRecord::Base
             output << "</p>"
           end 
         end 
+
+      if save_here_because_found_difference
+        self.save
+      end
 
       return output
   end
