@@ -687,7 +687,7 @@ class Goal < ActiveRecord::Base
               success_rate_n = self.success_rate_during_past_n_days(past_n_days)
               output << " .: " + success_rate_n.to_s + "% during last #{past_n_days} days :."
 
-              if self.success_rate_during_past_7_days and (self.success_rate_during_past_7_days != success_rate_n)
+              if self.success_rate_during_past_7_days == nil or (self.success_rate_during_past_7_days != success_rate_n)
                 self.success_rate_during_past_7_days = success_rate_n
                 save_here_because_found_difference = true
               end
@@ -699,7 +699,7 @@ class Goal < ActiveRecord::Base
               success_rate_n = self.success_rate_during_past_n_days(past_n_days)
               output << " .: " + success_rate_n.to_s + "% during last #{past_n_days} days :."
 
-              if self.success_rate_during_past_21_days and (self.success_rate_during_past_21_days != success_rate_n)
+              if self.success_rate_during_past_21_days == nil or (self.success_rate_during_past_21_days != success_rate_n)
                 self.success_rate_during_past_21_days = success_rate_n
                 save_here_because_found_difference = true
               end
@@ -712,7 +712,7 @@ class Goal < ActiveRecord::Base
               success_rate_n = self.success_rate_during_past_n_days(past_n_days)
               output << " .: " + success_rate_n.to_s + "% during last #{past_n_days} days :."
 
-              if self.success_rate_during_past_30_days and (self.success_rate_during_past_30_days != success_rate_n)
+              if self.success_rate_during_past_30_days == nil or (self.success_rate_during_past_30_days != success_rate_n)
                 self.success_rate_during_past_30_days = success_rate_n
                 save_here_because_found_difference = true
               end
@@ -726,7 +726,7 @@ class Goal < ActiveRecord::Base
            if self.days_since_first_checkpoint >= past_n_days
               success_rate_n = self.success_rate_during_past_n_days(past_n_days)
 
-              if self.success_rate_during_past_14_days and (self.success_rate_during_past_14_days != success_rate_n)
+              if self.success_rate_during_past_14_days == nil or (self.success_rate_during_past_14_days != success_rate_n)
                 self.success_rate_during_past_14_days = success_rate_n
                 save_here_because_found_difference = true
               end
@@ -738,7 +738,7 @@ class Goal < ActiveRecord::Base
            if self.days_since_first_checkpoint >= past_n_days
               success_rate_n = self.success_rate_during_past_n_days(past_n_days)
 
-              if self.success_rate_during_past_60_days and (self.success_rate_during_past_60_days != success_rate_n)
+              if self.success_rate_during_past_60_days == nil or (self.success_rate_during_past_60_days != success_rate_n)
                 self.success_rate_during_past_60_days = success_rate_n
                 save_here_because_found_difference = true
               end
@@ -749,7 +749,7 @@ class Goal < ActiveRecord::Base
            if self.days_since_first_checkpoint >= past_n_days
               success_rate_n = self.success_rate_during_past_n_days(past_n_days)
 
-              if self.success_rate_during_past_90_days and (self.success_rate_during_past_90_days != success_rate_n)
+              if self.success_rate_during_past_90_days == nil or (self.success_rate_during_past_90_days != success_rate_n)
                 self.success_rate_during_past_90_days = success_rate_n
                 save_here_because_found_difference = true
               end
@@ -760,7 +760,7 @@ class Goal < ActiveRecord::Base
            if self.days_since_first_checkpoint >= past_n_days
               success_rate_n = self.success_rate_during_past_n_days(past_n_days)
 
-              if self.success_rate_during_past_180_days and (self.success_rate_during_past_180_days != success_rate_n)
+              if self.success_rate_during_past_180_days == nil or (self.success_rate_during_past_180_days != success_rate_n)
                 self.success_rate_during_past_180_days = success_rate_n
                 save_here_because_found_difference = true
               end
@@ -771,7 +771,7 @@ class Goal < ActiveRecord::Base
            if self.days_since_first_checkpoint >= past_n_days
               success_rate_n = self.success_rate_during_past_n_days(past_n_days)
 
-              if self.success_rate_during_past_270_days and (self.success_rate_during_past_270_days != success_rate_n)
+              if self.success_rate_during_past_270_days == nil or (self.success_rate_during_past_270_days != success_rate_n)
                 self.success_rate_during_past_270_days = success_rate_n
                 save_here_because_found_difference = true
               end
@@ -782,7 +782,7 @@ class Goal < ActiveRecord::Base
            if self.days_since_first_checkpoint >= past_n_days
               success_rate_n = self.success_rate_during_past_n_days(past_n_days)
 
-              if self.success_rate_during_past_365_days and (self.success_rate_during_past_365_days != success_rate_n)
+              if self.success_rate_during_past_365_days == nil or (self.success_rate_during_past_365_days != success_rate_n)
                 self.success_rate_during_past_365_days = success_rate_n
                 save_here_because_found_difference = true
               end
