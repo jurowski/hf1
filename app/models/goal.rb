@@ -1371,7 +1371,7 @@ logger.debug "SGJ 3"
   def get_teammate_names_sans_me
     names = ""
     for goal in self.team_goals
-        if goal.user != self.user
+        if goal.user and (goal.user != self.user)
             if names != ""
                 names = names + ", "
             end
