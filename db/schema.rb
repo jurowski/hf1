@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130715104255) do
+ActiveRecord::Schema.define(:version => 20130716031736) do
 
   create_table "achievemints", :force => true do |t|
     t.string   "name"
@@ -646,6 +646,15 @@ ActiveRecord::Schema.define(:version => 20130715104255) do
     t.integer  "goal_template_parent_id"
     t.boolean  "custom"
     t.integer  "owner_user_id"
+    t.integer  "success_rate_during_past_7_days"
+    t.integer  "success_rate_during_past_14_days"
+    t.integer  "success_rate_during_past_21_days"
+    t.integer  "success_rate_during_past_30_days"
+    t.integer  "success_rate_during_past_60_days"
+    t.integer  "success_rate_during_past_90_days"
+    t.integer  "success_rate_during_past_180_days"
+    t.integer  "success_rate_during_past_270_days"
+    t.integer  "success_rate_during_past_365_days"
   end
 
   create_table "template_achievemints", :force => true do |t|
