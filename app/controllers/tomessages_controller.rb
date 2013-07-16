@@ -158,6 +158,7 @@ class TomessagesController < ApplicationController
               current_user.impact_points = 0
             end
             current_user.impact_points += 5
+            current_user.save
 
           
           flash[:notice] = 'Message Sent.'
