@@ -37,7 +37,7 @@
           <% if @cn == "goals" or @cn == "checkpoints" %> 
             <li class="active">
               <a href="/goals">
-              <i class="icon-cogs"></i> 
+              <i class="icon-tasks"></i> 
               <span class="title">My Habits</span>
               <span class="selected"></span>
               </a>   
@@ -45,7 +45,7 @@
           <% else %>
             <li>
               <a href="/goals">
-              <i class="icon-cogs"></i> 
+              <i class="icon-tasks"></i> 
               <span class="title">My Habits</span>
               </a>   
             </li>
@@ -89,8 +89,19 @@
               <% if @cn == "cheers" %> 
                 class="active" 
               <% end %>
-              ><%= link_to "<i class='icon-group'></i>Friends", "/cheers" %></li>
+              ><%= link_to "<i class='icon-group'></i>Community", "/cheers" %></li>
 
+
+          <li><a href="#" onclick="return popitup_bigger1('/impact_points.html')" %>
+                                <i class='icon-signal'></i>My Impact:  
+            <% if !current_user.supportpoints %>
+                                    0     
+                                <% else %>
+                                      <%= current_user.supportpoints %>
+                                <% end %>
+              
+              </a>
+            </li>
 
           <li><a href="#" onclick="return popitup_bigger1('/support_points.html')" %>
                                 <i class='icon-trophy'></i>SupportPoints (
