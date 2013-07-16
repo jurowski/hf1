@@ -152,6 +152,13 @@ class TomessagesController < ApplicationController
           @frommessage.body = @tomessage.body
           @frommessage.save
           
+
+            #### UPDATE IMPACT POINTS FOR USER
+            if !current_user.impact_points
+              current_user.impact_points = 0
+            end
+            current_user.impact_points += 5
+
           
           flash[:notice] = 'Message Sent.'
 

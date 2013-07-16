@@ -16,12 +16,26 @@ class Checkpoint < ActiveRecord::Base
       
       success = true
       begin    
+
+        old_status = self.status
+        new_status = status
+
         self.status = status
         self.comment = comment
         self.save
         if self.goal != nil
             ### it would be nil if the goal had been deleted w/out the checkpoints being deleted
             ### this does seem to happen somehow now and then
+
+
+            #### UPDATE IMPACT POINTS FOR USER
+            if !self.goal.user.impact_points
+              self.goal.user.impact_points = 0
+            end
+            if new_status == "yes" and (old_status != "yes") and (old_status != "no")
+              self.goal.user.impact_points += 5
+            end
+
 
             #logger.info("sgj:checkpoint.rb:create_checkpoints_where_missing")        
             self.goal.create_checkpoints_where_missing

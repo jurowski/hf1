@@ -94,10 +94,10 @@
 
           <li><a href="#" onclick="return popitup_bigger1('/impact_points.html')" %>
                                 <i class='icon-signal'></i>My Impact:  
-            <% if !current_user.supportpoints %>
+                                <% if !current_user.impact_points %>
                                     0     
                                 <% else %>
-                                      <%= current_user.supportpoints %>
+                                      <%= current_user.impact_points %>
                                 <% end %>
               
               </a>
