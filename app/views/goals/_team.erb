@@ -53,7 +53,7 @@ end
       end
       for team_goal in @team_goals
         %>
-        <% if team_goal.user.id != current_user.id %>
+        <% if team_goal.user and (team_goal.user.id != current_user.id) %>
             <p>
 
               <% if team_goal.user.show_gravatar %>
