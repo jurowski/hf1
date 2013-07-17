@@ -455,7 +455,10 @@ show_monitor_option_details = 0
         else
         %>
           <div class="notice">
-            <a href="https://www.securepublications.com/habit-gse3.php?ref=<%= current_user.id.to_s %>&email=<%= current_user.email %>" >Enabling "Frequent Reminders" requires a Premium Membership</a>
+
+
+
+            <a href="/goals?feature_limit=1" target="_blank">Enable "Frequent Reminders" with a Premium Membership</a>
             <br>
             <input type=checkbox disabled>
             Send <%= them_or_me %> frequent reminders every  
@@ -581,7 +584,7 @@ end
       <input disabled="disabled" id="private" name="private" type="checkbox" />
       Keep it Private 
                             
-      <a href="https://www.securepublications.com/habit-gse3.php?ref=<%= current_user.id.to_s %>&email=<%= current_user.email %>" >(requires a Premium Membership)</a>
+      <a href="/goals?feature_limit=1" target="_blank">" >(requires a Premium Membership)</a>
   <% end %>
 
 
@@ -603,7 +606,7 @@ end
             <br>
             <h2>
             <% if !current_user.is_habitforge_supporting_member %>
-              <a href="https://www.securepublications.com/habit-gse3.php?ref=<%= current_user.id.to_s %>&email=<%= current_user.email %>" >(Enable this feature with a Premium Membership)</a>
+              <a href="/goals?feature_limit=1" target="_blank">" >(Enable this feature with a Premium Membership)</a>
             </h2>
 
             <% end %>

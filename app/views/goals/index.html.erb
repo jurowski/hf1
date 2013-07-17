@@ -15,7 +15,7 @@
 <!-- *********** -->
 <!-- START TOO MANY ACTIVE HABITS -->
 <!-- *********** -->
-<% if params[:too_many_active_habits] %>
+<% if params[:too_many_active_habits] or params[:premium_more_info_hide_ads] or params[:feature_limit]%>
 
 
     <div id="upgrade_lightbox_black" class="black_overlay">
@@ -29,10 +29,18 @@
 
         <center>
 
-        <h4>Free accounts are restricted to 1 active habit at a time.</h4>
+
+        <% if params[:too_many_active_habits] %>
+            <h4>Free accounts are restricted to 1 active habit at a time.</h4>
+        <% end %>
+
         <div class="show_autoupdatemultiple_personal_motivation">
 
 
+
+        <% if params[:premium_more_info_hide_ads] %>
+            <h2>Remove the Ads, Remove the Limits with a Premium Membership!</h2>
+        <% else %>
             <h2>Remove the limits 
             <% if session[:goal_template_text] and session[:goal_template_text] != "" %> 
               ... work on <%= session[:goal_template_text] %> and any other goals, all with premium features and no ads, 
@@ -42,6 +50,10 @@
                 <% end %>
             <% end %>
            with a Premium Membership!</h2>
+        <% end %>
+
+
+
    
 <div class="alert-info">             
 <p>
