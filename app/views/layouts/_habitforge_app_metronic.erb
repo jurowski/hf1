@@ -643,6 +643,12 @@ $(document).ready(function(){
                 </li>
               <% end %>
 
+              <% if messages_count > 1 %>
+                <li class="external">
+                  <a href="/tomessages?mark_all_as_read=1">Mark all as read <i class="m-icon-swapright"></i></a>
+                </li>
+              <% end %>
+
 
               <% counter = 0 %>
               <% @tomessages.each do |message| %>

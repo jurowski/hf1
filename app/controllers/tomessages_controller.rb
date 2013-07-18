@@ -12,8 +12,18 @@ class TomessagesController < ApplicationController
   before_filter :require_user
 
   def index
+
+
+    if params[:mark_all_as_read]
+      unread_messages = Tomessage.find(:all, :conditions => "to_id = '#{current_user.id}' and unread = 1")
+      unread_messages.each do |message|
+        message.unread = false
+        message.save
+      end
+    end
+
     @tomessages = Tomessage.find(:all, :conditions => "to_id = '#{current_user.id}'")
-    
+        
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @tomessages }
