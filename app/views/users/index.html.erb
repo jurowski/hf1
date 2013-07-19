@@ -25,10 +25,11 @@ counter_have_goals = 0
             <% if user.unlimited_goals == 1 %>
                 <strong>Premium Member</strong>
             <% else %>
+                <%= user.supportpoints %> pts: 
                 <% if user.id > 85758 %>
-                  <a href="users?days=90&upgrade_id=<%=user.id%>">Upgrade 3 months and Send Email</a>
+                  <a href="users?days=90&upgrade_id=<%=user.id%>">Upgrade 3 months, subtract 100pts, and Send Email</a>
                 <% else %>
-                  <a href="users?days=365&upgrade_id=<%=user.id%>">Upgrade 1 year and Send Email</a>
+                  <a href="users?days=365&upgrade_id=<%=user.id%>">Upgrade 1 year, subtract 100pts, and Send Email</a>
                 <% end %>
  
             <% end %>

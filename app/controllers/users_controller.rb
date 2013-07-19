@@ -133,7 +133,11 @@ class UsersController < ApplicationController
             if user != nil
                 days = 365
                 if params[:days]
-		  days = params[:days].to_i
+		              days = params[:days].to_i
+                end
+
+                if user.supportpoints and user.supportpoints >= 100
+                  user.supportpoints = user.supportpoints - 100
                 end
                 user.combine_daily_emails = 0
                 user.hide_donation_plea = 1
