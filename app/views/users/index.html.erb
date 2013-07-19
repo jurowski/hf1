@@ -20,7 +20,14 @@ counter_have_goals = 0
         <%= link_to user.id.to_s, edit_user_path(user) %>
         |
         <a href="users?impersonate=<%=user.id%>">Impersonate</a>
-        |
+         |
+        <% if !user.confirmed_address %>
+
+              <a href="users?confirm_id=<%=user.id%>">Confirm Account</a>
+
+        <% end %>
+
+         |
         <% if session[:sponsor] == "habitforge" %>
             <% if user.unlimited_goals == 1 %>
                 <strong>Premium Member</strong>
@@ -34,7 +41,7 @@ counter_have_goals = 0
  
             <% end %>
         <% end %>
-        |
+         |
         <%= link_to 'Delete', user, :confirm => 'Delete '+user.email+', goals and stats?', :method => :delete %>
     <%
     end

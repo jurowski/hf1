@@ -112,6 +112,26 @@ class UsersController < ApplicationController
     if params[:impersonate]
       redirect_to("/goals")
     else
+
+
+        ############# MANUALLY CONFIRM AN ACCOUNT ############################
+        if current_user_is_admin and params[:confirm_id]
+            user = User.find(:first, :conditions => "id = #{params[:confirm_id].to_i}") 
+            if user != nil
+              user.confirmed_address = true
+
+              if user.save
+                  logger.info 'HF SUCCESS confirming user account for ' + user.email
+              else 
+                  logger.info 'HF ERROR confirming user account for ' + user.email
+              end
+
+            end
+        end        
+
+
+
+        ############# MANUALLY UPGRADE AN ACCOUNT ############################
         if current_user_is_admin and params[:upgrade_id]
             ### GET DATE NOW ###
             jump_forward_days = 0
