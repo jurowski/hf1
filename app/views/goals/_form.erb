@@ -16,6 +16,16 @@
 <% end %>
 <hr>
 
+
+
+<!-- IF THIS GOAL IS CURRENTLY PART OF AN EXTRA ACCOUNTABILITY CHALLENGE -->
+<%
+has_active_challenge = false
+if @goal.number_my_active_bets > 0
+  has_active_challenge = true
+end
+%>
+
 <!-- IF THIS GOAL IS BASED ON A TEMPLATE, DO NOT ALLOW MODIFICATIONS OF SOME THINGS -->
 <% 
 based_on_a_template = false
@@ -121,7 +131,7 @@ show_monitor_option_details = 0
 <h4>
   
   "Were you successful at
-<% if !based_on_a_template %>
+<% if !based_on_a_template and !has_active_challenge %>
  &nbsp
   <%= form.text_field :response_question, :placeholder => 'Ex: walking for at least 20 minutes', :style=>'width:400px;', :size => 40 %> ?"
 <% else %>
@@ -133,7 +143,12 @@ show_monitor_option_details = 0
 <% end %>
 </h4>
 </div>
-
+<% if has_active_challenge %>
+  <br>
+  <div class="alert-info">
+  This goal's title, category and frequency can not be modified because it is currently part of an Extra Accountability Challenge.
+  </div>
+<% end %>
 
 
   <% if @goal.template_owner_is_a_template %>
@@ -204,7 +219,7 @@ show_monitor_option_details = 0
 
   <tr>
   <td valign=top nowrap align=right>
-  <% if based_on_a_template %>
+  <% if based_on_a_template or has_active_challenge %>
     <% if @goal.category and @goal.category != "" %>
       Category: 
     <% end %>
@@ -214,7 +229,7 @@ show_monitor_option_details = 0
   </td>
   <td nowrap>
 
-    <% if !based_on_a_template %>
+    <% if !based_on_a_template and !has_active_challenge %>
       <%
       @arr = arr_goal_categories  
       %>
@@ -682,6 +697,10 @@ end
 <% if based_on_a_template %>
   <h6>(Values below are locked because this goal is based off of a template.)</h6>
 <% end %>
+<% if has_active_challenge %>
+  <h6>(Values below are locked because this goal is currently part of an Extra Accountability Challenge.)</h6>
+<% end %>
+
 <div class="well">
 Some habits are daily and others are only a few days a week.
 
@@ -711,7 +730,7 @@ if @goal.template_owner_is_a_template
   end
 end
 
-if based_on_a_template
+if based_on_a_template or has_active_challenge
   if @goal.daym == true and @goal.dayt == true \
     and @goal.dayw == true and @goal.dayr == true \
     and @goal.dayf == true and @goal.days == true \
@@ -776,7 +795,7 @@ end
       -->
 
 
-      <% if based_on_a_template %>
+      <% if based_on_a_template or has_active_challenge %>
         <!-- Not Daily DO NOT SHOW IT AT ALL-->
       <% else %>
         <a href="#undefined" onclick="toggle_show_hide('daily');toggle_show_hide('not_daily')">Not Daily</a>
@@ -794,7 +813,7 @@ end
       } 
       -->
       <input type='radio' disabled unchecked>
-      <% if based_on_a_template %>
+      <% if based_on_a_template or has_active_challenge %>
         Daily
       <% else %>
         <a href="#undefined" onclick="toggle_show_hide('daily');toggle_show_hide('not_daily')">Daily</a>
@@ -806,7 +825,7 @@ end
 
 
     &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp The goal is to succeed at this at least 
-    <% if based_on_a_template %>
+    <% if based_on_a_template or has_active_challenge %>
       <span style="font-weight:900;"><%= @goal.goal_days_per_week %></span>
       <%= form.hidden_field :goal_days_per_week, :value => @goal.goal_days_per_week %>
     <% else %>
@@ -824,7 +843,7 @@ end
       &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp 
 
 
-      <% if based_on_a_template %>
+      <% if based_on_a_template or has_active_challenge %>
         <%= check_box(:goal, :daym, :checked_value => true, :unchecked_value => false, :disabled => true, :readonly => true) %>
         <strong>Mon</strong> &nbsp;
         <%= check_box(:goal, :dayt, :checked_value => true, :unchecked_value => false, :disabled => true, :readonly => true) %>

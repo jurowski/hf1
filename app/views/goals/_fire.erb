@@ -164,14 +164,14 @@ aka "Fire"
                             @user = @goal.user
                         
                             if params[:recipient] == "random"
-                                Notifier.deliver_bet_fire_random_new_notification_to_user(@user, @bet) # sends the email 
-                                Notifier.deliver_bet_fire_random_new_notification_to_recipient(@user, @bet) # sends the email 
+                                Notifier.deliver_bet_fire_random_new_notification_to_user(@user, @bet, @goal) # sends the email 
+                                Notifier.deliver_bet_fire_random_new_notification_to_recipient(@user, @bet, @goal) # sends the email 
                             end
                             if params[:recipient] == "charity"
-                                Notifier.deliver_bet_fire_charity_new_notification(@user, @bet) # sends the email 
+                                Notifier.deliver_bet_fire_charity_new_notification(@user, @bet, @goal) # sends the email 
                             end
                             if params[:recipient] == "friend"
-                                Notifier.deliver_bet_fire_friend_new_notification(@user, @bet) # sends the email 
+                                Notifier.deliver_bet_fire_friend_new_notification(@user, @bet, @goal) # sends the email 
                             end
 
                             %>

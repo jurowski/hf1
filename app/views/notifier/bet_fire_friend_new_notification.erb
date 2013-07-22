@@ -6,7 +6,7 @@ You've chosen to make <%= @bet.recipient_name %> your potential recipient.
 
 Your <%= @bet.length_days %>-day challenge for $<%= @bet.wager %> runs from <%= @bet.start_date.strftime("%A, %b %d, %Y") %> through <%= @bet.end_date.strftime("%A, %b %d, %Y") %>.
 
-You need to succeed at least <%= @bet.floor%>% out of the <%= @bet.length_days %>-day challenge period, or you'll owe <%= @bet.recipient_name %> $<%= @bet.wager %>!
+You need to succeed with "<%= @goal.response_question %>" at least <%= @bet.floor%>% out of the <%= @bet.length_days %>-day challenge period, or you'll owe <%= @bet.recipient_name %> $<%= @bet.wager %>!
 
 We'll send another email at the end of the challenge period with the results.
 
@@ -32,3 +32,4 @@ Creator HabitForge.com
 http://habitforge.com
 support@habitforge.com
 
+(For reference, this is for Goal ID <%= @goal.id.to_s %> )

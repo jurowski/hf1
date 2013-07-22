@@ -10,7 +10,7 @@ You'll be able to follow <%= @user.first_name %>'s goal progress under the "Frie
 
 <%= @user.first_name %>'s <%= @bet.length_days %>-day challenge for $<%= @bet.wager %> runs from <%= @bet.start_date.strftime("%A, %b %d, %Y") %> through <%= @bet.end_date.strftime("%A, %b %d, %Y") %>.
 
-<%= @user.first_name %> will need to succeed at least <%= @bet.floor%>% out of the <%= @bet.length_days %>-day challenge period, or <%= @user.first_name %> will owe you $<%= @bet.wager %>!
+<%= @user.first_name %> will need to succeed with "<%= @goal.response_question %>" at least <%= @bet.floor%>% out of the <%= @bet.length_days %>-day challenge period, or <%= @user.first_name %> will owe you $<%= @bet.wager %>!
 
 We'll send another email at the end of the challenge period with the results.
 
@@ -35,4 +35,6 @@ Sandon Jurowski
 HabitForge Creator
 http://habitforge.com
 support@habitforge.com
+
+(For reference, this is for Goal ID <%= @goal.id.to_s %> )
 

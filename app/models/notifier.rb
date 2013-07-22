@@ -112,36 +112,36 @@ class Notifier < ActionMailer::Base
     body       :coachgoal => coachgoal
   end  
 
-  def bet_fire_charity_new_notification(user, bet)
+  def bet_fire_charity_new_notification(user, bet, goal)
     recipients user.first_name + "<" + user.email + ">"
     cc         "support@habitforge.com, " + bet.recipient_name + "<" + bet.recipient_email + ">"
     from       "HabitForge <support@habitforge.com>"
     subject    "Thanks for Playing For a Cause!"
-    body       :user => user, :bet => bet
+    body       :user => user, :bet => bet, :goal => goal
   end  
 
-  def bet_fire_friend_new_notification(user, bet)
+  def bet_fire_friend_new_notification(user, bet, goal)
     recipients user.first_name + "<" + user.email + ">"
     cc         "support@habitforge.com, " + bet.recipient_name + "<" + bet.recipient_email + ">"
     from       "HabitForge <support@habitforge.com>"
     subject    "Extra Accountability Challenge"
-    body       :user => user, :bet => bet
+    body       :user => user, :bet => bet, :goal => goal
   end  
 
-  def bet_fire_random_new_notification_to_user(user, bet)
+  def bet_fire_random_new_notification_to_user(user, bet, goal)
     recipients user.first_name + "<" + user.email + ">"
     bcc         "support@habitforge.com"
     from       "HabitForge <support@habitforge.com>"
     subject    "Extra Accountability Challenge"
-    body       :user => user, :bet => bet
+    body       :user => user, :bet => bet, :goal => goal
   end  
 
-  def bet_fire_random_new_notification_to_recipient(user, bet)
+  def bet_fire_random_new_notification_to_recipient(user, bet, goal)
     recipients bet.recipient_name + "<" + bet.recipient_email + ">"
     bcc         "support@habitforge.com"
     from       "HabitForge <support@habitforge.com>"
     subject    "Extra Accountability Challenge"
-    body       :user => user, :bet => bet
+    body       :user => user, :bet => bet, :goal => goal
   end  
 
 

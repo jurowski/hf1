@@ -21,14 +21,23 @@
   <%
   end
   %>   
+
+
+
+<!-- DO NOT ALLOW HOLD OR DELETE OPTIONS IF THERE IS AN ACTIVE EXTRA ACCOUNTABILITY CHALLENGE -->
+<% if @goal.number_my_active_bets == 0 %>
   <% if @goal.status != "hold" %>
       | 
       <%= link_to 'Place on Hold', "/goals/hold/#{@goal.id}", :confirm => 'If you put a goal on hold, you will stop getting emails about it. Are you sure you want to place it on hold?'
        %> 
   <% end %>
-
   |
   <%= link_to "Delete", @goal, :confirm => 'Are you sure you want to delete this goal?', :method => :delete %>
+<% end %>
+
+
+
+
 
 <br>
 
