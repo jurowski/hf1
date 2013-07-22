@@ -1550,9 +1550,14 @@ logger.debug "SGJ 3"
   
   def number_my_active_bets
     count = 0
-    if self.my_active_bets.size != nil
-        count = self.my_active_bets.size
-    end      
+    begin
+      if self.my_active_bets and self.my_active_bets.size != nil
+          count = self.my_active_bets.size
+      end      
+    rescue
+
+    end
+
     return count
   end  
 

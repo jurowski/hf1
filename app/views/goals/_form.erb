@@ -1,3 +1,9 @@
+<%
+@cn = controller.controller_name 
+@ca = controller.action_name 
+%>
+
+
 <!-- TESTING OUT SHOWING EVERYTHING NO MATTER WHAT -->
 <% if session[:sfm_virgin] %>
   <% session[:sfm_virgin] = false %>
@@ -57,8 +63,6 @@ end
 
 <%= form.hidden_field :user_id, :value => current_user.id %>
 <%
-@cn = controller.controller_name 
-@ca = controller.action_name 
 
 #end
 
