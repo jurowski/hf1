@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130716110002) do
+ActiveRecord::Schema.define(:version => 20130723101435) do
 
   create_table "achievemints", :force => true do |t|
     t.string   "name"
@@ -70,6 +70,7 @@ ActiveRecord::Schema.define(:version => 20130716110002) do
     t.string   "payment_url"
     t.date     "sent_bill_notice_date"
     t.string   "recipient_name"
+    t.boolean  "error_on_notification"
   end
 
   create_table "checkpoint_achievemints", :force => true do |t|

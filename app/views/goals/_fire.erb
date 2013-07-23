@@ -263,12 +263,12 @@ aka "Fire"
                         to:
                         <div class="well">
                         <p>
-                        &nbsp &nbsp &nbsp &nbsp &nbsp <input type="radio" name="recipient" value="friend" <% if !form_enabled %>DISABLED<% end %> <% if params[:recipient] == "friend" %>CHECKED<% end %>>&nbsp A friend of mine named: <input type="textbox" name="friend_name" value="<%= params[:friend_name] %>" <% if !form_enabled %>DISABLED<% end %>> 
+                        &nbsp &nbsp &nbsp &nbsp &nbsp <input type="radio" name="recipient" value="friend" style="margin-left:0px;" <% if !form_enabled %>DISABLED<% end %> <% if params[:recipient] == "friend" %>CHECKED<% end %>>&nbsp A friend of mine named: <input type="textbox" name="friend_name" value="<%= params[:friend_name] %>" <% if !form_enabled %>DISABLED<% end %>> 
                         <br>
                         &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp My friend's email address is: <input type="textbox" name="friend_email" value="<%= params[:friend_email] %>" <% if !form_enabled %>DISABLED<% end %>>
                         <br>
                         <br>
-                        &nbsp &nbsp &nbsp &nbsp &nbsp <input type="radio" name="recipient" value="charity" <% if !form_enabled %>DISABLED<% end %> <% if params[:recipient] == "charity" or !params[:recipient] %>CHECKED<% end %>>&nbsp A listed charity:
+                        &nbsp &nbsp &nbsp &nbsp &nbsp <input type="radio" name="recipient" value="charity" style="margin-left:0px;"<% if !form_enabled %>DISABLED<% end %> <% if params[:recipient] == "charity" or !params[:recipient] %>CHECKED<% end %>>&nbsp A listed charity:
                         <select name="charity" <% if !form_enabled %>DISABLED<% end %>>
                             <option value="" <% if params[:charity] == "" %>SELECTED<% end %>> --- Select a Charity that will Motivate You --- </option>
                         
@@ -285,7 +285,7 @@ aka "Fire"
                         </select>
                         <br>
                         <br>
-                        &nbsp &nbsp &nbsp &nbsp &nbsp <input type="radio" name="recipient" value="random" <% if !form_enabled %>DISABLED<% end %> <% if params[:recipient] == "random" %>CHECKED<% end %> >&nbsp Some lucky HabitForge Premium Member (choose one randomly for me)
+                        &nbsp &nbsp &nbsp &nbsp &nbsp <input type="radio" name="recipient" value="random" style="margin-left:0px;"<% if !form_enabled %>DISABLED<% end %> <% if params[:recipient] == "random" %>CHECKED<% end %> >&nbsp Some lucky HabitForge Premium Member (choose one randomly for me)
                         </p>
                         </div>
 

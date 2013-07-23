@@ -47,16 +47,25 @@ class NotifyBetsDueForPayment < ActiveRecord::Base
 
         @bet = bet
         @user = bet.user
-        if bet.recipient_type == "random"
-          Notifier.deliver_bet_fire_random_due_notification_to_user(@user, @bet, @floor_days, @successful_days)
-          Notifier.deliver_bet_fire_random_due_notification_to_recipient(@user, @bet, @floor_days, @successful_days)
+
+
+        begin
+          if bet.recipient_type == "random"
+            Notifier.deliver_bet_fire_random_due_notification_to_user(@user, @bet, @floor_days, @successful_days)
+            Notifier.deliver_bet_fire_random_due_notification_to_recipient(@user, @bet, @floor_days, @successful_days)
+          end
+          if bet.recipient_type == "charity"
+            Notifier.deliver_bet_fire_charity_due_notification(@user, @bet, @floor_days, @successful_days)
+          end
+          if bet.recipient_type == "friend"
+            Notifier.deliver_bet_fire_friend_due_notification(@user, @bet, @floor_days, @successful_days)
+          end
+        rescue
+          logmessage = "sgj:error when sending bet due notice"
+          logger.error(logmessage)
+          bet.error_on_notification = logmessage
         end
-        if bet.recipient_type == "charity"
-          Notifier.deliver_bet_fire_charity_due_notification(@user, @bet, @floor_days, @successful_days)
-        end
-        if bet.recipient_type == "friend"
-          Notifier.deliver_bet_fire_friend_due_notification(@user, @bet, @floor_days, @successful_days)
-        end
+
         bet.sent_bill_notice_date = dnow
         bet.save
       end
