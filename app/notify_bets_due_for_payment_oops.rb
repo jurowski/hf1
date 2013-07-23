@@ -21,8 +21,9 @@ class NotifyBetsDueForPayment < ActiveRecord::Base
   dnow = Date.new(tnow_Y, tnow_m, tnow_d) + jump_forward_days
   dyesterday = dnow - 1
   d2daysago = dnow - 2
+  d30daysago = dnow - 30
 
-  @bets_due = Bet.find(:all, :conditions => "fire_type = '1' and end_date <= '#{d2daysago}' and sent_bill_notice_date is null")
+  @bets_due = Bet.find(:all, :conditions => "end_date <= '#{d30daysago}' and sent_bill_notice_date = '2013-07-23'")
   if @bets_due.size > 0
       for bet in @bets_due
 
@@ -51,14 +52,14 @@ class NotifyBetsDueForPayment < ActiveRecord::Base
 
         begin
           if bet.recipient_type == "random"
-            Notifier.deliver_bet_fire_random_due_notification_to_user(@user, @bet, @floor_days, @successful_days)
-            Notifier.deliver_bet_fire_random_due_notification_to_recipient(@user, @bet, @floor_days, @successful_days)
+            Notifier.deliver_bet_fire_random_due_notification_to_user_oops(@user, @bet, @floor_days, @successful_days)
+            Notifier.deliver_bet_fire_random_due_notification_to_recipient_oops(@user, @bet, @floor_days, @successful_days)
           end
           if bet.recipient_type == "charity"
-            Notifier.deliver_bet_fire_charity_due_notification(@user, @bet, @floor_days, @successful_days)
+            Notifier.deliver_bet_fire_charity_due_notification_oops(@user, @bet, @floor_days, @successful_days)
           end
           if bet.recipient_type == "friend"
-            Notifier.deliver_bet_fire_friend_due_notification(@user, @bet, @floor_days, @successful_days)
+            Notifier.deliver_bet_fire_friend_due_notification_oops(@user, @bet, @floor_days, @successful_days)
           end
         rescue
           logmessage = "sgj:error when sending bet due notice"

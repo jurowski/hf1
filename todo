@@ -10,17 +10,12 @@ and if username != unknown
 
 
 :::TODO:::
-when a checkpoint is updated,
-if username != unknown,
-if it is a yes, and if the goal is public,
-then enter it into encourage_items
+when a goal is saved by user, if it's "private", remove any entries from "encourage_items"
 
 when a goal is created,
 if username != unknown,
 if it is public,
 then enter it into encourage_items
-
-when a goal is saved by user, if it's "private", remove any entries from "encourage_items"
 
 daily cron, remove any "encourage_items" of type checkpoint,
 that have a checkpoint_date of > 1 day,

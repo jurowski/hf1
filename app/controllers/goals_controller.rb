@@ -978,10 +978,15 @@ logger.debug "SGJ2 2 #{goal.title}(#{goal.id}) #{goal.daysstraight} daysstraight
         # 2) (set goal.start to today, stopping after goal.days_to_form_a_habit days)
 
         old_status = @goal.status
+
+        old_publish = @goal.publish
                 
     
         respond_to do |format|
           if @goal.update_attributes(params[:goal])
+
+
+
               
             ### update last activity date
             @goal.user.last_activity_date = @goal.user.dtoday
@@ -1102,6 +1107,20 @@ logger.debug "SGJ2 2 #{goal.title}(#{goal.id}) #{goal.daysstraight} daysstraight
               end
               ### save date changes
               @goal.save
+
+
+
+
+            ### when a goal is saved by user, if it's "private", remove any entries from "encourage_items"
+            if @goal.publish == false and old_publish == true
+              encourage_items = EncourageItem.find(:all, :conditions => "goal_id = '#{@goal.id}'")
+              encourage_items.each do |e|
+                e.destroy
+              end
+            end
+
+
+
               #format.html { render :action => "index" } # index.html.erb
               #format.xml  { render :xml => @goals }
             end

@@ -177,6 +177,43 @@ class Notifier < ActionMailer::Base
     body       :user => user, :bet => bet, :floor_days => floor_days, :successful_days => successful_days
   end  
 
+
+
+
+  def bet_fire_charity_due_notification_oops(user, bet, floor_days, successful_days)
+    recipients user.first_name + "<" + user.email + ">"
+    cc         "support@habitforge.com, " + bet.recipient_name + "<" + bet.recipient_email + ">"
+    from       "HabitForge <support@habitforge.com>"
+    subject    "PLEASE IGNORE re: " + user.first_name + "'s Challenge Period Results"
+    body       :user => user, :bet => bet, :floor_days => floor_days, :successful_days => successful_days
+  end  
+
+  def bet_fire_friend_due_notification_oops(user, bet, floor_days, successful_days)
+    recipients user.first_name + "<" + user.email + ">"
+    cc         "support@habitforge.com, " + bet.recipient_name + "<" + bet.recipient_email + ">"
+    from       "HabitForge <support@habitforge.com>"
+    subject    "PLEASE IGNORE re: " + user.first_name + "'s Challenge Period Results"
+    body       :user => user, :bet => bet, :floor_days => floor_days, :successful_days => successful_days
+  end  
+
+  def bet_fire_random_due_notification_to_user_oops(user, bet, floor_days, successful_days)
+    recipients user.first_name + "<" + user.email + ">"
+    bcc         "support@habitforge.com"
+    from       "HabitForge <support@habitforge.com>"
+    subject    "PLEASE IGNORE re: " + user.first_name + "'s Challenge Period Results"
+    body       :user => user, :bet => bet, :floor_days => floor_days, :successful_days => successful_days
+  end  
+
+  def bet_fire_random_due_notification_to_recipient_oops(user, bet, floor_days, successful_days)
+    recipients bet.recipient_name + "<" + bet.recipient_email + ">"
+    bcc         "support@habitforge.com"
+    from       "HabitForge <support@habitforge.com>"
+    subject    "PLEASE IGNORE re: " + user.first_name + "'s Challenge Period Results"
+    body       :user => user, :bet => bet, :floor_days => floor_days, :successful_days => successful_days
+  end 
+
+
+
   def bet_added_notification(user)
     recipients user.first_name + "<" + user.email + ">"
     cc         "support@habitforge.com"
