@@ -1109,6 +1109,9 @@ logger.debug "SGJ2 2 #{goal.title}(#{goal.id}) #{goal.daysstraight} daysstraight
               @goal.save
 
 
+              #format.html { render :action => "index" } # index.html.erb
+              #format.xml  { render :xml => @goals }
+            end
 
 
             ### when a goal is saved by user, if it's "private", remove any entries from "encourage_items"
@@ -1119,12 +1122,7 @@ logger.debug "SGJ2 2 #{goal.title}(#{goal.id}) #{goal.daysstraight} daysstraight
               end
             end
 
-
-
-              #format.html { render :action => "index" } # index.html.erb
-              #format.xml  { render :xml => @goals }
-            end
-
+            
             if @goal.template_owner_is_a_template
               flash[:notice] = 'Template was successfully updated.' + flash[:notice]
             else

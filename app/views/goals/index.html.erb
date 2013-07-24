@@ -312,7 +312,12 @@ for goal in current_user.active_goals_sorted_by_next_action_day
     <!-- START PRINT HABIT -->    
     <!-- *********** -->
     <!-- BEGIN CUSTOM BUTTONS WITH ICONS PORTLET-->
+
+    <% if goal.publish %>
     <div class="portlet box blue " >
+    <% else %>
+    <div class="portlet box yellow" >
+    <% end %>
         <div class="portlet-title">
 
            <div class="caption">
