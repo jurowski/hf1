@@ -792,6 +792,75 @@ logger.debug "SGJ2 2 #{goal.title}(#{goal.id}) #{goal.daysstraight} daysstraight
             format.html {redirect_to("/programs/#{params[:program_id]}")}
           else
 
+            begin 
+              ### attempt to add to encourage_items
+
+
+              # when a goal is created,
+              # if username != unknown,
+              # if the goal is public,
+              # then enter it into encourage_items
+
+              # --- encourage_item ---
+              # encourage_type_new_checkpoint_bool (index)
+              # encourage_type_new_goal_bool (index)
+              # checkpoint_id
+              # checkpoint_status
+              # checkpoint_date (index)
+              # checkpoint_updated_at_datetime
+              # goal_id (index)
+              # goal_name
+              # goal_category
+              # goal_created_at_datetime
+              # goal_publish
+              # goal_first_start_date (index)
+              # goal_daysstraight
+              # goal_days_into_it
+              # goal_success_rate_percentage
+              # user_id (index)
+              # user_name
+              # user_email
+
+              logger.debug "sgj:goals_controller.rb:consider adding to encourage_items"
+              if @goal.user.first_name != "unknown"
+                if @goal.is_public
+                  logger.debug "sgj:goals_controller.rb:candidate for encourage_items"
+
+                  encourage_item = EncourageItem.new
+                  logger.debug "sgj:goals_controller.rb:new encourage_items instantiated"
+
+                  encourage_item.encourage_type_new_checkpoint_bool = false
+                  encourage_item.encourage_type_new_goal_bool = true
+                  encourage_item.checkpoint_id = nil
+                  encourage_item.checkpoint_status = nil
+                  encourage_item.checkpoint_date = nil
+                  encourage_item.checkpoint_updated_at_datetime = nil
+                  encourage_item.goal_id = @goal.id
+                  encourage_item.goal_name = @goal.title
+                  encourage_item.goal_category = @goal.category
+                  encourage_item.goal_created_at_datetime = @goal.created_at
+                  encourage_item.goal_publish = @goal.publish
+                  encourage_item.goal_first_start_date = @goal.first_start_date
+                  encourage_item.goal_daysstraight = @goal.daysstraight
+                  encourage_item.goal_days_into_it = @goal.days_into_it
+                  encourage_item.goal_success_rate_percentage = @goal.success_rate_percentage
+                  encourage_item.user_id = @goal.user.id
+                  encourage_item.user_name = @goal.user.first_name
+                  encourage_item.user_email = @goal.user.email
+
+                  logger.debug "sgj:goals_controller.rb:about to save encourage_items"
+
+                  encourage_item.save
+
+                  logger.debug "sgj:goals_controller.rb:saved encourage_item"
+                end
+              end
+
+            rescue
+             logger.error "sgj:error adding to encourage_items"
+            end
+
+
             if @show_sales_overlay
               ### format.html { render :action => "edit" }
 
@@ -1122,7 +1191,7 @@ logger.debug "SGJ2 2 #{goal.title}(#{goal.id}) #{goal.daysstraight} daysstraight
               end
             end
 
-            
+
             if @goal.template_owner_is_a_template
               flash[:notice] = 'Template was successfully updated.' + flash[:notice]
             else

@@ -127,7 +127,6 @@ class Checkpoint < ActiveRecord::Base
               end
             end
           end
-            self.status == "yes"
 
         rescue
          logger.error "sgj:error adding to encourage_items"

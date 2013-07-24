@@ -19,7 +19,7 @@
 
 	<!--Latest <= max - 1 > Successes...<br> -->
 
-	<% encourage_items = EncourageItem.find(:all, :conditions => "checkpoint_date >= '#{current_user.dyesterday }'", :order => "id DESC", :limit => (max + 10)) %>
+	<% encourage_items = EncourageItem.find(:all, :conditions => "checkpoint_date >= '#{current_user.dyesterday }' or encourage_type_new_goal_bool = '1'", :order => "id DESC", :limit => (max + 10)) %>
 	<% encourage_items.each do |e| %>
 		<% if counter <= max %>
 
@@ -39,8 +39,16 @@
 			<% end %>
 
 
+			<% if e.encourage_type_new_goal_bool %>
 
-			<a href="/tomessages/new?gid=<%=e.goal_id.to_s%>&goal_id=<%=e.goal_id.to_s%>&from_type=member&message_type=congrats&tomessage_subject=<%= e.goal_name %>&to_id=<%= e.user_id %>" id='encourage_<%= e.goal_id.to_s %>' class="btn " style="font-size:1.5em;" title='Congratulate <%= e.user_name %>!'> <i class="icon-thumbs-up"></i></a> <span style="font-weight:bold;font-size:1.2em;"> 
+				<a href="/tomessages/new?gid=<%=e.goal_id.to_s%>&goal_id=<%=e.goal_id.to_s%>&from_type=member&tomessage_subject=<%= e.goal_name %>&to_id=<%= e.user_id %>" id='encourage_<%= e.goal_id.to_s %>' class="btn " style="font-size:1.5em;" title='Encourage <%= e.user_name %>!'> <i class="icon-thumbs-up"></i></a> <span style="font-weight:bold;font-size:1.2em;"> 
+
+
+			<% else %>
+
+				<a href="/tomessages/new?gid=<%=e.goal_id.to_s%>&goal_id=<%=e.goal_id.to_s%>&from_type=member&message_type=congrats&tomessage_subject=<%= e.goal_name %>&to_id=<%= e.user_id %>" id='encourage_<%= e.goal_id.to_s %>' class="btn " style="font-size:1.5em;" title='Congratulate <%= e.user_name %>!'> <i class="icon-thumbs-up"></i></a> <span style="font-weight:bold;font-size:1.2em;"> 
+
+			<% end %>
 
 
 			<!-- if member_goal.user.show_gravatar -->
@@ -50,7 +58,53 @@
 			<!--img src="/home/images/default_gravatar.png" height="20px"/-->
 			<!-- end -->
 
-			<%= e.user_name %></span> succeeded at <span style="background-color:#FFFF99;">
+			<% if e.encourage_type_new_goal_bool %>
+
+				<%
+				arr_subject = Array.new
+				arr_subject.push(["is determined to start a new habit of"])
+				arr_subject.push(["has decided to start"])
+				arr_subject.push(["is going to be"])
+				arr_subject.push(["will start"])
+				arr_subject.push(["is committing to"])
+				arr_subject.push(["is ready to start"])
+				arr_subject.push(["will be forging a habit of"])
+				arr_subject.push(["is embarking on a journey of"])
+
+				random_number = 0
+				random_number = rand(arr_subject.size) + 0 #between 0 and arr_subject.size
+				random_subject = arr_subject[random_number]
+
+				subject_value = random_subject.to_s
+				%>
+
+				<%= e.user_name %></span> <%= subject_value %> <span style="background-color:#FFFF99;">
+			<% else %>
+
+				<%
+				arr_subject = Array.new
+				arr_subject.push(["succeeded at"])
+				arr_subject.push(["rocked it by"])
+				arr_subject.push(["took action and"])
+				arr_subject.push(["showed resolve by"])
+				arr_subject.push(["deserves props for"])
+				arr_subject.push(["gets a cograts for"])
+				arr_subject.push(["stuck with it by"])
+				arr_subject.push(["strengthened the habit of"])
+				arr_subject.push(["fought inertia by"])
+				arr_subject.push(["said 'I can do this, no problem' by"])
+
+
+				random_number = 0
+				random_number = rand(arr_subject.size) + 0 #between 0 and arr_subject.size
+				random_subject = arr_subject[random_number]
+
+				subject_value = random_subject.to_s
+				%>
+
+
+				<%= e.user_name %></span> <%= subject_value %> <span style="background-color:#FFFF99;">
+			<% end %>
 
 			
 <a href="/goals/new?goal_template_text=<%= e.goal_name %>&category=<%= e.goal_category %>" id='start_<%= e.goal_id.to_s %>' title="Do this! Start <%= e.goal_name %>!"><%= e.goal_name %></a>
@@ -58,7 +112,7 @@
 		            $('#start_<%= e.goal_id.to_s %>').tipsy();
 		        </script>
 
-		</span> <% if current_user.dtoday >= e.checkpoint_date %> today! <% elsif current_user.dyesterday == e.checkpoint_date %> yesterday! <% else %> on <%= e.checkpoint_date %><% end %>
+		</span> <% if e.encourage_type_new_checkpoint_bool %><% if current_user.dtoday >= e.checkpoint_date %> today! <% elsif current_user.dyesterday == e.checkpoint_date %> yesterday! <% else %> on <%= e.checkpoint_date %><% end %><% end %>
 			<script type='text/javascript'>
 			$('#encourage_<%= e.goal_id.to_s %>').tipsy();
 			</script>       
