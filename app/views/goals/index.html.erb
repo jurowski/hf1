@@ -39,9 +39,9 @@
 
 
         <% if params[:premium_more_info_hide_ads] %>
-            <h2>Remove the Ads, Remove the Limits with a Premium Membership!</h2>
+            <h3>Remove the Ads, Remove the Limits with a Premium Membership!</h3>
         <% else %>
-            <h2>Remove the limits 
+            <h3>Remove the limits 
             <% if session[:goal_template_text] and session[:goal_template_text] != "" %> 
               ... work on <%= session[:goal_template_text] %> and any other goals, all with premium features and no ads, 
             <% else %>
@@ -49,29 +49,13 @@
                   ... work on <%= params[:goal_template_text] %> and any other goals, all with premium features and no ads, 
                 <% end %>
             <% end %>
-           with a Premium Membership!</h2>
+           with a Premium Membership!</h3>
         <% end %>
 
 
 
    
-<div class="alert-info">             
-<p>
-I developed HabitForge around one simple idea:
-We take action only when we feel people are relying on us to succeed. 
-<br>HabitForge is about you, under positive pressure. Pressure to drive you forward. 
-<br>To Grow. To Improve. To Become You.
-<br>
-From coal to diamonds... with a little positive pressure we can all get there.
-<br>
-Become more powerful than the excuses. 
-<br>
 
-<!-- img src="/images/sgjurowski-thumb.jpg" width=100 -->
-<br>Sandon Jurowski
-<br>HabitForge Creator
-</p>
-</div>
                 <h2>Why Go Premium?</h2>
                     Unlimited Active Habits
                     <br>Private Habit Option

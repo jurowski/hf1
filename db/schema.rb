@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130723101435) do
+ActiveRecord::Schema.define(:version => 20130725112030) do
 
   create_table "achievemints", :force => true do |t|
     t.string   "name"
@@ -809,6 +809,7 @@ ActiveRecord::Schema.define(:version => 20130723101435) do
     t.date     "last_activity_date"
     t.boolean  "show_gravatar",                                                      :default => true
     t.integer  "impact_points"
+    t.date     "date_of_signup"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email"

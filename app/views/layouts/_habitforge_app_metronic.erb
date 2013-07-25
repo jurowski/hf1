@@ -1200,6 +1200,28 @@ $(document).ready(function(){
             </div>
           < end > -->
 
+          <% if 1 == 2 and free_trial %>
+
+            <% 
+            days_left = 14 - (current_user.dtoday - current_user.date_of_signup) 
+            if days_left < 0
+              days_left = 0
+            end
+            %>
+
+            <center>
+              <div style="">
+                <span style="font-size:1.3em;"><%= days_left %> days remaining in your free trial 
+                  <a href="/goals?feature_limit=1">Go Premium</a>
+                </span>
+              </div>
+            </center>
+            <div class="progress progress-striped progress-danger active" style="margin-top:-20px;">
+               <div style="width: 7%;" class="bar">
+              </div>
+            </div>
+          <% end %>
+
           <%= yield %>          
         </div>
 

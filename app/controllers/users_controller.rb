@@ -366,6 +366,8 @@ class UsersController < ApplicationController
       ### update last activity date
       user.last_activity_date = user.dtoday
 
+      user.date_of_signup = user.dtoday
+
       if params[:ga_goal]
         session[:sfm_virgin] = false ### they are a newly paid user          
         user.kill_ads_until = "3000-01-01"

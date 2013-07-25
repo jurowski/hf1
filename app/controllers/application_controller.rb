@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
   #protect_from_forgery # See ActionController::RequestForgeryProtection for details
   
   ### Any private variables that you create must be listed here to be accessed elsewhere (unless they're in the helper file, in which they're public):
-  helper_method :current_user_session, :current_user, :current_user_is_admin, :server_root_url, :fully_logged_in, :mobile_device?
+  helper_method :current_user_session, :free_trial, :current_user, :current_user_is_admin, :server_root_url, :fully_logged_in, :mobile_device?
 
   filter_parameter_logging :password, :password_confirmation
 
@@ -143,6 +143,21 @@ class ApplicationController < ActionController::Base
         else
             return true
         end
+    end
+
+
+
+
+    def free_trial
+
+      #return true
+
+      ### slow, dynamic way ... make sure you read from one db field in the future
+      if !request.url.include? "/goals/new" and current_user and (current_user.date_of_signup and current_user.date_of_signup >= current_user.dtoday - 14) and !current_user.is_habitforge_supporting_member
+        return true
+      else
+        return false
+      end
     end
 
     def current_user
