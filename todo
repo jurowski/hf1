@@ -7,10 +7,9 @@ when a new checkpoint is answered,
 or when a new public goal is created
 and if username != unknown
 )
-
+	
 
 :::TODO:::
-when a goal is saved by user, if it's "private", remove any entries from "encourage_items"
 
 when a goal is created,
 if username != unknown,
@@ -22,6 +21,8 @@ that have a checkpoint_date of > 1 day,
 and remove any of type goal that have va goal_first_start_date of > 1 day
 
 :::DONE:::
+
+when a goal is saved by user, if it's "private", remove any entries from "encourage_items"
 
 create table:
 --- encourage_item ---

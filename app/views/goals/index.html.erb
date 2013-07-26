@@ -235,6 +235,12 @@ for goal in current_user.active_goals_sorted_by_next_action_day
     end ### End of: if number_goals_today > 0
 
 
+    if params[:show_fire_goal_id] and params[:show_fire_goal_id] == goal.id.to_s
+        collapse = false
+    end
+    if params[:join_a_team] and params[:goal_id] and params[:goal_id] == goal.id.to_s
+        collapse = false
+    end
 
 
     ### No longer on "today"... moving on
@@ -343,6 +349,56 @@ for goal in current_user.active_goals_sorted_by_next_action_day
         <!-- START HABIT -->
 
 
+        <%
+        ##################################################################
+        ### START SHOW PROGRESS BAR FOR BETS
+        ##################################################################
+        if (goal.number_my_active_bets > 0 )
+            for bet in goal.my_active_bets
+
+                total_days = bet.length_days
+                days_left = bet.end_date - current_user.dtoday
+                if days_left < 0
+                  days_left = 0
+                end
+
+                percent_complete = 0
+                if total_days > 0
+                  percent_complete = (days_left/total_days).to_i
+                end
+                %>
+
+                <center>
+                  <div style="">
+                    <span style="font-size:1.3em;"><%= days_left %> days remaining in your $<%= bet.wager %> challenge to <%= bet.recipient_name %>
+                    </span>
+                  </div>
+                </center>
+                <div class="progress progress-striped progress-danger active" style="margin-top:-20px;">
+                   <div style="width: <%= percent_complete %>%;" class="bar">
+                  </div>
+                </div>
+            <%
+            end
+        else
+            %>
+                <center>
+                  <div style="">
+                    <span style="font-size:1.3em;">Triple your chances for success: <a href="/goals?show_fire_goal_id=<%= goal.id %>#jump_to_goal_id_<%= goal.id %>">Bet a Friend or a Cause!</a>
+                    </span>
+                  </div>
+                </center>
+                <div class="progress progress-striped progress-danger active" style="margin-top:-20px;">
+                   <div style="width: <%= percent_complete %>%;" class="bar">
+                  </div>
+                </div>            
+            <%
+        end
+        ##################################################################
+        ### END SHOW PROGRESS BAR FOR BETS
+        ##################################################################
+        %>
+
 
 
 
@@ -406,6 +462,14 @@ if params[:start_fire_goal_id] and params[:start_fire_goal_id] == @goal.id.to_s
     tab_bets_active = "active"
     tab_team_active = ""
 end
+if params[:show_fire_goal_id] and params[:show_fire_goal_id] == @goal.id.to_s
+    tab_dashboard_active = ""
+    tab_followers_active = ""
+    tab_bets_active = "active"
+    tab_team_active = ""
+end
+
+
 
 if params[:join_a_team] and params[:goal_id] and params[:goal_id] == @goal.id.to_s
     tab_dashboard_active = ""

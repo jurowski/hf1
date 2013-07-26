@@ -103,7 +103,7 @@ end
 
         <p>
 
-          <h3><a href="/goals?join_a_team=1&goal_id=<%=@goal.id%>" id="find_and_join_an_open_team" title='Put me on a team with 3 Others Committed to a "<%=@goal.category%>" Goal'> <strong>Find and Join an Open Team!!!</strong></a></h3>
+          <h3><a href="/goals?join_a_team=1&goal_id=<%=@goal.id%>#jump_to_goal_id_<%= @goal.id %>" id="find_and_join_an_open_team" title='Put me on a team with 3 Others Committed to a "<%=@goal.category%>" Goal'> <strong>Find and Join an Open Team!!!</strong></a></h3>
           <script type='text/javascript'>
               $('#find_and_join_an_open_team').tipsy();
           </script>
