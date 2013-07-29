@@ -1,0 +1,23 @@
+<%
+sitename = ""
+if `uname -n`.strip == 'adv.adventurino.com'
+  #### HABITFORGE SETTINGS ON VPS
+  sitename = "VPS"
+elsif `uname -n`.strip == 'gns499aa.joyent.us'
+  #### DEV SETTINGS ON HABITFORGE VPS		
+  sitename = "DEV"
+else
+  #### SETTINGS FOR DEV LAPTOP
+  sitename = "LAPTOP"
+end
+%>
+
+-----
+<%= sitename %>
+-----
+
+SCRIPT: <%= @script %>
+
+ERROR: <% @log %>
+
+-----

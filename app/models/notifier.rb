@@ -719,6 +719,17 @@ class Notifier < ActionMailer::Base
     subject     subject_text
     body        :stat => stat
   end
+
+
+  def notify_support_script_error(script, log)
+    recipients  "jurowski@gmail.com"
+    cc          "support@habitforge.com"
+    from        "habitforge <support@habitforge.com>"
+    subject     "a script died unexpectedly: " + script 
+    body        :log => log
+  end
+
+
   def notify_support_error(founderrors)  
     recipients  "jurowski@gmail.com"
     from        "habitforge <support@habitforge.com>"

@@ -356,7 +356,7 @@ for goal in current_user.active_goals_sorted_by_next_action_day
         if (goal.number_my_active_bets > 0 )
             for bet in goal.my_active_bets
 
-                total_days = bet.length_days
+                total_days = bet.end_date - bet.start_date
                 days_left = bet.end_date - current_user.dtoday
                 if days_left < 0
                   days_left = 0
@@ -375,7 +375,7 @@ for goal in current_user.active_goals_sorted_by_next_action_day
                   </div>
                 </center>
                 <div class="progress progress-striped progress-danger active" style="margin-top:-20px;">
-                   <div style="width: <%= percent_complete %>%;" class="bar">
+                   <div style="width:<%= percent_complete %>%;" class="bar">
                   </div>
                 </div>
             <%

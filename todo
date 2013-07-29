@@ -11,16 +11,26 @@ and if username != unknown
 
 :::TODO:::
 
+
+problem: people are starting to ask to cash in support points more than once
+solution: 
+add a new user field that indicates that they've cashed one in already
+modify the admin interface to indicate this and to not allow the single-press button
+
+problem: if a cron job dies i am not aware
+solution: look @ the latest cron job ... implement the same (it has a notify gmail that a script died)
+
+
+daily cron, remove any "encourage_items" of type checkpoint,
+that have a checkpoint_date of > 3 days,
+and remove any of type goal that have va goal_first_start_date of > 1 days
+
+:::DONE:::
+
 when a goal is created,
 if username != unknown,
 if it is public,
 then enter it into encourage_items
-
-daily cron, remove any "encourage_items" of type checkpoint,
-that have a checkpoint_date of > 1 day,
-and remove any of type goal that have va goal_first_start_date of > 1 day
-
-:::DONE:::
 
 when a goal is saved by user, if it's "private", remove any entries from "encourage_items"
 
@@ -93,6 +103,9 @@ allow an invitee to decline an invite (email me)
 keep reminding an invitee for a while until they take action
 
 later: team chat board
+later: weekly meeting for those who cited weekly meeting availability windows that match (you must attend 2/3 of the meetings over a 3 month period) ... meetings can be in a google hangout URL or in the built-in chat board
+later: nightly report option of "what went well today" and "what can i improve upon for tomorrow"
+
 (later: add an icon/mascot/avatar for our team)
 (later: add a "fade or not" photo mosaic linked to each team member's last 7 days ... one row per person)
 
