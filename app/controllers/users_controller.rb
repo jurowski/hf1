@@ -170,6 +170,7 @@ class UsersController < ApplicationController
                 end
                 user.payments = user.payments + 10.00
                 user.last_donation_date = dnow
+                user.got_free_membership = dnow
                 if user.save
                     logger.info 'HF SUCCESS upgrading user account for ' + user.email
                 else 
@@ -178,6 +179,8 @@ class UsersController < ApplicationController
                 ### Send email to user and CC support w/ thank you and upgrade info
                 logger.info 'HF ATTEMPTING TO Send email to user and CC support w/ thank you and upgrade info'
                 Notifier.deliver_user_upgrade_notification(user) # sends the email
+
+
             end
         end
 

@@ -32,13 +32,18 @@ counter_have_goals = 0
             <% if user.unlimited_goals == 1 %>
                 <strong>Premium Member</strong>
             <% else %>
-                <%= user.supportpoints %> pts: 
-                <% if user.id > 85758 %>
-                  <a href="users?days=90&upgrade_id=<%=user.id%>">Upgrade 3 months, subtract 100pts, and Send Email</a>
+                <%= user.supportpoints %> pts ... 
+
+                <% if user.got_free_membership %>
+                    (free membership given on <%= user.got_free_membership.to_s %>)
                 <% else %>
-                  <a href="users?days=365&upgrade_id=<%=user.id%>">Upgrade 1 year, subtract 100pts, and Send Email</a>
+                    <% if user.id > 85758 %>
+                      <a href="users?days=90&upgrade_id=<%=user.id%>">Upgrade 3 months, subtract 100pts, and Send Email</a>
+                    <% else %>
+                      <a href="users?days=365&upgrade_id=<%=user.id%>">Upgrade 1 year, subtract 100pts, and Send Email</a>
+                    <% end %>
                 <% end %>
- 
+
             <% end %>
         <% end %>
          |

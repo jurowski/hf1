@@ -726,7 +726,7 @@ class Notifier < ActionMailer::Base
     cc          "support@habitforge.com"
     from        "habitforge <support@habitforge.com>"
     subject     "a script died unexpectedly: " + script 
-    body        :log => log
+    body        :script => script, :log => log
   end
 
 
