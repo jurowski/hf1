@@ -582,7 +582,7 @@ logger.debug "SGJ2 2 #{goal.title}(#{goal.id}) #{goal.daysstraight} daysstraight
           ### having periods in the first name kills the attempts to email that person, so remove periods
           current_user.first_name = current_user.first_name.gsub(".", "")
           current_user.save
-     end 
+      end 
 
       @goal = Goal.new(params[:goal])
 

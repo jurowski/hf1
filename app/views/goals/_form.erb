@@ -585,7 +585,7 @@ end
   </p>
 
   <h2>
-    <% if !@goal.publish or @goal.publish == true %>
+    <% if @goal.publish == nil or @goal.publish == true %>
       <i class="icon-unlock"></i> 
     <% else %>
       <i class="icon-lock"></i> 
@@ -593,7 +593,8 @@ end
     Visibility</h2>
   <p>
   <% if current_user.sponsor == "habitforge" and !current_user.is_habitforge_supporting_member %>
-    <input disabled="disabled" id="publish" name="publish" type="checkbox" value="true" checked />
+    <input disabled="disabled" id="publish_disabled" name="publish_disabled" type="checkbox" value="true" checked />
+    <input type="hidden" name="goal[publish]" value="1">
   <% else %>
     <%= check_box(:goal, :publish, options = {}, checked_value = "true", unchecked_value = "false") %>
   <% end %>
@@ -603,7 +604,7 @@ end
       <input disabled="disabled" id="private" name="private" type="checkbox" />
       Keep it Private 
                             
-      <a href="/goals?feature_limit=1" target="_blank">" >(requires a Premium Membership)</a>
+      <a href="/goals?feature_limit=1" target="_blank"> (requires a Premium Membership)</a>
   <% end %>
 
 
