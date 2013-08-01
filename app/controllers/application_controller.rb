@@ -191,6 +191,26 @@ class ApplicationController < ActionController::Base
         ### since there is no "current_user_session && current_user_session.record", it won't stay across requests
 
 
+        ### if someone is confirming their account
+        if params[:confirmed_address_token] and params[:user_id]
+          logger.info("sgj:attempting account confirmation for user_id:" + params[:user_id])
+          user = User.find(params[:user_id].to_i)
+          if user
+            if user.confirmed_address_token == params[:confirmed_address_token]
+
+              @current_user = user
+
+              ### hey, let's LET them do the persistent
+              ### "session[:email] and session[:single_login]" here
+
+              session[:email] = user.email
+              session[:single_login] = true
+
+            end
+
+          end
+        end
+
 
         ### autoupdatemultiple
         if params[:g] and params[:u]

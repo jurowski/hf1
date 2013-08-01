@@ -1,118 +1,70 @@
 
-Encourage New Goals and Checkpoints
----------------------
-
-(
-when a new checkpoint is answered,
-or when a new public goal is created
-and if username != unknown
-)
 	
 
-:::TODO:::
+--------------------- :::TODO::: ----------------------------
 
 
-problem: people are starting to ask to cash in support points more than once
-solution: 
-add a new user field that indicates that they've cashed one in already
-modify the admin interface to indicate this and to not allow the single-press button
+:::CURRENT:::
 
-problem: if a cron job dies i am not aware
-solution: look @ the latest cron job ... implement the same (it has a notify gmail that a script died)
-
-
-daily cron, remove any "encourage_items" of type checkpoint,
-that have a checkpoint_date of > 3 days,
-and remove any of type goal that have va goal_first_start_date of > 1 days
-
-:::DONE:::
-
-when a goal is created,
-if username != unknown,
-if it is public,
-then enter it into encourage_items
-
-when a goal is saved by user, if it's "private", remove any entries from "encourage_items"
-
-create table:
---- encourage_item ---
-encourage_type_new_checkpoint_bool (index)
-encourage_type_new_goal_bool (index)
-checkpoint_id
-checkpoint_status
-checkpoint_date (index)
-checkpoint_updated_at_datetime
-goal_id (index)
-goal_name
-goal_category
-goal_created_at_datetime
-goal_publish
-goal_first_start_date (index)
-goal_daysstraight
-goal_days_into_it
-goal_success_rate_percentage
-user_id (index)
-user_name
-user_email
+http%3a%2f%2fhabitforge.com%2fgoals%3fconfirmed_address_token%3dxtynzsc978%26user_id%3d95341
+For some reason, it's asking the user to log in if they click the confirmation link.
 
 
 
-
-
-Custom Teams
------------------
+Custom Teams Overview
+----------------------
 i want to build my own custom team related to a goal
-
-
-
 Allow for someone to Build a Custom Team in which there are openings ... so that people can seek out open teams and choose rather than having to be randomly assigned
 
+Custom Teams ToDo
+--------------------
 
 
-let me choose whether the team should restrict access for that goal itself (team-goal) or for the goal's general category (team-category)
+[ ]  let me choose whether the team should restrict access for that goal itself (team-goal) or for the goal's general category (team-category)
 
-if team-goal, make each team goal the child of a template (if my goal is not yet a child, copy it to a parent template)
+[ ]  if team-goal, make each team goal the child of a template (if my goal is not yet a child, copy it to a parent template)
 
-suggest a team name, and let me edit it
+[ ]  suggest a team name, and let me edit it
 
-do not allow random assignments to my custom team
+[ ]  do not allow random assignments to my custom team
 
-let me be the owner of my team
+[ ]  let me be the owner of my team
 
-let me choose how many people are on my custom team
+[ ]  let me choose how many people are on my custom team
 
-let me craft an invite that has a link to start my goal (and if I have chosen category-level vs. goal-level, a link to start a custom or click from an array of templated goals in the same category)
+[ ]  let me craft an invite that has a link to start my goal (and if I have chosen category-level vs. goal-level, a link to start a custom or click from an array of templated goals in the same category)
 
-let me send invites to team members
+[ ]  let me send invites to team members
 
-let my invite go to multiple email addresses separated by commas
+[ ]  let my invite go to multiple email addresses separated by commas
 
-(teamgoals) do not kick people off of my custom team for not checking in
+[ ]  (teamgoals) do not kick people off of my custom team for not checking in
 
-do not let me quit a team that I am the leader of if there are other members
-allow me to transfer ownership to another member of the team
-notify every team member when a new member arrives
-notify every team member when a member leaves
-let me email the whole team
-when emailing one team member ask me to consider including each of the others
+[ ]  do not let me quit a team that I am the leader of if there are other members
+[ ]  allow me to transfer ownership to another member of the team
+[ ]  notify every team member when a new member arrives
+[ ]  notify every team member when a member leaves
+[ ]  let me email the whole team
+[ ]  when emailing one team member ask me to consider including each of the others
 
-when an invitee logs in, have an "invites" link at the top showing a red number and a listing of invites to review
-when an invitee accepts, take them to goal creation
-allow an invitee to silently ignore an invite (do not email me)
-allow an invitee to decline an invite (email me)
-keep reminding an invitee for a while until they take action
+[ ]  when an invitee logs in, have an "invites" link at the top showing a red number and a listing of invites to review
+[ ]  when an invitee accepts, take them to goal creation
+[ ]  allow an invitee to silently ignore an invite (do not email me)
+[ ]  allow an invitee to decline an invite (email me)
+[ ]  keep reminding an invitee for a while until they take action
 
-later: team chat board
-later: weekly meeting for those who cited weekly meeting availability windows that match (you must attend 2/3 of the meetings over a 3 month period) ... meetings can be in a google hangout URL or in the built-in chat board
-later: nightly report option of "what went well today" and "what can i improve upon for tomorrow"
+[ ]  later: team chat board
+[ ]  later: weekly meeting for those who cited weekly meeting availability windows that match (you must attend 2/3 of the meetings over a 3 month period) ... meetings can be in a google hangout URL or in the built-in chat board
+[ ]  later: nightly report option of "what went well today" and "what can i improve upon for tomorrow"
 
-(later: add an icon/mascot/avatar for our team)
-(later: add a "fade or not" photo mosaic linked to each team member's last 7 days ... one row per person)
+[ ]  later: add an icon/mascot/avatar for our team)
+[ ]  later: add a "fade or not" photo mosaic linked to each team member's last 7 days ... one row per person)
 
 
 ---------------------------------------------------------------
-DONE BELOW
+DONE BELOW (related to Custom Teams)
 ---------------------------------------------------------------
+if i've not yet chosen a category, prompt me to do so first
 
 ----------------------
 mod table "teams"
@@ -135,5 +87,29 @@ last_reminded_date ### the last time a reminder was sent
 declined_date ### if the end user declines (send notice to inviter)
 ignored_date ### if the end user silently declines (do not send notice to inviter)
 accepted_date ### if the end user accepts (send notice to all team members)
+
+
+
+
+-------------------- :::FUTURE::: -------------------------------
+
+problem: if a cron job dies i am not aware
+solution: look @ the latest cron job ... implement the same (it has a notify gmail that a script died)
+
+
+future: put a silver or gold badge next to names on dynamic (and in their account) for impact point levels
+
+future: make an option for showing in dynamic only those goals in your categories
+future: make an option for showing in dynamic all except porn/masterbate
+
+future: program creation like the UWHealth "holiday don't gain"
+
+
+-------------------- :::DONE::: -------------------------------
+
+problem: people are starting to ask to cash in support points more than once
+solution: 
+add a new user field that indicates that they've cashed one in already
+modify the admin interface to indicate this and to not allow the single-press button
 
 

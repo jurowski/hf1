@@ -93,9 +93,9 @@ end
 
 <% if @goal.team == nil %>
     <% if @goal.category == "None" or @goal.category == "" %>  
-        <p><h3>Find and Join an Open Team!!!</h3></p>
+        <p><h3>Find and Join an Open Team (or Build Your Own Team)!!!</h3></p>
         <br>
-        <em><%= link_to "Choose a category", edit_goal_path(@goal) %>, and you can Share Stats with 3 people who have a similar goal.</em>        
+        <em><%= link_to "Choose a category", edit_goal_path(@goal) %>, and you can Encourage and Share Stats with a small group of people who have a similar goal.</em>        
     <% else %>
 
 
@@ -103,7 +103,7 @@ end
 
         <p>
 
-          <h3><a href="/goals?join_a_team=1&goal_id=<%=@goal.id%>#jump_to_goal_id_<%= @goal.id %>" id="find_and_join_an_open_team" title='Put me on a team with 3 Others Committed to a "<%=@goal.category%>" Goal'> <strong>Find and Join an Open Team!!!</strong></a></h3>
+          <h3><a href="/goals?join_a_team=1&goal_id=<%=@goal.id%>#jump_to_goal_id_<%= @goal.id %>" id="find_and_join_an_open_team" title='Put me on a team with 3 Others Committed to a "<%=@goal.category%>" Goal'> <strong>Find and Join an Open Team</strong></a></h3>
           <script type='text/javascript'>
               $('#find_and_join_an_open_team').tipsy();
           </script>
@@ -115,10 +115,18 @@ end
 
         <p>
 
-          <h3><a href="/teams/new" id="build_my_own_team" title='Invite others to work on the same or a similar goal with you.'> Build My Own Team</a> (coming soon)</h3>
+          <!-- onclick="toggle_show_hide('goal_creation_options_<%= @goal.id %>')" -->
+          <h3><a id="build_my_own_team" title='Invite others to work on the same or a similar goal with you.' > Build My Own Team</a> (coming soon)</h3>
           <script type='text/javascript'>
               $('#build_my_own_team').tipsy();
           </script>
+
+          <div id="goal_creation_options_<%= @goal.id %>" style="display:none">
+            Invite others to join me in <a href="/teams/new?team_type=category&category_name=<%= @goal.category %>">any goal related to <%= @goal.category %></a>
+            or
+            <a href="/teams/new?team_type=goal&goal_id=<%= @goal.id %>"> my goal of <%= @goal.response_question %></a>.
+          </div>
+
         </p>
 
     <% end %>
