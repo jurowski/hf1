@@ -831,7 +831,10 @@ logger.debug "SGJ2 2 #{goal.title}(#{goal.id}) #{goal.daysstraight} daysstraight
 
                   encourage_item.encourage_type_new_checkpoint_bool = false
                   encourage_item.encourage_type_new_goal_bool = true
-                  encourage_item.checkpoint_id = nil
+
+                  #encourage_item.checkpoint_id = nil
+                  encourage_item.checkpoint_id = @goal.id ### a workaround to the validation that checkpoint_id is unique
+
                   encourage_item.checkpoint_status = nil
                   encourage_item.checkpoint_date = nil
                   encourage_item.checkpoint_updated_at_datetime = nil
@@ -850,9 +853,13 @@ logger.debug "SGJ2 2 #{goal.title}(#{goal.id}) #{goal.daysstraight} daysstraight
 
                   logger.debug "sgj:goals_controller.rb:about to save encourage_items"
 
-                  encourage_item.save
+                  if encourage_item.save
+                    logger.info("sgj:goals_controller.rb:success saving encourage_item")
+                  else
+                    logger.error("sgj:goals_controller.rb:error saving encourage_item")
+                  end
+                  logger.debug "sgj:goals_controller.rb:new encourage_item.id = " + encourage_item.id.to_s
 
-                  logger.debug "sgj:goals_controller.rb:saved encourage_item"
                 end
               end
 
@@ -1185,6 +1192,7 @@ logger.debug "SGJ2 2 #{goal.title}(#{goal.id}) #{goal.daysstraight} daysstraight
 
             ### when a goal is saved by user, if it's "private", remove any entries from "encourage_items"
             if @goal.publish == false and old_publish == true
+              logger.info("sgj:goals_controller.rb:about to remove entries because publish status changing")
               encourage_items = EncourageItem.find(:all, :conditions => "goal_id = '#{@goal.id}'")
               encourage_items.each do |e|
                 e.destroy
