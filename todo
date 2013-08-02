@@ -6,7 +6,13 @@
 
 :::CURRENT:::
 
---New goals still don't show up in the dynamic timeline even if the person has a first name
+--Stats a little off for kaybing (100% during last 30 days (wrong) but 27 days in a row (right)) for prod http://habitforge.com/goals/single/40822
+
+--Display badges for those with 100+ 200+ ... etc. impact points
+
+--Telling a long-standing goal to display all checkpoints takes forever... do some paging for this (ex: prod kaybing http://habitforge.com/goals/single/40822)
+
+
 
 
 Custom Teams Overview

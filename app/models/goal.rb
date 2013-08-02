@@ -1636,7 +1636,7 @@ logger.debug "SGJ 3"
         ### so instead, we'll count the number of days between the 2 dates in question
         #my_checkpoints = Checkpoint.find(:all, :conditions => "goal_id = '#{self.id}' and checkin_date >= '#{date1}' and checkin_date <= '#{date2}'")
         my_checkpoints = 0
-        my_checkpoints = date2 - date1
+        my_checkpoints = (date2 - date1) + 1 ### since dtoday - dyesterday = 1 but that would be 2 checkpoints
 
 
         checkpoints_yes = Checkpoint.find(:all, :conditions => "status = 'yes' and goal_id = '#{self.id}' and checkin_date >= '#{date1}' and checkin_date <= '#{date2}'")
