@@ -606,6 +606,33 @@ logger.debug "SGJ2 2 #{goal.title}(#{goal.id}) #{goal.daysstraight} daysstraight
       respond_to do |format|
         if @goal.save
 
+
+          pmo = false
+          if @goal.title.include? "porn"
+            pmo = true
+          end
+          if @goal.title.include? "masturb"
+            pmo = true
+          end
+          if @goal.title.include? "pmo"
+            pmo = true
+          end
+          if @goal.title.include? "jerking off"
+            pmo = true
+          end
+          if @goal.title.include? "jerk off"
+            pmo = true
+          end
+          if @goal.title.include? "touching myself"
+            pmo = true
+          end
+          if @goal.title.include? "touching yourself"
+            pmo = true
+          end
+          if pmo
+            @goal.category = "PMO"
+          end
+
           if @goal.template_owner_is_a_template
             flash[:notice] = 'Template was successfully created.'
 
@@ -752,6 +779,9 @@ logger.debug "SGJ2 2 #{goal.title}(#{goal.id}) #{goal.daysstraight} daysstraight
       	    @goal.first_start_date = @goal.start          
             @goal.save
           end
+
+
+
 
 
           ### save date changes
