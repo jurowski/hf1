@@ -149,6 +149,7 @@ module ApplicationHelper
       @arr.push(["Learning, Studying, Practice and Education", "Learning, Studying, Practice and Education"])
       @arr.push(["Smoking", "Smoking"])
       @arr.push(["Spirituality, Meditation and Prayer", "Spirituality, Meditation and Prayer"])
+      @arr.push(["PMO", "PMO"])
 
       @arr.push(["", "None"])
       @arr.push(["", "None"])
