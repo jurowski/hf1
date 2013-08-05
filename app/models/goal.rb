@@ -1596,7 +1596,7 @@ logger.debug "SGJ 3"
             date2 = self.user.dtoday
         end
 
-        date1 = date2 - number_of_days
+        date1 = date2 - number_of_days + 1 #### if you do not add 1 then you end up with one too many checkpoints which throws off the stats
         yes_percent = success_rate_between_dates(date1,date2)    
 
         relative_success_rate = (((yes_percent + 0.0) / self.desired_success_rate)*100).floor
