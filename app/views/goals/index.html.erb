@@ -208,6 +208,12 @@ printed_future_actions_once = false
 for goal in current_user.active_goals_sorted_by_next_action_day
 
     collapse = true
+
+
+    if current_user.number_of_active_habits == 1
+        collapse = false
+    end
+
     @goal = goal
     
     if number_goals_today > 0
