@@ -266,25 +266,18 @@ end
                         <br>
                         <br>
                         <p>
-                        <%
-                        #/generate scaffold quote thought:text author:string last_used:date priority:boolean
 
-                        daily_quote = ""
-                        daily_author = ""
-                        quote = Quote.find(:first, :conditions => "last_used = '#{dnow}' and sponsor = 'habitforge'")
-                        if quote
-                          daily_quote = quote.thought
-                          daily_author = quote.author
-                        else
-                          daily_quote = "nothing yet"
-                          quote = Quote.find(:first, :conditions => "sponsor = 'habitforge'", :order => "last_used ASC")
-                          quote.last_used = dnow
-                          quote.save
-                          daily_quote = quote.thought
-                          daily_author = quote.author
+                        <% 
+                        random_quote_thought = "Seek the small improvement one day at a time. That’s the only way it happens — and when it happens, it lasts."
+                        random_quote_author = "Coach John Wooden"
+                        random_quote = @checkpoint.goal.get_quote_random
+                        if random_quote
+                            random_quote_thought = random_quote.thought
+                            random_quote_author = random_quote.author
                         end
                         %>
-                        <strong>"<%= daily_quote %>"</strong>  -<i><%= daily_author %></i>
+
+                        <strong>"<%= random_quote_thought %>"</strong>  --<i><%= random_quote_author %></i>
 
                         <br>
                         <br>
