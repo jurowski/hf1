@@ -29,6 +29,51 @@
 			<div style="padding-top:5px;">
 			<span style="font-size:.7em;"><%= time_ago_in_words(e.updated_at) %> ago...</span>
 			<br>
+
+			<% if e.encourage_type_new_goal_bool %>
+				<image src="/images/icons/sprout_50px.png" title="Just Starting this Habit"/>
+			<% else %>
+
+
+				<% if e.goal_days_into_it and  e.goal_days_into_it > 30 %>
+
+					<% if e.goal_success_rate_percentage and e.goal_success_rate_percentage > 74 %>
+
+						<% found_category = false %>
+
+						<% if !found_category and e.category and e.category == "Exercise" %>
+							<% found_category = true %>
+							<image src="/images/icons/sprout_grown_exercise_50px.png" title="Exercise Habit <%= e.goal_days_into_it %> Days in with <%= e.goal_success_rate_percentage %>% Success"/>	
+						<% end %>
+
+						<% if !found_category and e.category and e.category == "Diet, Healthy Foods and Water" %>
+							<% found_category = true %>
+							<image src="/images/icons/sprout_grown_food1_50px.png" title="Diet, Healthy Foods and Water Habit <%= e.goal_days_into_it %> Days in with <%= e.goal_success_rate_percentage %>% Success"/>	
+						<% end %>
+
+						<% if !found_category and e.category and e.category == "Relationships" %>
+							<% found_category = true %>
+							<image src="/images/icons/sprout_grown_relationships_50px.png" title="Relationships Habit <%= e.goal_days_into_it %> Days in with <%= e.goal_success_rate_percentage %>% Success"/>	
+						<% end %>
+
+						<% if !found_category %>
+							<% found_category = true %>
+							<image src="/images/icons/sprout_grown_50px.png" title="Habit <%= e.goal_days_into_it %> Days in with <%= e.goal_success_rate_percentage %>% Success"/>	
+						<% end %>
+
+					<% else %>
+						<image src="/images/icons/sprout_growing_water_50px.png" title="Growing this Habit: <%= e.goal_days_into_it %> Days in with <%= e.goal_success_rate_percentage %>% Success" />
+					<% end %> 
+
+				<% else %>
+					<image src="/images/icons/sprout_growing_water_50px.png" title="Growing this Habit: <%= e.goal_days_into_it %> Days in with <%= e.goal_success_rate_percentage %>% Success"/>
+				<% end %>
+				<script type='text/javascript'>
+				$('#sprout_<%= e.goal_id.to_s %>').tipsy();
+				</script>   				
+
+			<% end %>
+
 			<% if current_user.goal_ids_that_i_follow.include?(e.goal_id) %>
 			    <a href="#" class="btn disabled"><i class="icon-rss"></i></a>
 			<% else %>
