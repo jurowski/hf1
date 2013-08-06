@@ -41,17 +41,17 @@
 
 						<% found_category = false %>
 
-						<% if !found_category and e.category and e.category == "Exercise" %>
+						<% if !found_category and e.goal_category and e.goal_category == "Exercise" %>
 							<% found_category = true %>
 							<image src="/images/icons/sprout_grown_exercise_50px.png" title="Exercise Habit <%= e.goal_days_into_it %> Days in with <%= e.goal_success_rate_percentage %>% Success"/>	
 						<% end %>
 
-						<% if !found_category and e.category and e.category == "Diet, Healthy Foods and Water" %>
+						<% if !found_category and e.goal_category and e.goal_category == "Diet, Healthy Foods and Water" %>
 							<% found_category = true %>
 							<image src="/images/icons/sprout_grown_food1_50px.png" title="Diet, Healthy Foods and Water Habit <%= e.goal_days_into_it %> Days in with <%= e.goal_success_rate_percentage %>% Success"/>	
 						<% end %>
 
-						<% if !found_category and e.category and e.category == "Relationships" %>
+						<% if !found_category and e.goal_category and e.goal_category == "Relationships" %>
 							<% found_category = true %>
 							<image src="/images/icons/sprout_grown_relationships_50px.png" title="Relationships Habit <%= e.goal_days_into_it %> Days in with <%= e.goal_success_rate_percentage %>% Success"/>	
 						<% end %>
