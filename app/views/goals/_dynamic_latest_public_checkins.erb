@@ -43,26 +43,26 @@
 
 						<% if !found_category and e.goal_category and e.goal_category == "Exercise" %>
 							<% found_category = true %>
-							<image src="/images/icons/sprout_grown_exercise_50px.png" title="Exercise Habit <%= e.goal_days_into_it %> Days in with <%= e.goal_success_rate_percentage %>% Success"/>	
+							<image src="/images/icons/sprout_grown_exercise_50px.png" title="Exercise Habit <%= e.goal_days_into_it %> Days in with <%= e.goal_success_rate_percentage %>% Success during the past 30 days"/>	
 						<% end %>
 
 						<% if !found_category and e.goal_category and e.goal_category == "Diet, Healthy Foods and Water" %>
 							<% found_category = true %>
-							<image src="/images/icons/sprout_grown_food1_50px.png" title="Diet, Healthy Foods and Water Habit <%= e.goal_days_into_it %> Days in with <%= e.goal_success_rate_percentage %>% Success"/>	
+							<image src="/images/icons/sprout_grown_food1_50px.png" title="Diet, Healthy Foods and Water Habit <%= e.goal_days_into_it %> Days in with <%= e.goal_success_rate_percentage %>% Success during the past 30 days"/>	
 						<% end %>
 
 						<% if !found_category and e.goal_category and e.goal_category == "Relationships" %>
 							<% found_category = true %>
-							<image src="/images/icons/sprout_grown_relationships_50px.png" title="Relationships Habit <%= e.goal_days_into_it %> Days in with <%= e.goal_success_rate_percentage %>% Success"/>	
+							<image src="/images/icons/sprout_grown_relationships_50px.png" title="Relationships Habit <%= e.goal_days_into_it %> Days in with <%= e.goal_success_rate_percentage %>% Success during the past 30 days"/>	
 						<% end %>
 
 						<% if !found_category %>
 							<% found_category = true %>
-							<image src="/images/icons/sprout_grown_50px.png" title="Habit <%= e.goal_days_into_it %> Days in with <%= e.goal_success_rate_percentage %>% Success"/>	
+							<image src="/images/icons/sprout_grown_50px.png" title="Habit <%= e.goal_days_into_it %> Days in with <%= e.goal_success_rate_percentage %>% Success during the past 30 days"/>	
 						<% end %>
 
 					<% else %>
-						<image src="/images/icons/sprout_growing_water_50px.png" title="Growing this Habit: <%= e.goal_days_into_it %> Days in with <%= e.goal_success_rate_percentage %>% Success" />
+						<image src="/images/icons/sprout_growing_water_50px.png" title="Growing this Habit: <%= e.goal_days_into_it %> Days in with <%= e.goal_success_rate_percentage %>% Success during the past 30 days" />
 					<% end %> 
 
 				<% else %>
