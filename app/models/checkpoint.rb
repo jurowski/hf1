@@ -137,11 +137,13 @@ class Checkpoint < ActiveRecord::Base
 
 
                     ### FOR NOW ONLY DO THIS EVERY OTHER TIME
-                    limit_size = 1
+                    limit_size = 2
                     random_number = 0
-                    random_number = rand(limit_size) + 0 #between 0 and limit_size
-                    if random_number == 1
+                    random_number = rand(limit_size) + 1 #between 1 and limit_size
 
+logger.debug("sgj:random check is random_number = " + random_number.to_s)
+                    if random_number == 1
+logger.debug("sgj:random YES")
                       keep_looking = true
                       counter = 0
                       max_counter = 1
@@ -181,7 +183,7 @@ class Checkpoint < ActiveRecord::Base
                           end ### end if there's still a slacker goal
                         end ### end each slacker goal
                       else
-                        #logger.debug("sgj:checkpoint.rb:arr_random_slacker_goal:4:no slacker goals found")
+                        logger.error("sgj:checkpoint.rb:arr_random_slacker_goal:4:no slacker goals found")
                       end ### end all slacker goals
 
 
@@ -192,45 +194,46 @@ class Checkpoint < ActiveRecord::Base
                       logger.debug("sgj:checkpoint.rb:seek_slacker:2:just got back from getting slacker_goals")
                       slacker_goal = slacker_goals[0]
 
-                      encourage_item_slack = EncourageItem.new
-                      logger.info "sgj:checkpoint.rb:seek_slacker:3:new SLACKER encourage_items instantiated"
+                      if slacker_goal
+                        encourage_item_slack = EncourageItem.new
+                        logger.info "sgj:checkpoint.rb:seek_slacker:3:new SLACKER encourage_items instantiated"
 
-  #logger.debug("sgj:1")
-                      encourage_item_slack.encourage_type_new_checkpoint_bool = false
-  #logger.debug("sgj:1.1")
-                      encourage_item_slack.encourage_type_new_goal_bool = false
-  #logger.debug("sgj:1.2")
-                      encourage_item_slack.checkpoint_id = self.id ### this has to be unique scoped to goal_id
-  #logger.debug("sgj:1.3")                      
-                      #encourage_item_slack.checkpoint_status = self.status
-  #logger.debug("sgj:1.4")
-                      encourage_item_slack.checkpoint_date = self.checkin_date
-  #logger.debug("sgj:1.5")
-                      encourage_item_slack.checkpoint_updated_at_datetime = self.updated_at
-  #logger.debug("sgj:1.6")
-                      encourage_item_slack.goal_id = slacker_goal.id
-  #logger.debug("sgj:2")
-                      encourage_item_slack.goal_name = slacker_goal.title
-                      encourage_item_slack.goal_category = slacker_goal.category
-                      encourage_item_slack.goal_created_at_datetime = slacker_goal.created_at
-                      encourage_item_slack.goal_publish = slacker_goal.publish
-                      encourage_item_slack.goal_first_start_date = slacker_goal.first_start_date
-                      encourage_item_slack.goal_daysstraight = slacker_goal.daysstraight
-                      encourage_item_slack.goal_days_into_it = slacker_goal.days_into_it
-  #logger.debug("sgj:3")
-                      encourage_item_slack.goal_success_rate_percentage = slacker_goal.success_rate_percentage
-                      encourage_item_slack.user_id = slacker_goal.user.id
-                      encourage_item_slack.user_name = slacker_goal.user.first_name
-                      encourage_item_slack.user_email = slacker_goal.user.email
+    #logger.debug("sgj:1")
+                        encourage_item_slack.encourage_type_new_checkpoint_bool = false
+    #logger.debug("sgj:1.1")
+                        encourage_item_slack.encourage_type_new_goal_bool = false
+    #logger.debug("sgj:1.2")
+                        encourage_item_slack.checkpoint_id = self.id ### this has to be unique scoped to goal_id
+    #logger.debug("sgj:1.3")                      
+                        #encourage_item_slack.checkpoint_status = self.status
+    #logger.debug("sgj:1.4")
+                        encourage_item_slack.checkpoint_date = self.checkin_date
+    #logger.debug("sgj:1.5")
+                        encourage_item_slack.checkpoint_updated_at_datetime = self.updated_at
+    #logger.debug("sgj:1.6")
+                        encourage_item_slack.goal_id = slacker_goal.id
+    #logger.debug("sgj:2")
+                        encourage_item_slack.goal_name = slacker_goal.title
+                        encourage_item_slack.goal_category = slacker_goal.category
+                        encourage_item_slack.goal_created_at_datetime = slacker_goal.created_at
+                        encourage_item_slack.goal_publish = slacker_goal.publish
+                        encourage_item_slack.goal_first_start_date = slacker_goal.first_start_date
+                        encourage_item_slack.goal_daysstraight = slacker_goal.daysstraight
+                        encourage_item_slack.goal_days_into_it = slacker_goal.days_into_it
+    #logger.debug("sgj:3")
+                        encourage_item_slack.goal_success_rate_percentage = slacker_goal.success_rate_percentage
+                        encourage_item_slack.user_id = slacker_goal.user.id
+                        encourage_item_slack.user_name = slacker_goal.user.first_name
+                        encourage_item_slack.user_email = slacker_goal.user.email
 
-                      logger.debug "sgj:checkpoint.rb:about to save SLACKER encourage_items"
+                        logger.debug "sgj:checkpoint.rb:about to save SLACKER encourage_items"
 
-  #logger.debug("sgj:4")
-                      encourage_item_slack.save
-  #logger.debug("sgj:5")
+    #logger.debug("sgj:4")
+                        encourage_item_slack.save
+    #logger.debug("sgj:5")
+                      end ### end if slacker_goal
 
-
-                    end
+                    end ### end if slacker_goals
 
                   rescue
                     logger.error("sgj:checkpoint.rb:error while trying to save a random SLACKER on checkpoint update")
