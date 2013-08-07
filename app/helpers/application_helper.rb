@@ -1,5 +1,33 @@
 require "logger"
 
+
+
+
+
+
+
+####################################33
+####################################33
+####################################33
+####################################33
+####################################33
+####################################33
+####################################33
+####################################33
+###### NOTE I BELIEVE THESE FUNCTIONS ARE ONLY AVAILABLE TO VIEWS, NOT MODELS !!!!!
+###### NOTE I BELIEVE THESE FUNCTIONS ARE ONLY AVAILABLE TO VIEWS, NOT MODELS !!!!!
+###### NOTE I BELIEVE THESE FUNCTIONS ARE ONLY AVAILABLE TO VIEWS, NOT MODELS !!!!!
+###### NOTE I BELIEVE THESE FUNCTIONS ARE ONLY AVAILABLE TO VIEWS, NOT MODELS !!!!!
+###### NOTE I BELIEVE THESE FUNCTIONS ARE ONLY AVAILABLE TO VIEWS, NOT MODELS !!!!!
+###### NOTE I BELIEVE THESE FUNCTIONS ARE ONLY AVAILABLE TO VIEWS, NOT MODELS !!!!!
+###### NOTE I BELIEVE THESE FUNCTIONS ARE ONLY AVAILABLE TO VIEWS, NOT MODELS !!!!!
+####################################33
+####################################33
+####################################33
+####################################33
+####################################33
+
+
 # Methods added to this helper will be available to all templates in the application.
 module ApplicationHelper
   def get_dnow
@@ -56,45 +84,6 @@ module ApplicationHelper
   end
 
 
-  def arr_random_slacker_goal(max_counter)
-
-
-    logger.debug("sgj:application_helper.rb:arr_random_slacker_goal")
-    arr_chosen_goals = Array.new()
-
-    keep_looking = true
-    counter = 0
-
-    slacker_goals = Goal.find(:all, :conditions => "publish = '1' and status <> 'hold' and laststatusdate > '#{get_dnow - 30}' and laststatusdate < '#{get_dnow - 7}'")
-
-    logger.debug("sgj:application_helper.rb:arr_random_slacker_goal:just tried to find slacker_goals .. size is " + slacker_goals.size.to_s)
-    if slacker_goals.size > 0
-
-      slacker_goals.each do |slacker_goal|
-
-          logger.debug("sgj:application_helper.rb:arr_random_slacker_goal:looking at slacker_goal.title of " + slacker_goal.title)
-          break if !keep_looking
-          random_index = rand(slacker_goals.size) #between 0 and (size - 1)
-          slacker_goal = slacker_goals[random_index]
-
-          ### do this for Free users only (to keep them involved)
-          if slacker_goal and slacker_goal.user and !slacker_goal.user.is_habitforge_supporting_member
-
-            if slacker_goal.user.first_name != "unknown" and !arr_chosen_goals.include? slacker_goal
-              arr_chosen_goals << slacker_goal
-              counter = counter + 1
-              if counter == max_counter
-                keep_looking = false
-              end
-
-            end ### end if slacker goal user has a real name (vs. unknown)
-         end ### end if there's still a slacker goal
-      end ### end each slacker goal
-    end ### end all slacker goals
-
-    return arr_chosen_goals
-
-  end
 
 
   def arr_all_habitforge_supporting_members

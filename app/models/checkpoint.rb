@@ -123,38 +123,115 @@ class Checkpoint < ActiveRecord::Base
                   encourage_item.save
 
 
-                  begin
-                    logger.info "sgj:checkpoint.rb:looking for a SLACKER to add to encourage_items"
-                    ### now let's toss in a random person needing help
-                    slacker_goals = arr_random_slacker_goal(1)
-                    slacker_goals do |slacker_goal|
-                      encourage_item = EncourageItem.new
-                      logger.info "sgj:checkpoint.rb:new SLACKER encourage_items instantiated"
 
-                      encourage_item.encourage_type_new_checkpoint_bool = false
-                      encourage_item.encourage_type_new_goal_bool = false
-                      #encourage_item.checkpoint_id = self.id
-                      #encourage_item.checkpoint_status = self.status
-                      #encourage_item.checkpoint_date = self.checkin_date
-                      #encourage_item.checkpoint_updated_at_datetime = self.updated_at
-                      encourage_item.goal_id = slacker_goal.goal.id
-                      encourage_item.goal_name = slacker_goal.title
-                      encourage_item.goal_category = slacker_goal.category
-                      encourage_item.goal_created_at_datetime = slacker_goal.created_at
-                      encourage_item.goal_publish = slacker_goal.publish
-                      encourage_item.goal_first_start_date = slacker_goal.first_start_date
-                      encourage_item.goal_daysstraight = slacker_goal.daysstraight
-                      encourage_item.goal_days_into_it = slacker_goal.days_into_it
-                      encourage_item.goal_success_rate_percentage = slacker_goal.success_rate_percentage
-                      encourage_item.user_id = slacker_goal.user.id
-                      encourage_item.user_name = slacker_goal.user.first_name
-                      encourage_item.user_email = slacker_goal.user.email
+                  begin
+
+
+                    #logger.info "sgj:checkpoint.rb:seek_slacker:1:looking for a SLACKER to add to encourage_items"
+                    ### now let's toss in a random person needing help
+                    #slacker_goals = arr_random_slacker_goals(1)
+
+                    #logger.debug("sgj:checkpoint.rb.rb:arr_random_slacker_goal:1")
+                    #arr_chosen_goals = Array.new()
+
+
+
+                    ### FOR NOW ONLY DO THIS EVERY OTHER TIME
+                    limit_size = 1
+                    random_number = 0
+                    random_number = rand(limit_size) + 0 #between 0 and limit_size
+                    if random_number == 1
+
+                      keep_looking = true
+                      counter = 0
+                      max_counter = 1
+
+
+                      #logger.debug("sgj:checkpoint.rb.rb:arr_random_slacker_goal:1.1")
+                      #### DEBUG
+                      #slacker_goals = Goal.find(:all, :conditions => "publish = '1' and status <> 'hold' and laststatusdate > '#{self.goal.user.dtoday - 30}'")
+                      #logger.debug("sgj:checkpoint.rb.rb:arr_random_slacker_goal:1.2")
+                      #### LIVE
+                      slacker_goals = Goal.find(:all, :conditions => "publish = '1' and status <> 'hold' and laststatusdate > '#{current_user.dtoday - 30}' and laststatusdate < '#{current_user.dtoday - 7}'")
+                      if slacker_goals
+                        #logger.debug("sgj:yes found some")
+                        slacker_goals.each do |slacker_goal|
+                          #logger.debug("sgj:going to look at one now")
+                          #logger.debug("sgj:checkpoint.rb.rb:arr_random_slacker_goal:3:looking at slacker_goal.title of " + slacker_goal.title)
+                          break if !keep_looking
+                          random_index = rand(slacker_goals.size) #between 0 and (size - 1)
+                          slacker_goal = slacker_goals[random_index]
+
+                          #logger.debug("sgj:checkpoint.rb.rb:arr_random_slacker_goal:3.1:about to see if free user")
+
+                          ### do this for Free users only (to keep them involved)
+                          #if slacker_goal and slacker_goal.user and !slacker_goal.user.is_habitforge_supporting_member
+
+                          ### do this for all users
+                          if slacker_goal and slacker_goal.user
+                            #logger.debug("sgj:checkpoint.rb.rb:arr_random_slacker_goal:4:about to check if user has name")
+                            if slacker_goal.user.first_name != "unknown" and !slacker_goals.include? slacker_goal
+                              slacker_goals << slacker_goal
+                              counter = counter + 1
+                              if counter == max_counter
+                                keep_looking = false
+                              end
+
+                            end ### end if slacker goal user has a real name (vs. unknown)
+                          end ### end if there's still a slacker goal
+                        end ### end each slacker goal
+                      else
+                        #logger.debug("sgj:checkpoint.rb:arr_random_slacker_goal:4:no slacker goals found")
+                      end ### end all slacker goals
+
+
+
+
+
+
+                      logger.debug("sgj:checkpoint.rb:seek_slacker:2:just got back from getting slacker_goals")
+                      slacker_goal = slacker_goals[0]
+
+                      encourage_item_slack = EncourageItem.new
+                      logger.info "sgj:checkpoint.rb:seek_slacker:3:new SLACKER encourage_items instantiated"
+
+  #logger.debug("sgj:1")
+                      encourage_item_slack.encourage_type_new_checkpoint_bool = false
+  #logger.debug("sgj:1.1")
+                      encourage_item_slack.encourage_type_new_goal_bool = false
+  #logger.debug("sgj:1.2")
+                      encourage_item_slack.checkpoint_id = self.id ### this has to be unique scoped to goal_id
+  #logger.debug("sgj:1.3")                      
+                      #encourage_item_slack.checkpoint_status = self.status
+  #logger.debug("sgj:1.4")
+                      encourage_item_slack.checkpoint_date = self.checkin_date
+  #logger.debug("sgj:1.5")
+                      encourage_item_slack.checkpoint_updated_at_datetime = self.updated_at
+  #logger.debug("sgj:1.6")
+                      encourage_item_slack.goal_id = slacker_goal.id
+  #logger.debug("sgj:2")
+                      encourage_item_slack.goal_name = slacker_goal.title
+                      encourage_item_slack.goal_category = slacker_goal.category
+                      encourage_item_slack.goal_created_at_datetime = slacker_goal.created_at
+                      encourage_item_slack.goal_publish = slacker_goal.publish
+                      encourage_item_slack.goal_first_start_date = slacker_goal.first_start_date
+                      encourage_item_slack.goal_daysstraight = slacker_goal.daysstraight
+                      encourage_item_slack.goal_days_into_it = slacker_goal.days_into_it
+  #logger.debug("sgj:3")
+                      encourage_item_slack.goal_success_rate_percentage = slacker_goal.success_rate_percentage
+                      encourage_item_slack.user_id = slacker_goal.user.id
+                      encourage_item_slack.user_name = slacker_goal.user.first_name
+                      encourage_item_slack.user_email = slacker_goal.user.email
 
                       logger.debug "sgj:checkpoint.rb:about to save SLACKER encourage_items"
 
-                      encourage_item.save
+  #logger.debug("sgj:4")
+                      encourage_item_slack.save
+  #logger.debug("sgj:5")
+
 
                     end
+
                   rescue
                     logger.error("sgj:checkpoint.rb:error while trying to save a random SLACKER on checkpoint update")
                   end
@@ -172,7 +249,7 @@ class Checkpoint < ActiveRecord::Base
 
       rescue
         success = false
-       logger.error "sgj:error in update_status(status)"
+        logger.error "sgj:error in update_status(status)"
       end
       return success
   end

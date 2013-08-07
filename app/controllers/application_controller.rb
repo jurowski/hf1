@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
   #protect_from_forgery # See ActionController::RequestForgeryProtection for details
   
   ### Any private variables that you create must be listed here to be accessed elsewhere (unless they're in the helper file, in which they're public):
-  helper_method :current_user_session, :current_user, :current_user_is_admin, :server_root_url, :fully_logged_in, :mobile_device?
+  helper_method :current_user_session, :current_user, :current_user_is_admin, :server_root_url, :fully_logged_in, :mobile_device?, :arr_random_slacker_goals
 
   filter_parameter_logging :password, :password_confirmation
 
@@ -395,6 +395,58 @@ class ApplicationController < ActionController::Base
     def redirect_back_or_default(default)
       redirect_to(session[:return_to] || default)
       session[:return_to] = nil
+    end
+
+
+
+    def arr_random_slacker_goals(max_counter)
+
+
+      logger.debug("sgj:application_helper.rb:arr_random_slacker_goal:1")
+      arr_chosen_goals = Array.new()
+
+      keep_looking = true
+      counter = 0
+
+
+      #### DEBUG
+      slacker_goals = Goal.find(:all, :conditions => "publish = '1' and status <> 'hold' and laststatusdate > '#{get_dnow - 30}'")
+
+      #### LIVE
+      #slacker_goals = Goal.find(:all, :conditions => "publish = '1' and status <> 'hold' and laststatusdate > '#{get_dnow - 30}' and laststatusdate < '#{get_dnow - 7}'")
+
+      logger.debug("sgj:application_helper.rb:arr_random_slacker_goal:2:just tried to find slacker_goals .. size is " + slacker_goals.size.to_s)
+      if slacker_goals.size > 0
+
+        slacker_goals.each do |slacker_goal|
+
+            logger.debug("sgj:application_helper.rb:arr_random_slacker_goal:3:looking at slacker_goal.title of " + slacker_goal.title)
+            break if !keep_looking
+            random_index = rand(slacker_goals.size) #between 0 and (size - 1)
+            slacker_goal = slacker_goals[random_index]
+
+            logger.debug("sgj:application_helper.rb:arr_random_slacker_goal:3.1:about to see if free user")
+
+            ### do this for Free users only (to keep them involved)
+            #if slacker_goal and slacker_goal.user and !slacker_goal.user.is_habitforge_supporting_member
+
+            ### do this for all users
+            if slacker_goal and slacker_goal.user
+              logger.debug("sgj:application_helper.rb:arr_random_slacker_goal:4:about to check if user has name")
+              if slacker_goal.user.first_name != "unknown" and !arr_chosen_goals.include? slacker_goal
+                arr_chosen_goals << slacker_goal
+                counter = counter + 1
+                if counter == max_counter
+                  keep_looking = false
+                end
+
+              end ### end if slacker goal user has a real name (vs. unknown)
+           end ### end if there's still a slacker goal
+        end ### end each slacker goal
+      end ### end all slacker goals
+
+      return arr_chosen_goals
+
     end
 
 

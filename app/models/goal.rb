@@ -382,9 +382,9 @@ class Goal < ActiveRecord::Base
             age_counter = 30
             while age_counter > 0
                 if !got_one and self.days_since_first_checkpoint >= age_counter
-                      logger.debug("sgj: age_counter= " + age_counter.to_s)
+                      #logger.debug("sgj: age_counter= " + age_counter.to_s)
                       percent_yes = self.success_rate_during_past_n_days(age_counter)
-                      logger.debug("sgj: percent_yes = " + percent_yes.to_s)
+                      #logger.debug("sgj: percent_yes = " + percent_yes.to_s)
                       got_one = true
                 end
                 age_counter = age_counter - 1
@@ -908,7 +908,7 @@ class Goal < ActiveRecord::Base
 
   def create_checkpoint_if_needed(reporting_date_string)
     reporting_date = reporting_date_string.to_date
-    logger.debug("sgj:reporting_date =" + reporting_date.to_s)
+    #logger.debug("sgj:reporting_date =" + reporting_date.to_s)
     checkpoint = Checkpoint.find(:first, :conditions => "goal_id = '#{self.id}' and checkin_date = '#{reporting_date}'")
 
     if !checkpoint
@@ -1000,7 +1000,7 @@ class Goal < ActiveRecord::Base
             if self.is_this_a_relevant_day(new_checkpoint_date)
                 double_check_checkpoints = Checkpoint.find(:all, :conditions => "goal_id = '#{self.id}' and checkin_date = '#{new_checkpoint_date}'")
                 if double_check_checkpoints.size == 0
-                    logger.debug new_checkpoint_date.to_s + ' is a go... create this missing checkpoint'
+                    #logger.debug new_checkpoint_date.to_s + ' is a go... create this missing checkpoint'
                     #### START CREATE CHECK POINT
                     c_new = Checkpoint.new
                     self_id = self.id
@@ -1010,12 +1010,12 @@ class Goal < ActiveRecord::Base
                     if c_new.save
                       #logger.info 'created missing checkpoint for user ' + self.user.email + ' for goal of ' + self.id.to_s + ' and date of ' + c_new.checkin_date.to_s
                     else
-                      logger.info 'error creating missing checkpoint for user ' + self.user.email + ' for goal of ' + self.id.to_s + ' and date of ' + c_new.checkin_date.to_s
+                      logger.error 'error creating missing checkpoint for user ' + self.user.email + ' for goal of ' + self.id.to_s + ' and date of ' + c_new.checkin_date.to_s
                     end
                     #### END CREATE CHECKPOINT
                 end
             else
-                logger.debug new_checkpoint_date.to_s + ' is a skip day'
+                #logger.debug new_checkpoint_date.to_s + ' is a skip day'
             end
         end
 
@@ -1025,35 +1025,33 @@ class Goal < ActiveRecord::Base
         if checkpoints_all != nil
             passed_the_first_one = 0
             previous_date = dnow - 1
-     logger.debug "SGJ 1"       
-            
             
             for c in checkpoints_all
                 if passed_the_first_one == 0
-                    logger.debug "SGJ 1.1"
+                    #logger.debug "SGJ 1.1"
                     passed_the_first_one = 1
                     previous_date = c.checkin_date
-                    logger.debug 'first checkpoint date =' + previous_date.to_s
-                    logger.debug "SGJ 1.2"
+                    #logger.debug 'first checkpoint date =' + previous_date.to_s
+                    #logger.debug "SGJ 1.2"
                 else
-                    logger.debug "SGJ 2.1"
+                    #logger.debug "SGJ 2.1"
                     gap = previous_date - c.checkin_date
-                    logger.debug 'gap between ' + previous_date.to_s + ' and ' + c.checkin_date.to_s + ' = ' + gap.to_s
+                    #logger.debug 'gap between ' + previous_date.to_s + ' and ' + c.checkin_date.to_s + ' = ' + gap.to_s
                     if gap > 1
-                        logger.debug 'GAP GREATER THAN 1... CHECK FOR DAYS OF WEEK'
+                        #logger.debug 'GAP GREATER THAN 1... CHECK FOR DAYS OF WEEK'
 
                         traverse_counter = 1
                         while traverse_counter < gap
                             new_checkpoint_date = previous_date - traverse_counter
- logger.debug "SGJa " + new_checkpoint_date.to_s + " "+ self.is_this_a_relevant_day(new_checkpoint_date).to_s
+ #logger.debug "SGJa " + new_checkpoint_date.to_s + " "+ self.is_this_a_relevant_day(new_checkpoint_date).to_s
 
                             if self.is_this_a_relevant_day(new_checkpoint_date)
-                                logger.debug new_checkpoint_date.to_s + ' is a go... create this missing checkpoint'
- logger.debug "SGJb"
+                                #logger.debug new_checkpoint_date.to_s + ' is a go... create this missing checkpoint'
+ #logger.debug "SGJb"
 
                                 double_check_checkpoints = Checkpoint.find(:all, :conditions => "goal_id = '#{self.id}' and checkin_date = '#{new_checkpoint_date}'")
                                 if double_check_checkpoints.size == 0
- logger.debug "SGJc"
+ #logger.debug "SGJc"
 
                                   #### START CREATE CHECK POINT
                                   c_new = Checkpoint.new
@@ -1061,23 +1059,23 @@ class Goal < ActiveRecord::Base
                                   c_new.checkin_date = new_checkpoint_date
                                   c_new.status = "email not yet sent"
                                   c_new.syslognote = "checkpoint created late, during auto-update process"
- logger.debug "SGJd"
+ #logger.debug "SGJd"
 
                                   if c_new.save
-                                    logger.info 'created missing checkpoint for user ' + self.user.email + ' for goal of ' + self.id.to_s + ' and date of ' + c_new.checkin_date.to_s
+                                    #logger.info 'created missing checkpoint for user ' + self.user.email + ' for goal of ' + self.id.to_s + ' and date of ' + c_new.checkin_date.to_s
                                   else
-                                    logger.info 'error creating missing checkpoint for user ' + self.user.email + ' for goal of ' + self.id.to_s + ' and date of ' + c_new.checkin_date.to_s
+                                    logger.error 'error creating missing checkpoint for user ' + self.user.email + ' for goal of ' + self.id.to_s + ' and date of ' + c_new.checkin_date.to_s
                                   end
                                   #### END CREATE CHECKPOINT
                                 end    
                             else
-                                logger.debug new_checkpoint_date.to_s + ' is a skip day'
+                                #logger.debug new_checkpoint_date.to_s + ' is a skip day'
                             end
                             traverse_counter = traverse_counter + 1
 
                         end
                     end
-                    logger.debug "SGJ 2.2"
+                    #logger.debug "SGJ 2.2"
 
                     previous_date = c.checkin_date
                 end
@@ -1087,7 +1085,7 @@ class Goal < ActiveRecord::Base
         ### END FILL IN ANY CHECKPOINT GAPS
         ### END CREATE CHECKPOINTS WHERE MISSING
         #########################################
-logger.debug "SGJ 3"
+#logger.debug "SGJ 3"
 
         rescue
             success = false
@@ -1258,7 +1256,7 @@ logger.debug "SGJ 3"
   end
 
   def update_stats
-        logger.debug("sgj:running goal.update_stats on: " + self.title)
+        #logger.debug("sgj:running goal.update_stats on: " + self.title)
         success = true
         begin
             ####################################################
@@ -1267,19 +1265,18 @@ logger.debug "SGJ 3"
             totalsize = self.number_of_checkpoints
             if totalsize > 0      
 
-
-            #### SUCCESSS RATES ARE NOW LAGGING RATES
-            got_one = false
-            age_counter = 30
-            while age_counter > 0
+              #### SUCCESSS RATES ARE NOW LAGGING RATES
+              got_one = false
+              age_counter = 30
+              while age_counter > 0
                 if !got_one and self.days_since_first_checkpoint >= age_counter
-                      logger.debug("sgj: age_counter= " + age_counter.to_s)
-	              self.success_rate_percentage = self.success_rate_during_past_n_days(age_counter)
-                      logger.debug("sgj: self.success_rate_percentage = " + self.success_rate_percentage.to_s)
-                      got_one = true
+                  #logger.debug("sgj: age_counter= " + age_counter.to_s)
+                  self.success_rate_percentage = self.success_rate_during_past_n_days(age_counter)
+                  #logger.debug("sgj: self.success_rate_percentage = " + self.success_rate_percentage.to_s)
+                  got_one = true
                 end
                 age_counter = age_counter - 1
-            end   
+              end   
 
               #self.success_rate_percentage = self.percent_of_checkpoints_with_answer_of_yes
               self.days_into_it = totalsize
@@ -1407,7 +1404,7 @@ logger.debug "SGJ 3"
                     teamgoal.active = 0
                     teamgoal.save      
                 else
-                    logger.debug("SGJ TEAM: no teamgoal found")
+                    #logger.debug("SGJ TEAM: no teamgoal found")
                 end
 
                 ### Modify and Save Team
@@ -1475,7 +1472,7 @@ logger.debug "SGJ 3"
             end
         
             if team_with_openings and !already_on_that_team
-                logger.debug("TEAM: found team_with_openings")
+                #logger.debug("TEAM: found team_with_openings")
 
                 ### Create a new teamgoal record
                 new_teamgoal = Teamgoal.new()
@@ -1500,9 +1497,9 @@ logger.debug "SGJ 3"
                 self.save
             else
                 if already_on_that_team
-                    logger.debug("TEAM: found team_with_openings, but you're already on it, so create a different one")
+                    #logger.debug("TEAM: found team_with_openings, but you're already on it, so create a different one")
                 else
-                    logger.debug("TEAM: no team_with_openings ... create one")
+                    #logger.debug("TEAM: no team_with_openings ... create one")
                 end
 
                 ### Create a new team
@@ -1531,7 +1528,7 @@ logger.debug "SGJ 3"
                 new_teamgoal.save  
             end  
         else
-            logger.debug("SGJ TEAM: already on a team")
+            #logger.debug("SGJ TEAM: already on a team")
         end
         #################################################################
         ###   END Join Team code    
