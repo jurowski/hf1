@@ -20,6 +20,8 @@
 	<!--Latest <= max - 1 > Successes...<br> -->
 
 	<% encourage_items = EncourageItem.find(:all, :conditions => "checkpoint_date >= '#{current_user.dyesterday }' or encourage_type_new_goal_bool = '1'", :order => "id DESC", :limit => (max + 10)) %>
+
+
 	<% encourage_items.each do |e| %>
 		<% if counter <= max %>
 
@@ -73,7 +75,7 @@
 			<script type='text/javascript'>
 			$('#sprout_<%= e.goal_id.to_s %>').tipsy();
 			</script>
-				
+
 			<% if current_user.goal_ids_that_i_follow.include?(e.goal_id) %>
 			    <a href="#" class="btn disabled"><i class="icon-rss"></i></a>
 			<% else %>
@@ -163,6 +165,8 @@
 
 
 	<% end %> <!-- end for each encourgement item-->
+
+
 
 	 &nbsp &nbsp &nbsp &nbsp
 	 <a onclick="toggle_show('spinner_dynamic_latest_public_checkins');reload_show_latest_mod_qty('5');" class="glyphicons more"><i clas="icon-more"></i></a>

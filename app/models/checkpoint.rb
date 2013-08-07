@@ -122,6 +122,43 @@ class Checkpoint < ActiveRecord::Base
 
                   encourage_item.save
 
+
+                  begin
+                    logger.debug "sgj:checkpoint.rb:looking for a SLACKER to add to encourage_items"
+                    ### now let's toss in a random person needing help
+                    arr_random_slacker_goal(1).each do |slacker_goal|
+                      encourage_item = EncourageItem.new
+                      logger.debug "sgj:checkpoint.rb:new SLACKER encourage_items instantiated"
+
+                      encourage_item.encourage_type_new_checkpoint_bool = false
+                      encourage_item.encourage_type_new_goal_bool = false
+                      #encourage_item.checkpoint_id = self.id
+                      #encourage_item.checkpoint_status = self.status
+                      #encourage_item.checkpoint_date = self.checkin_date
+                      e#ncourage_item.checkpoint_updated_at_datetime = self.updated_at
+                      encourage_item.goal_id = slacker_goal.goal.id
+                      encourage_item.goal_name = slacker_goal.title
+                      encourage_item.goal_category = slacker_goal.category
+                      encourage_item.goal_created_at_datetime = slacker_goal.created_at
+                      encourage_item.goal_publish = slacker_goal.publish
+                      encourage_item.goal_first_start_date = slacker_goal.first_start_date
+                      encourage_item.goal_daysstraight = slacker_goal.daysstraight
+                      encourage_item.goal_days_into_it = slacker_goal.days_into_it
+                      encourage_item.goal_success_rate_percentage = slacker_goal.success_rate_percentage
+                      encourage_item.user_id = slacker_goal.user.id
+                      encourage_item.user_name = slacker_goal.user.first_name
+                      encourage_item.user_email = slacker_goal.user.email
+
+                      logger.debug "sgj:checkpoint.rb:about to save SLACKER encourage_items"
+
+                      encourage_item.save
+
+                    end
+                  rescue
+                    logger.error("sgj:checkpoint.rb:error while trying to save a random SLACKER on checkpoint update")
+                  end
+
+
                   logger.debug "sgj:checkpoint.rb:saved encourage_item"
                 end
               end
