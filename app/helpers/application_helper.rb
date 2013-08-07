@@ -72,7 +72,7 @@ module ApplicationHelper
           ### do this for Free users only (to keep them involved)
           if slacker_goal and slacker_goal.user and !slacker_goal.user.is_habitforge_supporting_member
 
-            if slacker_goal.user.first_name != "unknown" and !arr_chosen_goals.include? slacker_goal.id
+            if slacker_goal.user.first_name != "unknown" and !arr_chosen_goals.include? slacker_goal
               arr_chosen_goals << slacker_goal
               counter = counter + 1
               if counter == max_counter
