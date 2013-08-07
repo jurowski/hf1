@@ -320,6 +320,17 @@ for goal in current_user.active_goals_sorted_by_next_action_day
 
                 <a name="jump_to_goal_id_<%= goal.id.to_s %>"></a>
 
+                <% 
+                if goal.number_my_active_bets > 0 
+                      for bet in @goal.my_active_bets
+                        %>
+                        <img src='/images/money_icon.png' height='25px' /> $<%= bet.wager %> to <%= bet.recipient_name %>?<br> 
+                        <%
+                      end
+                end
+                %>
+
+
                 <% if goal.template_user_parent_goal and goal.template_user_parent_goal.template_tagline %>
                     <!-- if this goal was added through a template that belongs to a program -->
                     <!-- via goal_added_through_template_from_program_id -->
