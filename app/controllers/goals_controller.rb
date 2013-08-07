@@ -608,9 +608,15 @@ logger.debug "SGJ2 2 #{goal.title}(#{goal.id}) #{goal.daysstraight} daysstraight
 
 
           pmo = false
+
+          if @goal.title.include? "fapping"
+            pmo = true
+          end
+
           if @goal.title.include? "porn"
             pmo = true
           end
+
           if @goal.title.include? "masturb"
             pmo = true
           end
