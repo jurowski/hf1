@@ -126,7 +126,8 @@ class Checkpoint < ActiveRecord::Base
                   begin
                     logger.info "sgj:checkpoint.rb:looking for a SLACKER to add to encourage_items"
                     ### now let's toss in a random person needing help
-                    arr_random_slacker_goal(1).each do |slacker_goal|
+                    slacker_goals = arr_random_slacker_goal(1)
+                    slacker_goals do |slacker_goal|
                       encourage_item = EncourageItem.new
                       logger.info "sgj:checkpoint.rb:new SLACKER encourage_items instantiated"
 

@@ -1,3 +1,5 @@
+require "logger"
+
 # Methods added to this helper will be available to all templates in the application.
 module ApplicationHelper
   def get_dnow
@@ -56,15 +58,21 @@ module ApplicationHelper
 
   def arr_random_slacker_goal(max_counter)
 
+
+    logger.debug("sgj:application_helper.rb:arr_random_slacker_goal")
     arr_chosen_goals = Array.new()
 
     keep_looking = true
     counter = 0
 
     slacker_goals = Goal.find(:all, :conditions => "publish = '1' and status <> 'hold' and laststatusdate > '#{get_dnow - 30}' and laststatusdate < '#{get_dnow - 7}'")
+
+    logger.debug("sgj:application_helper.rb:arr_random_slacker_goal:just tried to find slacker_goals .. size is " + slacker_goals.size.to_s)
     if slacker_goals.size > 0
 
       slacker_goals.each do |slacker_goal|
+
+          logger.debug("sgj:application_helper.rb:arr_random_slacker_goal:looking at slacker_goal.title of " + slacker_goal.title)
           break if !keep_looking
           random_index = rand(slacker_goals.size) #between 0 and (size - 1)
           slacker_goal = slacker_goals[random_index]
