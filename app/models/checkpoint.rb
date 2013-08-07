@@ -131,7 +131,7 @@ class Checkpoint < ActiveRecord::Base
                     ### now let's toss in a random person needing help
                     #slacker_goals = arr_random_slacker_goals(1)
 
-                    #logger.debug("sgj:checkpoint.rb.rb:arr_random_slacker_goal:1")
+                    logger.info("sgj:checkpoint.rb.rb:arr_random_slacker_goal:1")
                     #arr_chosen_goals = Array.new()
 
 
@@ -149,29 +149,29 @@ logger.debug("sgj:random YES")
                       max_counter = 1
 
 
-                      #logger.debug("sgj:checkpoint.rb.rb:arr_random_slacker_goal:1.1")
+                      logger.info("sgj:checkpoint.rb.rb:arr_random_slacker_goal:1.1")
                       #### DEBUG
                       #slacker_goals = Goal.find(:all, :conditions => "publish = '1' and status <> 'hold' and laststatusdate > '#{self.goal.user.dtoday - 30}'")
-                      #logger.debug("sgj:checkpoint.rb.rb:arr_random_slacker_goal:1.2")
+                      logger.info("sgj:checkpoint.rb.rb:arr_random_slacker_goal:1.2")
                       #### LIVE
                       slacker_goals = Goal.find(:all, :conditions => "publish = '1' and status <> 'hold' and laststatusdate > '#{current_user.dtoday - 30}' and laststatusdate < '#{current_user.dtoday - 7}'")
                       if slacker_goals
-                        #logger.debug("sgj:yes found some")
+                        logger.info("sgj:yes found some")
                         slacker_goals.each do |slacker_goal|
-                          #logger.debug("sgj:going to look at one now")
-                          #logger.debug("sgj:checkpoint.rb.rb:arr_random_slacker_goal:3:looking at slacker_goal.title of " + slacker_goal.title)
+                          logger.info("sgj:going to look at one now")
+                          logger.info("sgj:checkpoint.rb.rb:arr_random_slacker_goal:3:looking at slacker_goal.title of " + slacker_goal.title)
                           break if !keep_looking
                           random_index = rand(slacker_goals.size) #between 0 and (size - 1)
                           slacker_goal = slacker_goals[random_index]
 
-                          #logger.debug("sgj:checkpoint.rb.rb:arr_random_slacker_goal:3.1:about to see if free user")
+                          logger.info("sgj:checkpoint.rb.rb:arr_random_slacker_goal:3.1:about to see if free user")
 
                           ### do this for Free users only (to keep them involved)
                           #if slacker_goal and slacker_goal.user and !slacker_goal.user.is_habitforge_supporting_member
 
                           ### do this for all users
                           if slacker_goal and slacker_goal.user
-                            #logger.debug("sgj:checkpoint.rb.rb:arr_random_slacker_goal:4:about to check if user has name")
+                            logger.info("sgj:checkpoint.rb.rb:arr_random_slacker_goal:4:about to check if user has name")
                             if slacker_goal.user.first_name != "unknown" and !slacker_goals.include? slacker_goal
                               slacker_goals << slacker_goal
                               counter = counter + 1
@@ -198,21 +198,21 @@ logger.debug("sgj:random YES")
                         encourage_item_slack = EncourageItem.new
                         logger.info "sgj:checkpoint.rb:seek_slacker:3:new SLACKER encourage_items instantiated"
 
-    #logger.debug("sgj:1")
+    logger.info("sgj:1")
                         encourage_item_slack.encourage_type_new_checkpoint_bool = false
-    #logger.debug("sgj:1.1")
+    logger.info("sgj:1.1")
                         encourage_item_slack.encourage_type_new_goal_bool = false
-    #logger.debug("sgj:1.2")
+    logger.info("sgj:1.2")
                         encourage_item_slack.checkpoint_id = self.id ### this has to be unique scoped to goal_id
-    #logger.debug("sgj:1.3")                      
+    logger.info("sgj:1.3")                      
                         #encourage_item_slack.checkpoint_status = self.status
-    #logger.debug("sgj:1.4")
+    logger.info("sgj:1.4")
                         encourage_item_slack.checkpoint_date = self.checkin_date
-    #logger.debug("sgj:1.5")
+    logger.info("sgj:1.5")
                         encourage_item_slack.checkpoint_updated_at_datetime = self.updated_at
-    #logger.debug("sgj:1.6")
+    logger.info("sgj:1.6")
                         encourage_item_slack.goal_id = slacker_goal.id
-    #logger.debug("sgj:2")
+    logger.info("sgj:2")
                         encourage_item_slack.goal_name = slacker_goal.title
                         encourage_item_slack.goal_category = slacker_goal.category
                         encourage_item_slack.goal_created_at_datetime = slacker_goal.created_at
@@ -220,7 +220,7 @@ logger.debug("sgj:random YES")
                         encourage_item_slack.goal_first_start_date = slacker_goal.first_start_date
                         encourage_item_slack.goal_daysstraight = slacker_goal.daysstraight
                         encourage_item_slack.goal_days_into_it = slacker_goal.days_into_it
-    #logger.debug("sgj:3")
+    logger.info("sgj:3")
                         encourage_item_slack.goal_success_rate_percentage = slacker_goal.success_rate_percentage
                         encourage_item_slack.user_id = slacker_goal.user.id
                         encourage_item_slack.user_name = slacker_goal.user.first_name
@@ -228,9 +228,9 @@ logger.debug("sgj:random YES")
 
                         logger.debug "sgj:checkpoint.rb:about to save SLACKER encourage_items"
 
-    #logger.debug("sgj:4")
+    logger.info("sgj:4")
                         encourage_item_slack.save
-    #logger.debug("sgj:5")
+    logger.info("sgj:5")
                       end ### end if slacker_goal
 
                     end ### end if slacker_goals
