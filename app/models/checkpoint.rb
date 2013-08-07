@@ -124,18 +124,18 @@ class Checkpoint < ActiveRecord::Base
 
 
                   begin
-                    logger.debug "sgj:checkpoint.rb:looking for a SLACKER to add to encourage_items"
+                    logger.info "sgj:checkpoint.rb:looking for a SLACKER to add to encourage_items"
                     ### now let's toss in a random person needing help
                     arr_random_slacker_goal(1).each do |slacker_goal|
                       encourage_item = EncourageItem.new
-                      logger.debug "sgj:checkpoint.rb:new SLACKER encourage_items instantiated"
+                      logger.info "sgj:checkpoint.rb:new SLACKER encourage_items instantiated"
 
                       encourage_item.encourage_type_new_checkpoint_bool = false
                       encourage_item.encourage_type_new_goal_bool = false
                       #encourage_item.checkpoint_id = self.id
                       #encourage_item.checkpoint_status = self.status
                       #encourage_item.checkpoint_date = self.checkin_date
-                      e#ncourage_item.checkpoint_updated_at_datetime = self.updated_at
+                      #encourage_item.checkpoint_updated_at_datetime = self.updated_at
                       encourage_item.goal_id = slacker_goal.goal.id
                       encourage_item.goal_name = slacker_goal.title
                       encourage_item.goal_category = slacker_goal.category
