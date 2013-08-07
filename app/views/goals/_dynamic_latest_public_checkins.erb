@@ -67,13 +67,13 @@
 
 				<% else %>
 					<image src="/images/icons/sprout_growing_water_50px.png" id="sprout_<%= e.goal_id.to_s %>" title="Growing this Habit: <%= e.goal_days_into_it %> Days in with <%= e.goal_success_rate_percentage %>% Success"/>
-				<% end %>
-				<script type='text/javascript'>
-				$('#sprout_<%= e.goal_id.to_s %>').tipsy();
-				</script>   				
+				<% end %>   				
 
 			<% end %>
-
+			<script type='text/javascript'>
+			$('#sprout_<%= e.goal_id.to_s %>').tipsy();
+			</script>
+				
 			<% if current_user.goal_ids_that_i_follow.include?(e.goal_id) %>
 			    <a href="#" class="btn disabled"><i class="icon-rss"></i></a>
 			<% else %>
