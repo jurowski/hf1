@@ -173,7 +173,7 @@ logger.info("sgj:random YES")
                           if slacker_goal and slacker_goal.user
                             logger.info("sgj:checkpoint.rb.rb:arr_random_slacker_goal:4:about to check if user has name")
                             if slacker_goal.user.first_name != "unknown" and !arr_chosen_goals.include? slacker_goal
-                              arr_chosen_goals << slacker_goal
+                              arr_chosen_goals << slacker_goal.id
                               counter = counter + 1
                               if counter == max_counter
                                 keep_looking = false
@@ -192,7 +192,7 @@ logger.info("sgj:random YES")
 
 
                       logger.debug("sgj:checkpoint.rb:seek_slacker:2:just got back from getting slacker_goals")
-                      slacker_goal = arr_chosen_goals[0]
+                      slacker_goal = Goal.find(arr_chosen_goals[0])
 
                       if slacker_goal
                         encourage_item_slack = EncourageItem.new
