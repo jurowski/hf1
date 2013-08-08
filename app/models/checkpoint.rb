@@ -141,9 +141,9 @@ class Checkpoint < ActiveRecord::Base
                     random_number = 0
                     random_number = rand(limit_size) + 1 #between 1 and limit_size
 
-logger.debug("sgj:random check is random_number = " + random_number.to_s)
+logger.info("sgj:random check is random_number = " + random_number.to_s)
                     if random_number == 1
-logger.debug("sgj:random YES")
+logger.info("sgj:random YES")
                       keep_looking = true
                       counter = 0
                       max_counter = 1
