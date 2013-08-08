@@ -203,7 +203,7 @@ logger.debug("sgj:random YES")
     logger.info("sgj:1.1")
                         encourage_item_slack.encourage_type_new_goal_bool = false
     logger.info("sgj:1.2")
-                        encourage_item_slack.checkpoint_id = self.id ### this has to be unique scoped to goal_id
+                        encourage_item_slack.goal_id = slacker_goal.id
     logger.info("sgj:1.3")                      
                         #encourage_item_slack.checkpoint_status = self.status
     logger.info("sgj:1.4")
@@ -211,7 +211,7 @@ logger.debug("sgj:random YES")
     logger.info("sgj:1.5")
                         encourage_item_slack.checkpoint_updated_at_datetime = self.updated_at
     logger.info("sgj:1.6")
-                        encourage_item_slack.goal_id = slacker_goal.id
+                        encourage_item_slack.checkpoint_id = self.id * 10 ### this has to be unique scoped to goal_id
     logger.info("sgj:2")
                         encourage_item_slack.goal_name = slacker_goal.title
                         encourage_item_slack.goal_category = slacker_goal.category
