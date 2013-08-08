@@ -155,7 +155,8 @@ logger.info("sgj:random YES")
                       #slacker_goals = Goal.find(:all, :conditions => "publish = '1' and status <> 'hold' and laststatusdate > '#{self.goal.user.dtoday - 30}'")
                       logger.info("sgj:checkpoint.rb.rb:arr_random_slacker_goal:1.2")
                       #### LIVE
-                      slacker_goals = Goal.find(:all, :conditions => "publish = '1' and status <> 'hold' and laststatusdate > '#{current_user.dtoday - 30}' and laststatusdate < '#{current_user.dtoday - 7}'")
+                      slacker_goals = Goal.find(:all, :conditions => "publish = '1' and status <> 'hold' and laststatusdate > '#{self.goal.user.dtoday - 30}' and laststatusdate < '#{self.goal.user.dtoday - 7}'")
+                      logger.info("sgj:checkpoint.rb.rb:1.3")
                       if slacker_goals
                         logger.info("sgj:yes found some")
                         slacker_goals.each do |slacker_goal|
