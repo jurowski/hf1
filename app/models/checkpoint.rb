@@ -139,7 +139,7 @@ class Checkpoint < ActiveRecord::Base
                     ### FOR NOW ONLY DO THIS EVERY OTHER TIME
                     limit_size = 2
                     random_number = 0
-                    random_number = rand(limit_size) + 1 #between 1 and limit_size
+                    random_number = rand(limit_size) + 0 #between 0 and limit_size
 
 logger.info("sgj:random check is random_number = " + random_number.to_s)
                     if random_number == 1
