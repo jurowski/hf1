@@ -1,4 +1,5 @@
 require "logger"
+require "date"
 class Checkpoint < ActiveRecord::Base
   belongs_to :goal
   validates_length_of :status, :minimum => 2
