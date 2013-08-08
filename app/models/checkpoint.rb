@@ -192,7 +192,9 @@ logger.info("sgj:random YES")
 
 
                       logger.debug("sgj:checkpoint.rb:seek_slacker:2:just got back from getting slacker_goals")
+                      logger.debug("sgj:checkpoint.rb:going to look for arr_chosen_goals[0] of " + arr_chosen_goals[0].to_s)
                       slacker_goal = Goal.find(arr_chosen_goals[0])
+                      logger.info("sgj:checkpoint.rb:found slacker_goal.id of " + slacker_goal.id.to_s + " and title = " + slacker_goal.title)
 
                       if slacker_goal
                         encourage_item_slack = EncourageItem.new
