@@ -192,11 +192,11 @@ logger.info("sgj:random YES")
 
 
                       logger.debug("sgj:checkpoint.rb:seek_slacker:2:just got back from getting slacker_goals")
-                      logger.debug("sgj:checkpoint.rb:going to look for arr_chosen_goals[0] of " + arr_chosen_goals[0].to_s)
-                      slacker_goal = Goal.find(arr_chosen_goals[0])
-                      logger.info("sgj:checkpoint.rb:found slacker_goal.id of " + slacker_goal.id.to_s + " and title = " + slacker_goal.title)
+                      logger.info("sgj:checkpoint.rb:going to look for arr_chosen_goals[0] of " + arr_chosen_goals[0].to_s)
+                      focus_slacker_goal = Goal.find(arr_chosen_goals[0])
+                      logger.info("sgj:checkpoint.rb:found focus_slacker_goal.id of " + focus_slacker_goal.id.to_s + " and title = " + focus_slacker_goal.title)
 
-                      if slacker_goal
+                      if focus_slacker_goal
                         encourage_item_slack = EncourageItem.new
                         logger.info "sgj:checkpoint.rb:seek_slacker:3:new SLACKER encourage_items instantiated"
 
@@ -205,7 +205,7 @@ logger.info("sgj:random YES")
     logger.info("sgj:1.1")
                         encourage_item_slack.encourage_type_new_goal_bool = false
     logger.info("sgj:1.2")
-                        encourage_item_slack.goal_id = slacker_goal.id
+                        encourage_item_slack.goal_id = focus_slacker_goal.id
     logger.info("sgj:1.3")                      
                         #encourage_item_slack.checkpoint_status = self.status
     logger.info("sgj:1.4")
@@ -215,18 +215,18 @@ logger.info("sgj:random YES")
     logger.info("sgj:1.6")
                         encourage_item_slack.checkpoint_id = self.id ### this has to be unique scoped to goal_id
     logger.info("sgj:2")
-                        encourage_item_slack.goal_name = slacker_goal.title
-                        encourage_item_slack.goal_category = slacker_goal.category
-                        encourage_item_slack.goal_created_at_datetime = slacker_goal.created_at
-                        encourage_item_slack.goal_publish = slacker_goal.publish
-                        encourage_item_slack.goal_first_start_date = slacker_goal.first_start_date
-                        encourage_item_slack.goal_daysstraight = slacker_goal.daysstraight
-                        encourage_item_slack.goal_days_into_it = slacker_goal.days_into_it
+                        encourage_item_slack.goal_name = focus_slacker_goal.title
+                        encourage_item_slack.goal_category = focus_slacker_goal.category
+                        encourage_item_slack.goal_created_at_datetime = focus_slacker_goal.created_at
+                        encourage_item_slack.goal_publish = focus_slacker_goal.publish
+                        encourage_item_slack.goal_first_start_date = focus_slacker_goal.first_start_date
+                        encourage_item_slack.goal_daysstraight = focus_slacker_goal.daysstraight
+                        encourage_item_slack.goal_days_into_it = focus_slacker_goal.days_into_it
     logger.info("sgj:3")
-                        encourage_item_slack.goal_success_rate_percentage = slacker_goal.success_rate_percentage
-                        encourage_item_slack.user_id = slacker_goal.user.id
-                        encourage_item_slack.user_name = slacker_goal.user.first_name
-                        encourage_item_slack.user_email = slacker_goal.user.email
+                        encourage_item_slack.goal_success_rate_percentage = focus_slacker_goal.success_rate_percentage
+                        encourage_item_slack.user_id = focus_slacker_goal.user.id
+                        encourage_item_slack.user_name = focus_slacker_goal.user.first_name
+                        encourage_item_slack.user_email = focus_slacker_goal.user.email
 
                         logger.debug "sgj:checkpoint.rb:about to save SLACKER encourage_items"
 
