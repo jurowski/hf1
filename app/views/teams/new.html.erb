@@ -1,44 +1,25 @@
-<h1>New team</h1>
+<h1>My Brand New Team</h1>
+
+<div class="alert">
+  <% if params[:team_type] == "category" %>
+  You are creating a "category-specific" team. This will allow you to invite anyone with a goal in the <strong><%= @goal.category %></strong> category to your team. If you would rather restrict your team to work only on the goal of <strong><%= @goal.title %></strong>, <a href="/teams/new?team_type=goal&goal_id=<%= @goal.id %>">click here to make it a "goal-specific" team.</a>
+  <% end %>
+
+  <% if params[:team_type] == "goal" %>
+  You are creating a "goal-specific" team. This will restrict your team to work only on the goal of <strong><%= @goal.title %></strong>. If you would rather invite anyone with a goal in the <strong><%= @goal.category %></strong> category to join, <a href="/teams/new?team_type=category&goal_id=<%= @goal.id %>">click here to make it a "category-specific" team.</a>
+  <% end %>
+</div>
+
 
 <% form_for(@team) do |f| %>
   <%= f.error_messages %>
 
   <p>
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
+  Team Name: <%= f.text_field :name %>
+  <br>
+  Limit the size of this team to no more than <span style="width:20px;"><%= f.text_field :qty_max, :size => "2" %></span> people.
   </p>
-  <p>
-    <%= f.label :category_name %><br />
-    <%= f.text_field :category_name %>
-  </p>
-  <p>
-    <%= f.label :qty_max %><br />
-    <%= f.text_field :qty_max %>
-  </p>
-  <p>
-    <%= f.label :qty_current %><br />
-    <%= f.text_field :qty_current %>
-  </p>
-  <p>
-    <%= f.label :avg_success_rate %><br />
-    <%= f.text_field :avg_success_rate %>
-  </p>
-  <p>
-    <%= f.label :avg_days_in_a_row %><br />
-    <%= f.text_field :avg_days_in_a_row %>
-  </p>
-  <p>
-    <%= f.label :avg_met_goal_last_week %><br />
-    <%= f.text_field :avg_met_goal_last_week %>
-  </p>
-  <p>
-    <%= f.label :qty_checked_in_yesterday %><br />
-    <%= f.text_field :qty_checked_in_yesterday %>
-  </p>
-  <p>
-    <%= f.label :qty_checked_in_last_2_days %><br />
-    <%= f.text_field :qty_checked_in_last_2_days %>
-  </p>
+
   <p>
     <%= f.submit 'Create' %>
   </p>

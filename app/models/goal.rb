@@ -57,6 +57,9 @@ class Goal < ActiveRecord::Base
     errors.add(:response_question, "Sorry, for security reasons we can not allow links to be added to text fields.") if(response_question and response_question.include? "http:") 	
   end 
 
+  def copy_goal_to_template_and_make_template_parent
+
+  end
 
   def is_future
     if self.status != "hold" and self.start > self.user.dtoday

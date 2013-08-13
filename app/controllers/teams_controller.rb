@@ -10,7 +10,7 @@ class TeamsController < ApplicationController
   layout "application"
 
   before_filter :require_user
-  before_filter :require_admin_user, :except => [:new, :create]
+  before_filter :require_admin_user, :except => [:new, :create, :show]
 
   # GET /teams
   # GET /teams.xml
@@ -39,16 +39,20 @@ class TeamsController < ApplicationController
   def new
     @team = Team.new
 
-    if params[:team_type]
-      if params[:team_type] == "category" and params[:category_name]
-        @team.category_name = params[:category_name]
-      end
+    if params[:goal_id]
+      @goal = Goal.find(params[:goal_id].to_i)
+    end
 
-      if params[:team_type] == "goal" and params[:goal_id]
+
+
+    if params[:team_type]
+      #if params[:team_type] == "category"
+      #
+      #end
+
+      if params[:team_type] == "goal" and @goal
 
           begin
-            goal = Goal.find(params[:goal_id].to_i)
-            if goal
 
               ### if the goal already has a template_goal_id, great 
               ### if the goal does not yet have a template_goal_id
@@ -68,7 +72,7 @@ class TeamsController < ApplicationController
               ###     assign the template_goal_id to the goal
 
               ### assign the template_goal_id to this team
-            end
+
           rescue
             ### could not find goal in question
           end

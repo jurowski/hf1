@@ -21,7 +21,7 @@ class ApplicationController < ActionController::Base
   ### Force SSL ... keep in mind that in Google Chrome, people may get "insecure content" messages
   ### if you enable this without ensuring that any external javascript aren't also called w/ https
   # ...also will show this for the sharing buttons and the uservoice...perhaps disable...
-  #before_filter :redirect_to_ssl
+  before_filter :redirect_to_ssl
 
 
 

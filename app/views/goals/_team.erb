@@ -122,7 +122,7 @@ end
           </script>
 
           <div id="goal_creation_options_<%= @goal.id %>" style="display:none">
-            Invite others to join me in <a href="/teams/new?team_type=category&category_name=<%= @goal.category %>">any goal related to <%= @goal.category %></a>
+            Invite others to join me in <a href="/teams/new?team_type=category&goal_id=<%= @goal.id %>">any goal related to <%= @goal.category %></a>
             or
             <a href="/teams/new?team_type=goal&goal_id=<%= @goal.id %>"> my goal of <%= @goal.response_question %></a>.
           </div>

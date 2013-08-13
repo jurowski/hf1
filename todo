@@ -7,12 +7,6 @@
 :::CURRENT:::
 
 
---Display badges for those with 100+ 200+ ... etc. impact points
-
---Telling a long-standing goal to display all checkpoints takes forever... do some paging for this (ex: prod kaybing http://habitforge.com/goals/single/40822)
-
-
-
 
 Custom Teams Overview
 ----------------------
@@ -21,6 +15,19 @@ Allow for someone to Build a Custom Team in which there are openings ... so that
 
 Custom Teams ToDo
 --------------------
+
+NEXT: see notes in teams_controller:new ... I've started a copy_goal_to_template_and_make_template_parent in goals.rb
+
+if i am creating a goal-specific team, copy my goal to a parent template, and then set my goal to have that as a parent (and save the team to have that parent as well)
+
+modify team:new and team:edit forms so that only relevant fields are shown to owners
+change rights on team controller methods so that no one but admin and team owner can edit or delete a team
+do not let owner change a team "type" from category to goal-specific once it is created (force delete instead)
+make sure you can't delete a team without first removing all members
+
+the presence of team.goal_template_parent_id is what makes it goal-specific vs. category-specific
+
+do not let me place my own goal on hold or delete it if i am part of a team (force me to quit the team first)
 
 
 [ ]  let me choose whether the team should restrict access for that goal itself (team-goal) or for the goal's general category (team-category)
@@ -95,6 +102,13 @@ accepted_date ### if the end user accepts (send notice to all team members)
 
 
 -------------------- :::FUTURE::: -------------------------------
+
+
+--Display badges for those with 100+ 200+ ... etc. impact points
+
+--Telling a long-standing goal to display all checkpoints takes forever... do some paging for this (ex: prod kaybing http://habitforge.com/goals/single/40822)
+
+
 
 problem: if a cron job dies i am not aware
 solution: look @ the latest cron job ... implement the same (it has a notify gmail that a script died)
