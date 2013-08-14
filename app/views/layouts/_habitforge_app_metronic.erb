@@ -462,6 +462,20 @@ $(document).ready(function(){
 
 
 
+<!-- 
+ADD ABILITY FOR CONFIRM DIALOG BOXES ON A HREF LINKS
+http://stackoverflow.com/questions/10462839/javascript-confirmation-dialog-on-href-link
+...
+(relies on jquery)
+
+USAGE: <a href="delete.php?id=22" class="confirmation">Link</a>
+-->
+<script type="text/javascript">
+$('.confirmation').on('click',function(){return confirm('Are you sure?');});
+</script>
+
+
+
 
   <!-- direct to facebook 
   <div id="fb-root"></div>

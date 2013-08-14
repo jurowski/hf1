@@ -226,7 +226,7 @@ else
                     <% else %>
 
                       <% if slacker_goal.is_active %>
-                          <a href="/cheers?start_following_goal_id=<%= slacker_goal.id.to_s %>&email=<%= current_user.email %>" id='follow_<%= slacker_goal.id.to_s %>'  class="btn blue" title="Follow <%= slacker_goal.user.first_name %>'s Progress" ><i class="icon-plus"></i> Follow</a>
+                          <a href="/cheers?start_following_goal_id=<%= slacker_goal.id.to_s %>&email=<%= current_user.email %>" onclick="return confirm('Are you sure?')" id='follow_<%= slacker_goal.id.to_s %>'  class="btn blue" title="Follow <%= slacker_goal.user.first_name %>'s Progress" ><i class="icon-plus"></i> Follow</a>
                           <script type='text/javascript'>
                               $('#follow_<%= slacker_goal.id.to_s %>').tipsy();
                           </script>
@@ -356,7 +356,7 @@ begin
                       <% else %>
                         <!-- you do not yet follow this goal -->
                         <% if goal.is_active %>
-                          <a href="/cheers?start_following_goal_id=<%= goal.id.to_s %>&email=<%= current_user.email %>" id='follow_<%= goal.id.to_s %>'  class="btn blue" title="Follow <%= goal.user.first_name %>'s Progress" ><i class="icon-plus"></i> Follow</a>
+                          <a href="/cheers?start_following_goal_id=<%= goal.id.to_s %>&email=<%= current_user.email %>" onclick="return confirm('Are you sure?')" id='follow_<%= goal.id.to_s %>'  class="btn blue" title="Follow <%= goal.user.first_name %>'s Progress" ><i class="icon-plus"></i> Follow</a>
                             <script type='text/javascript'>
                               $('#follow_<%= goal.id.to_s %>').tipsy();
                             </script>

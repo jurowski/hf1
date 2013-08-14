@@ -59,6 +59,70 @@ class Goal < ActiveRecord::Base
 
   def copy_goal_to_template_and_make_template_parent
 
+    success = false
+    continue = true
+
+
+    if self.template_owner_is_a_template
+      logger.error("sgj:goal.rb:copy_goal_to_template_and_make_template_parent:can not copy to a template ... this already is a template")
+      continue = false
+    end
+
+    if self.template_user_parent_goal_id
+      logger.error("sgj:goal.rb:copy_goal_to_template_and_make_template_parent:can not copy to a template ... this goal already has a parent template")
+      continue = false
+    end
+
+
+    if continue
+
+      ### copy template-relevant values from the goal to a new template goal
+      t = Goal.new()
+      t.user_id = self.user_id
+      t.start = "1900-01-01"
+      t.stop = "1900-01-01"
+      t.established_on = "1900-01-01"
+      t.status = "hold"
+      t.publish = false
+      t.share = false
+
+      begin
+        t.category = self.category
+        t.title = self.title
+        t.response_question = self.response_question
+      rescue
+        logger.error("sgj:goal.rb:copy_goal_to_template_and_make_template_parent:can not copy to a template:missing info in source goal")
+        continue = false
+      end
+
+      if continue
+        t.save
+
+        self.template_user_parent_goal_id = t.id
+        self.save
+      end
+
+
+
+              ###   duplicate the goal into a template
+              ###     in the goal.rb model, make a function to copy a goal to a template
+              ###     see goals_controller.rb:create for which fields to copy:
+
+              ###       user_id title response_question 
+              ###       start(1900-01-01) stop(1900-01-01) established_on(1900-01-01)
+              ###       category publish(0) share(0) status(hold)
+
+#WE LEFT OFF HERE... START DOING THE BELOW              
+              ###       gmt_offset serversendhour usersendhour daym dayt dayw dayr dayf days dayn
+              ###       goal_days_per_week reminder_send_hour 
+              ###       more_reminders_enabled more_reminders_start more_reminders_end
+              ###       more_reminders_every_n_hours more_reminders_last_sent
+              ###       allow_push pushes_allowed_per_day team_summary_send_hour 
+              ###       check_in_same_day set:template_owner_is_a_template(1) 
+    end
+
+    return success
+
   end
 
   def is_future
