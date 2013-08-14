@@ -22,6 +22,7 @@ class ApplicationController < ActionController::Base
   ### if you enable this without ensuring that any external javascript aren't also called w/ https
   # ...also will show this for the sharing buttons and the uservoice...perhaps disable...
   #before_filter :redirect_to_ssl
+  before_filter :redirect_to_ssl_login
 
 
 
@@ -50,7 +51,18 @@ class ApplicationController < ActionController::Base
           new_url = request.url.sub("http://", "https://")
         redirect_to new_url
       end
-    end  
+    end 
+
+    def redirect_to_ssl_login
+      #if request.url.include? 'http://' and (local_request? == false)
+      ### don't want to force the sponsored sites to SSL cause they'll say "untrusted connection" due to cert name
+      if request.url.include? 'http://habitforge.com/user_session/new' and (local_request? == false)
+          old_url = request.url
+          new_url = request.url.sub("http://", "https://")
+        redirect_to new_url
+      end
+    end 
+
     def server_root_url
       if `uname -n`.strip == 'adv.adventurino.com'
         #### HABITFORGE SETTINGS ON VPS
