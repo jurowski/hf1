@@ -10,11 +10,14 @@
 ----------------------------
 RATING OF MESSAGES
 ----------------------------
-add a "rating" integer field to FROM messages
-add a "rating" integer field to TO messages
+(done, pushed, applied) add a "rating" integer field to FROM messages
+(done, pushed, applied) add a "rating" integer field to TO messages
 
-if a recipient clicks below
-  if the FROM message has no rating
+if a recipient clicks on a rating link
+  take them to the "reply to" screen but include a message about the rating being saved and "if you'd like, also reply to them below"
+
+  (in the new tomessage controller)
+  if params[:rating] and if the FROM message has no rating
     add that many points to the sender's impact points
     store the rating on the TO message
     store the rating on the FROM message

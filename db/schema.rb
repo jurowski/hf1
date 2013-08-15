@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130815112002) do
+ActiveRecord::Schema.define(:version => 20130815142708) do
 
   create_table "achievemints", :force => true do |t|
     t.string   "name"
@@ -245,6 +245,8 @@ ActiveRecord::Schema.define(:version => 20130815112002) do
     t.integer  "to_id"
     t.integer  "unread"
     t.integer  "rating"
+    t.string   "category"
+    t.string   "message_type"
   end
 
   create_table "goals", :force => true do |t|
@@ -683,6 +685,8 @@ ActiveRecord::Schema.define(:version => 20130815112002) do
     t.integer  "to_id"
     t.integer  "unread"
     t.integer  "rating"
+    t.string   "category"
+    t.string   "message_type"
   end
 
   create_table "triggers", :force => true do |t|
