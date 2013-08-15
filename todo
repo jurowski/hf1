@@ -26,14 +26,16 @@ if params[:rating] and if the FROM message has no rating
 
 Add the below to messages going out from one user to another
 
-Was it Good Enough for us to Take Notice?
+Did this message Make an Impact?
 Good Tip (+20)   (+50)   (+100)
 Good Information (+20)   (+50)   (+100)
 Good Motivation (+20)    (+50)    (+100)
+(the best messages might get integrated into the site!)
 
-Was it Bad?
+Didn't like this message?
 De-Motivational (-20)     (-50)    (-100)
 Inappropriate (-10)      (-50)      (-100)
+(if it's bad enough we'll contact the person or take appropriate action)
 
 ----------------------------
 ----------------------------
