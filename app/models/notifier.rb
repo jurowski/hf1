@@ -321,6 +321,17 @@ class Notifier < ActionMailer::Base
     content_type "text/html"
   end
 
+  def tomessage_rated_notification(to_user, from_user, tomessage, rating)
+    recipients  to_user.email
+    bcc        ["support@habitforge.com"]
+    from       "No Reply-Messages <noreply-messages@habitforge.com>"
+
+    subject "[HF] #{from_user.first_name} liked your message and sent you #{rating.to_s} Impact Points!"
+    body       :to_user => to_user, :from_user => from_user, :tomessage => tomessage, :rating => rating
+    content_type "text/html"
+  end
+
+
   def tomessage_notification(to_user, from_user, tomessage, from_type, goal_id = 0)
     recipients	to_user.email
     bcc        ["jurowski@gmail.com"]
@@ -340,6 +351,7 @@ class Notifier < ActionMailer::Base
     body       :goal_id => goal_id, :to_user => to_user, :from_user => from_user, :tomessage => tomessage, :from_type => from_type
     content_type "text/html"
   end
+
 
   def pushmessage_to_slacker(from_user, to_user, slacker_goal, push_message)
     recipients  to_user.email

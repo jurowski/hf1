@@ -58,6 +58,54 @@ class TomessagesController < ApplicationController
         @tomessage = Tomessage.new
         @to_user = User.find(:first, :conditions => "id = '#{params[:to_id]}'")
 
+        @rated = false
+        @rating = 0
+
+        begin
+          ############################################################################
+          ### if a user is rating a message that was sent to them
+          ############################################################################
+          # if params[:rating] and if the ORIGINAL message has no rating
+          #     add that many points to the sender's impact points
+          #     store the rating, (goal)category and message_type on the ORIGINAL message
+          #     send a copy of the message to the sender and to support w/ the rating
+          #     prompt the recipient to message the sender
+          if params[:rating] and @replying_to_message and !@replying_to_message.rating
+            @rating = params[:rating].to_i
+
+            ### add that many points to the sender's impact points
+            if @to_user
+              if !@to_user.impact_points
+                @to_user.impact_points = 0
+              end
+              @to_user.impact_points += @rating
+              @to_user.save
+            end
+
+
+            ### save the rating, category and message_type on the original message
+            @replying_to_message.rating = @rating
+            if params[:category]
+              @replying_to_message.category = params[:category]
+            end
+            if params[:message_type]
+              @replying_to_message.message_type = params[:message_type]
+            end
+            @replying_to_message.save
+
+            @rated = true
+
+            @from_user = current_user
+            Notifier.deliver_tomessage_rated_notification(@to_user, @from_user, @replying_to_message, @rating) # sends the email
+
+          end ### end if params[:rating] and params[:replying_to_message_id]
+          ############################################################################
+        rescue
+          logger.error("sgj:tomessages_controller.rb:error while rating message")
+        end
+
+
+
 
         respond_to do |format|
           format.html # new.html.erb

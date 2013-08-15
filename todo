@@ -12,21 +12,18 @@ RATING OF MESSAGES
 ----------------------------
 (done, pushed, applied) add a "rating" integer field to FROM messages
 (done, pushed, applied) add a "rating" integer field to TO messages
-
-if a recipient clicks on a rating link
-  take them to the "reply to" screen but include a message about the rating being saved and "if you'd like, also reply to them below"
-
-  (in the new tomessage controller)
-  if params[:rating] and if the FROM message has no rating
+(done) During "new message" compose screen, add a note reminding them that impactful messages can be rated by the user 
+ 
+(in the new tomessage controller)
+if params[:rating] and if the FROM message has no rating
     add that many points to the sender's impact points
-    store the rating on the TO message
-    store the rating on the FROM message
+    store the rating, (goal)category and message_type on the TO message
+    store the rating, (goal)category and message_type on the FROM message
     send a copy of the message to the sender and to support w/ the rating
     prompt the recipient to message the sender
 
 
-During "new message" compose screen, add a note reminding them that impactful messages can be rated by the user 
- 
+
 Add the below to messages going out from one user to another
 
 Was it Good Enough for us to Take Notice?
