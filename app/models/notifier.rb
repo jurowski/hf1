@@ -334,7 +334,7 @@ class Notifier < ActionMailer::Base
 
   def tomessage_notification(to_user, from_user, tomessage, from_type, goal_id = 0)
     recipients	to_user.email
-    bcc        ["jurowski@gmail.com"]
+    #bcc        ["jurowski@gmail.com"]
     from       "No Reply-Messages <noreply-messages@habitforge.com>"
 
     case from_type
@@ -417,7 +417,7 @@ class Notifier < ActionMailer::Base
   #end
   def invite_a_friend_to_track(user, email, the_body, the_subject)  
     recipients  email
-    bcc         "support@habitforge.com"
+    #bcc         "support@habitforge.com"
     from        user.email
     subject     the_subject  
     body        the_body
@@ -453,7 +453,7 @@ class Notifier < ActionMailer::Base
 
   def notify_user_new_follower(goal, follower)
     recipients  goal.user.email
-    bcc         ["jurowski@gmail.com"]
+    #bcc         ["jurowski@gmail.com"]
     from        "HabitForge <noreply-messages@habitforge.com>"
     subject     "[HF] You have a new follower!"
     body        :goal => goal, :follower => follower
