@@ -57,12 +57,10 @@ class ApplicationController < ActionController::Base
       #if request.url.include? 'http://' and (local_request? == false)
       ### don't want to force the sponsored sites to SSL cause they'll say "untrusted connection" due to cert name
       if (request.url.include? 'http://habitforge.com/user_session/new' or request.url.include? 'http://habitforge.com/account/edit') and (local_request? == false)
-          old_url = request.url
-          new_url = request.url.sub("http://", "https://")
+        old_url = request.url
+        new_url = request.url.sub("http://", "https://")
         redirect_to new_url
       end
-
-
     end 
 
     def server_root_url

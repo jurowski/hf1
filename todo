@@ -6,7 +6,39 @@
 
 :::CURRENT::: 
 
-WHERE I LEFT OFF: goal.rb see line 115
+
+----------------------------
+RATING OF MESSAGES
+----------------------------
+add a "rating" integer field to FROM messages
+add a "rating" integer field to TO messages
+
+if a recipient clicks below
+  if the FROM message has no rating
+    add that many points to the sender's impact points
+    store the rating on the TO message
+    store the rating on the FROM message
+    send a copy of the message to the sender and to support w/ the rating
+    prompt the recipient to message the sender
+
+
+During "new message" compose screen, add a note reminding them that impactful messages can be rated by the user 
+ 
+Add the below to messages going out from one user to another
+
+Was it Good Enough for us to Take Notice?
+Good Tip (+20)   (+50)   (+100)
+Good Information (+20)   (+50)   (+100)
+Good Motivation (+20)    (+50)    (+100)
+
+Was it Bad?
+De-Motivational (-20)     (-50)    (-100)
+Inappropriate (-10)      (-50)      (-100)
+
+----------------------------
+----------------------------
+
+
 
 
 
@@ -18,6 +50,7 @@ Allow for someone to Build a Custom Team in which there are openings ... so that
 Custom Teams ToDo
 --------------------
 
+WHERE I LEFT OFF: goal.rb see line 115
 NEXT: see notes in teams_controller:new ... I've started a copy_goal_to_template_and_make_template_parent in goals.rb
 
 if i am creating a goal-specific team, copy my goal to a parent template, and then set my goal to have that as a parent (and save the team to have that parent as well)
