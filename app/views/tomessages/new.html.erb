@@ -35,6 +35,12 @@
   <% end %>
   <!-- END If a coach is sending an official weekly check-in message -->
 
+
+  <% if @rated %>
+  <div class="alert alert-info"><p><h3>Thanks for rating <%= @to_user.first_name %>'s message!</h3>If you'd like, you can also send them a reply message below!</p></div>
+  <% end %>
+
+
   <% if params[:replying_to_message_id] %>
 
       <h1>Replying to <%= @to_user.first_name %>
@@ -165,9 +171,7 @@
 
             <div class="alert alert-info"><p>Customize the subject and body below to give <%= @to_user.first_name %> some encouragement or to say "keep up the good work"!<br><h3>Make it Good!!</h3> Earn extra Impact Points (20, 50 or 100) if <%= @to_user.first_name %> finds your message helpful.<br>"The Best" messages will be flagged for consideration for integration into the site itself.</p></div> 
 
-            <% if @rated %>
-            <div class="alert alert-info"><p><h3>Thanks for rating <%= @to_user.first_name %>'s message!</h3>If you'd like, you can also send them a reply message below!</p></div>
-            <% end %>
+
         <p>
           <%= f.label :subject %><br />
 
