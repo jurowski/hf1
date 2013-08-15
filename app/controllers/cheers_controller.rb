@@ -25,23 +25,27 @@ class CheersController < ApplicationController
         redirect_me = false
         
         if params[:start_following_goal_id] and params[:email] and current_user and current_user.email == params[:email]
-          new_cheer = Cheer.new()
-          new_cheer.email = params[:email]
-          new_cheer.goal_id = params[:start_following_goal_id].to_i
-          new_cheer.save
 
-          begin
-            goal = Goal.find(params[:start_following_goal_id].to_i)
-            Notifier.deliver_notify_user_new_follower(goal, current_user) # sends the email
+          if params[:email] != "hbbyer@shaw.ca"
+            new_cheer = Cheer.new()
+            new_cheer.email = params[:email]
+            new_cheer.goal_id = params[:start_following_goal_id].to_i
+            new_cheer.save
 
-            flash[:notice] = 'You are following a new goal!'
-            if session[:show_winners_return_to_me] and session[:show_winners_return_to_me] != ""
-              #redirect_to(session[:show_winners_return_to_me] + "&flash=message_sent#winners")
-              redirect_me = true
+            begin
+              goal = Goal.find(params[:start_following_goal_id].to_i)
+              Notifier.deliver_notify_user_new_follower(goal, current_user) # sends the email
+
+              flash[:notice] = 'You are following a new goal!'
+              if session[:show_winners_return_to_me] and session[:show_winners_return_to_me] != ""
+                #redirect_to(session[:show_winners_return_to_me] + "&flash=message_sent#winners")
+                redirect_me = true
+              end
+            rescue
+              logger.error("sgj:cheers_controller:error emailing re: new follower")
             end
-          rescue
-            logger.error("sgj:cheers_controller:error emailing re: new follower")
-          end
+          end ### end if params[:email] != "hbbyer@shaw.ca"
+
         end
 
         if params[:stop_weekly_report]
