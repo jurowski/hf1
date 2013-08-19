@@ -659,6 +659,7 @@ ActiveRecord::Schema.define(:version => 20130819111858) do
     t.integer  "success_rate_during_past_180_days"
     t.integer  "success_rate_during_past_270_days"
     t.integer  "success_rate_during_past_365_days"
+    t.boolean  "invite_only"
   end
 
   create_table "template_achievemints", :force => true do |t|
