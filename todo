@@ -7,42 +7,6 @@
 :::CURRENT::: 
 
 
-----------------------------
-RATING OF MESSAGES
-----------------------------
-(done, pushed, applied) add a "rating" integer field to FROM messages
-(done, pushed, applied) add a "rating" integer field to TO messages
-(done) During "new message" compose screen, add a note reminding them that impactful messages can be rated by the user 
- 
-(in the new tomessage controller)
-if params[:rating] and if the FROM message has no rating
-    add that many points to the sender's impact points
-    store the rating, (goal)category and message_type on the TO message
-    store the rating, (goal)category and message_type on the FROM message
-    send a copy of the message to the sender and to support w/ the rating
-    prompt the recipient to message the sender
-
-
-
-Add the below to messages going out from one user to another
-
-Did this message Make an Impact?
-Good Tip (+20)   (+50)   (+100)
-Good Information (+20)   (+50)   (+100)
-Good Motivation (+20)    (+50)    (+100)
-(the best messages might get integrated into the site!)
-
-Didn't like this message?
-De-Motivational (-20)     (-50)    (-100)
-Inappropriate (-10)      (-50)      (-100)
-(if it's bad enough we'll contact the person or take appropriate action)
-
-----------------------------
-----------------------------
-
-
-
-
 
 Custom Teams Overview
 ----------------------
@@ -52,10 +16,17 @@ Allow for someone to Build a Custom Team in which there are openings ... so that
 Custom Teams ToDo
 --------------------
 
-WHERE I LEFT OFF: goal.rb see line 115
-NEXT: see notes in teams_controller:new ... I've started a copy_goal_to_template_and_make_template_parent in goals.rb
+CURRENT
+reflect whether my team is only for those I invite or if anyone can join
 
-if i am creating a goal-specific team, copy my goal to a parent template, and then set my goal to have that as a parent (and save the team to have that parent as well)
+
+NEXT
+
+(for admin user only for now... eventually enable for everyone but only once we have a searchable library that would make it relevant for others to find)
+1. make a button in the normal "goals" view that checks if the goal is already part of a template... and if it's not, enable a button that would kick off copy_goal_to_template_and_make_template_parent
+
+
+
 
 modify team:new and team:edit forms so that only relevant fields are shown to owners
 change rights on team controller methods so that no one but admin and team owner can edit or delete a team

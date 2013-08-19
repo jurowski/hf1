@@ -1,18 +1,36 @@
 <h1>My Brand New Team</h1>
 
-<div class="alert">
+<div class="alert" id="div_whether_team_is_category_or_goal_specific">
   <% if params[:team_type] == "category" %>
-  You are creating a "category-specific" team. This will allow you to invite anyone with a goal in the <strong><%= @goal.category %></strong> category to your team. If you would rather restrict your team to work only on the goal of <strong><%= @goal.title %></strong>, <a href="/teams/new?team_type=goal&goal_id=<%= @goal.id %>">click here to make it a "goal-specific" team.</a>
-  <% end %>
+
+    You are creating a "category-specific" team. This will allow you to invite anyone with a goal in the <strong><%= @team.category_name %></strong> category to your team. If you would rather restrict your team to work only on the goal of <strong><%= @goal.title %></strong>, <a href="/teams/new?team_type=goal&goal_id=<%= @goal.id %>">click here to make it a "goal-specific" team.</a>
+
+  <% end %> <!-- end if params[:team_type] == "category" -->
+
+
 
   <% if params[:team_type] == "goal" %>
-  You are creating a "goal-specific" team. This will restrict your team to work only on the goal of <strong><%= @goal.title %></strong>. If you would rather invite anyone with a goal in the <strong><%= @goal.category %></strong> category to join, <a href="/teams/new?team_type=category&goal_id=<%= @goal.id %>">click here to make it a "category-specific" team.</a>
-  <% end %>
-</div>
+
+    <% if @template_goal %>
+
+      You are creating a "goal-specific" team. This will restrict your team to work only on the goal of <strong><%= @template_goal.title %></strong>. If you would rather invite anyone with a goal in the <strong><%= @goal.category %></strong> category to join, <a href="/teams/new?team_type=category&goal_id=<%= @goal.id %>">click here to make it a "category-specific" team.</a>
+
+    <% else %>
+
+      There was an error in saving or determining the template goal for this team. Please contact support@habitforge.com for assistance.
+
+    <% end %> <!-- end if @template_goal -->
+
+  <% end %> <!-- end if params[:team_type] == "goal" -->
+</div> <!-- end div_whether_team_is_category_or_goal_specific-->
 
 
 <% form_for(@team) do |f| %>
   <%= f.error_messages %>
+
+  <% if @goal %>
+    <input type="hidden" name="goal_id" value="<%= @goal.id %>">
+  <% end %>
 
   <p>
   Team Name: <%= f.text_field :name %>

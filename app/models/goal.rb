@@ -57,6 +57,11 @@ class Goal < ActiveRecord::Base
     errors.add(:response_question, "Sorry, for security reasons we can not allow links to be added to text fields.") if(response_question and response_question.include? "http:") 	
   end 
 
+
+
+
+  ### copy template-relevant values from the goal to a new template goal
+  #### make this new template copy the "parent" of the original goal
   def copy_goal_to_template_and_make_template_parent
 
     success = false
@@ -85,45 +90,130 @@ class Goal < ActiveRecord::Base
       t.status = "hold"
       t.publish = false
       t.share = false
+      t.template_owner_is_a_template = true
 
       begin
+
+        if self.category
         t.category = self.category
+        end
+
+        if self.title
         t.title = self.title
+        end
+
+        if self.response_question
         t.response_question = self.response_question
+        end
+
+        if self.gmtoffset
+        t.gmtoffset = self.gmtoffset
+        end
+
+        if self.serversendhour
+        t.serversendhour = self.serversendhour
+        end
+
+        if self.usersendhour
+        t.usersendhour = self.usersendhour
+        end
+
+        if self.daym and self.dayt and self.dayw and self.dayr and self.dayf and self.days and self.dayn
+        t.daym = self.daym
+        t.dayt = self.dayt
+        t.dayw = self.dayw
+        t.dayr = self.dayr
+        t.dayf = self.dayf
+        t.days = self.days
+        t.dayn = self.dayn
+        end
+
+        if self.goal_days_per_week and self.reminder_send_hour
+        t.goal_days_per_week = self.goal_days_per_week
+        t.reminder_send_hour = self.reminder_send_hour
+        end
+
+        if self.team_summary_send_hour
+        t.team_summary_send_hour = self.team_summary_send_hour
+        end
+
+        if self.check_in_same_day
+        t.check_in_same_day = self.check_in_same_day
+        end
+
+        ### do not enable here since this is only for premium
+        #t.allow_push = self.allow_push if self.allow_push
+
+        ### DO enable these so that the phrasology is there, and can be enabled w/ premium
+        if self.phrase1
+        t.phrase1 = self.phrase1
+        end
+
+        if self.phrase2
+        t.phrase2 = self.phrase2
+        end
+
+        if self.phrase3
+        t.phrase3 = self.phrase3
+        end
+
+        if self.phrase4
+        t.phrase4 = self.phrase4
+        end
+
+        if self.phrase5
+        t.phrase5 = self.phrase5
+        end
+
+        ### do not enable here since this is only for premium
+        #t.more_reminders_enabled = self.more_reminders_enabled if self.more_reminders_enabled
+
+        ### DO enable these so that the settings are there, and can be enabled w/ premium
+        if self.more_reminders_start and self.more_reminders_end and self.more_reminders_every_n_hours
+        t.more_reminders_start = self.more_reminders_start
+        t.more_reminders_end = self.more_reminders_end
+        t.more_reminders_every_n_hours = self.more_reminders_every_n_hours
+        end
+
+
       rescue
+
         logger.error("sgj:goal.rb:copy_goal_to_template_and_make_template_parent:can not copy to a template:missing info in source goal")
+
         continue = false
       end
 
+      #### make this new template copy the "parent" of the original goal
       if continue
-        t.save
+
+        if t.save
+          logger.info("sgj:goal.rb:copy_goal_to_template_and_make_template_parent:success saving template")
+        else
+          logger.error("sgj:goal.rb:copy_goal_to_template_and_make_template_parent:error saving template")
+        end
+
 
         self.template_user_parent_goal_id = t.id
-        self.save
+
+        if self.save
+          logger.info("sgj:goal.rb:copy_goal_to_template_and_make_template_parent:success saving goal with new template_user_parent_goal_id")
+        else
+          logger.error("sgj:goal.rb:copy_goal_to_template_and_make_template_parent:error saving goal with new template_user_parent_goal_id")
+        end
+
+        success = true
       end
 
-
-
-              ###   duplicate the goal into a template
-              ###     in the goal.rb model, make a function to copy a goal to a template
-              ###     see goals_controller.rb:create for which fields to copy:
-
-              ###       user_id title response_question 
-              ###       start(1900-01-01) stop(1900-01-01) established_on(1900-01-01)
-              ###       category publish(0) share(0) status(hold)
-
-#WE LEFT OFF HERE... START DOING THE BELOW              
-              ###       gmt_offset serversendhour usersendhour daym dayt dayw dayr dayf days dayn
-              ###       goal_days_per_week reminder_send_hour 
-              ###       more_reminders_enabled more_reminders_start more_reminders_end
-              ###       more_reminders_every_n_hours more_reminders_last_sent
-              ###       allow_push pushes_allowed_per_day team_summary_send_hour 
-              ###       check_in_same_day set:template_owner_is_a_template(1) 
     end
+
+    logger.info("sgj:goal.rb:copy_goal_to_template_and_make_template_parent:success copying goal " + self.id.to_s + " to a new template " + t.id.to_s + " and assigning template as the goal parent")
 
     return success
 
   end
+
+
+
 
   def is_future
     if self.status != "hold" and self.start > self.user.dtoday
@@ -278,13 +368,13 @@ class Goal < ActiveRecord::Base
 
       next_action_date_dayname = get_day_of_week_short_name(next_action_date)
       
-      #logger.debug "SGJ:goal.model daym = " + self.daym.to_s
-      #logger.debug "SGJ:goal.model dayt = " + self.dayt.to_s
-      #logger.debug "SGJ:goal.model dayw = " + self.dayw.to_s
-      #logger.debug "SGJ:goal.model dayr = " + self.dayr.to_s
-      #logger.debug "SGJ:goal.model dayf = " + self.dayf.to_s
-      #logger.debug "SGJ:goal.model days = " + self.days.to_s
-      #logger.debug "SGJ:goal.model dayn = " + self.dayn.to_s
+      ##logger.debug "SGJ:goal.model daym = " + self.daym.to_s
+      ##logger.debug "SGJ:goal.model dayt = " + self.dayt.to_s
+      ##logger.debug "SGJ:goal.model dayw = " + self.dayw.to_s
+      ##logger.debug "SGJ:goal.model dayr = " + self.dayr.to_s
+      ##logger.debug "SGJ:goal.model dayf = " + self.dayf.to_s
+      ##logger.debug "SGJ:goal.model days = " + self.days.to_s
+      ##logger.debug "SGJ:goal.model dayn = " + self.dayn.to_s
 
       6.times do
           if next_action_date_dayname == "daym"
@@ -325,7 +415,7 @@ class Goal < ActiveRecord::Base
 
           next_action_date = next_action_date + 1
           next_action_date_dayname = get_day_of_week_short_name(next_action_date)
-          #logger.debug next_action_date_dayname
+          ##logger.debug next_action_date_dayname
           
       end
 
@@ -449,9 +539,9 @@ class Goal < ActiveRecord::Base
             age_counter = 30
             while age_counter > 0
                 if !got_one and self.days_since_first_checkpoint >= age_counter
-                      #logger.debug("sgj: age_counter= " + age_counter.to_s)
+                      ##logger.debug("sgj: age_counter= " + age_counter.to_s)
                       percent_yes = self.success_rate_during_past_n_days(age_counter)
-                      #logger.debug("sgj: percent_yes = " + percent_yes.to_s)
+                      ##logger.debug("sgj: percent_yes = " + percent_yes.to_s)
                       got_one = true
                 end
                 age_counter = age_counter - 1
@@ -975,7 +1065,7 @@ class Goal < ActiveRecord::Base
 
   def create_checkpoint_if_needed(reporting_date_string)
     reporting_date = reporting_date_string.to_date
-    #logger.debug("sgj:reporting_date =" + reporting_date.to_s)
+    ##logger.debug("sgj:reporting_date =" + reporting_date.to_s)
     checkpoint = Checkpoint.find(:first, :conditions => "goal_id = '#{self.id}' and checkin_date = '#{reporting_date}'")
 
     if !checkpoint
@@ -1067,7 +1157,7 @@ class Goal < ActiveRecord::Base
             if self.is_this_a_relevant_day(new_checkpoint_date)
                 double_check_checkpoints = Checkpoint.find(:all, :conditions => "goal_id = '#{self.id}' and checkin_date = '#{new_checkpoint_date}'")
                 if double_check_checkpoints.size == 0
-                    #logger.debug new_checkpoint_date.to_s + ' is a go... create this missing checkpoint'
+                    ##logger.debug new_checkpoint_date.to_s + ' is a go... create this missing checkpoint'
                     #### START CREATE CHECK POINT
                     c_new = Checkpoint.new
                     self_id = self.id
@@ -1082,7 +1172,7 @@ class Goal < ActiveRecord::Base
                     #### END CREATE CHECKPOINT
                 end
             else
-                #logger.debug new_checkpoint_date.to_s + ' is a skip day'
+                ##logger.debug new_checkpoint_date.to_s + ' is a skip day'
             end
         end
 
@@ -1095,30 +1185,30 @@ class Goal < ActiveRecord::Base
             
             for c in checkpoints_all
                 if passed_the_first_one == 0
-                    #logger.debug "SGJ 1.1"
+                    ##logger.debug "SGJ 1.1"
                     passed_the_first_one = 1
                     previous_date = c.checkin_date
-                    #logger.debug 'first checkpoint date =' + previous_date.to_s
-                    #logger.debug "SGJ 1.2"
+                    ##logger.debug 'first checkpoint date =' + previous_date.to_s
+                    ##logger.debug "SGJ 1.2"
                 else
-                    #logger.debug "SGJ 2.1"
+                    ##logger.debug "SGJ 2.1"
                     gap = previous_date - c.checkin_date
-                    #logger.debug 'gap between ' + previous_date.to_s + ' and ' + c.checkin_date.to_s + ' = ' + gap.to_s
+                    ##logger.debug 'gap between ' + previous_date.to_s + ' and ' + c.checkin_date.to_s + ' = ' + gap.to_s
                     if gap > 1
-                        #logger.debug 'GAP GREATER THAN 1... CHECK FOR DAYS OF WEEK'
+                        ##logger.debug 'GAP GREATER THAN 1... CHECK FOR DAYS OF WEEK'
 
                         traverse_counter = 1
                         while traverse_counter < gap
                             new_checkpoint_date = previous_date - traverse_counter
- #logger.debug "SGJa " + new_checkpoint_date.to_s + " "+ self.is_this_a_relevant_day(new_checkpoint_date).to_s
+ ##logger.debug "SGJa " + new_checkpoint_date.to_s + " "+ self.is_this_a_relevant_day(new_checkpoint_date).to_s
 
                             if self.is_this_a_relevant_day(new_checkpoint_date)
-                                #logger.debug new_checkpoint_date.to_s + ' is a go... create this missing checkpoint'
- #logger.debug "SGJb"
+                                ##logger.debug new_checkpoint_date.to_s + ' is a go... create this missing checkpoint'
+ ##logger.debug "SGJb"
 
                                 double_check_checkpoints = Checkpoint.find(:all, :conditions => "goal_id = '#{self.id}' and checkin_date = '#{new_checkpoint_date}'")
                                 if double_check_checkpoints.size == 0
- #logger.debug "SGJc"
+ ##logger.debug "SGJc"
 
                                   #### START CREATE CHECK POINT
                                   c_new = Checkpoint.new
@@ -1126,7 +1216,7 @@ class Goal < ActiveRecord::Base
                                   c_new.checkin_date = new_checkpoint_date
                                   c_new.status = "email not yet sent"
                                   c_new.syslognote = "checkpoint created late, during auto-update process"
- #logger.debug "SGJd"
+ ##logger.debug "SGJd"
 
                                   if c_new.save
                                     #logger.info 'created missing checkpoint for user ' + self.user.email + ' for goal of ' + self.id.to_s + ' and date of ' + c_new.checkin_date.to_s
@@ -1136,13 +1226,13 @@ class Goal < ActiveRecord::Base
                                   #### END CREATE CHECKPOINT
                                 end    
                             else
-                                #logger.debug new_checkpoint_date.to_s + ' is a skip day'
+                                ##logger.debug new_checkpoint_date.to_s + ' is a skip day'
                             end
                             traverse_counter = traverse_counter + 1
 
                         end
                     end
-                    #logger.debug "SGJ 2.2"
+                    ##logger.debug "SGJ 2.2"
 
                     previous_date = c.checkin_date
                 end
@@ -1152,7 +1242,7 @@ class Goal < ActiveRecord::Base
         ### END FILL IN ANY CHECKPOINT GAPS
         ### END CREATE CHECKPOINTS WHERE MISSING
         #########################################
-#logger.debug "SGJ 3"
+##logger.debug "SGJ 3"
 
         rescue
             success = false
@@ -1323,7 +1413,7 @@ class Goal < ActiveRecord::Base
   end
 
   def update_stats
-        #logger.debug("sgj:running goal.update_stats on: " + self.title)
+        ##logger.debug("sgj:running goal.update_stats on: " + self.title)
         success = true
         begin
             ####################################################
@@ -1337,9 +1427,9 @@ class Goal < ActiveRecord::Base
               age_counter = 30
               while age_counter > 0
                 if !got_one and self.days_since_first_checkpoint >= age_counter
-                  #logger.debug("sgj: age_counter= " + age_counter.to_s)
+                  ##logger.debug("sgj: age_counter= " + age_counter.to_s)
                   self.success_rate_percentage = self.success_rate_during_past_n_days(age_counter)
-                  #logger.debug("sgj: self.success_rate_percentage = " + self.success_rate_percentage.to_s)
+                  ##logger.debug("sgj: self.success_rate_percentage = " + self.success_rate_percentage.to_s)
                   got_one = true
                 end
                 age_counter = age_counter - 1
@@ -1471,7 +1561,7 @@ class Goal < ActiveRecord::Base
                     teamgoal.active = 0
                     teamgoal.save      
                 else
-                    #logger.debug("SGJ TEAM: no teamgoal found")
+                    ##logger.debug("SGJ TEAM: no teamgoal found")
                 end
 
                 ### Modify and Save Team
@@ -1539,7 +1629,7 @@ class Goal < ActiveRecord::Base
             end
         
             if team_with_openings and !already_on_that_team
-                #logger.debug("TEAM: found team_with_openings")
+                ##logger.debug("TEAM: found team_with_openings")
 
                 ### Create a new teamgoal record
                 new_teamgoal = Teamgoal.new()
@@ -1564,9 +1654,9 @@ class Goal < ActiveRecord::Base
                 self.save
             else
                 if already_on_that_team
-                    #logger.debug("TEAM: found team_with_openings, but you're already on it, so create a different one")
+                    ##logger.debug("TEAM: found team_with_openings, but you're already on it, so create a different one")
                 else
-                    #logger.debug("TEAM: no team_with_openings ... create one")
+                    ##logger.debug("TEAM: no team_with_openings ... create one")
                 end
 
                 ### Create a new team
@@ -1595,7 +1685,7 @@ class Goal < ActiveRecord::Base
                 new_teamgoal.save  
             end  
         else
-            #logger.debug("SGJ TEAM: already on a team")
+            ##logger.debug("SGJ TEAM: already on a team")
         end
         #################################################################
         ###   END Join Team code    
