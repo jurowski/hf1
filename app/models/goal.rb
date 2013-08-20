@@ -258,12 +258,27 @@ class Goal < ActiveRecord::Base
       end
   end  
 
+  def count_quotes_for_category
+    num_quotes_for_category = 0
+
+    ### see if there are any quotes yet for that category
+    some_conditions = ""
+    if self.category != nil and self.category != ""
+      some_conditions = "category = '#{self.category}'"
+      quotes = Quote.find(:all, :conditions => some_conditions)
+      num_quotes_for_category = quotes.size
+    end
+
+    return num_quotes_for_category
+  end
 
 
   def get_quote_random
 
       random_quote = false
 
+
+      ### see if there are any quotes yet for that category
       some_conditions = ""
       if self.category != nil and self.category != ""
         some_conditions = "category = '#{self.category}'"
@@ -308,6 +323,54 @@ class Goal < ActiveRecord::Base
 
   end
 
+
+  def get_quote_random_category_only
+
+      random_quote = false
+
+      ### see if there are any quotes yet for that category
+      some_conditions = ""
+      if self.category != nil and self.category != ""
+        some_conditions = "category = '#{self.category}'"
+
+        quotes = Quote.find(:all, :conditions => some_conditions)
+
+        if quotes.size > 0  
+            random_quote_number = rand(quotes.size) #between 0 and quotes.size
+            quote = quotes[random_quote_number]
+            if quote
+                random_quote = quote
+            end
+        end
+
+      end
+
+      return random_quote
+
+  end
+
+
+  def get_quote_random_general_only
+
+      random_quote = false
+
+      quote_sponsor = "habitforge"
+      if self.user.sponsor == "forittobe"
+          quote_sponsor = self.user.sponsor
+      end
+      some_conditions = "sponsor = '#{quote_sponsor}' and category is null"
+      quotes = Quote.find(:all, :conditions => some_conditions)
+      if quotes.size > 0  
+          random_quote_number = rand(quotes.size) #between 0 and quotes.size
+          quote = quotes[random_quote_number]
+          if quote
+              random_quote = quote
+          end
+      end
+
+      return random_quote
+
+  end
 
   def date_created
       tcreated = self.created_at

@@ -198,23 +198,15 @@
                                         
                                         <% 
                                         if !inserted_something
-                                            random_quote_thought = "Seek the small improvement one day at a time. That’s the only way it happens — and when it happens, it lasts."
-                                            random_quote_author = "Coach John Wooden"
-                                            random_quote = @goal.get_quote_random
-                                            if random_quote
-                                                random_quote_thought = random_quote.thought
-                                                random_quote_author = random_quote.author
-                                            end
                                             %>
 
                                             <tr>
                                             <td align=center colspan=2 width=100%>
+
                                                 <div style="">
                                                     <p>
-                                                    <h3>Something to ponder...</h3>
-                                                    "<%= random_quote_thought %>" 
-                                                    <br>
-                                                    <br>--<%= random_quote_author %>
+
+
                                         <%
                                         end 
                                         %>
@@ -225,7 +217,6 @@
                                     </div>
                                 </td></tr>
                                 
-                                
 
                                 <tr>
                                 <td>
@@ -234,6 +225,144 @@
                                 </td>
                                 </tr>
                                 
+
+
+
+
+
+
+
+
+
+
+                                <% if @goal.count_quotes_for_category > 0 %>
+
+
+                                  <%
+                                  random_quote_thought = "Seek the small improvement one day at a time. That’s the only way it happens — and when it happens, it lasts."
+                                  random_quote_author = "Coach John Wooden"
+                                  random_quote = @goal.get_quote_random_category_only
+                                  if random_quote
+                                      random_quote_thought = random_quote.thought
+                                      random_quote_author = random_quote.author
+                                  end
+                                  %>
+                                  <tr><td valign=top align=center width=1%>
+                                  <br>
+                                  <br>
+                                  <img src="/images/quote_image_brain tech-01.png" alt=" ">
+                                  </td>
+                                  <td valign=top align=left width=99%>
+                                      <div style="padding:.8em;margin-bottom:1em;border:2px solid #ddd;background:#FFFFFF;color:#000000;border-color:#BBBBBB;">
+                                          <p>
+
+                                          "<%= random_quote_thought %>" 
+                                          <br>
+                                          <br>--<%= random_quote_author %>
+                                        
+                                          </p>
+                                      </div>
+                                  </td></tr>
+
+                                  <tr>
+                                  <td>
+                                  
+                                  <br>
+                                  </td>
+                                  </tr>
+
+
+                                  <%
+                                  random_quote_thought = "Seek the small improvement one day at a time. That’s the only way it happens — and when it happens, it lasts."
+                                  random_quote_author = "Coach John Wooden"
+                                  random_quote = @goal.get_quote_random_general_only
+                                  if random_quote
+                                      random_quote_thought = random_quote.thought
+                                      random_quote_author = random_quote.author
+                                  end
+                                  %>
+                                  <tr><td valign=top align=center width=1%>
+                                  <br>
+                                  <br>
+                                  <img src="/images/quote_image_zen_collection_small.jpg" alt=" ">
+                                  </td>
+                                  <td valign=top align=left width=99%>
+                                      <div style="padding:.8em;margin-bottom:1em;border:2px solid #ddd;background:#FFFFFF;color:#000000;border-color:#BBBBBB;">
+                                          <p>
+
+                                          "<%= random_quote_thought %>" 
+                                          <br>
+                                          <br>--<%= random_quote_author %>
+                                        
+                                          </p>
+                                      </div>
+                                  </td></tr>
+
+                                  <tr>
+                                  <td>
+                                  
+                                  <br>
+                                  </td>
+                                  </tr>
+
+                                <% else %>
+
+
+                                  <%
+                                  random_quote_thought = "Seek the small improvement one day at a time. That’s the only way it happens — and when it happens, it lasts."
+                                  random_quote_author = "Coach John Wooden"
+                                  random_quote = @goal.get_quote_random_general_only
+                                  if random_quote
+                                      random_quote_thought = random_quote.thought
+                                      random_quote_author = random_quote.author
+                                  end
+                                  %>
+                                  <tr><td valign=top align=center width=1%>
+                                  <br>
+                                  <br>
+                                  <img src="/images/quote_image_zen_collection_small.jpg" alt=" ">
+                                  </td>
+                                  <td valign=top align=left width=99%>
+                                      <div style="padding:.8em;margin-bottom:1em;border:2px solid #ddd;background:#FFFFFF;color:#000000;border-color:#BBBBBB;">
+                                          <p>
+
+                                          "<%= random_quote_thought %>" 
+                                          <br>
+                                          <br>--<%= random_quote_author %>
+                                        
+                                          </p>
+                                      </div>
+                                  </td></tr>
+
+                                  <tr>
+                                  <td>
+                                  
+                                  <br>
+                                  </td>
+                                  </tr>
+
+
+                                <% end %>
+
+
+
+                                
+
+                                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                                 
                                 <tr><td valign=top align=center width=1%>
                                 <br>

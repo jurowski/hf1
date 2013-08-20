@@ -17,7 +17,10 @@ Custom Teams ToDo
 --------------------
 
 CURRENT
-reflect whether my team is only for those I invite or if anyone can join
+--reflect the invite_only value on form:edit as well as in the _teams.erb UI
+
+--if i delete a goal that was part of a custom team with no-one else on it, delete the team as well
+
 
 
 NEXT

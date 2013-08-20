@@ -38,6 +38,9 @@
   Limit the size of this team to no more than <span style="width:20px;"><%= f.text_field :qty_max, :size => "2" %></span> people.
   </p>
 
+
+    <%= check_box(:team, :invite_only, options = {}, checked_value = "true", unchecked_value = "false") %> Only those I send invites to can join
+
   <p>
     <%= f.submit 'Create' %>
   </p>

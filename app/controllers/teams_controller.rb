@@ -107,7 +107,7 @@ class TeamsController < ApplicationController
   # POST /teams.xml
   def create
     @team = Team.new(params[:team])
-
+    @team.qty_current = 0
 
     respond_to do |format|
       if @team.save
@@ -119,6 +119,9 @@ class TeamsController < ApplicationController
             goal = Goal.find(params[:goal_id].to_i)
             goal.team_id = @team.id
             goal.save
+            @team.qty_current += 1
+            @team.save
+            
           end
         rescue
           logger.debug("sgj:teams_controller:create:error while saving team_id to goal")

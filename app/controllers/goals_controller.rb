@@ -1272,6 +1272,9 @@ logger.debug "SGJ2 2 #{goal.title}(#{goal.id}) #{goal.daysstraight} daysstraight
                     teamgoal.destroy
                 end
                 ### Modify and Save Team
+                if !team.qty_current
+                  team.qty_current = 0
+                end
                 team.qty_current = team.qty_current - 1 
                 if team.qty_current < 0
                     team.qty_current = 0
