@@ -719,6 +719,12 @@ class UsersController < ApplicationController
       @user.last_activity_date = @user.dtoday
 
       @user.password_temp = ""
+
+      ### yes we'd like to kill off email_confirmation field,
+      ### but lack of DRY makes us not want to
+      ### so here's a workadound that won't break signup spots
+      @user.email_confirmation = @user.email
+
       @user.save
 
       email_now = @user.email
