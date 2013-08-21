@@ -197,6 +197,13 @@
         </li>
 
 
+
+        <% if !mobile_device? %>
+        <li style="padding-left:15px;">
+        <br>
+<SCRIPT charset="utf-8" type="text/javascript" src="http://ws-na.amazon-adsystem.com/widgets/q?rt=tf_mfw&ServiceVersion=20070822&MarketPlace=US&ID=V20070822%2FUS%2Fhabitforge-20%2F8001%2F48d363b4-d20e-435d-938c-a9d13fa58ee9"> </SCRIPT> <NOSCRIPT><A HREF="http://ws-na.amazon-adsystem.com/widgets/q?rt=tf_mfw&ServiceVersion=20070822&MarketPlace=US&ID=V20070822%2FUS%2Fhabitforge-20%2F8001%2F48d363b4-d20e-435d-938c-a9d13fa58ee9&Operation=NoScript">Amazon.com Widgets</A></NOSCRIPT>
+        </li>
+        <% end %>
 <!--         < if current_user and fully_logged_in >
           <li>
               <= link_to "<i class='icon-off'></i>Log Out #{current_user.first_name}", user_session_path, :method => :delete >            
