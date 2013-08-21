@@ -19,7 +19,19 @@
 
 	<!--Latest <= max - 1 > Successes...<br> -->
 
-	<% encourage_items = EncourageItem.find(:all, :conditions => "checkpoint_date >= '#{current_user.dyesterday }' or encourage_type_new_goal_bool = '1'", :order => "id DESC", :limit => (max + 10)) %>
+	<% 
+	if current_user.feed_filter_hide_pmo
+
+		encourage_items = EncourageItem.find(:all, :conditions => "goal_category != 'PMO' and goal_category != 'Drugs' and goal_category != 'Drinking' and checkpoint_date >= '#{current_user.dyesterday }' or encourage_type_new_goal_bool = '1'", :order => "id DESC", :limit => (max + 10))
+
+	else
+
+		encourage_items = EncourageItem.find(:all, :conditions => "checkpoint_date >= '#{current_user.dyesterday }' or encourage_type_new_goal_bool = '1'", :order => "id DESC", :limit => (max + 10))
+
+	end
+	%>
+
+
 
 
 	<% encourage_items.each do |e| %>

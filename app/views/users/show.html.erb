@@ -50,6 +50,22 @@
 
             <% end %>
 
+            <br>
+            <br>
+            <strong>Feed Preferences:</strong>
+            <br>
+            <% if current_user.feed_filter_hide_pmo %>
+              <input type=checkbox checked disabled>
+            <% else %>
+              <input type=checkbox disabled>
+            <% end %>
+             Hide goal statuses for others working on addictions to alcohol/drugs/porn 
+
+            <!-- OPTIONAL FOR LATER: 
+                this field already exists but is not active:
+                current_user.feed_filter_show_my_categories_only 
+            -->
+
             <%
             if current_user.number_of_active_habits > 1
             %>

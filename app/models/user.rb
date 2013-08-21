@@ -30,7 +30,7 @@ class User < ActiveRecord::Base
   #  c.my_config_option = my_value # for available options see documentation in: Authlogic::ActsAsAuthentic
   #end # block optional
   validates_presence_of :first_name
-  validates_confirmation_of :email
+  #validates_confirmation_of :email
   
 
   def get_quote_random

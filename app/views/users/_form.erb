@@ -3,7 +3,7 @@
 <table border=0 cellpadding=0 cellspacing=0>
   <tr>
     <td valign=top nowrap>
-      First Name<font color=red>*</font>
+      <strong>First Name</strong><font color=red>*</font>
     </td>
     <td valign=top nowrap>
       <%= form.text_field :first_name %><br />    
@@ -11,7 +11,7 @@
   </tr>
   <tr>
     <td valign=top nowrap>
-    Last Name (Optional)
+    <strong>Last Name</strong>
     </td>
     <td valign=top nowrap>
     <%= form.text_field :last_name %><br />    
@@ -20,40 +20,37 @@
     <tr><td>&nbsp</td></tr>
     <tr>
     <td valign=top nowrap>
-    Email<font color=red>*</font>
+    <strong>Email</strong><font color=red>*</font>
     </td>
     <td valign=top nowrap>
     <%= form.text_field :email %><br />    
     </td>
     </tr>
-    <tr>
 
+    <!--
+    <tr>
     <td valign=top nowrap>
     Re-type Email<font color=red>*</font>
     </td>
     <td valign=top nowrap>
-    <%= form.text_field :email_confirmation %><br />
+    <= form.text_field :email_confirmation ><br />
     </td>
     </tr>
-    <tr>
-    <tr><td>&nbsp</td></tr>
-    <td valign=top nowrap>
-    <%= form.object.new_record? ? nil : "Change " %>Password<font color=red>*</font>
-    </td>
-    <td valign=top nowrap>
-    <%= form.password_field :password %><br />    
-    </td>
-    </tr>
-    <tr>
+    -->
 
-    <td valign=top nowrap>
-    Re-type Password<font color=red>*</font>
-    </td>
-    <td valign=top nowrap>
-    <%= form.password_field :password_confirmation %><br />    
-    </td>
-    </tr>
-    <tr>
+    <tr><td colspan=2>
+    <a href="#undefined" onclick="toggle_show_hide('change_password')" class="btn-add">Change My Password</a>
+    <div id="change_password" style="display:none;" class="alert alert-info">
+
+        <%= form.object.new_record? ? nil : "Change " %>Password<font color=red>*</font>
+        <%= form.password_field :password %>
+
+        <br>Re-type Password<font color=red>*</font>
+        <%= form.password_field :password_confirmation %><br />    
+    </div>
+    </td></tr>
+
+
     <tr><td>&nbsp</td></tr>
 
     <td valign=top nowrap>
@@ -73,22 +70,35 @@
         </a>
 
         <br>
-            <%= form.check_box(:show_gravatar, options = {}, checked_value = "true", unchecked_value = "false") %> Show my Gravatar to other users?
+            <%= form.check_box(:show_gravatar, options = {}, checked_value = "true", unchecked_value = "false") %> Show the above Avatar to other users?
     </td>
     </tr>
     <tr>
     <tr><td>&nbsp</td></tr>
 
 
+
+
     <td valign=top nowrap>
-    Your Time Zone<font color=red>*</font>
+    <strong>Your Time Zone</strong><font color=red>*</font>
     </td>
     <td valign=top nowrap>
 
     <%= form.time_zone_select :time_zone, ActiveSupport::TimeZone.us_zones, :default => "Eastern Time (US & Canada)" %><br />    
     </td>
+    <tr>
 
-  </tr>
+    <tr>
+    <td valign=top nowrap>
+    <strong>Feed Preferences:</strong>
+    </td>
+    <td valign=top nowrap>
+         &nbsp &nbsp
+    <%= form.check_box(:feed_filter_hide_pmo, options = {}, checked_value = "true", unchecked_value = "false") %> Hide goal statuses for others working on addictions to alcohol/drugs/porn
+    
+    </td>
+    </tr>
+
 </table>
 
 <br />
