@@ -70,6 +70,7 @@ class UserSessionsController < ApplicationController
     session[:dynamic_latest_public_checkins_max] = nil
     
     flash[:notice] = "Logout successful!"
-    redirect_back_or_default new_user_session_url
+    redirect_to("/")
+    #redirect_back_or_default new_user_session_url
   end
 end
