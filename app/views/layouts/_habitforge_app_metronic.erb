@@ -488,7 +488,7 @@ $('.confirmation').on('click',function(){return confirm('Are you sure?');});
   }(document, 'script', 'facebook-jssdk'));</script>
   -->
 
-  <% if @production %>
+  <% if @production and !secure_page? %>
     <!-- ShareThis-->  
     <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
     <script type="text/javascript">stLight.options({publisher: "6f618717-8285-4c8c-b5c7-4f9e1d5e2a92", doNotHash: true, doNotCopy: true, hashAddressBar: false});</script>
@@ -508,7 +508,7 @@ $('.confirmation').on('click',function(){return confirm('Are you sure?');});
 
 
 <% gravatar_img = '<img src="/home/images/default_gravatar.png" width="30px"/>' %>
-<% if current_user and current_user.show_gravatar %>
+<% if current_user and current_user.show_gravatar and !secure_page? %>
   <% gravatar = "http://www.gravatar.com/avatar/#{Digest::MD5.hexdigest(current_user.email.downcase)}?d=mm" %>
   <% gravatar_img = '<img src="' + gravatar + '&s=30" />' %>
 <% end %>
@@ -692,7 +692,7 @@ $('.confirmation').on('click',function(){return confirm('Are you sure?');});
                     <a href="/tomessages/<%= message.id %>">
                     <span class="photo">
                       <% from_gravatar_img = '<img src="/home/images/default_gravatar.png" width="30px"/>' %>
-                      <% if from_user.show_gravatar %>
+                      <% if from_user.show_gravatar and !secure_page? %>
                         <% from_gravatar = "http://www.gravatar.com/avatar/#{Digest::MD5.hexdigest(from_user.email.downcase)}?d=mm" %>
                         <% from_gravatar_img = '<img src="' + from_gravatar + '&s=30" />' %>
                       <% end %>
@@ -1258,17 +1258,18 @@ $('.confirmation').on('click',function(){return confirm('Are you sure?');});
           <br>
           <br>
 
-
+          <% if !secure_page? %>
           <!-- RECOMMENDED READING -->
           <SCRIPT charset="utf-8" type="text/javascript" src="http://ws-na.amazon-adsystem.com/widgets/q?rt=tf_cw&ServiceVersion=20070822&MarketPlace=US&ID=V20070822%2FUS%2Fhabitforge-20%2F8010%2Fa74d1987-a49c-4d0a-80e5-ebfe03e1c7c4&Operation=GetScriptTemplate"> </SCRIPT> <NOSCRIPT><A HREF="http://ws-na.amazon-adsystem.com/widgets/q?rt=tf_cw&ServiceVersion=20070822&MarketPlace=US&ID=V20070822%2FUS%2Fhabitforge-20%2F8010%2Fa74d1987-a49c-4d0a-80e5-ebfe03e1c7c4&Operation=NoScript">Amazon.com Widgets</A></NOSCRIPT>
 
+          <% end %>
 
 
 
         </div>
         <div class="span6"> 
 
-        <% if @production %>
+        <% if @production and !secure_page? %>
 
           <div id="fb-root"></div>
           <script>
@@ -1317,7 +1318,7 @@ $('.confirmation').on('click',function(){return confirm('Are you sure?');});
             <!-- ####################################### -->
             <!-- START GOOGLE ADS BOTTOM -->
             <% if show_ads == 1 %>
-              <% if @production  %>
+              <% if @production and !secure_page? %>
                   <br>
 
                   <% if mobile_device? %>

@@ -10,9 +10,11 @@
 
         <!-- #### START CUSTOM LIST MENU ITEMS SGJ #### -->
 
+        <% if !secure_page? %>
         <!-- BLOG -->
         <li><a href="http://habitforge.wordpress.com" ><i class='icon-book'></i>Blog</a>
         </li> 
+        <% end %>
 
 
         <% if !current_user %>
@@ -198,7 +200,7 @@
 
 
 
-        <% if !mobile_device? %>
+        <% if !mobile_device? and !secure_page? %>
         <li style="padding-left:15px;">
         <br>
         <br>

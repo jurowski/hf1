@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
   #protect_from_forgery # See ActionController::RequestForgeryProtection for details
   
   ### Any private variables that you create must be listed here to be accessed elsewhere (unless they're in the helper file, in which they're public):
-  helper_method :current_user_session, :current_user, :current_user_is_admin, :server_root_url, :fully_logged_in, :mobile_device?, :arr_random_slacker_goals
+  helper_method :current_user_session, :current_user, :current_user_is_admin, :server_root_url, :fully_logged_in, :mobile_device?, :arr_random_slacker_goals, :secure_page?
 
   filter_parameter_logging :password, :password_confirmation
 
@@ -28,6 +28,13 @@ class ApplicationController < ActionController::Base
 
   private
 
+    def secure_page?
+      if request.url.include? 'https://'
+        return true
+      else
+        return false
+      end
+    end
 
     def mobile_device?
       if session[:mobile_param]
