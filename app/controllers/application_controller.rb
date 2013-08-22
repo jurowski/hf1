@@ -54,13 +54,41 @@ class ApplicationController < ActionController::Base
     end 
 
     def redirect_to_ssl_login
-      #if request.url.include? 'http://' and (local_request? == false)
-      ### don't want to force the sponsored sites to SSL cause they'll say "untrusted connection" due to cert name
-      if (request.url.include? 'http://habitforge.com/user_session/new' or request.url.include? 'http://habitforge.com/account/edit') and (local_request? == false)
-        old_url = request.url
-        new_url = request.url.sub("http://", "https://")
-        redirect_to new_url
+
+      stay_here = false
+
+      if local_request? == false
+        if (request.url.include? 'https://')
+          ### landed on https
+
+          if (request.url.include? '/user_session/new' or request.url.include? '/account/edit')          
+            ### yes we should stay on https
+            stay_here = true
+          else
+            ### hey, it's silly to stay on https since we'd be blocking insecure content
+            stay_here = false
+            old_url = request.url
+            new_url = request.url.sub("https://", "http://")
+            redirect_to new_url            
+          end
+
+        else
+          ### landed on http
+
+          if (request.url.include? '/user_session/new' or request.url.include? '/account/edit')          
+            ### hey, we should be on https
+            stay_here = false
+            old_url = request.url
+            new_url = request.url.sub("http://", "https://")
+            redirect_to new_url            
+          else
+            ### yes, we should stay on http
+            stay_here = true
+          end
+
+        end
       end
+
     end 
 
     def server_root_url
