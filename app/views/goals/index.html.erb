@@ -456,7 +456,7 @@ end
 ### TEAM
 team_name = ""
 team_image = "<i class='icon-group'></i> "
-if @goal.is_part_of_a_team and !@goal.team.custom
+if @goal.is_part_of_a_team and @goal.team and !@goal.team.custom
     my_teammates = @goal.get_teammate_names_sans_me
     if my_teammates == ""
         team_name = "#{team_image} (waiting)"        
