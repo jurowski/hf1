@@ -13,7 +13,7 @@ end
 
 
 <!-- START PART OF A CUSTOM TEAM -->
-<% if @goal.is_part_of_a_team and @goal.team.custom %>
+<% if @goal.is_part_of_a_team and @goal.team and @goal.team.custom  %>
 
   <!-- IF YOU ARE THE OWNER -->
   <% if @goal.team.i_am_owner_or_admin(current_user.id) %>
@@ -44,7 +44,7 @@ end
 
 
 <!-- START PART OF A NON-CUSTOM TEAM -->
-<% if @goal.is_part_of_a_team and !@goal.team.custom %>      
+<% if @goal.is_part_of_a_team and @goal.team and !@goal.team.custom %>      
 
 
     <%
