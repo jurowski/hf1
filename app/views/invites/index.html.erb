@@ -1,0 +1,42 @@
+<h1>Listing invites</h1>
+
+<table>
+  <tr>
+    <th>From user</th>
+    <th>To name</th>
+    <th>To email</th>
+    <th>To user</th>
+    <th>Purpose join team</th>
+    <th>Purpose follow goal</th>
+    <th>Purpose friend user</th>
+    <th>Accepted on</th>
+    <th>Declined loudly on</th>
+    <th>Declined silently on</th>
+    <th>First sent on</th>
+    <th>Last resent on</th>
+  </tr>
+
+<% @invites.each do |invite| %>
+  <tr>
+    <td><%=h invite.from_user_id %></td>
+    <td><%=h invite.to_name %></td>
+    <td><%=h invite.to_email %></td>
+    <td><%=h invite.to_user_id %></td>
+    <td><%=h invite.purpose_join_team_id %></td>
+    <td><%=h invite.purpose_follow_goal_id %></td>
+    <td><%=h invite.purpose_friend_user_id %></td>
+    <td><%=h invite.accepted_on %></td>
+    <td><%=h invite.declined_loudly_on %></td>
+    <td><%=h invite.declined_silently_on %></td>
+    <td><%=h invite.first_sent_on %></td>
+    <td><%=h invite.last_resent_on %></td>
+    <td><%= link_to 'Show', invite %></td>
+    <td><%= link_to 'Edit', edit_invite_path(invite) %></td>
+    <td><%= link_to 'Destroy', invite, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New invite', new_invite_path %>

@@ -17,6 +17,9 @@ class Goal < ActiveRecord::Base
   has_many :level_goals
   has_many :levels, :through => :level_goals
 
+  has_many :teamgoals
+  has_many :teams, :through => :teamgoals
+
 
   ### might not work, need to test
   has_many :coach_templates
@@ -1686,7 +1689,7 @@ class Goal < ActiveRecord::Base
        ##############
 
         if self.team_id == nil
-            team_with_openings = Team.find(:first, :conditions => "category_name = '#{self.category}' and has_opening = 1")
+            team_with_openings = Team.find(:first, :conditions => "category_name = '#{self.category}' and has_opening = 1 and (custom is null or custom = '0')")
             if team_with_openings
                 already_on_that_team = Goal.find(:first, :conditions => "user_id = '#{self.user.id}' and team_id = '#{team_with_openings.id}'")
             end
@@ -1716,29 +1719,36 @@ class Goal < ActiveRecord::Base
                 self.team = team_with_openings
                 self.save
             else
-                if already_on_that_team
-                    ##logger.debug("TEAM: found team_with_openings, but you're already on it, so create a different one")
-                else
-                    ##logger.debug("TEAM: no team_with_openings ... create one")
-                end
+                # if already_on_that_team
+                #     ##logger.debug("TEAM: found team_with_openings, but you're already on it, so create a different one")
+                # else
+                #     ##logger.debug("TEAM: no team_with_openings ... create one")
+                # end
 
+                logger.debug("sgj:goals.rb:about to create a new team")
                 ### Create a new team
                 new_team = Team.new()
                 new_team.category_name = self.category
-                new_team.save  
- 
+
+                new_team.qty_max = 4
+                new_team.qty_current = 1
+                new_team.has_opening = 1
+
+
+                if !new_team.save  
+                  logger.error("sgj:goals.rb:error saving new team")
+                end
+
+                logger.debug("sgj:goals.rb:saved new team")
+
                 ### Add to the new team 
                 ### make sure a record is being inserted to teamgoal 
                 self.team = new_team
                 self.save       
-        
-                ### Modify and Save Team
-                new_team.qty_max = 4
-                new_team.qty_current = 1
-                new_team.has_opening = 1
-                new_team.save  
 
 
+
+                logger.debug("sgj:goals.rb:about to create a new teamgoal record")        
                 ### Create a new teamgoal record
                 new_teamgoal = Teamgoal.new()
                 new_teamgoal.team_id = new_team.id
@@ -1746,6 +1756,8 @@ class Goal < ActiveRecord::Base
                 new_teamgoal.qty_kickoff_votes = 0
                 new_teamgoal.active = 1
                 new_teamgoal.save  
+
+                logger.debug("sgj:goals.rb:SUCCESS adding to new team")        
             end  
         else
             ##logger.debug("SGJ TEAM: already on a team")

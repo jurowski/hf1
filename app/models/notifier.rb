@@ -418,12 +418,21 @@ class Notifier < ActionMailer::Base
   def invite_a_friend_to_track(user, email, the_body, the_subject)  
     recipients  email
     #bcc         "support@habitforge.com"
-    from        user.email
+    from        user.first_name + " via habitforge <support@habitforge.com>"
     subject     the_subject  
     body        the_body
     content_type "text/html"
   end
 
+
+  def invite_a_friend_to_team(user, email, the_body, the_subject)  
+    recipients  email
+    bcc         "support@habitforge.com"
+    from        user.first_name + " via habitforge <support@habitforge.com>"
+    subject     the_subject  
+    body        the_body
+    content_type "text/html"
+  end
 
   def daily_team_summary_to_user(goal, day_of_the_week)
     recipients goal.user.first_name + "<" + goal.user.email + ">"

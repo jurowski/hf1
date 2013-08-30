@@ -369,7 +369,7 @@ class ApplicationController < ActionController::Base
         store_location
         flash[:notice] = "You must be logged in as an admin to access this page"
         #redirect_to new_user_session_url
-        redirect_to "/user_session/new?skip_intro=1"
+        redirect_to "/goals"
         return false
       end
     end
@@ -396,6 +396,7 @@ class ApplicationController < ActionController::Base
         end
       end
     end
+
 
     def require_user_can_make_templates
       unless (current_user and current_user.can_make_templates)

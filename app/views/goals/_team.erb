@@ -12,7 +12,41 @@ end
 <div id="team_<%= @goal.id %>" class="div_team" style="<%= display_style %>">                    
 
 
-<% if @goal.is_part_of_a_team %>      
+<!-- START PART OF A CUSTOM TEAM -->
+<% if @goal.is_part_of_a_team and @goal.team.custom %>
+
+  <!-- IF YOU ARE THE OWNER -->
+  <% if @goal.team.i_am_owner_or_admin(current_user.id) %>
+    You are the owner of the "<%= @goal.team.name %>" team. <%= link_to 'Details', team_path(@goal.team) %>
+
+
+    <% @team = @goal.team %>
+    <div class="div_team_<%= @team.id %>_manage_team_invites" id="div_team_<%= @team.id %>_manage_team_invites">
+       <%= render :partial => "invites/manage_team_invites", :locals => { :team => @team }  %>
+    </div>
+
+
+
+  <% end %> 
+  <!-- END IF YOU ARE THE OWNER -->
+
+
+
+  <!-- TEAM STATUS -->
+
+
+  <!-- END TEAM STATUS -->
+
+<% end %>
+<!-- END PART OF A CUSTOM TEAM -->
+
+
+
+
+<!-- START PART OF A NON-CUSTOM TEAM -->
+<% if @goal.is_part_of_a_team and !@goal.team.custom %>      
+
+
     <%
       @team_goals = Goal.find(:all, :conditions => "team_id = '#{@goal.team_id}'")
       if @team_goals.size < 2
@@ -90,7 +124,13 @@ end
 
 
 <% end %>
+<!-- END PART OF A NON-CUSTOM TEAM -->
 
+
+
+
+
+<!-- START NOT YET PART OF A TEAM -->
 <% if @goal.team == nil %>
     <% if @goal.category == "None" or @goal.category == "" %>  
         <p><h3>Find and Join an Open Team (or Build Your Own Team)!!!</h3></p>
@@ -116,8 +156,8 @@ end
         <p>
 
           <h3>
-            <!--<a id="build_my_own_team" onclick="toggle_show_hide('goal_creation_options_<%= @goal.id %>')" title='Invite others to work on the same or a similar goal with you.' >-->
-            <a id="build_my_own_team" title='Invite others to work on the same or a similar goal with you.' >  
+            <!-- <a id="build_my_own_team" onclick="toggle_show_hide('goal_creation_options_<%= @goal.id %>')" title='Invite others to work on the same or a similar goal with you.' -->
+            <a id="build_my_own_team" title='Invite others to work on the same or a similar goal with you.' >
              Build My Own Team</a> (coming soon)</h3>
           <script type='text/javascript'>
               $('#build_my_own_team').tipsy();
@@ -130,9 +170,8 @@ end
           </div>
 
         </p>
-
-    <% end %>
-<% end %>
+    <% end %> <!-- NO CATEGORY -->
+<% end %> <!-- END NOT YET PART OF A TEAM -->
 
 <p />
 

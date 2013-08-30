@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130821102417) do
+ActiveRecord::Schema.define(:version => 20130829031349) do
 
   create_table "achievemints", :force => true do |t|
     t.string   "name"
@@ -364,6 +364,25 @@ ActiveRecord::Schema.define(:version => 20130821102417) do
     t.datetime "updated_at"
   end
 
+  create_table "invites", :force => true do |t|
+    t.integer  "from_user_id"
+    t.string   "to_name"
+    t.string   "to_email"
+    t.integer  "to_user_id"
+    t.integer  "purpose_join_team_id"
+    t.integer  "purpose_follow_goal_id"
+    t.integer  "purpose_friend_user_id"
+    t.date     "accepted_on"
+    t.date     "declined_loudly_on"
+    t.date     "declined_silently_on"
+    t.date     "first_sent_on"
+    t.date     "last_resent_on"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.text     "invitation_body"
+    t.string   "invitation_subject"
+  end
+
   create_table "level_goals", :force => true do |t|
     t.integer  "level_id"
     t.integer  "goal_id"
@@ -660,6 +679,8 @@ ActiveRecord::Schema.define(:version => 20130821102417) do
     t.integer  "success_rate_during_past_270_days"
     t.integer  "success_rate_during_past_365_days"
     t.boolean  "invite_only"
+    t.text     "invitation_body"
+    t.string   "invitation_subject"
   end
 
   create_table "template_achievemints", :force => true do |t|

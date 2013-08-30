@@ -1,0 +1,63 @@
+<p>
+  <b>From user:</b>
+  <%=h @invite.from_user_id %>
+</p>
+
+<p>
+  <b>To name:</b>
+  <%=h @invite.to_name %>
+</p>
+
+<p>
+  <b>To email:</b>
+  <%=h @invite.to_email %>
+</p>
+
+<p>
+  <b>To user:</b>
+  <%=h @invite.to_user_id %>
+</p>
+
+<p>
+  <b>Purpose join team:</b>
+  <%=h @invite.purpose_join_team_id %>
+</p>
+
+<p>
+  <b>Purpose follow goal:</b>
+  <%=h @invite.purpose_follow_goal_id %>
+</p>
+
+<p>
+  <b>Purpose friend user:</b>
+  <%=h @invite.purpose_friend_user_id %>
+</p>
+
+<p>
+  <b>Accepted on:</b>
+  <%=h @invite.accepted_on %>
+</p>
+
+<p>
+  <b>Declined loudly on:</b>
+  <%=h @invite.declined_loudly_on %>
+</p>
+
+<p>
+  <b>Declined silently on:</b>
+  <%=h @invite.declined_silently_on %>
+</p>
+
+<p>
+  <b>First sent on:</b>
+  <%=h @invite.first_sent_on %>
+</p>
+
+<p>
+  <b>Last resent on:</b>
+  <%=h @invite.last_resent_on %>
+</p>
+
+
+<%= link_to 'Edit', edit_invite_path(@invite) %> |
+<%= link_to 'Back', invites_path %>

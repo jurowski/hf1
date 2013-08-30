@@ -8,8 +8,6 @@ class CheersController < ApplicationController
   ### http://stackoverflow.com/questions/5822912/how-do-i-display-an-avatar-in-rails
   require 'digest/md5'
 
-  layout "application"
-
 
   #before_filter :require_user
   before_filter :require_user, :only => [:edit, :update, :index, :destroy]

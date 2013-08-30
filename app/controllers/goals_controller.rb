@@ -6,7 +6,7 @@ class GoalsController < ApplicationController
   ### http://stackoverflow.com/questions/5822912/how-do-i-display-an-avatar-in-rails
   require 'digest/md5'
 
-  include GoalsHelper
+  #include GoalsHelper
   include CoachgoalsHelper
 
   layout "application"
@@ -118,7 +118,6 @@ class GoalsController < ApplicationController
     @push_message_to_slacker_attempt = false
     @push_message_to_slacker_sent = false
  
-   logger.debug "SGJ2 inside index"
     #if current_user
         ### see "applicatoin_controller.rb": this page is intended to be accessed via email URL:
         ### let user fake a login for one page, if they have enough correct info for coming in via email URL
@@ -147,9 +146,9 @@ class GoalsController < ApplicationController
         if params[:update_checkpoint_status] and params[:date] and params[:goal_id]
             if goal
                 comment = ""
-logger.debug "SGJ2 1 #{goal.title}(#{goal.id}) #{goal.daysstraight} daysstraight"
+
                 if goal.update_checkpoint(params[:date], params[:update_checkpoint_status], comment)
-logger.debug "SGJ2 2 #{goal.title}(#{goal.id}) #{goal.daysstraight} daysstraight"
+
                   flash[:notice] = 'Checkpoint Updated.'
                   if params[:coming_from] == "email"
                     @show_stats_lightbox = true
@@ -210,12 +209,13 @@ logger.debug "SGJ2 2 #{goal.title}(#{goal.id}) #{goal.daysstraight} daysstraight
         if goal
             if goal.join_goal_to_a_team
               flash[:notice] = 'Team joined successfully.'
+              logger.info "sgj:goals_controller: success joining #{goal.id} to a team"
             else
-              logger.debug "SGJ error joining #{goal.id} to a team"
+              logger.error "sgj:goals_controller: error joining #{goal.id} to a team"
               flash[:notice] = 'Error joining a team.'
             end
         else
-          logger.debug"SGJ no such goal found to add to a team"
+          logger.error"sgj:goals_controller:no such goal found to add to a team"
           flash[:notice] = 'No such goal found to add to a team.'
         end
       end
@@ -224,7 +224,7 @@ logger.debug "SGJ2 2 #{goal.title}(#{goal.id}) #{goal.daysstraight} daysstraight
         if goal
             goal.quit_a_team
         else
-          logger.debug"SGJ no such goal found to quit team"
+          logger.error"sgj:goals_controller:no such goal found to quit a team"
           flash[:notice] = 'No such goal found to quit team.'
         end
       end
@@ -1279,7 +1279,7 @@ logger.debug "SGJ2 2 #{goal.title}(#{goal.id}) #{goal.daysstraight} daysstraight
                 if team.qty_current < 0
                     team.qty_current = 0
                 end 
-                if team.qty_current >= team.qty_max
+                if team.qty_current and team.qty_max and team.qty_current >= team.qty_max
                     team.has_opening = 0
                 else
                     team.has_opening = 1

@@ -1,0 +1,29 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  from_user_id: 1
+  to_name: MyString
+  to_email: MyString
+  to_user_id: 1
+  purpose_join_team_id: 1
+  purpose_follow_goal_id: 1
+  purpose_friend_user_id: 1
+  accepted_on: 2013-08-28
+  declined_loudly_on: 2013-08-28
+  declined_silently_on: 2013-08-28
+  first_sent_on: 2013-08-28
+  last_resent_on: 2013-08-28
+
+two:
+  from_user_id: 1
+  to_name: MyString
+  to_email: MyString
+  to_user_id: 1
+  purpose_join_team_id: 1
+  purpose_follow_goal_id: 1
+  purpose_friend_user_id: 1
+  accepted_on: 2013-08-28
+  declined_loudly_on: 2013-08-28
+  declined_silently_on: 2013-08-28
+  first_sent_on: 2013-08-28
+  last_resent_on: 2013-08-28

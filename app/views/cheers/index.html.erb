@@ -115,11 +115,16 @@ else
     <% if @cheers.size == 0 %>
       (No invites yet.) 
     <% else %>
+
       <% 
       i = 0
       @cheers.each do |cheer| 
+
         begin
           i = i + 1
+          #if cheer.goal_id
+            cheer_goal = Goal.find(cheer.goal_id)
+          #end
           if cheer.goal
             %>
             <div style="background-color:#eeeeee;border-width:medium;border-color:#eeeeee;">

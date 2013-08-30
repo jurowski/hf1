@@ -8,6 +8,23 @@
 
 
 
+
+new class: invite
+invite
+from_user_id
+to_name
+to_email
+to_user_id
+purpose_join_team_id
+purpose_follow_goal_id
+purpose_friend_user_id
+accepted_on
+declined_loudly_on
+declined_silently_on
+first_sent_on
+last_resent_on
+
+
 Custom Teams Overview
 ----------------------
 i want to build my own custom team related to a goal
@@ -17,7 +34,28 @@ Custom Teams ToDo
 --------------------
 
 CURRENT
---reflect the invite_only value on form:edit as well as in the _teams.erb UI
+
+MAKE SURE PEOPLE CAN STILL JOIN RANDOM TEAMS
+
+done--set custom teams to invite-only by default
+done--remove the UI for changing custom invite-only boolean value (make them always invite-only)
+
+done/test in prod--when user is joining a random team, do not let them join a CUSTOM team
+
+MIGHT NOT BE WORKING IN PRODUCTION--in the team cron jobs, do not re-balance any of the custom teams
+
+--the email invitation going out should have a link that says: Join This Team ... clicking it would automatically create their account and would auto-confirm that account as well ... and it would take them to the goal-creation screen either with the category pre-defined or as a goal based on a template ... and at the top it should mention they're joining a team, and it should describe that team
+
+--users should be able to view all of their invitations when logged in (next to messages)
+
+--users should be able to decline or ignore their invitations
+
+--when someone accepts a team invitation and joins that team, a message needs to go out to every member of the team, and it should prompt each member to send a welcome message to that new team member
+
+--test that if someone has an active goal but tries to start a new goal as part of an invitation, they need to go premium to do that
+
+--someone who already has a goal needs to be able to join it to a team if a matching invitation exists
+
 
 --if i delete a goal that was part of a custom team with no-one else on it, delete the team as well
 

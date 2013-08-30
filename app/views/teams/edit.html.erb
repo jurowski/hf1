@@ -6,13 +6,29 @@
   <p>
   Team Name: <%= f.text_field :name %>
   <br>
-  Category: <%= @team.category_name %>
+  <b>Goal:</b> 
+  <% if @team.goal_template_parent %>
+    <%=h @team.goal_template_parent.title %>   
+  <% else %>
+    Any goal in the category of <%=h @team.category_name %>
+  <% end %>
   <br>
-  Limit the size of this team to no more than <%= f.text_field :qty_max %> people.
+  Limit the size of this team to no more than <%= f.text_field :qty_max, :style => "width:10px;" %> people.
   <br>
   Currently there are <%= @team.qty_current %> members.
   </p>
 
+
+
+  <h3>When sending invitations, use the text below:</h3>
+  <br>Subject: 
+  <br>
+  <%= f.text_field :invitation_subject, :value => @team.invitation_subject %>
+  <br>
+  <br>
+  Body:
+  <br>
+  <%= f.text_area :invitation_body, :value => @team.invitation_body, :cols => 80, :rows => 20 %>
 
 
   <p>
@@ -20,5 +36,11 @@
   </p>
 <% end %>
 
-<%= link_to 'Show', @team %> |
-<%= link_to 'Back', teams_path %>
+<%= link_to 'Cancel Changes', @team %> | 
+<% if @team.i_am_owner_or_admin(current_user.id) %>
+  <% if @team.qty_current < 2 %>
+    <%= link_to 'Delete (no other team members)', @team, :confirm => 'Are you sure?', :method => :delete %>
+  <% else %>
+    Can't Delete (members exist)
+  <% end %>
+<% end %>

@@ -1,48 +1,37 @@
-<p>
-  <b>Name:</b>
-  <%=h @team.name %>
-</p>
 
-<p>
-  <b>Category name:</b>
-  <%=h @team.category_name %>
-</p>
+<div class="alert alert-info">
+<b>Team Name:</b>
+<%=h @team.name %>
 
-<p>
-  <b>Qty max:</b>
-  <%=h @team.qty_max %>
-</p>
+<br>
+<b>Goal:</b> 
+<% if @team.goal_template_parent %>
+  <%=h @team.goal_template_parent.title %>   
+<% else %>
+  Any goal in the category of <%=h @team.category_name %>
+<% end %>
 
-<p>
-  <b>Qty current:</b>
-  <%=h @team.qty_current %>
-</p>
-
-<p>
-  <b>Avg success rate:</b>
-  <%=h @team.avg_success_rate %>
-</p>
-
-<p>
-  <b>Avg days in a row:</b>
-  <%=h @team.avg_days_in_a_row %>
-</p>
-
-<p>
-  <b>Avg met goal last week:</b>
-  <%=h @team.avg_met_goal_last_week %>
-</p>
-
-<p>
-  <b>Qty checked in yesterday:</b>
-  <%=h @team.qty_checked_in_yesterday %>
-</p>
-
-<p>
-  <b>Qty checked in last 2 days:</b>
-  <%=h @team.qty_checked_in_last_2_days %>
-</p>
+<br>
+<b>Max Members:</b>
+<%=h @team.qty_max %>
+<br>
+<b>Current Members:</b>
+<%=h @team.qty_current %>
+<br>
 
 
-<%= link_to 'Edit', edit_team_path(@team) %> |
-<%= link_to 'Back', teams_path %>
+
+</div>
+
+<% if @team.i_am_owner_or_admin(current_user.id) %>
+  <%= link_to 'Edit', edit_team_path(@team), :class => "btn" %> |
+  <% if @team.qty_current < 2 %>
+    <%= link_to 'Delete (no other team members)', @team, :confirm => 'Are you sure?', :method => :delete %>
+  <% else %>
+    Can't Delete (members exist)
+  <% end %>
+
+
+    <div class="div_team_<%= @team.id %>_manage_team_invites" id="div_team_<%= @team.id %>_manage_team_invites">
+       <%= render :partial => "invites/manage_team_invites", :locals => { :team => @team }  %>
+<% end %>

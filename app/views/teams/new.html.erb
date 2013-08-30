@@ -3,7 +3,7 @@
 <div class="alert" id="div_whether_team_is_category_or_goal_specific">
   <% if params[:team_type] == "category" %>
 
-    You are creating a "category-specific" team. This will allow you to invite anyone with a goal in the <strong><%= @team.category_name %></strong> category to your team. If you would rather restrict your team to work only on the goal of <strong><%= @goal.title %></strong>, <a href="/teams/new?team_type=goal&goal_id=<%= @goal.id %>">click here to make it a "goal-specific" team.</a>
+    This team will be for anyone with a goal in the <strong><%= @team.category_name %></strong> category. If you would rather restrict your team to work only on the goal of <strong><%= @goal.title %></strong>, <a href="/teams/new?team_type=goal&goal_id=<%= @goal.id %>">click here to make it a "goal-specific" team.</a>
 
   <% end %> <!-- end if params[:team_type] == "category" -->
 
@@ -13,7 +13,7 @@
 
     <% if @template_goal %>
 
-      You are creating a "goal-specific" team. This will restrict your team to work only on the goal of <strong><%= @template_goal.title %></strong>. If you would rather invite anyone with a goal in the <strong><%= @goal.category %></strong> category to join, <a href="/teams/new?team_type=category&goal_id=<%= @goal.id %>">click here to make it a "category-specific" team.</a>
+      This team will be for anyone working on the goal of <strong><%= @template_goal.title %></strong>. If you would rather invite anyone with a goal in the <strong><%= @goal.category %></strong> category to join, <a href="/teams/new?team_type=category&goal_id=<%= @goal.id %>">click here to make it a "<%= @goal.category %>" team.</a>
 
     <% else %>
 
@@ -28,19 +28,32 @@
 <% form_for(@team) do |f| %>
   <%= f.error_messages %>
 
+  <%= f.hidden_field :goal_template_parent_id, :value => @team.goal_template_parent_id %>
+  <%= f.hidden_field :category_name, :value => @team.category_name %>
+  <%= f.hidden_field :custom, :value => @team.custom %>
+  <%= f.hidden_field :owner_user_id, :value => @team.owner_user_id %>
+
   <% if @goal %>
     <input type="hidden" name="goal_id" value="<%= @goal.id %>">
   <% end %>
 
   <p>
-  Team Name: <%= f.text_field :name %>
+
+  Team Name: <%= f.text_field :name, :placeholder => "ex: #{@example_team_name}" %>
   <br>
-  Limit the size of this team to no more than <span style="width:20px;"><%= f.text_field :qty_max, :size => "2" %></span> people.
+  Limit the size of this team to no more than <%= f.text_field :qty_max, :size => "2", :style => "width:20px;" %> people.
   </p>
 
 
-    <%= check_box(:team, :invite_only, options = {}, checked_value = "true", unchecked_value = "false") %> Only those I send invites to can join
-
+  <h3>When sending invitations, use the text below:</h3>
+  <br>Subject: 
+  <br>
+  <%= f.text_field :invitation_subject, :value => @team.invitation_subject %>
+  <br>
+  <br>
+  Body:
+  <br>
+  <%= f.text_area :invitation_body, :value => @team.invitation_body, :cols => 80, :rows => 20 %>
   <p>
     <%= f.submit 'Create' %>
   </p>

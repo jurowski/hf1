@@ -53,8 +53,14 @@ module Authlogic
       def t(key, options = {})
         if defined?(::I18n)
           ::I18n.t(key, options.merge(:scope => :authlogic))
+          ### the following is triggered but is acting funny
+          #options[:login_not_found] = " ..."
+          #options[:password_valid] = "incorrect  email or password."
         else
           options[:default]
+          ### the below not being triggered
+          #options[:login_not_found] = "is not valid or password incorrect"
+          #options[:password_valid] = "is not valid or email incorrect"
         end
       end
       alias_method :translate, :t
