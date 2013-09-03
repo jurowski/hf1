@@ -21,6 +21,12 @@ class SplitUpTeams < ActiveRecord::Base
         output = "TEAM: team with id " + team.id.to_s + " has " + current_size.to_s + " members "
         puts output
         logger.debug(output)
+
+        if !team.qty_max
+            team.qty_max = 4
+            team.save
+        end
+
         for goal in goals
             if current_size > team.qty_max
 
