@@ -13,7 +13,13 @@ class SplitUpTeams < ActiveRecord::Base
   #      set old teamgoal record to inactive
   #      join the goal to a new team where new team_id <> old team_id 
 
-  teams = Team.find(:all)
+
+  ### was valid until custom teams came about
+  #teams = Team.find(:all)
+
+  ### do not re-balance custom teams
+  teams = Team.find(:all, :conditions => "custom is null or custom = '0'")
+
   for team in teams
       goals = Goal.find(:all, :conditions => "team_id = #{team.id}")
       if goals != nil

@@ -35,14 +35,12 @@ Custom Teams ToDo
 
 CURRENT
 
-MAKE SURE PEOPLE CAN STILL JOIN RANDOM TEAMS
-
 done--set custom teams to invite-only by default
 done--remove the UI for changing custom invite-only boolean value (make them always invite-only)
 
 done/test in prod--when user is joining a random team, do not let them join a CUSTOM team
 
-MIGHT NOT BE WORKING IN PRODUCTION--in the team cron jobs, do not re-balance any of the custom teams
+done/test MIGHT NOT BE WORKING IN PRODUCTION--in the team cron jobs, do not re-balance any of the custom teams
 
 --the email invitation going out should have a link that says: Join This Team ... clicking it would automatically create their account and would auto-confirm that account as well ... and it would take them to the goal-creation screen either with the category pre-defined or as a goal based on a template ... and at the top it should mention they're joining a team, and it should describe that team
 
