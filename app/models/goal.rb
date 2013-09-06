@@ -1664,7 +1664,7 @@ class Goal < ActiveRecord::Base
       end
   end
   
-  def join_goal_to_a_team
+  def join_goal_to_a_team(invited_to_join_team_id = 0)
       success = true
       begin
 
@@ -1689,7 +1689,12 @@ class Goal < ActiveRecord::Base
        ##############
 
         if self.team_id == nil
+
             team_with_openings = Team.find(:first, :conditions => "category_name = '#{self.category}' and has_opening = 1 and (custom is null or custom = '0')")
+            if invited_to_join_team_id != 0
+              team_with_openings = Team.find(invited_to_join_team_id.to_i)
+            end
+
             if team_with_openings
                 already_on_that_team = Goal.find(:first, :conditions => "user_id = '#{self.user.id}' and team_id = '#{team_with_openings.id}'")
             end

@@ -19,8 +19,18 @@
   <img src="http://habitforge.com/home/images/default_gravatar.png" height="30px"/>
 <% end %>
 
+<% if @rating > 0 %>
+
   <%= @from_user.first_name %> sent you <%= @rating.to_s %> Impact Points for your message below:</h3><%= @tomessage.body.gsub("\n", "<br>") %>
 <h3>The highest-rated messages are also sent to HabitForge support... the best ones may be integrated into the site. Thanks for helping out!!</h3>
+
+<% else %>
+
+  <%= @from_user.first_name %> docked you <%= @rating.to_s %> Impact Points because they didn't care for your message below:</h3><%= @tomessage.body.gsub("\n", "<br>") %>
+<h3>(This can happen if they feel your message is either self-promoting (ie spammy), or either off-color or offensive to them in some way. Keep in mind that sometimes this is a matter of personal preference, so take it with a grain of salt, OK? (That said, perhaps you should consider modifying any future messages to avoid this sort of reaction.)</h3>
+
+<% end %>
+
 </div>
 <hr>
 

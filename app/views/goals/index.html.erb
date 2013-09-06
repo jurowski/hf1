@@ -530,9 +530,32 @@ end
 
 
                         <% else %>
-                            <i class='icon-pause'></i> <%= link_to 'Hold a While', "/goals/hold/#{@goal.id}", :confirm => 'If you put a goal on hold, you will stop getting emails about it.' %>
-                            &nbsp
-                            <i class='icon-remove'></i> <%= link_to "Delete", goal, :confirm => 'Are you sure you want to delete this goal?', :method => :delete %>
+
+
+
+                            <!-- START PART OF A TEAM? -->
+                            <% if goal.is_part_of_a_team %>
+
+                                <a id='hold_disabled_<%= goal.id.to_s %>'  class="btn disabled" title="Sorry, you will need to quit the team before putting this goal on hold..." ><i class="icon-pause"></i> Hold a While</a>
+                                <script type='text/javascript'>
+                                    $('#hold_disabled_<%= goal.id.to_s %>').tipsy();
+                                </script>
+                                &nbsp
+                                <a id='delete_disabled_<%= goal.id.to_s %>'  class="btn disabled" title="Sorry, you will need to quit the team before deleting this goal." ><i class="icon-remove"></i> Delete</a>
+                                <script type='text/javascript'>
+                                    $('#delete_disabled_<%= goal.id.to_s %>').tipsy();
+                                </script>
+
+
+                            <% else %>
+
+                                <i class='icon-pause'></i> <%= link_to 'Hold a While', "/goals/hold/#{@goal.id}", :confirm => 'If you put a goal on hold, you will stop getting emails about it.' %>
+                                &nbsp
+                                <i class='icon-remove'></i> <%= link_to "Delete", goal, :confirm => 'Are you sure you want to delete this goal?', :method => :delete %>
+
+                            <% end %>
+                            <!-- END PART OF A TEAM? -->
+
                         <% end %>
 
                         </p>

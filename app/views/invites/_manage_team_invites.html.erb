@@ -10,7 +10,7 @@
 	</div>
 <% end %>
 
-<% @invites = Invite.find(:all, :conditions => "purpose_join_team_id = '#{@team.id}'") %>
+<% @invites = Invite.find(:all, :conditions => "purpose_join_team_id = '#{@team.id}' and accepted_on is null") %>
 <% if @invites.size > 0 %>
 	<h3><%= @invites.size %> Invites Sent:</h3>
 	<% @invites.each do |invite| %>
@@ -49,5 +49,9 @@
 		  <strong>Body:</strong>
 		  <br>
 		  <%= @team.invitation_body.gsub("\n", "<br>") %>
+
+		  <br>
+		  <br>
+		    <strong>Note: We will add a "Click to Join This Team Now" button at the end of the message</strong>
 		</div>
 		<%= link_to 'Edit Invitation Message', edit_team_path(@team), :class => "btn" %>

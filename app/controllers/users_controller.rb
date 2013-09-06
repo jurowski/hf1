@@ -17,6 +17,7 @@ class UsersController < ApplicationController
 
   ### Do you want to be able to create new users when someone is logged in?
   #before_filter :require_no_user, :only => [:new, :create]
+  before_filter :require_no_user, :only => [:quicksignup_v2]
   before_filter :require_user, :only => [:show, :edit, :update, :index, :destroy]
   #before_filter :require_user, :only => [:show, :edit, :update]
 
@@ -324,6 +325,8 @@ class UsersController < ApplicationController
       end
     end
 
+    logger.debug("sgj:users_controller:quicksignup_v2:2")
+
     if @email_valid
       ### validate email
       user = User.find(:first, :conditions => "email = '#{params[:email]}'")
@@ -332,11 +335,25 @@ class UsersController < ApplicationController
       end
     end ### end if email_submitted
 
+
+    logger.debug("sgj:users_controller:quicksignup_v2:3")
+
     if @email_duplicate
       ### ask the user to enter a new email address or log in w/ the existing one
+
+      logger.debug("sgj:users_controller:quicksignup_v2:3.5")
     else
+
+      logger.debug("sgj:users_controller:quicksignup_v2:4")
+
       user = User.new
-      user.first_name = "unknown"
+
+      if params[:to_name]
+        user.first_name = params[:to_name]
+      else
+        user.first_name = "unknown"
+      end
+
       user.last_name = ""
       if session[:referer] != nil
         user.referer = session[:referer]
@@ -372,12 +389,15 @@ class UsersController < ApplicationController
 
       user.date_of_signup = user.dtoday
 
+
+      ### IF THEY ARE A NEWLY PAID USER
       if params[:ga_goal]
         session[:sfm_virgin] = false ### they are a newly paid user          
         user.kill_ads_until = "3000-01-01"
         user.unlimited_goals = true
       end
 
+      logger.debug("sgj:users_controller:quicksignup_v2:5")
 
       if user.save 
 
@@ -403,6 +423,8 @@ class UsersController < ApplicationController
         #@user = user
         #Notifier.deliver_widget_user_creation(@user) # sends the email
 
+
+        ### IF THEY ARE NOT A NEWLY PAID USER
         if !params[:ga_goal]
           session[:sfm_virgin] = true ### they are setting up their first goal ... allows you to hide or show certain things
         end
@@ -411,47 +433,51 @@ class UsersController < ApplicationController
         session[:sfm_virgin_need_to_email_temp_password] = true
         @account_created = true
 
-        begin	
-	        #####################################################
-	        #####################################################
-      		#### CREATE A CONTACT FOR THEM IN INFUSIONSOFT ######
-          ### SANDBOX GROUP/TAG IDS
-      		#112: hf new signup funnel v2 free no goal yet
-      		#120: hf new signup funnel v2 free created goal
-          #
-          ### PRODUCTION GROUP/TAG IDS
-          #400: hf new signup funnel v2 free no goal yet
-          #398: hf new signup funnel v2 free created goal
+        if @production
+          begin	
+  	        #####################################################
+  	        #####################################################
+        		#### CREATE A CONTACT FOR THEM IN INFUSIONSOFT ######
+            ### SANDBOX GROUP/TAG IDS
+        		#112: hf new signup funnel v2 free no goal yet
+        		#120: hf new signup funnel v2 free created goal
+            #
+            ### PRODUCTION GROUP/TAG IDS
+            #400: hf new signup funnel v2 free no goal yet
+            #398: hf new signup funnel v2 free created goal
 
-          # USERVOICE TICKET#529:
-          #103: add to ETR "Newsletter Subscriber"
+            # USERVOICE TICKET#529:
+            #103: add to ETR "Newsletter Subscriber"
 
-          if Rails.env.production?
-            session[:infusionsoft_contact_id] = 0
-        		new_contact_id = Infusionsoft.contact_add({:FirstName => user.first_name, :LastName => user.last_name, :Email => user.email})
-        		Infusionsoft.email_optin(user.email, 'HabitForge signup')
-        		Infusionsoft.contact_add_to_group(new_contact_id, 400)
+            if Rails.env.production?
+              session[:infusionsoft_contact_id] = 0
+          		new_contact_id = Infusionsoft.contact_add({:FirstName => user.first_name, :LastName => user.last_name, :Email => user.email})
+          		Infusionsoft.email_optin(user.email, 'HabitForge signup')
+          		Infusionsoft.contact_add_to_group(new_contact_id, 400)
 
-            if params[:subscribe_etr]
-              Infusionsoft.contact_add_to_group(new_contact_id, 103)
-              logger.error("sgj:users_controller:YES user chose to be an etr newsletter subscriber")      
-            else
-              logger.error("sgj:users_controller:NO user chose not to be an etr newsletter subscriber")      
+              if params[:subscribe_etr]
+                Infusionsoft.contact_add_to_group(new_contact_id, 103)
+                logger.error("sgj:users_controller:YES user chose to be an etr newsletter subscriber")      
+              else
+                logger.error("sgj:users_controller:NO user chose not to be an etr newsletter subscriber")      
+              end
+
+          		session[:infusionsoft_contact_id] = new_contact_id
             end
-
-        		session[:infusionsoft_contact_id] = new_contact_id
+  	        ####          END INFUSIONSOFT CONTACT           ####
+  	        #####################################################
+  	        #####################################################
+          rescue
+        	  logger.error("sgj:users_controller:error creating infusionsoft contact")
           end
-	        ####          END INFUSIONSOFT CONTACT           ####
-	        #####################################################
-	        #####################################################
-        rescue
-      	  logger.error("sgj:users_controller:error creating infusionsoft contact")
-        end
-
+        end ## if production
 
         ############## ADD THEM TO FOLLOWUP SEQUENCE
         ############## http://help.infusionsoft.com/api-docs/funnelservice
 
+        logger.debug("sgj:users_controller:quicksignup_v2:6")
+
+        ### IF THEY ARE NOT A NEWLY PAID USER
         if !params[:ga_goal]
           begin
 
@@ -518,14 +544,60 @@ class UsersController < ApplicationController
           session[:goal_added_through_template_from_program_id] = params[:goal_added_through_template_from_program_id].to_i
         end
 
+        ### responding to a valid invitation ?
+
+        ###http://localhost:3000/quicksignup_v2?invitation_id=34&email=jurowski@pediatrics.wisc.edu&to_name=SJ&form_submitted=1&category=Exercise&template_user_parent_goal_id=127454&goal_template_text=walking%20a%20lot
+        if params[:invitation_id]
+          logger.debug("sgj:users_controller:quicksignup_v2:answering invitation:1")
+          invite = Invite.find(params[:invitation_id].to_i)
+          logger.debug("sgj:users_controller:quicksignup_v2:answering invitation:1.2")
+          if invite
+            logger.debug("sgj:users_controller:quicksignup_v2:answering invitation:2")
+            if invite.to_email == user.email
+              logger.debug("sgj:users_controller:quicksignup_v2:answering invitation:3")
+              session[:accepting_invitation_id] = params[:invitation_id].to_i
+
+              ###### REDIRECT TO A NEW GOAL MATCHING THE TEAM YOU'RE INVITED TO
+              redirect_url_string = "/goals/new?welcome=1"
+              if params[:invitation_id]
+                redirect_url_string += "&invitation_id=" + params[:invitation_id]
+              end
+              if params[:category]
+                redirect_url_string += "&category=" + params[:category]
+              end
+              if params[:template_user_parent_goal_id]
+                redirect_url_string += "&template_user_parent_goal_id=" + params[:template_user_parent_goal_id]
+              end
+              if params[:goal_template_text]
+                goal_template_text = "&goal_template_text=" + params[:goal_template_text]
+              end
+              logger.debug("sgj:users_controller:quicksignup_v2:answering invitation:1")
+
+              logger.info("sgj:users_controller:quicksignup_v2:answering invitation:ABOUT TO REDIRECT TO:" + redirect_url_string)
 
 
-        if !params[:ga_goal]
-          ### route them to goal creation page (which should reference session[:sfm] for quick goal-creation options)
-          redirect_to("/goals/new?welcome=1")
-        else
-          redirect_to("/goals")
+              @redirect_after_invite_response = true
+
+              logger.debug("sgj:users_controller:quicksignup_v2:answering invitation:1")
+
+            end
+          end
         end
+
+
+        if !@redirect_after_invite_response
+          ### IF THEY ARE NOT A NEWLY PAID USER
+          if !params[:ga_goal]
+            ### route them to goal creation page (which should reference session[:sfm] for quick goal-creation options)
+            #redirect_to("/goals/new?welcome=1")
+            redirect_url_string = "/goals/new?welcome=1"
+          else
+            #redirect_to("/goals")
+            redirect_url_string = "/goals"
+          end
+        end
+        redirect_to(redirect_url_string)
+
 
       else
         ### Problem saving user: ask them to contact support
@@ -898,6 +970,20 @@ class UsersController < ApplicationController
         ### Destroy any associated Goals (will remove from teams, checkpoints and cheers should delete as a result)
         @goals = Goal.find(:all, :conditions => "user_id = '#{params[:id]}'")
         for goal in @goals
+
+          ### Destroy any associated Checkpoints
+          checkpoints = Checkpoint.find(:all, :conditions => "goal_id = '#{goal.id}'")
+          for checkpoint in checkpoints
+            checkpoint.destroy
+          end
+
+          ### Destroy any associated Cheers
+          cheers = Cheer.find(:all, :conditions => "goal_id = '#{goal.id}'")
+          for cheer in cheers
+            cheer.destroy
+          end
+
+          goal.quit_a_team
           goal.destroy
         end
     end

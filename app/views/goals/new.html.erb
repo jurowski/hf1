@@ -1,3 +1,37 @@
+
+<%
+#########################################################3
+#########################################################3
+####  START IF ACCEPTING A TEAM INVITATION
+if @invite and @team
+%>
+  <div class="alert alert-info">
+  Thanks for accepting <%= @invite_from_user.first_name %>'s invitation! 
+  By becoming a member of the "<%= @team.name %>" team, you'll be joining as many as <% (@team.qty_max - 1).to_s %> others who are committed to achieving success with 
+  <%
+  if @invite_team_type_goal
+  %>
+   the goal of "<%= @goal.title %>".
+  <%
+  end
+
+  if @invite_team_type_category
+  %>
+   their own custom goal in the category of "<%= @team.category_name %>".
+  <%
+  end
+  %>
+  </div>
+<%
+end
+####  END IF ACCEPTING A TEAM INVITATION
+#########################################################3
+#########################################################3
+%>
+
+
+
+
 <% if (params[:template_owner_is_a_template] and params[:template_owner_is_a_template] == "1") %>
   <h3>...a new template for others to use</h3>
 <% else %>

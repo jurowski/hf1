@@ -10,7 +10,7 @@ class TeamsController < ApplicationController
   layout "application"
 
   before_filter :require_user
-  before_filter :require_admin_user, :only => [:index]
+  #before_filter :require_admin_user, :only => [:index]
   before_filter :require_owner_team, :except => [:new, :create]
 
   def require_owner_team
@@ -34,7 +34,7 @@ class TeamsController < ApplicationController
   # GET /teams
   # GET /teams.xml
   def index
-    @teams = Team.all
+    @teams = Team.find(:all, :conditions => "owner_user_id = '#{current_user.id}'")
 
     respond_to do |format|
       format.html # index.html.erb
@@ -124,7 +124,7 @@ I've started a brand new team "
 
 I'd love for you to join my team!
 
-You'd just need to create a free account on the HabitForge site ( http://habitforge.com ) and register with your email address (you'd want to register with the same email address I just reached you at so my goal is linked to your account). 
+You'd just need to create a free account on the HabitForge site (use the Join link below this message). 
 
 Let's do this together! It'll be fun and rewarding, and as a team encouraging one another with some positive pressure, we can accomplish a lot more than we could on our own!
 
@@ -152,24 +152,35 @@ Let's do this together! It'll be fun and rewarding, and as a team encouraging on
     @team = Team.new(params[:team])
     @team.qty_current = 0
 
+    if @team.custom
+      if @team.name = ""
+        category = " "
+        if @team.category_name
+          category = @team.category_name + " "
+        end
+        @team.name = current_user.first_name + "'s " + category + "Team"
+      end
+    end
+
     respond_to do |format|
       if @team.save
 
         #### if this team was being created by an end user 
         #### from a goal, save the goal to be part of this new team
-        begin
+        #begin
           if params[:goal_id]
             goal = Goal.find(params[:goal_id].to_i)
-            goal.team_id = @team.id
-            goal.save
 
-            @team.qty_current += 1
-            @team.save
+            if goal.join_goal_to_a_team(@team.id)
+              logger.info("sgj:teams_controller.rb:success adding goal to team when creating new team")
+            else
+              logger.error("sgj:teams_controller.rb:failed to add goal to team when creating new team")
+            end
             
           end
-        rescue
-          logger.debug("sgj:teams_controller:create:error while saving team_id to goal")
-        end
+        #rescue
+        #  logger.debug("sgj:teams_controller:create:error while saving team_id to goal")
+        #end
 
         ### calculate openings and then save
         @team.calc_has_openings_save

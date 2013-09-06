@@ -24,6 +24,7 @@ class User < ActiveRecord::Base
   has_many :coach_templates
   has_many :coach_template_goals, :through => :coach_templates
 
+
   
   acts_as_authentic
   #acts_as_authentic do |c|
@@ -312,6 +313,25 @@ class User < ActiveRecord::Base
       end
       return size
   end 
+
+
+  def teams_i_own
+      my_teams = Array.new()
+
+      teams = Team.find(:all, :conditions => "owner_user_id = '#{self.id}'")
+      for team in teams
+        my_teams << team
+      end
+      return my_teams
+  end
+
+  def number_of_teams_i_own
+    size = 0
+    if self.teams_i_own
+      size = self.teams_i_own.size
+    end
+    return size
+  end
 
   def templates_i_own
       my_goals = Array.new()

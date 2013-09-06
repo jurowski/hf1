@@ -333,8 +333,16 @@ class GoalsController < ApplicationController
   def new
 
 
-    ### not sure why this will not die so putting it here
-    session[:goal_template_text] = nil
+    ### reset these just in case, but only do it if a new goal has not already been saved
+    if !params[:submitted_new_goal]
+      session[:goal_added_through_template_from_program_id] = nil
+      session[:template_user_parent_goal_id] = nil
+      session[:goal_template_text] = nil
+      session[:category] = nil
+      session[:accepting_invitation_id] = nil
+    end
+
+
 
     ### If they are restricted to 1 active goal, redirect away
     restrict = false
@@ -440,8 +448,8 @@ class GoalsController < ApplicationController
 
 
       #### if we are basing our goal on a template, then copy those values
-      if params[:template_user_parent_goal_id]
-        template_user_parent_goal = Goal.find(params[:template_user_parent_goal_id].to_i)
+      if session[:template_user_parent_goal_id]
+        template_user_parent_goal = Goal.find(session[:template_user_parent_goal_id].to_i)
         if template_user_parent_goal
           @goal.template_user_parent_goal_id = template_user_parent_goal.id
           @goal.title = template_user_parent_goal.title
@@ -461,8 +469,8 @@ class GoalsController < ApplicationController
           @goal.check_in_same_day = template_user_parent_goal.check_in_same_day
           @goal.usersendhour = template_user_parent_goal.usersendhour
 
-          if params[:goal_added_through_template_from_program_id]
-            goal_added_through_template_from_program = Program.find(params[:goal_added_through_template_from_program_id].to_i)
+          if session[:goal_added_through_template_from_program_id]
+            goal_added_through_template_from_program = Program.find(session[:goal_added_through_template_from_program_id].to_i)
             if goal_added_through_template_from_program
               @goal.goal_added_through_template_from_program_id = goal_added_through_template_from_program.id
             end
@@ -473,6 +481,39 @@ class GoalsController < ApplicationController
           #@goal.save
         end
       end
+
+
+
+      ####################################################
+      ####################################################
+      ###### IF WE ARE RESPONDING TO AN INVITATION
+      if params[:invitation_id]
+        @invite = Invite.find(params[:invitation_id].to_i)
+        if @invite
+          @invite_from_user = User.find(@invite.from_user_id)
+        end
+        if @invite and @invite.purpose_join_team_id and @invite_from_user
+          @team = Team.find(@invite.purpose_join_team_id)
+
+          ### what kind of team?
+          if @team.goal_template_parent_id
+            ### template based team
+            if @goal.template_user_parent_goal_id and (@goal.template_user_parent_goal_id == @team.goal_template_parent_id)
+              @invite_team_type_goal = true
+            end
+          else
+            ### category-based team
+            if @team.category_name
+              @invite_team_type_category = true
+              @goal.category = @team.category_name
+            end
+          end
+        end
+      end
+      ###### END IF WE ARE RESPONDING TO AN INVITATION
+      ####################################################
+      ####################################################
+
 
 
       respond_to do |format|
@@ -786,12 +827,71 @@ class GoalsController < ApplicationController
             @goal.save
           end
 
-
-
-
-
           ### save date changes
           @goal.save
+
+
+          ####################################################################
+          ####################################################################
+          #####    ACCEPT AN INVITE
+          ####################################################################
+          ### if we are responding to an invitation to join a team
+          if params[:invitation_id]
+            begin
+              attempt_to_join_team = false
+
+              invite = Invite.find(params[:invitation_id].to_i)
+              if invite and invite.purpose_join_team_id
+
+                team = Team.find(invite.purpose_join_team_id)
+                if team
+
+                  ### what kind of team?
+                  if team.goal_template_parent_id
+
+                    ### template based team
+                    if @goal.template_user_parent_goal_id and (@goal.template_user_parent_goal_id == team.goal_template_parent_id)
+                      attempt_to_join_team = true
+                    end
+
+                  else
+
+                    ### category-based team
+                    if team.category_name and @goal.category and (team.category_name == @goal.category)
+                      attempt_to_join_team = true
+                    end
+
+                  end
+
+                  if attempt_to_join_team
+                    if @goal.join_goal_to_a_team(team.id)
+                      logger.info("sgj:goals_controller.rb:success adding goal to team when responding to invitation")
+
+                      invite.accepted_on = current_user.dtoday
+                      invite.save
+                    else
+                      logger.error("sgj:goals_controller.rb:failed to add goal to team when responding to invitation")
+                    end
+                  else
+                    logger.error("sgj:goals_controller.rb:the team invite was a mis-match for either this goal category or this goal parent template .. not trying to join team")                    
+                  end
+
+                end ### if team
+
+              end ### if invite and invite.purpose_join_team_id
+
+            rescue
+              logger.error("sgj:goals_controller.rb:error trying to add goal to team when responding to invitation")
+            end
+
+          end ### if session[:accepting_invitation_id]
+          ####################################################################
+          #####    END ACCEPT AN INVITE
+          ####################################################################
+          ####################################################################
+
+
+
 
 
           ### we don't need/want these anymore
@@ -800,7 +900,7 @@ class GoalsController < ApplicationController
           session[:template_user_parent_goal_id] = nil
           session[:goal_template_text] = nil
           session[:category] = nil
-
+          session[:accepting_invitation_id] = nil
 
         
           if @goal.status == "hold"

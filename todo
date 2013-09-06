@@ -7,24 +7,6 @@
 :::CURRENT::: 
 
 
-
-
-new class: invite
-invite
-from_user_id
-to_name
-to_email
-to_user_id
-purpose_join_team_id
-purpose_follow_goal_id
-purpose_friend_user_id
-accepted_on
-declined_loudly_on
-declined_silently_on
-first_sent_on
-last_resent_on
-
-
 Custom Teams Overview
 ----------------------
 i want to build my own custom team related to a goal
@@ -35,14 +17,18 @@ Custom Teams ToDo
 
 CURRENT
 
-done--set custom teams to invite-only by default
-done--remove the UI for changing custom invite-only boolean value (make them always invite-only)
 
-done/test in prod--when user is joining a random team, do not let them join a CUSTOM team
+--the email invitation going out should have a link that says: Join This Team ... clicking it would automatically create their account ... and it would take them to the goal-creation screen either with the category pre-defined or as a goal based on a template ... and at the top it should mention they're joining a team, and it should describe that team
 
-done/test MIGHT NOT BE WORKING IN PRODUCTION--in the team cron jobs, do not re-balance any of the custom teams
 
---the email invitation going out should have a link that says: Join This Team ... clicking it would automatically create their account and would auto-confirm that account as well ... and it would take them to the goal-creation screen either with the category pre-defined or as a goal based on a template ... and at the top it should mention they're joining a team, and it should describe that team
+NEXT/NOW/CURRENT: 
+
+
+-- clean up the teams/index view for team owners (show only relevant details)
+
+--Test a "category-only" team goal (only tested goal-specific so far)
+
+--no feedback if a user already exists but is invited, (see @email_duplicate in users_controller:quicksignup_v2)
 
 --users should be able to view all of their invitations when logged in (next to messages)
 
@@ -70,34 +56,15 @@ NEXT
 modify team:new and team:edit forms so that only relevant fields are shown to owners
 change rights on team controller methods so that no one but admin and team owner can edit or delete a team
 do not let owner change a team "type" from category to goal-specific once it is created (force delete instead)
-make sure you can't delete a team without first removing all members
-
-the presence of team.goal_template_parent_id is what makes it goal-specific vs. category-specific
-
-do not let me place my own goal on hold or delete it if i am part of a team (force me to quit the team first)
 
 
-[ ]  let me choose whether the team should restrict access for that goal itself (team-goal) or for the goal's general category (team-category)
-
-[ ]  if team-goal, make each team goal the child of a template (if my goal is not yet a child, copy it to a parent template)
-
-[ ]  suggest a team name, and let me edit it
-
-[ ]  do not allow random assignments to my custom team
-
-[ ]  let me be the owner of my team
-
-[ ]  let me choose how many people are on my custom team
 
 [ ]  let me craft an invite that has a link to start my goal (and if I have chosen category-level vs. goal-level, a link to start a custom or click from an array of templated goals in the same category)
-
-[ ]  let me send invites to team members
 
 [ ]  let my invite go to multiple email addresses separated by commas
 
 [ ]  (teamgoals) do not kick people off of my custom team for not checking in
 
-[ ]  do not let me quit a team that I am the leader of if there are other members
 [ ]  allow me to transfer ownership to another member of the team
 [ ]  notify every team member when a new member arrives
 [ ]  notify every team member when a member leaves
@@ -105,7 +72,7 @@ do not let me place my own goal on hold or delete it if i am part of a team (for
 [ ]  when emailing one team member ask me to consider including each of the others
 
 [ ]  when an invitee logs in, have an "invites" link at the top showing a red number and a listing of invites to review
-[ ]  when an invitee accepts, take them to goal creation
+
 [ ]  allow an invitee to silently ignore an invite (do not email me)
 [ ]  allow an invitee to decline an invite (email me)
 [ ]  keep reminding an invitee for a while until they take action
@@ -164,7 +131,6 @@ solution: look @ the latest cron job ... implement the same (it has a notify gma
 future: put a silver or gold badge next to names on dynamic (and in their account) for impact point levels
 
 future: make an option for showing in dynamic only those goals in your categories
-future: make an option for showing in dynamic all except porn/masterbate
 
 future: program creation like the UWHealth "holiday don't gain"
 

@@ -12,54 +12,46 @@ end
 <div id="team_<%= @goal.id %>" class="div_team" style="<%= display_style %>">                    
 
 
-<!-- START PART OF A CUSTOM TEAM -->
-<% if @goal.is_part_of_a_team and @goal.team and @goal.team.custom  %>
-
-  <!-- IF YOU ARE THE OWNER -->
-  <% if @goal.team.i_am_owner_or_admin(current_user.id) %>
-    You are the owner of the "<%= @goal.team.name %>" team. <%= link_to 'Details', team_path(@goal.team) %>
-
-
-    <% @team = @goal.team %>
-    <div class="div_team_<%= @team.id %>_manage_team_invites" id="div_team_<%= @team.id %>_manage_team_invites">
-       <%= render :partial => "invites/manage_team_invites", :locals => { :team => @team }  %>
-    </div>
-
-
-
-  <% end %> 
-  <!-- END IF YOU ARE THE OWNER -->
-
-
-
-  <!-- TEAM STATUS -->
-
-
-  <!-- END TEAM STATUS -->
-
-<% end %>
-<!-- END PART OF A CUSTOM TEAM -->
 
 
 
 
-<!-- START PART OF A NON-CUSTOM TEAM -->
-<% if @goal.is_part_of_a_team and @goal.team and !@goal.team.custom %>      
+
+<!-- START SHOW TEAM MEMBERS -->
+<% if @goal.is_part_of_a_team and @goal.team %>      
 
 
     <%
       @team_goals = Goal.find(:all, :conditions => "team_id = '#{@goal.team_id}'")
       if @team_goals.size < 2
           %>
-          <p><h3>We're recruiting other people for your team.
-              </h3></p>
 
-          </h3></p>
+          <% if @goal.team.custom %>
+
+            <% if @goal.team.i_am_owner_or_admin(current_user.id) %>
+              No other team members yet...
+            <% else %>
+              Sorry, the owner of this team has left the team, and you're the only member left. This shouldn't have been possible... please contact support@habitforge.com or if you'd prefer, you can quit the team... (since only the owner will be able to invite other people to it).
+            <% end %>
+
+          <% else %>
+  
+            <p><h3>We're recruiting other people for your team.
+                </h3></p>
+
+            </h3></p>
+
+          <% end %>
           <br>
           <%
       else
         %>
-        <i class="icon-external-link"></i> <a href="popupex.html" onclick="return popitup('team_rules.html')">Team Rules</a> &nbsp &nbsp <i class="icon-remove"></i><a href='/goals?quit_a_team=1&goal_id=<%=@goal.id%>' onclick="return confirm('Are you sure you want to quit this team?');">Quit this team</a>
+        <i class="icon-external-link"></i> <a href="popupex.html" onclick="return popitup('team_rules.html')">Team Rules</a> &nbsp &nbsp <i class="icon-remove"></i>
+
+        <!-- HEY, even the owner can quit the team but still own the team ... think of an organization team leader managing 20 teams!
+        They shouldn't have to have 20 goals to manage 20 teams -->
+        <a href='/goals?quit_a_team=1&goal_id=<%=@goal.id%>' onclick="return confirm('Are you sure you want to quit this team?');">Quit this team</a>
+
         <%
           has_percentage = 0
           total_percentage = 0
@@ -124,7 +116,41 @@ end
 
 
 <% end %>
-<!-- END PART OF A NON-CUSTOM TEAM -->
+<!-- END SHOW TEAM MEMBERS -->
+
+
+
+
+
+<!-- START PART OF A CUSTOM TEAM -->
+<% if @goal.is_part_of_a_team and @goal.team and @goal.team.custom  %>
+
+  <!-- IF YOU ARE THE OWNER -->
+  <% if @goal.team.i_am_owner_or_admin(current_user.id) %>
+    <hr>
+    You are the owner of the "<%= @goal.team.name %>" team. <%= link_to 'Edit Team Details', team_path(@goal.team) %>
+
+
+    <% @team = @goal.team %>
+    <div class="div_team_<%= @team.id %>_manage_team_invites" id="div_team_<%= @team.id %>_manage_team_invites">
+       <%= render :partial => "invites/manage_team_invites", :locals => { :team => @team }  %>
+    </div>
+
+
+
+  <% end %> 
+  <!-- END IF YOU ARE THE OWNER -->
+
+
+
+  <!-- TEAM STATUS -->
+
+
+  <!-- END TEAM STATUS -->
+
+<% end %>
+<!-- END PART OF A CUSTOM TEAM -->
+
 
 
 
@@ -156,8 +182,8 @@ end
         <p>
 
           <h3>
-            <!-- <a id="build_my_own_team" onclick="toggle_show_hide('goal_creation_options_<%= @goal.id %>')" title='Invite others to work on the same or a similar goal with you.' -->
-            <a id="build_my_own_team" title='Invite others to work on the same or a similar goal with you.' >
+            <a id="build_my_own_team" onclick="toggle_show_hide('goal_creation_options_<%= @goal.id %>')" title='Invite others to work on the same or a similar goal with you.' >
+            <!-- <a id="build_my_own_team" title='Invite others to work on the same or a similar goal with you.' > -->
              Build My Own Team</a> (coming soon)</h3>
           <script type='text/javascript'>
               $('#build_my_own_team').tipsy();

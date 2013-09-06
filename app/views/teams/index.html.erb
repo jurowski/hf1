@@ -15,6 +15,7 @@
 
 <% @teams.each do |team| %>
   <tr>
+    <td><%= link_to team.name, team %></td>
     <td><%=h team.name %></td>
     <td><%=h team.category_name %></td>
     <td><%=h team.qty_max %></td>
@@ -24,13 +25,9 @@
     <td><%=h team.avg_met_goal_last_week %></td>
     <td><%=h team.qty_checked_in_yesterday %></td>
     <td><%=h team.qty_checked_in_last_2_days %></td>
-    <td><%= link_to 'Show', team %></td>
-    <td><%= link_to 'Edit', edit_team_path(team) %></td>
-    <td><%= link_to 'Destroy', team, :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
 <% end %>
 </table>
 
 <br />
 
-<%= link_to 'New team', new_team_path %>

@@ -53,6 +53,16 @@
             </li>
           <% end %>
 
+
+
+          <% if current_user and current_user.number_of_teams_i_own > 0 %>
+            <li
+            <% if @cn == "teams" %>
+             class="active"
+            <% end %>
+            ><%= link_to "<i class='icon-group'></i>My Teams", "/teams" %></li>
+          <% end %>
+
           <% if current_user and current_user.can_make_templates %>
             <% if @cn == "programs" %> 
               <li class="active">

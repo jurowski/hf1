@@ -12,7 +12,12 @@
 
 
 
+<input type="hidden" name="submitted_new_goal" value="1">
 
+<% if params[:invitation_id] %>
+  <input type="hidden" name="invitation_id" value="<%= params[:invitation_id] %>">
+<% end %>
+  
 
 <% if session[:dev_mode_just_returned_from_sales_page] %>
   <% session[:dev_mode_just_returned_from_sales_page] = nil %>

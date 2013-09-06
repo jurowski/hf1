@@ -48,15 +48,17 @@
   <h3>When sending invitations, use the text below:</h3>
   <br>Subject: 
   <br>
-  <%= f.text_field :invitation_subject, :value => @team.invitation_subject %>
+  <%= f.text_field :invitation_subject, :value => @team.invitation_subject, :style =>"width:600px;" %>
   <br>
   <br>
   Body:
   <br>
-  <%= f.text_area :invitation_body, :value => @team.invitation_body, :cols => 80, :rows => 20 %>
+  <%= f.text_area :invitation_body, :value => @team.invitation_body, :cols => 40, :rows => 40, :style =>"width:600px;height:300px;" %>
+  <br>
+  (We will add a "Click to Join This Team Now" button at the end of the messages.)
   <p>
-    <%= f.submit 'Create' %>
+    <%= f.submit 'Create My Team', :class => "btn yellow" %>
   </p>
 <% end %>
 
-<%= link_to 'Back', teams_path %>
+<%= link_to 'Cancel', teams_path %>

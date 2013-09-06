@@ -326,7 +326,13 @@ class Notifier < ActionMailer::Base
     bcc        ["support@habitforge.com"]
     from       "No Reply-Messages <noreply-messages@habitforge.com>"
 
-    subject "[HF] #{from_user.first_name} liked your message and sent you #{rating.to_s} Impact Points!"
+    case rating
+    when > 0
+      subject "[HF] #{from_user.first_name} liked your message and sent you #{rating.to_s} Impact Points!"
+    else
+      subject "[HF] #{from_user.first_name} did not care for your message :( ... they docked you #{rating.to_s} Impact Points!"
+    end
+
     body       :to_user => to_user, :from_user => from_user, :tomessage => tomessage, :rating => rating
     content_type "text/html"
   end
