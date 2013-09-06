@@ -1,30 +1,17 @@
-<h1>Listing teams</h1>
+<h1>My teams</h1>
 
 <table>
   <tr>
-    <th>Name</th>
-    <th>Category name</th>
-    <th>Qty max</th>
-    <th>Qty current</th>
-    <th>Avg success rate</th>
-    <th>Avg days in a row</th>
-    <th>Avg met goal last week</th>
-    <th>Qty checked in yesterday</th>
-    <th>Qty checked in last 2 days</th>
+    <th>Team Name</th>
+    <th>Category</th>
+    <th>Members</th>
   </tr>
 
 <% @teams.each do |team| %>
   <tr>
     <td><%= link_to team.name, team %></td>
-    <td><%=h team.name %></td>
     <td><%=h team.category_name %></td>
-    <td><%=h team.qty_max %></td>
-    <td><%=h team.qty_current %></td>
-    <td><%=h team.avg_success_rate %></td>
-    <td><%=h team.avg_days_in_a_row %></td>
-    <td><%=h team.avg_met_goal_last_week %></td>
-    <td><%=h team.qty_checked_in_yesterday %></td>
-    <td><%=h team.qty_checked_in_last_2_days %></td>
+    <td><%=h team.qty_current %>/<%=h team.qty_max %></td>
   </tr>
 <% end %>
 </table>

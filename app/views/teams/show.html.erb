@@ -1,37 +1,142 @@
 
 <div class="alert alert-info">
-<b>Team Name:</b>
-<%=h @team.name %>
 
-<br>
-<b>Goal:</b> 
-<% if @team.goal_template_parent %>
-  <%=h @team.goal_template_parent.title %>   
-<% else %>
-  Any goal in the category of <%=h @team.category_name %>
-<% end %>
+  <% if @team.i_am_owner_or_admin(current_user.id) %>
 
-<br>
-<b>Max Members:</b>
-<%=h @team.qty_max %>
-<br>
-<b>Current Members:</b>
-<%=h @team.qty_current %>
-<br>
 
+    <b>Team Name:</b>
+    <%= link_to @team.name, edit_team_path(@team) %>
+
+    <br>
+    <b>Team Goal:</b> 
+    <% if @team.goal_template_parent %>
+      <%=h @team.goal_template_parent.title %>   
+    <% else %>
+      Any goal in the category of <%=h @team.category_name %>
+    <% end %>
+
+    <br>
+    <b>Current Size:</b>
+    <%=h @team.qty_current %>/<%=h @team.qty_max %>
+
+
+
+    <br>
+    <% if @team.qty_current < 2 %>
+      <%= link_to 'Delete (no other team members)', @team, :confirm => 'Are you sure?', :method => :delete %>
+    <% else %>
+
+      <a id='delete_disabled_<%= @team.id.to_s %>'  class="btn disabled" title="Sorry, you can't delete a team that has members." ><i class="icon-remove"></i> Delete</a>
+      <script type='text/javascript'>
+          $('#delete_disabled_<%= @team.id.to_s %>').tipsy();
+      </script>
+
+    <% end %>
+
+  <% else %>
+
+    <b>Team Name:</b>
+    <%=h @team.name %>
+
+    <br>
+    <b>Team Goal:</b> 
+    <% if @team.goal_template_parent %>
+      <%=h @team.goal_template_parent.title %>   
+    <% else %>
+      Any goal in the category of <%=h @team.category_name %>
+    <% end %>
+
+    <br>
+    <b>Members:</b>
+    <%=h @team.qty_current %>/<%=h @team.qty_max %>
+
+
+  <% end %>
 
 
 </div>
 
+
+
+
+<!-- START SHOW TEAM MEMBERS -->
+<%
+team_goals = Goal.find(:all, :conditions => "team_id = '#{@team.id}'")
+%>
+<i class="icon-external-link"></i> <a href="popupex.html" onclick="return popitup('/team_rules.html')">Team Rules</a>
+
+<%
+has_percentage = 0
+total_percentage = 0
+average_percentage = 0
+for team_goal in team_goals
+    if team_goal.success_rate_percentage != nil
+        has_percentage = has_percentage + 1
+        total_percentage = total_percentage + team_goal.success_rate_percentage
+    end
+end
+if has_percentage > 0
+    average_percentage = total_percentage / has_percentage
+    %>
+    <p><h3>My Team's Success Rate is <%= average_percentage %>% during the past 30 days
+    </h3></p>
+
+    <br>
+    <%
+else
+    %>
+    <p><h3>My Team's Success Rate (too early to calculate)</h3></p>
+    <br>
+    <%                  
+end
+
+for team_goal in team_goals
+  if team_goal.user %>
+    <p>
+
+      <% if team_goal.user.show_gravatar %>
+        <% gravatar = "http://www.gravatar.com/avatar/#{Digest::MD5.hexdigest(team_goal.user.email.downcase)}?d=mm" %>
+        <img src="<%= gravatar %>&s=30" />            
+      <% else %>
+        <img src="/home/images/default_gravatar.png" height="30px"/>
+      <% end %>
+
+      <% if team_goal.user.id != current_user.id %>
+      <img src="/images/comment_user_add_32.png" /> <a href="/tomessages/new?goal_id=<%=team_goal.id.to_s%>&from_type=team&to_id=<%= team_goal.user.id %>" >Send <%= team_goal.user.first_name %> a Message about <%= team_goal.response_question %></a>
+    • 
+      <% else %>
+      (This is me) 
+      <% end %>
+
+    <% if team_goal.success_rate_percentage != nil %>
+         Succeeding <%= team_goal.success_rate_percentage %>% of the last
+    <% end %>
+    <% if team_goal.days_into_it != nil %>
+        30 days
+    <% end %>
+
+    <% if team_goal.daysstraight != nil and team_goal.daysstraight != 9999 %>
+        has done it <%= team_goal.daysstraight %> days in a row
+    <% end %>
+
+    <% if team_goal.laststatusdate != nil and team_goal.laststatus != nil %>
+    <% else %>              
+         (has not yet checked in)
+    <% end %> 
+    </p>
+  <% 
+  end ### end if team_goal.user and (team_goal.user.id != current_user.id)
+end ### end for team_goal in team_goals
+%>            
+<!-- END SHOW TEAM MEMBERS -->
+
+
+
+
+
+
+
 <% if @team.i_am_owner_or_admin(current_user.id) %>
-  <%= link_to 'Edit', edit_team_path(@team), :class => "btn" %> |
-  <% if @team.qty_current < 2 %>
-    <%= link_to 'Delete (no other team members)', @team, :confirm => 'Are you sure?', :method => :delete %>
-  <% else %>
-    Can't Delete (members exist)
-  <% end %>
-
-
     <div class="div_team_<%= @team.id %>_manage_team_invites" id="div_team_<%= @team.id %>_manage_team_invites">
        <%= render :partial => "invites/manage_team_invites", :locals => { :team => @team }  %>
 <% end %>

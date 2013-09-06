@@ -60,7 +60,7 @@
             <% if @cn == "teams" %>
              class="active"
             <% end %>
-            ><%= link_to "<i class='icon-group'></i>My Teams", "/teams" %></li>
+            ><%= link_to "<i class='icon-group'></i>Teams I Own", "/teams" %></li>
           <% end %>
 
           <% if current_user and current_user.can_make_templates %>
@@ -101,7 +101,7 @@
               <% if @cn == "cheers" %> 
                 class="active" 
               <% end %>
-              ><%= link_to "<i class='icon-group'></i>Community", "/cheers" %></li>
+              ><%= link_to "<i class='icon-globe'></i>Community", "/cheers" %></li>
 
 
           <li><a href="#" onclick="return popitup_bigger1('/impact_points.html')" %>

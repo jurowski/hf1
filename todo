@@ -24,10 +24,6 @@ CURRENT
 NEXT/NOW/CURRENT: 
 
 
--- clean up the teams/index view for team owners (show only relevant details)
-
---Test a "category-only" team goal (only tested goal-specific so far)
-
 --no feedback if a user already exists but is invited, (see @email_duplicate in users_controller:quicksignup_v2)
 
 --users should be able to view all of their invitations when logged in (next to messages)

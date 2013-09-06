@@ -4,54 +4,66 @@
 
 <br>
 <br>
-<% if @invite_create_message %>
-	<div class="alert alert-error">
-	<%= @invite_create_message %>
+
+<div class="portlet box grey">
+	<div class="portlet-title">
+		<div class="caption">
+			 Invitations
+		</div>
+		<div class="tools">
+		   <a href="javascript:;" class="collapse"></a>
+		</div>
 	</div>
-<% end %>
-
-<% @invites = Invite.find(:all, :conditions => "purpose_join_team_id = '#{@team.id}' and accepted_on is null") %>
-<% if @invites.size > 0 %>
-	<h3><%= @invites.size %> Invites Sent:</h3>
-	<% @invites.each do |invite| %>
-	  <!-- for automation of removing an item and re-loading the partial, see:
-	  views/template_tags/_manage -->
-	  <%= invite.to_name %> (<%= invite.to_email%>) invited <%= time_ago_in_words(invite.created_at) %> ago<br>
-	<% end %>
-
-	<br>
-	<h3>Invite another friend to your team!</h3>
-<% else %>
-	<h3>Invite a friend to your team!</h3>
-<% end %>
+	<div class="portlet-body">
 
 
+		<% if @invite_create_message %>
+			<div class="alert alert-error">
+			<%= @invite_create_message %>
+			</div>
+		<% end %>
+
+		<% @invites = Invite.find(:all, :conditions => "purpose_join_team_id = '#{@team.id}' and accepted_on is null") %>
+		<% if @invites.size > 0 %>
+			<h3><%= @invites.size %> Invites Sent:</h3>
+			<% @invites.each do |invite| %>
+			  <!-- for automation of removing an item and re-loading the partial, see:
+			  views/template_tags/_manage -->
+			  <%= invite.to_name %> (<%= invite.to_email%>) invited <%= time_ago_in_words(invite.created_at) %> ago<br>
+			<% end %>
+
+			<br>
+			<h3>Invite another friend to your team!</h3>
+		<% else %>
+			<h3>Invite a friend to your team!</h3>
+		<% end %>
 
 
+		Name: <input type="text" name="<%= @team.id %>_invite_name" id="<%= @team.id %>_invite_name" placeholder="ex: Joe Smith">
+
+		&nbsp &nbsp &nbsp Email: 
+		<input type="text" name="<%= @team.id %>_invite_email" id="<%= @team.id %>_invite_email" placeholder="ex: joe@example.com">
+
+		&nbsp
+		<a class="btn green" onclick="create_invite_then_reload_manage_team_invites('<%= @team.id %>',document.getElementById('<%= @team.id %>_invite_name').value,document.getElementById('<%= @team.id %>_invite_email').value);">Send Invite</a>
 
 
-  	  Name: <input type="text" name="<%= @team.id %>_invite_name" id="<%= @team.id %>_invite_name" placeholder="ex: Joe Smith">
-
-  	  &nbsp &nbsp &nbsp Email: 
-  	  <input type="text" name="<%= @team.id %>_invite_email" id="<%= @team.id %>_invite_email" placeholder="ex: joe@example.com">
-
-  	  &nbsp
-	  <a class="btn green" onclick="create_invite_then_reload_manage_team_invites('<%= @team.id %>',document.getElementById('<%= @team.id %>_invite_name').value,document.getElementById('<%= @team.id %>_invite_email').value);">Send Invite</a>
-
-
-	  	<br>
+		<br>
 		<h3>When Sending Invitations, Use the Text Below</h3>
 
 		<div class="alert alert-warning">
-		  <strong>Subject:</strong> <%=h @team.invitation_subject %>
-		  <br>
-		  <br>
-		  <strong>Body:</strong>
-		  <br>
-		  <%= @team.invitation_body.gsub("\n", "<br>") %>
+		<strong>Subject:</strong> <%=h @team.invitation_subject %>
+		<br>
+		<br>
+		<strong>Body:</strong>
+		<br>
+		<%= @team.invitation_body.gsub("\n", "<br>") %>
 
-		  <br>
-		  <br>
-		    <strong>Note: We will add a "Click to Join This Team Now" button at the end of the message</strong>
+		<br>
+		<br>
+		<strong>Note: We will add a "Click to Join This Team Now" button at the end of the message</strong>
 		</div>
 		<%= link_to 'Edit Invitation Message', edit_team_path(@team), :class => "btn" %>
+
+	</div> <!-- end class portlet-body -->
+</div> <!-- end class portlet -->

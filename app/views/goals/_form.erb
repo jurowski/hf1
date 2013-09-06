@@ -45,6 +45,16 @@ if @goal.template_user_parent_goal_id
 end
 %>
 
+<!-- IF THIS GOAL IS PART OF A CATEGORY-BASED TEAM, DO NOT ALLOW MODIFICATIONS OF CATEGORY -->
+<% 
+part_of_a_team_category = false
+if (params[:invitation_id] and params[:category]) or (@goal.is_part_of_a_team and @goal.team.custom)
+  part_of_a_team_category = true
+end
+%>
+
+
+
 <!-- TEMPLATE STUFF -->
 <% them_or_me = "me" %>
 <% if @goal.template_owner_is_a_template or (params[:template_owner_is_a_template] and params[:template_owner_is_a_template] == "1") 
@@ -138,11 +148,20 @@ show_monitor_option_details = 0
 
 <div class="alert">
 <h4>
-  
+
+
+<% 
+question_placeholder = "Ex: walking for at least 20 minutes"
+if part_of_a_team_category 
+  question_placeholder = ""
+end
+%>
+
+
   "Were you successful at
 <% if !based_on_a_template and !has_active_challenge %>
  &nbsp
-  <%= form.text_field :response_question, :placeholder => 'Ex: walking for at least 20 minutes', :style=>'width:400px;', :size => 40 %> ?"
+  <%= form.text_field :response_question, :placeholder => question_placeholder, :style=>'width:400px;', :size => 40 %> ?"
 <% else %>
   <%= @goal.response_question %>?"
   <%= form.hidden_field :response_question, :value => @goal.response_question %>
@@ -228,7 +247,7 @@ show_monitor_option_details = 0
 
   <tr>
   <td valign=top nowrap align=right>
-  <% if based_on_a_template or has_active_challenge %>
+  <% if based_on_a_template or has_active_challenge or part_of_a_team_category %>
     <% if @goal.category and @goal.category != "" %>
       Category: 
     <% end %>
@@ -238,7 +257,7 @@ show_monitor_option_details = 0
   </td>
   <td nowrap>
 
-    <% if !based_on_a_template and !has_active_challenge %>
+    <% if !based_on_a_template and !has_active_challenge and !part_of_a_team_category %>
       <%
       @arr = arr_goal_categories  
       %>
@@ -710,6 +729,11 @@ end
 <% if has_active_challenge %>
   <h6>(Values below are locked because this goal is currently part of an Extra Accountability Challenge.)</h6>
 <% end %>
+<% if part_of_a_team_category %>
+  <h6>(Category below is locked because this goal is part of a category-based team.)</h6>
+<% end %>
+
+
 
 <div class="well">
 Some habits are daily and others are only a few days a week.
