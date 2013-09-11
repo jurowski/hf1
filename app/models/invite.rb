@@ -20,6 +20,26 @@ class Invite < ActiveRecord::Base
 
   	end
 
-  end
+  end ### end def i_am_owner_or_admin(user_id)
+
+
+  def i_am_recipient(user_id)
+    user_to_check = User.find(user_id)
+    if user_to_check
+      if self.to_user_id and self.to_user_id == user_id
+        return true
+      else
+        if self.to_email and self.to_email == user_to_check.email
+          return true
+        else
+          return false
+        end
+      end
+    end
+
+  end ### end def i_am_recipient(user_id)
+
+
+
 
 end

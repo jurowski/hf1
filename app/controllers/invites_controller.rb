@@ -12,8 +12,9 @@ class InvitesController < ApplicationController
   layout "application"
 
   before_filter :require_user
-  before_filter :require_admin_user, :only => [:index]
-  before_filter :require_owner_invite, :except => [:new, :create, :manage_team_invites]
+  before_filter :require_owner_or_recipient, :only => [:show]
+  #before_filter :require_admin_user, :only => [:index]
+  before_filter :require_owner_invite, :except => [:new, :create, :manage_team_invites, :show]
 
 
   def valid_email( value )
@@ -25,6 +26,23 @@ class InvitesController < ApplicationController
       return false
     end
   end
+
+  def require_owner_or_recipient
+    if params[:id]
+
+      invite = Invite.find(params[:id].to_i)
+      if invite
+        unless (invite.i_am_owner_or_admin(current_user.id) or invite.i_am_recipient(current_user.id))
+          flash[:notice] = "You do not have rights to access that page."
+          redirect_to "/"
+          return false
+        end
+      end
+
+    end
+
+  end
+
 
   def require_owner_invite
     if params[:id]
@@ -197,7 +215,7 @@ class InvitesController < ApplicationController
   # GET /invites
   # GET /invites.xml
   def index
-    @invites = Invite.all
+    @invites = Invite.find(:all, :conditions => "to_user_id = #{current_user.id} or to_email = '#{current_user.email}'")
 
     respond_to do |format|
       format.html # index.html.erb
@@ -210,10 +228,52 @@ class InvitesController < ApplicationController
   def show
     @invite = Invite.find(params[:id])
 
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @invite }
+    logger.debug("sgj:invites_controller:show:1")
+    if params[:ignore] and @invite
+      logger.debug("sgj:invites_controller:show:1.1")
+      @invite.declined_silently_on = current_user.dtoday
+      @invite.save
+      logger.debug("sgj:invites_controller:show:1.2")      
     end
+    logger.debug("sgj:invites_controller:show:2")
+
+
+    if params[:accept] and @invite
+      ###### REDIRECT TO A NEW GOAL MATCHING THE TEAM YOU'RE INVITED TO
+      redirect_url_string = "/goals/new?welcome=1"
+      redirect_url_string += "&invitation_id=" + @invite.id.to_s
+
+      if @invite.purpose_join_team_id
+        team = Team.find(@invite.purpose_join_team_id)
+        if team
+          if team.category_name
+            redirect_url_string += "&category=" + team.category_name
+          end
+          if team.goal_template_parent_id
+            redirect_url_string += "&template_user_parent_goal_id=" + team.goal_template_parent_id.to_s
+            goal = Goal.find(team.goal_template_parent_id)
+            if goal
+              redirect_url_string += "&goal_template_text=" + goal.response_question
+            end
+          end
+        end
+      end
+    end ### end if params[:accept] and @invite
+
+    if redirect_url_string
+
+      redirect_to(redirect_url_string)
+
+    else
+
+      respond_to do |format|
+        format.html # show.html.erb
+        format.xml  { render :xml => @invite }
+      end
+
+    end
+
+
   end
 
   # GET /invites/new

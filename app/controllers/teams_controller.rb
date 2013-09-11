@@ -216,7 +216,30 @@ Let's do this together! It'll be fun and rewarding, and as a team encouraging on
   # DELETE /teams/1.xml
   def destroy
     @team = Team.find(params[:id])
+
+    ### delete any invites for this team
+    invites = Invite.find(:all, :conditions => "purpose_join_team_id = #{@team.id}")
+    invites.each do |invite|
+      invite.destroy
+    end
+
+    ### set to null team_id on any matching goals
+    goals = Goal.find(:all, :conditions => "team_id = #{@team.id}")
+    goals.each do |goal|
+      goal.team_id = nil
+      goal.save
+    end
+
+
+    ### delete any teamgoals for this team
+    teamgoals = Teamgoal.find(:all, :conditions => "team_id = #{@team.id}")
+    teamgoals.each do |teamgoal|
+      teamgoal.destroy
+    end
+
     @team.destroy
+
+
 
     respond_to do |format|
       format.html { redirect_to("/goals") }

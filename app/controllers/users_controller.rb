@@ -342,6 +342,12 @@ class UsersController < ApplicationController
       ### ask the user to enter a new email address or log in w/ the existing one
 
       logger.debug("sgj:users_controller:quicksignup_v2:3.5")
+
+      if params[:invitation_id]
+        redirect_url_string = "/user_session/new?skip_intro=1&message=invitation_existing_email"
+        redirect_to(redirect_url_string)
+      end
+      
     else
 
       logger.debug("sgj:users_controller:quicksignup_v2:4")
@@ -569,7 +575,8 @@ class UsersController < ApplicationController
                 redirect_url_string += "&template_user_parent_goal_id=" + params[:template_user_parent_goal_id]
               end
               if params[:goal_template_text]
-                goal_template_text = "&goal_template_text=" + params[:goal_template_text]
+                redirect_url_string += "&goal_template_text=" + params[:goal_template_text]
+                #goal_template_text = "&goal_template_text=" + params[:goal_template_text]
               end
               logger.debug("sgj:users_controller:quicksignup_v2:answering invitation:1")
 

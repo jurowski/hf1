@@ -649,6 +649,103 @@ $('.confirmation').on('click',function(){return confirm('Are you sure?');});
           <% if current_user %>
 
 
+          <!-- BEGIN INVITES DROPDOWN -->
+          <% @invites = Invite.find(:all, :conditions => "(to_user_id = '#{current_user.id}' or to_email = '#{current_user.email}') and (accepted_on is null and declined_silently_on is null)", :order => "id DESC") %>
+          <% if @invites and @invites.size > 0 %>
+          <li class="dropdown" id="header_invites_bar">
+
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+            <i class="icon-sitemap"></i>
+            <% max = 3 %>
+            <% invites_count = 0 %>
+            <% if @invites and @invites.size > 0 %>
+              <% invites_count = @invites.size %>
+              <span class="badge"><%= invites_count %></span>
+            <% end %>
+            </a>
+            <ul class="dropdown-menu extended inbox">
+              <li>
+                <% if invites_count > max %>
+                  <p>Latest <%= max %> of <%= invites_count %> invites...</p>
+                <% else %>
+                  <p>You have <%= invites_count %> new invites</p>
+                <% end %>       
+
+              </li>
+              <% if invites_count > max %>
+                <li class="external">
+                  <a href="/invites">See all invites <i class="m-icon-swapright"></i></a>
+                </li>
+              <% end %>
+
+              <% if invites_count > 1 %>
+                <li class="external">
+                  <a href="/invites?mark_all_as_read=1">Ignore All <i class="m-icon-swapright"></i></a>
+                </li>
+              <% end %>
+
+
+              <% counter = 0 %>
+              <% @invites.each do |invite| %>
+                <% if invite.purpose_join_team_id %>
+                  <% team = Team.find(:first, :conditions => "id = #{invite.purpose_join_team_id}") %>
+                <% end %>
+
+                <% from_user = nil %>
+                <% begin %>
+                  <% from_user = User.find(invite.from_user_id) %>
+                <% rescue %>
+                  <% logger.info("sgj:_habitforge_app_metronic.erb:no user found for invite.id of " + invite.id.to_s) %>
+                <% end %>
+                <% if from_user and counter < max %>
+                  <% counter += 1 %>
+                  <li>
+                    <a href="/invites/<%= invite.id %>">
+                    <span class="photo">
+                      <% from_gravatar_img = '<img src="/home/images/default_gravatar.png" width="30px"/>' %>
+                      <% if from_user.show_gravatar and !secure_page? %>
+                        <% from_gravatar = "http://www.gravatar.com/avatar/#{Digest::MD5.hexdigest(from_user.email.downcase)}?d=mm" %>
+                        <% from_gravatar_img = '<img src="' + from_gravatar + '&s=30" />' %>
+                      <% end %>
+                      <%= from_gravatar_img %>
+                    </span>
+                    <span class="subject">
+                    <span class="from"><%= from_user.first_name %></span>
+<!--                     <span class="time">Just Now</span> -->
+                    </span>
+                    <span class="message"><% if team %>View invitation to join <%= team.name %>...<% end %>
+                    </span>  
+                    </a>
+                  </li>
+                <% end %> <!-- end if from_user and counter < max -->
+
+              <% end %> <!-- end @invites.each do |invite| -->
+
+              <li class="external">
+                <a href="/invites">See all invites <i class="m-icon-swapright"></i></a>
+              </li>
+            </ul>
+
+
+
+          </li>
+          <% end %> <!-- end if no invites -->
+          <!-- END INVITES DROPDOWN -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
           <!-- BEGIN INBOX DROPDOWN -->
           <li class="dropdown" id="header_inbox_bar">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -722,6 +819,7 @@ $('.confirmation').on('click',function(){return confirm('Are you sure?');});
             </ul>
           </li>
           <!-- END INBOX DROPDOWN -->
+
           <% end ### end if current_user %>
 
 

@@ -1,63 +1,55 @@
-<p>
-  <b>From user:</b>
-  <%=h @invite.from_user_id %>
-</p>
 
-<p>
-  <b>To name:</b>
-  <%=h @invite.to_name %>
-</p>
+<%
+from_user = User.find(@invite.from_user_id)
+team = Team.find(@invite.purpose_join_team_id)
+if from_user and team and team.name
+    %>
+        <!-- buttons -->
+        <% if @invite.accepted_on %>
+          <b>Accepted on:</b> <%=h @invite.accepted_on %>
+        <% else %>
+          <% if @invite.declined_silently_on %>
+            <b>Ignored on:</b> <%=h @invite.declined_silently_on %>
+            <%= link_to 'Accept Instead (Join Team)', '/invites/' + @invite.id.to_s + '?accept=1', :class => "btn" %>
+          <% else %>
+            <%= link_to 'Accept (Join Team)', '/invites/' + @invite.id.to_s + '?accept=1', :class => "btn" %>
+            <%= link_to 'Ignore', '/invites/' + @invite.id.to_s + '?ignore=1', :class => "btn" %>
+          <% end %>
+        <% end %>
+        <!-- end buttons -->
 
-<p>
-  <b>To email:</b>
-  <%=h @invite.to_email %>
-</p>
+        <b><%=h from_user.name %></b> has invited you to join 
+        <b><%= team.name %></b> to work on <b>
+        <% if team.goal_template_parent_id 
+            follow_goal = Goal.find(team.goal_template_parent_id)
+            if follow_goal
+                %>
+                <%=h follow_goal.title %>
+                <%
+            else
+                %>
+                error finding goal
+                <%
+            end
+            %>
+        <% else %>
 
-<p>
-  <b>To user:</b>
-  <%=h @invite.to_user_id %>
-</p>
+            <% if team.category_name %>
+                any <%=h team.category_name %>-related goal
+            <% else %>
+                error finding category
+            <% end %>
 
-<p>
-  <b>Purpose join team:</b>
-  <%=h @invite.purpose_join_team_id %>
-</p>
+        <% end %>
+         </b>
 
-<p>
-  <b>Purpose follow goal:</b>
-  <%=h @invite.purpose_follow_goal_id %>
-</p>
-
-<p>
-  <b>Purpose friend user:</b>
-  <%=h @invite.purpose_friend_user_id %>
-</p>
-
-<p>
-  <b>Accepted on:</b>
-  <%=h @invite.accepted_on %>
-</p>
-
-<p>
-  <b>Declined loudly on:</b>
-  <%=h @invite.declined_loudly_on %>
-</p>
-
-<p>
-  <b>Declined silently on:</b>
-  <%=h @invite.declined_silently_on %>
-</p>
-
-<p>
-  <b>First sent on:</b>
-  <%=h @invite.first_sent_on %>
-</p>
-
-<p>
-  <b>Last resent on:</b>
-  <%=h @invite.last_resent_on %>
-</p>
+      <br />
+    <%
+end
+%>
 
 
-<%= link_to 'Edit', edit_invite_path(@invite) %> |
-<%= link_to 'Back', invites_path %>
+
+
+<br>
+<%= link_to 'Show All Invites', invites_path %>

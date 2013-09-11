@@ -31,7 +31,9 @@ end
             <% if @goal.team.i_am_owner_or_admin(current_user.id) %>
               No other team members yet...
             <% else %>
-              Sorry, the owner of this team has left the team, and you're the only member left. This shouldn't have been possible... please contact support@habitforge.com or if you'd prefer, you can quit the team... (since only the owner will be able to invite other people to it).
+              Sorry, the owner of this team has left the team, and you're the only member left. This shouldn't have been possible... please contact support@habitforge.com or if you'd prefer, you can 
+              <a href='/goals?quit_a_team=1&goal_id=<%=@goal.id%>' onclick="return confirm('Are you sure you want to quit this team?');">quit this team</a>
+              ... (since only the owner will be able to invite other people to it).
             <% end %>
 
           <% else %>

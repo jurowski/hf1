@@ -33,8 +33,8 @@
   <%= f.hidden_field :custom, :value => @team.custom %>
   <%= f.hidden_field :owner_user_id, :value => @team.owner_user_id %>
 
-  <% if @goal %>
-    <input type="hidden" name="goal_id" value="<%= @goal.id %>">
+  <% if params[:goal_id] %>
+    <input type="hidden" name="goal_id" value="<%= params[:goal_id] %>">
   <% end %>
 
   <p>

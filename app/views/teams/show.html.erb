@@ -22,10 +22,21 @@
 
 
     <br>
-    <% if @team.qty_current < 2 %>
-      <%= link_to 'Delete (no other team members)', @team, :confirm => 'Are you sure?', :method => :delete %>
-    <% else %>
+    <% 
+    allow_deletion = false
+    if @team.qty_current > 1
+      allow_deletion = false
+    else
+      goal = Goal.find(:first, :conditions => "team_id = #{@team.id}")
+      if goal and (goal.user_id == current_user.id)
+        allow_deletion = true
+      end
+    end 
+    %>
 
+    <% if allow_deletion %>
+        <%= link_to 'Delete (no other team members)', @team, :confirm => 'Are you sure?', :method => :delete %>
+    <% else %>
       <a id='delete_disabled_<%= @team.id.to_s %>'  class="btn disabled" title="Sorry, you can't delete a team that has members." ><i class="icon-remove"></i> Delete</a>
       <script type='text/javascript'>
           $('#delete_disabled_<%= @team.id.to_s %>').tipsy();

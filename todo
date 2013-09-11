@@ -24,20 +24,14 @@ CURRENT
 NEXT/NOW/CURRENT: 
 
 
---no feedback if a user already exists but is invited, (see @email_duplicate in users_controller:quicksignup_v2)
 
---users should be able to view all of their invitations when logged in (next to messages)
 
---users should be able to decline or ignore their invitations
 
 --when someone accepts a team invitation and joins that team, a message needs to go out to every member of the team, and it should prompt each member to send a welcome message to that new team member
 
---test that if someone has an active goal but tries to start a new goal as part of an invitation, they need to go premium to do that
 
 --someone who already has a goal needs to be able to join it to a team if a matching invitation exists
 
-
---if i delete a goal that was part of a custom team with no-one else on it, delete the team as well
 
 
 

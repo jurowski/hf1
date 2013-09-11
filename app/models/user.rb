@@ -33,6 +33,13 @@ class User < ActiveRecord::Base
   validates_presence_of :first_name
   validates_confirmation_of :email
   
+  def name
+    if last_name and last_name != ""
+      return first_name + " " + last_name
+    else
+      return first_name
+    end
+  end
 
   def get_quote_random
 

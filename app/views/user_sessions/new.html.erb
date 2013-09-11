@@ -8,6 +8,15 @@
       </div>
       <% end %>
 
+
+
+
+      <% if params[:message] and (params[:message] == "invitation_existing_email") %>
+        <div class="alert alert-error">
+          Please log in to accept your invitation.
+        </div>
+      <% end %>
+
       <h3 class="form-title">Log In to your account</h3>
       <div class="control-group">
         <div class="controls">
