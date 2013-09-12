@@ -177,6 +177,7 @@ module ApplicationHelper
       @arr.push(["", "None"])
       @arr.push(["Exercise", "Exercise"])
       @arr.push(["Diet, Healthy Foods and Water", "Diet, Healthy Foods and Water"])
+      @arr.push(["Caffeine Reduction", "Caffeine Reduction"])
       @arr.push(["Learning, Studying, Practice and Education", "Learning, Studying, Practice and Education"])
       @arr.push(["Smoking", "Smoking"])
       @arr.push(["Spirituality, Meditation and Prayer", "Spirituality, Meditation and Prayer"])
