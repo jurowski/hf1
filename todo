@@ -29,6 +29,7 @@ NEXT/NOW/CURRENT:
 
 --when someone accepts a team invitation and joins that team, a message needs to go out to every member of the team, and it should prompt each member to send a welcome message to that new team member
 
+--email team members when someone leaves the team
 
 --someone who already has a goal needs to be able to join it to a team if a matching invitation exists
 
@@ -41,7 +42,9 @@ NEXT
 1. make a button in the normal "goals" view that checks if the goal is already part of a template... and if it's not, enable a button that would kick off copy_goal_to_template_and_make_template_parent
 
 
+-- not sure if weekly_report_of_goals_i_follow is working w/out fail
 
+-- email the team when someone is slacking a lot and might be removed because of it
 
 modify team:new and team:edit forms so that only relevant fields are shown to owners
 change rights on team controller methods so that no one but admin and team owner can edit or delete a team

@@ -1,0 +1,111 @@
+<%
+    sitename = "habitforge.com"
+%>
+
+
+
+
+
+<html>
+<head>
+   <base href="http://<%= sitename %>/"/>
+   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <title>Your Invitation was Accepted</title>
+   <style type="text/css" media="screen">
+      body {
+      	margin: 0;
+      	padding: 0;
+      }
+   </style>
+
+</head>
+<body>
+<a name="top" id="top"></a>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+   <tr>
+      <td align="left">         
+         <table width="580" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+               <td class="header" height="30">
+                  <img src="/images/habitforge_logo.png" alt="Thanks for building your team!" height="30" />
+               </td>
+            </tr>
+            <tr>
+               <td>  
+                  <table width="580" border="0" cellspacing="20" cellpadding="0">     
+                     <tr>
+                        <td width="580" align="left" valign="top" class="mainbar">
+                            <table border=0><tr><td valign=top align=center width=1%>
+                            
+                            
+                              <img src="/images/gear.png" alt=" " width="65px">
+                              </td>
+                              <td valign=top align=left width=99%>
+                                <div style="padding:.8em;margin-bottom:1em;border:2px solid #ddd;background:#FFFFCC;color:#514721;border-color:#BBBBBB;">
+
+                                   <h3>Good <%= @team_owner.time_period_of_day_right_now %> <%= @team_owner.first_name %>!</h3>
+
+                                   <br>
+                               </div>
+                              </td></tr>
+
+                              <tr>
+                              <td>
+                              <br>
+
+                              <%= @goal.user.name %> has accepted your invitation to join the team!
+                              <br>
+                              <br>
+                              <%= @goal.user.first_name %> will be working on a goal of "<%= @goal.response_question %>".
+                              <br>
+                              <br>
+                              <p>
+                                <img src="/images/comment_user_add_32.png" /> 
+                                <a href="/tomessages/new?from_type=team&to_id=<%= @goal.user.id %>" >Send <%= @goal.user.first_name %> a Message!</a>
+                              </p>
+                              </td>
+                              <td>                                
+                              <br>
+                              </td>
+                              </tr>
+
+
+                                
+                          </table>
+                        </td>
+                     </tr>
+                  </table>
+                  
+               </td>
+            </tr>
+            <tr>
+                <td colspan=100>
+                    
+                </td>
+            </tr>
+            <tr>
+                <td align="center" colspan=100>
+                    Questions? Email support@<%= sitename %>
+                </td>
+            </tr>
+            <tr>
+                <td colspan=100>
+                    
+                </td>
+            </tr>
+            <tr>
+                <td colspan=100>
+                    
+                </td>
+            </tr>
+            <tr>
+            </tr>
+         </table>
+         
+      </td>
+   </tr>
+</table>
+
+</body>
+</html>
+

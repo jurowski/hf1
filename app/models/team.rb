@@ -14,6 +14,28 @@ class Team < ActiveRecord::Base
 
   belongs_to :goal_template_parent, :class_name => 'Goal', :foreign_key => 'goal_template_parent_id'
 
+
+
+  def members
+    arr_members = Array.new()
+    goals = Goal.find(:all, :conditions => "team_id = #{self.id}")
+    goals.each do |goal|
+      if goal.user
+        arr_members << goal.user
+      end
+    end
+
+    return arr_members
+  end
+
+  def members_email_addresses
+    arr_members_email_addresses = Array.new()
+    self.members.each do |member|
+      arr_members_email_addresses << member.email
+    end
+    return arr_members_email_addresses
+  end
+
   def calc_has_openings_save
   	if !self.qty_max
   		self.qty_max = 0
@@ -30,6 +52,19 @@ class Team < ActiveRecord::Base
   	end
 
   	self.save
+  end
+
+  def owner
+    if self.owner_user_id
+      owner_user = User.find(:first, :conditions => "id = #{self.owner_user_id}")
+      if owner_user
+        return owner_user
+      else
+        return false
+      end
+    else
+      return false
+    end
   end
 
 

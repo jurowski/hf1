@@ -867,8 +867,28 @@ class GoalsController < ApplicationController
                     if @goal.join_goal_to_a_team(team.id)
                       logger.info("sgj:goals_controller.rb:success adding goal to team when responding to invitation")
 
-                      invite.accepted_on = current_user.dtoday
-                      invite.save
+
+                      ### we actually want to delete the invite, not save it
+                      ### that way if the new team member removes their goal and then
+                      ### changes their mind later, we can send them another invite
+                      #invite.accepted_on = current_user.dtoday
+                      #invite.save
+                      invite.destroy
+
+
+                      #### SEND INVITE ACCEPTANCE TO OWNER
+                      begin
+                        if Notifier.deliver_to_team_owner_invite_accepted(@goal, team.owner) # sends the email      
+                          logger.info("sgj:goals_controller.rb:create:SUCCESS SENDING INVITE ACCEPTANCE EMAIL")                    
+                        else
+                          logger.error("sgj:goals_controller.rb:create:FAILURE SENDING INVITE ACCEPTANCE EMAIL:goal_id = " + @goal.id.to_s)
+                        end
+                      rescue
+                          logger.error("sgj:goals_controller.rb:create:(rescue)FAILURE SENDING INVITE ACCEPTANCE EMAIL:goal_id = " + @goal.id.to_s)
+                      end
+                      #### END SEND INVITE ACCEPTANCE TO OWNER
+
+
                     else
                       logger.error("sgj:goals_controller.rb:failed to add goal to team when responding to invitation")
                     end

@@ -439,6 +439,21 @@ class Notifier < ActionMailer::Base
     content_type "text/html"
   end
 
+
+
+  def to_team_owner_invite_accepted(goal, team_owner)
+    recipients  team_owner.name + "<" + team_owner.email + ">"
+    from        "HabitForge <support@habitforge.com>"
+    bcc         ["support@habitforge.com"]
+    subject     "[HF] #{goal.user.name} acccepted the invitation to join your team!"
+    body        :goal => goal, :team_owner =>  team_owner
+    content_type "text/html"
+  end
+
+
+
+
+
   def daily_team_summary_to_user(goal, day_of_the_week)
     recipients goal.user.first_name + "<" + goal.user.email + ">"
     #bcc        ["jurowski@gmail.com"]
