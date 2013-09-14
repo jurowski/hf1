@@ -61,14 +61,20 @@ class UpdateUserNumberGoalsIFollow < ActiveRecord::Base
 
           for cheer in cheers
             begin
-              goal = Goal.find(cheer.goal_id)
+
+              goal = Goal.find(:first, :conditions => "id = #{cheer.goal_id}")
+              #goal = Goal.find(cheer.goal_id)
               if goal
                 if goal.is_active
                   goal_count = goal_count + 1
                 end
+                puts "found goal_id " + cheer.goal_id.to_s
+              else
+                puts "could not find goal_id " + cheer.goal_id.to_s + " (should delete it)"
               end
+
             rescue
-              puts "could not find goal_id " + cheer.goal_id.to_s
+              puts "error when trying to find goal_id " + cheer.goal_id.to_s
             end
           end
           user.update_number_active_goals_i_follow = goal_count
