@@ -70,7 +70,12 @@ class UpdateUserNumberGoalsIFollow < ActiveRecord::Base
                 end
                 puts "found goal_id " + cheer.goal_id.to_s
               else
-                puts "could not find goal_id " + cheer.goal_id.to_s + " (should delete it)"
+                puts "could not find goal_id " + cheer.goal_id.to_s + " (will delete it)"
+                if cheer.destroy
+                  puts "cheer deleted"
+                else
+                  puts "could not delete cheer"
+                end
               end
 
             rescue

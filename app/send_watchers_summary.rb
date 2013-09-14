@@ -69,7 +69,7 @@ class SendWatchersSummary < ActiveRecord::Base
 
 
 
-  begin
+  #begin
     retried_times = retried_times + 1
     
     puts "start er up"
@@ -162,13 +162,17 @@ class SendWatchersSummary < ActiveRecord::Base
         cheers = Cheer.find(:all, :conditions => cheer_conditions)
         for cheer in cheers
          begin
-           goal = Goal.find(cheer.goal_id)
+
+           goal = Goal.find(:first, :conditions => "id = #{cheer.goal_id}")
+           #goal = Goal.find(cheer.goal_id)
            if goal
              if goal.is_active and (cheer.weekly_report_last_sent == nil or (dnow - cheer.weekly_report_last_sent > 6))
                proceed = true
                arr_goals_to_email_me_about << goal
                arr_cheers_to_email_me_about << cheer
              end
+           else
+            puts "no goal_id found of " + cheer.goal_id.to_s + " ... should probably delete that cheer"
            end
          rescue
            puts "could not find goal_id of " + cheer.goal_id.to_s
@@ -214,10 +218,10 @@ class SendWatchersSummary < ActiveRecord::Base
     end ### end for user in users
     
     puts "end of script"
-  rescue Timeout::Error
-    puts "Timeout error on run number #{retried_times}... restarting script from the top"
-    if retried_times < retried_times_limit
-      retry
-    end
-  end ## end begin
+  #rescue Timeout::Error
+  #  puts "Timeout error on run number #{retried_times}... restarting script from the top"
+  #  if retried_times < retried_times_limit
+  #    retry
+  #  end
+  #end ## end begin
 end ## end class
