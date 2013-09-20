@@ -38,8 +38,12 @@ end
   <h3>...a start of something new</h3>
 <% end %>
 
+
 <% form_for(@goal) do |f| %>
+
+    <div class="alert-error">
     <%= f.error_messages %>
+    </div>
 
 
     <!-- NO FIRST NAME -->
@@ -79,12 +83,11 @@ end
 
 
     <p>
-    <br>
 
     <% if @goal.template_owner_is_a_template %>
-      <input type="submit" value="Create This New Action Template" class="start_now" style="height:50px;">
+      <input type="submit" value="Launch This New Action Template" class="start_now" style="height:50px;">
     <% else %>
-      <input type="submit" value="Create My New Habit" class="start_now" style="height:50px;">
+      <input type="submit" value="Launch My New Habit" class="start_now" style="height:50px;">
     <% end %>
     </p>
 

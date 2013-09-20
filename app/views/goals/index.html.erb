@@ -472,6 +472,7 @@ tab_dashboard_active = "active"
 tab_followers_active = ""
 tab_bets_active = ""
 tab_team_active = ""
+tab_tracker_active = ""
 
 if params[:start_fire_goal_id] and params[:start_fire_goal_id] == @goal.id.to_s
     tab_dashboard_active = ""
@@ -495,6 +496,14 @@ if params[:join_a_team] and params[:goal_id] and params[:goal_id] == @goal.id.to
     tab_team_active = "active"
 end
 
+if params[:start_a_tracker] and params[:goal_id] and params[:goal_id] == @goal.id.to_s
+    tab_dashboard_active = ""
+    tab_followers_active = ""
+    tab_bets_active = ""
+    tab_tracker_active = ""
+    tab_team_active = "active"
+end
+
 %>
 
 <div class="tabbable tabbable-custom tabbable-custom-profile">
@@ -503,6 +512,9 @@ end
         <li class="<%= tab_followers_active %>"><a href="#tab_1_2_<%= @goal.id %>" data-toggle="tab"><%= followers_name %></a>
         <li class="<%= tab_bets_active %>"><a href="#tab_1_3_<%= @goal.id %>" data-toggle="tab"><%= bets_image %></a>
         <li class="<%= tab_team_active %>"><a href="#tab_1_4_<%= @goal.id %>" data-toggle="tab"><%= team_name %></a>
+        <% if 1 == 2 %>
+        <li class="<%= tab_tracker_active %>"><a href="#tab_1_5_<%= @goal.id %>" data-toggle="tab">Tracker</a>
+        <% end %>
     </ul>
     <div class="tab-content">
         <div class="tab-pane <%= tab_dashboard_active %>" id="tab_1_1_<%= @goal.id %>">
@@ -511,7 +523,7 @@ end
                 <div id="stats_<%= @goal.id %>" class="div_stats">  
                     <DIV>
                         <p>
-                        <i class='icon-pencil'></i> <%= link_to "Edit/Options", edit_goal_path(goal.id)  %>
+                        <i class='icon-wrench'></i> <%= link_to "Customize", edit_goal_path(goal.id)  %>
                         &nbsp
                         <i class='icon-calendar'></i> <a href="/goals/single/<%= goal.id %>">All Checkpoints</a>
                         &nbsp
@@ -633,6 +645,16 @@ end
                 <!-- END TEAM -->
             </div>
         </div>
+
+        <% if 1 == 2 %>
+        <div class="tab-pane <%= tab_tracker_active %>" id="tab_1_5_<%= @goal.id %>">
+            <div class="portlet-body" style="display: block;">
+                <!-- START TRACKER -->
+                TRACKER
+                <!-- END TRACKER -->
+            </div>
+        </div>
+        <% end %>
 
     </div>
 </div>

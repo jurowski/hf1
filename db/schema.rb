@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130829031349) do
+ActiveRecord::Schema.define(:version => 20130918023343) do
 
   create_table "achievemints", :force => true do |t|
     t.string   "name"
@@ -251,20 +251,20 @@ ActiveRecord::Schema.define(:version => 20130829031349) do
 
   create_table "goals", :force => true do |t|
     t.integer  "user_id"
-    t.string   "title",                                                                                       :null => false
+    t.string   "title",                                                                                                                      :null => false
     t.text     "summary"
     t.text     "why"
     t.date     "start"
     t.date     "stop"
     t.date     "established_on"
     t.string   "category"
-    t.boolean  "publish",                                                               :default => false
-    t.boolean  "share",                                                                 :default => false
-    t.string   "status",                                                                :default => "start"
+    t.boolean  "publish",                                                                                              :default => false
+    t.boolean  "share",                                                                                                :default => false
+    t.string   "status",                                                                                               :default => "start"
     t.text     "response_question"
-    t.string   "response_options",                                                      :default => "yes;no"
+    t.string   "response_options",                                                                                     :default => "yes;no"
     t.time     "reminder_time"
-    t.boolean  "higher_is_better",                                                      :default => true
+    t.boolean  "higher_is_better",                                                                                     :default => true
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "daysstraight"
@@ -299,13 +299,13 @@ ActiveRecord::Schema.define(:version => 20130829031349) do
     t.string   "last_stats_badge"
     t.date     "last_stats_badge_date"
     t.string   "last_stats_badge_details"
-    t.boolean  "more_reminders_enabled",                                                :default => false
-    t.integer  "more_reminders_start",                                                  :default => 8
-    t.integer  "more_reminders_end",                                                    :default => 22
-    t.integer  "more_reminders_every_n_hours",                                          :default => 4
-    t.integer  "more_reminders_last_sent",                                              :default => 0
+    t.boolean  "more_reminders_enabled",                                                                               :default => false
+    t.integer  "more_reminders_start",                                                                                 :default => 8
+    t.integer  "more_reminders_end",                                                                                   :default => 22
+    t.integer  "more_reminders_every_n_hours",                                                                         :default => 4
+    t.integer  "more_reminders_last_sent",                                                                             :default => 0
     t.date     "first_start_date"
-    t.boolean  "allow_push",                                                            :default => false
+    t.boolean  "allow_push",                                                                                           :default => false
     t.string   "phrase1"
     t.string   "phrase2"
     t.string   "phrase3"
@@ -315,9 +315,9 @@ ActiveRecord::Schema.define(:version => 20130829031349) do
     t.date     "next_push_on_or_after_date"
     t.integer  "pushes_allowed_per_day"
     t.integer  "pushes_remaining_on_next_push_date"
-    t.integer  "team_summary_send_hour",                                                :default => 12
+    t.integer  "team_summary_send_hour",                                                                               :default => 12
     t.date     "team_summary_last_sent_date"
-    t.boolean  "check_in_same_day",                                                     :default => true
+    t.boolean  "check_in_same_day",                                                                                    :default => true
     t.boolean  "template_owner_is_a_template"
     t.boolean  "template_owner_advertise_me"
     t.integer  "template_user_parent_goal_id"
@@ -344,6 +344,26 @@ ActiveRecord::Schema.define(:version => 20130829031349) do
     t.integer  "success_rate_during_past_180_days"
     t.integer  "success_rate_during_past_270_days"
     t.integer  "success_rate_during_past_365_days"
+    t.boolean  "tracker"
+    t.string   "tracker_question"
+    t.string   "tracker_statement"
+    t.string   "tracker_units"
+    t.integer  "tracker_digits_after_decimal"
+    t.integer  "tracker_standard_deviation_from_last_measurement"
+    t.boolean  "tracker_type_starts_at_zero_daily",                                                                    :default => true
+    t.boolean  "tracker_target_higher_value_is_better",                                                                :default => true
+    t.integer  "tracker_target_threshold_bad1",                           :limit => 10, :precision => 10, :scale => 0
+    t.integer  "tracker_target_threshold_bad2",                           :limit => 10, :precision => 10, :scale => 0
+    t.integer  "tracker_target_threshold_bad3",                           :limit => 10, :precision => 10, :scale => 0
+    t.integer  "tracker_target_threshold_good1",                          :limit => 10, :precision => 10, :scale => 0
+    t.integer  "tracker_target_threshold_good2",                          :limit => 10, :precision => 10, :scale => 0
+    t.integer  "tracker_target_threshold_good3",                          :limit => 10, :precision => 10, :scale => 0
+    t.integer  "tracker_measurement_worst_yet",                           :limit => 10, :precision => 10, :scale => 0
+    t.integer  "tracker_measurement_best_yet",                            :limit => 10, :precision => 10, :scale => 0
+    t.date     "tracker_measurement_last_taken_on_date"
+    t.integer  "tracker_measurement_last_taken_on_hour"
+    t.integer  "tracker_measurement_last_taken_value",                    :limit => 10, :precision => 10, :scale => 0
+    t.datetime "tracker_measurement_last_taken_timestamp"
   end
 
   add_index "goals", ["allow_push", "last_success_date", "next_push_on_or_after_date", "pushes_remaining_on_next_push_date"], :name => "allow_push"
@@ -562,6 +582,17 @@ ActiveRecord::Schema.define(:version => 20130829031349) do
   end
 
   create_table "promotion1s", :force => true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "quants", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "goal_id"
+    t.integer  "measurement",                 :limit => 10, :precision => 10, :scale => 0
+    t.datetime "measurement_taken_timestamp"
+    t.date     "measurement_date"
+    t.integer  "measurement_hour"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

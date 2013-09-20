@@ -381,6 +381,11 @@ class GoalsController < ApplicationController
       @goal = Goal.new
       @goal.reminder_time = DateTime.new(2009,1,1,0,0,0)
 
+      @goal.category = "Exercise" ## a reasonable default
+
+      @goal.reminder_send_hour = 8 #### 8am
+      @goal.usersendhour = 20 ### 8pm
+
       @goal.daym = 1
       @goal.dayt = 1
       @goal.dayw = 1
@@ -637,6 +642,9 @@ class GoalsController < ApplicationController
         @goal.pushes_allowed_per_day = 1
       end    
 
+
+
+
       ################################
       #Status Creation Business Rules
       ################################
@@ -645,7 +653,70 @@ class GoalsController < ApplicationController
       #hold  (just create the goal and a default dummy date of 1/1/1900 for start and stop)
     
       respond_to do |format|
-        if @goal.save
+
+        tracker_data_missing_error = false
+        if @goal.tracker
+          missing = false
+          if !@goal.tracker_question or @goal.tracker_question == ""
+            missing = true
+            logger.debug("sgj:goals_controller:1")
+          end
+          if !@goal.tracker_units or @goal.tracker_units == ""
+            missing = true
+            logger.debug("sgj:goals_controller:2")
+          end
+
+
+          ### these will never be null b/c they're in forced pulldowns
+          ### plus these checks were not working right
+          # if !@goal.tracker_type_starts_at_zero_daily
+          #   missing = true
+          #   logger.debug("sgj:goals_controller:3")
+          # end
+          # if !@goal.tracker_target_higher_value_is_better
+          #   missing = true
+          #   logger.debug("sgj:goals_controller:4")
+          # end
+
+          if !@goal.tracker_standard_deviation_from_last_measurement
+            missing = true
+            logger.debug("sgj:goals_controller:5")
+          end
+          if !@goal.tracker_target_threshold_bad1
+            missing = true
+            logger.debug("sgj:goals_controller:6")
+          end
+          if !@goal.tracker_target_threshold_bad2
+            missing = true
+            logger.debug("sgj:goals_controller:7")
+          end
+          if !@goal.tracker_target_threshold_bad3
+            missing = true
+            logger.debug("sgj:goals_controller:8")
+          end
+          if !@goal.tracker_target_threshold_good1
+            missing = true
+            logger.debug("sgj:goals_controller:9")
+          end
+          if !@goal.tracker_target_threshold_good2
+            missing = true
+            logger.debug("sgj:goals_controller:10")
+          end
+          if !@goal.tracker_target_threshold_good3
+            missing = true
+            logger.debug("sgj:goals_controller:11")
+          end
+
+          if missing
+            tracker_data_missing_error = true
+            @goal.errors.add(:base, "All 'Tracker' fields are required if the 'Tracker' is enabled.")
+          end ### end if missing
+
+        end ### end if @goal.tracker
+
+
+
+        if !tracker_data_missing_error and @goal.save
 
 
           pmo = false
@@ -756,7 +827,7 @@ class GoalsController < ApplicationController
 
         
           if @goal.usersendhour == nil
-	          @goal.usersendhour = 1
+	          @goal.usersendhour = 20 ### 8pm
           end
 
           Time.zone = @goal.user.time_zone
@@ -1229,7 +1300,7 @@ class GoalsController < ApplicationController
             
             ##### SET THE HOUR THAT THE REMINDERS SHOULD GO OUT FOR THIS GOAL #############
               if @goal.usersendhour == nil
-	             @goal.usersendhour = 1
+	             @goal.usersendhour = 20 ### 8pm
               end
 
             Time.zone = @goal.user.time_zone

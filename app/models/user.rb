@@ -7,7 +7,9 @@ class User < ActiveRecord::Base
   belongs_to :coach
   belongs_to :affiliate
   
-  has_many :goals        
+  has_many :goals    
+  has_many :trackers
+      
   has_many :messages
   
   has_many :organization_users

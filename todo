@@ -6,25 +6,30 @@
 
 :::CURRENT::: 
 
+Goal creation form:
 
-Custom Teams Overview
-----------------------
-i want to build my own custom team related to a goal
-Allow for someone to Build a Custom Team in which there are openings ... so that people can seek out open teams and choose rather than having to be randomly assigned
+Does succeeding depend on some number you'd like us to ask you about? (ex: hours of sleep, weight in pounds, # of glasses of water, an overall mood rating, number of sales calls, etc.)
 
-Custom Teams ToDo
---------------------
+We'll test out two cases at first, both of which would have a max :
+--one that occasionally measures something that "is" (weight)
+--one that daily measures something that you achieve daily (sleep)
 
-CURRENT
-
-
---the email invitation going out should have a link that says: Join This Team ... clicking it would automatically create their account ... and it would take them to the goal-creation screen either with the category pre-defined or as a goal based on a template ... and at the top it should mention they're joining a team, and it should describe that team
 
 
 NEXT/NOW/CURRENT: 
 
 
+!!! for templated weight loss, as their current weight to auto-fill in the ranges
 
+
+-- WEDNESDAYS ONLY: not sure if weekly_report_of_goals_i_follow is working w/out fail
+
+
+
+
+-------------------- :::FUTURE::: -------------------------------
+
+--fitbit integration for a step tracker and sleep tracker
 
 
 --when someone accepts a team invitation and joins that team, a message needs to go out to every member of the team, and it should prompt each member to send a welcome message to that new team member
@@ -35,14 +40,10 @@ NEXT/NOW/CURRENT:
 
 
 
-
-NEXT
-
 (for admin user only for now... eventually enable for everyone but only once we have a searchable library that would make it relevant for others to find)
 1. make a button in the normal "goals" view that checks if the goal is already part of a template... and if it's not, enable a button that would kick off copy_goal_to_template_and_make_template_parent
 
 
--- not sure if weekly_report_of_goals_i_follow is working w/out fail
 
 -- email the team when someone is slacking a lot and might be removed because of it
 
@@ -78,37 +79,8 @@ do not let owner change a team "type" from category to goal-specific once it is 
 [ ]  later: add a "fade or not" photo mosaic linked to each team member's last 7 days ... one row per person)
 
 
----------------------------------------------------------------
-DONE BELOW (related to Custom Teams)
----------------------------------------------------------------
-if i've not yet chosen a category, prompt me to do so first
-
-----------------------
-mod table "teams"
-----------------------
-goal_template_parent_id (nil if category only)
-custom # boolean, nil or false if randomized team)
-owner_user_id
-
---------------
-new table "team_invites"
---------------
-team_id ### which team is this invite for
-email_original ### email it was originally sent to
-user_id ### once they sign up or if already signed up
-goal_id ### once they accept the goal, which of their own goals is in the team
-first_sent_date ### invite creation date
-remind_until_date ### how long should we send reminders for
-remind_every_n_days ### how frequently should we send reminders
-last_reminded_date ### the last time a reminder was sent
-declined_date ### if the end user declines (send notice to inviter)
-ignored_date ### if the end user silently declines (do not send notice to inviter)
-accepted_date ### if the end user accepts (send notice to all team members)
 
 
-
-
--------------------- :::FUTURE::: -------------------------------
 
 
 --Display badges for those with 100+ 200+ ... etc. impact points

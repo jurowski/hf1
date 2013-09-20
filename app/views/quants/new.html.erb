@@ -1,0 +1,15 @@
+<h1>New quant</h1>
+
+<% form_for(@quant) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :tracker_id %><br />
+    <%= f.text_field :tracker_id %>
+  </p>
+  <p>
+    <%= f.submit 'Create' %>
+  </p>
+<% end %>
+
+<%= link_to 'Back', quants_path %>

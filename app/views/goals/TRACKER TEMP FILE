@@ -1,0 +1,92 @@
+
+
+<% if 1 == 2 %>
+<!-- TRACKER -->
+<h2><i class="icon-bar-chart"></i> Tracker <a href="#undefined" onclick="toggle_show_hide('tracker_option')" style="font-size:0.5em;">Details</a></h2>
+
+
+<% if @goal.tracker and @ca == "new" %>
+  <div class="well" id="tracker_option" style="display:block;border-width:1px;">
+<% else %>
+  <div class="well" id="tracker_option" style="display:none;border-width:1px;">
+<% end %>
+
+<p><h3>Does succeeding depend on some number you'd like us to ask you about?
+  <br><span style="font-size:0.5em;">(ex: hours of sleep, weight in pounds, # of glasses of water, an overall mood rating, number of sales calls, etc.)</span></h3></p>
+
+<%= check_box(:goal, :tracker, options = {}, checked_value = "true", unchecked_value = "false") %>
+<strong>ENABLE (Ask me for a number instead of just a "yes/no".)</strong>
+
+<br>
+
+Ask me this at each check-in: 
+<br><%= form.text_field :tracker_question, :placeholder => "ex:What is your current weight? or How many glasses of water did you drink?", :style=>'width:400px;', :size => 40 %>
+to measure <%= form.text_field :tracker_units, :placeholder => "ex:pounds, glasses of water, rating, sales calls", :style=>'width:400px;', :size => 20 %>
+
+<br>
+
+Does this number reset at zero every day? 
+
+    <!--<select id="goal_tracker_type_starts_at_zero_daily" name="goal[tracker_type_starts_at_zero_daily]" style="width:auto;">
+    <option value="1">Yes (as with counting glasses of water, pushups, or sales calls)</option>
+    <option value="0">No (as with tracking weight or your mood)</option>
+    </select>
+    -->
+
+    <%
+    @arr_tracker_type_starts_at_zero_daily = Array.new
+
+    @arr_tracker_type_starts_at_zero_daily.push(["Yes (as with counting glasses of water, pushups, or sales calls)", true])
+    @arr_tracker_type_starts_at_zero_daily.push(["No (as with tracking weight or your mood)", false])
+    %>
+    <%= select(:goal, :tracker_type_starts_at_zero_daily, @arr_tracker_type_starts_at_zero_daily)%>
+
+
+<br>
+Are you trying to get the number higher or lower? 
+    <%
+    @arr_higher_is_better = Array.new
+
+    @arr_higher_is_better.push(["Higher (as with tracking sales calls, glasses of water or pushups)", true])
+    @arr_higher_is_better.push(["Lower (as with tracking weight loss or cookies per day", false])
+    %>
+    <%= select(:goal, :tracker_target_higher_value_is_better, @arr_higher_is_better)%>
+
+
+
+<h3>What numbers are considered good or not so good?</h3>
+<br>
+<%= form.text_field :tracker_target_threshold_good3, :style=>'width:30px;', :size => 5 %> <span class="text-success">An "Excellent" rating: for this number or better.</span>
+
+<br>
+<%= form.text_field :tracker_target_threshold_good2, :style=>'width:30px;', :size => 5 %> <span class="text-info">A "Very Good" rating: for numbers between here and "Excellent".</span> 
+
+
+<br>
+<%= form.text_field :tracker_target_threshold_good1, :style=>'width:30px;', :size => 5 %> <span class="text-muted">A "Good" rating: for numbers between here and "Very Good".</span>
+
+<br>
+<div class="alert info">
+  An "OK" rating: for the range of numbers between "Good" and "Warning"
+</div>
+
+
+<%= form.text_field :tracker_target_threshold_bad1, :style=>'width:30px;', :size => 5 %> <span class="text-muted">A "Warning" rating: for numbers between this number and "Poor".</span>
+
+
+<br>
+<%= form.text_field :tracker_target_threshold_bad2, :style=>'width:30px;', :size => 5 %> <span class="text-warning">A "Poor" rating: for numbers between this number and "Failing".</span>
+
+
+<br>
+<%= form.text_field :tracker_target_threshold_bad3, :style=>'width:30px;', :size => 5 %> <span class="text-error">A "Failing" rating: for this number or worse.</span>
+ 
+<br>
+What is the most that the number could change from one check-in to the next? 
+<%= form.text_field :tracker_standard_deviation_from_last_measurement, :style=>'width:30px;', :size => 5 %> <!-- for help generating quick current value links in email -->
+
+
+</div>
+<!-- END TRACKER-->
+<% end %>
+

@@ -144,24 +144,68 @@ show_monitor_option_details = 0
 
 
 
-<h2><img src="/home/images/paperplane_icon.png" alt="img"  /> Email <%= them_or_me %> daily and ask:</h2>
+<h2><img src="/home/images/paperplane_icon.png" alt="img"  /> Check in with <%= them_or_me %> daily by email at 
+
+
+    <%
+    @arr_checkin = Array.new
+
+
+    @arr_checkin.push(["1am", 1])
+    @arr_checkin.push(["2am", 2])
+    @arr_checkin.push(["3am", 3])
+    @arr_checkin.push(["4am", 4])
+    @arr_checkin.push(["5am", 5])
+    @arr_checkin.push(["6am", 6])
+    @arr_checkin.push(["7am", 7])
+    @arr_checkin.push(["8am", 8])
+    @arr_checkin.push(["9am", 9])
+    @arr_checkin.push(["10am", 10])
+    @arr_checkin.push(["11am", 11])
+    @arr_checkin.push(["12pm (noon)", 12])
+    @arr_checkin.push(["1pm", 13])
+    @arr_checkin.push(["2pm", 14])
+    @arr_checkin.push(["3pm", 15])
+    @arr_checkin.push(["4pm", 16])
+    @arr_checkin.push(["5pm", 17])
+    @arr_checkin.push(["6pm", 18])
+    @arr_checkin.push(["7pm", 19])
+    @arr_checkin.push(["8pm", 20])
+    @arr_checkin.push(["9pm", 21])
+    @arr_checkin.push(["10pm", 22])
+    @arr_checkin.push(["11pm", 23])
+    %>
+    <%= select(:goal, :usersendhour, @arr_checkin,{},{:style=>"width:75px;"})%>
+
+
+
+  and ask:</h2>
 
 <div class="alert">
 <h4>
 
 
 <% 
-question_placeholder = "Ex: walking for at least 20 minutes"
+question_placeholder = "ex: walking for at least 20 minutes"
 if part_of_a_team_category 
   question_placeholder = ""
 end
 %>
 
 
-  "Were you successful at
+  "Were you successful  
+
+    <%
+    @arr_check_in_same_day = Array.new
+    @arr_check_in_same_day.push(["today", true])
+    @arr_check_in_same_day.push(["yesterday", false])
+    %>
+    <%= select(:goal, :check_in_same_day, @arr_check_in_same_day, {},{:style => 'width:100px;'})%>
+
+  at
 <% if !based_on_a_template and !has_active_challenge %>
  &nbsp
-  <%= form.text_field :response_question, :placeholder => question_placeholder, :style=>'width:400px;', :size => 40 %> ?"
+  <%= form.text_field :response_question, :placeholder => question_placeholder, :size => 40, :style=>'width:300px;' %> ?"
 <% else %>
   <%= @goal.response_question %>?"
   <%= form.hidden_field :response_question, :value => @goal.response_question %>
@@ -170,6 +214,8 @@ end
 
 <% end %>
 </h4>
+
+
 </div>
 <% if has_active_challenge %>
   <br>
@@ -185,7 +231,7 @@ end
     <%= form.text_field :template_tagline, :placeholder => 'Ex: Take a Walk!', :style=>'width:400px;', :size => 40 %>
 
     <h2>Description</h2><span style="font-style:italic;">Some text about this goal, or a fact about why they should do this.</span><br>
-    <%= form.text_field :template_description, :placeholder => 'Ex: Walking for 20 minutes each day burns calories and increases a sense of well-being!', :style=>'width:600px;', :size => 80 %>
+    <%= form.text_field :template_description, :placeholder => 'ex: Walking for 20 minutes each day burns calories and increases a sense of well-being!', :style=>'width:600px;', :size => 80 %>
 
   <% end %>
 
@@ -213,49 +259,14 @@ end
   <% end %>
 
 
-  <table border=0>
-  <tr>
-  <td valign=top align=right nowrap>
-  </td>
-  <td nowrap>
 
-  </td>
-  </tr>
-  <tr>
-  <td colspan=3>
-  </td>
-  <tr>
-  <tr>
-  <td valign=top align=right nowrap>
-  </td>
-  <td nowrap>
-  </td>
-  </tr>
-
-
-
-  <tr>
-  <td valign=top nowrap align=right>
-  &nbsp
-  </td>
-  <td nowrap>
-  &nbsp
-  </td>
-  </tr>
-
-
-
-  <tr>
-  <td valign=top nowrap align=right>
   <% if based_on_a_template or has_active_challenge or part_of_a_team_category %>
     <% if @goal.category and @goal.category != "" %>
       Category: 
     <% end %>
   <% else %>
-    What Category is this? &nbsp 
+    This fits best in the category of  &nbsp 
   <% end %>
-  </td>
-  <td nowrap>
 
     <% if !based_on_a_template and !has_active_challenge and !part_of_a_team_category %>
       <%
@@ -267,64 +278,96 @@ end
       <%= form.hidden_field :category, :value => @goal.category %>
     <% end %>
 
-  </td>
-  </tr>
+<br>
+      <% 
+      if @ca == "new" and !@goal.template_owner_is_a_template
+          %>
 
+
+          <% 
+          @arr_pre_start_days_per_week = Array.new
+
+          @arr_pre_start_days_per_week.push(["0", 0])
+          @arr_pre_start_days_per_week.push(["1", 1])
+          @arr_pre_start_days_per_week.push(["2", 2])
+          @arr_pre_start_days_per_week.push(["3", 3])
+          @arr_pre_start_days_per_week.push(["4", 4])
+          @arr_pre_start_days_per_week.push(["5", 5])
+          @arr_pre_start_days_per_week.push(["6", 6])
+          @arr_pre_start_days_per_week.push(["7", 7])
+          %>
+          
+          <% 
+          if !session[:sfm_virgin]  
+            %>
+              Lately I've been doing it about   
+              <%= select(:goal, :pre_start_days_per_week, @arr_pre_start_days_per_week,{},{:style=>"width:50px;"}) %> days a week.
+              <% 
+          end 
+          %>
+           I'll be doing it regularly 
+          <select id="delay_start_for_this_many_days" name="delay_start_for_this_many_days" style="width:auto;">
+          <option value="0">starting today.</option>
+          <option value="1">starting tomorrow.</option>
+          </select>
+          <%
+      end
+      %>
+<br>
+<br>
+</div>
+
+
+
+<!-- START ALL CUSTOM OPTIONS -->
+<h2><i class="icon-briefcase"></i> Customization Toolbox <a href="#undefined" onclick="toggle_show_hide('div_customization_toolbox')" style="font-size:0.5em;">Open It Up</a></h2>
+<div id="div_customization_toolbox" name="div_customization_toolbox" style="display:none;margin-left:50px;border-width:1px;border-style:solid;border-color:#eeeeee;padding:10px;">
+
+
+
+<!-- START REMINDER OPTIONS -->
+<h2><i class="icon-bell"></i> Reminders <a href="#undefined" onclick="toggle_show_hide('div_reminders')" style="font-size:0.5em;">Details</a></h2>
+<div id="div_reminders" name="div_reminders" class="well" style="display:none;">
+<table>
   <tr>
   <td valign=top nowrap align=right>
-  &nbsp
-  </td>
-  <td nowrap>
-  &nbsp
-  </td>
-  </tr>
-
-  <tr>
-  <td valign=top nowrap align=right>
-  &nbsp
-  </td>
-  <td nowrap>
-  &nbsp
-  </td>
-  </tr>
 
 
-  <tr>
-  <td valign=top nowrap align=right>
-  <i class="icon-bell"></i> Remind <%= them_or_me %> at: &nbsp  
+  Remind <%= them_or_me %> at: &nbsp  
+
+
+
+
+
   </td>
   <td nowrap>
 
     <%
     @arr_reminder = Array.new
 
-    @arr_reminder.push(["~8:00am", 8])
-    @arr_reminder.push([" ", -1])
-    @arr_reminder.push([" ", -1])
-    @arr_reminder.push(["~5:00am", 5])
-    @arr_reminder.push(["~6:00am", 6])
-    @arr_reminder.push(["~7:00am", 7])
-    @arr_reminder.push(["~8:00am", 8])
-    @arr_reminder.push(["~9:00am", 9])
-    @arr_reminder.push(["~10:00am", 10])
-    @arr_reminder.push(["~11:00am", 11])
-    @arr_reminder.push(["~12:00pm", 12])
-    @arr_reminder.push(["~1:00pm", 13])
-    @arr_reminder.push(["~2:00pm", 14])
-    @arr_reminder.push(["~3:00pm", 15])
-    @arr_reminder.push(["~4:00pm", 16])
-    @arr_reminder.push(["~5:00pm", 17])
-    @arr_reminder.push(["~6:00pm", 18])
-    @arr_reminder.push(["~7:00pm", 19])
-    @arr_reminder.push(["~8:00pm", 20])
-    @arr_reminder.push(["~9:00pm", 21])
-    @arr_reminder.push(["~10:00pm", 22])
-    @arr_reminder.push(["~11:00pm", 23])
+    @arr_reminder.push(["~5am", 5])
+    @arr_reminder.push(["~6am", 6])
+    @arr_reminder.push(["~7am", 7])
+    @arr_reminder.push(["~8am", 8])
+    @arr_reminder.push(["~9am", 9])
+    @arr_reminder.push(["~10am", 10])
+    @arr_reminder.push(["~11am", 11])
+    @arr_reminder.push(["~12pm", 12])
+    @arr_reminder.push(["~1pm", 13])
+    @arr_reminder.push(["~2pm", 14])
+    @arr_reminder.push(["~3pm", 15])
+    @arr_reminder.push(["~4pm", 16])
+    @arr_reminder.push(["~5pm", 17])
+    @arr_reminder.push(["~6pm", 18])
+    @arr_reminder.push(["~7pm", 19])
+    @arr_reminder.push(["~8pm", 20])
+    @arr_reminder.push(["~9pm", 21])
+    @arr_reminder.push(["~10pm", 22])
+    @arr_reminder.push(["~11pm", 23])
+
     @arr_reminder.push(["no reminder", -1])
     %>
-    <%= select(:goal, :reminder_send_hour, @arr_reminder)%>
-
-
+    <%= select(:goal, :reminder_send_hour, @arr_reminder,{},{:style=>"width:75px;"})%>
 
     <%
       if current_user.sponsor == "habitforge" and !@goal.more_reminders_enabled and !session[:sfm_virgin]
@@ -335,75 +378,9 @@ end
         <%
       end
     %>
-
-
-
 </h2>
-
   </td>
   </tr>
-
-<!-- if current_user.email == "jurowski@gmail.com" or current_user.email == "jurowski@pediatrics.wisc.edu" -->
-  <tr><td colspan=10>&nbsp</td>
-  </tr>
-  <tr>
-  <td valign=top nowrap align=right>
-  <i class="icon-time"></i> Check in with <%= them_or_me %> at: &nbsp  
-  </td>
-  <td nowrap>
-
-    <%
-    @arr_checkin = Array.new
-
-    @arr_checkin.push(["~8:00pm", 20])
-    @arr_checkin.push(["~9:00pm", 21])
-    @arr_checkin.push(["~10:00pm", 22])
-    @arr_checkin.push([" ", 0])
-    @arr_checkin.push(["---------", 0])
-    @arr_checkin.push([" ", 0])
-    @arr_checkin.push(["~1:00am", 1])
-    @arr_checkin.push(["~2:00am", 2])
-    @arr_checkin.push(["~3:00am", 3])
-    @arr_checkin.push(["~4:00am", 4])
-    @arr_checkin.push(["~5:00am", 5])
-    @arr_checkin.push(["~6:00am", 6])
-    @arr_checkin.push(["~7:00am", 7])
-    @arr_checkin.push(["~8:00am", 8])
-    @arr_checkin.push(["~9:00am", 9])
-    @arr_checkin.push(["~10:00am", 10])
-    @arr_checkin.push(["~11:00am", 11])
-    @arr_checkin.push(["~12:00pm", 12])
-    @arr_checkin.push(["~1:00pm", 13])
-    @arr_checkin.push(["~2:00pm", 14])
-    @arr_checkin.push(["~3:00pm", 15])
-    @arr_checkin.push(["~4:00pm", 16])
-    @arr_checkin.push(["~5:00pm", 17])
-    @arr_checkin.push(["~6:00pm", 18])
-    @arr_checkin.push(["~7:00pm", 19])
-    @arr_checkin.push(["~8:00pm", 20])
-    @arr_checkin.push(["~9:00pm", 21])
-    @arr_checkin.push(["~10:00pm", 22])
-    @arr_checkin.push(["~11:00pm", 23])
-    %>
-    <%= select(:goal, :usersendhour, @arr_checkin)%>
-
-
-    <%
-    @arr_check_in_same_day = Array.new
-
-    @arr_check_in_same_day.push(["that same day", true])
-    @arr_check_in_same_day.push(["the next day", false])
-    %>
-    <%= select(:goal, :check_in_same_day, @arr_check_in_same_day)%>
-
-
-  </td>
-  </tr>
-<!-- end -->
-
-
-
-
 
   <tr>
   <td valign=top nowrap align=right colspan=5>
@@ -413,9 +390,7 @@ end
         <div id="multiple_reminders">
     <% else %>
         <div id="multiple_reminders" style="display:none;">
-    <% end %>
-    
-    
+    <% end %>    
     
         <% if current_user.is_habitforge_supporting_member or @goal.more_reminders_enabled %>
                     <%= check_box(:goal, :more_reminders_enabled, options = {}, checked_value = "true", unchecked_value = "false") %>
@@ -499,8 +474,6 @@ end
         %>
           <div class="notice">
 
-
-
             <a href="/goals?feature_limit=1" target="_blank">Enable "Frequent Reminders" with a Premium Membership</a>
             <br>
             <input type=checkbox disabled>
@@ -512,58 +485,11 @@ end
         <%
         end
         %>
-
       </td>
-      </tr>
-      </table>
-      <br>
-
-
-
-
-  </td>
-  </tr>
-
-
+    </tr>
   </table>
 </div>
-
-<% 
-if @ca == "new" and !@goal.template_owner_is_a_template
-    %>
-
-    When will you start doing it? <select id="delay_start_for_this_many_days" name="delay_start_for_this_many_days" style="width:auto;">
-  	<option value="0">Start Today</option>
-  	<option value="1">Start Tomorrow</option>
-    </select>
-    <br>
-
-
-    <% 
-    @arr_pre_start_days_per_week = Array.new
-
-    @arr_pre_start_days_per_week.push(["0", 0])
-    @arr_pre_start_days_per_week.push(["1", 1])
-    @arr_pre_start_days_per_week.push(["2", 2])
-    @arr_pre_start_days_per_week.push(["3", 3])
-    @arr_pre_start_days_per_week.push(["4", 4])
-    @arr_pre_start_days_per_week.push(["5", 5])
-    @arr_pre_start_days_per_week.push(["6", 6])
-    @arr_pre_start_days_per_week.push(["7", 7])
-    %>
-    
-    <br>
-    <% 
-    if !session[:sfm_virgin]  
-        %>
-        <strong>On average, how many days per week are you already succeeding at this?</strong>
-        <%= select(:goal, :pre_start_days_per_week, @arr_pre_start_days_per_week) %> 
-        <% 
-    end 
-
-
-end
-%>
+<!-- END REMINDER OPTIONS -->
 
 
 
@@ -571,18 +497,16 @@ end
 
 <!-- HIDE THE FOLLOWING IF FIRST NEW GOAL VIRGIN SETUP SCREEN -->
 <% if !session[:sfm_virgin] and !@goal.template_owner_is_a_template  %>
-  <br>
-  <br>
 
-  <h2><i class="icon-fire"></i> Personal Motivation:
-  <strong>
+  <h2><i class="icon-fire"></i> Motivation
+  
 
 
 
-          <a href="#undefined" onclick="toggle_show_hide('personal_motivation')" class="btn-add">What's driving you?</a>
+          <a href="#undefined" onclick="toggle_show_hide('personal_motivation')" style="font-size:0.5em;">Details</a>
 
 
-  </strong></h2>
+  </h2>
   <div id="personal_motivation" class="well" style="display:none;">
   <div class="notice">
 
@@ -603,8 +527,6 @@ end
   </div>
 
 
-  <br>
-  <br>
   </p>
   </p>
 
@@ -614,7 +536,8 @@ end
     <% else %>
       <i class="icon-lock"></i> 
     <% end %>
-    Visibility</h2>
+    Visibility <a href="#undefined" onclick="toggle_show_hide('div_visibility')" style="font-size:0.5em;">Details</a></h2>
+  <div id="div_visibility" name="div_visibility" class="well" style="display:none;">
   <p>
   <% if current_user.sponsor == "habitforge" and !current_user.is_habitforge_supporting_member %>
     <input disabled="disabled" id="publish_disabled" name="publish_disabled" type="checkbox" value="true" checked />
@@ -630,15 +553,18 @@ end
                             
       <a href="/goals?feature_limit=1" target="_blank"> (requires a Premium Membership)</a>
   <% end %>
+  </div> <!-- div_visibility>
+
+
+
+
 
 
   <!-- START FRIENDLY PUSHES -->
   <% if session[:site_name] == "habitforge" %>
-    <div> 
-      &nbsp   
-    </div>  
     <!-- BEGIN WELL -->
-    <h2><i class="icon-bullhorn"></i> Priority Encouragement</h2>
+    <h2><i class="icon-bullhorn"></i> Encouragement <a href="#undefined" onclick="toggle_show_hide('div_priority_encouragement')" style="font-size:0.5em;">Details</a></h2>
+    <div id="div_priority_encouragement" name="div_priority_encouragement" style="display:none;">
     <div class="well">
             <h4>What happens if you start to slack?</h4> Be one of the first in line to get a "Friendly Push" when you need it. If you don't succeed for a few days, other HabitForge members can earn points by sending you a "push". They can only use <strong>motivating phrases that you create</strong>. If you were slacking and then you succeed within 48 hours after their "push", they earn additional points redeemable toward a Premium Membership.
 
@@ -714,6 +640,8 @@ end
     <!-- END WELLS PORTLET-->
   <% end %>
   <!-- END FRIENDLY PUSHES -->
+  </div>  <!-- div_priority_encouragement-->
+
 <% end ### end whether session[:sfm_virgin] == true %>
 <!-- END HIDE THE ABOVE IF FIRST NEW GOAL VIRGIN SETUP SCREEN -->
 
@@ -722,7 +650,20 @@ end
 <%= form.hidden_field :reminder_time, :value => :reminder_time %>
 
 
-<h2><i class="icon-calendar"></i> Frequency</h2>
+
+
+
+
+
+
+
+
+
+
+
+
+<h2><i class="icon-calendar"></i> Frequency <a href="#undefined" onclick="toggle_show_hide('div_frequency')" style="font-size:0.5em;">Details</a></h2>
+<div id="div_frequency" name="div_frequency" style="display:none;">
 <% if based_on_a_template %>
   <h6>(Values below are locked because this goal is based off of a template.)</h6>
 <% end %>
@@ -930,8 +871,10 @@ end
   </div>
 </div>
 </div> <!-- END "WELL" -->
+</div> <!-- end div_frequency -->
 
 
+</div> <!-- END ALL CUSTOMIZATION OPTIONS TOOLBOX div_customization_toolbox -->
 
 <br>
 <br>

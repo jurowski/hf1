@@ -1,4 +1,8 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :quants
+
+  map.resources :trackers
+
   map.resources :invites
 
   map.resources :encourage_items
