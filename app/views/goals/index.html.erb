@@ -225,9 +225,11 @@ for goal in current_user.active_goals_sorted_by_next_action_day
 
 
                 <div class=" " style="padding:10px;"> 
-                    <%= render :partial => "goals/date_badge", :locals => { :badge_date => @badge_date }  %>
+
+
 
                 <h2>
+                    <i class='icon-chevron-right'></i>
                     &nbsp
                 <% if number_goals_today == 1 %>
                     Today I need to work on...
@@ -266,10 +268,10 @@ for goal in current_user.active_goals_sorted_by_next_action_day
             <br>
 
 
-            <div class=" " style="padding:10px;"> 
-            <%= render :partial => "goals/date_badge", :locals => { :badge_date => @badge_date }  %>
+            <div class=" " style="padding:0px;"> 
+
             <h2>
-            &nbsp Tomorrow is the next action day for...
+            Tomorrow is the next action day for...
             </h2>
         </div>
 
@@ -283,12 +285,10 @@ for goal in current_user.active_goals_sorted_by_next_action_day
             <br>
             <h2>Actions for this coming week</h2>
             <div class="alert">
-            <%= render :partial => "goals/date_badge", :locals => { :badge_date => @badge_date }  %>
-
 
                 &nbsp These show up here because today and tomorrow are unchecked (not "relevant"). 
                 <br>
-                &nbsp To change that, click on the habit to edit the relevant days.
+                &nbsp To change that, click on the Customize wrench to edit the relevant days.
             </div>
         <% 
         end 
@@ -365,7 +365,59 @@ for goal in current_user.active_goals_sorted_by_next_action_day
 
         <!-- START HABIT -->
 
+            <!-- START GOAL LINK OPTIONS -->
+            <DIV>
+                <p>
+                <i class='icon-wrench'></i> <%= link_to "Customize", edit_goal_path(goal.id)  %>
+                &nbsp
+                <i class='icon-calendar'></i> <a href="/goals/single/<%= goal.id %>">All Checkpoints</a>
+                &nbsp
 
+                <% if goal.number_my_active_bets > 0 %>
+
+                    <a id='hold_disabled_<%= goal.id.to_s %>'  class="btn disabled" title="Sorry, this goal needs to stay active until the Extra Accountability Challenge is over." ><i class="icon-pause"></i> Hold a While</a>
+                    <script type='text/javascript'>
+                        $('#hold_disabled_<%= goal.id.to_s %>').tipsy();
+                    </script>
+                    &nbsp
+                    <a id='delete_disabled_<%= goal.id.to_s %>'  class="btn disabled" title="Sorry, this goal needs to stay active until the Extra Accountability Challenge is over." ><i class="icon-remove"></i> Delete</a>
+                    <script type='text/javascript'>
+                        $('#delete_disabled_<%= goal.id.to_s %>').tipsy();
+                    </script>
+
+
+                <% else %>
+
+
+
+                    <!-- START PART OF A TEAM? -->
+                    <% if goal.is_part_of_a_team %>
+
+                        <a id='hold_disabled_<%= goal.id.to_s %>'  class="btn disabled" title="Sorry, you will need to quit the team before putting this goal on hold..." ><i class="icon-pause"></i> Hold a While</a>
+                        <script type='text/javascript'>
+                            $('#hold_disabled_<%= goal.id.to_s %>').tipsy();
+                        </script>
+                        &nbsp
+                        <a id='delete_disabled_<%= goal.id.to_s %>'  class="btn disabled" title="Sorry, you will need to quit the team before deleting this goal." ><i class="icon-remove"></i> Delete</a>
+                        <script type='text/javascript'>
+                            $('#delete_disabled_<%= goal.id.to_s %>').tipsy();
+                        </script>
+
+
+                    <% else %>
+
+                        <i class='icon-pause'></i> <%= link_to 'Hold a While', "/goals/hold/#{@goal.id}", :confirm => 'If you put a goal on hold, you will stop getting emails about it.' %>
+                        &nbsp
+                        <i class='icon-remove'></i> <%= link_to "Delete", goal, :confirm => 'Are you sure you want to delete this goal?', :method => :delete %>
+
+                    <% end %>
+                    <!-- END PART OF A TEAM? -->
+
+                <% end %>
+
+                </p>
+            </div>
+            <!-- END GOAL LINK OPTIONS -->
         <%
         ##################################################################
         ### START SHOW PROGRESS BAR FOR BETS
@@ -398,6 +450,7 @@ for goal in current_user.active_goals_sorted_by_next_action_day
             <%
             end
         else
+
             %>
                 <center>
                   <div style="">
@@ -430,7 +483,7 @@ for goal in current_user.active_goals_sorted_by_next_action_day
 
 <%
 ### STATS
-stats_name = "<i class='icon-dashboard'></i> Dashboard"
+stats_name = "<i class='icon-dashboard'></i> Stats"
 
 
 ### FOLLOWERS
@@ -521,57 +574,8 @@ end
             <div class="portlet-body" style="display: block;">
                 <!-- START STATS -->
                 <div id="stats_<%= @goal.id %>" class="div_stats">  
-                    <DIV>
-                        <p>
-                        <i class='icon-wrench'></i> <%= link_to "Customize", edit_goal_path(goal.id)  %>
-                        &nbsp
-                        <i class='icon-calendar'></i> <a href="/goals/single/<%= goal.id %>">All Checkpoints</a>
-                        &nbsp
-
-                        <% if goal.number_my_active_bets > 0 %>
-
-                            <a id='hold_disabled_<%= goal.id.to_s %>'  class="btn disabled" title="Sorry, this goal needs to stay active until the Extra Accountability Challenge is over." ><i class="icon-pause"></i> Hold a While</a>
-                            <script type='text/javascript'>
-                                $('#hold_disabled_<%= goal.id.to_s %>').tipsy();
-                            </script>
-                            &nbsp
-                            <a id='delete_disabled_<%= goal.id.to_s %>'  class="btn disabled" title="Sorry, this goal needs to stay active until the Extra Accountability Challenge is over." ><i class="icon-remove"></i> Delete</a>
-                            <script type='text/javascript'>
-                                $('#delete_disabled_<%= goal.id.to_s %>').tipsy();
-                            </script>
 
 
-                        <% else %>
-
-
-
-                            <!-- START PART OF A TEAM? -->
-                            <% if goal.is_part_of_a_team %>
-
-                                <a id='hold_disabled_<%= goal.id.to_s %>'  class="btn disabled" title="Sorry, you will need to quit the team before putting this goal on hold..." ><i class="icon-pause"></i> Hold a While</a>
-                                <script type='text/javascript'>
-                                    $('#hold_disabled_<%= goal.id.to_s %>').tipsy();
-                                </script>
-                                &nbsp
-                                <a id='delete_disabled_<%= goal.id.to_s %>'  class="btn disabled" title="Sorry, you will need to quit the team before deleting this goal." ><i class="icon-remove"></i> Delete</a>
-                                <script type='text/javascript'>
-                                    $('#delete_disabled_<%= goal.id.to_s %>').tipsy();
-                                </script>
-
-
-                            <% else %>
-
-                                <i class='icon-pause'></i> <%= link_to 'Hold a While', "/goals/hold/#{@goal.id}", :confirm => 'If you put a goal on hold, you will stop getting emails about it.' %>
-                                &nbsp
-                                <i class='icon-remove'></i> <%= link_to "Delete", goal, :confirm => 'Are you sure you want to delete this goal?', :method => :delete %>
-
-                            <% end %>
-                            <!-- END PART OF A TEAM? -->
-
-                        <% end %>
-
-                        </p>
-                    </div>
 
 
 
