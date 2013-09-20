@@ -129,6 +129,10 @@ show_monitor_option_details = 0
 %>
 
 
+<% if based_on_a_template or has_active_challenge or part_of_a_team_category %>
+  <h6>(Note: Some of the values below are locked because this goal is either part of a team, an accountability challenge, or was built to mirror a templated goal.)</h6>
+<% end %>
+
 
    
 <br>
@@ -599,9 +603,8 @@ end
               @arr_max_pushes.push(["4", 4])
               @arr_max_pushes.push(["5", 5])
               %>
-              <span style="font-size:1.2em;">
+
               Provide incentives for other members to "Push" <%= them_or_me %> if I start to fail for a few days straight.
-              </span>
 
               <br>If I do start slacking, get up to 
               <% if !current_user.is_habitforge_supporting_member %>
@@ -664,16 +667,6 @@ end
 
 <h2><i class="icon-calendar"></i> Frequency <a href="#undefined" onclick="toggle_show_hide('div_frequency')" style="font-size:0.5em;">Details</a></h2>
 <div id="div_frequency" name="div_frequency" style="display:none;">
-<% if based_on_a_template %>
-  <h6>(Values below are locked because this goal is based off of a template.)</h6>
-<% end %>
-<% if has_active_challenge %>
-  <h6>(Values below are locked because this goal is currently part of an Extra Accountability Challenge.)</h6>
-<% end %>
-<% if part_of_a_team_category %>
-  <h6>(Category below is locked because this goal is part of a category-based team.)</h6>
-<% end %>
-
 
 
 <div class="well">
