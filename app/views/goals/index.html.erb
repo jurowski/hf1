@@ -31,7 +31,12 @@
 
 
         <% if params[:too_many_active_habits] %>
-            <h4>Free accounts are restricted to 1 active habit at a time.</h4>
+
+            <% if params[:just_created_new_habit] %>
+                <h4>That was easy... Anything else you'd like to work on?</h4>
+            <% else %>
+                <h4>Free accounts are restricted to 1 active habit at a time.</h4>
+            <% end %>
         <% end %>
 
         <div class="show_autoupdatemultiple_personal_motivation">
@@ -41,13 +46,18 @@
         <% if params[:premium_more_info_hide_ads] %>
             <h3>Remove the Ads, Remove the Limits with a Premium Membership!</h3>
         <% else %>
-            <h3>Remove the limits 
-            <% if session[:goal_template_text] and session[:goal_template_text] != "" %> 
-              ... work on <%= session[:goal_template_text] %> and any other goals, all with premium features and no ads, 
+            <% if !session[:goal_template_text] and !params[:goal_template_text] %>
+                <h3>Unlock Your Potential 
             <% else %>
-                <% if params[:goal_template_text] and params[:goal_template_text] != "" %>
-                  ... work on <%= params[:goal_template_text] %> and any other goals, all with premium features and no ads, 
+                <h3>Remove the limits 
+                <% if session[:goal_template_text] and session[:goal_template_text] != "" %> 
+                  ... work on <%= session[:goal_template_text] %> and any other goals, all with premium features and no ads, 
+                <% else %>
+                    <% if params[:goal_template_text] and params[:goal_template_text] != "" %>
+                      ... work on <%= params[:goal_template_text] %> and any other goals, all with premium features and no ads, 
+                    <% end %>
                 <% end %>
+
             <% end %>
            with a Premium Membership!</h3>
         <% end %>
@@ -55,18 +65,20 @@
 
 
    
-
-                <h2>Why Go Premium?</h2>
+                <div class="well">
+                    <h2>Why Go Premium?</h2>
                     Unlimited Active Habits
                     <br>Private Habit Option
                     <br>Priority Pushes if you Slack
                     <br>No Advertisements
+                    <br>As Little as $2 per month
+                    <br>Zero Risk. 100% Money-Back Guarantee
                 </div>
 
-                  <a href="https://www.securepublications.com/habit-gse3.php?ref=<%= current_user.id.to_s %>&email=<%= current_user.email %>" class="btn yellow" >Go Premium: Less than $2 per month ... 100% money-back guarantee</a>
-                 <br>
+                </div>
+                <br>
 
-<br>
+                  <a href="https://www.securepublications.com/habit-gse3.php?ref=<%= current_user.id.to_s %>&email=<%= current_user.email %>" class="btn yellow" >Learn More</a>
 
 
 
@@ -85,8 +97,12 @@
                 </h5
             -->
 
+            <br>
+            <br>
             <!-- Press Logos Start -->
             <div style="padding-top:0px;">
+                Recommended by...
+                <br>
                 <img src="/home/images/logos/press_logos_v1_transparent.png" width="600" alt="press logos" />
             </div>
             <!-- Press Logos End -->

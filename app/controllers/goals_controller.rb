@@ -1113,7 +1113,12 @@ class GoalsController < ApplicationController
 
               format.xml  { render :xml => @goals }
             else
-              format.html { render :action => "index" } # index.html.erb
+
+              if !current_user.is_habitforge_supporting_member
+                format.html {redirect_to("/goals?too_many_active_habits=1&just_created_new_habit=1")}              
+              else
+                format.html { render :action => "index" } # index.html.erb
+              end
               format.xml  { render :xml => @goals }
             end
 
