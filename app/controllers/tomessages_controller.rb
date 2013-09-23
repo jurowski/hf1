@@ -51,12 +51,17 @@ class TomessagesController < ApplicationController
   # GET /tomessages/new
   # GET /tomessages/new.xml
   def new
-    if current_user     
+
+
+    @to_user = User.find(:first, :conditions => "id = '#{params[:to_id]}'")    
+
+    if current_user and @to_user and @to_user.id != current_user.id
+
 
         @replying_to_message = Tomessage.find(:first, :conditions => "id = '#{params[:replying_to_message_id]}'")
          
         @tomessage = Tomessage.new
-        @to_user = User.find(:first, :conditions => "id = '#{params[:to_id]}'")
+
 
         @rated = false
         @rating = 0
@@ -112,7 +117,7 @@ class TomessagesController < ApplicationController
           format.xml  { render :xml => @tomessage }
         end
     else
-      redirect_to(server_root_url)
+      redirect_to(server_root_url + "/goals")
     end
 
   end
@@ -162,7 +167,7 @@ class TomessagesController < ApplicationController
       @to_user = User.find(:first, :conditions => "id = '#{@tomessage.to_id}'")
 
       respond_to do |format|
-        if @tomessage.save
+        if (@to_user.id != current_user.id) and @tomessage.save
 
           ################
           ### START If a coach is sending an official weekly check-in message

@@ -491,8 +491,12 @@ followers_image = "<i class='icon-user'></i>"
 
 followers_name = "#{followers_image} Followers (#{@goal.number_invites_sent_to_followers})"
 if @goal.number_invites_sent_to_followers == 0
-    followers_name = "#{followers_image} Invite a Friend to Keep You On Track"
+    followers_name = "#{followers_image} Watchers"
 end
+
+
+### TRACKER
+tracker_name = "<i class='icon-bar-chart'></i> Tracker"
 
 
 ### Extra Accountability
@@ -557,6 +561,9 @@ if params[:start_a_tracker] and params[:goal_id] and params[:goal_id] == @goal.i
     tab_team_active = "active"
 end
 
+### TRACKER
+tracker_name = "<i class='icon-bar-chart'></i> Tracker"
+
 %>
 
 <div class="tabbable tabbable-custom tabbable-custom-profile">
@@ -566,7 +573,7 @@ end
         <li class="<%= tab_bets_active %>"><a href="#tab_1_3_<%= @goal.id %>" data-toggle="tab"><%= bets_image %></a>
         <li class="<%= tab_team_active %>"><a href="#tab_1_4_<%= @goal.id %>" data-toggle="tab"><%= team_name %></a>
         <% if 1 == 2 %>
-        <li class="<%= tab_tracker_active %>"><a href="#tab_1_5_<%= @goal.id %>" data-toggle="tab">Tracker</a>
+        <li class="<%= tab_tracker_active %>"><a href="#tab_1_5_<%= @goal.id %>" data-toggle="tab"><%= tracker_name %></a>
         <% end %>
     </ul>
     <div class="tab-content">
@@ -654,7 +661,19 @@ end
         <div class="tab-pane <%= tab_tracker_active %>" id="tab_1_5_<%= @goal.id %>">
             <div class="portlet-body" style="display: block;">
                 <!-- START TRACKER -->
-                TRACKER
+                <img src="/images/beta.jpg" width="50px" />
+                <% if !@goal.tracker %>
+
+                    <h3>Does succeeding depend on some number you'd like us to ask you about?
+                      <br><span style="font-size:0.5em;">(ex: hours of sleep, weight in pounds, # of glasses of water, an overall mood rating, number of sales calls, etc.)</span></h3>
+
+                      Enable a Tracker! (Click the "Customize Wrench", open up the Toolbox, and look for "Tracker") 
+
+                <% else %>
+
+                    <h3>Your tracker info will go here</h3>
+
+                <% end %>
                 <!-- END TRACKER -->
             </div>
         </div>

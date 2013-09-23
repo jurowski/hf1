@@ -163,7 +163,7 @@ if @goal.has_unanswered_checkpoints
     max_at_once = 5
     counter = 0
     just_yesterday = false
-    catch_up_phrase = "Let's Catch Up: Did you succeed on these days?"
+    catch_up_phrase = "Did you succeed on..."
     if total_missing == 1
         status_yesterday = @goal.get_daily_status_for(@goal.user.dyesterday)
         if status_yesterday != "yes" and status_yesterday != "no"
