@@ -10,6 +10,8 @@ class AddTrackerToGoals < ActiveRecord::Migration
     add_column :goals, :tracker_standard_deviation_from_last_measurement, :integer ### for help generating quick current value links in email
     add_column :goals, :tracker_type_starts_at_zero_daily, :boolean, :default => true ### measuring sales calls you make, pushups you do, glasses of water you drink (if false, it's a thing that "is" that fluctuates, like weight or mood)
     add_column :goals, :tracker_target_higher_value_is_better, :boolean, :default => true
+    add_column :goals, :tracker_set_checkpoint_to_yes_if_any_answer, :boolean, :default => true ### ex: if your goal is just to record something
+    add_column :goals, :tracker_set_checkpoint_to_yes_only_if_answer_acceptable, :boolean, :default => true ### ex: if you want the yes/no answers to be controlled by the tracker numbers
     add_column :goals, :tracker_target_threshold_bad1, :decimal ### keep an eye on it (one boundary of "normal")
     add_column :goals, :tracker_target_threshold_bad2, :decimal ### into a 2nd level of bad
     add_column :goals, :tracker_target_threshold_bad3, :decimal ### into a 3rd level of bad
@@ -34,6 +36,8 @@ class AddTrackerToGoals < ActiveRecord::Migration
   	remove_column :goals, :tracker_standard_deviation_from_last_measurement
   	remove_column :goals, :tracker_type_starts_at_zero_daily
   	remove_column :goals, :tracker_target_higher_value_is_better
+  	# remove_column :goals, :tracker_set_checkpoint_to_yes_if_any_answer
+  	# remove_column :goals, :tracker_set_checkpoint_to_yes_only_if_answer_acceptable
   	remove_column :goals, :tracker_target_threshold_bad1
   	remove_column :goals, :tracker_target_threshold_bad2
   	remove_column :goals, :tracker_target_threshold_bad3

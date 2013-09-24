@@ -352,6 +352,8 @@ ActiveRecord::Schema.define(:version => 20130918023343) do
     t.integer  "tracker_standard_deviation_from_last_measurement"
     t.boolean  "tracker_type_starts_at_zero_daily",                                                                    :default => true
     t.boolean  "tracker_target_higher_value_is_better",                                                                :default => true
+    t.boolean  "tracker_set_checkpoint_to_yes_if_any_answer",                                                          :default => true
+    t.boolean  "tracker_set_checkpoint_to_yes_only_if_answer_acceptable",                                              :default => true
     t.integer  "tracker_target_threshold_bad1",                           :limit => 10, :precision => 10, :scale => 0
     t.integer  "tracker_target_threshold_bad2",                           :limit => 10, :precision => 10, :scale => 0
     t.integer  "tracker_target_threshold_bad3",                           :limit => 10, :precision => 10, :scale => 0

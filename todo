@@ -8,6 +8,9 @@
 
 Goal creation form:
 
+?? DO we really want to make the tracker answer the yes/no question?
+Think about making it separate from the yes/no or at least giving that option
+
 Does succeeding depend on some number you'd like us to ask you about? (ex: hours of sleep, weight in pounds, # of glasses of water, an overall mood rating, number of sales calls, etc.)
 
 We'll test out two cases at first, both of which would have a max :
