@@ -1,4 +1,9 @@
 ActionController::Routing::Routes.draw do |map|
+
+
+  ### THE BELOW WILL WORK TO AVOID NEEDING AN ID IN THE URL
+  ### BUT MAKE SURE YOU RESTART YOUR SERVER TO RE-LOAD ROUTES AND RECOGNIZE NEW ENTRIES!
+  map.connect 'quants/goal_quants_manage', :controller => "quants", :action => "goal_quants_manage"
   map.resources :quants
 
   map.resources :trackers
@@ -100,6 +105,8 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :stats
 
   map.resources :cheers
+
+
 
 
   map.connect '/', :controller => "user_sessions", :action => "new"

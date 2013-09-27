@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
   
   has_many :goals    
   has_many :trackers
-      
+
   has_many :messages
   
   has_many :organization_users
@@ -101,6 +101,21 @@ class User < ActiveRecord::Base
         return "evening"
       end
       return period
+  end
+
+  def timestamp_now
+      jump_forward_seconds = 0
+      jump_forward_days = 0
+      
+      tnow = Time.new()
+      Time.zone = self.time_zone
+      if Time.zone != nil
+          tnow = Time.zone.now + jump_forward_seconds #User time
+      else
+          tnow = Time.now + jump_forward_seconds 
+      end
+      
+      return tnow      
   end
   
   def dtoday

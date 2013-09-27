@@ -6,17 +6,70 @@
 
 :::CURRENT::: 
 
-Goal creation form:
 
-?? DO we really want to make the tracker answer the yes/no question?
-Think about making it separate from the yes/no or at least giving that option
 
-Does succeeding depend on some number you'd like us to ask you about? (ex: hours of sleep, weight in pounds, # of glasses of water, an overall mood rating, number of sales calls, etc.)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-------------------------------------------------------------------
+TRACKER STUFF BEING PUT ON HOLD UNTIL GRAPHICS RE-DESIGN IS DONE
+-------------------------------------------------------------------
+Quant answers:
+-- ask for the number and/or the yes/no depending on their tracker linkage choices
+
+Logic needed for 3 Cases:
+--quant is not linked to checkpiont yes/no at all
+--quant being answered sets checkpoint to yes
+--quant value determins checkpoint being set to yes/no
 
 We'll test out two cases at first, both of which would have a max :
 --one that occasionally measures something that "is" (weight)
 --one that daily measures something that you achieve daily (sleep)
 
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!VERY NEXT !!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+--allow user to modify date and hour for a quant (in case they're answering for the day before or for earlier in the day)
+(Meridian Format date/time picker): file:///home/sgj700/Downloads/metronic_v1.2.4/template_content/form_component.html#
+USE THE MINIFY FORMAT
+
+
+THE LOGIC
+In the tracker goal tab
+  	which shows a graph
+  	and
+    asks you to add a new value
+      which will add to the day's total if it's one that accumulates
+      or
+      which will add to the day's average if it's one that measures "what is" like weight or temperature
+    or 
+    asks you to increment the last value if it's a goal that accumulates
+    
+when a new answer is entered
+if tracker answer kicks checkpoint to yes
+  then set that day to "yes"
+if tracker answer sets checkpoint to yes or no based on value
+  then take that day's total (if accumulation) or average (if "measuring what is") and kick checkpoint to yes or no
+
+when you get the daily yes/no email,
+and
+when you get the daily reminder email,
+have a link in the email asking you for a measurment
+clicking that link takes you to the "tracker" goal tab
 
 
 NEXT/NOW/CURRENT: 

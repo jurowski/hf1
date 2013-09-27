@@ -1,0 +1,12 @@
+<%= Time.now.getutc %>
+<h3>Quants for this goal:</h3>
+
+<% @quants = Quant.find(:all, :conditions => "goal_id = '#{@goal.id}'") %>
+<% if @quants.size == 0 %>
+	No quants yet.
+<% else %>
+	<% @quants.each do |quant| %>
+
+	  <br><%= quant.measurement %> <span style="font-size:.7em;"><%= time_ago_in_words(quant.measurement_taken_timestamp) %> ago...</span>
+	<% end %>
+<% end %>

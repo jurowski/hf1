@@ -379,6 +379,11 @@ class GoalsController < ApplicationController
 
 
       @goal = Goal.new
+
+
+      @goal.tracker_set_checkpoint_to_yes_if_any_answer = false # the db default is true, but false is better
+      @goal.tracker_set_checkpoint_to_yes_only_if_answer_acceptable = false # the db default is true, but false is safer for now
+
       @goal.reminder_time = DateTime.new(2009,1,1,0,0,0)
 
       @goal.category = "Exercise" ## a reasonable default
@@ -656,6 +661,9 @@ class GoalsController < ApplicationController
 
         tracker_data_missing_error = false
         if @goal.tracker
+
+
+
           missing = false
           if !@goal.tracker_question or @goal.tracker_question == ""
             missing = true

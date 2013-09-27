@@ -713,6 +713,21 @@ Are you trying to get the number higher or lower?
     <%= select(:goal, :tracker_target_higher_value_is_better, @arr_higher_is_better)%>
 
 
+<br>
+Should we auto-answer your daily checkpoint with a "Yes" on the days you enter any tracking number at all?
+<br>
+    <%
+    @arr_tracker_set_checkpoint_to_yes_if_any_answer = Array.new
+
+    @arr_tracker_set_checkpoint_to_yes_if_any_answer.push(["Yes, since my goal is mainly 'awareness', just to record 'something', period", true])
+    @arr_tracker_set_checkpoint_to_yes_if_any_answer.push(["No, success with this is not just about 'recording something'", false])
+    %>
+    <%= select(:goal, :tracker_set_checkpoint_to_yes_if_any_answer, @arr_tracker_set_checkpoint_to_yes_if_any_answer,{}, {:style => "width:500px;"})%>
+
+
+
+<br>
+
 
 <h3>What numbers are considered good or not so good?</h3>
 <br>
@@ -744,6 +759,18 @@ Are you trying to get the number higher or lower?
 <br>
 What is the most that the number could change from one check-in to the next? 
 <%= form.text_field :tracker_standard_deviation_from_last_measurement, :style=>'width:30px;', :size => 5 %> <!-- for help generating quick current value links in email -->
+
+
+<br>
+Should we auto-answer your daily checkpoint with a "Yes" whenever your same-day tracker number is "OK" or better?
+<br>
+    <%
+    @arr_tracker_set_checkpoint_to_yes_only_if_answer_acceptable = Array.new
+
+    @arr_tracker_set_checkpoint_to_yes_only_if_answer_acceptable.push(["Yes, since my overall goal is to be within a certain range", true])
+    @arr_tracker_set_checkpoint_to_yes_only_if_answer_acceptable.push(["No, let me answer yes/no separately from what I enter in the tracker", false])
+    %>
+    <%= select(:goal, :tracker_set_checkpoint_to_yes_only_if_answer_acceptable, @arr_tracker_set_checkpoint_to_yes_only_if_answer_acceptable,{}, {:style => "width:500px;"})%>
 
 
 </div>

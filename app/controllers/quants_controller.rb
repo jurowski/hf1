@@ -2,6 +2,10 @@ class QuantsController < ApplicationController
   require 'date'
   require 'logger'
 
+  ### for URL encoding/decoding
+  ### http://stackoverflow.com/questions/17223808/converting-url-encoded-strings-into-plain-text-with-ruby
+  require 'cgi'
+
   ### for gravatar
   ### http://stackoverflow.com/questions/5822912/how-do-i-display-an-avatar-in-rails
   require 'digest/md5'
@@ -66,6 +70,49 @@ class QuantsController < ApplicationController
 
 
 
+  ### http://stackoverflow.com/questions/10539143/reloading-partial-in-an-rails-app
+  # GET /quants/goal_quants_manage
+  def goal_quants_manage
+
+    @goal = Goal.new()
+    if params[:goal_id]
+        @goal = Goal.find(params[:goal_id].to_i)
+        quant = Quant.new()
+        quant.goal_id = @goal.id
+        quant.user_id = @goal.user.id
+        #quant.measurement = params[:quant_value].to_i
+        quant.measurement = params[:quant_value] ### will need to do special work to respect decimal entries
+
+
+        quant.measurement_taken_timestamp = @goal.user.timestamp_now
+        quant.measurement_date = @goal.user.dtoday
+        quant.measurement_hour = @goal.user.time_hour_right_now
+
+        if params[:quant_datetime] and params[:quant_datetime].size > 0
+
+          ### decode the URL as per:
+          ### http://stackoverflow.com/questions/17223808/converting-url-encoded-strings-into-plain-text-with-ruby
+          quant_datetime = CGI::unescape(params[:quant_datetime])
+
+          arr_datetime_split = quant_datetime.split(" ")
+          the_month = Date::MONTHNAMES.index(arr_datetime_split[1])
+          #the_month = 1
+          the_year = arr_datetime_split[2]
+          the_day = arr_datetime_split[0]
+          logger.debug("sgj:quants_controller:datetime after splitting = " + the_month.to_s + "/" + the_day.to_s + "/" + the_year.to_s)
+        end
+
+
+        logger.debug("sgj:quants_controller:timestamp = " + quant.measurement_taken_timestamp.to_s)
+        logger.debug("sgj:quants_controller:date form element = " + params[:quant_datetime].to_s)
+
+        quant.save
+
+    end
+
+
+    render :partial => "quants/goal_quants_manage", :locals => { :goal => @goal } 
+  end
 
 
 

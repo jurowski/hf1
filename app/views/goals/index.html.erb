@@ -689,6 +689,21 @@ tracker_name = "<i class='icon-bar-chart'></i> Tracker"
 
                     <h3>Your tracker info will go here</h3>
 
+
+                    <div class="goal_quants_manage_<%= @goal.id %>">
+                       <%= render :partial => "quants/goal_quants_manage", :locals => { :goal => @goal }  %>
+                    </div>
+
+                            <%= @goal.tracker_question %>? <input name="quant_new_value_<%= @goal.id %>" id="quant_new_value_<%= @goal.id %>" type="text" style="width:50px;" /> <%= @goal.tracker_units %>
+                            <input name="buttonSubmitQuant" onclick="add_quant_to_goal_then_reload_quants_div(document.getElementById('quant_new_value_<%= @goal.id %>').value,document.getElementById('quant_new_datetime_<%= @goal.id %>').value,'<%= @goal.id %>')" type="button" value="Save" />
+                            <a onclick="document.getElementById('div_quant_new_datetime_<%= @goal.id %>').style.visibility='visible';">backdate</a>
+
+                                 <div class="input-append date form_datetime" name="div_quant_new_datetime_<%= @goal.id %>" id="div_quant_new_datetime_<%= @goal.id %>" style="visibility:hidden;" >
+                                     <input size="16" type="text" value="" readonly class="m-wrap" name="quant_new_datetime_<%= @goal.id %>" id="quant_new_datetime_<%= @goal.id %>" placeholder="click to backdate your answer" >
+                                     <span class="add-on"><i class="icon-calendar"></i></span>
+                                 </div>
+
+
                 <% end %>
                 <!-- END TRACKER -->
             </div>
