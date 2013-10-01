@@ -57,15 +57,28 @@
 
         <p>
           <%= f.label :subject %><br />
-          <% if @replying_to_message.subject.starts_with? 're: ' %>
-              <%= f.text_field(:subject, :size => "80", :value => @replying_to_message.subject) %>
+          <% if @replying_to_message %>
+
+            <% if @replying_to_message.subject.starts_with? 're: ' %>
+                <%= f.text_field(:subject, :size => "80", :value => @replying_to_message.subject) %>
+            <% else %>
+                <%= f.text_field(:subject, :size => "80", :value => "re: #{@replying_to_message.subject}") %>
+            <% end %>
+
           <% else %>
-              <%= f.text_field(:subject, :size => "80", :value => "re: #{@replying_to_message.subject}") %>
+
+                <%= f.text_field(:subject, :size => "80", :value => "re: to #{@to_user.first_name}") %>
+
           <% end %>
         </p>
         <p>
           <%= f.label :body %><br />
-          <%= f.text_area(:body, :size => "80x20", :value => "\r\n\r\n\r\n______________________________________________\r\nOn #{@replying_to_message.created_at.to_s}, #{@to_user.first_name} wrote:\r\n\r\n#{@replying_to_message.body}") %>
+
+          <% if @replying_to_message %>
+           <%= f.text_area(:body, :size => "80x20", :value => "\r\n\r\n\r\n______________________________________________\r\nOn #{@replying_to_message.created_at.to_s}, #{@to_user.first_name} wrote:\r\n\r\n#{@replying_to_message.body}") %>
+          <% else %>
+            <%= f.text_area(:body, :size => "80x20", :value => "") %>
+          <% end %>
         </p>
         <p>
       

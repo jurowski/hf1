@@ -1,0 +1,689 @@
+<% 
+@production = true
+if `uname -n`.strip == 'adv.adventurino.com'
+  #### HABITFORGE SETTINGS ON VPS
+  @production = true
+else
+  @production = false
+end
+
+retry_email_address = false
+if @email_duplicate or (@email_blank == true or (@email_valid != nil and @email_valid == false))
+    retry_email_address = true
+end 
+%>
+
+
+
+
+<!DOCTYPE html>
+<html dir="ltr" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<meta http-equiv="X-UA-Compatible" content="IE=9">
+
+<meta name="keywords" content="exercise, eat healthy, goal setting, self-help, habitforge, habit forge, habit tracker, goal setting, habits, goals, resolutions, new years resolutions, new years resolution, accountability, accountability buddy, self improvement, 21 days, form a habit, 21 days to form a habit" />
+<meta name="description" content="Exercise more. Eat Healthy. Start any new habit you can think of or break a bad habit. HabitForge is a free web app that emails you daily asking you a yes or no question about whether you followed through on a habit you want to establish. If you say "yes" for 21 days in a row, you've done it. Skip a day, and start over at day 1. Join a team or go solo. Invite friend to keep you accountable." />
+
+
+<meta name="viewport" content="initial-scale=1, maximum-scale=1" />
+<meta name="viewport" content="width=device-width" />
+<title>HabitForge - Simple Accountability. Positive Change.</title>
+<link rel="stylesheet" type="text/css" href="/home/css/reset.css" />
+<link rel="stylesheet" type="text/css" href="/home/css/layout.css" />
+
+
+<link rel="stylesheet" type="text/css" href="/home/css/jqueryslidemenu.css" />
+<link rel="stylesheet" type="text/css" href="/home/css/quicksand.css"/>
+<link rel="stylesheet" type="text/css" href="/home/css/elements.css"/>
+<link rel="stylesheet" type="text/css" href="/home/css/widget.css"/>
+<link rel="stylesheet" type="text/css" href="/home/css/hoverdir.css"/>
+<link rel="stylesheet" type="text/css" href="/home/css/blog.css"/>
+<link rel="stylesheet" type="text/css" href="/home/style.css" />
+<link rel="stylesheet" type="text/css" href="/home/css/responsive.css" />
+<link rel="stylesheet" type="text/css" href="/home/css/habitforge_custom.css" />
+
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,500,600,700' rel='stylesheet' type='text/css'>
+
+<!-- BORROWING FROM APP METRO FOR THE BUTTONS -->
+<link href="/assets/css/metro.css" rel="stylesheet" />
+
+
+<link href="/assets/css/hf_custom.css" rel="stylesheet" />
+
+<script type="text/javascript" src="/home/js/jquery-1.8.1.js"></script>
+<script type="text/javascript" src="/home/js/jqueryslidemenu.js"></script>
+<script type="text/javascript" src="/home/js/jquery.easing.1.3.js"></script>
+<script type="text/javascript" src="/home/js/portfolio_sortable.js"></script>
+<script type="text/javascript" src="/home/js/quicksand.js"></script>
+<script type="text/javascript" src="/home/js/custom.js"></script>
+<script type="text/javascript" src="/home/js/jquery.hoverdir.js"></script>
+<script type="text/javascript">
+//Image Hover
+jQuery(document).ready(function(){
+jQuery(function() {
+  jQuery('#list > li').hoverdir();
+});
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){
+    $(".pane .delete").click(function(){
+        $(this).parents(".pane").animate({ opacity: 'hide' }, "slow");
+    });
+});
+</script>
+
+<script type="text/javascript"> 
+$(document).ready(function(){
+        $(".slidingDiv").hide();
+        $(".show_hide").show();
+    $('.show_hide').click(function(){
+    $(".slidingDiv").slideToggle();
+    });
+});
+</script>
+
+
+<!-- START bxSlider -->
+<!-- bxSlider Javascript file -->
+<script type="text/javascript" src="/home/js/jquery.bxslider.min.js"></script>
+<!-- bxSlider CSS file -->
+<link href="/home/css/jquery.bxslider.css" rel="stylesheet" />
+<script type="text/javascript">
+$(document).ready(function(){
+  $('.bxslider').bxSlider({
+    pager: false,
+    mode: 'fade',
+    auto: false,
+    pause: 6500,
+    ticker: false,
+    adaptiveHeight: true
+  });
+});
+
+$(document).ready(function(){
+  $('.bxslider_teaser').bxSlider({
+    pager: false,
+    mode: 'fade',
+    auto: true,
+    pause: 2000,
+    ticker: false,
+    adaptiveHeight: false,
+    controls: false
+  });
+});
+</script>
+<!-- END bxSlider -->
+
+
+
+<script type="text/javascript">
+  var uvOptions = {};
+  (function() {
+    var uv = document.createElement('script'); uv.type = 'text/javascript'; uv.async = true;
+    uv.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'widget.uservoice.com/aWPKLvqP89KQQwa98KVxWw.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(uv, s);
+  })();
+</script>
+
+
+
+
+<!-- A tab to launch the Classic Widget -->
+<script>
+UserVoice = window.UserVoice || [];
+UserVoice.push(['showTab', 'classic_widget', {
+  mode: 'full',
+  primary_color: '#cc6d00',
+  link_color: '#007dbf',
+  default_mode: 'support',
+  forum_id: 137021,
+  tab_label: 'Help and Feedback',
+  tab_color: '#ff4000',
+  tab_position: 'middle-right',
+  tab_inverted: true
+}]);
+</script>
+
+<!-- UMM... this is actually GetSatisfaction, not UserVoice
+<script type="text/javascript" charset="utf-8">
+  var feedback_widget_options = {};
+
+  feedback_widget_options.display = "overlay";  
+  feedback_widget_options.company = "habitforge";
+  feedback_widget_options.placement = "right";
+  feedback_widget_options.color = "#222";
+  feedback_widget_options.style = "question";
+
+  var feedback_widget = new GSFN.feedback_widget(feedback_widget_options);
+</script>
+-->
+
+<!-- LIKE IN ROSTINATOR -->
+<!-- TOGGLE SHOW/HIDE A DIV FROM SCRATCH, EASY !!! -->
+<script language="javascript" type="text/javascript">
+
+
+function toggle_show(id) {
+    var div = document.getElementById(id);
+    div.style.display = "block";
+}
+
+
+function toggle_show_hide(id) {
+    var div = document.getElementById(id);
+    div.style.display = ( div.style.display == "none") ? "block" : "none";
+}
+// example usage:
+//      <a href="#undefined" onclick="toggle_show_hide('rebuild_roster_form')" class="btn-add">Build Roster</a>
+//
+//      <div id="rebuild_roster_form" style="display:none;">
+//        some content
+//      <div>
+</script>
+
+<script language="javascript" type="text/javascript">
+function popitup(url) {
+  newwindow=window.open(url,'name','height=300,width=600');
+  if (window.focus) {newwindow.focus()}
+  return false;
+}
+function popitup_bigger1(url) {
+  newwindow=window.open(url,'name','height=600,width=1000');
+  if (window.focus) {newwindow.focus()}
+  return false;
+}
+
+</script>
+
+
+  <% if @production %>
+    <!-- ShareThis-->  
+    <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+    <script type="text/javascript">stLight.options({publisher: "6f618717-8285-4c8c-b5c7-4f9e1d5e2a92", doNotHash: true, doNotCopy: true, hashAddressBar: false});</script>
+  <% end %>
+
+
+
+
+
+</head>
+<!--[if lt IE 9]>
+<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+<!--[if lt IE 9]>
+  <script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
+<![endif]-->
+<body>
+
+  <!-- direct to fb
+  <div id="fb-root"></div>
+  <script>(function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));</script>
+  -->
+
+
+  <!-- START DECIDE IF ONLY SHOW HABIT LIBRARY -->
+  <% if params[:browse_recommended_habits] and current_user %>
+
+    <div style="padding:20px;">
+      <% if params[:program_id] %>
+        <!-- 
+        http://localhost:3000/goals?programs=1&browse_recommended_habits=1&program_id=2
+        -->
+        <%= render :partial => "layouts/habit_program" %>
+      <% else %>
+          <article>
+              <%= render :partial => "layouts/habit_library_templates" %>
+          </article>
+      <% end %>
+    </div>
+
+
+
+  <% else %>
+
+    <!-- Header Start -->
+    <section id="header_wrap">
+    </section>
+
+
+    <div class="top_header" >
+      <div id="navcontainer">
+        <ul id="navlist">
+
+          <!-- DEFAULT SETTING -->
+          <% menu_link_class_about = "btn_orange_inactive" %>
+          <% menu_link_class_login = "btn_orange_inactive" %>
+          <% menu_link_class_signup = "btn_orange_active" %>
+
+          <% if (request.url.include? '/user_session/new' or request.url.include? '/account')  %>
+            <% menu_link_class_about = "btn_orange_inactive" %>
+            <% menu_link_class_login = "btn_orange_active" %>
+            <% menu_link_class_signup = "btn_orange_inactive" %>
+          <% end %>
+
+          <% if (request.url.include? '/about')  %>
+            <% menu_link_class_about = "btn_orange_active" %>
+            <% menu_link_class_login = "btn_orange_inactive" %>
+            <% menu_link_class_signup = "btn_orange_inactive" %>
+          <% end %>
+
+
+          <li class="<%= menu_link_class_login %>" ><a href="/user_session/new?skip_intro=1" class="btn_orange">LOGIN</a></li>
+          <li class="<%= menu_link_class_about %>" ><a href="#about" class="show_hide btn_orange">ABOUT</a></li>
+          <li class="<%= menu_link_class_signup %>" ><a href="#" class="show_hide btn_orange">SIGN UP</a></li>
+
+
+          <!--
+          <li><a href="#browse_recommended_habits">Browse Habits</a></li>
+          <li>
+            <a href="#all_testimonials_anchor" onclick="toggle_show('all_testimonials')">
+            Testimonials
+            </a>
+          </li>
+          -->
+
+        </ul>
+      </div>
+
+
+      <!-- Logo Start -->
+      <div class="logo_header">
+        <a href="/"><img src="/home/images/logos/HF-ETR-Logo-Header.png" alt="HabitForge logo" /></a>
+      </div>
+      <!-- LOGO END -->
+
+    </div> <!-- end div top_header -->
+
+
+
+    <div class="signup_header">
+      <div class="signup_header_text">
+        <div style="float:left;">
+        <img src="/home/images/iPhone.png" />
+        </div>
+
+        <div style="margin-top:25px;padding-top:30px;">
+        <span style="font-size:3.0em;margin-left:-20px;color:#ff3300;">Change your habits,</span>
+        </div>
+
+        <div style="margin-top:10px;">
+        <span style="font-size:3.0em;margin-top:10px;padding-left:30px;margin-left:-20px;color:#cc3300;">change your life!</span>
+        </div>
+
+        <div style="margin-top:40px;padding-top:0px;">
+        <span style="margin-left:20px;font-size:1.5em;color:#333366;">
+        This simple program helps you build
+        </span>
+        </div>
+
+        <div style="margin-top:5px;">
+        <span style="margin-left:20px;font-size:1.5em;color:#333366;">
+        habits that will improve your life.
+        </span>
+        </div>
+
+        <div style="margin-top:28px;">
+        <span style="margin-left:20px;font-color:#000000;font-size:1.2em;color:#000000;">
+        We'll send you a daily reminder of your goals
+        </span>
+        </div>
+
+        <div style="">
+        <span style="margin-left:20px;font-color:#000000;font-size:1.2em;color:#000000;">
+        and help you keep track of your progress.
+        </span>
+        </div>
+
+      </div>
+
+
+    </div>
+
+    <!-- Press Logos Start -->
+
+    <div style="padding-top:0px;align:center;">
+        <img src="/home/images/logos/press_logos_v1_transparent.png" width="600" alt="press logos" />
+    </div>
+
+    <!-- Press Logos End -->
+
+
+
+
+
+<!--     <div id="triangle-up"></div> -->
+
+    <!-- Content Start -->
+    <section id="content_wrap">
+
+
+        <div class="page_title">
+            <h2>What could you do daily to improve your life?</h2>
+
+
+
+    <article>
+
+
+            <!--Begin TESTIMONIALS Callout Section-->
+
+
+            <center>
+                <div style="width:90%;margin-top:-30px;">
+
+            <div class="blog_post">
+                <!--<div class="thumb_img">
+                    <img src="/home/images/quote.png" alt="img" />
+                </div>-->
+
+
+
+            <% if session[:goal_template_text] and session[:goal_template_text] != "" %>
+              <%
+              ### grab these vars from the URL so they are available on goal creation
+              if params[:template_user_parent_goal_id]
+                session[:template_user_parent_goal_id] = params[:template_user_parent_goal_id]
+              end
+              if params[:goal_added_through_template_from_program_id]
+                session[:goal_added_through_template_from_program_id] = params[:goal_added_through_template_from_program_id].to_i
+              end
+              %>
+                <div>
+                    <h3>Let's get you started with <%= session[:goal_template_text] %>! 
+                      <a href="?goal_template_text=&category=" style="text-decoration:underline;">(or, do something else)</a></h3>
+
+
+                    <form action="/quicksignup_v2">
+                        <input type="submit" value="Sign Up Free!" class="start_now">
+                        <input type="text" name="email" style="padding-left:5px;font:2em Arial sans-serif;margin-top:14px;" placeholder="Enter your email address..." size="20">
+
+                        <!-- 
+                        <input type="text" name="email" style="padding-left:5px;font:2em Arial sans-serif;margin-top:14px;" placeholder="Enter your email address..." size="20">
+                        -->
+                        <br>
+                        <input type="checkbox" name="subscribe_etr" value=1 checked> Get daily inspiration from Early to Rise
+                        <input type="hidden" name="form_submitted" value=1>
+                    </form>
+
+
+
+                </div>
+
+            <% else %>
+              <h2><span>Join for free</span>, and add to our 1,315,242 Successful Days Logged!</h2>
+
+                <% if retry_email_address %>
+
+                    <div>
+                        <div class="pane error">
+                            <% if @email_blank == true or (@email_valid != nil and @email_valid == false) %>
+                            Please enter a valid email address.
+                            <% end %>
+
+                            <% if @email_duplicate %>
+                            There is already a habitforge account with that email address. 
+                            <br>
+                            If it is yours, you may <a href="/users/login">log in here</a> or you may sign up with a new address below.
+                            <% end %>
+                        </div>
+                <% else %>
+
+                    <div id="signup" style="display:block;">
+
+                <% end %>
+
+                  <div>
+
+                      <form action="/quicksignup_v2">
+                          <input type="submit" value="Sign Up Free!" class="start_now">
+                          <input type="text" name="email" style="padding-left:5px;font:2em Arial sans-serif;margin-top:14px;" placeholder="Enter your email address..." size="20">
+
+                          <!-- 
+                          <input type="text" name="email" style="padding-left:5px;font:2em Arial sans-serif;margin-top:14px;" placeholder="Enter your email address..." size="20">
+                          -->
+                        <br>
+                        <input type="checkbox" name="subscribe_etr" value=1 checked> Get daily inspiration from Early to Rise
+                          <input type="hidden" name="form_submitted" value=1><br>
+                           or <a href="#browse_recommended_habits" style="font-size:1.5em;text-decoration:underline;">Browse Popular Habits</a>
+                      </form>
+
+
+                  </div>
+              </div>
+            <% end %>
+
+        </div>
+
+        <div style="margin-top:-50px;">
+          <h4>Already a member? <a href='/user_session/new?skip_intro=1' ><span style="text-decoration:underline;">Log In</span></a>
+              <br>
+
+
+    <!--         <span class='st_pinterest' displayText='' style="padding:-20px;"></span>
+            <span class='st_twitter' displayText=''></span>
+            <span class='st_facebook' displayText=''></span>
+     -->      </h4>
+            
+
+          <p />
+        </div>
+
+        <div class="description">
+            <em>
+            <ul class="bxslider" style="padding-left:50px;" >
+            <%= render :partial => "layouts/testimonials2" %>
+            </ul>
+            </em>
+        </div>
+
+      </div>
+
+
+      </div></center>
+    </article>
+
+    <div class="clear"></div>
+
+    <article>
+
+        <a name="how" id="how" />
+
+        <h3>How <span>It Works</span></h3><br />
+        <div class="one_third">
+            <span class="alignleft">
+                <img src="/home/images/mointor_icon.png" alt="img"  />
+            </span>
+            <h4>1. Decide</h4>
+            <p>What could you do daily to improve your life? We all have room to improve. Pick one thing and get started! Life is short, so commit to taking action now!</p>
+        </div>
+        <div class="one_third">
+            <span class="alignleft">
+                <img src="/home/images/brush_icon.png" alt="img"  />
+            </span>
+            <h4>2. Build your first habit</h4>
+            <p>In under a minute you can be set up with your first habit. We'll check in on you as often as you want, and we'll keep track of how you're doing.</p>
+        </div>
+
+        <div class="one_third_last">
+            <span class="alignleft">
+                <img src="/home/images/paperplane_icon.png" alt="img"  />
+            </span>
+            <h4>3. Click "Yes" or "No"</h4>
+            <p>We'll check in via email to ask you if you were successful. Just click "yes" or "no" from that email and we'll keep track of how you're doing. Succeed for 21 days straight, and the new action will be easier than ever to maintain.</p>
+        </div>
+    </article>
+
+
+
+    <article>
+        <div>
+            <span class="alignleft">
+                <img src="/home/images/briefcase_icon.png" alt="img"  />
+            </span>
+            <br>
+            <h3>Choose <span>Extra Accountability</span> Features that Work for You</h3>
+              <p>
+              <br>>> Join a team of others working on a similar goal to yours (or go it alone).
+              <br>
+              >> Set up as many reminders each day as you'd like.
+              <br>>> Set the time of day you want us to "check in" to see if you succeeded.
+              
+              <br>>> Your habit goal can be public or private.
+              <br>>> You can invite others to follow your progress, and they'll get a weekly report showing your stats.
+              
+              <br>>> If you'd like, we'll incentivize other members to send you a "push"... they'll choose from one of five phrases that you create to use as a gentle "push" (or not so gentle, your choice) if you start to falter.
+              
+              <br>
+                >> Still not enough? Set up a wager to "have to pay" a friend, a randomly chosen user, or even an organization that you can't stand if you don't hit a certain success threshold.
+              
+          </p>
+        </div>
+    </article>
+
+
+
+    <% if params[:program_id] %>
+      <!-- 
+      http://localhost:3000/goals?programs=1&browse_recommended_habits=1&program_id=2
+      -->
+      <%= render :partial => "layouts/habit_program" %>
+    <% else %>
+      <article>
+          <!-- render :partial => "layouts/habit_library" -->
+          <%= render :partial => "layouts/habit_library_templates" %>
+      </article>
+    <% end %>
+
+
+    <article>
+          <a name="all_testimonials_anchor" id="all_testimonials_anchor" />
+          <div id="all_testimonials" style="display:none;" class="description">
+            <h3>Testimonials</h3>
+            <em>
+            <ul>
+            <%= render :partial => "layouts/testimonials2" %>
+            </ul>
+            </em>
+          </div>
+
+          <center>
+            <!--<div class="fb-like-box" data-href="http://www.facebook.com/pages/habitforgecom/281059421608" data-width="292" data-show-faces="true" data-stream="false" data-header="true"></div>
+          -->
+
+          <% if @production %>
+
+          <div id="fb-root"></div>
+          <script>(function(d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+            fjs.parentNode.insertBefore(js, fjs);
+          }(document, 'script', 'facebook-jssdk'));</script>
+
+          <div class="fb-like-box" data-href="http://www.facebook.com/pages/habitforgecom/281059421608" data-width="292" data-show-faces="true" data-stream="false" data-header="true"></div>
+      
+
+<!--           <span class='st_fblike' displayText='Like HabitForge!'></span> -->
+          <span class='st_facebook' displayText='Share on Facebook'></span>
+          <span class='st_twitter' displayText='Tweet'></span>
+          <span class='st_pinterest' displayText='Pinterest'></span>
+
+          <br>
+
+<!--                   <span class='st_fblike_hcount' displayText='Like HabitForge!'></span>
+                  <br><br>
+                  <span class='st_facebook_hcount' displayText='Share on Facebook'></span>
+                  <span class='st_twitter_hcount' displayText='Tweet'></span>
+                  <span class='st_pinterest_hcount' displayText='Pinterest'></span>
+ -->
+
+          <% else %>
+            In production we'd have some facebook, twitter and pinterest links here.
+          <% end %>
+          </center>
+
+
+    </article>
+
+    </section>
+    <!-- Content End -->
+    <div id="triangle-down">&nbsp;</div>
+
+    <!-- Footer Start -->
+    <section id="footer_wrap">
+    <footer>
+        <div class="widget_container">
+            <a name="about" id="about" />
+            <h3>About <span>HabitForge</span></h3>
+            <p>
+            At HabitForge we are on a mission... to change the world one habit at a time. By 
+            helping you at first to consciously make a better choice each and every day until 
+            eventually the "better choice" is an automatic response.</p>
+
+            <p>Our goal is simply to help you live more fully and enjoy a healthier, happier life.</p>
+
+            <p>During the coming year as we continue to develop HabitForge, we will be digging 
+            further into the nuts and bolts and nuances behind habit formation... converting 
+            the "what and how" that world-renowned scientists have revealed during their 
+            past 20 years of "positive psychology research" into simple, practical HabitForge 
+            features that will help you get there faster than ever.
+            </p>
+        </div>
+
+
+        <div class="bottom_sec">
+            <span>Copyright &copy; Habit Research LLC 2013</span>
+            <ul>
+            </ul>
+        </div>
+
+    </footer>
+    </section>
+    <!-- Footer End -->
+
+  <% end %>   <!-- END DECIDE IF ONLY SHOW HABIT LIBRARY -->
+
+
+  <!-- ### START GOOGLE ANALYTICS ### --> 
+  <script type="text/javascript">
+  var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+  document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+  </script>
+  <script type="text/javascript">
+  try {
+  var pageTracker = _gat._getTracker("UA-10841267-1");
+  pageTracker._trackPageview();
+  } catch(err) {}
+  </script>
+  <!-- ### END GOOGLE ANALYTICS ### --> 
+
+
+  <% if session[:production] %>
+  <!-- ### START CRAZY EGG HEAT MAP -->
+  <script type="text/javascript">
+  setTimeout(function(){var a=document.createElement("script");
+  var b=document.getElementsByTagName("script")[0];
+  a.src=document.location.protocol+"//dnn506yrbagrg.cloudfront.net/pages/scripts/0013/7909.js?"+Math.floor(new Date().getTime()/3600000);
+  a.async=true;a.type="text/javascript";b.parentNode.insertBefore(a,b)}, 1);
+  </script>
+  <!-- ### END CRAZY EGG HEAT MAP -->
+  <% end %>
+
+
+
+
+
+</body>
+</html>
