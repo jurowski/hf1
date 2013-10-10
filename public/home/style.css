@@ -632,7 +632,7 @@ a[rel=signup_email2]:hover {
 }
 
 .signup_header_text {
-	width:800px;
+/*	width:800px;*/
 
 /*	This will center the div*/
 	margin-left: auto;
@@ -643,7 +643,7 @@ a[rel=signup_email2]:hover {
 }
 
 .top_header div {
-	width:800px;
+/*	width:800px;*/
 
 /*	This will center the div*/
 	margin-left: auto;
