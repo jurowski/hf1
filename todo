@@ -8,7 +8,13 @@
 
 
 
-
+SIGNUP FROM HOMEPAGE PRICING GRID
+if someone clicks on a pricing link from the home page
+  jump to the signup box
+  make visible a div with text asking them to sign up and we'll get started
+  mod a hidden form input value indicating monthly vs. yearly vs. lifetime vs. free
+  in the quick_signup controller action, if that form value is not "free" then redirect to ETR for payment
+  (for now, don't mod that page ... once in production, ask Mark to auto-choose which value was chosen on the $ page)
 
 
 

@@ -251,13 +251,25 @@ a.detail:hover {
 /***********************************HEADER START***********************************/
 #header_wrap {
 	width:100%;
+
+	
+	/*
 	background-color:#333;
 	height:70px;
 	border-bottom:1px solid #fff;
 	border-top:4px solid #ff4000;
+	*/
+	height: 4px;
+	border-top:4px solid #ff4d00;
+
+	
+
+	/*
 	background-image: url(images/header_bg.png);
 	background-repeat: repeat-x;
 	background-position: left top;
+	*/
+
 }
 
 /***********************************HEADER END***********************************/
@@ -521,3 +533,350 @@ footer {
 /***********************************CONTACT END***********************************/
 
    
+/*************** START SGJ CUSTOM ****************************/
+
+
+@font-face {
+  font-family: 'LatoBold';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Lato Bold'), local('Lato-Bold'), url(http://themes.googleusercontent.com/static/fonts/lato/v6/wkfQbvfT_02e2IWO3yYueQ.woff) format('woff');
+}
+@font-face {
+  font-family: 'Lato';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Lato Regular'), local('Lato-Regular'), url(http://themes.googleusercontent.com/static/fonts/lato/v6/9k-RPmcnxYEPm8CNFsH2gg.woff) format('woff');
+}
+
+
+
+a[rel=signup_facebook] {
+  display: block;
+  background: url('/home/images/Button-Facebook.png') no-repeat 0 0 transparent;
+  width: 98px; 
+  height: 28px;
+}
+
+a[rel=signup_facebook]:hover {
+  background: url('/home/images/Button-Facebook-Hover.png') no-repeat 0 0 transparent;
+}
+
+a[rel=signup_facebook2] {
+  display: block;
+  background: url('/home/images/Button-Facebook.png') no-repeat 0 0 transparent;
+  width: 98px; 
+  height: 28px;
+}
+
+a[rel=signup_facebook2]:hover {
+  background: url('/home/images/Button-Facebook-Hover.png') no-repeat 0 0 transparent;
+}
+
+
+a[rel=signup_google] {
+  display: block;
+  background: url('/home/images/Button-Google.png') no-repeat 0 0 transparent;
+  width: 98px; 
+  height: 28px;
+}
+
+a[rel=signup_google]:hover {
+  background: url('/home/images/Button-Google-Hover.png') no-repeat 0 0 transparent;
+}
+
+a[rel=signup_google2] {
+  display: block;
+  background: url('/home/images/Button-Google.png') no-repeat 0 0 transparent;
+  width: 98px; 
+  height: 28px;
+}
+
+a[rel=signup_google2]:hover {
+  background: url('/home/images/Button-Google-Hover.png') no-repeat 0 0 transparent;
+}
+
+
+
+a[rel=signup_email] {
+  display: block;
+  background: url('/home/images/Button-SignUp.png') no-repeat 0 0 transparent;
+  width: 150px; 
+  height: 40px;
+}
+
+a[rel=signup_email]:hover {
+  background: url('/home/images/Button-SignUp-Hover.png') no-repeat 0 0 transparent;
+}
+
+
+a[rel=signup_email2] {
+  display: block;
+  background: url('/home/images/Button-SignUp.png') no-repeat 0 0 transparent;
+  width: 150px; 
+  height: 40px;
+}
+
+a[rel=signup_email2]:hover {
+  background: url('/home/images/Button-SignUp-Hover.png') no-repeat 0 0 transparent;
+}
+
+.signup_header {
+
+	background-image:url('/home/images/desk_clean.jpg');
+	width:100%;
+	background-color: #dddddd;
+	height:320px;
+
+/*	color: #ff4000;*/
+}
+
+.signup_header_text {
+	width:800px;
+
+/*	This will center the div*/
+	margin-left: auto;
+	margin-right: auto;
+	
+	font-family: 'LatoBold', sans-serif;
+
+}
+
+.top_header div {
+	width:800px;
+
+/*	This will center the div*/
+	margin-left: auto;
+	margin-right: auto;
+
+}
+
+.logo_header {
+	margin-top:0px;
+}
+
+.h1_font_oswald {
+	color:#ff3300;
+	font-size:2em;
+	font-family: 'Oswald';
+}
+
+.circle_orange:before {
+    content: ' \25CF';
+    font-size: 150px;
+	color:#ff3300;
+}
+
+#navlist li
+{
+/*display: inline;*/
+/*list-style-type: none;*/
+margin-top: 20px;
+padding-right: 20px;
+float:right;
+
+font-family: 'LatoBold', sans-serif;
+}
+
+.btn_orange_inactive a {
+	-webkit-border-top-left-radius:13px;
+	-moz-border-radius-topleft:13px;
+	border-top-left-radius:13px;
+	-webkit-border-top-right-radius:13px;
+	-moz-border-radius-topright:13px;
+	border-top-right-radius:13px;
+	-webkit-border-bottom-right-radius:13px;
+	-moz-border-radius-bottomright:13px;
+	border-bottom-right-radius:13px;
+	-webkit-border-bottom-left-radius:13px;
+	-moz-border-radius-bottomleft:13px;
+	border-bottom-left-radius:13px;
+	text-indent:0;
+	border:0px solid #ffffff;
+	display:inline-block;
+	color:#2E2E2E;
+	font-family: 'LatoBold', sans-serif;
+	height:34px;
+	line-height:34px;
+	width:100px;
+	text-decoration:none;
+	text-align:center;
+	font-size: 1.2em;
+}
+
+.btn_orange_inactive:hover a {
+	background-color:#ff4d00;
+	color:#ffffff;
+}
+
+
+
+.btn_orange_active a {
+	-webkit-border-top-left-radius:13px;
+	-moz-border-radius-topleft:13px;
+	border-top-left-radius:13px;
+	-webkit-border-top-right-radius:13px;
+	-moz-border-radius-topright:13px;
+	border-top-right-radius:13px;
+	-webkit-border-bottom-right-radius:13px;
+	-moz-border-radius-bottomright:13px;
+	border-bottom-right-radius:13px;
+	-webkit-border-bottom-left-radius:13px;
+	-moz-border-radius-bottomleft:13px;
+	border-bottom-left-radius:13px;
+	text-indent:0;
+	border:0px solid #ffffff;
+	display:inline-block;
+/*	color:#000000;*/
+	font-family: 'LatoBold', sans-serif;
+	height:34px;
+	line-height:34px;
+	width:100px;
+	text-decoration:none;
+	text-align:center;
+
+
+	color:#ffffff;
+	background-color:#ff4d00;
+	font-size: 1.2em;
+/*	border:1px solid #ff4d00;
+*/}
+
+
+
+/* LIGHT BOX
+http://www.emanueleferonato.com/2007/08/22/create-a-lightbox-effect-only-with-css-no-javascript-needed/
+*/
+.black_overlay{
+  position: absolute;
+  top: 0%;
+  left: 0%;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  z-index:1001;
+  -moz-opacity: 0.8;
+  opacity:.80;
+  filter: alpha(opacity=80);
+}
+.white_overlay{
+  position: absolute;
+  top: 0%;
+  left: 0%;
+  width: 100%;
+  height: 100%;
+  background-color: white;
+  z-index:1001;
+  -moz-opacity: 0.8;
+  opacity:.80;
+  filter: alpha(opacity=80);
+}
+.white_content {
+  position: absolute;
+  top: 10%;
+  left: 5%;
+  /*
+  top: 20%;
+  left: 25%;
+  width: 50%;
+  height: 500px;
+  */
+  width: 85%;
+  padding: 16px;
+  border: 16px solid black;
+  background-color: white;
+  z-index:1002;
+  overflow: auto;
+}
+.white_content_v2 {
+  position: absolute;
+  top: 10%;
+  left: 5%;
+  /*
+  top: 20%;
+  left: 25%;
+  width: 50%;
+  height: 500px;
+  */
+  width: 85%;
+  padding: 16px;
+/*  border: 16px solid black;*/
+  background-color: white;
+  z-index:1002;
+  overflow: auto;
+}
+
+.div_close_button {
+  position: absolute;
+
+  top: 5%;
+  left: 92%;
+  width: 90%;
+  padding: 16px;
+
+  /*
+  top: 18%;
+  left: 76%;
+  width: 55%;
+  height: 55%;
+  padding: 16px;
+  */
+  z-index:1003;
+  overflow: auto;
+}
+/* END LIGHT BOX
+*/
+
+
+
+
+/*
+PRETTY FORM INPUT ELEMENTS
+http://net.tutsplus.com/tutorials/html-css-techniques/design-a-prettier-web-form-with-css-3/
+*/
+input, textarea { 
+	padding: 9px;
+	border: solid 1px #E5E5E5;
+	outline: 0;
+	font: normal 13px/100% Verdana, Tahoma, sans-serif;
+	width: 200px;
+	background: #FFFFFF url('bg_form.png') left top repeat-x;
+	background: -webkit-gradient(linear, left top, left 25, from(#FFFFFF), color-stop(4%, #EEEEEE), to(#FFFFFF));
+	background: -moz-linear-gradient(top, #FFFFFF, #EEEEEE 1px, #FFFFFF 25px);
+	box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px;
+	-moz-box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px;
+	-webkit-box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px;
+	}
+
+textarea { 
+	width: 400px;
+	max-width: 400px;
+	height: 150px;
+	line-height: 150%;
+	}
+
+input:hover, textarea:hover,
+input:focus, textarea:focus { 
+	border-color: #C9C9C9; 
+	-webkit-box-shadow: rgba(0, 0, 0, 0.15) 0px 0px 8px;
+	}
+
+.form label { 
+	margin-left: 10px; 
+	color: #999999; 
+	}
+
+.submit input {
+	width: auto;
+	padding: 9px 15px;
+	background: #617798;
+	border: 0;
+	font-size: 14px;
+	color: #FFFFFF;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	}
+/* END PRETTY FORM ELEMENTS */
+
+
+/*************** END SGJ CUSTOM   ****************************/

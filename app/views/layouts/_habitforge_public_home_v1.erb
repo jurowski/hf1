@@ -254,115 +254,70 @@ function popitup_bigger1(url) {
 
     <!-- Header Start -->
     <section id="header_wrap">
-    </section>
-
-
-    <div class="top_header" >
-      <div id="navcontainer">
-        <ul id="navlist">
-
-          <!-- DEFAULT SETTING -->
-          <% menu_link_class_about = "btn_orange_inactive" %>
-          <% menu_link_class_login = "btn_orange_inactive" %>
-          <% menu_link_class_signup = "btn_orange_active" %>
-
-          <% if (request.url.include? '/user_session/new' or request.url.include? '/account')  %>
-            <% menu_link_class_about = "btn_orange_inactive" %>
-            <% menu_link_class_login = "btn_orange_active" %>
-            <% menu_link_class_signup = "btn_orange_inactive" %>
-          <% end %>
-
-          <% if (request.url.include? '/about')  %>
-            <% menu_link_class_about = "btn_orange_active" %>
-            <% menu_link_class_login = "btn_orange_inactive" %>
-            <% menu_link_class_signup = "btn_orange_inactive" %>
-          <% end %>
-
-
-          <li class="<%= menu_link_class_login %>" ><a href="/user_session/new?skip_intro=1" class="btn_orange">LOGIN</a></li>
-          <li class="<%= menu_link_class_about %>" ><a href="#about" class="show_hide btn_orange">ABOUT</a></li>
-          <li class="<%= menu_link_class_signup %>" ><a href="#" class="show_hide btn_orange">SIGN UP</a></li>
-
-
-          <!--
-          <li><a href="#browse_recommended_habits">Browse Habits</a></li>
-          <li>
-            <a href="#all_testimonials_anchor" onclick="toggle_show('all_testimonials')">
-            Testimonials
-            </a>
-          </li>
-          -->
-
+    <nav id="myslidemenu" class="jqueryslidemenu clearfix" >
+        <ul>
+            <li><a href="#" class="show_hide">Sign Up Free</a></li>
+            <li><a href="#browse_recommended_habits">Browse Habits</a></li>
+            <li>
+              <a href="#all_testimonials_anchor" onclick="toggle_show('all_testimonials')">
+              Testimonials
+              </a>
+            </li>
+            <li><a href="/user_session/new?skip_intro=1">Log In</a></li>
         </ul>
-      </div>
-
-
-      <!-- Logo Start -->
-      <div class="logo_header">
-        <a href="/"><img src="/home/images/logos/HF-ETR-Logo-Header.png" alt="HabitForge logo" /></a>
-      </div>
-      <!-- LOGO END -->
-
-    </div> <!-- end div top_header -->
+    </nav>
+    </section>
+    <!-- Header End -->
 
 
 
-    <div class="signup_header">
-      <div class="signup_header_text">
-        <div style="float:left;">
-        <img src="/home/images/iPhone.png" />
-        </div>
 
-        <div style="margin-top:25px;padding-top:30px;">
-        <span style="font-size:3.0em;margin-left:-20px;color:#ff3300;">Change your habits,</span>
-        </div>
+    <!-- Logo Start -->
+    <div style="margin-top:-40px;">
+    <figure>
 
-        <div style="margin-top:10px;">
-        <span style="font-size:3.0em;margin-top:10px;padding-left:30px;margin-left:-20px;color:#cc3300;">change your life!</span>
-        </div>
-
-        <div style="margin-top:40px;padding-top:0px;">
-        <span style="margin-left:20px;font-size:1.5em;color:#333366;">
-        This simple program helps you build
-        </span>
-        </div>
-
-        <div style="margin-top:5px;">
-        <span style="margin-left:20px;font-size:1.5em;color:#333366;">
-        habits that will improve your life.
-        </span>
-        </div>
-
-        <div style="margin-top:28px;">
-        <span style="margin-left:20px;font-color:#000000;font-size:1.2em;color:#000000;">
-        We'll send you a daily reminder of your goals
-        </span>
-        </div>
-
-        <div style="">
-        <span style="margin-left:20px;font-color:#000000;font-size:1.2em;color:#000000;">
-        and help you keep track of your progress.
-        </span>
-        </div>
-
-      </div>
+            <a href="/"><img src="/home/images/logos/habitforge_logo.png" width="300" alt="HabitForge logo" /></a>
+            <h5>Build lasting habits quickly and easily! 
+            </h5>
 
 
+            <div class="description">
+                <em>
+                <ul class="bxslider_teaser" style="padding-left:50px;" >
+                <%= render :partial => "layouts/testimonials_teaser" %>
+                </ul> 
+                <a href="#all_testimonials_anchor" onclick="toggle_show('all_testimonials')">
+                (...read the full testimonials)
+                </a>
+
+                </em>
+            </div>
+
+            <% if params[:account_removed] %>
+              <div class="error alert">
+                <h3>Your account has been removed.</h3>
+              </div>
+            <% end %>
+            <!-- 
+            <span class='st_facebook_hcount' displayText='Facebook'></span>
+            <span class='st_twitter_hcount' displayText='Tweet'></span>
+            <span class='st_pinterest_hcount' displayText='Pinterest'></span>
+            -->
+
+
+    </figure>
     </div>
+    <!-- Logo End -->
 
-    <!-- Press Logos Start -->
+            <!-- Press Logos Start -->
+            <center>
+            <div style="padding-top:0px;">
+                <img src="/home/images/logos/press_logos_v1_transparent.png" width="600" alt="press logos" />
+            </div>
+            </center>
+            <!-- Press Logos End -->
 
-    <div style="padding-top:0px;align:center;">
-        <img src="/home/images/logos/press_logos_v1_transparent.png" width="600" alt="press logos" />
-    </div>
-
-    <!-- Press Logos End -->
-
-
-
-
-
-<!--     <div id="triangle-up"></div> -->
+    <div id="triangle-up"></div>
 
     <!-- Content Start -->
     <section id="content_wrap">
