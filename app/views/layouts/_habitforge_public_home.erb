@@ -257,11 +257,8 @@ function popitup_bigger1(url) {
 <!--[if lt IE 9]>
   <script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
 <![endif]-->
+<body style="background-color:#333333;">
 
-
-
-<!-- <body style="background-color:#333333;"> -->
-<body>
 
 <!--   <div id="spinner_page_load" style="display:none;"> -->
   <div id="spinner_page_load" >
@@ -277,7 +274,7 @@ function popitup_bigger1(url) {
 
 
   <!-- but really we just want the footer to be dark... make a large div for the rest -->
-<!--   <div style="background-color:#ffffff;z-index:-9;"> -->
+  <div style="background-color:#ffffff;z-index:-9;">
 
 
   <% if params[:account_removed] %>
@@ -327,77 +324,63 @@ function popitup_bigger1(url) {
     </section>
 
 
-
-
-
-
     <div>
+      <div id="navcontainer">
+        <ul id="navlist">
+
+          <!-- DEFAULT SETTING -->
+          <% menu_link_class_about = "btn_orange_inactive" %>
+          <% menu_link_class_login = "btn_orange_inactive" %>
+          <% menu_link_class_signup = "btn_orange_active" %>
+
+          <% if (request.url.include? '/user_session/new' or request.url.include? '/account')  %>
+            <% menu_link_class_about = "btn_orange_inactive" %>
+            <% menu_link_class_login = "btn_orange_active" %>
+            <% menu_link_class_signup = "btn_orange_inactive" %>
+          <% end %>
+
+          <% if (request.url.include? '/about')  %>
+            <% menu_link_class_about = "btn_orange_active" %>
+            <% menu_link_class_login = "btn_orange_inactive" %>
+            <% menu_link_class_signup = "btn_orange_inactive" %>
+          <% end %>
+
+
+          <li class="<%= menu_link_class_login %>" ><a href="/user_session/new?skip_intro=1" class="btn_orange">LOGIN</a></li>
+          <li class="<%= menu_link_class_about %>" ><a href="#about" class="show_hide btn_orange">ABOUT</a></li>
+          <li class="<%= menu_link_class_signup %>" ><a href="#" class="show_hide btn_orange">SIGN UP</a></li>
+
+
+          <!--
+          <li><a href="#browse_recommended_habits">Browse Habits</a></li>
+          <li>
+            <a href="#all_testimonials_anchor" onclick="toggle_show('all_testimonials')">
+            Testimonials
+            </a>
+          </li>
+          -->
+
+        </ul>
+      </div>
+
+
       <!-- Logo Start -->
-      <div style="float:left;width:200px;">
-        <a href="/"><img src="/home/images/logos/HF-ETR-Logo-Header.png" alt="HabitForge logo" style=""/></a>
+      <div class="top_header">
+        <a href="/"><img src="/home/images/logos/HF-ETR-Logo-Header.png" alt="HabitForge logo" /></a>
       </div>
       <!-- LOGO END -->
-
-
-      <!-- MENU ITEMS -->
-      <div style="float:right;min-width:400px;margin-top:-15px;">
-        <div class="top_header" >
-        <div id="navcontainer" >
-          <ul id="navlist">
-
-            <!-- DEFAULT SETTING -->
-            <% menu_link_class_about = "btn_orange_inactive" %>
-            <% menu_link_class_login = "btn_orange_inactive" %>
-            <% menu_link_class_signup = "btn_orange_active" %>
-
-            <% if (request.url.include? '/user_session/new' or request.url.include? '/account')  %>
-              <% menu_link_class_about = "btn_orange_inactive" %>
-              <% menu_link_class_login = "btn_orange_active" %>
-              <% menu_link_class_signup = "btn_orange_inactive" %>
-            <% end %>
-
-            <% if (request.url.include? '/about')  %>
-              <% menu_link_class_about = "btn_orange_active" %>
-              <% menu_link_class_login = "btn_orange_inactive" %>
-              <% menu_link_class_signup = "btn_orange_inactive" %>
-            <% end %>
-
-
-            <li class="<%= menu_link_class_login %>" ><a href="/user_session/new?skip_intro=1" class="btn_orange">LOGIN</a></li>
-            <li class="<%= menu_link_class_about %>" ><a href="#about" class="show_hide btn_orange">ABOUT</a></li>
-            <li class="<%= menu_link_class_signup %>" ><a href="#" class="show_hide btn_orange">SIGN UP</a></li>
-
-
-            <!--
-            <li><a href="#browse_recommended_habits">Browse Habits</a></li>
-            <li>
-              <a href="#all_testimonials_anchor" onclick="toggle_show('all_testimonials')">
-              Testimonials
-              </a>
-            </li>
-            -->
-
-          </ul>
-        </div> 
-        </div> 
-      </div>
-      <!-- END MENU ITEMS -->
-
 
     </div> <!-- end div top_header -->
 
 
 
 
-<!--     <div class="one_third" style="padding-left:0px;margin-left:0px;margin-top:0px;width:235px;min-width:235px;max-width:235px;"> -->
-    <div style="padding-top:90px;"> <!-- keep all of those 3 columns together -->
-    <div class="one_third" style="padding-left:30px;margin-left:0px;margin-top:0px;float:left;width:33%; position:relative;">
-<!--       <img id="img_iphone" name="img_iphone" src="/home/images/iPhone.png" style="position:fixed;margin-left:30px;z-index:100;"/> -->
-      <img id="img_iphone" name="img_iphone" src="/home/images/iPhone.png" style="position:fixed;top:98px;left:30px;"/>
+    <div class="one_third" style="padding-left:0px;margin-left:0px;margin-top:0px;width:235px;min-width:235px;max-width:235px;">
+      <img id="img_iphone" name="img_iphone" src="/home/images/iPhone.png" style="position:relative;margin-left:30px;z-index:100;"/>
     </div> <!-- end <div class="one_third"> -->
 
 
-    <div class="one_third" style="padding-left:250px;margin-top:-25px;min-width:334px;float:left;width:33%;position:relative;">
+    <div class="one_third" style="padding-left:25px;margin-top:-25px;width:340px;min-width:334px;">
 
       <div class="signup_header_text">
 
@@ -461,7 +444,7 @@ function popitup_bigger1(url) {
 
 
 
-    <div class="one_third_last" style="float:left;position:relative;width:33%;">
+    <div class="one_third_last" style="float:left;">
 
 
       <div style="float:left;display:block;width:350px;min-width:350px;" id="div_signup_box" name="div_signup_box">
@@ -544,16 +527,526 @@ function popitup_bigger1(url) {
       <!-- this gives you the desk background image -->
     </div>
 
+    <center>
+
+    <!-- Press Logos Start -->
+    <div style="padding-top:0px;margin-top:-10px;padding-left:20px;padding-right:20px;">
+        <img src="/home/images/logos/press_logos_v1_transparent.png" width="700" alt="press logos" />
+    </div>
+    <!-- Press Logos End -->
+
+    <img src="/home/images/hr_fancy.png" />
+
+    <br>
+    <div class="h1_font_oswald" style="padding-top:15px;padding-bottom:10px;">HOW IT WORKS</div>
+    <br>
+    <div style="padding-left:20px;padding-right:20px;max-width:600px;min-width:200px;font-family:LatoBold;color:#000000;font-size:1.4em;line-height:1.5em;">
+    Research shows that it takes at least <span style="font-family:Patrick Hand;color:#ff3300;font-size:1.3em;">21 Days</span> to form a new habit. 
+    HabitForge helps you stay on track so that you can form life-changing habits.
+    We keep track of your goals and send you reminders so you can get better every single day.
+    </div>
+    <br>
+    </center>
+
+
+    <div style="background-color:#ffffff;">
+      <div style="float:left;width:50%;min-width:410px;background-color:#ffffff;">
+
+        <div style="padding-left:20px;padding-right:20px;">
+        <div style="float:right;margin-right:-70px;">
+            <img src="/home/images/circle_monitor.png" alt="img"  style="position:absolute;padding-left:20px;margin-left:-100px;margin-top:-5px;"/> 
+
+            <span style="font-family:LatoBold;font-size:1.6em;color:#000000;margin-left:10px;">1. Decide</span>
+            <div style="font-family:Lato;color:#000000;padding-top:10px;padding-bottom:5px;margin-left:10px;max-width:300px;min-width:300px;">
+            What could you do daily to improve your life?
+            We all have room to improve. Pick one thing and get started!
+            Life is short, so commit to taking action now!
+            </div>
+            <div style="padding-bottom:5px;margin-left:0px;max-width:350px;min-width:350px;">
+            <img src="/home/images/hr_steps.png" alt="img" />
+            </div>
 
 
 
 
+            <img src="/home/images/circle_brush.png" alt="img"  style="position:absolute;padding-left:20px;margin-left:-100px;margin-top:-5px;"/>   
+            <span style="font-family:LatoBold;font-size:1.6em;color:#000000;margin-left:10px;">2. Build Your First Habit</span>
+
+  
+            <div style="font-family:Lato;color:#000000;padding-top:10px;padding-bottom:5px;margin-left:10px;max-width:300px;min-width:300px;">
+            In under a minute you can be set up with your first habit.
+            We'll check in on you as often as you want,
+            and we'll keep track of how you're doing.
+            </div>
+            <div style="padding-bottom:5px;margin-left:0px;max-width:350px;min-width:350px;">
+            <img src="/home/images/hr_steps.png" alt="img" />
+            </div>
 
 
+            <img src="/home/images/circle_plane.png" alt="img"  style="position:absolute;padding-left:20px;margin-left:-100px;margin-top:-5px;"/>   
+            <span style="font-family:LatoBold;font-size:1.6em;color:#000000;margin-left:10px;">3. Track Your Progress</span>
+            <div style="font-family:Lato;color:#000000;padding-top:10px;padding-bottom:5px;margin-left:10px;max-width:300px;min-width:300px;">
+            We'll check in via email to ask if you were successful.
+            Just click "yes" or "no" from that email and we'll keep track of how you're doing.
+            Succeed for 21 days straight, and the new action will be easier than ever to maintain.
+            </div>
+
+            <div style="padding-bottom:20px;">
+
+            </div>
+
+
+        </div><!-- testing extra div container to add left padding to -->
+        </div>
+      </div><!-- float:left:width:60% -->
+
+      <div style="float:left;width:50%;min-width:200px;background-color:#ffffff;">
+        <div style="padding-left:60px;">
+
+<!--           <div style="width:200px;min-width:200px;max-width:200px;height:350px;"> -->
+          <div style="width:445px;">
+
+            <div style="padding:20px;">
+            <ul class="bxslider" style="padding-left:50px;" >
+            <%= render :partial => "layouts/testimonials3" %>
+            </ul>
+            </div>
+
+
+          </div>
+        </div><!-- end of float-right -->
+      </div>
+    </div><!--end of container div-->
+
+
+<!-- </div> --> <!-- end of "but really we just want the footer to be dark... make a large div for the rest" -->
+
+
+<div class="clear"></div>
+
+<!--     <div id="triangle-up"></div> -->
+
+<div style="color:#000000;height:125px;margin-top:45px;">
+
+  <center>
+
+  <div class="h1_font_oswald" style="margin-top:0px;padding-top:0px;padding-bottom:10px;color:#ffffff;position:relative;z-index:11;min-width:450px;">
+    Try out HabitForge for NO COST today!
+  </div>
+
+  <div style="font-family:'LatoBold';margin-top:15px;">
+
+    <form id="form_signup2" name="form_signup2" action="/quicksignup_v2">
+
+      <div style="padding-left:15%;"><!-- row of signup items -->
+<!--     <table>
+      <tr>
+        <td> -->
+        <div style="float:left;min-width:120px;max-width:120px;">
+        <span style="font-size:1.5em;padding-right:5px;position:relative;z-index:11;">Sign up with </span>
+        </div>
+<!--         </td>
+        <td> -->
+
+        <div style="float:left;min-width:105px;max-width:105px;">
+  <!--       <img src="/home/images/Button-Facebook.png" />  -->
+        <a style="z-index:100;position:relative;" href="#"  id='signup_facebook2' title="Coming Soon... (for now, please register with your email address)"rel="signup_facebook2" onmouseover="this.getElementById('image_button_signup_facebook2').src='/home/images/Button-Facebook-Hover.png'" onmouseout="this.getElementById('image_button_signup_facebook2').src='/home/images/Button-Facebook.png'">
+        </a>
+        <script type='text/javascript'>
+            $('#signup_facebook2').tipsy();
+        </script>
+        </div>
+<!--       </td>
+      <td> -->
+        <div style="float:left;min-width:105px;max-width:105px;">
+  <!--       <img src="/home/images/Button-Google.png" />  -->
+        <a style="z-index:100;position:relative;" href="#" id='signup_google2' title="Coming Soon... (for now, please register with your email address)" rel="signup_google2" onmouseover="this.getElementById('image_button_signup_google2').src='/home/images/Button-Google-Hover.png'" onmouseout="this.getElementById('image_button_signup_google2').src='/home/images/Button-Google.png'">
+        </a>
+        <script type='text/javascript'>
+            $('#signup_google2').tipsy();
+        </script>
+        </div>      
+<!--       </td>
+      <td> -->
+        <div style="float:left;min-width:65px;max-width:65px;">
+        <span style="font-size:1.5em;padding-right:10px;padding-left:10px;position:relative;z-index:11;">OR </span>
+        </div>
+
+        <div style="float:left;min-width:240px;max-width:240px;">
+        <input type="text" name="email" placeholder="Enter your email for a free account..." style="width:220px;position:relative;z-index:11;"/>
+
+        <input type="hidden" name="subscribe_etr" value=1> 
+        <input type="hidden" name="form_submitted" value=1>
+        </div>
+<!-- 
+      </td>
+      <td>  -->      
+        <div style="float:left;min-width:105px;max-width:105px;">
+        <a style="margin-left:20px;z-index:100;position:relative;" href="#" rel="signup_email2" onmouseover="this.getElementById('image_button_signup_email2').src='/home/images/Button-SignUp-Hover.png'" onmouseout="this.getElementById('image_button_signup_email2').src='/home/images/Button-SignUp.png'" onclick="toggle_show('spinner_page_load');formSubmit('form_signup2')">
+        </a>
+        </div>
+<!--       </td>
+    </tr>
+  </table>
+ -->  
+  </div><!-- end of row of signup items -->
+</form>
+  </div>
+
+</div>
+<div style="margin-top:-160px;">
+<img src="/home/images/orange-bar.png" style="height:150px;position:relative;z-index:10;"  />
+</div>
+
+
+
+<!-- 
+<div>
+  <center>
+    <div class="h1_font_oswald" style="padding-top:15px;padding-bottom:10px;">EXTRA ACCOUNTABILITY</div>
+    <div style="padding-left:20px;padding-right:20px;max-width:800px;min-width:200px;font-family:Lato;color:#000000;font-size:1.4em;line-height:1.5em;">
+    If you want to create more than one new habit, or if you just need an extra push to keep you motivated,
+    consider our <span style="font-family:LatoBold;">HabitForge Premium</span> accountability options.
+    </div>
+
+    <div style="padding-top:20px;">
+      <a href="#signup_box_1">
+      <img src="/home/images/pricing_table_free.png" />
+      </a>
+      <a href="#">
+      <img src="/home/images/pricing_table_monthly.png" />
+      </a>
+      <a href="#">
+      <img src="/home/images/pricing_table_yearly_featured.png" />
+      </a>
+      <a href="#">
+      <img src="/home/images/pricing_table_lifetime.png" />
+      </a>
+
+    </div>
+
+  </center>
+</div> -->
+
+
+<center>
+
+<!-- <div style="padding-top:25px;padding-bottom:5px;">
+<img src="/home/images/hr_fancy.png" />
+</div>
+ -->
+
+
+
+<br>
+<div class="h1_font_oswald" style="padding-top:15px;padding-bottom:10px;">WHAT PEOPLE ARE SAYING</div>
+<br>
+
+<div style="color:#505050;font-size:em1.2;">
+  <div style="float:left;width:30%;">
+    <div style="float:right;">
+      <img src="/home/images/family_circle.png" />
+    </div>
+  </div>
+  <div style="float:right;width:70%;">
+    <div style="float:left;text-align:left;padding-left:20px;max-width:550px;min-width:200px;">
+      "Solid science backs up the idea that the first few weeks of forming any habit are the toughest.
+      For 21 days, this site sends me a daily reminder and asks me to report how I did yesterday.
+      When I falter, it rolls the count back to zero again. By the time I've done something for 21 days, it's a habit. Free."
+    </div>
+  </div>
+
+
+  <div style="padding-bottom:5px;margin-left:0px;max-width:350px;min-width:350px;">
+  <img src="/home/images/hr_steps.png" alt="img"  />
+  </div>
+
+  <div style="float:left;width:30%;">
+    <div style="float:right;">
+      <div class="h1_font_oswald" style="font-size:1.7em;padding-top:15px;padding-bottom:10px;">HEALTH</div>
+    </div>
+  </div>
+  <div style="float:right;width:70%;">
+    <div style="float:left;text-align:left;padding-left:20px;max-width:550px;min-width:200px;">
+      "I've had a very hard time with eating fast food over the course of 20 years.  I just love the taste and no matter what I've tried to do I couldn't stop.  Then one day I ran across this website and it made a tremendous difference in fighting my fast food eating behavior.  The website helped reinforce what I needed to do over and over again on a daily basis and with the proper motivational quotes I was able to build momentum each and every day to be successful.  I haven't looked back since.  I went from 10% bodyfat to 4% bodyfat.  My physique transformation is truly amazing.  If I can do it so can anyone else. Thanks habitforge."
+
+      <div style="padding-top:10px;">
+      <span style="font-family:Patrick Hand;color:#ff3300;font-size:1.9em;">
+          Jim
+          </span>
+          Missouri City, TX
+      </div>
+
+    </div>
+  </div>
+
+
+  <div style="padding-bottom:5px;margin-left:0px;max-width:350px;min-width:350px;">
+  <img src="/home/images/hr_steps.png" alt="img" />
+  </div>
+
+  <div style="float:left;width:30%;">
+    <div style="float:right;">
+      <div class="h1_font_oswald" style="font-size:1.7em;padding-top:15px;padding-bottom:10px;">MEDITATION</div>
+    </div>
+  </div>
+  <div style="float:right;width:70%;">
+    <div style="float:left;text-align:left;padding-left:20px;max-width:550px;min-width:200px;">
+      "Habitforge is a phenomenal change tool. As a public health professional and trained social worker, I find their service perfect for scheduling the right time to plant an email trigger and and their "extra accountability" program is exceptional. I would recommend this to anyone, especially busy professionals, who check their email frequently and want a friendly automated reminder. Habitforge has literally helped me implement a core habit, Meditation, after years of failing and I'm more mindful and relaxed due to this great service. Thanks Habitforge!"
+
+      <div style="padding-top:10px;">
+      <span style="font-family:Patrick Hand;color:#ff3300;font-size:1.9em;">
+          Mozart Guerrier
+          </span>
+          Master Social Worker, Syracuse, NY
+      </div>
+
+    </div>
+  </div>
+
+  <div style="padding-bottom:5px;margin-left:0px;max-width:350px;min-width:350px;">
+  <img src="/home/images/hr_steps.png" alt="img"  />
+  </div>
+
+
+
+
+  <% if params[:more_testimonials] %>
+    <a name="more_testimonials" ></a>
+    <div style="color:#505050;font-size:em1.2;">
+          <%= render :partial => "layouts/testimonials3_more" %>
+    </div>
+
+  <% else %>
+    <div class="h1_font_oswald" style="padding-top:15px;padding-bottom:10px;padding-bottom:40px;color:#000000;">
+      <a href="/?more_testimonials=1#more_testimonials" style="color:#000000;">Read more testimonials...</a>
+    </div>  
+  <% end %>
+
+</div>
+
+</center>
+
+
+</div> <!-- end of main body div with light background -->
+
+
+
+
+<!-- END MAIN BODY -->
+
+
+<!-- START FOOTER -->
+
+
+
+<div style="color:#000000;height:145px;margin-top:50px;">
+
+<!-- <div style="background-color:#ffffff;height:20px;margin-top:-80px;">
+
+</div> -->
+
+  <center>
+  <div class="h1_font_oswald" style="margin-top:-20px;padding-top:0px;padding-bottom:30px;color:#ffffff;line-height:1em;">
+    Get started and form the best habits for a healthy lifestyle!
+  </div>
+
+  <div style="font-family:'LatoBold';margin-top:-5px;">
+
+    <form id="form_signup3" name="form_signup3" action="/quicksignup_v2">
+      <div style="padding-left:15%;"><!-- row of signup items -->
+<!--     <table>>
+      <tr>
+        <td> -->
+        <div style="float:left;min-width:120px;max-width:120px;">
+        <span style="font-size:1.5em;padding-right:5px;">Sign up with </span>
+        </div>
+<!--         </td>
+        <td> -->
+        <div style="float:left;min-width:105px;max-width:105px;">
+  <!--       <img src="/home/images/Button-Facebook.png" />  -->
+        <a style="z-index:100;position:relative;" href="#"  id='signup_facebook3' title="Coming Soon... (for now, please register with your email address)" rel="signup_facebook2" onmouseover="this.getElementById('image_button_signup_facebook3').src='/home/images/Button-Facebook-Hover.png'" onmouseout="this.getElementById('image_button_signup_facebook3').src='/home/images/Button-Facebook.png'">
+        </a>
+        <script type='text/javascript'>
+            $('#signup_facebook3').tipsy();
+        </script>
+        </div>
+<!-- 
+      </td>
+      <td>
+ -->  
+        <div style="float:left;min-width:105px;max-width:105px;">
+ <!--       <img src="/home/images/Button-Google.png" />  -->
+        <a style="z-index:100;position:relative;" href="#" id='signup_google3' title="Coming Soon... (for now, please register with your email address)" rel="signup_google2" onmouseover="this.getElementById('image_button_signup_google3').src='/home/images/Button-Google-Hover.png'" onmouseout="this.getElementById('image_button_signup_google3').src='/home/images/Button-Google.png'">
+        </a>
+        <script type='text/javascript'>
+            $('#signup_google3').tipsy();
+        </script>
+        </div>
+<!--       </td>
+      <td> -->
+
+        <div style="float:left;min-width:65px;max-width:65px;">
+        <span style="font-size:1.5em;padding-right:10px;padding-left:10px;">OR </span>
+        </div>
+
+        <div style="float:left;min-width:240px;max-width:240px;">
+        <input type="text" name="email" placeholder="Enter your email for a free account..." style="width:220px;"/>
+
+        <input type="hidden" name="subscribe_etr" value=1> 
+        <input type="hidden" name="form_submitted" value=1>
+        </div>
+<!--       </td>
+      <td>        -->
+
+        <div style="float:left;min-width:105px;max-width:105px;">
+        <a style="margin-left:20px;z-index:100;position:relative;" href="#" rel="signup_email2" onmouseover="this.getElementById('image_button_signup_email2').src='/home/images/Button-SignUp-Hover.png'" onmouseout="this.getElementById('image_button_signup_email2').src='/home/images/Button-SignUp.png'" onclick="toggle_show('spinner_page_load');formSubmit('form_signup3')">
+        </a>
+        </div>
+<!--       </td>
+    </tr>
+  </table> -->
+
+      </div><!-- end row of signup items -->
+  </form>
+
+  </div>
+
+</div>
+
+
+
+<div style="margin-top:-180px;">
+<img src="/home/images/orange-bar.png" style="height:150px;position:relative;z-index:-1;"  />
+</div>
+
+<!-- shadow...doing this extra div just so we can hide it behind the orange bar 
+so that we can see the shadow on the orange bar -->
+<div class="" style="margin-top:-15px;position:relative;z-index:-2;height:20px;">
+</div>
+
+<div class="" style="padding-bottom:20px;color:#ffffff;height:400px;position-relative;">
+
+  <a name="about" id="about"></a>
+
+
+  <div style="position:relative;float:left;width:60%;min-width:300px;">
+
+    <div style="padding-left:20px;">
+
+
+
+
+            <div class="h1_font_oswald" style="padding-top:15px;padding-bottom:10px;color:#ffffff;">ABOUT HABITFORGE</div>
+            <br>
+            <span style="font-size:1.5em;color:#ffffff;font-family:LatoBold;">
+              Our goal is simply to help you live more
+              <br>
+              fully and enjoy a healthier, happier life.
+            </span>
+            <br>
+            <br>
+            <span style="font-size:1.1em;color:#ffffff;font-family:Lato;">
+            AT HABITFORGE we are on a mission... to change the world one habit at a time. By 
+            helping you at first to consciously make a better choice each and every day until 
+            eventually the "better choice" is an automatic response.
+            </span>
+            <br>
+            <br>
+            <span style="font-size:0.9em;color:#ffffff;font-family:Lato;">
+            As we continue to develop HabitForge, we will be digging 
+            further into the nuts and bolts and nuances behind habit formation... converting 
+            the "what and how" that world-renowned scientists have revealed during their 
+            past 20 years of "positive psychology research" into simple, practical HabitForge 
+            features that will help you get there faster than ever.
+            </span>
+
+            <hr>
+
+            <img src="/home/images/ETR-Logo-Footer_smaller.png" />
+
+            <br>
+            <br>
+            <span style="font-size:1.1em;color:#ffffff;font-family:Lato;">
+            HabitForge is supported by <b>Early To Rise</b>, whose aim is to help you become 
+            more effective in work and life, enjoy more choices and freedom and reach a better
+            lifestyle overall. To learn more about Early To Rise, visit <a href="http://www.earlytorise.com" target="_blank">our website</a>.
+            </span>
+            <br>
+            <br>
+
+    </div>
+
+
+  </div><!-- end div float left -->
+  <div style="position:relative;width:40%;float:right;margin-top:0px;margin-left:00px;">
+
+    <div style="margin-left:20px;position:relative;float:left;width-min:300px;">
+
+
+      <% if @production %>
+
+        <% if !secure_page? %>
+          <div id="fb-root" ></div>
+          <script>
+            // Load the SDK Asynchronously
+            (function(d, s, id){
+               var js, fjs = d.getElementsByTagName(s)[0];
+               if (d.getElementById(id)) {return;}
+               js = d.createElement(s); js.id = id;
+               js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+               fjs.parentNode.insertBefore(js, fjs);
+             }(document, 'script', 'facebook-jssdk'));
+          </script>
+
+
+
+          <!-- CUSTOMIZE YOUR BOX HERE: https://developers.facebook.com/docs/plugins/like-box-for-pages/ -->
+          <div class="fb-like-box" data-href="http://www.facebook.com/pages/habitforgecom/281059421608" data-width="The pixel width of the plugin" data-height="The pixel height of the plugin" data-colorscheme="dark" data-show-faces="true" data-header="true" data-stream="false" data-show-border="true"></div>
+
+        <% end %>
+
+        <br>        
+        <br>
+<!--           <span class='st_fblike' displayText='Like HabitForge!'></span> -->
+        <span class='st_facebook' displayText='Share on Facebook'></span>
+        <span class='st_twitter' displayText='Tweet'></span>
+        <span class='st_pinterest' displayText='Pinterest'></span>
+
+        <br>
+      <% else %>
+        In production we'd have some facebook, twitter and pinterest links here.
+      <% end %>
+
+
+    </div>
+
+  </div>
+
+
+</div>
+
+
+<div class="clear"></div>
+
+<div class="" style="background-color:#000000;margin-top:-0px;padding-top:0px;padding:20px;padding-left:40px;padding-right:40px;">
+    <div class="h1_font_oswald" style="padding-top:15px;padding-bottom:10px;color:#ffffff;font-size:1.0em;">COPYRIGHT &copy; 2013 EARLY TO RISE PUBLISHING LLC</div>
+    <ul>
+    </ul>
+</div>
 
     <!-- Footer End -->
 
   <% end %>   <!-- END DECIDE IF ONLY SHOW HABIT LIBRARY -->
+
+
+
+
+
+
+
+
+
 
 
 
