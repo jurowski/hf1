@@ -327,53 +327,59 @@ function popitup_bigger1(url) {
     </section>
 
 
-    <div>
+    <div style="min-width:360px;">
 
       <!-- Logo Start -->
-      <div class="top_header" style="position:relative;width:30%;min-width:120px;padding-bottom:15px;">
+      <div style="position:relative;float:left;width:40%;min-width:80px;max-width:300px;">
         <a href="/"><img src="/home/images/logos/HF-ETR-Logo-Header.png" alt="HabitForge logo" /></a>
       </div>
       <!-- LOGO END -->
 
 
-      <div id="navcontainer" style="position:relative;float:right;margin-top:-10%;min-width:700px;">
-        <ul id="navlist" >
+      <div style="width:60%;position:relative;float:right;">
+        <div style="width:50px;position:relative;min-width:50px;">
+          &nbsp
+        </div>
+        <div style="width:350px;min-width:400px;position:relative;float:right;margin-top:0px;">
+<!--         <div id="navcontainer" style="position:relative;float:right;margin-top:-10%;width:400px;min-width:400px;margin-right:-20px;background-color:#dddddd;"> -->
+          <ul id="navlist">
 
-          <!-- DEFAULT SETTING -->
-          <% menu_link_class_about = "btn_orange_inactive" %>
-          <% menu_link_class_login = "btn_orange_inactive" %>
-          <% menu_link_class_signup = "btn_orange_active" %>
-
-          <% if (request.url.include? '/user_session/new' or request.url.include? '/account')  %>
+            <!-- DEFAULT SETTING -->
             <% menu_link_class_about = "btn_orange_inactive" %>
-            <% menu_link_class_login = "btn_orange_active" %>
-            <% menu_link_class_signup = "btn_orange_inactive" %>
-          <% end %>
-
-          <% if (request.url.include? '/about')  %>
-            <% menu_link_class_about = "btn_orange_active" %>
             <% menu_link_class_login = "btn_orange_inactive" %>
-            <% menu_link_class_signup = "btn_orange_inactive" %>
-          <% end %>
+            <% menu_link_class_signup = "btn_orange_active" %>
+
+            <% if (request.url.include? '/user_session/new' or request.url.include? '/account')  %>
+              <% menu_link_class_about = "btn_orange_inactive" %>
+              <% menu_link_class_login = "btn_orange_active" %>
+              <% menu_link_class_signup = "btn_orange_inactive" %>
+            <% end %>
+
+            <% if (request.url.include? '/about')  %>
+              <% menu_link_class_about = "btn_orange_active" %>
+              <% menu_link_class_login = "btn_orange_inactive" %>
+              <% menu_link_class_signup = "btn_orange_inactive" %>
+            <% end %>
 
 
-          <li class="<%= menu_link_class_login %>" ><a href="/user_session/new?skip_intro=1" class="btn_orange">LOGIN</a></li>
-          <li class="<%= menu_link_class_about %>" ><a href="#about" class="show_hide btn_orange">ABOUT</a></li>
-          <li class="<%= menu_link_class_signup %>" ><a href="#" class="show_hide btn_orange">SIGN UP</a></li>
+
+            <li class="<%= menu_link_class_login %>" ><a href="/user_session/new?skip_intro=1" class="btn_orange">LOGIN</a></li>
+            <li class="<%= menu_link_class_about %>" ><a href="#about" class="show_hide btn_orange">ABOUT</a></li>
+            <li class="<%= menu_link_class_signup %>" ><a href="#" class="show_hide btn_orange">SIGN UP</a></li>
 
 
-          <!--
-          <li><a href="#browse_recommended_habits">Browse Habits</a></li>
-          <li>
-            <a href="#all_testimonials_anchor" onclick="toggle_show('all_testimonials')">
-            Testimonials
-            </a>
-          </li>
-          -->
+            <!--
+            <li><a href="#browse_recommended_habits">Browse Habits</a></li>
+            <li>
+              <a href="#all_testimonials_anchor" onclick="toggle_show('all_testimonials')">
+              Testimonials
+              </a>
+            </li>
+            -->
 
-        </ul>
+          </ul>
+        </div>
       </div>
-
 
 
 
