@@ -20,6 +20,19 @@ session[:sponsor] = "habitforge"
 session[:site_name] = "habitforge"
 
 
+default_public_layout = "layouts/habitforge_public_home.erb"
+
+
+if params[:test_layout] and params[:test_layout] == "0"
+  session[:test_layout] = false
+end
+
+if (params[:test_layout] and params[:test_layout] == "1") or session[:test_layout]
+  session[:test_layout] = true
+  default_public_layout = "layouts/habitforge_public_home_test.erb"
+end
+
+
 if params[:sponsor]
   session[:sponsor] = params[:sponsor]
 end
@@ -130,7 +143,7 @@ if session[:sponsor] == "habitforge"
   sponsor_layout = "layouts/habitforge_app_metronic.erb"
 
   if params[:browse_recommended_habits]
-    sponsor_layout = "layouts/habitforge_public_home.erb"
+    sponsor_layout = default_public_layout
   end
 end
 %>
@@ -167,9 +180,9 @@ end
     if session[:layout_number]
         if session[:layout_number] == 1
           #sponsor_layout = "layouts/#{session[:sponsor]}.erb"
-          sponsor_layout = "layouts/habitforge_public_home.erb"
+          sponsor_layout = default_public_layout
         else
-          sponsor_layout = "layouts/habitforge_public_home.erb"
+          sponsor_layout = default_public_layout
         end
     else
       layout_number_qty = 2
@@ -179,11 +192,11 @@ end
         session[:layout_number] = 1
 
         #sponsor_layout = "layouts/#{session[:sponsor]}.erb"
-        sponsor_layout = "layouts/habitforge_public_home.erb"
+        sponsor_layout = default_public_layout
 
       else
         session[:layout_number] = 2
-        sponsor_layout = "layouts/habitforge_public_home.erb"
+        sponsor_layout = default_public_layout
       end
       #if !current_user
       # logger.info("sgj:showing home page layout #" + session[:layout_number].to_s)
