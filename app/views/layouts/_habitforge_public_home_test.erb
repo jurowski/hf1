@@ -327,6 +327,58 @@ function popitup_bigger1(url) {
     </section>
 
 
+    <div>
+      <div id="navcontainer">
+        <ul id="navlist">
+
+          <!-- DEFAULT SETTING -->
+          <% menu_link_class_about = "btn_orange_inactive" %>
+          <% menu_link_class_login = "btn_orange_inactive" %>
+          <% menu_link_class_signup = "btn_orange_active" %>
+
+          <% if (request.url.include? '/user_session/new' or request.url.include? '/account')  %>
+            <% menu_link_class_about = "btn_orange_inactive" %>
+            <% menu_link_class_login = "btn_orange_active" %>
+            <% menu_link_class_signup = "btn_orange_inactive" %>
+          <% end %>
+
+          <% if (request.url.include? '/about')  %>
+            <% menu_link_class_about = "btn_orange_active" %>
+            <% menu_link_class_login = "btn_orange_inactive" %>
+            <% menu_link_class_signup = "btn_orange_inactive" %>
+          <% end %>
+
+
+          <li class="<%= menu_link_class_login %>" ><a href="/user_session/new?skip_intro=1" class="btn_orange">LOGIN</a></li>
+          <li class="<%= menu_link_class_about %>" ><a href="#about" class="show_hide btn_orange">ABOUT</a></li>
+          <li class="<%= menu_link_class_signup %>" ><a href="#" class="show_hide btn_orange">SIGN UP</a></li>
+
+
+          <!--
+          <li><a href="#browse_recommended_habits">Browse Habits</a></li>
+          <li>
+            <a href="#all_testimonials_anchor" onclick="toggle_show('all_testimonials')">
+            Testimonials
+            </a>
+          </li>
+          -->
+
+        </ul>
+      </div>
+
+
+      <!-- Logo Start -->
+      <div class="top_header">
+        <a href="/"><img src="/home/images/logos/HF-ETR-Logo-Header.png" alt="HabitForge logo" /></a>
+      </div>
+      <!-- LOGO END -->
+
+    </div> <!-- end div top_header -->
+
+
+
+
+
     <!-- Footer End -->
 
   <% end %>   <!-- END DECIDE IF ONLY SHOW HABIT LIBRARY -->
