@@ -1,0 +1,87 @@
+
+<br>
+<img src="/home/images/desk_mobile.jpg" style="width:auto;max-width:100%;"/>
+
+
+
+
+    <!-- Press Logos Start -->
+    <div style="padding:20px;">
+        <img src="/home/images/logos/press_logos_v1_transparent.png" width="700" alt="press logos" />
+    </div>
+    <!-- Press Logos End -->
+
+      <div style="float:left;display:block;width:350px;min-width:350px;margin-top:0px;margin-left:20%;" id="div_signup_box" name="div_signup_box">
+        <span style="position:absolute;margin-top:10px;padding-left:50px;font-family: 'Gochi Hand', cursive;color:#ffffff;font-size:3.0em;">
+          <a id="signup_box_1" ></a>
+          Start Today!
+        </span>
+        <span style="float:right;margin-right:20px;margin-top:-30px;">
+          <img src="/home/images/OptIn-Box.png" />
+        </span>
+
+
+        <span style="position:absolute;float:right;margin-top:80px;padding-left:45px;font-family:LatoBold;text-align:center;color:#383838;font-size:1.1em;line-height:1.4em;">
+
+
+        Set your first goal FREE
+        <br>
+        with daily motivation
+        <br>
+        and email reminders.
+        <br>
+        <br>
+        Sign up with...
+        <br>
+
+<!--                     <a id='test_tipsy_1'  title="tipsy test" >test the tipsy</a>
+                    <script type='text/javascript'>
+                        $('#test_tipsy_1').tipsy();
+                    </script>
+ -->
+
+  <!--       <img src="/home/images/Button-Facebook.png" />  -->
+        <a style="margin-left:15px;margin-top:6px;" href="#" id='signup_facebook' title="Coming Soon... (for now, please register with your email address)" rel="signup_facebook" onmouseover="this.getElementById('image_button_signup_facebook').src='/home/images/Button-Facebook-Hover.png'" onmouseout="this.getElementById('image_button_signup_facebook').src='/home/images/Button-Facebook.png'">
+        </a>
+        <script type='text/javascript'>
+            $('#signup_facebook').tipsy();
+        </script>
+
+  <!--       <img src="/home/images/Button-Google.png" />  -->
+        <a style="margin-left:115px;margin-top:-28px;" href="#" id='signup_google' title="Coming Soon... (for now, please register with your email address)" rel="signup_google" onmouseover="this.getElementById('image_button_signup_google').src='/home/images/Button-Google-Hover.png'" onmouseout="this.getElementById('image_button_signup_google').src='/home/images/Button-Google.png'">
+        </a>
+        <script type='text/javascript'>
+            $('#signup_google').tipsy();
+        </script>
+
+        OR
+        <br>
+        <form id="form_signup1" name="form_signup1" action="/quicksignup_v2">
+          <input type="text" name="email" placeholder="Enter your email for a free account..." style="width:220px;"/>
+          <br>
+          <br>
+          <a style="margin-left:40px;" href="#" rel="signup_email" onmouseover="this.getElementById('image_button_signup_email').src='/home/images/Button-SignUp-Hover.png'" onmouseout="this.getElementById('image_button_signup_email').src='/home/images/Button-SignUp.png'" onclick="toggle_show('spinner_page_load');formSubmit('form_signup1')">
+          </a>
+          <input type="hidden" name="subscribe_etr" value=1> 
+          <input type="hidden" name="form_submitted" value=1>
+
+          <% if retry_email_address %>
+              <div class="pane error" style="margin-right:20px;color:red;">
+                  <% if @email_blank == true or (@email_valid != nil and @email_valid == false) %>
+                  Please enter a valid email address.
+                  <% end %>
+
+                  <% if @email_duplicate %>
+                  There is already a habitforge account with that email address. 
+                  <br>
+                  If it is yours, you may <a href="/users/login">log in here</a> or you may sign up with a new address above.
+                  <% end %>
+              </div>
+          <% end %>
+        </form>
+        </span>
+      </div><!-- end div_signup_box -->
+
+
+
+

@@ -40,7 +40,8 @@ class ApplicationController < ActionController::Base
       if session[:mobile_param]
         session[:mobile_param] == "1"
       else
-        request.user_agent =~ /Mobile|android|webos|iphone|ipad|ipod|blackberry/
+        #request.user_agent =~ /Mobile|android|webos|iphone|ipad|ipod|blackberry/
+        request.user_agent =~ /Mobile|android|webos|iphone|ipod|blackberry/
       end
     end
 
