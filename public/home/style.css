@@ -879,4 +879,14 @@ input:focus, textarea:focus {
 /* END PRETTY FORM ELEMENTS */
 
 
+
+
+/*
+Get the HTML5 "placeholder" functionality replicated in browsers like IE that don't yet support it
+http://www.cssnewbie.com/cross-browser-support-for-html5-placeholder-text-in-forms/#.UlvL49c2t2M
+*/
+ .hasPlaceholder {
+	color: #777;
+}
+
 /*************** END SGJ CUSTOM   ****************************/

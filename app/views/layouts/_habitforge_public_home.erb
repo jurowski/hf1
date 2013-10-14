@@ -250,6 +250,36 @@ function popitup_bigger1(url) {
 
   <script type='text/javascript' src='/javascripts/jquery.tipsy.js'></script><!-- ToolTips (tipsy) -->
 
+
+<!--
+Get the HTML5 "placeholder" functionality replicated in browsers like IE that don't yet support it
+http://www.cssnewbie.com/cross-browser-support-for-html5-placeholder-text-in-forms/#.UlvL49c2t2M
+-->
+<script>
+ $(function() {
+  if(!$.support.placeholder) { 
+    var active = document.activeElement;
+    $(':text').focus(function () {
+      if ($(this).attr('placeholder') != '' && $(this).val() == $(this).attr('placeholder')) {
+        $(this).val('').removeClass('hasPlaceholder');
+      }
+    }).blur(function () {
+      if ($(this).attr('placeholder') != '' && ($(this).val() == '' || $(this).val() == $(this).attr('placeholder'))) {
+        $(this).val($(this).attr('placeholder')).addClass('hasPlaceholder');
+      }
+    });
+    $(':text').blur();
+    $(active).focus();
+    $('form').submit(function () {
+      $(this).find('.hasPlaceholder').each(function() { $(this).val(''); });
+    });
+  }
+});
+</script>
+
+
+
+
 </head>
 <!--[if lt IE 9]>
 <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -327,59 +357,73 @@ function popitup_bigger1(url) {
     </section>
 
 
-    <div>
-      <div id="navcontainer">
-        <ul id="navlist">
-
-          <!-- DEFAULT SETTING -->
-          <% menu_link_class_about = "btn_orange_inactive" %>
-          <% menu_link_class_login = "btn_orange_inactive" %>
-          <% menu_link_class_signup = "btn_orange_active" %>
-
-          <% if (request.url.include? '/user_session/new' or request.url.include? '/account')  %>
-            <% menu_link_class_about = "btn_orange_inactive" %>
-            <% menu_link_class_login = "btn_orange_active" %>
-            <% menu_link_class_signup = "btn_orange_inactive" %>
-          <% end %>
-
-          <% if (request.url.include? '/about')  %>
-            <% menu_link_class_about = "btn_orange_active" %>
-            <% menu_link_class_login = "btn_orange_inactive" %>
-            <% menu_link_class_signup = "btn_orange_inactive" %>
-          <% end %>
-
-
-          <li class="<%= menu_link_class_login %>" ><a href="/user_session/new?skip_intro=1" class="btn_orange">LOGIN</a></li>
-          <li class="<%= menu_link_class_about %>" ><a href="#about" class="show_hide btn_orange">ABOUT</a></li>
-          <li class="<%= menu_link_class_signup %>" ><a href="#" class="show_hide btn_orange">SIGN UP</a></li>
-
-
-          <!--
-          <li><a href="#browse_recommended_habits">Browse Habits</a></li>
-          <li>
-            <a href="#all_testimonials_anchor" onclick="toggle_show('all_testimonials')">
-            Testimonials
-            </a>
-          </li>
-          -->
-
-        </ul>
-      </div>
-
+    <div style="min-width:360px;padding-right:40px;">
 
       <!-- Logo Start -->
-      <div class="top_header">
+      <div style="position:relative;float:left;width:40%;min-width:80px;max-width:300px;">
         <a href="/"><img src="/home/images/logos/HF-ETR-Logo-Header.png" alt="HabitForge logo" /></a>
       </div>
       <!-- LOGO END -->
+
+
+      <div style="width:100%;position:relative;float:right;margin-top:-42px;">
+        <div style="width:50px;position:relative;min-width:50px;">
+          &nbsp
+        </div>
+        <div style="width:350px;min-width:400px;position:relative;float:right;margin-top:0px;">
+<!--         <div id="navcontainer" style="position:relative;float:right;margin-top:-10%;width:400px;min-width:400px;margin-right:-20px;background-color:#dddddd;"> -->
+          <ul id="navlist">
+
+            <!-- DEFAULT SETTING -->
+            <% menu_link_class_about = "btn_orange_inactive" %>
+            <% menu_link_class_login = "btn_orange_inactive" %>
+            <% menu_link_class_signup = "btn_orange_active" %>
+
+            <% if (request.url.include? '/user_session/new' or request.url.include? '/account')  %>
+              <% menu_link_class_about = "btn_orange_inactive" %>
+              <% menu_link_class_login = "btn_orange_active" %>
+              <% menu_link_class_signup = "btn_orange_inactive" %>
+            <% end %>
+
+            <% if (request.url.include? '/about')  %>
+              <% menu_link_class_about = "btn_orange_active" %>
+              <% menu_link_class_login = "btn_orange_inactive" %>
+              <% menu_link_class_signup = "btn_orange_inactive" %>
+            <% end %>
+
+
+
+            <li class="<%= menu_link_class_login %>" ><a href="/user_session/new?skip_intro=1" class="btn_orange">LOGIN</a></li>
+            <li class="<%= menu_link_class_about %>" ><a href="#about" class="show_hide btn_orange">ABOUT</a></li>
+            <li class="<%= menu_link_class_signup %>" ><a href="#" class="show_hide btn_orange">SIGN UP</a></li>
+
+
+            <!--
+            <li><a href="#browse_recommended_habits">Browse Habits</a></li>
+            <li>
+              <a href="#all_testimonials_anchor" onclick="toggle_show('all_testimonials')">
+              Testimonials
+              </a>
+            </li>
+            -->
+
+          </ul>
+        </div>
+      </div>
+
+
 
     </div> <!-- end div top_header -->
 
 
 
+    <div class="clear"></div>
 
-    <div class="one_third" style="padding-left:0px;margin-left:0px;margin-top:0px;width:235px;min-width:235px;max-width:235px;">
-      <img id="img_iphone" name="img_iphone" src="/home/images/iPhone.png" style="position:relative;margin-left:30px;z-index:100;"/>
+    <!-- a blank spacer div that hovers over the iphone image portion of the desk jpeg -->
+    <div class="one_third" style="padding-left:0px;margin-left:0px;margin-top:0px;width:235px;min-width:235px;max-width:235px;height:350px;">
+<!--       <img id="img_iphone" name="img_iphone" src="/home/images/iPhone.png" style="position:relative;margin-left:30px;z-index:100;"/> -->
+  &nbsp
+
     </div> <!-- end <div class="one_third"> -->
 
 
@@ -388,7 +432,7 @@ function popitup_bigger1(url) {
       <div class="signup_header_text">
 
         <div id="div_keep_together_signup_header_text_description" style="height:320px;width:340px;background-color:none;display:block;">
-          <div style="margin-top:25px;padding-top:30px;">
+          <div style="margin-top:40px;padding-top:30px;">
           <span style="font-size:3.0em;margin-left:-20px;color:#ff3300;">Change your habits,</span>
           </div>
 
@@ -450,7 +494,7 @@ function popitup_bigger1(url) {
     <div class="one_third_last" style="float:left;">
 
 
-      <div style="float:left;display:block;width:350px;min-width:350px;" id="div_signup_box" name="div_signup_box">
+      <div style="float:left;display:block;width:350px;min-width:350px;margin-top:25px;" id="div_signup_box" name="div_signup_box">
         <span style="position:absolute;margin-top:10px;padding-left:50px;font-family: 'Gochi Hand', cursive;color:#ffffff;font-size:3.0em;">
           <a id="signup_box_1" ></a>
           Start Today!
@@ -526,9 +570,15 @@ function popitup_bigger1(url) {
     </div><!-- end <div class="one_third_last"> -->
 
 
-    <div class="signup_header" style="">
+    <div class="signup_header" style="margin-top:20px;">
       <!-- this gives you the desk background image -->
     </div>
+
+
+
+
+
+
 
     <center>
 
@@ -651,42 +701,50 @@ function popitup_bigger1(url) {
 <!--         </td>
         <td> -->
 
-        <div style="float:left;min-width:105px;max-width:105px;">
+        <div style="float:left;min-width:250px;max-width:250px;">
+<!--         <div style="float:left;min-width:105px;max-width:105px;"> -->
   <!--       <img src="/home/images/Button-Facebook.png" />  -->
+
+          <table><tr><td>
         <a style="z-index:100;position:relative;" href="#"  id='signup_facebook2' title="Coming Soon... (for now, please register with your email address)"rel="signup_facebook2" onmouseover="this.getElementById('image_button_signup_facebook2').src='/home/images/Button-Facebook-Hover.png'" onmouseout="this.getElementById('image_button_signup_facebook2').src='/home/images/Button-Facebook.png'">
         </a>
         <script type='text/javascript'>
             $('#signup_facebook2').tipsy();
         </script>
-        </div>
-<!--       </td>
-      <td> -->
-        <div style="float:left;min-width:105px;max-width:105px;">
+<!--         </div> -->
+      </td>
+      <td>
+<!--         <div style="float:left;min-width:105px;max-width:105px;"> -->
   <!--       <img src="/home/images/Button-Google.png" />  -->
         <a style="z-index:100;position:relative;" href="#" id='signup_google2' title="Coming Soon... (for now, please register with your email address)" rel="signup_google2" onmouseover="this.getElementById('image_button_signup_google2').src='/home/images/Button-Google-Hover.png'" onmouseout="this.getElementById('image_button_signup_google2').src='/home/images/Button-Google.png'">
         </a>
         <script type='text/javascript'>
             $('#signup_google2').tipsy();
         </script>
-        </div>      
-<!--       </td>
-      <td> -->
-        <div style="float:left;min-width:65px;max-width:65px;">
+<!--         </div>       -->
+      </td>
+      <td>
+<!--         <div style="float:left;min-width:65px;max-width:65px;"> -->
         <span style="font-size:1.5em;padding-right:10px;padding-left:10px;position:relative;z-index:11;">OR </span>
+      </td></tr></table>
+
         </div>
 
-        <div style="float:left;min-width:240px;max-width:240px;">
+        <div style="float:left;">
+          <table><tr><td>
         <input type="text" name="email" placeholder="Enter your email for a free account..." style="width:220px;position:relative;z-index:11;"/>
 
         <input type="hidden" name="subscribe_etr" value=1> 
         <input type="hidden" name="form_submitted" value=1>
-        </div>
+<!--         </div> -->
 <!-- 
       </td>
       <td>  -->      
-        <div style="float:left;min-width:105px;max-width:105px;">
+<!--         <div style="float:left;min-width:105px;max-width:105px;"> -->
+          </td><td>
         <a style="margin-left:20px;z-index:100;position:relative;" href="#" rel="signup_email2" onmouseover="this.getElementById('image_button_signup_email2').src='/home/images/Button-SignUp-Hover.png'" onmouseout="this.getElementById('image_button_signup_email2').src='/home/images/Button-SignUp.png'" onclick="toggle_show('spinner_page_load');formSubmit('form_signup2')">
         </a>
+          </td></tr></table>
         </div>
 <!--       </td>
     </tr>
@@ -839,11 +897,6 @@ function popitup_bigger1(url) {
 <!-- END MAIN BODY -->
 
 
-<!-- !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
-<!-- EXTRA DIV PROB. NOT NEEDED -->
-</div><!-- EXTRA DIV PROB. NOT NEEDED -->
-<!-- EXTRA DIV PROB. NOT NEEDED -->
-<!-- !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
 <div class="clear"></div>
 
 
@@ -873,46 +926,55 @@ function popitup_bigger1(url) {
         <span style="font-size:1.5em;padding-right:5px;">Sign up with </span>
         </div>
 <!--         </td>
-        <td> -->
-        <div style="float:left;min-width:105px;max-width:105px;">
+        <td> -->  
+        <div style="float:left;min-width:250px;max-width:250px;">
+<!--         <div style="float:left;min-width:105px;max-width:105px;"> -->
+  <!--       <img src="/home/images/Button-Facebook.png" />  -->
+
+          <table><tr><td>
   <!--       <img src="/home/images/Button-Facebook.png" />  -->
         <a style="z-index:100;position:relative;" href="#"  id='signup_facebook3' title="Coming Soon... (for now, please register with your email address)" rel="signup_facebook2" onmouseover="this.getElementById('image_button_signup_facebook3').src='/home/images/Button-Facebook-Hover.png'" onmouseout="this.getElementById('image_button_signup_facebook3').src='/home/images/Button-Facebook.png'">
         </a>
         <script type='text/javascript'>
             $('#signup_facebook3').tipsy();
         </script>
-        </div>
-<!-- 
+<!--         </div> -->
+
       </td>
       <td>
- -->  
-        <div style="float:left;min-width:105px;max-width:105px;">
+  
+<!--         <div style="float:left;min-width:105px;max-width:105px;"> -->
  <!--       <img src="/home/images/Button-Google.png" />  -->
         <a style="z-index:100;position:relative;" href="#" id='signup_google3' title="Coming Soon... (for now, please register with your email address)" rel="signup_google2" onmouseover="this.getElementById('image_button_signup_google3').src='/home/images/Button-Google-Hover.png'" onmouseout="this.getElementById('image_button_signup_google3').src='/home/images/Button-Google.png'">
         </a>
         <script type='text/javascript'>
             $('#signup_google3').tipsy();
         </script>
-        </div>
-<!--       </td>
-      <td> -->
+<!--         </div> -->
+      </td>
+      <td>
 
-        <div style="float:left;min-width:65px;max-width:65px;">
+<!--         <div style="float:left;min-width:65px;max-width:65px;"> -->
         <span style="font-size:1.5em;padding-right:10px;padding-left:10px;">OR </span>
+
+        </td></tr></table>
         </div>
 
-        <div style="float:left;min-width:240px;max-width:240px;">
+        <div style="float:left;">
+          <table><tr><td>
         <input type="text" name="email" placeholder="Enter your email for a free account..." style="width:220px;"/>
 
         <input type="hidden" name="subscribe_etr" value=1> 
         <input type="hidden" name="form_submitted" value=1>
-        </div>
+          </td><td>
+<!--         </div> -->
 <!--       </td>
       <td>        -->
 
-        <div style="float:left;min-width:105px;max-width:105px;">
+<!--         <div style="float:left;min-width:105px;max-width:105px;"> -->
         <a style="margin-left:20px;z-index:100;position:relative;" href="#" rel="signup_email2" onmouseover="this.getElementById('image_button_signup_email2').src='/home/images/Button-SignUp-Hover.png'" onmouseout="this.getElementById('image_button_signup_email2').src='/home/images/Button-SignUp.png'" onclick="toggle_show('spinner_page_load');formSubmit('form_signup3')">
         </a>
+          </td></tr></table>
         </div>
 <!--       </td>
     </tr>
@@ -931,6 +993,7 @@ function popitup_bigger1(url) {
 <img src="/home/images/orange-bar.png" style="height:150px;position:relative;z-index:-1;"  />
 </div>
 
+
 <!-- shadow...doing this extra div just so we can hide it behind the orange bar 
 so that we can see the shadow on the orange bar -->
 <div class="" style="margin-top:-15px;position:relative;z-index:-2;height:20px;background-color:#333333;">
@@ -945,9 +1008,9 @@ so that we can see the shadow on the orange bar -->
   <a name="about" id="about"></a>
 
 
-<!--   <div style="position:relative;float:left;width:60%;min-width:300px;"> -->
-  <div style="position:relative;float:left;min-width:300px;">
-    <div style="padding-left:20px;">
+  <div style="position:relative;float:left;width:60%;min-width:300px;background-color:#333333;">
+<!--   <div style="position:relative;float:left;min-width:300px;"> -->
+    <div style="padding-left:20px;background-color:#333333;">
 
 
 
@@ -995,12 +1058,58 @@ so that we can see the shadow on the orange bar -->
 
   </div><!-- end div float left -->
 
+  <div style="position:relative;width:40%;float:right;margin-top:0px;margin-left:0px;background-color:#333333;">
 
+    <div style="margin-left:20px;position:relative;float:left;width-min:300px;background-color:#333333;">
+
+
+      <% if @production %>
+
+        <% if !secure_page? %>
+          <div id="fb-root" ></div>
+          <script>
+            // Load the SDK Asynchronously
+            (function(d, s, id){
+               var js, fjs = d.getElementsByTagName(s)[0];
+               if (d.getElementById(id)) {return;}
+               js = d.createElement(s); js.id = id;
+               js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+               fjs.parentNode.insertBefore(js, fjs);
+             }(document, 'script', 'facebook-jssdk'));
+          </script>
+
+
+
+          <!-- CUSTOMIZE YOUR BOX HERE: https://developers.facebook.com/docs/plugins/like-box-for-pages/ -->
+          <div class="fb-like-box" data-href="http://www.facebook.com/pages/habitforgecom/281059421608" data-width="The pixel width of the plugin" data-height="The pixel height of the plugin" data-colorscheme="dark" data-show-faces="true" data-header="true" data-stream="false" data-show-border="true"></div>
+
+        <% end %>
+
+        <br>        
+        <br>
+<!--           <span class='st_fblike' displayText='Like HabitForge!'></span> -->
+        <span class='st_facebook' displayText='Share on Facebook'></span>
+        <span class='st_twitter' displayText='Tweet'></span>
+        <span class='st_pinterest' displayText='Pinterest'></span>
+
+        <br>
+      <% else %>
+        In production we'd have some facebook, twitter and pinterest links here.
+      <% end %>
+
+
+    </div>
+
+  </div>
 
 </div>
 
 
 <div class="clear"></div>
+
+<!-- COVER UP WHITE-SPACE BOXES -->
+<div style="background-color:#333333;width:100%;height:340px;margin-top:-340px;">&nbsp</div>
+<!-- END COVER UP WHITE-SPACE BOXES -->
 
 <div class="" style="background-color:#000000;margin-top:-0px;padding-top:0px;padding:20px;padding-left:40px;padding-right:40px;">
     <div class="h1_font_oswald" style="padding-top:15px;padding-bottom:10px;color:#ffffff;font-size:1.0em;">COPYRIGHT &copy; 2013 EARLY TO RISE PUBLISHING LLC</div>
