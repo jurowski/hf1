@@ -1,4 +1,4 @@
-
+    
 
 <!-- BEGIN TAB PORTLET-->   
 <div class="portlet box yellow tabbable">
@@ -25,6 +25,26 @@
             <strong>User Name (Email address)</strong>
             <p>&nbsp &nbsp &nbsp &nbsp &nbsp <%=h @user.email %>
             </p>  
+
+            <% if @user.state %>
+            <br>
+            <br>
+            <strong>State</strong>
+            <p>&nbsp &nbsp &nbsp &nbsp &nbsp <%=h @user.state %>
+            </p>
+            <br>
+            <br>
+            <% end %>
+
+            <% if @user.country %>
+            <br>
+            <br>
+            <strong>Country</strong>
+            <p>&nbsp &nbsp &nbsp &nbsp &nbsp <%=h @user.country %>
+            </p>
+            <br>
+            <br>
+            <% end %>
 
             <br>
             <br>

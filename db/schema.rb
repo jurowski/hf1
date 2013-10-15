@@ -875,6 +875,8 @@ ActiveRecord::Schema.define(:version => 20131015102417) do
     t.boolean  "feed_filter_show_my_categories_only"
     t.boolean  "feed_filter_hide_pmo"
     t.string   "country"
+    t.string   "country_code"
+    t.string   "state_code"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email"
