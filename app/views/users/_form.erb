@@ -23,7 +23,7 @@
     <strong>Email</strong><font color=red>*</font>
     </td>
     <td valign=top nowrap>
-    <%= form.text_field :email %><br />    
+    <%= form.text_field :email %> (never visible to others)<br />    
     </td>
     </tr>
 
@@ -74,11 +74,42 @@
     </td>
     </tr>
     <tr>
+
+
     <tr><td>&nbsp</td></tr>
+    <td valign=top nowrap>
+    <strong>Country</strong>
+    </td>
+    <td valign=top nowrap>
+
+      <%
+      @arr = arr_countries  
+      %>
+      <%= select(:user, :country, @arr)%>
+
+    <br />    
+    </td>
+    <tr>
 
 
 
+    <tr><td>&nbsp</td></tr>
+    <td valign=top nowrap>
+    <strong>State / Province</strong>
+    </td>
+    <td valign=top nowrap>
 
+      <%
+      @arr = arr_states_us + arr_states_canada
+      %>
+      <%= select(:user, :state, @arr)%>
+
+    <br />    
+    </td>
+    <tr>
+
+
+    <tr><td>&nbsp</td></tr>
     <td valign=top nowrap>
     <strong>Your Time Zone</strong><font color=red>*</font>
     </td>

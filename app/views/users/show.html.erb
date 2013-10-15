@@ -17,41 +17,25 @@
 
           <p>
 
-            <strong>Name</strong>
-            <p>&nbsp &nbsp &nbsp &nbsp &nbsp <%=h @user.first_name %>   <%=h @user.last_name %>
+            <p><strong>Name</strong>: &nbsp &nbsp &nbsp &nbsp &nbsp <%=h @user.first_name %>   <%=h @user.last_name %>
             </p>
-            <br>
-            <br>
-            <strong>User Name (Email address)</strong>
-            <p>&nbsp &nbsp &nbsp &nbsp &nbsp <%=h @user.email %>
+
+            <p><strong>User Name (Email address)</strong>: &nbsp &nbsp &nbsp &nbsp &nbsp <%=h @user.email %>
             </p>  
 
             <% if @user.state %>
-            <br>
-            <br>
-            <strong>State</strong>
-            <p>&nbsp &nbsp &nbsp &nbsp &nbsp <%=h @user.state %>
+            <p><strong>State</strong>:&nbsp &nbsp &nbsp &nbsp &nbsp <%=h @user.state %>
             </p>
-            <br>
-            <br>
             <% end %>
 
             <% if @user.country %>
-            <br>
-            <br>
-            <strong>Country</strong>
-            <p>&nbsp &nbsp &nbsp &nbsp &nbsp <%=h @user.country %>
+            <p><strong>Country</strong>: &nbsp &nbsp &nbsp &nbsp &nbsp <%=h @user.country %>
             </p>
-            <br>
-            <br>
             <% end %>
 
-            <br>
-            <br>
-            <strong>Time Zone</strong>
-            <p>&nbsp &nbsp &nbsp &nbsp &nbsp <%=h @user.time_zone %>
+            
+            <p><strong>Time Zone</strong>: &nbsp &nbsp &nbsp &nbsp &nbsp <%=h @user.time_zone %>
             </p>
-            <br>
             <br>
 
             <strong>My Avatar:</strong> 

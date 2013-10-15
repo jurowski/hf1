@@ -7,5 +7,7 @@ class AddCountryToUsers < ActiveRecord::Migration
 
   def self.down
   	remove_column :users, :country
+  	remove_column :users, :country_code
+  	remove_column :users, :state_code
   end
 end
