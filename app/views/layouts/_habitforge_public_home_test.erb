@@ -369,7 +369,12 @@ http://www.cssnewbie.com/cross-browser-support-for-html5-placeholder-text-in-for
       <!-- LOGO END -->
 
 
+      <% if !mobile_device? %>
+      <div style="width:100%;position:relative;float:right;margin-top:-102px;">
+      <% else %>
       <div style="width:100%;position:relative;float:right;margin-top:-42px;">
+      <% end %>
+
         <div style="width:50px;position:relative;min-width:50px;">
           &nbsp
         </div>
@@ -434,120 +439,6 @@ http://www.cssnewbie.com/cross-browser-support-for-html5-placeholder-text-in-for
 
 <!-- TOOK STUFF OUT HERE -->
 
-
-
-<% if !mobile_device? %>
-
-  <div style="margin-top:-180px;">
-  <img src="/home/images/orange-bar.png" style="height:150px;position:relative;z-index:-1;"  />
-  </div>
-
-<% end %>
-
-
-
-
-<!-- shadow...doing this extra div just so we can hide it behind the orange bar 
-so that we can see the shadow on the orange bar -->
-<div class="" style="margin-top:-15px;position:relative;z-index:-2;height:440px;background-color:#333333;">
-</div>
-
-
-
-
-
-<div class="" style="padding-bottom:20px;color:#ffffff;margin-top:-420px;position-relative;background-color:#333333;width:100%;">
-<!-- <div class="" style="padding-bottom:20px;color:#ffffff;height:400px;position-relative;background-color:#333333;"> -->
-
-  <a name="about" id="about"></a>
-
-
-  <div style="position:relative;float:left;width:60%;min-width:300px;background-color:#333333;">
-<!--   <div style="position:relative;float:left;min-width:300px;"> -->
-    <div style="padding-left:20px;background-color:#333333;">
-
-
-
-
-            <div class="h1_font_oswald" style="padding-top:15px;padding-bottom:10px;color:#ffffff;">ABOUT HABITFORGE</div>
-            <br>
-            <span style="font-size:1.5em;color:#ffffff;font-family:LatoBold;">
-              Our goal is simply to help you live more
-              <br>
-              fully and enjoy a healthier, happier life.
-            </span>
-            <br>
-            <br>
-            <span style="font-size:1.1em;color:#ffffff;font-family:Lato;">
-            AT HABITFORGE we are on a mission... to change the world one habit at a time. By 
-            helping you at first to consciously make a better choice each and every day until 
-            eventually the "better choice" is an automatic response.
-            </span>
-            <br>
-            <br>
-            <span style="font-size:0.9em;color:#ffffff;font-family:Lato;">
-            As we continue to develop HabitForge, we will be digging 
-            further into the nuts and bolts and nuances behind habit formation... converting 
-            the "what and how" that world-renowned scientists have revealed during their 
-            past 20 years of "positive psychology research" into simple, practical HabitForge 
-            features that will help you get there faster than ever.
-            </span>
-
-            <br>
-            <br>
-
-            <img src="/home/images/ETR-Logo-Footer_smaller.png" />
-
-            <br>
-            <br>
-            <span style="font-size:1.1em;color:#ffffff;font-family:Lato;">
-            HabitForge is supported by <b>Early To Rise</b>, whose aim is to help you become 
-            more effective in work and life, enjoy more choices and freedom and reach a better
-            lifestyle overall. To learn more about Early To Rise, visit <a href="http://www.earlytorise.com" target="_blank">our website</a>.
-            </span>
-            <br>
-            <br>
-
-
-            <% if mobile_device? %>
-               <%= render :partial => "layouts/facebook.erb" %>
-            <% end %>
-
-    </div>
-
-
-  </div> <!-- end div float left -->
-
-  <div style="position:relative;width:40%;float:right;margin-top:0px;margin-left:0px;background-color:#333333;">
-
-<!--     <div style="margin-left:20px;position:relative;float:left;width-min:300px;background-color:#333333;"> -->
-
-
-  <% if !mobile_device? %>
-     <%= render :partial => "layouts/facebook.erb" %>
-  <% end %>
-
-<!--       <div style="background-color:#333333;height:300px;">
-        &nbsp
-      </div> -->
-    </div>
-
-<!--   </div> -->
-
-</div>
-
-</div>
-
-
-<div class="clear"></div>
-
-<!-- COVER UP WHITE-SPACE BOXES -->
-<div style="background-color:#333333;width:100%;height:400px;margin-top:-400px;">&nbsp</div>
-<!-- END COVER UP WHITE-SPACE BOXES -->
-
-<div class="" style="background-color:#000000;margin-top:-0px;padding-top:0px;padding-top:20px;padding-left:40px;padding-right:40px;">
-    <div class="h1_font_oswald" style="padding-top:15px;padding-bottom:10px;color:#ffffff;font-size:1.0em;">COPYRIGHT &copy; 2013 EARLY TO RISE PUBLISHING LLC</div>
-</div>
 
     <!-- Footer End -->
 
