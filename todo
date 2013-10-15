@@ -53,6 +53,11 @@ challenge_lbs_lost_total:integer
 challenge_percent_of_goal_met:integer
 challenge_number_rank:integer
 challenge_last_updated_date:date
+js_upcolor:string
+js_overcolor:string
+js_downcolor:string
+
+
 
 cron daily tabulate per-state statistics
 --for each state, find users in that state who are in that challenge
