@@ -12,7 +12,60 @@
 -------------------------------------------------------------------
 ROWLEY 52M
 -------------------------------------------------------------------
-cron pull from his mailing list groups, auto-sign people up to a templated weight tracking goal
+
+hosting js files
+--add existing js files to a spot on hf server
+--let Ben Cope know the location of those js files
+--let ?Andrew? server guy know the location to cache of those files
+--ask Andrew not to cache those files until Thanksgiving
+
+let user choose their state, province, or country
+--see the country pulldown w/ icons (was it in metronic?)
+--make state/provice pulldowns
+
+mod the tracking system to allow for weight tracking
+--add an "initial value" (ie start weight)
+--make sure there's a "current value"
+
+add a 52M templated goal that has a weight tracker
+--it will be one goal (not 50+ goals)
+--it can be placed on hold but not deleted (so that calculating per-state daily is not thrown off)
+
+add a class: weight_loss_by_state
+state_name_abb:string ### abbreviated
+state_name:string
+demog_population:integer
+demog_percent_adults:integer
+demog_number_adults:integer
+demog_percent_obesity_rate:integer
+demog_number_obese_adults:integer
+demog_percent_of_total_obese_adults_in_challenge:integer
+challenge_weighted_goal:integer
+challenge_qty_hold:integer
+challenge_qty_active:integer
+challenge_lbs_starting_weight_hold:integer
+challenge_lbs_starting_weight_active:integer
+challenge_lbs_last_weight_hold:integer
+challenge_lbs_last_weight_active:integer
+challenge_lbs_lost_hold:integer
+challenge_lbs_lost_active:integer
+challenge_lbs_lost_total:integer
+challenge_percent_of_goal_met:integer
+challenge_number_rank:integer
+challenge_last_updated_date:date
+
+cron daily tabulate per-state statistics
+--for each state, find users in that state who are in that challenge
+--determine if they are active or hold, and tabulate their data accordingly
+--update the js files accordingly
+
+
+cron every 5 min pull from rowley mailing list groups
+--auto-sign people up to hf
+--auto-assign their country and state based on params
+--send them conf. email
+--add them to a templated rowley weight tracking goal
+
 
 
 
