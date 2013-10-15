@@ -44,7 +44,7 @@ class ApplicationController < ActionController::Base
         request.user_agent =~ /Mobile|android|webos|iphone|ipod|blackberry/
       end
 
-      # return true
+       # return true
     end
 
     def save_referer

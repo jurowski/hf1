@@ -357,8 +357,11 @@ http://www.cssnewbie.com/cross-browser-support-for-html5-placeholder-text-in-for
     </section>
 
 
+    <% if !mobile_device? %>
     <div style="min-width:360px;padding-right:40px;">
-
+    <% else %>
+    <div style="min-width:360px;">
+    <% end %>
       <!-- Logo Start -->
       <div style="position:relative;float:left;width:40%;min-width:80px;max-width:300px;">
         <a href="/"><img src="/home/images/logos/HF-ETR-Logo-Header.png" alt="HabitForge logo" /></a>
@@ -760,9 +763,17 @@ http://www.cssnewbie.com/cross-browser-support-for-html5-placeholder-text-in-for
 
 
 <% if mobile_device? %>
-  <div style="color:#333333;height:150px;margin-top:25px;background-color:#ff9966;">
+  <div style="color:#333333;height:180px;padding-top:10px;margin-top:25px;background-color:#ff9966;">
+    <center>
+    <div class="h1_font_oswald" style="margin-top:-0px;padding-top:0px;padding-bottom:30px;color:#ffffff;line-height:1em;">
+      Get started and form the best habits for a healthy lifestyle!
+    </div>
 <% else %>
   <div style="color:#000000;height:145px;margin-top:50px;">
+    <center>
+    <div class="h1_font_oswald" style="margin-top:0px;padding-top:10px;padding-bottom:30px;color:#ffffff;line-height:1em;">
+      Get started and form the best habits for a healthy lifestyle!
+    </div>
 <% end %>
 
 
@@ -772,10 +783,7 @@ http://www.cssnewbie.com/cross-browser-support-for-html5-placeholder-text-in-for
 
 </div> -->
 
-  <center>
-  <div class="h1_font_oswald" style="margin-top:-20px;padding-top:0px;padding-bottom:30px;color:#ffffff;line-height:1em;">
-    Get started and form the best habits for a healthy lifestyle!
-  </div>
+
 
   <div style="font-family:'LatoBold';margin-top:-5px;">
 
