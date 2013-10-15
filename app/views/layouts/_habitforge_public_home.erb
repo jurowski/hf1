@@ -369,7 +369,12 @@ http://www.cssnewbie.com/cross-browser-support-for-html5-placeholder-text-in-for
       <!-- LOGO END -->
 
 
+      <% if !mobile_device? %>
+      <div style="width:100%;position:relative;float:right;margin-top:-102px;">
+      <% else %>
       <div style="width:100%;position:relative;float:right;margin-top:-42px;">
+      <% end %>
+
         <div style="width:50px;position:relative;min-width:50px;">
           &nbsp
         </div>
@@ -398,7 +403,7 @@ http://www.cssnewbie.com/cross-browser-support-for-html5-placeholder-text-in-for
 
             <li class="<%= menu_link_class_login %>" ><a href="/user_session/new?skip_intro=1" class="btn_orange">LOGIN</a></li>
             <li class="<%= menu_link_class_about %>" ><a href="#about" class="show_hide btn_orange">ABOUT</a></li>
-            <li class="<%= menu_link_class_signup %>" ><a href="#" class="show_hide btn_orange">SIGN UP</a></li>
+            <li class="<%= menu_link_class_signup %>" ><a href="#signup" class="show_hide btn_orange">SIGN UP</a></li>
 
 
             <!--
@@ -428,6 +433,11 @@ http://www.cssnewbie.com/cross-browser-support-for-html5-placeholder-text-in-for
     <% else %>
        <%= render :partial => "layouts/header_desktop.erb", :locals => { :retry_email_address => retry_email_address } %>    
     <% end %>
+
+
+
+
+
 
 
 
@@ -972,6 +982,9 @@ so that we can see the shadow on the orange bar -->
 <div class="" style="background-color:#000000;margin-top:-0px;padding-top:0px;padding-top:20px;padding-left:40px;padding-right:40px;">
     <div class="h1_font_oswald" style="padding-top:15px;padding-bottom:10px;color:#ffffff;font-size:1.0em;">COPYRIGHT &copy; 2013 EARLY TO RISE PUBLISHING LLC</div>
 </div>
+
+
+
 
     <!-- Footer End -->
 
