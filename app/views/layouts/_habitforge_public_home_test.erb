@@ -424,7 +424,7 @@ http://www.cssnewbie.com/cross-browser-support-for-html5-placeholder-text-in-for
 
 
     <% if mobile_device? %>
-       <%= render :partial => "layouts/header_mobile.erb", :locals => { :retry_email_address => retry_email_address }  %>
+       <!-- render :partial => "layouts/header_mobile.erb", :locals => { :retry_email_address => retry_email_address }  -->
     <% else %>
        <%= render :partial => "layouts/header_desktop.erb", :locals => { :retry_email_address => retry_email_address } %>    
     <% end %>
