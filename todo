@@ -13,15 +13,22 @@
 ROWLEY 52M
 -------------------------------------------------------------------
 
-hosting js files
---add existing js files to a spot on hf server
---let Ben Cope know the location of those js files
---let ?Andrew? server guy know the location to cache of those files
---ask Andrew not to cache those files until Thanksgiving
-
+--------------
+NEXT
+--------------
 let user choose their state, province, or country
---see the country pulldown w/ icons (was it in metronic?)
---make state/provice pulldowns
+--state full name
+--country name
+--pulldown for state / province
+--pulldown for country
+
+
+
+--------------
+FUTURE
+--------------
+
+
 
 mod the tracking system to allow for weight tracking
 --add an "initial value" (ie start weight)
@@ -70,6 +77,15 @@ cron every 5 min pull from rowley mailing list groups
 --auto-assign their country and state based on params
 --send them conf. email
 --add them to a templated rowley weight tracking goal
+
+
+--------------
+DONE
+--------------
+hosting js files
+--add existing js files to a spot on hf server
+--let Ben Cope and Stephan know the location of those js files
+
 
 
 
