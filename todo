@@ -16,12 +16,10 @@ ROWLEY 52M
 --------------
 NEXT
 --------------
-let user choose their state, province, or country
---state full name
---country name
---pulldown for state / province
---pulldown for country
 
+mod the tracking system to allow for weight tracking
+--add an "initial value" (ie start weight)
+--make sure there's a "current value"
 
 
 --------------
@@ -29,40 +27,17 @@ FUTURE
 --------------
 
 
+There will be a "program" ... a 52M program
+--the program will have at least 2 "action items" to it
+--half of the people will be signed up for the "exercise" component ... with a weight tracker enabled
+--half of the people will be signed up for the "healthy diet" component ... with a weight tracker enabled
+--the weight-traacker goal can be placed on hold but not deleted (so that calculating per-state daily is not thrown off)
+--each will be asked now and then to join the others in their state who are signed up for the other component
+--if they sign up for the 2nd component, the weight tracker will be disabled on any but the first component
 
-mod the tracking system to allow for weight tracking
---add an "initial value" (ie start weight)
---make sure there's a "current value"
 
-add a 52M templated goal that has a weight tracker
---it will be one goal (not 50+ goals)
---it can be placed on hold but not deleted (so that calculating per-state daily is not thrown off)
 
-add a class: weight_loss_by_state
-state_name_abb:string ### abbreviated
-state_name:string
-demog_population:integer
-demog_percent_adults:integer
-demog_number_adults:integer
-demog_percent_obesity_rate:integer
-demog_number_obese_adults:integer
-demog_percent_of_total_obese_adults_in_challenge:integer
-challenge_weighted_goal:integer
-challenge_qty_hold:integer
-challenge_qty_active:integer
-challenge_lbs_starting_weight_hold:integer
-challenge_lbs_starting_weight_active:integer
-challenge_lbs_last_weight_hold:integer
-challenge_lbs_last_weight_active:integer
-challenge_lbs_lost_hold:integer
-challenge_lbs_lost_active:integer
-challenge_lbs_lost_total:integer
-challenge_percent_of_goal_met:integer
-challenge_number_rank:integer
-challenge_last_updated_date:date
-js_upcolor:string
-js_overcolor:string
-js_downcolor:string
+
 
 
 
@@ -87,11 +62,27 @@ hosting js files
 --let Ben Cope and Stephan know the location of those js files
 
 
+let user choose their state, province, or country
+--state full name
+--country name
+--pulldown for state / province
+--pulldown for country
 
 
+add a class: weight_loss_by_state
+state:string
+state_code:string ### abbreviated
+demog_population:integer
+demog_percent_adults:integer
+demog_number_adults:integer
+demog_percent_obesity_rate:integer
+demog_number_obese_adults:integer
+demog_percent_of_total_obese_adults_in_challenge:integer
+challenge_weighted_goal:integer challenge_qty_hold:integer challenge_qty_active:integer challenge_lbs_starting_weight_hold:integer challenge_lbs_starting_weight_active:integer challenge_lbs_last_weight_hold:integer challenge_lbs_last_weight_active:integer challenge_lbs_lost_hold:integer challenge_lbs_lost_active:integer challenge_lbs_lost_total:integer challenge_percent_of_goal_met:integer challenge_number_rank:integer challenge_last_updated_date:date js_upcolor:string js_overcolor:string js_downcolor:string
 
+--protect the weight_loss_by_state files
 
-
+--method to drop and seed the weight_loss_by_state
 
 
 -------------------------------------------------------------------
@@ -103,6 +94,7 @@ if someone clicks on a pricing link from the home page
   jump to the signup box
   make visible a div with text asking them to sign up and we'll get started
   mod a hidden form input value indicating monthly vs. yearly vs. lifetime vs. free
+
   in the quick_signup controller action, if that form value is not "free" then redirect to ETR for payment
   (for now, don't mod that page ... once in production, ask Mark to auto-choose which value was chosen on the $ page)
 
@@ -114,6 +106,20 @@ if someone clicks on a pricing link from the home page
 -------------------------------------------------------------------
 TRACKER STUFF BEING PUT ON HOLD UNTIL GRAPHICS RE-DESIGN IS DONE
 -------------------------------------------------------------------
+
+
+------------
+NEXT
+------------ 
+
+
+
+!!! since we already have in mind a handful of "templates" for trackers, might as well reduce confusion for people and ask them to choose one of those first and hide the implementation details for now
+
+!!! for templated weight loss, ask their current weight to auto-fill in the ranges
+
+
+
 Quant answers:
 -- ask for the number and/or the yes/no depending on their tracker linkage choices
 
@@ -127,12 +133,6 @@ We'll test out two cases at first, both of which would have a max :
 --one that daily measures something that you achieve daily (sleep)
 
 
-!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!VERY NEXT !!!!!!!!!!!!!!!!!!!!!
-!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
---allow user to modify date and hour for a quant (in case they're answering for the day before or for earlier in the day)
-(Meridian Format date/time picker): file:///home/sgj700/Downloads/metronic_v1.2.4/template_content/form_component.html#
-USE THE MINIFY FORMAT
 
 
 THE LOGIC
@@ -157,20 +157,24 @@ and
 when you get the daily reminder email,
 have a link in the email asking you for a measurment
 clicking that link takes you to the "tracker" goal tab
+and also after you answer your yes/no,  ask if they want to enter a tracker value as well
 
 
-NEXT/NOW/CURRENT: 
 
 
-!!! for templated weight loss, as their current weight to auto-fill in the ranges
-
-
--- WEDNESDAYS ONLY: not sure if weekly_report_of_goals_i_follow is working w/out fail
+-----------
+DONE
+-----------
+--allow user to modify date and hour for a quant (in case they're answering for the day before or for earlier in the day)
+(Meridian Format date/time picker): file:///home/sgj700/Downloads/metronic_v1.2.4/template_content/form_component.html#
+USE THE MINIFY FORMAT
 
 
 
 
 -------------------- :::FUTURE::: -------------------------------
+
+-- WEDNESDAYS ONLY: not sure if weekly_report_of_goals_i_follow is working w/out fail
 
 --fitbit integration for a step tracker and sleep tracker
 

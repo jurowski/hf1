@@ -29,7 +29,7 @@
       <% end %>
 
       <a name="signup" id="signup"></a>
-
+        <form id="form_signup1" name="form_signup1" action="/quicksignup_v2">
       <div style="width:350px;min-width:350px;margin-left:10px;" id="div_signup_box" name="div_signup_box">
         <span style="position:absolute;margin-top:10px;padding-left:50px;font-family: 'Gochi Hand', cursive;color:#ffffff;font-size:3.0em;">
           <a id="signup_box_1" ></a>
@@ -43,11 +43,28 @@
         <span style="position:absolute;float:right;margin-top:80px;padding-left:45px;font-family:LatoBold;text-align:center;color:#383838;font-size:1.1em;line-height:1.4em;">
 
 
-        Set your first goal FREE
-        <br>
-        with daily motivation
-        <br>
-        and email reminders.
+
+        <div id="div_signup_paid" name="div_signup_paid" style="display:none;">
+          Set Unlimited Active Goals
+          <br>
+          with Extra Accountability
+          <br>
+          and No Ads!
+          <input type="hidden" name="signup_intent_paid" value=1>
+        </div>
+
+        <div id="div_signup_free" name="div_signup_free" style="display:block;">
+          Set your first goal FREE
+          <br>
+          with daily motivation
+          <br>
+          and email reminders.
+        </div>
+
+
+
+
+
         <br>
         <br>
         Sign up with...
@@ -75,12 +92,30 @@
 
         OR
         <br>
-        <form id="form_signup1" name="form_signup1" action="/quicksignup_v2">
+
+
           <input type="text" name="email" placeholder="Enter your email for a free account..." style="width:220px;"/>
           <br>
           <br>
+
+
+          <div id="div_button_signup_paid" name="div_button_signup_paid" style="display:none;">
+          <a href="#" rel="signup_email_paid" onclick="toggle_show('spinner_page_load');formSubmit('form_signup1')">
+            <img src="/home/images/start_now.jpg" />
+          </a>
+          </div>
+
+
+          <div id="div_button_signup_free" name="div_button_signup_free" style="display:block;">
           <a style="margin-left:40px;" href="#" rel="signup_email" onmouseover="this.getElementById('image_button_signup_email').src='/home/images/Button-SignUp-Hover.png'" onmouseout="this.getElementById('image_button_signup_email').src='/home/images/Button-SignUp.png'" onclick="toggle_show('spinner_page_load');formSubmit('form_signup1')">
           </a>
+          </div>
+
+<!--           <a style="margin-left:40px;" href="#" rel="signup_email" onmouseover="this.getElementById('image_button_signup_email').src='/home/images/Button-SignUp-Hover.png'" onmouseout="this.getElementById('image_button_signup_email').src='/home/images/Button-SignUp.png'" onclick="toggle_show('spinner_page_load');formSubmit('form_signup1')">
+          </a>
+ -->
+
+
           <input type="hidden" name="subscribe_etr" value=1> 
           <input type="hidden" name="form_submitted" value=1>
 

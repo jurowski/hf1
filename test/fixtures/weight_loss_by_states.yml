@@ -1,0 +1,53 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  state: MyString
+  state_code: MyString
+  demog_population: 1
+  demog_percent_adults: 1
+  demog_number_adults: 1
+  demog_percent_obesity_rate: 1
+  demog_number_obese_adults: 1
+  demog_percent_of_total_obese_adults_in_challenge: 1
+  challenge_weighted_goal: 1
+  challenge_qty_hold: 1
+  challenge_qty_active: 1
+  challenge_lbs_starting_weight_hold: 1
+  challenge_lbs_starting_weight_active: 1
+  challenge_lbs_last_weight_hold: 1
+  challenge_lbs_last_weight_active: 1
+  challenge_lbs_lost_hold: 1
+  challenge_lbs_lost_active: 1
+  challenge_lbs_lost_total: 1
+  challenge_percent_of_goal_met: 1
+  challenge_number_rank: 1
+  challenge_last_updated_date: 2013-10-15
+  js_upcolor: MyString
+  js_overcolor: MyString
+  js_downcolor: MyString
+
+two:
+  state: MyString
+  state_code: MyString
+  demog_population: 1
+  demog_percent_adults: 1
+  demog_number_adults: 1
+  demog_percent_obesity_rate: 1
+  demog_number_obese_adults: 1
+  demog_percent_of_total_obese_adults_in_challenge: 1
+  challenge_weighted_goal: 1
+  challenge_qty_hold: 1
+  challenge_qty_active: 1
+  challenge_lbs_starting_weight_hold: 1
+  challenge_lbs_starting_weight_active: 1
+  challenge_lbs_last_weight_hold: 1
+  challenge_lbs_last_weight_active: 1
+  challenge_lbs_lost_hold: 1
+  challenge_lbs_lost_active: 1
+  challenge_lbs_lost_total: 1
+  challenge_percent_of_goal_met: 1
+  challenge_number_rank: 1
+  challenge_last_updated_date: 2013-10-15
+  js_upcolor: MyString
+  js_overcolor: MyString
+  js_downcolor: MyString

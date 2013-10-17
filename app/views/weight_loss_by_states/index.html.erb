@@ -1,0 +1,76 @@
+
+
+
+<hr>
+<a href="/weight_loss_by_states/?seed_states=1">Populate Missing States and Provinces</a>
+| <%= link_to '+ Add a State or Province', new_weight_loss_by_state_path %>
+<hr>
+<h1>52MLB Challenge: States and Provinces</h1>
+
+<table>
+  <tr>
+    <th>State</th>
+    <th>State code</th>
+
+    <th>Population</th>
+    <th>% adults</th>
+    <th># adults</th>
+    <th>% obesity rate</th>
+    <th># obese adults</th>
+    <th>Weight Loss Goal (weighted)</th>
+
+    <th>Users on hold</th>
+    <th>Users active</th>
+    <th>On hold: lbs starting weight</th>
+    <th>Active: lbs starting weight</th>
+    <th>On hold: lbs last weight</th>
+    <th>Active: lbs last weight</th>
+    <th>On hold: lbs lost</th>
+    <th>Active: lbs lost</th>
+    <th>Total lbs lost</th>
+    <th>% of goal met</th>
+    <th>Ranking #</th>
+    <th>Updated</th>
+
+    <th>JS upcolor</th>
+    <th>JS overcolor</th>
+    <th>JS downcolor</th>
+  </tr>
+
+<% @weight_loss_by_states.each do |weight_loss_by_state| %>
+  <tr>
+    <td><%=h weight_loss_by_state.state %></td>
+    <td><%=h weight_loss_by_state.state_code %></td>
+
+    <td><%=h weight_loss_by_state.demog_population %></td>
+    <td><%=h weight_loss_by_state.demog_percent_adults %></td>
+    <td><%=h weight_loss_by_state.demog_number_adults %></td>
+    <td><%=h weight_loss_by_state.demog_percent_obesity_rate %></td>
+    <td><%=h weight_loss_by_state.demog_number_obese_adults %></td>
+
+    <td><%=h weight_loss_by_state.challenge_weighted_goal %></td>
+    <td><%=h weight_loss_by_state.challenge_qty_hold %></td>
+    <td><%=h weight_loss_by_state.challenge_qty_active %></td>
+    <td><%=h weight_loss_by_state.challenge_lbs_starting_weight_hold %></td>
+    <td><%=h weight_loss_by_state.challenge_lbs_starting_weight_active %></td>
+    <td><%=h weight_loss_by_state.challenge_lbs_last_weight_hold %></td>
+    <td><%=h weight_loss_by_state.challenge_lbs_last_weight_active %></td>
+    <td><%=h weight_loss_by_state.challenge_lbs_lost_hold %></td>
+    <td><%=h weight_loss_by_state.challenge_lbs_lost_active %></td>
+    <td><%=h weight_loss_by_state.challenge_lbs_lost_total %></td>
+    <td><%=h weight_loss_by_state.challenge_percent_of_goal_met %></td>
+    <td><%=h weight_loss_by_state.challenge_number_rank %></td>
+    <td><%=h weight_loss_by_state.challenge_last_updated_date %></td>
+
+    <td><%=h weight_loss_by_state.js_upcolor %></td>
+    <td><%=h weight_loss_by_state.js_overcolor %></td>
+    <td><%=h weight_loss_by_state.js_downcolor %></td>
+    <td><%= link_to 'Show', weight_loss_by_state %></td>
+    <td><%= link_to 'Edit', edit_weight_loss_by_state_path(weight_loss_by_state) %></td>
+    <td><%= link_to 'Destroy', weight_loss_by_state, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+

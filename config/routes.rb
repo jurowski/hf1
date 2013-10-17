@@ -1,4 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :weight_loss_by_states
+
 
 
   ### THE BELOW WILL WORK TO AVOID NEEDING AN ID IN THE URL

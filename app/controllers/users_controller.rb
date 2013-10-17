@@ -407,6 +407,12 @@ class UsersController < ApplicationController
 
       if user.save 
 
+        if params[:signup_intent_paid]
+          logger.debug("sgj:users_controller:quicksignup_v2: PAID USER INTENT")
+        else
+          logger.debug("sgj:users_controller:quicksignup_v2: FREE USER INTENT")
+        end
+
         begin
           #### ALLOW FOR EMAIL ADDRESS CONFIRMATION
           random_confirm_token = rand(1000) + 1 #between 1 and 1000
@@ -595,9 +601,16 @@ class UsersController < ApplicationController
         if !@redirect_after_invite_response
           ### IF THEY ARE NOT A NEWLY PAID USER
           if !params[:ga_goal]
-            ### route them to goal creation page (which should reference session[:sfm] for quick goal-creation options)
-            #redirect_to("/goals/new?welcome=1")
-            redirect_url_string = "/goals/new?welcome=1"
+
+            ### if their intent on initial signup was to pay
+            if params[:signup_intent_paid]
+              redirect_url_string = "https://www.securepublications.com/habit-gse3.php?ref=" + user.id.to_s + "&email=" + user.email
+            else
+              ### route them to goal creation page (which should reference session[:sfm] for quick goal-creation options)
+              #redirect_to("/goals/new?welcome=1")
+              redirect_url_string = "/goals/new?welcome=1"
+            end
+
           else
             #redirect_to("/goals")
             redirect_url_string = "/goals"

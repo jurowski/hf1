@@ -241,6 +241,7 @@ class ApplicationController < ActionController::Base
         ### since there is no "current_user_session && current_user_session.record", it won't stay across requests
 
 
+
         ### if someone is confirming their account
         if params[:confirmed_address_token] and params[:user_id]
           logger.info("sgj:attempting account confirmation for user_id:" + params[:user_id])

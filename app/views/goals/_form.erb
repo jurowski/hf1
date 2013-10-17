@@ -671,11 +671,32 @@ end
   <div class="well" id="tracker_option" style="display:none;border-width:1px;">
 <% end %>
 
-<p><h3>Does succeeding depend on some number you'd like us to ask you about?
+<p>
+
+
+<!--     var handleToggleButtons = function () {
+        if (!jQuery().toggleButtons) {
+            return;
+        }
+        $('.basic-toggle-button').toggleButtons();
+        $('.text-toggle-button').toggleButtons({
+            width: 200,
+            label: {
+                enabled: "Lorem Ipsum",
+                disabled: "Dolor Sit"
+            }
+        });
+         -->
+  <div class="basic-toggle-button">
+  <%= check_box(:goal, :tracker, options = {:class=>"toggle", :style=>"label:enabled:'SI';label:disabled:'NO';"}, checked_value = "true", unchecked_value = "false") %>
+  </div>
+
+  <h3>Track it with a Number as well!
   <br><span style="font-size:0.5em;">(ex: hours of sleep, weight in pounds, # of glasses of water, an overall mood rating, number of sales calls, etc.)</span></h3></p>
 
-<%= check_box(:goal, :tracker, options = {}, checked_value = "true", unchecked_value = "false") %>
-<strong>ENABLE (Ask me for a number instead of just a "yes/no".)</strong>
+
+
+
 
 <br>
 

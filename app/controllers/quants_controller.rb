@@ -81,7 +81,17 @@ class QuantsController < ApplicationController
         quant.goal_id = @goal.id
         quant.user_id = @goal.user.id
         #quant.measurement = params[:quant_value].to_i
-        quant.measurement = params[:quant_value] ### will need to do special work to respect decimal entries
+
+        logger.debug("sgj:quants_controller:quant_value = " + params[:quant_value]) ### does show decimals
+
+
+
+        ## http://stackoverflow.com/questions/3063968/string-decimal-or-float-datatype-for-price-field
+        ## but integers has no 13.25?
+        ## That is why you base it on cents. So the $13.25 gets stored as 1325 in the database. You format the dollar sign and the decimal in the view.
+        ### so for HF tracking, when you display this, divide it by 100 ... this is how you represent decimal values with an int
+        quant.measurement = (params[:quant_value].to_f + 0.00) * 100 
+
 
 
         quant.measurement_taken_timestamp = @goal.user.timestamp_now
@@ -99,7 +109,11 @@ class QuantsController < ApplicationController
           #the_month = 1
           the_year = arr_datetime_split[2]
           the_day = arr_datetime_split[0]
-          logger.debug("sgj:quants_controller:datetime after splitting = " + the_month.to_s + "/" + the_day.to_s + "/" + the_year.to_s)
+          the_hour = arr_datetime_split[4]
+          logger.debug("sgj:quants_controller:datetime after splitting = " + the_month.to_s + "/" + the_day.to_s + "/" + the_year.to_s + " @ " + the_hour.to_s)
+
+          quant.measurement_date = the_year.to_s + "-" + the_month.to_s + "-" + the_day.to_s
+          quant.measurement_hour = the_hour
         end
 
 
@@ -197,10 +211,11 @@ class QuantsController < ApplicationController
   # DELETE /quants/1.xml
   def destroy
     @quant = Quant.find(params[:id])
+    goal_id = @quant.goal.id
     @quant.destroy
 
     respond_to do |format|
-      format.html { redirect_to(quants_url) }
+      format.html { redirect_to('/goals#tab_1_5_' + goal_id.to_s) }
       format.xml  { head :ok }
     end
   end
