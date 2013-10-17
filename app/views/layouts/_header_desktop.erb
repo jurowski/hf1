@@ -88,22 +88,24 @@
 
         <span style="position:absolute;float:right;margin-top:80px;padding-left:45px;font-family:LatoBold;text-align:center;color:#383838;font-size:1.1em;line-height:1.4em;">
 
-        <div id="div_signup_paid" name="div_signup_paid" style="display:none;">
-          Set Unlimited Active Goals
-          <br>
-          with Extra Accountability
-          <br>
-          and No Ads!
-          <input type="hidden" name="signup_intent_paid" value=1>
-        </div>
 
-        <div id="div_signup_free" name="div_signup_free" style="display:block;">
-          Set your first goal FREE
-          <br>
-          with daily motivation
-          <br>
-          and email reminders.
-        </div>
+
+
+
+          <% if params[:signup_intent_paid] %>
+            Set Unlimited Active Goals
+            <br>
+            with Extra Accountability
+            <br>
+            and No Ads!
+          <% else %>
+            Set your first goal FREE
+            <br>
+            with daily motivation
+            <br>
+            and email reminders.
+          <% end %>
+
 
         <br>
         Sign up with...
@@ -133,23 +135,26 @@
         <br>
 
 
-          <div id="div_button_signup_paid" name="div_button_signup_paid" style="display:none;">
-          <input type="text" name="email" placeholder="Enter your email to get started..." style="width:220px;"/>
-          <br>    
-          <br>
-          <a href="#" rel="signup_email_paid" onclick="toggle_show('spinner_page_load');formSubmit('form_signup1')">
-            <img src="/home/images/start_now.jpg" />
-          </a>
-          </div>
+          <% if params[:signup_intent_paid] %>
+            <input type="hidden" name="signup_intent_paid" value=1>
 
+            <input type="text" name="email" placeholder="Enter your email to get started..." style="width:220px;"/>
+            <br>    
+            <br>
+            <a href="#" rel="signup_email_paid" onclick="toggle_show('spinner_page_load');formSubmit('form_signup1')">
+              <img src="/home/images/start_now.jpg" />
+            </a>
 
-          <div id="div_button_signup_free" name="div_button_signup_free" style="display:block;">
-          <input type="text" name="email" placeholder="Enter your email for a free account..." style="width:220px;"/>
-          <br>    
-          <br>
-          <a style="margin-left:40px;" href="#" rel="signup_email" onmouseover="this.getElementById('image_button_signup_email').src='/home/images/Button-SignUp-Hover.png'" onmouseout="this.getElementById('image_button_signup_email').src='/home/images/Button-SignUp.png'" onclick="toggle_show('spinner_page_load');formSubmit('form_signup1')">
-          </a>
-          </div>
+          <% else %>
+
+            <input type="text" name="email" placeholder="Enter your email for a free account..." style="width:220px;"/>
+            <br>    
+            <br>
+            <a style="margin-left:40px;" href="#" rel="signup_email" onmouseover="this.getElementById('image_button_signup_email').src='/home/images/Button-SignUp-Hover.png'" onmouseout="this.getElementById('image_button_signup_email').src='/home/images/Button-SignUp.png'" onclick="toggle_show('spinner_page_load');formSubmit('form_signup1')">
+            </a>
+
+          <% end %>
+
 
 
 
