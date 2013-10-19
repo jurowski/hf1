@@ -2,44 +2,10 @@
 #begin
 %>
 
-  <% if @goal.template_owner_is_a_template %>
-    <h1>Template Habit Options</h1>
-    <hr>
-  <% else %>
-    <h1>My Habit Options</h1>
-    <hr>
-    <a href="/goals/single/<%= @goal.id %>">My History</a>
-  <% end %>
-
-
-
-  <% 
-  if @goal.status == "start" or @goal.status == "monitor"
-  %>
-  |
-  	<%= link_to "Invite a friend to follow", :controller => "goals", :action => "invite_a_friend_to_track", :id => @goal.id%>
-  <%
-  end
-  %>   
-
-
-
-<!-- DO NOT ALLOW HOLD OR DELETE OPTIONS IF THERE IS AN ACTIVE EXTRA ACCOUNTABILITY CHALLENGE -->
-<% if @goal.number_my_active_bets == 0 %>
-  <% if @goal.status != "hold" %>
-      | 
-      <%= link_to 'Place on Hold', "/goals/hold/#{@goal.id}", :confirm => 'If you put a goal on hold, you will stop getting emails about it. Are you sure you want to place it on hold?'
-       %> 
-  <% end %>
-  |
-  <%= link_to "Delete", @goal, :confirm => 'Are you sure you want to delete this goal?', :method => :delete %>
-<% end %>
 
 
 
 
-
-<br>
 
 
   <% form_for(@goal) do |f| %>
@@ -63,7 +29,7 @@
         -->
       <input type="submit" value="Save and Re-Activate" class="start_now" style="height:50px;">    
     <% else %>
-      <input type="submit" value="Save Changes to My Habit" class="start_now" style="height:50px;">
+<!--       <input type="submit" value="Save Changes to My Habit" class="start_now" style="height:50px;"> -->
     <% end %>
   <% end %>
 
@@ -71,7 +37,21 @@
     </p>
   <% end %>
 
-  <p><%= link_to 'Back (Cancel Changes)', goals_path %></p>
+
+  <p>
+
+
+    <% if current_user.sponsor == "habitforge" and !current_user.is_habitforge_supporting_member and current_user.number_of_active_habits > 0 %>
+        <!-- render :partial => "goals/upgrade_advertisement"  -->
+        <a href="/goals?too_many_active_habits=1" class="btn_red_gradient" style="color:#ffffff;text-decoration:none;"><i class="icon-plus"></i>  Start Another Habit</a>
+    <% else %>
+        <a href="/goals/new" class="btn_red_gradient" style="color:#ffffff;text-decoration:none;"><i class="icon-plus"></i>  Start Another Habit</a>
+    <% end %>
+
+
+    or
+
+    <%= link_to 'View All Habits', goals_path %></p>
 
 <%
 #rescue

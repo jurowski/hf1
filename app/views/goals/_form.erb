@@ -3,6 +3,35 @@
 @ca = controller.action_name 
 %>
 
+<%
+@arr_checkin = Array.new
+
+
+@arr_checkin.push(["1am", 1])
+@arr_checkin.push(["2am", 2])
+@arr_checkin.push(["3am", 3])
+@arr_checkin.push(["4am", 4])
+@arr_checkin.push(["5am", 5])
+@arr_checkin.push(["6am", 6])
+@arr_checkin.push(["7am", 7])
+@arr_checkin.push(["8am", 8])
+@arr_checkin.push(["9am", 9])
+@arr_checkin.push(["10am", 10])
+@arr_checkin.push(["11am", 11])
+@arr_checkin.push(["12pm (noon)", 12])
+@arr_checkin.push(["1pm", 13])
+@arr_checkin.push(["2pm", 14])
+@arr_checkin.push(["3pm", 15])
+@arr_checkin.push(["4pm", 16])
+@arr_checkin.push(["5pm", 17])
+@arr_checkin.push(["6pm", 18])
+@arr_checkin.push(["7pm", 19])
+@arr_checkin.push(["8pm", 20])
+@arr_checkin.push(["9pm", 21])
+@arr_checkin.push(["10pm", 22])
+@arr_checkin.push(["11pm", 23])
+%>
+
 
 <!-- TESTING OUT SHOWING EVERYTHING NO MATTER WHAT -->
 <% if session[:sfm_virgin] %>
@@ -120,11 +149,7 @@ if current_user.is_admin or @goal.status == "monitor" or @goal.established_on ==
   %>
   <%
 end
-%>
-  <br>
-<br>
 
-<%
 show_monitor_option_details = 0
 %>
 
@@ -134,11 +159,8 @@ show_monitor_option_details = 0
 <% end %>
 
 
-   
-<br>
-<div class="well">
-
-
+<!-- <div class="well"> -->
+<div class="">
 <% if session[:sfm_virgin] == true and !@goal.template_owner_is_a_template and !based_on_a_template%> 
   <h1>What is the first habit you'd like to create?</h1>
   <br>
@@ -146,81 +168,113 @@ show_monitor_option_details = 0
 
 
 
+<% if @ca == "new" %>
+<div style="padding-top:0px;">
+<span style="color:#ff3300;font-size:2em;font-weight:bold;">What habit would you like to forge?</span>
+</div>
+<% end %>
 
 
-<h2><img src="/home/images/paperplane_icon.png" alt="img"  /> Check in with <%= them_or_me %> daily by email at 
 
 
-    <%
-    @arr_checkin = Array.new
+<% if params[:just_created_new_habit] %>
+
+  <% if params[:just_created_first_habit] %>
+    <div style="padding-top:0px;">
+    <span style="color:#000000;font-size:2em;font-weight:bold;">Nice work, you've set up your first habit!</span>
+    </div>
+  <% else %>
+    <div style="padding-top:0px;">
+    <span style="color:#000000;font-size:2em;font-weight:bold;">Your new habit is saved.</span>
+    </div>
+  <% end %>
 
 
-    @arr_checkin.push(["1am", 1])
-    @arr_checkin.push(["2am", 2])
-    @arr_checkin.push(["3am", 3])
-    @arr_checkin.push(["4am", 4])
-    @arr_checkin.push(["5am", 5])
-    @arr_checkin.push(["6am", 6])
-    @arr_checkin.push(["7am", 7])
-    @arr_checkin.push(["8am", 8])
-    @arr_checkin.push(["9am", 9])
-    @arr_checkin.push(["10am", 10])
-    @arr_checkin.push(["11am", 11])
-    @arr_checkin.push(["12pm (noon)", 12])
-    @arr_checkin.push(["1pm", 13])
-    @arr_checkin.push(["2pm", 14])
-    @arr_checkin.push(["3pm", 15])
-    @arr_checkin.push(["4pm", 16])
-    @arr_checkin.push(["5pm", 17])
-    @arr_checkin.push(["6pm", 18])
-    @arr_checkin.push(["7pm", 19])
-    @arr_checkin.push(["8pm", 20])
-    @arr_checkin.push(["9pm", 21])
-    @arr_checkin.push(["10pm", 22])
-    @arr_checkin.push(["11pm", 23])
-    %>
-    <%= select(:goal, :usersendhour, @arr_checkin,{},{:style=>"width:75px;"})%>
+<% end %>
 
-
+<!-- <h2><img src="/home/images/paperplane_icon.png" alt="img"  /> Check in with <%= them_or_me %> daily by email at 
 
   and ask:</h2>
+ -->
 
-<div class="alert">
-<h4>
+<div style="padding-top:10px;">
+<span style="font-size:1.2em;font-weight:bold;">
+Your email check-ins 
+
+
+<% if @ca == "edit" %>
+
+
+      <% if params[:just_created_new_habit] %>
+        <% if @goal.start == current_user.dtoday %><a href="#" onclick="toggle_show_hide('div_start_date')">starting today</a><% end %>
+        <% if @goal.start == current_user.dtomorrow %><a href="#" id="starting_tomorrow" title="Click to Choose Which Day to Start" onclick="toggle_show_hide('div_start_date')">starting tomorrow</a>
+        <script type='text/javascript'>
+        $('#starting_tomorrow').tipsy();
+        </script>
+
+        <% end %>
+      <% end %>
+      <%
+      checkin_time = "5am"
+      @arr_checkin.each do |item|
+        if item[1] == @goal.usersendhour
+          checkin_time = item[0]
+        end
+      end
+      %>
+
+      at <a href="#" id="checkin_time" title="Click to Choose a Different Check-in Time" onclick="toggle_show('div_reminders');toggle_show('div_customization_toolbox');"><%= checkin_time %></a>
+        <script type='text/javascript'>
+        $('#checkin_time').tipsy();
+        </script>      
+<% end %>
+
+will read...
+</span>
+</div>
+
+<!-- <div class="alert"> -->
+<div class="" style="background-color:#33cc66;color:#ffffff;margin-left:-20px;padding-left:20px;padding-top:7px;margin-right:-20px;">
 
 
 <% 
-question_placeholder = "ex: walking for at least 20 minutes"
+question_placeholder = "(enter your goal) ex: walking 20 minutes"
 if part_of_a_team_category 
   question_placeholder = ""
 end
 %>
-
-
-  "Were you successful  
-
-    <%
-    @arr_check_in_same_day = Array.new
-    @arr_check_in_same_day.push(["today", true])
-    @arr_check_in_same_day.push(["yesterday", false])
-    %>
-    <%= select(:goal, :check_in_same_day, @arr_check_in_same_day, {},{:style => 'width:100px;'})%>
-
-  at
+  <span style="font-weight:bold;font-size:1.5em;">Were you successful at
 <% if !based_on_a_template and !has_active_challenge %>
  &nbsp
-  <%= form.text_field :response_question, :placeholder => question_placeholder, :size => 40, :style=>'width:300px;' %> ?"
+  <%= form.text_field :response_question, :placeholder => question_placeholder, :size => 40, :style=>'width:300px;' %> 
 <% else %>
-  <%= @goal.response_question %>?"
+  <%= @goal.response_question %>
   <%= form.hidden_field :response_question, :value => @goal.response_question %>
   <%= form.hidden_field :template_user_parent_goal_id, :value => @goal.template_user_parent_goal_id %>
   <%= form.hidden_field :goal_added_through_template_from_program_id, :value => @goal.goal_added_through_template_from_program_id %>
-
 <% end %>
-</h4>
 
 
-</div>
+
+    <% if @goal.check_in_same_day == nil or @goal.check_in_same_day == true %>
+     today 
+    <% else %>
+     yesterday 
+    <% end %>
+?</span>
+
+
+
+
+</div> <!-- end div class "alert" -->
+
+
+
+
+
+
+
+
 <% if has_active_challenge %>
   <br>
   <div class="alert-info">
@@ -264,14 +318,22 @@ end
 
 
 
-  <% if based_on_a_template or has_active_challenge or part_of_a_team_category %>
-    <% if @goal.category and @goal.category != "" %>
-      Category: 
-    <% end %>
+  <% if @ca == "new" %>
+  <div style="display:block;">
   <% else %>
-    This fits best in the category of  &nbsp 
+  <div id="div_category" name="div_category" style="display:none;">
   <% end %>
-
+    <!-- CATEGORY -->
+    <div style="padding-top:10px;">
+    <% if based_on_a_template or has_active_challenge or part_of_a_team_category %>
+      <% if @goal.category and @goal.category != "" %>
+        Category: 
+      <% end %>
+    <% else %>
+      <span style="font-size:1.2em;font-weight:bold;">
+      What category does this fit into?
+      </span>
+    <% end %>
     <% if !based_on_a_template and !has_active_challenge and !part_of_a_team_category %>
       <%
       @arr = arr_goal_categories  
@@ -282,50 +344,110 @@ end
       <%= form.hidden_field :category, :value => @goal.category %>
     <% end %>
 
-<br>
-      <% 
-      if @ca == "new" and !@goal.template_owner_is_a_template
-          %>
+
+      <% if  @ca == "edit" %>
+      <input type="submit" value="Save Changes">
+      <% end %>
+    </div>
+    <!-- END CATEGORY -->
+  </div>
 
 
-          <% 
-          @arr_pre_start_days_per_week = Array.new
+<% if params[:just_created_new_habit] %>
+  <% if @ca == "new" %>
+  <div style="display:block;">
+  <% else %>
+  <div id="div_start_date" name="div_start_date" style="display:none;">
+  <% end %>
+    <% 
+    if @ca == "edit" and !@goal.pre_start_days_per_week and !@goal.template_owner_is_a_template
+        %>
 
-          @arr_pre_start_days_per_week.push(["0", 0])
-          @arr_pre_start_days_per_week.push(["1", 1])
-          @arr_pre_start_days_per_week.push(["2", 2])
-          @arr_pre_start_days_per_week.push(["3", 3])
-          @arr_pre_start_days_per_week.push(["4", 4])
-          @arr_pre_start_days_per_week.push(["5", 5])
-          @arr_pre_start_days_per_week.push(["6", 6])
-          @arr_pre_start_days_per_week.push(["7", 7])
-          %>
-          
-          <% 
-          if !session[:sfm_virgin]  
-            %>
-              Lately I've been doing it about   
-              <%= select(:goal, :pre_start_days_per_week, @arr_pre_start_days_per_week,{},{:style=>"width:50px;"}) %> days a week.
-              <% 
-          end 
-          %>
-           I'll be doing it regularly 
+
+        <% 
+        @arr_pre_start_days_per_week = Array.new
+
+        @arr_pre_start_days_per_week.push(["0", 0])
+        @arr_pre_start_days_per_week.push(["1", 1])
+        @arr_pre_start_days_per_week.push(["2", 2])
+        @arr_pre_start_days_per_week.push(["3", 3])
+        @arr_pre_start_days_per_week.push(["4", 4])
+        @arr_pre_start_days_per_week.push(["5", 5])
+        @arr_pre_start_days_per_week.push(["6", 6])
+        @arr_pre_start_days_per_week.push(["7", 7])
+        %>
+        
+        <!-- 
+        if !session[:sfm_virgin]  
+          >
+            Lately I've been doing it about   
+            < select(:goal, :pre_start_days_per_week, @arr_pre_start_days_per_week,{},{:style=>"width:50px;"}) %> days a week.
+            < 
+        end 
+        >
+         I'll be doing it regularly 
+        -->
+
+
+
+        <br>
+        When are you going to start? 
+        <% if @goal.start == current_user.dtoday %>
           <select id="delay_start_for_this_many_days" name="delay_start_for_this_many_days" style="width:auto;">
-          <option value="0">starting today.</option>
-          <option value="1">starting tomorrow.</option>
+          <option value="0" SELECTED>
+          start today.
+          </option>
+          <option value="1">
+          start tomorrow.
+          </option>
           </select>
-          <%
-      end
-      %>
-<br>
-<br>
-</div>
+        <% end %>
+
+        <% if @goal.start == current_user.dtomorrow %>
+          <select id="delay_start_for_this_many_days" name="delay_start_for_this_many_days" style="width:auto;">
+          <option value="-1" >
+          start today.
+          </option>
+          <option value="0" SELECTED>
+          start tomorrow.
+          </option>
+          </select>
+        <% end %>
+
+        <% if  @ca == "edit" %>
+        <input type="submit" value="Save Changes">
+        <% end %>
+
+        <%
+    end
+    %>
+
+  </div>
+<% end %>
 
 
+
+
+</div> <!-- end div "well" -->
+
+
+
+
+<% if @ca == "edit" %>
+  <div style="display:block;">
+<% else %>
+  <!-- make sure it's actually "there" otherwise certain settings won't get set -->
+  <div style="display:none;">
+<% end %>
 
 <!-- START ALL CUSTOM OPTIONS -->
-<h2><i class="icon-briefcase"></i> Customization Toolbox <a href="#undefined" onclick="toggle_show_hide('div_customization_toolbox')" style="font-size:0.5em;">Open It Up</a></h2>
-<div id="div_customization_toolbox" name="div_customization_toolbox" style="display:none;margin-left:50px;border-width:1px;border-style:solid;border-color:#eeeeee;padding:10px;">
+
+<div style="background-color:#666666;margin-left:-20px;margin-right:-20px;padding-left:20px;margin-top:-0px;padding-top:10px;padding-bottom:10px;">
+<span style="color:#ffffff;font-weight:bold;font-size:1.5em;"><a href="#" onclick="toggle_show_hide('div_customization_toolbox');" style="color:#ffffff;text-decoration:none;"><i class="icon-briefcase"></i> Customization Toolbox</a></span> 
+
+</div>
+
+<div id="div_customization_toolbox" name="div_customization_toolbox" style="display:block;margin-left:-20px;margin-right:-20px;border-width:1px;border-style:solid;border-color:#eeeeee;padding:10px;background-color:#eeeeee;">
 
 
 
@@ -333,6 +455,29 @@ end
 <h2><i class="icon-bell"></i> Reminders <a href="#undefined" onclick="toggle_show_hide('div_reminders')" style="font-size:0.5em;">Details</a></h2>
 <div id="div_reminders" name="div_reminders" class="well" style="display:none;">
 <table>
+  <tr>
+    <td>
+    Check in with <%= them_or_me %> for a yes/no answer at: &nbsp  
+    </td>
+
+    <td>
+    <%= select(:goal, :usersendhour, @arr_checkin,{},{:style=>"width:75px;"})%>
+
+
+
+    <%
+    @arr_check_in_same_day = Array.new
+    @arr_check_in_same_day.push(["the same day", true])
+    @arr_check_in_same_day.push(["the next morning", false])
+    %>
+    <%= select(:goal, :check_in_same_day, @arr_check_in_same_day, {},{:style => 'width:150px;'})%>
+
+    </td>
+
+  </tr>
+
+
+
   <tr>
   <td valign=top nowrap align=right>
 
@@ -369,7 +514,7 @@ end
     @arr_reminder.push(["~10pm", 22])
     @arr_reminder.push(["~11pm", 23])
 
-    @arr_reminder.push(["no reminder", -1])
+    # @arr_reminder.push(["no reminder", -1])
     %>
     <%= select(:goal, :reminder_send_hour, @arr_reminder,{},{:style=>"width:75px;"})%>
 
@@ -1006,11 +1151,76 @@ end
 </div> <!-- END "WELL" -->
 </div> <!-- end div_frequency -->
 
+    <% if  @ca == "edit" %>
+    <input type="submit" value="Save Customizations"  class="start_nowz" style="height:30px;">
+    <% end %>
+</div> <!-- end whether this is hidden (but there in hiding to grab values) -->
+
+
 
 </div> <!-- END ALL CUSTOMIZATION OPTIONS TOOLBOX div_customization_toolbox -->
 
-<br>
-<br>
+
+
+<% if params[:just_created_new_habit] %>
+    <div style="padding:10px;padding-top:30px;">
+    <span style="color:#000000;font-size:1.5em;font-weight:bold;">You'll get your first 
+
+      <% if @ca == "edit" %>
+      <a href="#" id="goal_category_choice" title="Click to Choose a Different Category" onclick="toggle_show_hide('div_category')"><%= @goal.category %></a>
+        <script type='text/javascript'>
+        $('#goal_category_choice').tipsy();
+        </script>
+      <% end %>
+
+      reminder 
+
+
+
+        <% if (@goal.start == current_user.dtoday) %>
+
+          <% if (@goal.reminder_send_hour > current_user.time_hour_right_now) %>
+              today 
+          <% else %>
+              tomorrow 
+          <% end %>
+
+        <% end %>
+        
+
+        <% if (@goal.start == current_user.dtomorrow) %>
+            tomorrow 
+        <% end %>
+
+
+      <% if @goal.reminder_send_hour > 11 %>
+        <% if @goal.reminder_send_hour > 4 %>
+           evening
+        <% else %>
+         afternoon 
+        <% end %>
+      <% else %>
+        morning
+      <% end %>
+
+      <%
+      reminder_time = "5am"
+      @arr_reminder.each do |item|
+        if item[1] == @goal.reminder_send_hour
+          reminder_time = item[0]
+        end
+      end
+      %>
+
+      at <a href="#" id="reminder_time" title="Click to Change Reminder Time" onclick="toggle_show('div_reminders');toggle_show('div_customization_toolbox');"><%= reminder_time %></a>.</span>
+        <script type='text/javascript'>
+        $('#reminder_time').tipsy();
+        </script>
+
+    </div>  
+<% end %>
+
+
 
 
 

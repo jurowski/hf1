@@ -21,7 +21,19 @@ d3days_ago = dnow - 3
 @cn = controller.controller_name 
 @ca = controller.action_name 
 
+@new_goal_view = false
+if @cn == "goals" and (@ca == "new")
+  @new_goal_view = true
+end
 
+### this kicks in if they try to save a new habit w/out a response question (treat view as new)
+if @cn == "goals" and @goal and @goal.response_question == ""
+  @new_goal_view = true
+end
+
+# if @cn == "goals" and @goal and (@goal.response_question == nil or @goal.response_question == "")
+#   @new_goal_view = true
+# end
 ####################################
 #### SET THE USER ID FOR URL STRINGS
 the_user_id = "0"
@@ -61,53 +73,54 @@ if current_user
 end 
 
 
-######################  START ADVERTISING #########################
-show_ads = 0
-if current_user or @ca == "autoupdate" or @ca == "autoupdatemultiple" 
-  ### Don't advertise if they've paid to skip ads
-  if current_user
-      if (session[:site_name] == "habitforge" or session[:sponsor] == "habitforge") and (current_user.kill_ads_until == nil or dnow > current_user.kill_ads_until)
+if 1 == 2 ### whether to hide all ads
+  ######################  START ADVERTISING #########################
+  show_ads = 0
+  if current_user or @ca == "autoupdate" or @ca == "autoupdatemultiple" 
+    ### Don't advertise if they've paid to skip ads
+    if current_user
+        if (session[:site_name] == "habitforge" or session[:sponsor] == "habitforge") and (current_user.kill_ads_until == nil or dnow > current_user.kill_ads_until)
 
 
-        ### When Gather demographic data: don't show ads when asking for info (they might think it's an ad or be too distracted)
-        if @cn == "cheers" and (current_user.yob == nil or current_user.gender == nil)
-            show_ads = 0
-        else
+          ### When Gather demographic data: don't show ads when asking for info (they might think it's an ad or be too distracted)
+          if @cn == "cheers" and (current_user.yob == nil or current_user.gender == nil)
+              show_ads = 0
+          else
 
-            ### don't show ads if they just signed up and haven't yet added a goal
-            all_active_goals = Goal.find(:all, :conditions => "user_id = #{current_user.id} and status != 'hold'")
-            if all_active_goals.size > 0
-                show_ads = 1
-            else
-                show_ads = 0
-            end
-        end
-
-      end
-  else
-      if @ca == "autoupdate"
-          if (session[:site_name] == "habitforge" or session[:sponsor] == "habitforge") and (@checkpoint.goal.user.kill_ads_until == nil or dnow > @checkpoint.goal.user.kill_ads_until)
-            show_ads = 1
-          end
-      end
-      if @ca == "autoupdatemultiple"
-          if @goal != nil
-              if (session[:site_name] == "habitforge" or session[:sponsor] == "habitforge") and (@goal.user.kill_ads_until == nil or dnow > @goal.user.kill_ads_until)
-                show_ads = 1
+              ### don't show ads if they just signed up and haven't yet added a goal
+              all_active_goals = Goal.find(:all, :conditions => "user_id = #{current_user.id} and status != 'hold'")
+              if all_active_goals.size > 0
+                  show_ads = 1
+              else
+                  show_ads = 0
               end
           end
-      end
-  end #### END if current_user
-end ##### END if current_user or @ca == "autoupdate" or @ca == "autoupdatemultiple" 
+
+        end
+    else
+        if @ca == "autoupdate"
+            if (session[:site_name] == "habitforge" or session[:sponsor] == "habitforge") and (@checkpoint.goal.user.kill_ads_until == nil or dnow > @checkpoint.goal.user.kill_ads_until)
+              show_ads = 1
+            end
+        end
+        if @ca == "autoupdatemultiple"
+            if @goal != nil
+                if (session[:site_name] == "habitforge" or session[:sponsor] == "habitforge") and (@goal.user.kill_ads_until == nil or dnow > @goal.user.kill_ads_until)
+                  show_ads = 1
+                end
+            end
+        end
+    end #### END if current_user
+  end ##### END if current_user or @ca == "autoupdate" or @ca == "autoupdatemultiple" 
 
 
-### do not distract them with ads if already asking them to upgrade
-if params[:too_many_active_habits]
-  show_ads = 0
+  ### do not distract them with ads if already asking them to upgrade
+  if params[:too_many_active_habits]
+    show_ads = 0
+  end
+
+  ######################  END ADVERTISING #########################
 end
-
-######################  END ADVERTISING #########################
-
 %>
 
 
@@ -569,9 +582,14 @@ $('.confirmation').on('click',function(){return confirm('Are you sure?');});
 
 
 <!-- BEGIN BODY -->
+
+<% if !@new_goal_view %>
+<!--show a header-->
 <body class="fixed-top">
-
-
+<% else %>
+<!--take it all the way to the top-->
+<body>
+<% end %>
 
 
 <div id="spinner" class="spinner_overlay" style="display:none;">
@@ -591,6 +609,12 @@ $('.confirmation').on('click',function(){return confirm('Are you sure?');});
 
 
 
+  <% if @new_goal_view %>
+    <a style="" href="/goals">
+  <!--         <img src="/home/images/logos/habitforge_logo_small.png" alt="logo"/> -->
+    <img src="/home/images/logos/HF-ETR-Logo-Header_smaller.png" style="position:fixed;" alt="HabitForge logo" /></a>
+    </a>
+  <% else %>
   <!-- BEGIN HEADER -->
   <div class="header navbar navbar-inverse navbar-fixed-top">
     <!-- BEGIN TOP NAVIGATION BAR -->
@@ -602,17 +626,19 @@ $('.confirmation').on('click',function(){return confirm('Are you sure?');});
         </a>
  -->
         <a class="brand" href="/goals">
-        <img src="/home/images/logos/habitforge_logo_small.png" alt="logo"/>
+<!--         <img src="/home/images/logos/habitforge_logo_small.png" alt="logo"/> -->
+        <img src="/home/images/logos/HF-ETR-Logo-Header_smaller.png" alt="HabitForge logo" /></a>
         </a>
         <!-- END LOGO -->
+
+
+
         <!-- BEGIN RESPONSIVE MENU TOGGLER -->
         <a href="javascript:;" class="btn-navbar collapsed" data-toggle="collapse" data-target=".nav-collapse">
         <img src="assets/img/menu-toggler.png" alt="" />
         </a>          
-
-
-
         <!-- END RESPONSIVE MENU TOGGLER -->        
+
         <!-- BEGIN TOP NAVIGATION MENU -->          
         <ul class="nav pull-right">
 
@@ -1014,6 +1040,7 @@ $('.confirmation').on('click',function(){return confirm('Are you sure?');});
     <!-- END TOP NAVIGATION BAR -->
   </div>
   <!-- END HEADER -->
+  <% end %>
 
   <!-- BEGIN HEADER -->
 <!--   <div class="header navbar navbar-inverse"> -->
@@ -1059,16 +1086,22 @@ $('.confirmation').on('click',function(){return confirm('Are you sure?');});
 
   <!-- BEGIN CONTAINER -->
   <div class="page-container row-fluid">
+
+
+
+    <% if !@new_goal_view %>
     <!-- BEGIN SIDEBAR -->
     <div class="page-sidebar nav-collapse collapse">
       <!-- BEGIN SIDEBAR MENU -->
+
+
 
       <%= render :partial => "layouts/menu", :locals => {:dnow => dnow} %>
 
       <!-- END SIDEBAR MENU -->
     </div>
     <!-- END SIDEBAR -->
-
+    <% end %>
 
 
 
@@ -1251,6 +1284,7 @@ $('.confirmation').on('click',function(){return confirm('Are you sure?');});
 
 
         <% 
+        if !@new_goal_view
         ##########################################################
         ######## START PASSWORD AND TIME ZONE SETTING ############
         if current_user and @ca != "edit" and @ca != "new" and (current_user.password_temp != nil and current_user.password_temp != "")
@@ -1265,6 +1299,7 @@ $('.confirmation').on('click',function(){return confirm('Are you sure?');});
           </div>
         <%
         end 
+        end
         ######## END PASSWORD AND TIME ZONE SETTING ############
         ########################################################
 
@@ -1377,18 +1412,23 @@ $('.confirmation').on('click',function(){return confirm('Are you sure?');});
         <br>
         <br>
 
-
+        <% if !@new_goal_view %>
         <hr />
 
 
 
         <div class="row-fluid">
-          <div class="span6"> 
+          <div class="span12"> 
+
+
+
+
+
           <% if current_user and current_user.sponsor == "habitforge" %>  
 
 
-              <a href="/goals?templates=1&popular=1&browse_recommended_habits=1#browse_recommended_habits" class="btn ">Habit Library (beta)</a>
-
+<!--               <a href="/goals?templates=1&popular=1&browse_recommended_habits=1#browse_recommended_habits" class="btn ">Habit Library (beta)</a>
+ -->
 
               <!-- #if current_user.can_use_templates --> 
       <!--               <a href="/goals?templates=1&browse_recommended_habits=1&just_templates=1#browse_recommended_habits" class="btn yellow">Habit Templates</a> -->
@@ -1399,14 +1439,14 @@ $('.confirmation').on('click',function(){return confirm('Are you sure?');});
 
           <% if current_user and current_user.can_make_templates %>
           
-              <a href="/programs/new" class="btn"> Start a Program</a>
+<!--               <a href="/programs/new" class="btn"> Start a Program</a>
 
               <a href="/goals/new?template_owner_is_a_template=1" class="btn"> Make a Template</a>
-
+ -->
           <% end %>
-
+<!-- 
           <br>
-          <br>
+          <br> -->
 
           <% if !secure_page? %>
           <!-- RECOMMENDED READING -->
@@ -1416,6 +1456,7 @@ $('.confirmation').on('click',function(){return confirm('Are you sure?');});
           -->
 
 
+            <% if 1 == 2 %>
             <!-- START CAROUSEL -->
             <!-- This is the container for the carousel. -->
             <h2>Recommended Reading</h2>
@@ -1438,15 +1479,15 @@ $('.confirmation').on('click',function(){return confirm('Are you sure?');});
             <p id="title-text"></p>
             </center>
             <!-- END CAROUSEL -->
-
+            <% end %>
 
 
           <% end %>
 
 
 
-        </div>
-        <div class="span6"> 
+<!--         </div>
+        <div class="span6">  -->
 
         <% if @production %>
 
@@ -1489,7 +1530,7 @@ $('.confirmation').on('click',function(){return confirm('Are you sure?');});
 
 
 
-
+        <% if 1 == 2 %>
         <div class="row-fluid">
           <div class="span12"> 
 
@@ -1553,6 +1594,11 @@ $('.confirmation').on('click',function(){return confirm('Are you sure?');});
 
           </div>
         </div>
+        <% end %> <!-- end bottom ads -->
+
+
+        <% end %> <!-- end only show if not "@new_goal_view" -->
+
 
       <!-- END PAGE CONTAINER-->    
     </div>
@@ -1561,7 +1607,7 @@ $('.confirmation').on('click',function(){return confirm('Are you sure?');});
   <!-- END CONTAINER -->
   <!-- BEGIN FOOTER -->
   <div class="footer">
-    2013 &copy; Habit Research LLC
+    2013 &copy; Early To Rise LLC
 
 
 
@@ -1584,15 +1630,15 @@ $('.confirmation').on('click',function(){return confirm('Are you sure?');});
     </div> <!-- END USERVOICE DIV -->
 
 
-
-
-      <div class="span pull-right">
+      <% if !@new_goal_view %>
+      <div class="span pull-right" style="">
          <span class="go-top"><i class="icon-angle-up"></i></span>
       </div>
-
+      <% end %>
 
   </div>
   <!-- END FOOTER -->
+
 
 
 

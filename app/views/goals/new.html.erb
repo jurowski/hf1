@@ -1,4 +1,5 @@
 
+<div style="font-family:LatoBold;">
 <%
 #########################################################3
 #########################################################3
@@ -35,7 +36,21 @@ end
 <% if (params[:template_owner_is_a_template] and params[:template_owner_is_a_template] == "1") %>
   <h3>...a new template for others to use</h3>
 <% else %>
+
+  <% if params[:welcome] %>
+  <div style="padding-bottom:10px;">
+  <span style="font-size:2em;">
+  Welcome to HabitForge, a start of something new.
+  </span>
+  </div>
+  <span style="font-size:1.2em;">
+  Let's get started!
+  </span>
+
+
+  <% else %>
   <h3>...a start of something new</h3>
+  <% end %>
 <% end %>
 
 
@@ -59,16 +74,21 @@ end
       end  
       %>
             
-      <% 
-      if !@goal.template_owner_is_a_template %>
-        <div style="float:left;">
+
+      <% if !@goal.template_owner_is_a_template %>
+<!--         <div style="float:left;">
           <span style="font:2em Arial sans-serif;">What's your first name?</span>
         </div>
-        <div style="float:left;">
-          &nbsp <input type="textbox" name="first_name" value="<%= first_name_value %>" placeholder="ex: Steven" size=15 style="font:2em Arial sans-serif;">
+ -->      
+        <div style="padding-top:15px;">
+        <span style="color:#ff3300;font-size:2em;font-weight:bold;">What's your name?</span>
         </div>
-      <% 
-      end %>
+
+        <div style="float:left;">
+          &nbsp <input type="textbox" name="first_name" value="<%= first_name_value %>" placeholder="Your first name...ex: Steven" size=25 style="width:200px;">
+        </div>
+
+      <% end %> 
 
       <div >
       &nbsp
@@ -85,11 +105,14 @@ end
     <p>
 
     <% if @goal.template_owner_is_a_template %>
-      <input type="submit" value="Launch This New Action Template" class="start_now" style="height:50px;">
+      <input type="submit" value="Launch This New Action Template" class="btn_red_gradient" style="height:50px;">
     <% else %>
-      <input type="submit" value="Launch My New Habit" class="start_now" style="height:50px;">
+      <input type="submit" value="Forge My Habit" class="btn_red_gradient" style="height:50px;">
     <% end %>
+    <br>
+    <a href="/goals" >or, Cancel</a>
     </p>
 
 <% end %>
 
+</div>

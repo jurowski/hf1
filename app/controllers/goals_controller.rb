@@ -1122,11 +1122,24 @@ class GoalsController < ApplicationController
               format.xml  { render :xml => @goals }
             else
 
-              if !current_user.is_habitforge_supporting_member
-                format.html {redirect_to("/goals?too_many_active_habits=1&just_created_new_habit=1")}              
-              else
-                format.html { render :action => "index" } # index.html.erb
+
+              ##### SUCCESSFULLY SAVED A NEW GOAL ... REDIRECT TO ???
+
+              if session[:sfm_virgin]
+                format.html { redirect_to("/goals/#{@goal.id}/edit?just_created_new_habit=1&just_created_first_habit=1")}
+              else 
+                format.html { redirect_to("/goals/#{@goal.id}/edit?just_created_new_habit=1")}
               end
+
+
+              # if !current_user.is_habitforge_supporting_member
+              #   format.html {redirect_to("/goals?too_many_active_habits=1&just_created_new_habit=1")}              
+              # else
+              #   format.html { render :action => "index" } # index.html.erb
+              # end
+
+
+
               format.xml  { render :xml => @goals }
             end
 
@@ -1301,6 +1314,17 @@ class GoalsController < ApplicationController
         respond_to do |format|
           if @goal.update_attributes(params[:goal])
 
+
+
+            ### if we just created this goal and then want to say
+            ### start today instead of tomorrow
+            if params[:delay_start_for_this_many_days] 
+              start_day_offset = params[:delay_start_for_this_many_days].to_i
+              ### Set the standard dates
+              @goal.start = @goal.start + start_day_offset
+              @goal.stop = @goal.start + @goal.days_to_form_a_habit
+              @goal.first_start_date == @goal.start
+            end
 
 
               
