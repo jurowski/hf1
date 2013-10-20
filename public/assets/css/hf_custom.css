@@ -538,4 +538,26 @@ http://www.cssnewbie.com/cross-browser-support-for-html5-placeholder-text-in-for
   color: #777;
 }
 
+
+
+@font-face {
+  font-family: 'LatoBold';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Lato Bold'), local('Lato-Bold'), url(http://themes.googleusercontent.com/static/fonts/lato/v6/wkfQbvfT_02e2IWO3yYueQ.woff) format('woff');
+}
+@font-face {
+  font-family: 'Lato';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Lato Regular'), local('Lato-Regular'), url(http://themes.googleusercontent.com/static/fonts/lato/v6/9k-RPmcnxYEPm8CNFsH2gg.woff) format('woff');
+}
+
+
+.h1_font_oswald {
+  color:#ff3300;
+  font-size:2em;
+  font-family: 'Oswald';
+}
+
 /*************** END SGJ CUSTOM   ****************************/

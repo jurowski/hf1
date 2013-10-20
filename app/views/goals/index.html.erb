@@ -10,79 +10,194 @@
 <% session[:dynamic_latest_public_checkins_max] = 2 %>
 
 
-
+<!--
+****************************************************************
+****************************************************************
+****************************************************************
+****************************************************************
+****************************************************************
+****************************************************************
+****************************************************************
+-->
+<!-- BELOW IS JUST THE UPGRADE ADVERTISEMENT -->
+<!--
+****************************************************************
+****************************************************************
+****************************************************************
+****************************************************************
+****************************************************************
+****************************************************************
+****************************************************************
+-->
 <!-- *********** -->
 <!-- *********** -->
 <!-- START TOO MANY ACTIVE HABITS -->
 <!-- *********** -->
-<% if params[:too_many_active_habits] or params[:premium_more_info_hide_ads] or params[:feature_limit]%>
+<% if params[:upgrade_ad] or params[:too_many_active_habits] or params[:premium_more_info_hide_ads] or params[:feature_limit]%>
 
 
-    <div id="upgrade_lightbox_black" class="black_overlay">
+<!--     <div id="upgrade_lightbox_black" class="black_overlay">
     </div>
     <div id="upgrade_lightbox_close" class="div_close_button">
          <a href="#undefined" onclick="toggle_show_hide('upgrade_lightbox_black');toggle_show_hide('upgrade_lightbox_white');toggle_show_hide('upgrade_lightbox_close');"><img src='/images/close.png' /></a>
     </div>
     <div id="upgrade_lightbox_white" class="white_content">
-
-
-
         <center>
+ -->
 
 
+
+
+    <div style="font-family:LatoBold;">
         <% if params[:too_many_active_habits] %>
+            <div style="padding-bottom:10px;">
+            <span style="font-size:1.2em;">
+                We're glad you want to forge more than one habit!
+            </span>
+            </div>
+            <div style="padding-bottom:10px;">
+            <span style="font-size:1.5em;">
+                However, free accounts are restricted to 1 active habit at a time.
+            </span>
+            </div>
 
-            <% if params[:just_created_new_habit] %>
+<!--             < if params[:just_created_new_habit] >
                 <h4>That was easy... Anything else you'd like to work on?</h4>
-            <% else %>
+            < else >
                 <h4>Free accounts are restricted to 1 active habit at a time.</h4>
-            <% end %>
+            < end > -->
         <% end %>
 
         <div class="show_autoupdatemultiple_personal_motivation">
 
 
+    <div class="" style="background-color:#28b779;color:#ffffff;margin-left:-20px;padding-left:20px;padding-top:10px;padding-bottom:10px;margin-right:-20px;">
+        <div>
+        <span style="font-size:1.5em;">
+        Remove the limits...
+        </span>
+        </div>
 
         <% if params[:premium_more_info_hide_ads] %>
             <h3>Remove the Ads, Remove the Limits with a Premium Membership!</h3>
         <% else %>
+            <div>
+            <span style="font-size:1.5em;">
+            Work on 
             <% if !session[:goal_template_text] and !params[:goal_template_text] %>
-                <h3>Unlock Your Potential 
+                exercising, getting organized 
             <% else %>
-                <h3>Remove the limits 
                 <% if session[:goal_template_text] and session[:goal_template_text] != "" %> 
-                  ... work on <%= session[:goal_template_text] %> and any other goals, all with premium features and no ads, 
+                  <%= session[:goal_template_text] %>  
                 <% else %>
                     <% if params[:goal_template_text] and params[:goal_template_text] != "" %>
-                      ... work on <%= params[:goal_template_text] %> and any other goals, all with premium features and no ads, 
+                      <%= params[:goal_template_text] %> 
                     <% end %>
                 <% end %>
-
             <% end %>
-           with a Premium Membership!</h3>
-        <% end %>
+            and forge as
+            <br>
+            many habits as you want with a Premium  Membership! 
+            </span>
+            </div>
 
+        <% end %>
+    </div>
+
+    <div style="width:100%;margin-left:-20px;margin-right:-20px;">
+        <div style="position-relative;float:left;width:50%;margin-left:20px;min-width:300px;">
+
+            <div class="h1_font_oswald" style="padding-top:15px;padding-bottom:10px;font-size:1em;font-family:LatoBold;">WHY GO PREMIUM?</div>
+            <img src="/home/images/correct.png" /> <span style="text-decoration:underline;">Unlimited</span> Active Habits
+            <br><img src="/home/images/correct.png" /> Private Habit Option
+            <br><img src="/home/images/correct.png" /> Priority Pushes if you Slack
+            <br><img src="/home/images/correct.png" /> No Advertisements
+            <br><img src="/home/images/correct.png" /> Frequent Daily Reminders Option
+            <br><img src="/home/images/correct.png" /> Zero Risk - 100% Money-Back Guarantee
+
+            <br>
+            <br>
+            <br>
+            <a href="https://www.securepublications.com/habit-gse3.php?ref=<%= current_user.id.to_s %>&email=<%= current_user.email %>" class="btn_red_gradient" style="color:#ffffff;text-decoration:none;">Get Unlimited Habits!</a>
+
+            <br>
+            <br>
+            <p>No thanks, I just want to <a href="/goals">View My Habits</a></p>
+
+
+
+        </div>
+        <div style="position:relative;float:right;width:50%;margin-right:-40px;">
+            <div style="float:right;margin-right:40px;">
+            <table>
+                <tr>
+                    <td>
+                        <div style="margin-right:5px;padding:10px;background-color:#eeeeee;">
+                        <center>
+                        <span style="font-size:2em;">$3.95</span>
+                        <br>
+                        <span style="font-size:.75em;">MONTHLY</span>
+                        </center>
+                        </div>
+                    </td>
+                    <td>
+                        <div style="margin-right:5px;padding:10px;background-color:#eeeeee;">
+                        <center>
+                        <span style="font-size:2em;">$23.95</span>
+                        <br>
+                        <span style="font-size:.75em;">YEARLY</span>
+                        </center>
+                        </div>
+                    </td>                    
+                    <td>
+                        <div style="padding:10px;background-color:#eeeeee;">
+                        <center>
+                        <span style="font-size:2em;">$79</span>
+                        <br>
+                        <span style="font-size:.75em;">LIFETIME</span>
+                        </center>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+
+
+            <div style="float:right;text-align:right;padding-left:20px;max-width:550px;min-width:200px;margin-top:20px;font-size:.8em;">
+            "I got further with HF than with all other kind of motivational tools, to-do-list or similar. Thank you so much for your service!"
+            <div style="padding-top:0px;">
+            <span style="font-family:Patrick Hand;color:#ff3300;font-size:1.5em;">
+                Julia Anton
+                </span>
+            </div>
+
+            <hr>
+
+            <div style="float:right;text-align:right;padding-left:20px;max-width:550px;min-width:200px;margin-top:0px;font-size:1em;">
+            "Just having this little bit of accountability helps to keep me on track. I have recommended it to friends and patients."
+            <div style="padding-top:0px;">
+            <span style="font-family:Patrick Hand;color:#ff3300;font-size:1.5em;">
+                Dr. Andrea
+                </span>
+            </div>
+
+            
+
+
+          </div>
+
+
+            </div>
+        </div>
+
+
+    </div>
 
 
    
-                <div class="well">
-                    <h2>Why Go Premium?</h2>
-                    Unlimited Active Habits
-                    <br>Private Habit Option
-                    <br>Priority Pushes if you Slack
-                    <br>No Advertisements
-                    <br>As Little as $2 per month
-                    <br>Zero Risk. 100% Money-Back Guarantee
-                </div>
 
-                </div>
-                <br>
+<!-- 
+                </div> -->
 
-                  <a href="https://www.securepublications.com/habit-gse3.php?ref=<%= current_user.id.to_s %>&email=<%= current_user.email %>" class="btn yellow" >Learn More</a>
-
-
-
-                 <a href="#undefined" onclick="toggle_show_hide('upgrade_lightbox_black');toggle_show_hide('upgrade_lightbox_white');toggle_show_hide('upgrade_lightbox_close');">Not now, thanks.</a>              
                  <!--
                 <h5>Who's recommending HabitForge to their readers?
                 <a href="http://www.fourhourbody.com/" target="_blank">The 4-Hour Body</a>
@@ -97,29 +212,73 @@
                 </h5
             -->
 
-            <br>
-            <br>
+
             <!-- Press Logos Start -->
-            <div style="padding-top:0px;">
-                Recommended by...
+            <div style="margin-top:-20px;margin-bottom:100px;padding-top:0px;padding-bottom:50px;color:#999999;min-width:600px;float:left;">
+                <center>
+                <hr>
+                <span style="font-size:.8em">AS SEEN IN</span>
                 <br>
-                <img src="/home/images/logos/press_logos_v1_transparent.png" width="600" alt="press logos" />
+                <img src="/home/images/logos/press_logos_v1_transparent.png" width="400" alt="press logos" />
+                </center>
             </div>
+
             <!-- Press Logos End -->
 
-            </center>
+<!--             </center>
 
         </div>
     </div>
+ -->
 
+</div>
 
-<% end %>
 <!-- *********** -->
 <!-- END TOO MANY ACTIVE HABITS -->
 <!-- *********** -->
 <!-- *********** -->
 
 
+<!--
+****************************************************************
+****************************************************************
+****************************************************************
+****************************************************************
+****************************************************************
+****************************************************************
+****************************************************************
+-->
+<!-- ABOVE IS JUST THE UPGRADE ADVERTISEMENT -->
+<!--
+****************************************************************
+****************************************************************
+****************************************************************
+****************************************************************
+****************************************************************
+****************************************************************
+****************************************************************
+-->
+
+<% else %>
+<!--
+****************************************************************
+****************************************************************
+****************************************************************
+****************************************************************
+****************************************************************
+****************************************************************
+****************************************************************
+-->
+<!-- BELOW IS EVERYTHING OTHER THAN SHOWING UPGRADE ADVERTISEMENT -->
+<!--
+****************************************************************
+****************************************************************
+****************************************************************
+****************************************************************
+****************************************************************
+****************************************************************
+****************************************************************
+-->
 
 
 <!-- *********** -->
@@ -1296,4 +1455,24 @@ http://localhost:3000/goals?update_checkpoint_status=yes&date=2012-02-12&e0=106&
 
 
 
+<% end %> <!-- end everyting other than upgrade advertisement -->
+<!--
+****************************************************************
+****************************************************************
+****************************************************************
+****************************************************************
+****************************************************************
+****************************************************************
+****************************************************************
+-->
+<!-- ABOVE IS EVERYTHING OTHER THAN SHOWING UPGRADE ADVERTISEMENT -->
+<!--
+****************************************************************
+****************************************************************
+****************************************************************
+****************************************************************
+****************************************************************
+****************************************************************
+****************************************************************
+-->
 
