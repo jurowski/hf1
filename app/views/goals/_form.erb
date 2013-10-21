@@ -352,7 +352,7 @@ end
 
 <div style="padding:20px;">
 
-
+<% if @ca == "edit" %>
 <!-- CATEGORY when EDIT-->
 <% if based_on_a_template or has_active_challenge or part_of_a_team_category %>
   <% if @goal.category and @goal.category != "" %>
@@ -371,7 +371,7 @@ end
   <%= form.hidden_field :category, :value => @goal.category %>
 <% end %>
 <!-- END CATEGORY when EDIT -->
-
+<% end %>
 
 
 <!-- HOW OFTEN SO FAR + WHEN TO START? -->
