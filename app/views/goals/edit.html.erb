@@ -43,9 +43,9 @@
 
     <% if current_user.sponsor == "habitforge" and !current_user.is_habitforge_supporting_member and current_user.number_of_active_habits > 0 %>
         <!-- render :partial => "goals/upgrade_advertisement"  -->
-        <a href="/goals?too_many_active_habits=1" class="btn_red_gradient" style="color:#ffffff;text-decoration:none;"><i class="icon-plus"></i>  Start Another Habit</a>
+        <a href="/goals?too_many_active_habits=1" class="btn_red_gradient" style="color:#ffffff;text-decoration:none;line-height:40px;height:40px;">  Start Another Habit</a>
     <% else %>
-        <a href="/goals/new" class="btn_red_gradient" style="color:#ffffff;text-decoration:none;"><i class="icon-plus"></i>  Start Another Habit</a>
+        <a href="/goals/new" class="btn_red_gradient" style="color:#ffffff;text-decoration:none;line-height:40px;height:40px;"> Start Another Habit</a>
     <% end %>
 
 
