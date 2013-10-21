@@ -624,8 +624,9 @@ a[rel=signup_email2]:hover {
 .signup_header {
 
 	background-image:url('/home/images/desk.jpg');
+	background-repeat:no-repeat;
 	width:100%;
-	background-color: #dddddd;
+	background-color: #fbfbfb;
 	height:320px;
 
 /*	color: #ff4000;*/
