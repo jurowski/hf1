@@ -40,7 +40,7 @@ end
 <link rel="stylesheet" type="text/css" href="/home/css/widget.css"/>
 <link rel="stylesheet" type="text/css" href="/home/css/hoverdir.css"/>
 <link rel="stylesheet" type="text/css" href="/home/css/blog.css"/>
-<link rel="stylesheet" type="text/css" href="/home/style_test.css" />
+<link rel="stylesheet" type="text/css" href="/home/style.css" />
 <link rel="stylesheet" type="text/css" href="/home/css/responsive.css" />
 <link rel="stylesheet" type="text/css" href="/home/css/habitforge_custom.css" />
 
@@ -328,6 +328,15 @@ http://www.cssnewbie.com/cross-browser-support-for-html5-placeholder-text-in-for
   -->
 
 
+  <%
+  ### grab these vars from the URL so they are available on goal creation
+  if params[:template_user_parent_goal_id]
+    session[:template_user_parent_goal_id] = params[:template_user_parent_goal_id]
+  end
+  if params[:goal_added_through_template_from_program_id]
+    session[:goal_added_through_template_from_program_id] = params[:goal_added_through_template_from_program_id].to_i
+  end
+  %>
 
 
   <!-- START DECIDE IF ONLY SHOW HABIT LIBRARY -->
@@ -558,6 +567,30 @@ http://www.cssnewbie.com/cross-browser-support-for-html5-placeholder-text-in-for
   <div style="font-family:'LatoBold';margin-top:15px;">
 
     <form id="form_signup2" name="form_signup2" action="/quicksignup_v2">
+
+
+    <%
+    if params[:invitation_id]
+      %>
+      <input type="hidden" name="invitation_id" value="<%= params[:invitation_id] %>">
+      <%
+    end
+    if params[:category]
+      %>
+      <input type="hidden" name="category" value="<%= params[:category] %>">
+      <%
+    end
+    if params[:template_user_parent_goal_id]
+      %>
+      <input type="hidden" name="template_user_parent_goal_id" value="<%= params[:template_user_parent_goal_id] %>">
+      <%
+    end
+    if params[:goal_template_text]
+      %>
+      <input type="hidden" name="goal_template_text" value="<%= params[:goal_template_text] %>">
+      <%
+    end
+    %>
 
       <div style="padding-left:15%;"><!-- row of signup items -->
 <!--     <table>
@@ -798,6 +831,32 @@ http://www.cssnewbie.com/cross-browser-support-for-html5-placeholder-text-in-for
   <div style="font-family:'LatoBold';margin-top:-5px;">
 
     <form id="form_signup3" name="form_signup3" action="/quicksignup_v2">
+
+
+      <%
+      if params[:invitation_id]
+        %>
+        <input type="hidden" name="invitation_id" value="<%= params[:invitation_id] %>">
+        <%
+      end
+      if params[:category]
+        %>
+        <input type="hidden" name="category" value="<%= params[:category] %>">
+        <%
+      end
+      if params[:template_user_parent_goal_id]
+        %>
+        <input type="hidden" name="template_user_parent_goal_id" value="<%= params[:template_user_parent_goal_id] %>">
+        <%
+      end
+      if params[:goal_template_text]
+        %>
+        <input type="hidden" name="goal_template_text" value="<%= params[:goal_template_text] %>">
+        <%
+      end
+      %>
+
+      
       <div style="padding-left:15%;"><!-- row of signup items -->
 <!--     <table>>
       <tr>

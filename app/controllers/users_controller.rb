@@ -609,6 +609,18 @@ class UsersController < ApplicationController
               ### route them to goal creation page (which should reference session[:sfm] for quick goal-creation options)
               #redirect_to("/goals/new?welcome=1")
               redirect_url_string = "/goals/new?welcome=1"
+
+              ###### REDIRECT TO A NEW GOAL MATCHING THE PARAMS ENTERED
+              if params[:category]
+                redirect_url_string += "&category=" + params[:category]
+              end
+              if params[:template_user_parent_goal_id]
+                redirect_url_string += "&template_user_parent_goal_id=" + params[:template_user_parent_goal_id]
+              end
+              if params[:goal_template_text]
+                redirect_url_string += "&goal_template_text=" + params[:goal_template_text]
+              end
+
             end
 
           else

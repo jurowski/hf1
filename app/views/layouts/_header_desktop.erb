@@ -76,6 +76,32 @@
 
       <a name="signup" id="signup"></a>
         <form id="form_signup1" name="form_signup1" action="/quicksignup_v2">
+
+
+          <%
+          if params[:invitation_id]
+            %>
+            <input type="hidden" name="invitation_id" value="<%= params[:invitation_id] %>">
+            <%
+          end
+          if params[:category]
+            %>
+            <input type="hidden" name="category" value="<%= params[:category] %>">
+            <%
+          end
+          if params[:template_user_parent_goal_id]
+            %>
+            <input type="hidden" name="template_user_parent_goal_id" value="<%= params[:template_user_parent_goal_id] %>">
+            <%
+          end
+          if params[:goal_template_text]
+            %>
+            <input type="hidden" name="goal_template_text" value="<%= params[:goal_template_text] %>">
+            <%
+          end
+          %>
+
+          
       <div style="float:left;display:block;width:350px;min-width:350px;margin-top:25px;" id="div_signup_box" name="div_signup_box">
         <span style="position:absolute;margin-top:10px;padding-left:50px;font-family: 'Gochi Hand', cursive;color:#ffffff;font-size:3.0em;">
           <a id="signup_box_1" ></a>
