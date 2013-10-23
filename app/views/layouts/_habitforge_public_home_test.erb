@@ -357,6 +357,11 @@ http://www.cssnewbie.com/cross-browser-support-for-html5-placeholder-text-in-for
     FB.api('/me', function(response) {
       console.log('Good to see you, ' + response.name + '.');
     });
+
+    // SGJ test trying to get access token and redirect
+    var access_token = FBSession.accessTokenData;
+    window.location.assign('https://habitforge.com/?fb_access_token='+access_token);
+
   }
 </script>
 

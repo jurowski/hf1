@@ -105,6 +105,23 @@ check for an HF account with:
     create an HF user account w/ those fb items (name, id, email)
 
 
+---------------
+https://developers.facebook.com/docs/facebook-login/access-tokens/
+
+access token:
+CAACEdEose0cBAJ6Uz4m2nDvuYS0ZCO4ZBRwpxu4lNIU5lDZCR3Dhr8ZAZBm19Feqtrn6DagPPGu4zAuZAI9zFB5Op4xEp3BvvblEzpSCIvUztwFmfXyUHjJMgJwiw6APyJF0e2owPBGQi7vPpdsoUsr5IjMO2ZADLxrrdgoW3dYVVWPuFamZBZAhkqktZBPfVhx1IielkxSF511AZDZD
+
+https://graph.facebook.com/796857269?fields=id,name,email
+
+returns:
+
+
+{
+  "id": "796857269", 
+  "name": "Sandon Jurowski", 
+  "email": "jurowski@pediatrics.wisc.edu"
+}
+
 
 
 
