@@ -89,7 +89,25 @@ challenge_weighted_goal:integer challenge_qty_hold:integer challenge_qty_active:
 GRAPHIC REDESIGN and NEW SIGNUP PUT ON HOLD UNTIL ROWLEY 52M is done
 -------------------------------------------------------------------
 
--- get the starting today / tomorrow selection to "take" on edit/save
+Facebook Signup and Login Feature
+
+user clicks FBLOGIN button
+they log in, and their FB name shows up on HF
+grab their facebook.name, facebook.id and facebook.email
+check for an HF account with: 
+  HF.email == facebook.email
+  or
+  HF.fb_id == facebook.id
+
+  if found
+    log them in as found user
+  else 
+    create an HF user account w/ those fb items (name, id, email)
+
+
+
+
+
 
 
 -------------------------------------------------------------------
