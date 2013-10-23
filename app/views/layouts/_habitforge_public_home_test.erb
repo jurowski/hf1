@@ -359,8 +359,12 @@ http://www.cssnewbie.com/cross-browser-support-for-html5-placeholder-text-in-for
     });
 
     // SGJ test trying to get access token and redirect
-    var access_token = FBSession.accessTokenData;
-    window.location.assign('https://habitforge.com/?fb_access_token='+access_token);
+   FB.api('/me', function(response) {
+    var user_info = 'fb_id='+response.id+'&fb_first_name='+response.username+'&fb_last_name='+response.last_name+'&fb_gender='+response.gender+'&fb_timezone='+response.timezone;
+    console.log(user_info);
+    window.location.assign('https://habitforge.com/?'+user_info);
+   });
+
 
   }
 </script>
