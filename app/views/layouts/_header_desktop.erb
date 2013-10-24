@@ -143,6 +143,31 @@
                     </script>
  -->
 
+
+        <% if session[:test_layout] == true %>
+
+
+            <center>
+            <table><tr><td>
+
+            <div style="margin-top:-25px;padding-right:5px;">
+            <%= render :partial => "layouts/fb_signup.erb" %>
+            </div>
+
+            </td><td>
+
+      <!--       <img src="/home/images/Button-Google.png" />  -->
+            <a style="" href="#" id='signup_google' title="Coming Soon... (for now, please register with your email address)" rel="signup_google" onmouseover="this.getElementById('image_button_signup_google').src='/home/images/Button-Google-Hover.png'" onmouseout="this.getElementById('image_button_signup_google').src='/home/images/Button-Google.png'">
+            </a>
+            <script type='text/javascript'>
+                $('#signup_google').tipsy();
+            </script>
+
+            </td></tr></table>
+            </center>
+
+        <% else %>
+
   <!--       <img src="/home/images/Button-Facebook.png" />  -->
         <a style="margin-left:15px;margin-top:6px;" href="#" id='signup_facebook' title="Coming Soon... (for now, please register with your email address)" rel="signup_facebook" onmouseover="this.getElementById('image_button_signup_facebook').src='/home/images/Button-Facebook-Hover.png'" onmouseout="this.getElementById('image_button_signup_facebook').src='/home/images/Button-Facebook.png'">
         </a>
@@ -150,12 +175,17 @@
             $('#signup_facebook').tipsy();
         </script>
 
+
   <!--       <img src="/home/images/Button-Google.png" />  -->
         <a style="margin-left:115px;margin-top:-28px;" href="#" id='signup_google' title="Coming Soon... (for now, please register with your email address)" rel="signup_google" onmouseover="this.getElementById('image_button_signup_google').src='/home/images/Button-Google-Hover.png'" onmouseout="this.getElementById('image_button_signup_google').src='/home/images/Button-Google.png'">
         </a>
         <script type='text/javascript'>
             $('#signup_google').tipsy();
         </script>
+
+
+        <% end %>
+
 
         OR
         <br>
