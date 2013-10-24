@@ -389,6 +389,15 @@ http://www.cssnewbie.com/cross-browser-support-for-html5-placeholder-text-in-for
 <% if !session[:fb_id] %>
 
   <script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '206493129535606', // App ID
+      channelUrl : '//HABITFORGE.COM/channel.html', // Channel File
+      status     : true, // check login status
+      cookie     : true, // enable cookies to allow the server to access the session
+      xfbml      : true  // parse XFBML
+    });
+
     FB.Event.subscribe('auth.authResponseChange', function(response) {
       // Here we specify what we do with the response anytime this event occurs. 
       if (response.status === 'connected') {
