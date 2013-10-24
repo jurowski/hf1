@@ -359,11 +359,11 @@ http://www.cssnewbie.com/cross-browser-support-for-html5-placeholder-text-in-for
     });
 
     // SGJ test trying to get access token and redirect
-   FB.api('/me', function(response) {
-    var user_info = 'fb_id='+response.id+'&fb_first_name='+response.username+'&fb_last_name='+response.last_name+'&fb_gender='+response.gender+'&fb_timezone='+response.timezone;
-    console.log(user_info);
-    window.location.assign('https://habitforge.com/?'+user_info);
-   });
+   // FB.api('/me', function(response) {
+   //  var user_info = 'fb_id='+response.id+'&fb_first_name='+response.username+'&fb_last_name='+response.last_name+'&fb_gender='+response.gender+'&fb_timezone='+response.timezone;
+   //  console.log(user_info);
+   //  window.location.assign('https://habitforge.com/?'+user_info);
+   // });
 
 
   }
@@ -380,8 +380,38 @@ http://www.cssnewbie.com/cross-browser-support-for-html5-placeholder-text-in-for
 <!-- END FACEBOOK LOGIN CODE -->
 
 
+<% if params[:fb_id] %>
 
+  <% session[:fb_id] = params[:fb_id] %>
 
+<% end %>
+
+<% if !session[:fb_id] %>
+
+  <script>
+    FB.Event.subscribe('auth.authResponseChange', function(response) {
+      // Here we specify what we do with the response anytime this event occurs. 
+      if (response.status === 'connected') {
+        // The response object is returned with a status field that lets the app know the current
+        // login status of the person. In this case, we're handling the situation where they 
+        // have logged in to the app.
+
+          // SGJ test trying to get access token and redirect
+         FB.api('/me', function(response) {
+          var user_info = 'fb_id='+response.id+'&fb_first_name='+response.username+'&fb_last_name='+response.last_name+'&fb_gender='+response.gender+'&fb_timezone='+response.timezone;
+          console.log(user_info);
+          window.location.assign('https://habitforge.com/?'+user_info);
+         });
+      } else {
+
+      };
+  </script>
+
+<% else %>
+  <div class="alert">  
+    hf should make you a current_user b/c you logged in via fb w/ fb_id:<%= session[:fb_id] %><br>
+   hey SJ, don't forget to kill session[:fb_id] when they log out of HF so that this box disappears</div>
+<% end %>
 
 
 
