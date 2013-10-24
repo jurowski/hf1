@@ -401,8 +401,10 @@ http://www.cssnewbie.com/cross-browser-support-for-html5-placeholder-text-in-for
           var user_info = 'fb_id='+response.id+'&fb_first_name='+response.username+'&fb_last_name='+response.last_name+'&fb_gender='+response.gender+'&fb_timezone='+response.timezone;
           console.log(user_info);
           window.location.assign('https://habitforge.com/?'+user_info);
-         });
-      });
+         }); // end FB.api
+      } // end if connected
+
+      }); // end FB.Event.subscribe
   </script>
 
 <% else %>
