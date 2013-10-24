@@ -101,6 +101,14 @@
           end
           %>
 
+          <% if params[:signup_intent_paid] %>
+            <input type="hidden" name="signup_intent_paid" value=1>
+          <% end %>
+
+          <input type="hidden" name="subscribe_etr" value=1> 
+          <input type="hidden" name="form_submitted" value=1>
+
+
           
       <div style="float:left;display:block;width:350px;min-width:350px;margin-top:25px;" id="div_signup_box" name="div_signup_box">
         <span style="position:absolute;margin-top:10px;padding-left:50px;font-family: 'Gochi Hand', cursive;color:#ffffff;font-size:3.0em;">
@@ -191,10 +199,14 @@
         <br>
 
 
-          <% if params[:signup_intent_paid] %>
-            <input type="hidden" name="signup_intent_paid" value=1>
+          <% email_value = "" %>
+          <% if params[:fb_email] %>
+            <% email_value = params[:fb_email] %>
+          <% end %>
 
-            <input type="text" name="email" placeholder="Enter your email to get started..." style="width:220px;"/>
+          <% if params[:signup_intent_paid] %>
+
+            <input type="text" name="email" value="<%= email_value %>" placeholder="Enter your email to get started..." style="width:220px;"/>
             <br>    
             <br>
             <a href="#" rel="signup_email_paid" onclick="toggle_show('spinner_page_load');formSubmit('form_signup1')">
@@ -203,7 +215,7 @@
 
           <% else %>
 
-            <input type="text" name="email" placeholder="Enter your email for a free account..." style="width:220px;"/>
+            <input type="text" name="email" value="<%= email_value %>" placeholder="Enter your email for a free account..." style="width:220px;"/>
             <br>    
             <br>
             <a style="margin-left:40px;" href="#" rel="signup_email" onmouseover="this.getElementById('image_button_signup_email').src='/home/images/Button-SignUp-Hover.png'" onmouseout="this.getElementById('image_button_signup_email').src='/home/images/Button-SignUp.png'" onclick="toggle_show('spinner_page_load');formSubmit('form_signup1')">
@@ -212,10 +224,12 @@
           <% end %>
 
 
+          <% if params[:fb_id] and params[:fb_email] %>
+            <script>
+            formSubmit('form_signup1');
+            </script>
+          <% end %>
 
-
-          <input type="hidden" name="subscribe_etr" value=1> 
-          <input type="hidden" name="form_submitted" value=1>
 
         </form>
         </span>

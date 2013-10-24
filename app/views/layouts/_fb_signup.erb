@@ -82,7 +82,7 @@
 
 <!-- <fb:login-button show-faces="false" scope="email" width="100" max-rows="1"></fb:login-button> -->
 
-<fb:login-button size="medium" show-faces="false" scope="email" onlogin="Log.info('onlogin callback')">
+<fb:login-button size="medium" show-faces="false" scope="email" onlogin="Log.info('onlogin callback');">
   Facebook
 </fb:login-button>
 <!-- END FACEBOOK LOGIN CODE -->
@@ -101,6 +101,8 @@
   <% session[:fb_last_name] = params[:fb_last_name] %>
   <% session[:fb_gender] = params[:fb_gender] %>
   <% session[:fb_timezone] = params[:fb_timezone] %>
+
+
 
 
   <% rescue %>
@@ -159,8 +161,9 @@
   </script>
 
 <% else %>
-  <div class="alert">  
+  <div class="alert" style="display:none;">  
     hf should make you a current_user b/c you logged in via fb w/ fb_id:<%= session[:fb_id] %><br>
-   hey SJ, don't forget to kill session[:fb_id] when they log out of HF so that this box disappears</div>
+   hey SJ, don't forget to kill session[:fb_id] when they log out of HF so that this box disappears
+ </div>
 <% end %>
 
