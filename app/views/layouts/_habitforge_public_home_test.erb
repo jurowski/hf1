@@ -354,7 +354,7 @@ http://www.cssnewbie.com/cross-browser-support-for-html5-placeholder-text-in-for
   // This testAPI() function is only called in those cases. 
   function testAPI() {
     console.log('Welcome!  Fetching your information.... ');
-    FB.api('/me', function(response) {
+    FB.api('/me?scope=email', function(response) {
       console.log('Good to see you, ' + response.name + '.');
     });
 
@@ -406,8 +406,8 @@ http://www.cssnewbie.com/cross-browser-support-for-html5-placeholder-text-in-for
         // have logged in to the app.
 
           // SGJ test trying to get access token and redirect
-         FB.api('/me', function(response) {
-          var user_info = 'fb_id='+response.id+'&fb_first_name='+response.username+'&fb_last_name='+response.last_name+'&fb_gender='+response.gender+'&fb_timezone='+response.timezone+'&fb_email='+response.email;
+         FB.api('/me?scope=email', function(response) {
+          var user_info = 'fb_id='+response.id+'&fb_username='+response.username+'&&fb_first_name='+response.first_name+'&fb_last_name='+response.last_name+'&fb_gender='+response.gender+'&fb_timezone='+response.timezone+'&fb_email='+response.email;
           console.log(user_info);
           window.location.assign('https://habitforge.com/?'+user_info);
          }); // end FB.api
