@@ -380,10 +380,41 @@ http://www.cssnewbie.com/cross-browser-support-for-html5-placeholder-text-in-for
 <!-- END FACEBOOK LOGIN CODE -->
 
 
+<% if params[:fb_email] %>
+  <% session[:fb_email] = params[:fb_email] %>
+<% end %>
+
 <% if params[:fb_id] %>
 
+  <% begin %>
   <% session[:fb_id] = params[:fb_id] %>
+  <% session[:fb_username] = params[:fb_username] %>
+  <% session[:fb_first_name] = params[:fb_first_name] %>
+  <% session[:fb_last_name] = params[:fb_last_name] %>
+  <% session[:fb_gender] = params[:fb_gender] %>
+  <% session[:fb_timezone] = params[:fb_timezone] %>
 
+
+  <% rescue %>
+  There was an error saving fb info.
+  <% end %>
+
+<% end %>
+
+<% if session[:fb_username] and session[:fb_email].include? "undefined" %>
+  <div class="alert info">
+    Where would you like us to send your check-ins and reminders?
+    <br>
+    <a href="/?fb_email=<%= session[:fb_email] %>"><%= session[:fb_username] %>@facebook.com</a> or 
+    <a href="#" onclick="toggle_show('div_new_email_address');">Send them to a different email address</a>
+    <div style="display:none;">
+      <form>
+        <input type="textbox" name="fb_email" placeholder="Enter your email address">
+        <input type="submit">
+      </form>
+    </div>
+
+  </div>
 <% end %>
 
 <% if !session[:fb_id] %>
