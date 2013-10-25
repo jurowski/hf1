@@ -215,6 +215,16 @@ class ApplicationController < ActionController::Base
     def current_user
       return @current_user if defined?(@current_user)      
      
+
+      if session[:fb_id] and session[:fb_username]
+        user = User.find(:first, :conditions => "fb_id = '#{session[:fb_id]}' and fb_username = '#{session[:fb_username]}'")
+        if user
+          @current_user = user
+          return @current_user
+        end
+      end
+
+
       if params[:single_login] and params[:email]
         session[:email] = params[:email]
         session[:single_login] = params[:single_login]
