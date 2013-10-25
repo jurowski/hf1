@@ -150,9 +150,13 @@
     window.location.assign('https://habitforge.com/goals');     
   </script>    
 <% else %>
+
+  <% if session[:fb_username] %>
   <div class="alert info" style="display:block;">  
-    Sorry, we don't have that facebook account in our system. You can <a href="/">register on the home page</a>.
+    You can log in with your facebook account once you've <a href="/">registered on the home page</a>.
  </div>
+ <% end %>
+
 <% end %>
 
 
