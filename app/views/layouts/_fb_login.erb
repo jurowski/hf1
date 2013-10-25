@@ -110,17 +110,50 @@
 
 
 
-<% if session[:fb_username] %>
+<% if !session[:fb_username] and !params[:fb_username] %>
 
-  <% if current_user %>
-    <script>
-      window.location.assign('https://habitforge.com/goals');     
-    </script>    
-  <% else %>
-    <div class="alert info" style="display:block;">  
-      Sorry, we don't have that facebook account in our system. You can <a href="/">register on the home page</a>.
-   </div>
-  <% end %>
+  <script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '206493129535606', // App ID
+      channelUrl : '//HABITFORGE.COM/channel.html', // Channel File
+      status     : true, // check login status
+      cookie     : true, // enable cookies to allow the server to access the session
+      xfbml      : true  // parse XFBML
+    });
+
+    FB.Event.subscribe('auth.authResponseChange', function(response) {
+      // Here we specify what we do with the response anytime this event occurs. 
+      if (response.status === 'connected') {
+        // The response object is returned with a status field that lets the app know the current
+        // login status of the person. In this case, we're handling the situation where they 
+        // have logged in to the app.
+
+          // SGJ test trying to get access token and redirect
+         FB.api('/me?scope=email', function(response) {
+          var user_info = 'fb_id='+response.id+'&fb_username='+response.username+'&fb_first_name='+response.first_name+'&fb_last_name='+response.last_name+'&fb_gender='+response.gender+'&fb_timezone='+response.timezone+'&fb_email='+response.email;
+          console.log(user_info);
+          window.location.assign('https://habitforge.com/user_session/new?skip_intro=1&'+user_info);     
+         }); // end FB.api
+      } // end if connected
+
+    }); // end FB.Event.subscribe
+
+  }; // end window.fbAsyncInit
+  </script>
+<% end %>
+
+
+
+<% if current_user %>
+  <script>
+    window.location.assign('https://habitforge.com/goals');     
+  </script>    
+<% else %>
+  <div class="alert info" style="display:block;">  
+    Sorry, we don't have that facebook account in our system. You can <a href="/">register on the home page</a>.
+ </div>
+<% end %>
 
 
 <% end %>
