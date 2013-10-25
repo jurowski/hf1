@@ -416,30 +416,30 @@ class UsersController < ApplicationController
         begin
 
           ### SET ANY FB ITEMS ####
-          if session[:fb_id]
-            user.fb_id = session[:fb_id]
-          end
-          if session[:fb_email]
-            user.fb_email = session[:fb_email]
-          end
-          if session[:fb_username]
-            user.fb_username = session[:fb_username]
-          end
-          if session[:fb_first_name]
-            user.fb_first_name = session[:fb_first_name]
-            user.first_name = user.fb_first_name
-          end
-          if session[:fb_last_name]
-            user.fb_last_name = session[:fb_last_name]
-            ### do not copy this over w/out their permission
-          end
-          if session[:fb_gender]
-            user.fb_gender = session[:fb_gender]
-            ### do not copy this over w/out their permission
-          end
-          if session[:fb_timezone]
-            user.fb_timezone = session[:fb_timezone]
-          end
+          # if session[:fb_id]
+          #   user.fb_id = session[:fb_id]
+          # end
+          # if session[:fb_email]
+          #   user.fb_email = session[:fb_email]
+          # end
+          # if session[:fb_username]
+          #   user.fb_username = session[:fb_username]
+          # end
+          # if session[:fb_first_name]
+          #   user.fb_first_name = session[:fb_first_name]
+          #   user.first_name = user.fb_first_name
+          # end
+          # if session[:fb_last_name]
+          #   user.fb_last_name = session[:fb_last_name]
+          #   ### do not copy this over w/out their permission
+          # end
+          # if session[:fb_gender]
+          #   user.fb_gender = session[:fb_gender]
+          #   ### do not copy this over w/out their permission
+          # end
+          # if session[:fb_timezone]
+          #   user.fb_timezone = session[:fb_timezone]
+          # end
 
           #### ALLOW FOR EMAIL ADDRESS CONFIRMATION
           random_confirm_token = rand(1000) + 1 #between 1 and 1000
