@@ -89,40 +89,41 @@ challenge_weighted_goal:integer challenge_qty_hold:integer challenge_qty_active:
 GRAPHIC REDESIGN and NEW SIGNUP PUT ON HOLD UNTIL ROWLEY 52M is done
 -------------------------------------------------------------------
 
-Facebook Signup and Login Feature
-
-user clicks FBLOGIN button
-they log in, and their FB name shows up on HF
-grab their facebook.name, facebook.id and facebook.email
-check for an HF account with: 
-  HF.email == facebook.email
-  or
-  HF.fb_id == facebook.id
-
-  if found
-    log them in as found user
-  else 
-    create an HF user account w/ those fb items (name, id, email)
 
 
----------------
-https://developers.facebook.com/docs/facebook-login/access-tokens/
+FB SCENARIOS
+----------------
 
-access token:
-CAACEdEose0cBAJ6Uz4m2nDvuYS0ZCO4ZBRwpxu4lNIU5lDZCR3Dhr8ZAZBm19Feqtrn6DagPPGu4zAuZAI9zFB5Op4xEp3BvvblEzpSCIvUztwFmfXyUHjJMgJwiw6APyJF0e2owPBGQi7vPpdsoUsr5IjMO2ZADLxrrdgoW3dYVVWPuFamZBZAhkqktZBPfVhx1IielkxSF511AZDZD
-
-https://graph.facebook.com/796857269?fields=id,name,email
-
-returns:
-
-
-{
-  "id": "796857269", 
-  "name": "Sandon Jurowski", 
-  "email": "jurowski@pediatrics.wisc.edu"
-}
+!! NEXT: add to the db:
+fb_first_name
+fb_last_name
+fb_username
+fb_id
+fb_email
+fb_gender
+fb_timezone
 
 
+SIGNUP (OR LOG IN) W FACEBOOK
+--if !current_user but fb_current_user, if you can find HF user w/ HF.email == param.fb_email or HF.fb_id == param.fb_id, log in
+--if !current_user but fb_current_user, if you can NOT find matching HF user, create one w/ fb_email, fb_id, username, gender, timezone, etc
+
+Upon fb-prompted HF Account Creation, 
+--set HF.first_name, HF.gender (deal w/ time zone later) + any other HF.fb_* items
+--(do not auto-confrm account... we do still want them to confirm their account manually)
+--mod the "please confirm" div in the UI to mention which address we sent the conf. to
+--mod the "please confirm" email body to mention "you can log in w/ your FB account, or w/ this email and pw which you can change"
+--do not show the pw-change div dialog (clear out the temp_pw field)
+
+LOG OUT
+--kill fb-related session vars
+
+-- LATER ON --
+LINK FB ACCOUNT
+--if current_user and HF.fb_id = nil, show Link FB button (if/once fb_current_user, update user's HF.fb_id and HF.fb_* )
+
+UNLINK FB ACCOUNT
+--if current_user and HF.fb_id != nil, show UnLink FB button (to set HF.fb_id = nil and other HF.fb_* = nil)
 
 
 
