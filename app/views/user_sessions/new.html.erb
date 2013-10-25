@@ -18,6 +18,24 @@
       <% end %>
 
       <h3 class="form-title">Log In to your account</h3>
+
+
+        <% if session[:test_layout] == true %>
+
+<!--             <div style="margin-top:-25px;padding-right:5px;"> -->
+            <div>
+            <%= render :partial => "layouts/fb_login.erb" %>
+            </div>
+            <br>
+
+            OR
+            <br>
+            <br>
+        <% end %>
+
+
+
+
       <div class="control-group">
         <div class="controls">
           <div class="input-icon left">
