@@ -409,7 +409,7 @@ class UsersController < ApplicationController
 
       logger.info("sgj:users_controller:quicksignup_v2:5")
 
-      if user.save 
+      if user.save
 
         if params[:signup_intent_paid]
           logger.info("sgj:users_controller:quicksignup_v2: PAID USER INTENT")

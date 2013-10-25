@@ -36,9 +36,10 @@ class User < ActiveRecord::Base
   validates_confirmation_of :email
   
   ### facebook
-  validates_uniqueness_of :fb_email
-  validates_uniqueness_of :fb_username
-  validates_uniqueness_of :fb_id
+  ### BE CAREFUL !!! "validates_uniqueeness_of" also implies "validates_presence_of"!!
+  # validates_uniqueness_of :fb_email
+  # validates_uniqueness_of :fb_username
+  # validates_uniqueness_of :fb_id
 
 
   def name
