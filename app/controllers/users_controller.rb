@@ -300,8 +300,12 @@ class UsersController < ApplicationController
     #  format.xml  { render :xml => @user }
     #end
   end
+
+
+
+
   def quicksignup_v2
-    logger.debug("sgj:users_controller:quicksignup_v2:1")
+    logger.info("sgj:users_controller:quicksignup_v2:1")
     @form_submitted = false
     @email_submitted = false
     @email_duplicate = false
@@ -325,7 +329,7 @@ class UsersController < ApplicationController
       end
     end
 
-    logger.debug("sgj:users_controller:quicksignup_v2:2")
+    logger.info("sgj:users_controller:quicksignup_v2:2")
 
     if @email_valid
       ### validate email
@@ -336,12 +340,12 @@ class UsersController < ApplicationController
     end ### end if email_submitted
 
 
-    logger.debug("sgj:users_controller:quicksignup_v2:3")
+    logger.info("sgj:users_controller:quicksignup_v2:3")
 
     if @email_duplicate
       ### ask the user to enter a new email address or log in w/ the existing one
 
-      logger.debug("sgj:users_controller:quicksignup_v2:3.5")
+      logger.info("sgj:users_controller:quicksignup_v2:3.5")
 
       if params[:invitation_id]
         redirect_url_string = "/user_session/new?skip_intro=1&message=invitation_existing_email"
@@ -350,7 +354,7 @@ class UsersController < ApplicationController
       
     else
 
-      logger.debug("sgj:users_controller:quicksignup_v2:4")
+      logger.info("sgj:users_controller:quicksignup_v2:4")
 
       user = User.new
 
@@ -403,16 +407,18 @@ class UsersController < ApplicationController
         user.unlimited_goals = true
       end
 
-      logger.debug("sgj:users_controller:quicksignup_v2:5")
+      logger.info("sgj:users_controller:quicksignup_v2:5")
 
       if user.save 
 
         if params[:signup_intent_paid]
-          logger.debug("sgj:users_controller:quicksignup_v2: PAID USER INTENT")
+          logger.info("sgj:users_controller:quicksignup_v2: PAID USER INTENT")
         else
-          logger.debug("sgj:users_controller:quicksignup_v2: FREE USER INTENT")
+          logger.info("sgj:users_controller:quicksignup_v2: FREE USER INTENT")
         end
 
+
+        logger.info("sgj:users_controller:quicksignup_v2:5.1")
         begin
 
           ### SET ANY FB ITEMS ####
@@ -429,6 +435,7 @@ class UsersController < ApplicationController
             user.fb_first_name = session[:fb_first_name]
             user.first_name = user.fb_first_name
           end
+          logger.info("sgj:users_controller:quicksignup_v2:5.15")          
           if session[:fb_last_name]
             user.fb_last_name = session[:fb_last_name]
             ### do not copy this over w/out their permission
@@ -440,6 +447,7 @@ class UsersController < ApplicationController
           if session[:fb_timezone]
             user.fb_timezone = session[:fb_timezone].to_s
           end
+          logger.info("sgj:users_controller:quicksignup_v2:5.2")
 
           #### ALLOW FOR EMAIL ADDRESS CONFIRMATION
           random_confirm_token = rand(1000) + 1 #between 1 and 1000
@@ -473,13 +481,13 @@ class UsersController < ApplicationController
         @account_created = true
 
         if @production
-          begin	
-  	        #####################################################
-  	        #####################################################
-        		#### CREATE A CONTACT FOR THEM IN INFUSIONSOFT ######
+          begin 
+            #####################################################
+            #####################################################
+            #### CREATE A CONTACT FOR THEM IN INFUSIONSOFT ######
             ### SANDBOX GROUP/TAG IDS
-        		#112: hf new signup funnel v2 free no goal yet
-        		#120: hf new signup funnel v2 free created goal
+            #112: hf new signup funnel v2 free no goal yet
+            #120: hf new signup funnel v2 free created goal
             #
             ### PRODUCTION GROUP/TAG IDS
             #400: hf new signup funnel v2 free no goal yet
@@ -490,9 +498,9 @@ class UsersController < ApplicationController
 
             if Rails.env.production?
               session[:infusionsoft_contact_id] = 0
-          		new_contact_id = Infusionsoft.contact_add({:FirstName => user.first_name, :LastName => user.last_name, :Email => user.email})
-          		Infusionsoft.email_optin(user.email, 'HabitForge signup')
-          		Infusionsoft.contact_add_to_group(new_contact_id, 400)
+              new_contact_id = Infusionsoft.contact_add({:FirstName => user.first_name, :LastName => user.last_name, :Email => user.email})
+              Infusionsoft.email_optin(user.email, 'HabitForge signup')
+              Infusionsoft.contact_add_to_group(new_contact_id, 400)
 
               if params[:subscribe_etr]
                 Infusionsoft.contact_add_to_group(new_contact_id, 103)
@@ -501,20 +509,20 @@ class UsersController < ApplicationController
                 logger.error("sgj:users_controller:NO user chose not to be an etr newsletter subscriber")      
               end
 
-          		session[:infusionsoft_contact_id] = new_contact_id
+              session[:infusionsoft_contact_id] = new_contact_id
             end
-  	        ####          END INFUSIONSOFT CONTACT           ####
-  	        #####################################################
-  	        #####################################################
+            ####          END INFUSIONSOFT CONTACT           ####
+            #####################################################
+            #####################################################
           rescue
-        	  logger.error("sgj:users_controller:error creating infusionsoft contact")
+            logger.error("sgj:users_controller:error creating infusionsoft contact")
           end
         end ## if production
 
         ############## ADD THEM TO FOLLOWUP SEQUENCE
         ############## http://help.infusionsoft.com/api-docs/funnelservice
 
-        logger.debug("sgj:users_controller:quicksignup_v2:6")
+        logger.info("sgj:users_controller:quicksignup_v2:6")
 
         ### IF THEY ARE NOT A NEWLY PAID USER
         if !params[:ga_goal]
@@ -587,13 +595,13 @@ class UsersController < ApplicationController
 
         ###http://localhost:3000/quicksignup_v2?invitation_id=34&email=jurowski@pediatrics.wisc.edu&to_name=SJ&form_submitted=1&category=Exercise&template_user_parent_goal_id=127454&goal_template_text=walking%20a%20lot
         if params[:invitation_id]
-          logger.debug("sgj:users_controller:quicksignup_v2:answering invitation:1")
+          logger.info("sgj:users_controller:quicksignup_v2:answering invitation:1")
           invite = Invite.find(params[:invitation_id].to_i)
-          logger.debug("sgj:users_controller:quicksignup_v2:answering invitation:1.2")
+          logger.info("sgj:users_controller:quicksignup_v2:answering invitation:1.2")
           if invite
-            logger.debug("sgj:users_controller:quicksignup_v2:answering invitation:2")
+            logger.info("sgj:users_controller:quicksignup_v2:answering invitation:2")
             if invite.to_email == user.email
-              logger.debug("sgj:users_controller:quicksignup_v2:answering invitation:3")
+              logger.info("sgj:users_controller:quicksignup_v2:answering invitation:3")
               session[:accepting_invitation_id] = params[:invitation_id].to_i
 
               ###### REDIRECT TO A NEW GOAL MATCHING THE TEAM YOU'RE INVITED TO
@@ -611,14 +619,14 @@ class UsersController < ApplicationController
                 redirect_url_string += "&goal_template_text=" + params[:goal_template_text]
                 #goal_template_text = "&goal_template_text=" + params[:goal_template_text]
               end
-              logger.debug("sgj:users_controller:quicksignup_v2:answering invitation:1")
+              logger.info("sgj:users_controller:quicksignup_v2:answering invitation:1")
 
               logger.info("sgj:users_controller:quicksignup_v2:answering invitation:ABOUT TO REDIRECT TO:" + redirect_url_string)
 
 
               @redirect_after_invite_response = true
 
-              logger.debug("sgj:users_controller:quicksignup_v2:answering invitation:1")
+              logger.info("sgj:users_controller:quicksignup_v2:answering invitation:1")
 
             end
           end
@@ -665,7 +673,12 @@ class UsersController < ApplicationController
     end ### end if not duplicate email
 
 
-  end
+  end ### end def quicksignup_v2
+
+
+
+
+
 
   # GET /users/new
   # GET /users/new.xml
