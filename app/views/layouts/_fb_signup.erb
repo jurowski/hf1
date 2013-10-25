@@ -102,31 +102,13 @@
   <% session[:fb_gender] = params[:fb_gender] %>
   <% session[:fb_timezone] = params[:fb_timezone] %>
 
-
-
-
   <% rescue %>
   There was an error saving fb info.
   <% end %>
 
 <% end %>
 
-<% if session[:fb_username] and session[:fb_email].include? "undefined" %>
-  <% session[:fb_email] = session[:fb_username] + "@facebook.com" %>
-  <div class="alert info">
-    Where would you like us to send your check-ins and reminders?
-    <br>
-    <a href="/?fb_email=<%= session[:fb_email] %>"><%= session[:fb_email] %></a> or 
-    <a href="#" onclick="toggle_show('div_new_email_address');">A different email address</a>
-    <div id="div_new_email_address" name="div_new_email_address" style="display:none;">
-      <form>
-        <input type="textbox" name="fb_email" placeholder="Enter your email address">
-        <input type="submit">
-      </form>
-    </div>
 
-  </div>
-<% end %>
 
 <% if !session[:fb_id] %>
 
