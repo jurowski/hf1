@@ -11,14 +11,14 @@ retry_email_address = false
 if @email_duplicate or (@email_blank == true or (@email_valid != nil and @email_valid == false))
     retry_email_address = true
 
-    ### UNSET FB ITEMS ####
-    session[:fb_id] = nil
-    session[:fb_email] = nil
-    session[:fb_username] = nil
-    session[:fb_first_name] = nil
-    session[:fb_last_name] = nil
-    session[:fb_gender] = nil
-    session[:fb_timezone] = nil
+    # ### UNSET FB ITEMS ####
+    # session[:fb_id] = nil
+    # session[:fb_email] = nil
+    # session[:fb_username] = nil
+    # session[:fb_first_name] = nil
+    # session[:fb_last_name] = nil
+    # session[:fb_gender] = nil
+    # session[:fb_timezone] = nil
 end 
 %>
 
