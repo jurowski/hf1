@@ -224,7 +224,7 @@
           <% end %>
 
 
-          <% if params[:fb_id] and params[:fb_email] %>
+          <% if !current_user and (params[:fb_id] and params[:fb_email]) %>
             <script>
             formSubmit('form_signup1');
             </script>
