@@ -110,11 +110,9 @@
 
 
 
-<% if session[:fb_id] and session[:fb_username]%>
+<% if session[:fb_username] %>
 
-  <% user = User.find(:first, :conditions => "fb_username = '#{session[:fb_username]}' and fb_id = '#{session[:fb_id]}'") %>
-
-  <% if user %>
+  <% if current_user %>
     <script>
       window.location.assign('https://habitforge.com/goals');     
     </script>    
