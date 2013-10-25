@@ -40,16 +40,20 @@ end
   <% if params[:welcome] %>
   <div style="padding-bottom:10px;">
   <span style="font-size:2em;">
+  <% if current_user.first_name == "unknown"%>
   Welcome to HabitForge, a start of something new.
+  <% else %>
+  Welcome to HabitForge, <%= current_user.first_name %>. It's the the start of something new.
+  <% end %>
   </span>
   </div>
   <span style="font-size:1.2em;">
-  Let's get started!
+  Let's jump right in!
   </span>
 
 
   <% else %>
-  <h3>...a start of something new</h3>
+  <h3>Let's jump right in!</h3>
   <% end %>
 <% end %>
 

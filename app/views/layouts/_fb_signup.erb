@@ -130,6 +130,9 @@
 
 <% if !session[:fb_id] %>
 
+
+  <!-- avoid an infinite loop -->
+  <% if !params[:form_submitted] %>
   <script>
   window.fbAsyncInit = function() {
     FB.init({
@@ -159,6 +162,8 @@
 
   }; // end window.fbAsyncInit
   </script>
+  <% end %>
+  <!-- end avoid an infinite loop -->
 
 <% else %>
   <div class="alert" style="display:none;">  

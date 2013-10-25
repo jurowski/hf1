@@ -90,16 +90,21 @@ end
                         Welcome to HabitForge!
                         <p/>
                         <p />
-                        You are about to become the newest member of HabitForge, a community of people committed to improving their lives through daily consistent action! Simply click the confirmation link below to get started!
+                        You are about to become the newest member of HabitForge, a community of people committed to improving their lives through daily consistent action! 
+
+                        <br>
+                        <br>
+                        Simply click the confirmation link below to get started!
                         <br>
                         <br>
 
                         <% if @user.fb_id %>
                           You'll probably want to log in using Facebook in the future, but you'll also have the option to log in with your email address and a password.
-                          <br>
-
+                          <br><br>
                           <% if @user.password_temp and @user.password_temp != "" %>
                             If you do need to log in that way, your HabitForge account info is:
+                            <br>
+                            <br>
                             <br>username: <%= @user.email %>
                             <br>temp password: <%= @user.password_temp %> (you will be prompted to change this)
                             <br>
