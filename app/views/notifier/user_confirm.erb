@@ -94,13 +94,27 @@ end
                         <br>
                         <br>
 
-                        <% if @user.password_temp and @user.password_temp != "" %>
-                        Your account info is:
-                        <br>username: <%= @user.email %>
-                        <br>temp password: <%= @user.password_temp %> (you will be prompted to change this)
-                        <br>
-                        <br>
+                        <% if @user.fb_id %>
+                          You'll probably want to log in using Facebook in the future, but you'll also have the option to log in with your email address and a password.
+                          <br>
+
+                          <% if @user.password_temp and @user.password_temp != "" %>
+                            If you do need to log in that way, your HabitForge account info is:
+                            <br>username: <%= @user.email %>
+                            <br>temp password: <%= @user.password_temp %> (you will be prompted to change this)
+                            <br>
+                            <br>
+                          <% end %>
+                        <% else %>
+                          <% if @user.password_temp and @user.password_temp != "" %>
+                            Your account info is:
+                            <br>username: <%= @user.email %>
+                            <br>temp password: <%= @user.password_temp %> (you will be prompted to change this)
+                            <br>
+                            <br>
+                          <% end %>                        
                         <% end %>
+
 
                         <a href="http://<%= @sitename %>/goals?confirmed_address_token=<%= @user.confirmed_address_token %>&user_id=<%= @user.id %>">Click to Confirm your Account!!!</a>
                         </td>

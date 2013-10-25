@@ -94,7 +94,27 @@ GRAPHIC REDESIGN and NEW SIGNUP PUT ON HOLD UNTIL ROWLEY 52M is done
 FB SCENARIOS
 ----------------
 
-!! NEXT: add to the db:
+
+
+
+SIGNUP (OR LOG IN) W FACEBOOK
+--if !current_user but fb_current_user, if you can find HF user w/ HF.email == param.fb_email or HF.fb_id == param.fb_id, log in
+--if !current_user but fb_current_user, if you can NOT find matching HF user, create one w/ fb_email, fb_id, username, gender, timezone, etc
+
+
+ADD AN FB LOGIN BUTTON TO LOGIN PAGE
+
+
+
+-- DONE BUT TEST --
+LOG OUT
+--kill fb-related session vars
+Upon fb-prompted HF Account Creation, 
+--set HF.first_name, HF.gender (deal w/ time zone later) + any other HF.fb_* items
+--(do not auto-confrm account... we do still want them to confirm their account manually)
+--mod the "please confirm" div in the UI to mention which address we sent the conf. to
+--mod the "please confirm" email body to mention "you can log in w/ your FB account, or w/ this email and pw which you can change"
+ADD TO THE DB:
 fb_first_name
 fb_last_name
 fb_username
@@ -104,24 +124,9 @@ fb_gender
 fb_timezone
 
 
-SIGNUP (OR LOG IN) W FACEBOOK
---if !current_user but fb_current_user, if you can find HF user w/ HF.email == param.fb_email or HF.fb_id == param.fb_id, log in
---if !current_user but fb_current_user, if you can NOT find matching HF user, create one w/ fb_email, fb_id, username, gender, timezone, etc
-
-Upon fb-prompted HF Account Creation, 
---set HF.first_name, HF.gender (deal w/ time zone later) + any other HF.fb_* items
---(do not auto-confrm account... we do still want them to confirm their account manually)
---mod the "please confirm" div in the UI to mention which address we sent the conf. to
---mod the "please confirm" email body to mention "you can log in w/ your FB account, or w/ this email and pw which you can change"
---do not show the pw-change div dialog (clear out the temp_pw field)
-
-LOG OUT
---kill fb-related session vars
-
 -- LATER ON --
 LINK FB ACCOUNT
 --if current_user and HF.fb_id = nil, show Link FB button (if/once fb_current_user, update user's HF.fb_id and HF.fb_* )
-
 UNLINK FB ACCOUNT
 --if current_user and HF.fb_id != nil, show UnLink FB button (to set HF.fb_id = nil and other HF.fb_* = nil)
 

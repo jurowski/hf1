@@ -1238,7 +1238,7 @@ $('.confirmation').on('click',function(){return confirm('Are you sure?');});
                 <div id="not_confirmed_lightbox_white" class="white_content">
 
                   <div class="notice">
-                      <h4>Please check your email and click your confirmation link!</h4>
+                      <h4>We've sent a confirmation email to your <%= current_user.email %> address. Please open that email and click the confirmation link inside!</h4>
                       <p>
                       As soon as you confirm your account, you can start getting email check-ins and reminders from HabitForge.
                       <br>
@@ -1246,7 +1246,7 @@ $('.confirmation').on('click',function(){return confirm('Are you sure?');});
                       If the email isn't in your "Inbox", please check your "Junk/Spam" folder, and be sure to whitelist the habitforge.com domain so that your reminders come to your inbox!
                       <br>
                       <br>
-                      If 10 minutes or so passes and you don't get a confirmation email, send an email to support@habitforge.com and we will assist.
+                      If 10 minutes or so passes and you don't get a confirmation email, send an email to support@habitforge.com and we will either re-send or confirm your account manually.
                       </p>
                   </div>
 
@@ -1304,7 +1304,11 @@ $('.confirmation').on('click',function(){return confirm('Are you sure?');});
           %>
           <div class="alert alert-error" id="noscript-warning">
           <button class="close" data-dismiss="alert"></button>
-              You have a temporary password set of: <%= current_user.password_temp %> <a href="/account/edit">Please change it now!</a>
+              <% if current_user.fb_id %>
+                You'll probably want to log in using Facebook in the future, but you'll also have the option to log in with your email address and a password.
+                <br>
+              <% end %>
+               You have a temporary password set of: <%= current_user.password_temp %> <a href="/account/edit">Please change it now!</a>
           </div>
         <%
         end 

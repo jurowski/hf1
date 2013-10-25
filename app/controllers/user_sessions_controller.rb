@@ -68,6 +68,17 @@ class UserSessionsController < ApplicationController
     current_user_session.destroy if current_user_session
 
     session[:dynamic_latest_public_checkins_max] = nil
+
+
+    ### UNSET FB ITEMS ####
+    session[:fb_id] = nil
+    session[:fb_email] = nil
+    session[:fb_username] = nil
+    session[:fb_first_name] = nil
+    session[:fb_last_name] = nil
+    session[:fb_gender] = nil
+    session[:fb_timezone] = nil
+
     
     flash[:notice] = "Logout successful!"
     redirect_to("/")

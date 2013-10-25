@@ -35,6 +35,12 @@ class User < ActiveRecord::Base
   validates_presence_of :first_name
   validates_confirmation_of :email
   
+  ### facebook
+  validates_uniqueness_of :fb_email
+  validates_uniqueness_of :fb_username
+  validates_uniqueness_of :fb_id
+
+
   def name
     if last_name and last_name != ""
       return first_name + " " + last_name
