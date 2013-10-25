@@ -256,9 +256,10 @@
                   <% end %>
 
                   <% if @email_duplicate %>
-                  There is already a habitforge account with that email address. 
+                    <% if session[]
+                  That account already exists in our system. 
                   <br>
-                  If it is yours, you may <a href="/users/login">log in here</a> or you may sign up with a new address above.
+                  If it is yours, you may <a href="/users/login">log in here</a> or you may sign up with a different account.
                   <% end %>
               </div>
               </center>
