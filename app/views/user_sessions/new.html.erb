@@ -1,5 +1,8 @@
   <!-- BEGIN LOGIN -->
 
+
+      <% session[:take_me_to_goals_page_after_i_log_in] = true %>
+      
       <% form_for @user_session, :url => user_session_path do |f| %>
         
       <% if f.error_messages and f.error_messages != "" %>

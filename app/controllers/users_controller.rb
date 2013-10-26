@@ -292,6 +292,10 @@ class UsersController < ApplicationController
         current_user.save
       end
 
+      if session[:take_me_to_goals_page_after_i_log_in]
+        session[:take_me_to_goals_page_after_i_log_in] = nil
+        redirect_to("/goals")
+      end
 
     #@user = User.find(params[:id])
     #
