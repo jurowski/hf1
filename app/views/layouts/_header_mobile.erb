@@ -99,29 +99,40 @@
                     </script>
  -->
 
-  <!--       <img src="/home/images/Button-Facebook.png" />  -->
-        <a style="margin-left:15px;margin-top:6px;" href="#" id='signup_facebook' title="Coming Soon... (for now, please register with your email address)" rel="signup_facebook" onmouseover="this.getElementById('image_button_signup_facebook').src='/home/images/Button-Facebook-Hover.png'" onmouseout="this.getElementById('image_button_signup_facebook').src='/home/images/Button-Facebook.png'">
-        </a>
-        <script type='text/javascript'>
-            $('#signup_facebook').tipsy();
-        </script>
+            <center>
+            <table><tr><td>
 
-  <!--       <img src="/home/images/Button-Google.png" />  -->
-        <a style="margin-left:115px;margin-top:-28px;" href="#" id='signup_google' title="Coming Soon... (for now, please register with your email address)" rel="signup_google" onmouseover="this.getElementById('image_button_signup_google').src='/home/images/Button-Google-Hover.png'" onmouseout="this.getElementById('image_button_signup_google').src='/home/images/Button-Google.png'">
-        </a>
-        <script type='text/javascript'>
-            $('#signup_google').tipsy();
-        </script>
+            <div style="margin-top:-25px;padding-right:5px;">
+            <%= render :partial => "layouts/fb_signup.erb" %>
+            </div>
+
+            </td><td>
+
+      <!--       <img src="/home/images/Button-Google.png" />  -->
+            <a style="" href="#" id='signup_google' title="Coming Soon... (for now, please register with your email address)" rel="signup_google" onmouseover="this.getElementById('image_button_signup_google').src='/home/images/Button-Google-Hover.png'" onmouseout="this.getElementById('image_button_signup_google').src='/home/images/Button-Google.png'">
+            </a>
+            <script type='text/javascript'>
+                $('#signup_google').tipsy();
+            </script>
+
+            </td></tr></table>
+            </center>
+
+
 
         OR
         <br>
 
+          <% email_value = "" %>
+          <% if params[:fb_email] %>
+            <% email_value = params[:fb_email] %>
+          <% end %>
 
 
           <% if params[:signup_intent_paid] %>
             <input type="hidden" name="signup_intent_paid" value=1>
 
-            <input type="text" name="email" placeholder="Enter your email to get started..." style="width:220px;"/>
+            <input type="text" name="email" value="<%= email_value %>" placeholder="Enter your email to get started..." style="width:220px;"/>
             <br>    
             <br>
             <a href="#" rel="signup_email_paid" onclick="toggle_show('spinner_page_load');formSubmit('form_signup1')">
@@ -147,6 +158,20 @@
 
           <input type="hidden" name="subscribe_etr" value=1> 
           <input type="hidden" name="form_submitted" value=1>
+
+
+          <% if !current_user and (params[:fb_id] and params[:fb_email]) %>
+            <script>
+            formSubmit('form_signup1');
+            </script>
+          <% end %>
+
+          <% if current_user %>
+            <script>
+            window.location.assign('http://habitforge.com/goals');     
+            </script>
+          <% end %>
+
 
         </form>
         </span>
