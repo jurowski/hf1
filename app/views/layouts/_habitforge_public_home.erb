@@ -624,14 +624,18 @@ http://www.cssnewbie.com/cross-browser-support-for-html5-placeholder-text-in-for
   <!--       <img src="/home/images/Button-Facebook.png" />  -->
 
           <table><tr><td>
-        <a style="z-index:100;position:relative;" href="#"  id='signup_facebook2' rel="signup_facebook2" onmouseover="this.getElementById('image_button_signup_facebook2').src='/home/images/Button-Facebook-Hover.png'" onmouseout="this.getElementById('image_button_signup_facebook2').src='/home/images/Button-Facebook.png'">
-        </a>
+
+            <div style="margin-top:-28px;">
+            <%= render :partial => "layouts/fb_signup.erb" %>
+            </div>
+
+
 <!--         </div> -->
       </td>
       <td>
 <!--         <div style="float:left;min-width:105px;max-width:105px;"> -->
   <!--       <img src="/home/images/Button-Google.png" />  -->
-        <a style="z-index:100;position:relative;" href="#" id='signup_google2' title="Coming Soon... (for now, please register with your email address)" rel="signup_google2" onmouseover="this.getElementById('image_button_signup_google2').src='/home/images/Button-Google-Hover.png'" onmouseout="this.getElementById('image_button_signup_google2').src='/home/images/Button-Google.png'">
+        <a style="z-index:100;position:relative;" href="#" id='signup_google2' title="Coming Soon... (for now, please register with Facebook or your email address)" rel="signup_google2" onmouseover="this.getElementById('image_button_signup_google2').src='/home/images/Button-Google-Hover.png'" onmouseout="this.getElementById('image_button_signup_google2').src='/home/images/Button-Google.png'">
         </a>
         <script type='text/javascript'>
             $('#signup_google2').tipsy();
@@ -886,8 +890,13 @@ http://www.cssnewbie.com/cross-browser-support-for-html5-placeholder-text-in-for
 
           <table><tr><td>
   <!--       <img src="/home/images/Button-Facebook.png" />  -->
-        <a style="z-index:100;position:relative;" href="#"  id='signup_facebook3'  rel="signup_facebook2" onmouseover="this.getElementById('image_button_signup_facebook3').src='/home/images/Button-Facebook-Hover.png'" onmouseout="this.getElementById('image_button_signup_facebook3').src='/home/images/Button-Facebook.png'">
-        </a>
+
+
+            <div style="margin-top:-28px;">
+            <%= render :partial => "layouts/fb_signup.erb" %>
+            </div>
+
+
 <!--         </div> -->
 
       </td>
@@ -895,7 +904,7 @@ http://www.cssnewbie.com/cross-browser-support-for-html5-placeholder-text-in-for
   
 <!--         <div style="float:left;min-width:105px;max-width:105px;"> -->
  <!--       <img src="/home/images/Button-Google.png" />  -->
-        <a style="z-index:100;position:relative;" href="#" id='signup_google3' title="Coming Soon... (for now, please register with your email address)" rel="signup_google2" onmouseover="this.getElementById('image_button_signup_google3').src='/home/images/Button-Google-Hover.png'" onmouseout="this.getElementById('image_button_signup_google3').src='/home/images/Button-Google.png'">
+        <a style="z-index:100;position:relative;" href="#" id='signup_google3' title="Coming Soon... (for now, please register with Facebook or with your email address)" rel="signup_google2" onmouseover="this.getElementById('image_button_signup_google3').src='/home/images/Button-Google-Hover.png'" onmouseout="this.getElementById('image_button_signup_google3').src='/home/images/Button-Google.png'">
         </a>
         <script type='text/javascript'>
             $('#signup_google3').tipsy();
