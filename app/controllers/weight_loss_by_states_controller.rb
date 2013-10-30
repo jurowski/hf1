@@ -142,258 +142,386 @@ class WeightLossByStatesController < ApplicationController
           ### no entry found for this state/province, so create it
           case w.state_code
             when "AL"
+              w.country = "usa"
+              w.map_code = 1
               w.demog_population = 4779736
               w.demog_percent_obesity_rate = 32 
 
             when "AK"
+              w.country = "usa"
+              w.map_code = 2
               w.demog_population = 710231
               w.demog_percent_obesity_rate = 25
 
             when "AZ"
+              w.country = "usa"
+              w.map_code = 3
               w.demog_population = 6392017
               w.demog_percent_obesity_rate = 24
 
             when "AR"
+              w.country = "usa"
+              w.map_code = 4
               w.demog_population = 2915918
               w.demog_percent_obesity_rate = 30
 
             when "CA"
+              w.country = "usa"
+              w.map_code = 5
               w.demog_population = 37253956
               w.demog_percent_obesity_rate = 24
 
             when "CO"
+              w.country = "usa"
+              w.map_code = 6
               w.demog_population = 5029196
               w.demog_percent_obesity_rate = 21
 
             when "CT"
+              w.country = "usa"
+              w.map_code = 7
               w.demog_population = 3574097
               w.demog_percent_obesity_rate = 23
 
             when "DE"
+              w.country = "usa"
+              w.map_code = 8
               w.demog_population = 897934
               w.demog_percent_obesity_rate = 28
 
             when "DC"
+              w.country = "usa"
+              w.map_code = 51
               w.demog_population = 601723
               w.demog_percent_obesity_rate = 27 ### unknown, using 27 for Maryland MD, same as national avg
 
             when "FL"
+              w.country = "usa"
+              w.map_code = 9
               w.demog_population = 18801310
               w.demog_percent_obesity_rate = 27
 
             when "GA"
+              w.country = "usa"
+              w.map_code = 10
               w.demog_population = 9687653
               w.demog_percent_obesity_rate = 30
 
             when "HI"
+              w.country = "usa"
+              w.map_code = 11
               w.demog_population = 1360301
               w.demog_percent_obesity_rate = 23
 
             when "ID"
+              w.country = "usa"
+              w.map_code = 12
               w.demog_population = 1567582
               w.demog_percent_obesity_rate = 27
 
             when "IL"
+              w.country = "usa"
+              w.map_code = 13
               w.demog_population = 12830632
               w.demog_percent_obesity_rate = 28
 
             when "IN"
+              w.country = "usa"
+              w.map_code = 14
               w.demog_population = 6483802
               w.demog_percent_obesity_rate = 30
 
             when "IA"
+              w.country = "usa"
+              w.map_code = 15
               w.demog_population = 3046355
               w.demog_percent_obesity_rate = 28
 
             when "KS"
+              w.country = "usa"
+              w.map_code = 16
               w.demog_population = 2853118
               w.demog_percent_obesity_rate = 29
 
             when "KY"
+              w.country = "usa"
+              w.map_code = 17
               w.demog_population = 4339367
               w.demog_percent_obesity_rate = 31
 
             when "LA"
+              w.country = "usa"
+              w.map_code = 18
               w.demog_population = 4533372
               w.demog_percent_obesity_rate = 31
 
             when "ME"
+              w.country = "usa"
+              w.map_code = 19
               w.demog_population = 1328361
               w.demog_percent_obesity_rate = 27
 
             when "MD"
+              w.country = "usa"
+              w.map_code = 20
               w.demog_population = 5773552
               w.demog_percent_obesity_rate = 27
 
             when "MA"
+              w.country = "usa"
+              w.map_code = 21
               w.demog_population = 6547629
               w.demog_percent_obesity_rate = 23
 
             when "MI"
+              w.country = "usa"
+              w.map_code = 22
               w.demog_population = 9883640
               w.demog_percent_obesity_rate =  31
 
             when "MN"
+              w.country = "usa"
+              w.map_code = 23
               w.demog_population = 5303925
               w.demog_percent_obesity_rate = 25
 
             when "MS"
+              w.country = "usa"
+              w.map_code = 24
               w.demog_population = 2967297
               w.demog_percent_obesity_rate = 34
 
             when "MO"
+              w.country = "usa"
+              w.map_code = 25
               w.demog_population = 5988927
               w.demog_percent_obesity_rate = 31
 
             when "MT"
+              w.country = "usa"
+              w.map_code = 26
               w.demog_population = 989415
               w.demog_percent_obesity_rate = 23
 
             when "NE"
+              w.country = "usa"
+              w.map_code = 27
               w.demog_population = 1826341
               w.demog_percent_obesity_rate = 27
 
             when "NV"
+              w.country = "usa"
+              w.map_code = 28
               w.demog_population = 2700551
               w.demog_percent_obesity_rate = 22
 
             when "NH"
+              w.country = "usa"
+              w.map_code = 29
               w.demog_population = 1316470
               w.demog_percent_obesity_rate = 25
 
             when "NJ"
+              w.country = "usa"
+              w.map_code = 30
               w.demog_population = 8791894
               w.demog_percent_obesity_rate = 24
 
             when "NM"
+              w.country = "usa"
+              w.map_code = 31
               w.demog_population = 2059179
               w.demog_percent_obesity_rate = 25
 
             when "NY"
+              w.country = "usa"
+              w.map_code = 32
               w.demog_population = 19378102
               w.demog_percent_obesity_rate = 24
 
             when "NC"
+              w.country = "usa"
+              w.map_code = 33
               w.demog_population = 9535483
               w.demog_percent_obesity_rate = 28
 
             when "ND"
+              w.country = "usa"
+              w.map_code = 34
               w.demog_population = 672591
               w.demog_percent_obesity_rate = 27
 
             when "OH"
+              w.country = "usa"
+              w.map_code = 35
               w.demog_population = 11536504
               w.demog_percent_obesity_rate = 29
 
             when "OK"
+              w.country = "usa"
+              w.map_code = 36
               w.demog_population = 3751351
               w.demog_percent_obesity_rate = 30
 
             when "OR"
+              w.country = "usa"
+              w.map_code = 37
               w.demog_population = 3831074
               w.demog_percent_obesity_rate = 27
 
             when "PA"
+              w.country = "usa"
+              w.map_code = 38
               w.demog_population = 12702379
               w.demog_percent_obesity_rate = 29
 
             when "RI"
+              w.country = "usa"
+              w.map_code = 39
               w.demog_population = 1052567
               w.demog_percent_obesity_rate = 26
 
             when "SC"
+              w.country = "usa"
+              w.map_code = 40
               w.demog_population = 4625364
               w.demog_percent_obesity_rate = 32
 
             when "SD"
+              w.country = "usa"
+              w.map_code = 41
               w.demog_population = 814180
               w.demog_percent_obesity_rate = 27
 
             when "TN"
+              w.country = "usa"
+              w.map_code = 42
               w.demog_population = 6346105
               w.demog_percent_obesity_rate = 31
 
             when "TX"
+              w.country = "usa"
+              w.map_code = 43
               w.demog_population = 25145561
               w.demog_percent_obesity_rate = 31
 
             when "UT"
+              w.country = "usa"
+              w.map_code = 44
               w.demog_population = 2763885
               w.demog_percent_obesity_rate = 23
 
             when "VT"
+              w.country = "usa"
+              w.map_code = 45
               w.demog_population = 625741
               w.demog_percent_obesity_rate = 23
 
             when "VA"
+              w.country = "usa"
+              w.map_code = 46
               w.demog_population = 8001024
               w.demog_percent_obesity_rate = 26
 
             when "WA"
+              w.country = "usa"
+              w.map_code = 47
               w.demog_population = 6724540
               w.demog_percent_obesity_rate = 26
 
             when "WV"
+              w.country = "usa"
+              w.map_code = 48
               w.demog_population = 1852994
               w.demog_percent_obesity_rate = 33
 
             when "WI"
+              w.country = "usa"
+              w.map_code = 49
               w.demog_population = 5686986
               w.demog_percent_obesity_rate = 26
 
             when "WY"
+              w.country = "usa"
+              w.map_code = 50
               w.demog_population = 563626
               w.demog_percent_obesity_rate = 25
 
             when "AB"
+              w.country = "canada"
+              w.map_code = 1
               w.demog_population = 3645257
               w.demog_percent_obesity_rate = 25
 
             when "BC"
+              w.country = "canada"
+              w.map_code = 2
               w.demog_population = 4400057
               w.demog_percent_obesity_rate = 19
 
             when "MB"
+              w.country = "canada"
+              w.map_code = 3
               w.demog_population = 1208268
               w.demog_percent_obesity_rate = 28
 
             when "NB"
+              w.country = "canada"
+              w.map_code = 4
               w.demog_population = 751171
               w.demog_percent_obesity_rate = 29
 
             when "NL"
+              w.country = "canada"
+              w.map_code = 5
               w.demog_population = 514536
               w.demog_percent_obesity_rate = 34
 
             when "NS"
+              w.country = "canada"
+              w.map_code = 7
               w.demog_population = 921727
               w.demog_percent_obesity_rate = 25
 
             when "ON"
+              w.country = "canada"
+              w.map_code = 9
               w.demog_population = 12851821
               w.demog_percent_obesity_rate = 23
 
             when "PE"
+              w.country = "canada"
+              w.map_code = 10
               w.demog_population = 140204
               w.demog_percent_obesity_rate = 26
 
             when "QC"
+              w.country = "canada"
+              w.map_code = 11
               w.demog_population = 7903001
               w.demog_percent_obesity_rate = 22
 
             when "SK"
+              w.country = "canada"
+              w.map_code = 12
               w.demog_population = 1033381
               w.demog_percent_obesity_rate = 31
 
             when "NT"
+              w.country = "canada"
+              w.map_code = 6
               w.demog_population = 41462
               w.demog_percent_obesity_rate = 23 ### unknown, using Canada overall of 23
 
             when "NU"
+              w.country = "canada"
+              w.map_code = 8
               w.demog_population = 31906
               w.demog_percent_obesity_rate = 23 ### unknown, using Canada overall of 23
 
             when "YT"
+              w.country = "canada"
+              w.map_code = 13
               w.demog_population = 33897
               w.demog_percent_obesity_rate = 23 ### unknown, using Canada overall of 23
 

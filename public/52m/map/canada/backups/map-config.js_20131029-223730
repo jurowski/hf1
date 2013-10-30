@@ -1,0 +1,160 @@
+// var map_config = {
+// 	'default':{
+// 		'bordercolor':'#9CA8B6', //inter-province borders
+// 		'shadowcolor':'#000000', //shadow color below the map
+// 		'shadowOpacity':'50', //shadow opacity, value, 0-100
+// 		'namescolor':'#666666', //color of the abbreviations 
+// 		'namesShadowColor':'#666666', //tooltip shadow color
+// 		'msg_title':'52 Million Pound Challenge',//default title text
+// 		'msg_data': 'Click the name of a province to view details',//default content text
+// 	},
+// 	'map_1':{
+// 		'namesId':'AB',//name's ID (Don't change it)
+// 		'name': 'ALBERTA',  //province name
+// 		'data':'Data of Alberta',//data appears in the text box when a user clicks this province
+// 		'upcolor':'#EBECED', //province's color when page loads
+// 		'overcolor':'#99CC00', //province's color when mouse hover
+// 		'downcolor':'#993366',//province's color when mouse clicking
+// 		'enable':true,//true/false to enable/disable this province
+// 	},
+
+// 	...
+
+// 	'map_14':{
+// 		'name': 'OTTAWA',
+// 		'data':'Data of Ottawa',
+// 		'upcolor':'#FF0000',
+// 		'overcolor':'#99CC00',
+// 		'downcolor':'#993366',
+// 		'enable':true,
+// 	},
+// }
+
+var map_config = {
+	'default':{
+		'bordercolor':'#9CA8B6', //inter-province borders
+		'shadowcolor':'#000000', //shadow color below the map
+		'shadowOpacity':'50', //shadow opacity, value, 0-100
+		'namescolor':'#666666', //color of the abbreviations 
+		'namesShadowColor':'#666666', //tooltip shadow color
+		'msg_title':'52 Million Pound Challenge',//default title text
+		'msg_data': 'Click the name of a province to view details',//default content text
+	},
+  'map_1':{
+      'namesId':'AB',
+      'name':'ALBERTA',
+      'data':'<div>Alberta's Goal: Lose 515178 lbs.<br># of Challenge Participants: 0<br>Lbs lost so far: 0 lbs.<br>% of Goal Reached: 0%<br>Challenge Rank (US & Canada): #0 out of 64<br><br><br><br>-- Obesity Facts for AB --<br>Total Population: 3645257<br>Obesity Rate: 25<br>Est # of Obese Adults: 701711</div>',
+      'upcolor':'#EBECED',
+      'overcolor':'#99CC00',
+      'downcolor':'#993366',
+      'enable':true,
+  },
+  'map_2':{
+      'namesId':'BC',
+      'name':'BRITISH COLUMBIA',
+      'data':'<div>British Columbia's Goal: Lose 472608 lbs.<br># of Challenge Participants: 0<br>Lbs lost so far: 0 lbs.<br>% of Goal Reached: 0%<br>Challenge Rank (US & Canada): #0 out of 64<br><br><br><br>-- Obesity Facts for BC --<br>Total Population: 4400057<br>Obesity Rate: 19<br>Est # of Obese Adults: 643728</div>',
+      'upcolor':'#EBECED',
+      'overcolor':'#99CC00',
+      'downcolor':'#993366',
+      'enable':true,
+  },
+  'map_3':{
+      'namesId':'MB',
+      'name':'MANITOBA',
+      'data':'<div>Manitoba's Goal: Lose 191253 lbs.<br># of Challenge Participants: 0<br>Lbs lost so far: 0 lbs.<br>% of Goal Reached: 0%<br>Challenge Rank (US & Canada): #0 out of 64<br><br><br><br>-- Obesity Facts for MB --<br>Total Population: 1208268<br>Obesity Rate: 28<br>Est # of Obese Adults: 260502</div>',
+      'upcolor':'#EBECED',
+      'overcolor':'#99CC00',
+      'downcolor':'#993366',
+      'enable':true,
+  },
+  'map_4':{
+      'namesId':'NB',
+      'name':'NEW BRUNSWICK',
+      'data':'<div>New Brunswick's Goal: Lose 123147 lbs.<br># of Challenge Participants: 0<br>Lbs lost so far: 0 lbs.<br>% of Goal Reached: 0%<br>Challenge Rank (US & Canada): #0 out of 64<br><br><br><br>-- Obesity Facts for NB --<br>Total Population: 751171<br>Obesity Rate: 29<br>Est # of Obese Adults: 167736</div>',
+      'upcolor':'#EBECED',
+      'overcolor':'#99CC00',
+      'downcolor':'#993366',
+      'enable':true,
+  },
+  'map_5':{
+      'namesId':'NL',
+      'name':'NEWFOUNDLAND AND LABRADOR',
+      'data':'<div>Newfoundland and Labrador's Goal: Lose 98896 lbs.<br># of Challenge Participants: 0<br>Lbs lost so far: 0 lbs.<br>% of Goal Reached: 0%<br>Challenge Rank (US & Canada): #0 out of 64<br><br><br><br>-- Obesity Facts for NL --<br>Total Population: 514536<br>Obesity Rate: 34<br>Est # of Obese Adults: 134705</div>',
+      'upcolor':'#EBECED',
+      'overcolor':'#99CC00',
+      'downcolor':'#993366',
+      'enable':true,
+  },
+  'map_7':{
+      'namesId':'NS',
+      'name':'NOVA SCOTIA',
+      'data':'<div>Nova Scotia's Goal: Lose 130265 lbs.<br># of Challenge Participants: 0<br>Lbs lost so far: 0 lbs.<br>% of Goal Reached: 0%<br>Challenge Rank (US & Canada): #0 out of 64<br><br><br><br>-- Obesity Facts for NS --<br>Total Population: 921727<br>Obesity Rate: 25<br>Est # of Obese Adults: 177432</div>',
+      'upcolor':'#EBECED',
+      'overcolor':'#99CC00',
+      'downcolor':'#993366',
+      'enable':true,
+  },
+  'map_9':{
+      'namesId':'ON',
+      'name':'ONTARIO',
+      'data':'<div>Ontario's Goal: Lose 1671022 lbs.<br># of Challenge Participants: 0<br>Lbs lost so far: 0 lbs.<br>% of Goal Reached: 0%<br>Challenge Rank (US & Canada): #0 out of 64<br><br><br><br>-- Obesity Facts for ON --<br>Total Population: 12851821<br>Obesity Rate: 23<br>Est # of Obese Adults: 2276057</div>',
+      'upcolor':'#EBECED',
+      'overcolor':'#99CC00',
+      'downcolor':'#993366',
+      'enable':true,
+  },
+  'map_10':{
+      'namesId':'PE',
+      'name':'PRINCE EDWARD ISLAND',
+      'data':'<div>Prince Edward Island's Goal: Lose 20606 lbs.<br># of Challenge Participants: 0<br>Lbs lost so far: 0 lbs.<br>% of Goal Reached: 0%<br>Challenge Rank (US & Canada): #0 out of 64<br><br><br><br>-- Obesity Facts for PE --<br>Total Population: 140204<br>Obesity Rate: 26<br>Est # of Obese Adults: 28068</div>',
+      'upcolor':'#EBECED',
+      'overcolor':'#99CC00',
+      'downcolor':'#993366',
+      'enable':true,
+  },
+  'map_11':{
+      'namesId':'QC',
+      'name':'QUEBEC',
+      'data':'<div>Quebec's Goal: Lose 982888 lbs.<br># of Challenge Participants: 0<br>Lbs lost so far: 0 lbs.<br>% of Goal Reached: 0%<br>Challenge Rank (US & Canada): #0 out of 64<br><br><br><br>-- Obesity Facts for QC --<br>Total Population: 7903001<br>Obesity Rate: 22<br>Est # of Obese Adults: 1338768</div>',
+      'upcolor':'#EBECED',
+      'overcolor':'#99CC00',
+      'downcolor':'#993366',
+      'enable':true,
+  },
+  'map_12':{
+      'namesId':'SK',
+      'name':'SASKATCHEWAN',
+      'data':'<div>Saskatchewan's Goal: Lose 181096 lbs.<br># of Challenge Participants: 0<br>Lbs lost so far: 0 lbs.<br>% of Goal Reached: 0%<br>Challenge Rank (US & Canada): #0 out of 64<br><br><br><br>-- Obesity Facts for SK --<br>Total Population: 1033381<br>Obesity Rate: 31<br>Est # of Obese Adults: 246667</div>',
+      'upcolor':'#EBECED',
+      'overcolor':'#99CC00',
+      'downcolor':'#993366',
+      'enable':true,
+  },
+  'map_6':{
+      'namesId':'NT',
+      'name':'NORTHWEST TERRITORIES',
+      'data':'<div>Northwest Territories's Goal: Lose 5390 lbs.<br># of Challenge Participants: 0<br>Lbs lost so far: 0 lbs.<br>% of Goal Reached: 0%<br>Challenge Rank (US & Canada): #0 out of 64<br><br><br><br>-- Obesity Facts for NT --<br>Total Population: 41462<br>Obesity Rate: 23<br>Est # of Obese Adults: 7342</div>',
+      'upcolor':'#EBECED',
+      'overcolor':'#99CC00',
+      'downcolor':'#993366',
+      'enable':true,
+  },
+  'map_8':{
+      'namesId':'NU',
+      'name':'NUNAVUT',
+      'data':'<div>Nunavut's Goal: Lose 4148 lbs.<br># of Challenge Participants: 0<br>Lbs lost so far: 0 lbs.<br>% of Goal Reached: 0%<br>Challenge Rank (US & Canada): #0 out of 64<br><br><br><br>-- Obesity Facts for NU --<br>Total Population: 31906<br>Obesity Rate: 23<br>Est # of Obese Adults: 5650</div>',
+      'upcolor':'#EBECED',
+      'overcolor':'#99CC00',
+      'downcolor':'#993366',
+      'enable':true,
+  },
+  'map_13':{
+      'namesId':'YT',
+      'name':'YUKON',
+      'data':'<div>Yukon's Goal: Lose 4407 lbs.<br># of Challenge Participants: 0<br>Lbs lost so far: 0 lbs.<br>% of Goal Reached: 0%<br>Challenge Rank (US & Canada): #0 out of 64<br><br><br><br>-- Obesity Facts for YT --<br>Total Population: 33897<br>Obesity Rate: 23<br>Est # of Obese Adults: 6003</div>',
+      'upcolor':'#EBECED',
+      'overcolor':'#99CC00',
+      'downcolor':'#993366',
+      'enable':true,
+  },
+}

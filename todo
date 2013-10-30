@@ -13,13 +13,89 @@
 ROWLEY 52M
 -------------------------------------------------------------------
 
---------------
-NEXT
---------------
 
-mod the tracking system to allow for weight tracking
---add an "initial value" (ie start weight)
---make sure there's a "current value"
+------------
+NEXT
+------------ 
+
+--write initial values to states js files:
+
+-----------------------------------------------------
+Population:
+Obesity Rate:
+Est. # of Obese Adults:
+
+# of Participants:
+Challenge Goal: Lose XX lbs.
+
+Lbs Lost So Far: xx lbs
+
+Challenge Rank (US & Canada): xx of xx
+
+% of Goal Reached:
+(set color based on % reached threshold)
+-----------------------------------------------------
+
+--test that the tracker items get copied down correctly from 52M to goal-based-on-template-parent
+--prompt the user for a starting quant
+--after N days, prompt the user for quant in UI
+--after N days, include in the check-in and reminders that It's Time to get a Quant
+
+--write the cron job to pull new signups, create, auto-confirm and add the template goal for them
+--write the cron job to generate stats for the states, save in db
+--write the cron job to write stats to js file
+
+--graph user-level tracker results for weight
+
+
+----------------
+!!! since we already have in mind a handful of "templates" for trackers, might as well reduce confusion for people and ask them to choose one of those first and hide the implementation details for now
+
+!!! for templated weight loss, ask their current weight to auto-fill in the ranges
+
+
+
+Quant answers:
+-- ask for the number and/or the yes/no depending on their tracker linkage choices
+
+Logic needed for 3 Cases:
+--quant is not linked to checkpiont yes/no at all
+--quant being answered sets checkpoint to yes
+--quant value determins checkpoint being set to yes/no
+
+We'll test out two cases at first, both of which would have a max :
+--one that occasionally measures something that "is" (weight)
+--one that daily measures something that you achieve daily (sleep)
+
+
+
+
+THE LOGIC
+In the tracker goal tab
+    which shows a graph
+    and
+    asks you to add a new value
+      which will add to the day's total if it's one that accumulates
+      or
+      which will add to the day's average if it's one that measures "what is" like weight or temperature
+    or 
+    asks you to increment the last value if it's a goal that accumulates
+    
+when a new answer is entered
+if tracker answer kicks checkpoint to yes
+  then set that day to "yes"
+if tracker answer sets checkpoint to yes or no based on value
+  then take that day's total (if accumulation) or average (if "measuring what is") and kick checkpoint to yes or no
+
+when you get the daily yes/no email,
+and
+when you get the daily reminder email,
+have a link in the email asking you for a measurment
+clicking that link takes you to the "tracker" goal tab
+and also after you answer your yes/no,  ask if they want to enter a tracker value as well
+
+
+
 
 
 --------------
@@ -40,18 +116,6 @@ There will be a "program" ... a 52M program
 
 
 
-
-cron daily tabulate per-state statistics
---for each state, find users in that state who are in that challenge
---determine if they are active or hold, and tabulate their data accordingly
---update the js files accordingly
-
-
-cron every 5 min pull from rowley mailing list groups
---auto-sign people up to hf
---auto-assign their country and state based on params
---send them conf. email
---add them to a templated rowley weight tracking goal
 
 
 --------------
@@ -85,6 +149,14 @@ challenge_weighted_goal:integer challenge_qty_hold:integer challenge_qty_active:
 --method to drop and seed the weight_loss_by_state
 
 
+--allow user to modify date and hour for a quant (in case they're answering for the day before or for earlier in the day)
+(Meridian Format date/time picker): file:///home/sgj700/Downloads/metronic_v1.2.4/template_content/form_component.html#
+USE THE MINIFY FORMAT
+
+
+
+
+
 -------------------------------------------------------------------
 GRAPHIC REDESIGN and NEW SIGNUP PUT ON HOLD UNTIL ROWLEY 52M is done
 -------------------------------------------------------------------
@@ -106,72 +178,6 @@ UNLINK FB ACCOUNT
 
 
 
-
--------------------------------------------------------------------
-TRACKER STUFF BEING PUT ON HOLD UNTIL GRAPHICS RE-DESIGN IS DONE
--------------------------------------------------------------------
-
-
-------------
-NEXT
------------- 
-
-!!! MAKE SURE THAT ALL OF THE TRACKER ITEMS GET COPIED OVER BETWEEN TEMPLATES AND THE "NEW GOAL BASED ON TEMPLATE"
-
-!!! since we already have in mind a handful of "templates" for trackers, might as well reduce confusion for people and ask them to choose one of those first and hide the implementation details for now
-
-!!! for templated weight loss, ask their current weight to auto-fill in the ranges
-
-
-
-Quant answers:
--- ask for the number and/or the yes/no depending on their tracker linkage choices
-
-Logic needed for 3 Cases:
---quant is not linked to checkpiont yes/no at all
---quant being answered sets checkpoint to yes
---quant value determins checkpoint being set to yes/no
-
-We'll test out two cases at first, both of which would have a max :
---one that occasionally measures something that "is" (weight)
---one that daily measures something that you achieve daily (sleep)
-
-
-
-
-THE LOGIC
-In the tracker goal tab
-  	which shows a graph
-  	and
-    asks you to add a new value
-      which will add to the day's total if it's one that accumulates
-      or
-      which will add to the day's average if it's one that measures "what is" like weight or temperature
-    or 
-    asks you to increment the last value if it's a goal that accumulates
-    
-when a new answer is entered
-if tracker answer kicks checkpoint to yes
-  then set that day to "yes"
-if tracker answer sets checkpoint to yes or no based on value
-  then take that day's total (if accumulation) or average (if "measuring what is") and kick checkpoint to yes or no
-
-when you get the daily yes/no email,
-and
-when you get the daily reminder email,
-have a link in the email asking you for a measurment
-clicking that link takes you to the "tracker" goal tab
-and also after you answer your yes/no,  ask if they want to enter a tracker value as well
-
-
-
-
------------
-DONE
------------
---allow user to modify date and hour for a quant (in case they're answering for the day before or for earlier in the day)
-(Meridian Format date/time picker): file:///home/sgj700/Downloads/metronic_v1.2.4/template_content/form_component.html#
-USE THE MINIFY FORMAT
 
 
 

@@ -922,6 +922,8 @@ ActiveRecord::Schema.define(:version => 20131030064358) do
     t.string   "js_downcolor"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "country"
+    t.integer  "map_code"
   end
 
 end
