@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131025103755) do
+ActiveRecord::Schema.define(:version => 20131030064358) do
 
   create_table "achievemints", :force => true do |t|
     t.string   "name"
@@ -366,6 +366,10 @@ ActiveRecord::Schema.define(:version => 20131025103755) do
     t.integer  "tracker_measurement_last_taken_on_hour"
     t.integer  "tracker_measurement_last_taken_value",                    :limit => 10, :precision => 10, :scale => 0
     t.datetime "tracker_measurement_last_taken_timestamp"
+    t.integer  "tracker_prompt_after_n_days_without_entry"
+    t.boolean  "tracker_prompt_for_an_initial_value"
+    t.boolean  "tracker_track_difference_between_initial_and_latest"
+    t.integer  "tracker_difference_between_initial_and_latest",           :limit => 10, :precision => 10, :scale => 0
   end
 
   add_index "goals", ["allow_push", "last_success_date", "next_push_on_or_after_date", "pushes_remaining_on_next_push_date"], :name => "allow_push"

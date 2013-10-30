@@ -783,7 +783,7 @@ end
 
 
 
-<% if 1 == 2 %>
+<% if current_user.is_admin or current_user.email == "jurowski@gmail.com" %>
 <!-- TRACKER -->
 <h2><i class="icon-bar-chart"></i> Tracker<img src="/images/beta.jpg" width=50px /><a href="#undefined" onclick="toggle_show_hide('tracker_option')" style="font-size:0.5em;">Details</a></h2>
 
@@ -906,6 +906,37 @@ What is the most that the number could change from one check-in to the next?
 
 
 <br>
+
+Should we prompt you immediately for an initial or baseline value? (ex: "Your starting weight.")  
+
+    <%
+    @arr_tracker_prompt_for_an_initial_value = Array.new
+
+    @arr_tracker_prompt_for_an_initial_value.push(["Yes", true])
+    @arr_tracker_prompt_for_an_initial_value.push(["No", false])
+    %>
+    <%= select(:goal, :tracker_prompt_for_an_initial_value, @arr_tracker_prompt_for_an_initial_value)%>
+
+
+<br>
+
+Should we keep track of the difference between your first ever measurement and your current measurement?  (ex: You have lost X pounds so far.)
+
+    <%
+    @arr_tracker_track_difference_between_initial_and_latest = Array.new
+
+    @arr_tracker_track_difference_between_initial_and_latest.push(["Yes", true])
+    @arr_tracker_track_difference_between_initial_and_latest.push(["No", false])
+    %>
+    <%= select(:goal, :tracker_track_difference_between_initial_and_latest, @arr_tracker_track_difference_between_initial_and_latest)%>
+
+
+<br>
+How many days should go by before we prompt you for an answer? (examples: 0 = do not prompt, 1 = prompt every day, 7 = prompt after a week) 
+<%= form.text_field :tracker_prompt_after_n_days_without_entry, :style=>'width:30px;', :size => 5 %> 
+
+
+<br>
 Should we auto-answer your daily checkpoint with a "Yes" whenever your same-day tracker number is "OK" or better?
 <br>
     <%
@@ -915,6 +946,8 @@ Should we auto-answer your daily checkpoint with a "Yes" whenever your same-day 
     @arr_tracker_set_checkpoint_to_yes_only_if_answer_acceptable.push(["No, let me answer yes/no separately from what I enter in the tracker", false])
     %>
     <%= select(:goal, :tracker_set_checkpoint_to_yes_only_if_answer_acceptable, @arr_tracker_set_checkpoint_to_yes_only_if_answer_acceptable,{}, {:style => "width:500px;"})%>
+
+
 
 
 </div>

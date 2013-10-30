@@ -749,7 +749,7 @@ tracker_name = "<i class='icon-bar-chart'></i> Tracker"
         <li class="<%= tab_followers_active %>"><a href="#tab_1_2_<%= @goal.id %>" data-toggle="tab"><%= followers_name %></a>
         <li class="<%= tab_bets_active %>"><a href="#tab_1_3_<%= @goal.id %>" data-toggle="tab"><%= bets_image %></a>
         <li class="<%= tab_team_active %>"><a href="#tab_1_4_<%= @goal.id %>" data-toggle="tab"><%= team_name %></a>
-        <% if 1 == 2 %>
+        <% if @goal.tracker %>
         <li class="<%= tab_tracker_active %>"><a href="#tab_1_5_<%= @goal.id %>" data-toggle="tab"><%= tracker_name %></a>
         <% end %>
     </ul>
@@ -834,7 +834,7 @@ tracker_name = "<i class='icon-bar-chart'></i> Tracker"
             </div>
         </div>
 
-        <% if 1 == 2 %>
+        <% if current_user.is_admin or @goal.tracker %>
         <div class="tab-pane <%= tab_tracker_active %>" id="tab_1_5_<%= @goal.id %>">
             <div class="portlet-body" style="display: block;">
                 <!-- START TRACKER -->
