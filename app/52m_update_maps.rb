@@ -164,15 +164,15 @@ states.each do |state|
     state_data += " <br>"
     state_data += " <br>"
     state_data += " <div style=\"background-color:#ffffff;padding:5px;margin:5px;\">"
-    state_data += "     <h3>Obesity Facts for #{state.state_code}</h3>"
+    state_data += "     <h2>Obesity Facts for #{state.state_code}</h2>"
     state_data += "     <br>Total Population: <strong>#{number_with_delimiter(demog_population, :delimiter => ',')}</strong>"
     state_data += "     <br>Obesity Rate: <strong>#{demog_percent_obesity_rate}%</strong>"
     state_data += "     <br>Est # of Obese Adults: <strong>#{number_with_delimiter(demog_number_obese_adults, :delimiter => ',')}</strong>"
     state_data += " </div>"
     state_data += " <br>"
-    state_data += " <br>*Weighted Goal is based on the estimated number of obese adults in #{state.state}"    
+    state_data += " <h3>*Weighted Goal is based on the estimated number of obese adults in #{state.state}</h3>"    
     state_data += " <br>"
-    state_data += " <br>Weight Loss Challenge Powered by <a href=\"http://habitforge.com\">HabitForge.com</a>"
+    state_data += " <br>Weight Loss Challenge Powered by <a href=\"http://habitforge.com\"><img src=\"http://habitforge.com/home/images/logos/HF-ETR-Logo-Header_120.png\" /></a>"
     state_data += "</div>"
 
     File.open(filepath_to_mod, 'a') do |f| 
