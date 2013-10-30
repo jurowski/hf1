@@ -479,6 +479,88 @@ class GoalsController < ApplicationController
           @goal.check_in_same_day = template_user_parent_goal.check_in_same_day
           @goal.usersendhour = template_user_parent_goal.usersendhour
 
+
+          if template_user.parent_goal.tracker != nil
+          @goal.tracker = template_user.parent_goal.tracker
+          end
+          if template_user.parent_goal.tracker_question != nil
+          @goal.tracker_question = template_user.parent_goal.tracker_question
+          end
+          if template_user.parent_goal.tracker_statement != nil
+          @goal.tracker_statement = template_user.parent_goal.tracker_statement
+          end
+          if template_user.parent_goal.tracker_units != nil
+          @goal.tracker_units = template_user.parent_goal.tracker_units
+          end
+          if template_user.parent_goal.tracker_digits_after_decimal != nil
+          @goal.tracker_digits_after_decimal = template_user.parent_goal.tracker_digits_after_decimal
+          end
+          if template_user.parent_goal.tracker_standard_deviation_from_last_measurement != nil
+          @goal.tracker_standard_deviation_from_last_measurement = template_user.parent_goal.tracker_standard_deviation_from_last_measurement
+          end
+          if template_user.parent_goal.tracker_type_starts_at_zero_daily != nil
+          @goal.tracker_type_starts_at_zero_daily = template_user.parent_goal.tracker_type_starts_at_zero_daily
+          end
+          if template_user.parent_goal.tracker_target_higher_value_is_better != nil
+          @goal.tracker_target_higher_value_is_better = template_user.parent_goal.tracker_target_higher_value_is_better
+          end
+          if template_user.parent_goal.tracker_set_checkpoint_to_yes_if_any_answer != nil
+          @goal.tracker_set_checkpoint_to_yes_if_any_answer = template_user.parent_goal.tracker_set_checkpoint_to_yes_if_any_answer
+          end
+          if template_user.parent_goal.tracker_set_checkpoint_to_yes_only_if_answer_acceptable != nil
+          @goal.tracker_set_checkpoint_to_yes_only_if_answer_acceptable = template_user.parent_goal.tracker_set_checkpoint_to_yes_only_if_answer_acceptable
+          end
+          if template_user.parent_goal.tracker_target_threshold_bad1 != nil
+          @goal.tracker_target_threshold_bad1 = template_user.parent_goal.tracker_target_threshold_bad1
+          end
+          if template_user.parent_goal.tracker_target_threshold_bad2 != nil
+          @goal.tracker_target_threshold_bad2 = template_user.parent_goal.tracker_target_threshold_bad2
+          end
+          if template_user.parent_goal.tracker_target_threshold_bad3 != nil
+          @goal.tracker_target_threshold_bad3 = template_user.parent_goal.tracker_target_threshold_bad3
+          end
+          if template_user.parent_goal.tracker_target_threshold_good1 != nil
+          @goal.tracker_target_threshold_good1 = template_user.parent_goal.tracker_target_threshold_good1
+          end
+          if template_user.parent_goal.tracker_target_threshold_good2 != nil
+          @goal.tracker_target_threshold_good2 = template_user.parent_goal.tracker_target_threshold_good2
+          end
+          if template_user.parent_goal.tracker_target_threshold_good3 != nil
+          @goal.tracker_target_threshold_good3 = template_user.parent_goal.tracker_target_threshold_good3
+          end
+          if template_user.parent_goal.tracker_measurement_worst_yet != nil
+          @goal.tracker_measurement_worst_yet = template_user.parent_goal.tracker_measurement_worst_yet
+          end
+          if template_user.parent_goal.tracker_measurement_best_yet != nil
+          @goal.tracker_measurement_best_yet = template_user.parent_goal.tracker_measurement_best_yet
+          end
+          if template_user.parent_goal.tracker_measurement_last_taken_on_date != nil
+          @goal.tracker_measurement_last_taken_on_date = template_user.parent_goal.tracker_measurement_last_taken_on_date
+          end
+          if template_user.parent_goal.tracker_measurement_last_taken_on_hour != nil
+          @goal.tracker_measurement_last_taken_on_hour = template_user.parent_goal.tracker_measurement_last_taken_on_hour
+          end
+          if template_user.parent_goal.tracker_measurement_last_taken_value != nil
+          @goal.tracker_measurement_last_taken_value = template_user.parent_goal.tracker_measurement_last_taken_value
+          end
+          if template_user.parent_goal.tracker_measurement_last_taken_timestamp != nil
+          @goal.tracker_measurement_last_taken_timestamp = template_user.parent_goal.tracker_measurement_last_taken_timestamp
+          end
+          if template_user.parent_goal.tracker_prompt_after_n_days_without_entry != nil
+          @goal.tracker_prompt_after_n_days_without_entry = template_user.parent_goal.tracker_prompt_after_n_days_without_entry
+          end
+          if template_user.parent_goal.tracker_prompt_for_an_initial_value != nil
+          @goal.tracker_prompt_for_an_initial_value = template_user.parent_goal.tracker_prompt_for_an_initial_value
+          end
+          if template_user.parent_goal.tracker_track_difference_between_initial_and_latest != nil
+          @goal.tracker_track_difference_between_initial_and_latest = template_user.parent_goal.tracker_track_difference_between_initial_and_latest
+          end
+          if template_user.parent_goal.tracker_difference_between_initial_and_latest != nil
+          @goal.tracker_difference_between_initial_and_latest = template_user.parent_goal.tracker_difference_between_initial_and_latest
+          end
+
+
+
           if session[:goal_added_through_template_from_program_id]
             goal_added_through_template_from_program = Program.find(session[:goal_added_through_template_from_program_id].to_i)
             if goal_added_through_template_from_program
