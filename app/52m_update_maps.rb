@@ -173,7 +173,8 @@ states.each do |state|
     state_data += " <h3>*Weighted Goal is based on the estimated number of obese adults in #{state.state}</h3>"    
     state_data += " <br>"
     state_data += " <div style=\"background-color:#ffffff;padding:5px;margin:5px;\">"
-    state_data += "     <center><br>Weight Loss Challenge Powered by <a href=\"http://habitforge.com\"><img src=\"http://habitforge.com/home/images/logos/HF-ETR-Logo-Header_120.png\" /></a></center>"
+    state_data += "     <center>Challenge Powered By: "
+    state_data += "     <a href=\"http://habitforge.com\"><img src=\"http://habitforge.com/home/images/logos/HF-ETR-Logo-Header_120.png\" /></a></center>"
     state_data += " </div>"
     state_data += "</div>"
 
