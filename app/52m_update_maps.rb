@@ -165,7 +165,7 @@ states.each do |state|
     state_data += " <br>"
     state_data += " <div style=\"background-color:#ffffff;padding:5px;margin:5px;\">"
     state_data += "     <h2>Obesity Facts for #{state.state_code}</h2>"
-    state_data += "     <br>Total Population: <strong>#{number_with_delimiter(demog_population, :delimiter => ',')}</strong>"
+    state_data += "     Total Population: <strong>#{number_with_delimiter(demog_population, :delimiter => ',')}</strong>"
     state_data += "     <br>Obesity Rate: <strong>#{demog_percent_obesity_rate}%</strong>"
     state_data += "     <br>Est # of Obese Adults: <strong>#{number_with_delimiter(demog_number_obese_adults, :delimiter => ',')}</strong>"
     state_data += " </div>"

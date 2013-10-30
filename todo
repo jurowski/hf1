@@ -18,12 +18,8 @@ ROWLEY 52M
 NEXT
 ------------ 
 
---test map data w/ Ben Cope
 --map:(set color based on % reached threshold)
 
---test that the tracker items get copied down correctly from 52M to goal-based-on-template-parent
---prompt the user for a starting quant
---after N days, prompt the user for quant in UI
 --after N days, include in the check-in and reminders that It's Time to get a Quant
 
 --write the cron job to pull new signups, create, auto-confirm and add the template goal for them

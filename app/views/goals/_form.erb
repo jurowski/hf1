@@ -786,9 +786,9 @@ end
 <% if current_user.is_admin or current_user.email == "jurowski@gmail.com" %>
 <!-- TRACKER -->
 <h2><i class="icon-bar-chart"></i> Tracker<img src="/images/beta.jpg" width=50px /><a href="#undefined" onclick="toggle_show_hide('tracker_option')" style="font-size:0.5em;">Details</a></h2>
+<% end %>
 
-
-<% if @goal.tracker and @ca == "new" %>
+<% if @goal.tracker and @ca == "new" and (current_user.is_admin or current_user.email == "jurowski@gmail.com") %>
   <div class="well" id="tracker_option" style="display:block;border-width:1px;">
 <% else %>
   <div class="well" id="tracker_option" style="display:none;border-width:1px;">
@@ -952,7 +952,7 @@ Should we auto-answer your daily checkpoint with a "Yes" whenever your same-day 
 
 </div>
 <!-- END TRACKER-->
-<% end %>
+
 
 
 

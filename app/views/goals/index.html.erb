@@ -708,6 +708,7 @@ tab_bets_active = ""
 tab_team_active = ""
 tab_tracker_active = ""
 
+
 if params[:start_fire_goal_id] and params[:start_fire_goal_id] == @goal.id.to_s
     tab_dashboard_active = ""
     tab_followers_active = ""
@@ -736,6 +737,26 @@ if params[:start_a_tracker] and params[:goal_id] and params[:goal_id] == @goal.i
     tab_bets_active = ""
     tab_tracker_active = ""
     tab_team_active = "active"
+end
+
+### if we need an initial checkin, make it come up front
+if @goal.tracker and @goal.tracker_prompt_for_an_initial_value and @goal.quants.size == 0
+    tab_dashboard_active = ""
+    tab_followers_active = ""
+    tab_bets_active = ""
+    tab_tracker_active = "active"
+    tab_team_active = ""
+end
+
+### if it's time for another checkin, make it come up front
+if @goal.tracker and @goal.tracker_prompt_after_n_days_without_entry and @goal.tracker_measurement_last_taken_on_date and (current_user.dtoday >= (@goal.tracker_measurement_last_taken_on_date + @goal.tracker_prompt_after_n_days_without_entry) )
+
+    tab_dashboard_active = ""
+    tab_followers_active = ""
+    tab_bets_active = ""
+    tab_tracker_active = "active"
+    tab_team_active = ""
+
 end
 
 ### TRACKER
@@ -838,8 +859,8 @@ tracker_name = "<i class='icon-bar-chart'></i> Tracker"
         <div class="tab-pane <%= tab_tracker_active %>" id="tab_1_5_<%= @goal.id %>">
             <div class="portlet-body" style="display: block;">
                 <!-- START TRACKER -->
-                <img src="/images/beta.jpg" width="50px" />
-                <% if !@goal.tracker %>
+                <!-- <img src="/images/beta.jpg" width="50px" />
+ -->                <% if !@goal.tracker %>
 
                     <h3>Does succeeding depend on some number you'd like us to ask you about?
                       <br><span style="font-size:0.5em;">(ex: hours of sleep, weight in pounds, # of glasses of water, an overall mood rating, number of sales calls, etc.)</span></h3>

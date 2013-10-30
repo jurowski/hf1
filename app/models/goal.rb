@@ -26,7 +26,7 @@ class Goal < ActiveRecord::Base
   has_many :coach_users, :through => :coach_templates
 
 
-
+  has_many :quants
 
   ### might not work, will have to test
   has_many :triggers

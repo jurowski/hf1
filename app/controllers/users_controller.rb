@@ -616,6 +616,11 @@ class UsersController < ApplicationController
               if params[:category]
                 redirect_url_string += "&category=" + params[:category]
               end
+
+              ### for a new signup to be prompted to create a template-based-goal
+              #http://localhost:3000?template_user_parent_goal_id=127494
+              
+
               if params[:template_user_parent_goal_id]
                 redirect_url_string += "&template_user_parent_goal_id=" + params[:template_user_parent_goal_id]
               end

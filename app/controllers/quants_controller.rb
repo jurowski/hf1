@@ -122,6 +122,13 @@ class QuantsController < ApplicationController
 
         quant.save
 
+        ### update parent goal properties
+        quant.goal.tracker_measurement_last_taken_on_date = quant.measurement_date
+        quant.goal.tracker_measurement_last_taken_on_hour = quant.measurement_hour
+        quant.goal.tracker_measurement_last_taken_value = quant.measurement
+        quant.goal.save
+
+
     end
 
 

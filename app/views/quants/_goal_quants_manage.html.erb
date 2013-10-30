@@ -1,11 +1,12 @@
 <!-- if you want to show when this was last displayed -->
-<%= Time.now.getutc %>
 
-<h3>Tracking History:</h3>
+<!-- < Time.now.getutc > -->
+
+<!-- <h3>Tracking History:</h3> -->
 
 <% @quants = Quant.find(:all, :conditions => "goal_id = '#{@goal.id}'", :order => "measurement_date DESC, measurement_hour DESC, measurement_taken_timestamp DESC") %>
 <% if @quants.size == 0 %>
-	No quants yet.
+<!-- 	No quants yet. -->
 <% else %>
 	<% @quants.each do |quant| %>
 
