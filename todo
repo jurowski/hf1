@@ -18,23 +18,8 @@ ROWLEY 52M
 NEXT
 ------------ 
 
---write initial values to states js files:
-
------------------------------------------------------
-Population:
-Obesity Rate:
-Est. # of Obese Adults:
-
-# of Participants:
-Challenge Goal: Lose XX lbs.
-
-Lbs Lost So Far: xx lbs
-
-Challenge Rank (US & Canada): xx of xx
-
-% of Goal Reached:
-(set color based on % reached threshold)
------------------------------------------------------
+--test map data w/ Ben Cope
+--map:(set color based on % reached threshold)
 
 --test that the tracker items get copied down correctly from 52M to goal-based-on-template-parent
 --prompt the user for a starting quant
@@ -43,7 +28,7 @@ Challenge Rank (US & Canada): xx of xx
 
 --write the cron job to pull new signups, create, auto-confirm and add the template goal for them
 --write the cron job to generate stats for the states, save in db
---write the cron job to write stats to js file
+--write the cron job to kick off the job to write stats to js file
 
 --graph user-level tracker results for weight
 

@@ -156,12 +156,14 @@ states.each do |state|
     end
 
     state_data = "<div>"
-    state_data += "Population-Adjusted Goal for #{state.state}: <strong>Lose #{number_with_delimiter(goal_lbs, :delimiter => ',')} lbs.</strong>"
-    state_data += "<br># of Challenge Participants: #{number_with_delimiter(total_participating, :delimiter => ',')} have signed up"
-    state_data += "<br>Lbs lost so far: #{number_with_delimiter(challenge_lbs_lost_total, :delimiter => ',')} lbs."
-    state_data += "<br>% of Goal Reached: #{challenge_percent_of_goal_met}%"
+    state_data += "Weighted Goal*: <strong>Lose #{number_with_delimiter(goal_lbs, :delimiter => ',')} lbs.</strong>"
+    state_data += "<br>#{number_with_delimiter(total_participating, :delimiter => ',')} Participants"
+    state_data += "<br>#{number_with_delimiter(challenge_lbs_lost_total, :delimiter => ',')} lbs. lost so far"
+    state_data += "<br>#{challenge_percent_of_goal_met}% of Goal Reached"
     state_data += "<br>Challenge Rank (US & Canada): ##{challenge_number_rank} out of #{states.size}"
 
+    state_data += "<br><br>"
+    state_data += "*Weighted Goal is based on the estimated number of obese adults in #{state.state}"    
     state_data += "<br><br><br>"
     state_data += "<br>-- Obesity Facts for #{state.state_code} --"
     state_data += "<br>Total Population: #{number_with_delimiter(demog_population, :delimiter => ',')}"
