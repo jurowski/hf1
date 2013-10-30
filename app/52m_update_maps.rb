@@ -25,7 +25,7 @@ class UpdateMaps52m < ActiveRecord::Base
   # This script updates the maps for John Rowley's 52M
 
   ### RUN IN PRODUCTION:
-  ### RAILS_ENV=production /usr/bin/ruby /home/jurowsk1/etc/rails_apps/habitforge/current/script/runner /home/jurowsk1/etc/rails_apps/habitforge/current/app/52m_update_maps.rb
+  ### cd /habitforge/current;RAILS_ENV=production /usr/bin/ruby /home/jurowsk1/etc/rails_apps/habitforge/current/script/runner /home/jurowsk1/etc/rails_apps/habitforge/current/app/52m_update_maps.rb
   #RAILS_ENV=production 
   #/usr/bin/ruby 
   #/home/jurowsk1/etc/rails_apps/habitforge/current/script/runner 
@@ -172,7 +172,9 @@ states.each do |state|
     state_data += " <br>"
     state_data += " <h3>*Weighted Goal is based on the estimated number of obese adults in #{state.state}</h3>"    
     state_data += " <br>"
-    state_data += " <br>Weight Loss Challenge Powered by <a href=\"http://habitforge.com\"><img src=\"http://habitforge.com/home/images/logos/HF-ETR-Logo-Header_120.png\" /></a>"
+    state_data += " <div style=\"background-color:#ffffff;padding:5px;margin:5px;\">"
+    state_data += "     <center><br>Weight Loss Challenge Powered by <a href=\"http://habitforge.com\"><img src=\"http://habitforge.com/home/images/logos/HF-ETR-Logo-Header_120.png\" /></a></center>"
+    state_data += " </div>"
     state_data += "</div>"
 
     File.open(filepath_to_mod, 'a') do |f| 
