@@ -149,6 +149,9 @@ Google Login
 -- NEXT --
 https://developers.google.com/accounts/docs/OAuth2UserAgent
 
+client (app) name: HabitForge
+client-id: ultra-acre-385
+
 -- LATER ON --
 ALLOW USER TO LOG OUT WHILE FB IS STILL LOGGED IN ELSEWHERE
 --currently it logs them back in right away
