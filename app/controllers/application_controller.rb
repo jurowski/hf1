@@ -8,6 +8,8 @@ class ApplicationController < ActionController::Base
   ### http://stackoverflow.com/questions/5822912/how-do-i-display-an-avatar-in-rails
   require 'digest/md5'
 
+  ### using this to read output for google authentication when verifying a token
+  require 'open-uri'
 
 
   helper :all # include all helpers, all the time

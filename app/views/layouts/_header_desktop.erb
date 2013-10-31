@@ -168,6 +168,26 @@
               <a href="https://accounts.google.com/o/oauth2/auth?scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile&state=%2Fprofile&redirect_uri=https%3A%2F%2Fhabitforge.com&response_type=token&client_id=332087264928.apps.googleusercontent.com">
                 <img src="/home/images/Button-Google.png" /> 
               </a>
+
+              <% 
+              if !session[:google_access_token] and params[:access_token]
+                
+                ### verify the token and read what comes back
+                open("https://www.googleapis.com/oauth2/v1/tokeninfo?access_token=#{params[:access_token]}") {|f|
+                  f.each_line {|line| 
+                    %>
+                    <!-- p line -->
+                    <%= line %>
+                    <%
+                  }
+                }
+
+
+                #session[:google_access_token] = params[:access_token] 
+
+              end 
+              %>
+
             <% else %>
               <a style="" href="#" id='signup_google' title="Coming Soon... (for now, please register with Facebook or with your email address)" rel="signup_google" onmouseover="this.getElementById('image_button_signup_google').src='/home/images/Button-Google-Hover.png'" onmouseout="this.getElementById('image_button_signup_google').src='/home/images/Button-Google.png'">
               </a>
