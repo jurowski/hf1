@@ -768,38 +768,38 @@ class GoalsController < ApplicationController
           #   logger.debug("sgj:goals_controller:4")
           # end
 
-          if !@goal.tracker_standard_deviation_from_last_measurement
-            missing = true
-            logger.debug("sgj:goals_controller:5")
-          end
-          if !@goal.tracker_target_threshold_bad1
-            missing = true
-            logger.debug("sgj:goals_controller:6")
-          end
-          if !@goal.tracker_target_threshold_bad2
-            missing = true
-            logger.debug("sgj:goals_controller:7")
-          end
-          if !@goal.tracker_target_threshold_bad3
-            missing = true
-            logger.debug("sgj:goals_controller:8")
-          end
-          if !@goal.tracker_target_threshold_good1
-            missing = true
-            logger.debug("sgj:goals_controller:9")
-          end
-          if !@goal.tracker_target_threshold_good2
-            missing = true
-            logger.debug("sgj:goals_controller:10")
-          end
-          if !@goal.tracker_target_threshold_good3
-            missing = true
-            logger.debug("sgj:goals_controller:11")
-          end
+          # if !@goal.tracker_standard_deviation_from_last_measurement
+          #   missing = true
+          #   logger.debug("sgj:goals_controller:5")
+          # end
+          # if !@goal.tracker_target_threshold_bad1
+          #   missing = true
+          #   logger.debug("sgj:goals_controller:6")
+          # end
+          # if !@goal.tracker_target_threshold_bad2
+          #   missing = true
+          #   logger.debug("sgj:goals_controller:7")
+          # end
+          # if !@goal.tracker_target_threshold_bad3
+          #   missing = true
+          #   logger.debug("sgj:goals_controller:8")
+          # end
+          # if !@goal.tracker_target_threshold_good1
+          #   missing = true
+          #   logger.debug("sgj:goals_controller:9")
+          # end
+          # if !@goal.tracker_target_threshold_good2
+          #   missing = true
+          #   logger.debug("sgj:goals_controller:10")
+          # end
+          # if !@goal.tracker_target_threshold_good3
+          #   missing = true
+          #   logger.debug("sgj:goals_controller:11")
+          # end
 
           if missing
-            tracker_data_missing_error = true
-            @goal.errors.add(:base, "All 'Tracker' fields are required if the 'Tracker' is enabled.")
+           tracker_data_missing_error = true
+           @goal.errors.add(:base, "All 'Tracker' fields are required if the 'Tracker' is enabled.")
           end ### end if missing
 
         end ### end if @goal.tracker
