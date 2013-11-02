@@ -59,15 +59,15 @@ class User < ActiveRecord::Base
       end
     end
 
-    if self.state or self.country 
+    if (self.state and self.state.length > 1) or (self.country and self.country.length > 1)
       my_info += " living in " 
-      if self.state
+      if self.state and self.state.length > 1
         my_info += self.state
-        if self.country
+        if self.country and self.country.length > 1
         my_info += ", " 
         end
       end
-      if self.country
+      if self.country and self.country.length > 1
         my_info += self.country
       end
     end
