@@ -13,7 +13,7 @@ end
 %>
 
 
-<% if @program %> 
+<% if @program and @program.status and @program.status == "live" %> 
 
 
     <% 
