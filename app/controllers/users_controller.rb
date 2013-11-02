@@ -18,7 +18,7 @@ class UsersController < ApplicationController
   ### Do you want to be able to create new users when someone is logged in?
   #before_filter :require_no_user, :only => [:new, :create]
   before_filter :require_no_user, :only => [:quicksignup_v2]
-  before_filter :require_user, :only => [:show, :edit, :update, :index, :destroy]
+  before_filter :require_user, :only => [:show, :edit, :update, :index, :destroy, :profile]
   #before_filter :require_user, :only => [:show, :edit, :update]
 
 
@@ -685,7 +685,10 @@ class UsersController < ApplicationController
   end ### end def quicksignup_v2
 
 
+  def profile
+    @user = User.find(params[:id])
 
+  end
 
 
 

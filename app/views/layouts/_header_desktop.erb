@@ -170,10 +170,22 @@
               </a>
 
               <% 
-              if !session[:google_access_token] and params[:access_token]
-                
+  ####
+  # NOTE THAT THIS IS WORKING BUTTTTTTT
+  # What you really wanted to get back from google in the first place was:
+  # http://habitforge.com/?access_token=ya29.AHES6ZQzuTMUdXlvHajq_XMsrdoZY3olIT2NL81Jlgs-jzk&token_type=Bearer&expires_in=3600
+  # What you get instead is:
+  # http://habitforge.com/#state=/profile&access_token=ya29.AHES6ZQzuTMUdXlvHajq_XMsrdoZY3olIT2NL81Jlgs-jzk&token_type=Bearer&expires_in=3600
+  # ... meaning, what you need to do is grab the "access_token" out of the URI instead of just as a param
+  #   because  that "#state=" thing is there instead of a "?" so it's not really a param yet
+
+              if !session[:google_access_token] and request.url.include? '&access_token='
+              
+                arr_url = request.split "&"
+                arr_access_token = arr_url[1].split "="
+                session[:google_access_token] = arr_access_token[1]
                 ### verify the token and read what comes back
-                open("https://www.googleapis.com/oauth2/v1/tokeninfo?access_token=#{params[:access_token]}") {|f|
+                open("https://www.googleapis.com/oauth2/v1/tokeninfo?access_token=#{session [:access_token]}") {|f|
                   f.each_line {|line| 
                     %>
                     <!-- p line -->

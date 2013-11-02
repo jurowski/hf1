@@ -1,0 +1,94 @@
+<% 
+  intro_phrase = "Shared Goals"
+  @their_active_goals = Array.new()
+  
+  if params[:shared_u]
+  @user = User.find(:first, :conditions => "id = '#{params[:shared_u]}'")
+  end
+
+  if @user == nil
+      %>
+      That user does not exist.
+      <%
+  else
+      %>
+      
+      <p>
+
+
+      <% 
+      if params[:one_g] 
+        begin
+            one_goal = Goal.find(params[:one_g])
+            if one_goal and one_goal.is_active_and_public
+              @their_active_goals << one_goal
+            end
+        rescue
+            puts "didn't find goal"
+        end
+      else 
+        @their_active_goals = @user.active_public_goals
+      end 
+
+
+      if !@their_active_goals or @their_active_goals.size == 0
+        intro_phrase = "<h3>#{@user.first_name} has no Shared Goals at this time</h3>"
+      end 
+      if @their_active_goals and @their_active_goals.size == 1
+        intro_phrase = "<h3>#{@user.first_name}'s Shared Goal</h3>"
+      end 
+      if @their_active_goals and @their_active_goals.size > 1
+        intro_phrase = "<h3>#{@user.first_name}'s Shared Goals</h3>"
+      end 
+
+
+      %>
+      <%= intro_phrase %>
+      <%
+      @their_active_goals.each do |goal|
+          %>
+          <div class="div_habit">
+
+
+                    <% if current_user.goal_ids_that_i_follow.include?(goal.id) %>
+                      <a href="#" class="btn disabled">Following</a>
+                    <% else %>
+
+                      <% if goal.is_active %>
+                          <a href="/cheers?start_following_goal_id=<%= goal.id.to_s %>&email=<%= current_user.email %>" onclick="return confirm('Are you sure?')" id='follow_<%= goal.id.to_s %>'  class="btn blue" title="Follow <%= goal.user.first_name %>'s Progress" ><i class="icon-plus"></i> Follow</a>
+                          <script type='text/javascript'>
+                              $('#follow_<%= goal.id.to_s %>').tipsy();
+                          </script>
+                      <% else %>
+                        <a href="#" class="btn disabled">Stale</a>
+                      <% end %>
+
+                    <% end %>
+
+
+                    <a href="/tomessages/new?goal_id=<%=goal.id.to_s%>&gid=<%=goal.id.to_s%>&from_type=member&tomessage_subject=<%= goal.response_question %>&to_id=<%= goal.user.id %>" id='encourage_<%= goal.id.to_s %>' class="btn red" title='Encourage <%= goal.user.first_name %>!'> <i class="icon-heart-empty"></i> Boost</a> <span style="font-weight:bold;font-size:1.2em;"> 
+
+
+                  <% if goal.user.show_gravatar %>
+                    <% gravatar = "http://www.gravatar.com/avatar/#{Digest::MD5.hexdigest(goal.user.email.downcase)}?d=mm" %>
+                    <img src="<%= gravatar %>&s=30" />            
+                  <% else %>
+                    <img src="/home/images/default_gravatar.png" height="30px"/>
+                  <% end %>
+
+                    <%= goal.user.first_name %></span> is working on ... <span style="background-color:#FFFF99;"><%= goal.response_question %></span>
+                    <script type='text/javascript'>
+                    $('#encourage_<%= goal.id.to_s %>').tipsy();
+                    </script>                  
+                    </p>  
+          </div>
+        <%
+      end
+      %>
+      <%
+  end
+  %>
+  
+
+  <br />
+ 

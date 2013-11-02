@@ -131,9 +131,9 @@ else
 
             <% if cheer.goal.user.show_gravatar %>
               <% gravatar = "http://www.gravatar.com/avatar/#{Digest::MD5.hexdigest(cheer.goal.user.email.downcase)}?d=mm" %>
-              <img src="<%= gravatar %>&s=30" />            
+              <a href="/users/<%= cheer.goal.user.id.to_s %>/profile"><img src="<%= gravatar %>&s=30" /></a>            
             <% else %>
-              <img src="/home/images/default_gravatar.png" height="30px"/>
+              <a href="/users/<%= cheer.goal.user.id.to_s %>/profile"><img src="/home/images/default_gravatar.png" height="30px"/></a>
             <% end %>
 
             <%=h cheer.goal.user.first_name %> <%=h cheer.goal.user.last_name %> is <%= cheer.goal.title %>.
@@ -247,9 +247,9 @@ else
 
                   <% if slacker_goal.user.show_gravatar %>
                     <% gravatar = "http://www.gravatar.com/avatar/#{Digest::MD5.hexdigest(slacker_goal.user.email.downcase)}?d=mm" %>
-                    <img src="<%= gravatar %>&s=30" />            
+                    <a href="/users/<%= slacker_goal.user.id.to_s %>/profile"><img src="<%= gravatar %>&s=30" /></a>            
                   <% else %>
-                    <img src="/home/images/default_gravatar.png" height="30px"/>
+                    <a href="/users/<%= slacker_goal.user.id.to_s %>/profile"><img src="/home/images/default_gravatar.png" height="30px"/></a>
                   <% end %>
 
                     <%= slacker_goal.user.first_name %></span> is working on ... <span style="background-color:#FFFF99;"><%= slacker_goal.response_question %></span>
@@ -377,9 +377,9 @@ begin
 
                   <% if goal.user.show_gravatar %>
                     <% gravatar = "http://www.gravatar.com/avatar/#{Digest::MD5.hexdigest(goal.user.email.downcase)}?d=mm" %>
-                    <img src="<%= gravatar %>&s=30" />            
+                    <a href="/users/<%= goal.user.id.to_s %>/profile"><img src="<%= gravatar %>&s=30" /></a>            
                   <% else %>
-                    <img src="/home/images/default_gravatar.png" height="30px"/>
+                    <a href="/users/<%= goal.user.id.to_s %>/profile"><img src="/home/images/default_gravatar.png" height="30px"/></a>
                   <% end %>
 
                    <%= goal.user.first_name %></span> is working on ... <span style="background-color:#FFFF99;"><%= goal.response_question %></span>

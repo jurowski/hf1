@@ -1,0 +1,38 @@
+<div>
+	<% gravatar = "http://www.gravatar.com/avatar/#{Digest::MD5.hexdigest(@user.email.downcase)}?d=mm" %>
+	<img src="<%= gravatar %>&s=34" style="padding-top:2px;" />
+	<br>
+	<%= @user.name %> 
+	<% if @user.gender %>
+		, <%= @user.gender %>
+	<% end %>
+	<% if @user.yob %>
+
+		<% arr_today = @user.dtoday.to_s.split "-" %>
+		<% year_today = arr_today[0].to_i %>
+		<% age = year_today - @user.yob %>
+		<% if age > 0 %>
+			, <%= age %> years young
+		<% end %>
+	<% end %>
+
+	<!-- LOCATION -->
+	<% if @user.state or @user.country %>
+		<div>
+		Location: 
+		<% if @user.state %>
+			<%= @user.state %>
+			<% if @user.country %>
+				, 
+			<% end %>
+		<% end %>
+		<% if @user.country %>
+			<%= @user.country %>
+		<% end %>
+	<% end %>
+
+
+		<%= render :partial => "cheers/shared", :locals => { :user => @user } %>
+
+</div>
+
