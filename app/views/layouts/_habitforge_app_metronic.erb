@@ -73,7 +73,7 @@ if current_user
 end 
 
 
-if 1 == 2 ### whether to hide all ads
+if 1 == 1 ### whether to hide all ads
   ######################  START ADVERTISING #########################
   show_ads = 0
   if current_user or @ca == "autoupdate" or @ca == "autoupdatemultiple" 
@@ -1128,13 +1128,14 @@ $('.confirmation').on('click',function(){return confirm('Are you sure?');});
 
             <!-- ####################################### -->
             <!-- START GOOGLE ADS TOP -->
-            <% if show_ads == 1 %>
-              <% if @production  %>
+            <% if show_ads == 1  %>
+              <% if @production or !@production %>
                   <br>
 
-                  <div class="dynamic_ads">
-                      <%= render :partial => 'goals/dynamic_ads' %>
-                  </div>
+                  <a href="/goals/new?category=Writing&goal_template_text=reaching%20your%20word%20count%20goal"><img src="/home/images/banners/banner_nanowrimo_728_x_90.png" /></a>
+<!--                   <div class="dynamic_ads"> -->
+                      <!-- render :partial => 'goals/dynamic_ads' -->
+<!--                   </div> -->
 
 
                   <br>
@@ -1543,7 +1544,7 @@ $('.confirmation').on('click',function(){return confirm('Are you sure?');});
 
 
 
-        <% if 1 == 2 %>
+        <% if 1 == 1 %>
         <div class="row-fluid">
           <div class="span12"> 
 
