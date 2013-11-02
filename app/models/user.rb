@@ -42,6 +42,44 @@ class User < ActiveRecord::Base
   # validates_uniqueness_of :fb_id
 
 
+  def profile_info
+
+    my_info = self.name
+
+    if self.gender
+      my_info += ", " + self.gender
+    end
+
+    if self.yob
+      arr_today = self.dtoday.to_s.split "-" 
+      year_today = arr_today[0].to_i 
+      age = year_today - self.yob 
+      if age > 0 
+        my_info += ", " + age.to_s + " years young"
+      end
+    end
+
+    if self.state or self.country 
+      my_info += " living in " 
+      if self.state
+        my_info += self.state
+        if self.country
+        my_info += ", " 
+        end
+      end
+      if self.country
+        my_info += self.country
+      end
+    end
+
+    if my_info == self.name
+      my_info += " (no additional profile info)"
+    end
+
+    return my_info
+
+  end
+
   def name
     if last_name and last_name != ""
       return first_name + " " + last_name

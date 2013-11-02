@@ -1373,10 +1373,14 @@ http://localhost:3000/goals?update_checkpoint_status=yes&date=2012-02-12&e0=106&
 
                   <% if slacker_goal.user.show_gravatar %>
                     <% gravatar = "http://www.gravatar.com/avatar/#{Digest::MD5.hexdigest(slacker_goal.user.email.downcase)}?d=mm" %>
-                    <a href="/users/<%= slacker_goal.user.id.to_s %>/profile"><img src="<%= gravatar %>&s=30" /></a>            
+                    <a href="/users/<%= slacker_goal.user.id.to_s %>/profile"><img id="slack_<%= slacker_goal.id.to_s %>" title="<%= slacker_goal.user.profile_info %>" src="<%= gravatar %>&s=30" /></a>            
                   <% else %>
-                    <a href="/users/<%= slacker_goal.user.id.to_s %>/profile"><img src="/home/images/default_gravatar.png" height="30px"/></a>
+                    <a href="/users/<%= slacker_goal.user.id.to_s %>/profile"><img id="slack_<%= slacker_goal.id.to_s %>" title="<%= slacker_goal.user.profile_info %>" src="/home/images/default_gravatar.png" height="30px"/></a>
                   <% end %>
+                <script type='text/javascript'>
+                $('#slack_<%= slacker_goal.id.to_s %>').tipsy();
+                </script>
+
 
                     <%= slacker_goal.user.first_name %></span> is working on ... <span style="background-color:#FFFF99;"><%= slacker_goal.response_question %></span>
                     <script type='text/javascript'>

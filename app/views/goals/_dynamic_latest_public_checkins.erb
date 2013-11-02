@@ -35,7 +35,16 @@
 
 
 	<% encourage_items.each do |e| %>
-		<% if counter <= max %>
+
+		<% 
+		begin
+			e_user = User.find(e.user_id) 
+		rescue
+			e_user = false
+		end
+		%>
+
+		<% if counter <= max and e_user %>
 
 			<% counter += 1 %>
 
@@ -71,7 +80,11 @@
 
 				<!-- if member_goal.user.show_gravatar -->
 				<% gravatar = "http://www.gravatar.com/avatar/#{Digest::MD5.hexdigest(e.user_email.downcase)}?d=mm" %>
-				<a href="/users/<%= e.user_id.to_s %>/profile"><img src="<%= gravatar %>&s=34" style="padding-top:2px;" /></a>            
+				<a href="/users/<%= e.user_id.to_s %>/profile"><img id="grav1_<%= e.goal_id.to_s %>" title="<%= e_user.profile_info %>" src="<%= gravatar %>&s=34" style="padding-top:2px;" /></a>            
+				<script type='text/javascript'>
+				$('#grav1_<%= e.goal_id.to_s %>').tipsy();
+				</script>
+
 				<!-- else -->
 				<!--img src="/home/images/default_gravatar.png" height="20px"/-->
 				<!-- end -->
@@ -184,7 +197,11 @@
 
 				<!-- if member_goal.user.show_gravatar -->
 				<% gravatar = "http://www.gravatar.com/avatar/#{Digest::MD5.hexdigest(e.user_email.downcase)}?d=mm" %>
-				<a href="/users/<%= e.user_id.to_s %>/profile"><img src="<%= gravatar %>&s=34" style="padding-top:2px;" /></a>            
+				<a href="/users/<%= e.user_id.to_s %>/profile"><img id="grav2_<%= e.goal_id.to_s %>" title="<%= e_user.profile_info %>" src="<%= gravatar %>&s=34" style="padding-top:2px;" /></a>            
+				<script type='text/javascript'>
+				$('#grav2_<%= e.goal_id.to_s %>').tipsy();
+				</script>
+
 				<!-- else -->
 				<!--img src="/home/images/default_gravatar.png" height="20px"/-->
 				<!-- end -->
