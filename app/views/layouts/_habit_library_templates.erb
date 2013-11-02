@@ -57,7 +57,7 @@
 
         <ul id="list" class="da-thumbs">
 <!--         <ul id="list" class=""> -->
-            <% programs = Program.find(:all) %>
+            <% programs = Program.find(:all, :conditions => "status = 'live'") %>
             <% program_counter = 0 %>
             <% programs.each do |program| %>
                 <% program_counter += 1 %>
