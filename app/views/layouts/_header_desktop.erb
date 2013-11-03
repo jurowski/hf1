@@ -185,7 +185,7 @@
                 arr_access_token = arr_url[1].split "="
                 session[:google_access_token] = arr_access_token[1]
                 ### verify the token and read what comes back
-                open("https://www.googleapis.com/oauth2/v1/tokeninfo?access_token=#{session [:access_token]}") {|f|
+                open("https://www.googleapis.com/oauth2/v1/tokeninfo?access_token=#{session[:google_access_token]}") {|f|
                   f.each_line {|line| 
                     %>
                     <!-- p line -->
