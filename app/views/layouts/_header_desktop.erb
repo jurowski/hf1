@@ -185,7 +185,7 @@
               <%= request.url %>
               <%
               if request.url.include? '&access_token='              
-                <%=
+
                 arr_url = request.split "&"
                 arr_access_token = arr_url[1].split "="
                 session[:google_access_token] = arr_access_token[1]
