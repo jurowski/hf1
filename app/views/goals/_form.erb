@@ -492,7 +492,7 @@ end
     @arr_reminder.push(["~10pm", 22])
     @arr_reminder.push(["~11pm", 23])
 
-    # @arr_reminder.push(["no reminder", -1])
+    @arr_reminder.push(["no reminder", -1])
     %>
     <%= select(:goal, :reminder_send_hour, @arr_reminder,{},{:style=>"width:75px;"})%>
 
@@ -1173,7 +1173,7 @@ end
 
 
 
-<% if params[:just_created_new_habit] %>
+<% if params[:just_created_new_habit] and @goal.reminder_send_hour != -1 %>
     <div style="padding:0px;padding-top:30px;">
     <span style="color:#000000;font-size:1.2em;font-weight:normal;">You'll get your first reminder 
 
