@@ -307,7 +307,7 @@ class WeightLossByStatesController < ApplicationController
               w.country = "usa"
               w.map_code = 27
               w.demog_population = 1826341
-              w.demog_percent_obesity_rate = 27  ### not finding NE on the CDC site....
+              w.demog_percent_obesity_rate = 27  ### not finding NE on the CDC site....   
 
             when "NV"
               w.country = "usa"
