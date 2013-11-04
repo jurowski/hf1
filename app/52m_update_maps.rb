@@ -164,10 +164,10 @@ states.each do |state|
     state_data += " <br>"
     state_data += " <br>"
     state_data += " <div style=\"background-color:#ffffff;padding:5px;margin:5px;\">"
-    state_data += "     <br>#{state.state_code} Obesity Rate: <strong>#{demog_percent_obesity_rate}%</strong>"
+    state_data += "     #{state.state_code} Obesity Rate: <strong>#{demog_percent_obesity_rate}%</strong>"
     state_data += "     <br>Est # of Obese Adults: <strong>#{number_with_delimiter(demog_number_obese_adults, :delimiter => ',')}</strong>"
     state_data += " </div>"
-    state_data += " <h3>*Weighted Goal based on est. #{} of obese adults in #{state.state}</h3>"    
+    state_data += " <h3>*Goal based on est. # of obese adults in #{state.state_code}</h3>"    
 
     if state.country == "canada"
     state_data += " <h3>Population data: Canada 2011 Census (statcan.gc.ca)</h3>"        
