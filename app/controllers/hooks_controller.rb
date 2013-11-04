@@ -10,8 +10,28 @@ class HooksController < ApplicationController
 
 
   def new_rowley_user
-    if params[:email] and params[:name] and params[:country] and params[:state]
-      logger.info("sgj:52m_new_users:email=" + params[:email] + ":name=" + params[:name] + ":country=" + params[:country] + ":state=" + params[:state] )
+
+    ### What comes back once they confirm
+    # Processing HooksController#new_rowley_user (for 207.106.13.51 at 2013-11-04 16:49:54) [GET]
+    # 2013-11-04 22:49:54 GMT | INFO | 22818 |   Parameters: {"contact_name"=>"Sandon", "ACCOUNT_ID"=>"dqcM", "action"=>"new_rowley_user", "account_login"=>"johnrowley", "CONTACT_ID"=>"Aham3", "campaign_name"=>"52_million_pound_challenge", "contact_ip"=>"144.92.221.139", "contact_origin"=>"www", "controller"=>"hooks", "contact_email"=>"support%40habitforge.com", "CAMPAIGN_ID"=>"7bjl"}
+    # 2013-11-04 22:49:54 GMT | INFO | 22818 | Completed in 1ms (View: 0, DB: 0) | 200 OK [http://habitforge.com/hooks/rowley_52m/new_rowley_user?CONTACT_ID=Aham3&ACCOUNT_ID=dqcM&account_login=johnrowley&contact_name=Sandon&campaign_name=52_million_pound_challenge&contact_ip=144.92.221.139&CAMPAIGN_ID=7bjl&contact_email=support%2540habitforge.com&contact_origin=www&action=subscribe]
+    # 2013-11-04 22:50:03 GMT | INFO | 22818 | 
+
+    # "contact_name"=>"Sandon", 
+    # "ACCOUNT_ID"=>"dqcM", 
+    # "action"=>"new_rowley_user", 
+    # "account_login"=>"johnrowley", 
+    # "CONTACT_ID"=>"Aham3", 
+    # "campaign_name"=>"52_million_pound_challenge", 
+    # "contact_ip"=>"144.92.221.139", 
+    # "contact_origin"=>"www", 
+    # "controller"=>"hooks", 
+    # "contact_email"=>"support%40habitforge.com", 
+    # "CAMPAIGN_ID"=>"7bjl"
+
+
+    if params[:contact_email] and params[:contact_name] and params[:campaign_name] and params[:campaign_name] == "52_million_pound_challenge"
+      logger.info("sgj:52m_new_users:email=" + params[:contact_email] + ":name=" + params[:contact_name] )
       #`cat "#{params[:email]},#{params[:name]},#{params[:country]},#{params[:state]}" >> 52m_new_users.csv`
       #`cat hello >> 52m_new_users.csv`
     end
