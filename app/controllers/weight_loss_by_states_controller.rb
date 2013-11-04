@@ -145,31 +145,31 @@ class WeightLossByStatesController < ApplicationController
               w.country = "usa"
               w.map_code = 1
               w.demog_population = 4779736
-              w.demog_percent_obesity_rate = 32 
+              w.demog_percent_obesity_rate = 33 
 
             when "AK"
               w.country = "usa"
               w.map_code = 2
               w.demog_population = 710231
-              w.demog_percent_obesity_rate = 25
+              w.demog_percent_obesity_rate = 26
 
             when "AZ"
               w.country = "usa"
               w.map_code = 3
               w.demog_population = 6392017
-              w.demog_percent_obesity_rate = 24
+              w.demog_percent_obesity_rate = 26
 
             when "AR"
               w.country = "usa"
               w.map_code = 4
               w.demog_population = 2915918
-              w.demog_percent_obesity_rate = 30
+              w.demog_percent_obesity_rate = 35
 
             when "CA"
               w.country = "usa"
               w.map_code = 5
               w.demog_population = 37253956
-              w.demog_percent_obesity_rate = 24
+              w.demog_percent_obesity_rate = 25
 
             when "CO"
               w.country = "usa"
@@ -181,37 +181,37 @@ class WeightLossByStatesController < ApplicationController
               w.country = "usa"
               w.map_code = 7
               w.demog_population = 3574097
-              w.demog_percent_obesity_rate = 23
+              w.demog_percent_obesity_rate = 26
 
             when "DE"
               w.country = "usa"
               w.map_code = 8
               w.demog_population = 897934
-              w.demog_percent_obesity_rate = 28
+              w.demog_percent_obesity_rate = 27
 
             when "DC"
               w.country = "usa"
               w.map_code = 51
               w.demog_population = 601723
-              w.demog_percent_obesity_rate = 27 ### unknown, using 27 for Maryland MD, same as national avg
+              w.demog_percent_obesity_rate = 22
 
             when "FL"
               w.country = "usa"
               w.map_code = 9
               w.demog_population = 18801310
-              w.demog_percent_obesity_rate = 27
+              w.demog_percent_obesity_rate = 25
 
             when "GA"
               w.country = "usa"
               w.map_code = 10
               w.demog_population = 9687653
-              w.demog_percent_obesity_rate = 30
+              w.demog_percent_obesity_rate = 29
 
             when "HI"
               w.country = "usa"
               w.map_code = 11
               w.demog_population = 1360301
-              w.demog_percent_obesity_rate = 23
+              w.demog_percent_obesity_rate = 24
 
             when "ID"
               w.country = "usa"
@@ -229,19 +229,19 @@ class WeightLossByStatesController < ApplicationController
               w.country = "usa"
               w.map_code = 14
               w.demog_population = 6483802
-              w.demog_percent_obesity_rate = 30
+              w.demog_percent_obesity_rate = 31
 
             when "IA"
               w.country = "usa"
               w.map_code = 15
               w.demog_population = 3046355
-              w.demog_percent_obesity_rate = 28
+              w.demog_percent_obesity_rate = 30
 
             when "KS"
               w.country = "usa"
               w.map_code = 16
               w.demog_population = 2853118
-              w.demog_percent_obesity_rate = 29
+              w.demog_percent_obesity_rate = 30
 
             when "KY"
               w.country = "usa"
@@ -253,19 +253,19 @@ class WeightLossByStatesController < ApplicationController
               w.country = "usa"
               w.map_code = 18
               w.demog_population = 4533372
-              w.demog_percent_obesity_rate = 31
+              w.demog_percent_obesity_rate = 35
 
             when "ME"
               w.country = "usa"
               w.map_code = 19
               w.demog_population = 1328361
-              w.demog_percent_obesity_rate = 27
+              w.demog_percent_obesity_rate = 28
 
             when "MD"
               w.country = "usa"
               w.map_code = 20
               w.demog_population = 5773552
-              w.demog_percent_obesity_rate = 27
+              w.demog_percent_obesity_rate = 28
 
             when "MA"
               w.country = "usa"
@@ -283,55 +283,55 @@ class WeightLossByStatesController < ApplicationController
               w.country = "usa"
               w.map_code = 23
               w.demog_population = 5303925
-              w.demog_percent_obesity_rate = 25
+              w.demog_percent_obesity_rate = 26
 
             when "MS"
               w.country = "usa"
               w.map_code = 24
               w.demog_population = 2967297
-              w.demog_percent_obesity_rate = 34
+              w.demog_percent_obesity_rate = 35
 
             when "MO"
               w.country = "usa"
               w.map_code = 25
               w.demog_population = 5988927
-              w.demog_percent_obesity_rate = 31
+              w.demog_percent_obesity_rate = 30
 
             when "MT"
               w.country = "usa"
               w.map_code = 26
               w.demog_population = 989415
-              w.demog_percent_obesity_rate = 23
+              w.demog_percent_obesity_rate = 24
 
             when "NE"
               w.country = "usa"
               w.map_code = 27
               w.demog_population = 1826341
-              w.demog_percent_obesity_rate = 27
+              w.demog_percent_obesity_rate = 27  ### not finding NE on the CDC site....
 
             when "NV"
               w.country = "usa"
               w.map_code = 28
               w.demog_population = 2700551
-              w.demog_percent_obesity_rate = 22
+              w.demog_percent_obesity_rate = 26
 
             when "NH"
               w.country = "usa"
               w.map_code = 29
               w.demog_population = 1316470
-              w.demog_percent_obesity_rate = 25
+              w.demog_percent_obesity_rate = 27
 
             when "NJ"
               w.country = "usa"
               w.map_code = 30
               w.demog_population = 8791894
-              w.demog_percent_obesity_rate = 24
+              w.demog_percent_obesity_rate = 25
 
             when "NM"
               w.country = "usa"
               w.map_code = 31
               w.demog_population = 2059179
-              w.demog_percent_obesity_rate = 25
+              w.demog_percent_obesity_rate = 27
 
             when "NY"
               w.country = "usa"
@@ -343,25 +343,25 @@ class WeightLossByStatesController < ApplicationController
               w.country = "usa"
               w.map_code = 33
               w.demog_population = 9535483
-              w.demog_percent_obesity_rate = 28
+              w.demog_percent_obesity_rate = 30
 
             when "ND"
               w.country = "usa"
               w.map_code = 34
               w.demog_population = 672591
-              w.demog_percent_obesity_rate = 27
+              w.demog_percent_obesity_rate = 30
 
             when "OH"
               w.country = "usa"
               w.map_code = 35
               w.demog_population = 11536504
-              w.demog_percent_obesity_rate = 29
+              w.demog_percent_obesity_rate = 30
 
             when "OK"
               w.country = "usa"
               w.map_code = 36
               w.demog_population = 3751351
-              w.demog_percent_obesity_rate = 30
+              w.demog_percent_obesity_rate = 32
 
             when "OR"
               w.country = "usa"
@@ -391,7 +391,7 @@ class WeightLossByStatesController < ApplicationController
               w.country = "usa"
               w.map_code = 41
               w.demog_population = 814180
-              w.demog_percent_obesity_rate = 27
+              w.demog_percent_obesity_rate = 28
 
             when "TN"
               w.country = "usa"
@@ -403,43 +403,43 @@ class WeightLossByStatesController < ApplicationController
               w.country = "usa"
               w.map_code = 43
               w.demog_population = 25145561
-              w.demog_percent_obesity_rate = 31
+              w.demog_percent_obesity_rate = 29
 
             when "UT"
               w.country = "usa"
               w.map_code = 44
               w.demog_population = 2763885
-              w.demog_percent_obesity_rate = 23
+              w.demog_percent_obesity_rate = 24
 
             when "VT"
               w.country = "usa"
               w.map_code = 45
               w.demog_population = 625741
-              w.demog_percent_obesity_rate = 23
+              w.demog_percent_obesity_rate = 24
 
             when "VA"
               w.country = "usa"
               w.map_code = 46
               w.demog_population = 8001024
-              w.demog_percent_obesity_rate = 26
+              w.demog_percent_obesity_rate = 27
 
             when "WA"
               w.country = "usa"
               w.map_code = 47
               w.demog_population = 6724540
-              w.demog_percent_obesity_rate = 26
+              w.demog_percent_obesity_rate = 27
 
             when "WV"
               w.country = "usa"
               w.map_code = 48
               w.demog_population = 1852994
-              w.demog_percent_obesity_rate = 33
+              w.demog_percent_obesity_rate = 34
 
             when "WI"
               w.country = "usa"
               w.map_code = 49
               w.demog_population = 5686986
-              w.demog_percent_obesity_rate = 26
+              w.demog_percent_obesity_rate = 30
 
             when "WY"
               w.country = "usa"

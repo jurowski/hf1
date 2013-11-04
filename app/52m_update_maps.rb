@@ -171,10 +171,19 @@ states.each do |state|
     state_data += " </div>"
     state_data += " <br>"
     state_data += " <h3>*Weighted Goal is based on the estimated number of obese adults in #{state.state}</h3>"    
-    state_data += " <br>"
+
+    if state.country == "canada"
+    state_data += " <h3>Population data: Canada 2011 Census (statcan.gc.ca)</h3>"        
+    state_data += " <h3>Obesity data: 'Obesity rates in Canada provinces, 2004;Regional differences in obesity (2006)', Statistics Canada </h3>"
+    end
+    if state.country == "usa"
+    state_data += " <h3>Population data: Census Data 2010 (census.gov)</h3>"
+    state_data += " <h3>Obesity data: CDC 2012 (cdc.gov)</h3>"
+    end
+
     state_data += " <div style=\"background-color:#ffffff;padding:5px;margin:5px;\">"
-    state_data += "     <center>Challenge Powered By: "
-    state_data += "     <br><a href=\"http://habitforge.com\"><img src=\"http://habitforge.com/home/images/logos/HF-ETR-Logo-Header_120.png\" /></a></center>"
+    state_data += "     <center>Challenge Tracking Powered By: "
+    state_data += "     <br><a href=\"http://habitforge.com\" target=\"_blank\"><img src=\"http://habitforge.com/home/images/logos/HF-ETR-Logo-Header_120.png\" /></a></center>"
     state_data += " </div>"
     state_data += "</div>"
 
