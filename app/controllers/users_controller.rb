@@ -69,6 +69,7 @@ class UsersController < ApplicationController
       @stat.save
   end
 
+
   def valid_email( value )
     begin
      return false if value == ''

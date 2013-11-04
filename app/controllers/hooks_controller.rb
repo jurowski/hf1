@@ -7,6 +7,17 @@ class HooksController < ApplicationController
   
   require 'logger'
 
+
+
+  def new_rowley_user
+    if params[:email] and params[:name] and params[:country] and params[:state]
+      logger.info("sgj:52m_new_users:email=" + params[:email] + ":name=" + params[:name] + ":country=" + params[:country] + ":state=" + params[:state] )
+      #`cat "#{params[:email]},#{params[:name]},#{params[:country]},#{params[:state]}" >> 52m_new_users.csv`
+      #`cat hello >> 52m_new_users.csv`
+    end
+    render :nothing => true
+  end
+
   def create
     #Default to return 403 Forbidden
     status = 403
