@@ -340,7 +340,7 @@ class HooksController < ApplicationController
           @goal.stop = @goal.start + @goal.days_to_form_a_habit
           @goal.first_start_date = @goal.start          
 
-          if @goal.saved
+          if @goal.save
             logger.info("sgj:52m_new_users:SUCCESS SAVING 52M GOAL FOR new user email=" + user.email)            
 
             begin
