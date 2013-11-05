@@ -76,6 +76,7 @@ class HooksController < ApplicationController
             logger.info("sgj:52m_new_users:ATTEMPT GEOLOOKUP FOR new user email=" + user.email)
             s = Geocoder.search(params[:contact_ip])
             user.state_code = s[0].state_code
+            user.state = user.state_code
             user.country_code = s[0].country_code
             user.country = s[0].country
 

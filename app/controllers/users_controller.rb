@@ -864,6 +864,10 @@ class UsersController < ApplicationController
 
     ### having periods in the first name kills the attempts to email that person, so remove periods
     @user.first_name = @user.first_name.gsub(".", "")
+
+    if @user.state
+      @user.state_code = @user.state
+    end
     
     if @user.update_attributes(params[:user])
 
