@@ -360,12 +360,12 @@ class HooksController < ApplicationController
             end
 
 
-            begin              
-              Notifier.deliver_goal_creation_notification(@goal) # sends the email
-              logger.info("sgj:52m_new_users:SENT GOAL CREATION NOTIFICATION EMAIL to new user email=" + user.email)            
-            rescue
-              logger.info("sgj:52m_new_users:ERROR SENDING GOAL CREATION NOTIFICATION EMAIL to new user email=" + user.email)            
-            end
+            # begin              
+            #   Notifier.deliver_goal_creation_notification(@goal) # sends the email
+            #   logger.info("sgj:52m_new_users:SENT GOAL CREATION NOTIFICATION EMAIL to new user email=" + user.email)            
+            # rescue
+            #   logger.info("sgj:52m_new_users:ERROR SENDING GOAL CREATION NOTIFICATION EMAIL to new user email=" + user.email)            
+            # end
 
 
 
