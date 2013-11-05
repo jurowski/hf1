@@ -132,7 +132,7 @@ class Checkpoint < ActiveRecord::Base
                     ### now let's toss in a random person needing help
                     #slacker_goals = arr_random_slacker_goals(1)
 
-                    logger.info("sgj:checkpoint.rb.rb:arr_random_slacker_goal:1")
+                    #logger.info("sgj:checkpoint.rb.rb:arr_random_slacker_goal:1")
                     arr_chosen_goals = Array.new()
 
 
@@ -142,38 +142,38 @@ class Checkpoint < ActiveRecord::Base
                     random_number = 0
                     random_number = rand(limit_size) + 0 #between 0 and limit_size
 
-logger.info("sgj:random check is random_number = " + random_number.to_s)
+#logger.info("sgj:random check is random_number = " + random_number.to_s)
                     if random_number == 1 or random_number == 2
-logger.info("sgj:random YES")
+#logger.info("sgj:random YES")
                       keep_looking = true
                       counter = 0
                       max_counter = 1
 
 
-                      logger.info("sgj:checkpoint.rb.rb:arr_random_slacker_goal:1.1")
+                      #logger.info("sgj:checkpoint.rb.rb:arr_random_slacker_goal:1.1")
                       #### DEBUG
                       #slacker_goals = Goal.find(:all, :conditions => "publish = '1' and status <> 'hold' and laststatusdate > '#{self.goal.user.dtoday - 30}'")
-                      logger.info("sgj:checkpoint.rb.rb:arr_random_slacker_goal:1.2")
+                      #logger.info("sgj:checkpoint.rb.rb:arr_random_slacker_goal:1.2")
                       #### LIVE
                       slacker_goals = Goal.find(:all, :conditions => "publish = '1' and status <> 'hold' and laststatusdate > '#{self.goal.user.dtoday - 30}' and laststatusdate < '#{self.goal.user.dtoday - 7}'")
-                      logger.info("sgj:checkpoint.rb.rb:1.3")
+                      #logger.info("sgj:checkpoint.rb.rb:1.3")
                       if slacker_goals
-                        logger.info("sgj:yes found some")
+                        # logger.info("sgj:yes found some")
                         slacker_goals.each do |slacker_goal|
-                          logger.info("sgj:going to look at one now")
-                          logger.info("sgj:checkpoint.rb.rb:arr_random_slacker_goal:3:looking at slacker_goal.title of " + slacker_goal.title)
+                          # logger.info("sgj:going to look at one now")
+                          # logger.info("sgj:checkpoint.rb.rb:arr_random_slacker_goal:3:looking at slacker_goal.title of " + slacker_goal.title)
                           break if !keep_looking
                           random_index = rand(slacker_goals.size) #between 0 and (size - 1)
                           slacker_goal = slacker_goals[random_index]
 
-                          logger.info("sgj:checkpoint.rb.rb:arr_random_slacker_goal:3.1:about to see if free user")
+                          # logger.info("sgj:checkpoint.rb.rb:arr_random_slacker_goal:3.1:about to see if free user")
 
                           ### do this for Free users only (to keep them involved)
                           #if slacker_goal and slacker_goal.user and !slacker_goal.user.is_habitforge_supporting_member
 
                           ### do this for all users
                           if slacker_goal and slacker_goal.user
-                            logger.info("sgj:checkpoint.rb.rb:arr_random_slacker_goal:4:about to check if user has name")
+                            # logger.info("sgj:checkpoint.rb.rb:arr_random_slacker_goal:4:about to check if user has name")
                             if slacker_goal.user.first_name != "unknown" and !arr_chosen_goals.include? slacker_goal.id
                               arr_chosen_goals << slacker_goal.id
                               counter = counter + 1
@@ -193,30 +193,30 @@ logger.info("sgj:random YES")
 
 
 
-                      logger.debug("sgj:checkpoint.rb:seek_slacker:2:just got back from getting slacker_goals")
-                      logger.info("sgj:checkpoint.rb:going to look for arr_chosen_goals[0] of " + arr_chosen_goals[0].to_s)
+                      # logger.debug("sgj:checkpoint.rb:seek_slacker:2:just got back from getting slacker_goals")
+                      # logger.info("sgj:checkpoint.rb:going to look for arr_chosen_goals[0] of " + arr_chosen_goals[0].to_s)
                       focus_slacker_goal = Goal.find(arr_chosen_goals[0])
-                      logger.info("sgj:checkpoint.rb:found focus_slacker_goal.id of " + focus_slacker_goal.id.to_s + " and title = " + focus_slacker_goal.title)
+                      # logger.info("sgj:checkpoint.rb:found focus_slacker_goal.id of " + focus_slacker_goal.id.to_s + " and title = " + focus_slacker_goal.title)
 
                       if focus_slacker_goal
                         encourage_item_slack = EncourageItem.new
-                        logger.info "sgj:checkpoint.rb:seek_slacker:3:new SLACKER encourage_items instantiated"
+                        # logger.info "sgj:checkpoint.rb:seek_slacker:3:new SLACKER encourage_items instantiated"
 
-    logger.info("sgj:1")
+    # logger.info("sgj:1")
                         encourage_item_slack.encourage_type_new_checkpoint_bool = false
-    logger.info("sgj:1.1")
+    # logger.info("sgj:1.1")
                         encourage_item_slack.encourage_type_new_goal_bool = false
-    logger.info("sgj:1.2")
+    # logger.info("sgj:1.2")
                         encourage_item_slack.goal_id = focus_slacker_goal.id
-    logger.info("sgj:1.3")                      
+    # logger.info("sgj:1.3")                      
                         #encourage_item_slack.checkpoint_status = self.status
-    logger.info("sgj:1.4")
+    # logger.info("sgj:1.4")
                         encourage_item_slack.checkpoint_date = self.checkin_date
-    logger.info("sgj:1.5")
+    # logger.info("sgj:1.5")
                         encourage_item_slack.checkpoint_updated_at_datetime = self.updated_at
-    logger.info("sgj:1.6")
+    # logger.info("sgj:1.6")
                         encourage_item_slack.checkpoint_id = self.id ### this has to be unique scoped to goal_id
-    logger.info("sgj:2")
+    # logger.info("sgj:2")
                         encourage_item_slack.goal_name = focus_slacker_goal.title
                         encourage_item_slack.goal_category = focus_slacker_goal.category
                         encourage_item_slack.goal_created_at_datetime = focus_slacker_goal.created_at
@@ -224,17 +224,17 @@ logger.info("sgj:random YES")
                         encourage_item_slack.goal_first_start_date = focus_slacker_goal.first_start_date
                         encourage_item_slack.goal_daysstraight = focus_slacker_goal.daysstraight
                         encourage_item_slack.goal_days_into_it = focus_slacker_goal.days_into_it
-    logger.info("sgj:3")
+    # logger.info("sgj:3")
                         encourage_item_slack.goal_success_rate_percentage = focus_slacker_goal.success_rate_percentage
                         encourage_item_slack.user_id = focus_slacker_goal.user.id
                         encourage_item_slack.user_name = focus_slacker_goal.user.first_name
                         encourage_item_slack.user_email = focus_slacker_goal.user.email
 
-                        logger.debug "sgj:checkpoint.rb:about to save SLACKER encourage_items"
+                        # logger.debug "sgj:checkpoint.rb:about to save SLACKER encourage_items"
 
-    logger.info("sgj:4")
+    # logger.info("sgj:4")
                         encourage_item_slack.save
-    logger.info("sgj:5")
+    # logger.info("sgj:5")
                       end ### end if slacker_goal
 
                     end ### end if slacker_goals
