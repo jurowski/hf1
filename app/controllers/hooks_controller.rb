@@ -71,7 +71,7 @@ class HooksController < ApplicationController
         user.confirmed_address = true ### since user via rowley getresponse already confirmed
 
         begin
-          logger.info("sgj:52m_new_users:ATTEMPT GEOLOOKUP FOR new user email=" + params[:contact_email])
+          logger.info("sgj:52m_new_users:ATTEMPT GEOLOOKUP FOR new user email=" + user.email)
           s = Geocoder.search(params[:contact_ip])
           user.state_code = s[0].state_code
           user.country_code = s[0].country_code
@@ -85,19 +85,19 @@ class HooksController < ApplicationController
             user.country = "canada"
           end
 
-          logger.info("sgj:52m_new_users:INFO FROM GEOLOOKUP FOR new user email=" + params[:contact_email] + "... state_code=" + user.state_code + ":country=" + user.country + ":country_code=" + user.country_code)
+          logger.info("sgj:52m_new_users:INFO FROM GEOLOOKUP FOR new user email=" + user.email + "... state_code=" + user.state_code + ":country=" + user.country + ":country_code=" + user.country_code)
         rescue
-          logger.info("sgj:52m_new_users:FAILURE DURING GEOLOOKUP FOR new user email=" + params[:contact_email])
+          logger.info("sgj:52m_new_users:FAILURE DURING GEOLOOKUP FOR new user email=" + user.email)
         end
 
 
         if user.save
 
           stats_increment_new_user
-          logger.info("sgj:52m_new_users:SUCCESS SAVING new user email=" + params[:contact_email])
+          logger.info("sgj:52m_new_users:SUCCESS SAVING new user email=" + user.email)
 
           begin
-            logger.info("sgj:52m_new_users:ATTEMPT TO SEND USER CONF EMAIL FOR new user email=" + params[:contact_email])
+            logger.info("sgj:52m_new_users:ATTEMPT TO SEND USER CONF EMAIL FOR new user email=" + user.email)
             #### ALLOW FOR EMAIL ADDRESS CONFIRMATION
             random_confirm_token = rand(1000) + 1 #between 1 and 1000
             user.confirmed_address_token = "xtynzsc" + random_confirm_token.to_s
@@ -106,7 +106,7 @@ class HooksController < ApplicationController
             the_subject = "Confirm your HabitForge Subscription"
             Notifier.deliver_user_confirm(user, the_subject) # sends the email
           rescue
-            logger.info("sgj:52m_new_users:FAILURE SENDING USER CONF EMAIL FOR new user email=" + params[:contact_email])
+            logger.info("sgj:52m_new_users:FAILURE SENDING USER CONF EMAIL FOR new user email=" + user.email)
           end
 
 
