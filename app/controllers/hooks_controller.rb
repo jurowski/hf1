@@ -47,10 +47,10 @@ class HooksController < ApplicationController
       if !@user_already_exists
         logger.info("sgj:52m_new_users:ATTEMPT NEW USER CREATION WITH email=" + params[:contact_email])
         user = User.new
-        user.first_name = params[:contact_name]
+        user.first_name = params[:contact_name].gsub('%20', " ")
         user.last_name = ""
-        user.email = params[:contact_email]
-        user.email_confirmation = params[:contact_email]
+        user.email = params[:contact_email].gsub('%40', "@")
+        user.email_confirmation = user.email
         random_pw_number = rand(1000) + 1 #between 1 and 1000
         user.password = "xty" + random_pw_number.to_s
         user.password_confirmation = user.password
@@ -90,8 +90,6 @@ class HooksController < ApplicationController
           logger.info("sgj:52m_new_users:FAILURE DURING GEOLOOKUP FOR new user email=" + params[:contact_email])
         end
 
-        ### this will die but we need to see why...
-        some_failure = user.save
 
         if user.save
 
