@@ -86,6 +86,20 @@ class HooksController < ApplicationController
           logger.info("sgj:52m_new_users:SUCCESS SAVING new user email=" + params[:contact_email])
 
           begin
+            logger.info("sgj:52m_new_users:ATTEMPT TO SEND USER CONF EMAIL FOR new user email=" + params[:contact_email])
+            #### ALLOW FOR EMAIL ADDRESS CONFIRMATION
+            random_confirm_token = rand(1000) + 1 #between 1 and 1000
+            user.confirmed_address_token = "xtynzsc" + random_confirm_token.to_s
+            user.save
+            #### now that we have saved and have the user id, we can send the email 
+            the_subject = "Confirm your HabitForge Subscription"
+            Notifier.deliver_user_confirm(user, the_subject) # sends the email
+          rescue
+            logger.info("sgj:52m_new_users:FAILURE SENDING USER CONF EMAIL FOR new user email=" + params[:contact_email])
+          end
+
+
+          begin
             logger.info("sgj:52m_new_users:will try creating an infusionsoft contact for user with email " + user.email)
             #400: hf new signup funnel v2 free no goal yet
             #398: hf new signup funnel v2 free created goal
