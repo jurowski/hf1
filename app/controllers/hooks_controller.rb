@@ -64,11 +64,6 @@ class HooksController < ApplicationController
         ### this will get reset to the right number once each day via cron
         ### but set it now in case user is being created after that job runs
         user.update_number_active_goals = 1
-        ### update last activity date
-        user.last_activity_date = user.dtoday
-
-        user.date_of_signup = user.dtoday
-        user.confirmed_address = true ### since user via rowley getresponse already confirmed
 
         begin
           logger.info("sgj:52m_new_users:ATTEMPT GEOLOOKUP FOR new user email=" + user.email)
@@ -92,6 +87,13 @@ class HooksController < ApplicationController
 
 
         if user.save
+
+          ### update last activity date
+          user.last_activity_date = user.dtoday
+
+          user.date_of_signup = user.dtoday
+          #user.confirmed_address = true ### since user via rowley getresponse already confirmed
+
 
           stats_increment_new_user
           logger.info("sgj:52m_new_users:SUCCESS SAVING new user email=" + user.email)
