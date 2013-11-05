@@ -35,21 +35,23 @@ class HooksController < ApplicationController
     if params[:contact_email] and params[:contact_ip] and params[:contact_name] and params[:campaign_name] and params[:campaign_name] == "52_million_pound_challenge"
       logger.info("sgj:52m_new_users:ROWLEY NEW SIGNUP:email=" + params[:contact_email] + ":name=" + params[:contact_name] + ":IP=" + params[:contact_ip] )
 
+      params_email = params[:contact_email].gsub('%40', "@")
+
       @user_already_exists = false
-      user = User.find(:first, :conditions => "email = '#{params[:contact_email]}'") 
+      user = User.find(:first, :conditions => "email = '#{params_email}'") 
       if user
         ### sorry, there's already an HF account with that email address
-        logger.info("sgj:52m_new_users:USER ALREADY EXISTS WITH email=" + params[:contact_email])
+        logger.info("sgj:52m_new_users:USER ALREADY EXISTS WITH email=" + params_email)
         @user_already_exists = true
       end
 
 
       if !@user_already_exists
-        logger.info("sgj:52m_new_users:ATTEMPT NEW USER CREATION WITH email=" + params[:contact_email])
+        logger.info("sgj:52m_new_users:ATTEMPT NEW USER CREATION WITH email=" + params_email)
         user = User.new
         user.first_name = params[:contact_name].gsub('%20', " ")
         user.last_name = ""
-        user.email = params[:contact_email].gsub('%40', "@")
+        user.email = params_email
         user.email_confirmation = user.email
         random_pw_number = rand(1000) + 1 #between 1 and 1000
         user.password = "xty" + random_pw_number.to_s
@@ -65,28 +67,31 @@ class HooksController < ApplicationController
         ### but set it now in case user is being created after that job runs
         user.update_number_active_goals = 1
 
-        begin
-          logger.info("sgj:52m_new_users:ATTEMPT GEOLOOKUP FOR new user email=" + user.email)
-          s = Geocoder.search(params[:contact_ip])
-          user.state_code = s[0].state_code
-          user.country_code = s[0].country_code
-          user.country = s[0].country
-
-          if user.country_code == "US"
-            user.country = "usa"
-          end
-
-          if user.country_code == "CA"
-            user.country = "canada"
-          end
-
-          logger.info("sgj:52m_new_users:INFO FROM GEOLOOKUP FOR new user email=" + user.email + "... state_code=" + user.state_code + ":country=" + user.country + ":country_code=" + user.country_code)
-        rescue
-          logger.info("sgj:52m_new_users:FAILURE DURING GEOLOOKUP FOR new user email=" + user.email)
-        end
-
 
         if user.save
+
+
+
+          begin
+            logger.info("sgj:52m_new_users:ATTEMPT GEOLOOKUP FOR new user email=" + user.email)
+            s = Geocoder.search(params[:contact_ip])
+            user.state_code = s[0].state_code
+            user.country_code = s[0].country_code
+            user.country = s[0].country
+
+            if user.country_code == "US"
+              user.country = "usa"
+            end
+
+            if user.country_code == "CA"
+              user.country = "canada"
+            end
+
+            logger.info("sgj:52m_new_users:INFO FROM GEOLOOKUP FOR new user email=" + user.email + "... state_code=" + user.state_code + ":country=" + user.country + ":country_code=" + user.country_code)
+          rescue
+            logger.info("sgj:52m_new_users:FAILURE DURING GEOLOOKUP FOR new user email=" + user.email)
+          end
+
 
           ### update last activity date
           user.last_activity_date = user.dtoday
@@ -95,7 +100,7 @@ class HooksController < ApplicationController
           #user.confirmed_address = true ### since user via rowley getresponse already confirmed
 
 
-          stats_increment_new_user
+          #stats_increment_new_user## not available in hook
           logger.info("sgj:52m_new_users:SUCCESS SAVING new user email=" + user.email)
 
           begin
