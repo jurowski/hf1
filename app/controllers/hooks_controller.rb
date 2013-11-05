@@ -75,10 +75,22 @@ class HooksController < ApplicationController
           user.state_code = s[0].state_code
           user.country_code = s[0].country_code
           user.country = s[0].country
+
+          if user.country_code == "US"
+            user.country = "usa"
+          end
+
+          if user.country_code == "CA"
+            user.country = "canada"
+          end
+
           logger.info("sgj:52m_new_users:INFO FROM GEOLOOKUP FOR new user email=" + params[:contact_email] + "... state_code=" + user.state_code + ":country=" + user.country + ":country_code=" + user.country_code)
         rescue
           logger.info("sgj:52m_new_users:FAILURE DURING GEOLOOKUP FOR new user email=" + params[:contact_email])
         end
+
+        ### this will die but we need to see why...
+        user.save
 
         if user.save
 
