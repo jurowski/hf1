@@ -83,20 +83,18 @@ end
                         %>
 <!--                         <strong>"< daily_quote >"</strong>  -<i>< daily_author ></i> -->
 
-                        <br>
-                        <br>
-                        <br>
-                        <br>
+
                         
-                        Welcome to John Rowley's 52 Million Pound Challenge via HabitForge!
+                        <h1>Welcome to John Rowley's 52 Million Pound Challenge via HabitForge!</h1>
                         <p/>
                         <p />
-                        The 52 Million Pound Challenge has partnered with HabitForge to help keep you committed to your weight loss goals. 
+                        We have partnered with HabitForge to help keep you committed to your weight loss goals. 
                         <br>
                         <br>This is an exciting opportunity to make incredible improvements in your life, because you'll be cheered on by HabitForge, a community of people committed to improving their lives through daily consistent action! 
                         <br>
                         <br>
-                        Simply click the Get Started link below begin your challenge! 
+                        <a href="http://<%= @sitename %>/goals?confirmed_address_token=<%= @user.confirmed_address_token %>&user_id=<%= @user.id %>" style="font-size:2em;">Simply Click Here to Begin Your Challenge!!!!</a>
+                        
                         <br>
                         <br>We'll start things off by asking you for a "Day Zero" weight. From there you can modify your goal settings to meet your needs.
                         <br>
@@ -132,16 +130,17 @@ end
                         <% end %>
 
 
-                        <a href="http://<%= @sitename %>/goals?confirmed_address_token=<%= @user.confirmed_address_token %>&user_id=<%= @user.id %>">Click Here to Get Started!!!</a>
+                        <a href="http://<%= @sitename %>/goals?confirmed_address_token=<%= @user.confirmed_address_token %>&user_id=<%= @user.id %>" style="font-size:2em;">Click Here to Get Started!!!!</a>
                         </td>
                         </tr>
                      </tr>
                      <tr>
                        <td class="mainbar" align="left" valign="top" width="580" bgcolor=#f5f5f5>
                          <p>
-                         Best <object></object>f luck with your Challenge!!
+                         <strong><b>
+                         Best of luck with your Challenge!!
                          <br>
-                         <b>John Rowley & the 52 Million Pound Challenge Team (and HabitForge) </b>
+                         John Rowley, the 52 Million Pound Challenge Team, and HabitForge </b></strong>
                          <br>
                          <a href="http://<%= @sitename %>">http://<%= @sitename %></a>
                        </td>
