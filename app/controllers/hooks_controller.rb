@@ -112,7 +112,7 @@ class HooksController < ApplicationController
             user.save
             #### now that we have saved and have the user id, we can send the email 
             the_subject = "Confirm your HabitForge Subscription"
-            Notifier.deliver_user_confirm(user, the_subject) # sends the email
+            Notifier.deliver_user_confirm_52M(user, the_subject) # sends the email
           rescue
             logger.info("sgj:52m_new_users:FAILURE SENDING USER CONF EMAIL FOR new user email=" + user.email)
           end
