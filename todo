@@ -22,7 +22,6 @@ NEXT
 
 --after N days, include in the check-in and reminders that It's Time to get a Quant
 
---write the cron job to pull new signups, create, auto-confirm and add the template goal for them
 --write the cron job to generate stats for the states, save in db
 --write the cron job to kick off the job to write stats to js file
 
