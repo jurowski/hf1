@@ -122,8 +122,11 @@ end
                         <% else %>
                           <% if @user.password_temp and @user.password_temp != "" %>
                             If you ever need to log in manually, your account info is:
-                            <br>Username: <%= @user.email %>
+                            <br>
+                            <div style="background-color:#ffffff;padding:20px;margin:20px;">
+                            Username: <%= @user.email %>
                             <br>Temporary Password: <%= @user.password_temp %> (you will be prompted to change this on login)
+                          </div>
                             <br>
                             <br>
                           <% end %>                        
@@ -159,6 +162,8 @@ end
              <tr>
                 <td class="permission" align="center">
                    <p>
+                    <br>
+                    <br>
                    If you did not sign up for John Rowley's 52 Million Pound Challenge via HabitForge, please disregard this email.
                    </p>
 
