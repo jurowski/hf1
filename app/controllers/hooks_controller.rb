@@ -1092,8 +1092,8 @@ testing_xml_resend_any = %{
                       user.save
 
                       #### now that we have saved and have the user id, we can send the email 
-                      the_subject = "Confirm your HabitForge Subscription"
-                      Notifier.deliver_user_confirm(user, the_subject) # sends the email
+                      the_subject = "Start Here: John Rowley's 52 Million Pound Challenge via HabitForge"
+                      Notifier.deliver_user_confirm_52M(user, the_subject) # sends the email
                     rescue
                       logger.error("sgj:email confirmation for user creation did not send")
                     end

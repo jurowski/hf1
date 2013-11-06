@@ -1,0 +1,175 @@
+<%
+@sitename = ""
+if `uname -n`.strip == 'adv.adventurino.com'
+  #### HABITFORGE SETTINGS ON VPS
+  @sitename = "habitforge.com"  
+  
+  #### sitenames for skinned sites are now set in their own files
+  #if @checkpoint.goal.user.sponsor == "clearworth"
+  #  @sitename = "www.mylearninghabit.com"
+  #end
+  
+elsif `uname -n`.strip == 'gns499aa.joyent.us'
+  #### DEV SETTINGS ON HABITFORGE VPS
+  @sitename = "dev.habitforge.com"
+else
+  #### SETTINGS FOR DEV LAPTOP
+  @sitename = "localhost:3000"
+end
+%>
+<html>
+<head>
+  <base href="http://<%= @sitename %>/"/>
+   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head>
+<body>
+
+<table border="0" cellspacing="0" cellpadding="0" align=center>
+   <tr>
+      <td align="center">
+
+         <table width="580" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+               <td class="header" align="left" valign="bottom">
+                <img src="http://<%= @sitename %>/home/images/programs/52MLB.png" />
+               </td>
+            </tr>
+            <tr>
+               <td bgcolor=#f5f5f5>
+                
+                  <table width="580" height="130" border="0" cellspacing="16" cellpadding="0" class="content">
+                     <tr>
+                        <td class="mainbar" align="left" valign="top" width="580" bgcolor=#f5f5f5>
+
+
+                        <%
+                        
+                        ### GET DATE NOW ###
+                      	jump_forward_days = 0
+
+                      	tnow = Time.now
+                      	tnow_Y = tnow.strftime("%Y").to_i #year, 4 digits
+                      	tnow_m = tnow.strftime("%m").to_i #month of the year
+                      	tnow_d = tnow.strftime("%d").to_i #day of the month
+                      	tnow_H = tnow.strftime("%H").to_i #hour (24-hour format)
+                      	tnow_M = tnow.strftime("%M").to_i #minute of the hour
+                      	#puts tnow_Y + tnow_m + tnow_d  
+                      	puts "Current timestamp is #{tnow.to_s}"
+                      	dnow = Date.new(tnow_Y, tnow_m, tnow_d) + jump_forward_days
+                      	dyesterday = dnow - 1
+                      	######
+                      	
+                        %>
+
+                        <br>
+                        <br>
+                        <p>
+                        <%
+                        #/generate scaffold quote thought:text author:string last_used:date priority:boolean
+                        daily_quote = ""
+                        daily_author = ""
+                        quote = Quote.find(:first, :conditions => "last_used = '#{dnow}' and sponsor = 'habitforge'")
+                        if quote
+                          daily_quote = quote.thought
+                          daily_author = quote.author
+                        else
+                          daily_quote = "nothing yet"
+                          quote = Quote.find(:first, :conditions => "sponsor = 'habitforge'", :order => "last_used ASC")
+                          quote.last_used = dnow
+                          quote.save
+                          daily_quote = quote.thought
+                          daily_author = quote.author
+                        end
+                        %>
+                        <strong>"<%= daily_quote %>"</strong>  -<i><%= daily_author %></i>
+
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        
+                        Welcome to John Rowley's 52 Million Pound Challenge via HabitForge!
+                        <p/>
+                        <p />
+                        The 52 Million Pound Challenge has partnered with HabitForge to help keep you committed to your weight loss goals. 
+                        <br>
+                        <br>This is an exciting opportunity to make incredible improvements in your life, because you'll be cheered on by HabitForge, a community of people committed to improving their lives through daily consistent action! 
+                        <br>
+                        <br>
+                        Simply click the Get Started link below begin your challenge! 
+                        <br>
+                        <br>We'll start things off by asking you for a "Day Zero" weight. From there you can modify your goal settings to meet your needs.
+                        <br>
+                        <br>
+                        <br>Each day you'll be reminded to make healthy food choices. At the end of the day we'll ask how you did... you'll get an email that asks:
+                        <br>
+                        <br> "Were you successful today at eating healthy?"
+                        <br>
+                        <br>...from that email you can click "Yes" or "No", and HabitForge will take care of the tracking and the encouragement from there. Don't be surprised if you're cheered on by more than a few people in the community who have similar goals as you do. You can invite your own friends to cheer you on, join a team or even create your own team.
+                        <br>
+                        <br>
+
+                        <% if @user.fb_id %>
+                          You'll probably want to log in using Facebook in the future, but you'll also have the option to log in with your email address and a password.
+                          <br><br>
+                          <% if @user.password_temp and @user.password_temp != "" %>
+                            If you do need to log in that way, your HabitForge account info is:
+                            <br>
+                            <br>
+                            <br>username: <%= @user.email %>
+                            <br>temp password: <%= @user.password_temp %> (you will be prompted to change this)
+                            <br>
+                            <br>
+                          <% end %>
+                        <% else %>
+                          <% if @user.password_temp and @user.password_temp != "" %>
+                            If you ever need to log in manually, your account info is:
+                            <br>Username: <%= @user.email %>
+                            <br>Temporary Password: <%= @user.password_temp %> (you will be prompted to change this on login)
+                            <br>
+                            <br>
+                          <% end %>                        
+                        <% end %>
+
+
+                        <a href="http://<%= @sitename %>/goals?confirmed_address_token=<%= @user.confirmed_address_token %>&user_id=<%= @user.id %>">Click Here to Get Started!!!</a>
+                        </td>
+                        </tr>
+                     </tr>
+                     <tr>
+                       <td class="mainbar" align="left" valign="top" width="580" bgcolor=#f5f5f5>
+                         <p>
+                         Best of luck with your Challenge!!
+                         <br>
+                         <b>John Rowley & the 52 Million Pound Challenge Team (and HabitForge) </b>
+                         <br>
+                         <a href="http://<%= @sitename %>">http://<%= @sitename %></a>
+                       </td>
+                     </tr>
+                     </p>                
+                 </table>
+
+               </td>
+            </tr>
+         </table>
+         <table align=center width="646" border="0" cellspacing="0" cellpadding="0">
+             <tr>
+                <td>
+                </td>
+             </tr>
+             <tr>
+                <td class="permission" align="center">
+                   <p>
+                   If you did not sign up for John Rowley's 52 Million Pound Challenge via HabitForge, please disregard this email.
+                   </p>
+
+                </td>
+             </tr>
+           </table>
+
+      </td>
+   </tr>
+</table>
+
+</body>
+</html>
