@@ -90,22 +90,10 @@ states.each do |state|
             if goal.user.state_code == state.state_code and goal.tracker
                 challenge_qty_total_signed_up += 1
 
-                # person_amount_lost = 0
-
-                if goal.quant_first and goal.quant_last
-                    start_weight = goal.quant_first
-                    current_weight = goal.quant_last
-                    if start_weight >  50 and current_weight > 50
-                        if goal.quant_diff_between_first_and_last
-                            challenge_total_lbs_lost += goal.quant_diff_between_first_and_last
-                        end
-                    #     increment challenge_qty_total_weighing_in
-                    #     append to challenge_lbs_starting_weight_total
-                    #     append to challenge_lbs_last_weight_total
-                    #     person_amount_lost = start_weight - current_weight
-                    #     append person_amount_lost to challenge_lbs_lost_total
-                    end
+                if goal.quant_diff_between_first_and_last
+                    challenge_total_lbs_lost += goal.quant_diff_between_first_and_last
                 end
+
             end
         end
     end
