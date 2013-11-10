@@ -201,15 +201,18 @@ output_me("info", "----------------------------------------")
 
 # make a copy of each country template (US + CANADA), from "map-config_template.js" to  + "map-config_template.js_in_progress"
 # !! (if the "_in_progress" file already exists it will be overwritten!)
-FileUtils.cp 'public/52m/map/usa/map-config_template.js', 'public/52m/map/usa/map-config_template.js_in_progress'
-FileUtils.cp 'public/52m/map/canada/map-config_template.js', 'public/52m/map/canada/map-config_template.js_in_progress'
+
+dir_path = "/home/jurowsk1/etc/rails_apps/habitforge/current/"
+
+FileUtils.cp dir_path + 'public/52m/map/usa/map-config_template.js', dir_path + 'public/52m/map/usa/map-config_template.js_in_progress'
+FileUtils.cp dir_path + 'public/52m/map/canada/map-config_template.js', dir_path + 'public/52m/map/canada/map-config_template.js_in_progress'
 
 
 # for each state in weight_loss_by_states
 states = WeightLossByState.all
 states.each do |state|
   #     set filepath_to_mod based on COUNTRY
-  filepath_to_mod = "public/52m/map/#{state.country}/map-config_template.js_in_progress"
+  filepath_to_mod = dir_path + "public/52m/map/#{state.country}/map-config_template.js_in_progress"
   output_me("info","working on " + state.country + ":" + state.state_code )
 
     ### DEFAULT OUTPUT FOR *.JS FILES
@@ -336,12 +339,12 @@ end
 
     output_me("info","adding a final closing bracket " )
 
-    filepath_to_mod = "public/52m/map/usa/map-config_template.js_in_progress"
+    filepath_to_mod = dir_path + "public/52m/map/usa/map-config_template.js_in_progress"
     File.open(filepath_to_mod, 'a') do |f| 
       f.puts "}"
     end
 
-    filepath_to_mod = "public/52m/map/canada/map-config_template.js_in_progress"
+    filepath_to_mod = dir_path + "public/52m/map/canada/map-config_template.js_in_progress"
     File.open(filepath_to_mod, 'a') do |f| 
       f.puts "}"
     end
@@ -350,16 +353,16 @@ end
 
 
 # copy each country file "map-config.js" to "backup/map-config.js" + "_" + timestamp
-FileUtils.cp 'public/52m/map/usa/map-config.js', 'public/52m/map/usa/backups/map-config.js_' + Time.now.strftime('%Y%m%d-%H%M%S')
-FileUtils.cp 'public/52m/map/canada/map-config.js', 'public/52m/map/canada/backups/map-config.js_' + Time.now.strftime('%Y%m%d-%H%M%S')
+FileUtils.cp dir_path + 'public/52m/map/usa/map-config.js', dir_path + 'public/52m/map/usa/backups/map-config.js_' + Time.now.strftime('%Y%m%d-%H%M%S')
+FileUtils.cp dir_path + 'public/52m/map/canada/map-config.js', dir_path + 'public/52m/map/canada/backups/map-config.js_' + Time.now.strftime('%Y%m%d-%H%M%S')
 
 # copy each country in_progress file from "map-config_template.js_in_progress" to "map-config.js"
-FileUtils.cp 'public/52m/map/usa/map-config_template.js_in_progress', 'public/52m/map/usa/map-config.js'
-FileUtils.cp 'public/52m/map/canada/map-config_template.js_in_progress', 'public/52m/map/canada/map-config.js'
+FileUtils.cp dir_path + 'public/52m/map/usa/map-config_template.js_in_progress', dir_path + 'public/52m/map/usa/map-config.js'
+FileUtils.cp dir_path + 'public/52m/map/canada/map-config_template.js_in_progress', dir_path + 'public/52m/map/canada/map-config.js'
 
 # remove each country in_progress file
-FileUtils.rm 'public/52m/map/canada/map-config_template.js_in_progress', :force => true   # never raises exception
-FileUtils.rm 'public/52m/map/usa/map-config_template.js_in_progress', :force => true   # never raises exception
+FileUtils.rm dir_path + 'public/52m/map/canada/map-config_template.js_in_progress', :force => true   # never raises exception
+FileUtils.rm dir_path + 'public/52m/map/usa/map-config_template.js_in_progress', :force => true   # never raises exception
 
 
 output_me("info", "----------------------------------------")
