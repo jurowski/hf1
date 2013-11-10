@@ -189,15 +189,18 @@
                 arr_url = request.split "&"
                 arr_access_token = arr_url[1].split "="
                 session[:google_access_token] = arr_access_token[1]
+                %>
+                access_token = <%= session[:google_access_token] %>
+                <%
                 ### verify the token and read what comes back
-                open("https://www.googleapis.com/oauth2/v1/tokeninfo?access_token=#{session[:google_access_token]}") {|f|
-                  f.each_line {|line| 
-                    %>
-                    <!-- p line -->
-                    <%= line %>
-                    <%
-                  }
-                }
+                # open("https://www.googleapis.com/oauth2/v1/tokeninfo?access_token=#{session[:google_access_token]}") {|f|
+                #   f.each_line {|line| 
+                #     %>
+                #     <!-- p line -->
+                #     <%= line %>
+                #     <%
+                #   }
+                # }
 
 
                 #session[:google_access_token] = params[:access_token] 
