@@ -125,6 +125,10 @@ class HooksController < ApplicationController
             new_contact_id = Infusionsoft.contact_add({:FirstName => user.first_name, :LastName => user.last_name, :Email => user.email})
             Infusionsoft.email_optin(user.email, 'HabitForge signup')
             Infusionsoft.contact_add_to_group(new_contact_id, 400)
+
+            ### add them to ETR mailing list
+            Infusionsoft.contact_add_to_group(new_contact_id, 103)
+
              logger.info("sgj:52m_new_users:SUCCESS creating an infusionsoft contact with new_contact_id=" + new_contact_id.to_s + " for user with email " + user.email)
           rescue
             logger.info("sgj:52m_new_users:ERROR creating an infusionsoft contact for user with email " + user.email)
