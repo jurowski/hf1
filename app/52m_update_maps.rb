@@ -120,6 +120,7 @@ states.each do |state|
         state.challenge_percent_of_goal_met = (((state.challenge_lbs_lost_total + 0.0) / state.challenge_weighted_goal)*100).floor
     end
 
+    state.save
     # hash_states["#{state.state_code}"] = state.challenge_percent_of_goal_met
   end ### end for each state
 
