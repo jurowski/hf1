@@ -35,8 +35,125 @@ class UpdateMaps52m < ActiveRecord::Base
   ### rvm use 1.8.7;cd /home/sgj700/rails_apps/hf1/;ruby script/runner app/52m_update_maps.rb
 
 
+  ################### UPDATE THE DATA ###################################
 
-  # PSEUDOCODE
+  # create_table "weight_loss_by_states", :force => true do |t|
+  #   t.string   "state"
+  #   t.string   "state_code"
+  #   t.integer  "demog_population"
+  #   t.integer  "demog_percent_adults"
+  #   t.integer  "demog_number_adults"
+  #   t.integer  "demog_percent_obesity_rate"
+  #   t.integer  "demog_number_obese_adults"
+  #   t.integer  "demog_percent_of_total_obese_adults_in_challenge"
+  #   t.integer  "challenge_weighted_goal"
+  #   t.integer  "challenge_qty_hold"
+  #   t.integer  "challenge_qty_active"
+  #   t.integer  "challenge_lbs_starting_weight_hold"
+  #   t.integer  "challenge_lbs_starting_weight_active"
+  #   t.integer  "challenge_lbs_last_weight_hold"
+  #   t.integer  "challenge_lbs_last_weight_active"
+  #   t.integer  "challenge_lbs_lost_hold"
+  #   t.integer  "challenge_lbs_lost_active"
+  #   t.integer  "challenge_lbs_lost_total"
+  #   t.integer  "challenge_percent_of_goal_met"
+  #   t.integer  "challenge_number_rank"
+  #   t.date     "challenge_last_updated_date"
+  #   t.string   "js_upcolor"
+  #   t.string   "js_overcolor"
+  #   t.string   "js_downcolor"
+  #   t.datetime "created_at"
+  #   t.datetime "updated_at"
+  #   t.string   "country"
+  #   t.integer  "map_code"
+  # end
+
+output_me("info", "----------------------------------------")
+output_me("info", "----------------------------------------")
+output_me("info", "--     CALC AND SAVE LATEST DATA      --")
+output_me("info", "--           START script             --")
+output_me("info", "----------------------------------------")
+output_me("info", "----------------------------------------")
+
+
+# hash_states = Hash.new()
+# # for each state in weight_loss_by_states
+# states = WeightLossByState.all
+# states.each do |state|
+
+#     challenge_qty_total_signed_up = 0
+#     #count the number of people in the challenge for that state
+#     goals = Goal.find(:all, :conditions => "goal_added_through_template_from_program_id = '4'")
+#     if goals
+#         goals.each do |goal|
+#             if goal.user.state_code == state.state_code and goal.tracker
+#                 challenge_qty_total_signed_up += 1
+
+#                 person_amount_lost = 0
+#                 start_weight = goal.quant_first
+#                 current_weight = goal.quant_last
+#                 if start_weight >  50 and current_weight > 50
+#                     increment challenge_qty_total_weighing_in
+#                     append to challenge_lbs_starting_weight_total
+#                     append to challenge_lbs_last_weight_total
+#                     person_amount_lost = start_weight - current_weight
+#                     append person_amount_lost to challenge_lbs_lost_total
+#                 end
+
+#             end
+#         end
+#     end
+#     state.challenge_qty_total_signed_up = challenge_qty_total_signed_up
+
+
+#     challenge_lbs_starting_weight_total = 0
+#     challenge_lbs_last_weight_total = 0
+#     challenge_lbs_lost_total = 0
+
+
+#     challenge_qty_total_weighing_in = 0
+
+
+
+#     state.challenge_qty_total_signed_up = challenge_qty_total_signed_up
+#     state.challenge_lbs_starting_weight_total = challenge_lbs_starting_weight_total
+#     state.challenge_lbs_last_weight_total = challenge_lbs_last_weight_total
+#     state.challenge_lbs_lost_total = challenge_lbs_lost_total
+#     state.challenge_qty_total_weighing_in = challenge_qty_total_weighing_in
+
+#     state.challenge_percent_of_goal_met = 0
+#     if state.challenge_weighted_goal > 0
+#         state.challenge_percent_of_goal_met = (((state.challenge_lbs_lost_total + 0.0) / state.challenge_weighted_goal)*100).floor
+#     end
+
+#     hash_states["#{state.state_code}"] = state.challenge_percent_of_goal_met
+#   end ### end for each state
+
+
+#   hash_ordered = hash_states.sort_by {|_key, value| value}.reverse
+#   for each state and province
+#     ### find rank of state in the ordered hash, set to challenge_number_rank
+#   end
+
+
+
+output_me("info", "----------------------------------------")
+output_me("info", "----------------------------------------")
+output_me("info", "--     (CALC AND SAVE LATEST DATA)    --")
+output_me("info", "--           END script               --")
+output_me("info", "----------------------------------------")
+output_me("info", "----------------------------------------")
+
+
+
+
+
+
+
+
+
+  ################### TAKE THE DATA AND WRITE IT TO MAPS ###################################
+  # PSEUDOCODE 
     # make a copy of each country template (US + CANADA), from "map-config_template.js" to  + "map-config_template.js_in_progress"
 
     # for each state in weight_loss_by_states
@@ -73,7 +190,8 @@ class UpdateMaps52m < ActiveRecord::Base
 
 output_me("info", "----------------------------------------")
 output_me("info", "----------------------------------------")
-output_me("info", "START script")
+output_me("info", "--     WRITE THE DATA TO MAPS         --")
+output_me("info", "--           START script             --")
 output_me("info", "----------------------------------------")
 output_me("info", "----------------------------------------")
 
@@ -249,9 +367,18 @@ FileUtils.cp 'public/52m/map/canada/map-config_template.js_in_progress', 'public
 FileUtils.rm 'public/52m/map/canada/map-config_template.js_in_progress', :force => true   # never raises exception
 FileUtils.rm 'public/52m/map/usa/map-config_template.js_in_progress', :force => true   # never raises exception
 
+
 output_me("info", "----------------------------------------")
 output_me("info", "----------------------------------------")
-output_me("info", "END script")
+output_me("info", "--     (WRITE THE DATA TO MAPS)       --")
+output_me("info", "--           END script               --")
+output_me("info", "----------------------------------------")
+output_me("info", "----------------------------------------")
+
+
+output_me("info", "----------------------------------------")
+output_me("info", "----------------------------------------")
+output_me("info", "--         FINALE END of script       --")
 output_me("info", "----------------------------------------")
 output_me("info", "----------------------------------------")  
 

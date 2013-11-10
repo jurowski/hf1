@@ -4,27 +4,22 @@
 
 <!-- <h3>Tracking History:</h3> -->
 
+
+<!-- Oldest: <%= @goal.quant_last.measurement_display %>
+Newest: <%= @goal.quant_first.measurement_display %>
+
+Diff: <%= @goal.quant_diff_between_first_and_last %>
+ -->
 <% @quants = Quant.find(:all, :conditions => "goal_id = '#{@goal.id}'", :order => "measurement_date DESC, measurement_hour DESC, measurement_taken_timestamp DESC") %>
 <% if @quants.size == 0 %>
 <!-- 	No quants yet. -->
 <% else %>
 	<% @quants.each do |quant| %>
 
-		<%
-		measurement_with_decimals = quant.measurement.to_f / 100
-		measurement_display = measurement_with_decimals.to_s
-
-		### check if you really need that precision
-		arr_measurement = measurement_with_decimals.to_s.split(".")
-		if arr_measurement[1] == "00" or arr_measurement[1] == "0"
-			measurement_display = arr_measurement[0]
-		end
-		%>
-
-	  <br><strong><%= measurement_display %> <%= quant.goal.tracker_units %></strong> on <%= quant.measurement_date.strftime("%a, %b %d, %Y") %> @ <%= am_pm(quant.measurement_hour) %> <span style="font-size:.7em;">
+	  <br><strong><%= quant.measurement_display %> <%= quant.goal.tracker_units %></strong> on <%= quant.measurement_date.strftime("%a, %b %d, %Y") %> @ <%= am_pm(quant.measurement_hour) %> <span style="font-size:.7em;">
 	  	<!-- (recorded <%= time_ago_in_words(quant.measurement_taken_timestamp) %> ago...) -->
 		</span> 
-	  	  <%= link_to 'Delete', quant, :confirm => 'Delete this measurement of ' + quant.measurement.to_s + ' ?', :method => :delete %>
+	  	  <%= link_to 'Delete', quant, :confirm => 'Delete this measurement of ' + quant.measurement_display.to_s + ' ?', :method => :delete %>
 
 	<% end %>
 <% end %>

@@ -85,6 +85,38 @@
 				$('#grav1_<%= e.goal_id.to_s %>').tipsy();
 				</script>
 
+				<% 
+				show_impact_image = false
+				impact_image = "100"
+				if e_user.impact_points
+					if e_user.impact_points >= 100 and e_user.impact_points < 250
+						show_impact_image = true
+						impact_image = "100"
+					end
+					if e_user.impact_points >= 250 and e_user.impact_points < 500
+						show_impact_image = true
+						impact_image = "250"
+					end
+					if e_user.impact_points >= 500 and e_user.impact_points < 750
+						show_impact_image = true
+						impact_image = "500"
+					end
+					if e_user.impact_points >= 750 and e_user.impact_points < 1000
+						show_impact_image = true
+						impact_image = "750"
+					end
+					if e_user.impact_points >= 1000
+						show_impact_image = true
+						impact_image = "1000"
+					end
+				end
+				%>
+				<% if show_impact_image %>
+					<img id="impact1_<%= e.goal_id.to_s %>" title="<%= e_user.impact_points.to_s %> impact points" src="/home/images/badges/badge_impact_points_<%= impact_image %>.png" />
+					<script type='text/javascript'>
+					$('#impact1_<%= e.goal_id.to_s %>').tipsy();
+					</script>
+				<% end %>
 				<!-- else -->
 				<!--img src="/home/images/default_gravatar.png" height="20px"/-->
 				<!-- end -->
@@ -201,6 +233,41 @@
 				<script type='text/javascript'>
 				$('#grav2_<%= e.goal_id.to_s %>').tipsy();
 				</script>
+
+
+				<% 
+				show_impact_image = false
+				impact_image = "100"
+				if e_user.impact_points
+					if e_user.impact_points >= 100 and e_user.impact_points < 250
+						show_impact_image = true
+						impact_image = "100"
+					end
+					if e_user.impact_points >= 250 and e_user.impact_points < 500
+						show_impact_image = true
+						impact_image = "250"
+					end
+					if e_user.impact_points >= 500 and e_user.impact_points < 750
+						show_impact_image = true
+						impact_image = "500"
+					end
+					if e_user.impact_points >= 750 and e_user.impact_points < 1000
+						show_impact_image = true
+						impact_image = "750"
+					end
+					if e_user.impact_points >= 1000
+						show_impact_image = true
+						impact_image = "1000"
+					end
+				end
+				%>
+				<% if show_impact_image %>
+					<img id="impact2_<%= e.goal_id.to_s %>" title="<%= e_user.impact_points.to_s %> impact points" src="/home/images/badges/badge_impact_points_<%= impact_image %>.png" />
+					<script type='text/javascript'>
+					$('#impact2_<%= e.goal_id.to_s %>').tipsy();
+					</script>
+				<% end %>
+
 
 				<!-- else -->
 				<!--img src="/home/images/default_gravatar.png" height="20px"/-->

@@ -60,7 +60,45 @@ class Goal < ActiveRecord::Base
     errors.add(:response_question, "Sorry, for security reasons we can not allow links to be added to text fields.") if(response_question and response_question.include? "http:") 	
   end 
 
+  def quant_diff_between_first_and_last
+    if self.quant_first and self.quant_last
+      diff = self.quant_last.measurement - self.quant_first.measurement
 
+      measurement_with_decimals = diff.to_f / 100
+      m_display = measurement_with_decimals.to_s
+
+      ### check if you really need that precision
+      arr_measurement = measurement_with_decimals.to_s.split(".")
+      if arr_measurement[1] == "00" or arr_measurement[1] == "0"
+        m_display = arr_measurement[0]
+      end
+      return m_display 
+
+    else
+      return false
+    end
+  end
+
+  def quant_first
+    if self.quants
+
+      quants = Quant.find(:all, :conditions => "goal_id = '#{self.id}'", :order => "measurement_date DESC, measurement_hour DESC, measurement_taken_timestamp DESC")
+      return quants[0]
+    else
+      return false
+    end
+  end
+
+  def quant_last
+    if self.quants
+
+      quants = Quant.find(:all, :conditions => "goal_id = '#{self.id}'", :order => "measurement_date DESC, measurement_hour DESC, measurement_taken_timestamp DESC")
+      last_item_index = quants.size - 1
+      return quants[last_item_index]
+    else
+      return false
+    end
+  end
 
 
   ### copy template-relevant values from the goal to a new template goal

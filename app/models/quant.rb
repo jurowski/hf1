@@ -25,4 +25,18 @@ class Quant < ActiveRecord::Base
 	end ### end def i_am_owner_or_admin
 
 
+	def measurement_display
+		measurement_with_decimals = self.measurement.to_f / 100
+		m_display = measurement_with_decimals.to_s
+
+		### check if you really need that precision
+		arr_measurement = measurement_with_decimals.to_s.split(".")
+		if arr_measurement[1] == "00" or arr_measurement[1] == "0"
+			m_display = arr_measurement[0]
+		end
+		return m_display 
+	end
+
+
+
 end

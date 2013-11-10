@@ -18,12 +18,18 @@ ROWLEY 52M
 NEXT
 ------------ 
 
+
+-- add to weight_loss_by_states: 
+challenge_qty_total_weighing_in
+challenge_qty_total_signed_up
+challenge_lbs_starting_weight_total
+challenge_lbs_last_weight_total
+
+--write the cron job to generate stats for the states, save in db
+
 --map:(set color based on % reached threshold)
 
 --after N days, include in the check-in and reminders that It's Time to get a Quant
-
---write the cron job to generate stats for the states, save in db
---write the cron job to kick off the job to write stats to js file
 
 --graph user-level tracker results for weight
 
