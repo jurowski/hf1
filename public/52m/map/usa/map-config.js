@@ -46,7 +46,7 @@ var map_config = {
   'map_1':{
       'namesId':'AL',
       'name':'ALABAMA',
-      'data':'<div>Population-Adjusted Goal for Alabama: <strong>Lose 864,655 lbs.</strong><br># of Challenge Participants: 0 have signed up<br>Lbs lost so far: 0 lbs.<br>% of Goal Reached: 0%<br>Challenge Rank (US & Canada): #0 out of 64<br><br><br><br>-- Obesity Facts for AL --<br>Total Population: 4,779,736<br>Obesity Rate: 32%<br>Est # of Obese Adults: 1,177,726</div>',
+      'data':'<div> Weighted Goal*: <strong>Lose 864,655 lbs.</strong> <br><strong>0 Participants have lost 0 lbs.</strong> so far <br><strong>0%</strong> of Goal Reached <br>Challenge Rank (US & Canada): <strong>#0 of 64</strong> <br> <br> <div style="background-color:#ffffff;padding:5px;margin:5px;">     AL Obesity Rate: <strong>32%**</strong>     <br>Est # of Obese Adults: <strong>1,177,726</strong> </div> <h3>*Goal based on est. # of obese adults in AL</h3> <h3>Population data: Census Data 2010 (census.gov)</h3> <h3>**Obesity data: CDC 2012 (cdc.gov)</h3> <div style="background-color:#ffffff;padding:5px;margin:5px;">     <center>Challenge Tracking Powered By:      <br><a href="http://habitforge.com" target="_blank"><img src="http://habitforge.com/home/images/logos/HF-ETR-Logo-Header_120.png" /></a></center> </div></div>',
       'upcolor':'#EBECED',
       'overcolor':'#99CC00',
       'downcolor':'#993366',
@@ -55,7 +55,7 @@ var map_config = {
   'map_2':{
       'namesId':'AK',
       'name':'ALASKA',
-      'data':'<div>Population-Adjusted Goal for Alaska: <strong>Lose 100,375 lbs.</strong><br># of Challenge Participants: 0 have signed up<br>Lbs lost so far: 0 lbs.<br>% of Goal Reached: 0%<br>Challenge Rank (US & Canada): #0 out of 64<br><br><br><br>-- Obesity Facts for AK --<br>Total Population: 710,231<br>Obesity Rate: 25%<br>Est # of Obese Adults: 136,719</div>',
+      'data':'<div> Weighted Goal*: <strong>Lose 100,375 lbs.</strong> <br><strong>0 Participants have lost 0 lbs.</strong> so far <br><strong>0%</strong> of Goal Reached <br>Challenge Rank (US & Canada): <strong>#0 of 64</strong> <br> <br> <div style="background-color:#ffffff;padding:5px;margin:5px;">     AK Obesity Rate: <strong>25%**</strong>     <br>Est # of Obese Adults: <strong>136,719</strong> </div> <h3>*Goal based on est. # of obese adults in AK</h3> <h3>Population data: Census Data 2010 (census.gov)</h3> <h3>**Obesity data: CDC 2012 (cdc.gov)</h3> <div style="background-color:#ffffff;padding:5px;margin:5px;">     <center>Challenge Tracking Powered By:      <br><a href="http://habitforge.com" target="_blank"><img src="http://habitforge.com/home/images/logos/HF-ETR-Logo-Header_120.png" /></a></center> </div></div>',
       'upcolor':'#EBECED',
       'overcolor':'#99CC00',
       'downcolor':'#993366',
@@ -64,7 +64,7 @@ var map_config = {
   'map_3':{
       'namesId':'AZ',
       'name':'ARIZONA',
-      'data':'<div>Population-Adjusted Goal for Arizona: <strong>Lose 867,238 lbs.</strong><br># of Challenge Participants: 0 have signed up<br>Lbs lost so far: 0 lbs.<br>% of Goal Reached: 0%<br>Challenge Rank (US & Canada): #0 out of 64<br><br><br><br>-- Obesity Facts for AZ --<br>Total Population: 6,392,017<br>Obesity Rate: 24%<br>Est # of Obese Adults: 1,181,244</div>',
+      'data':'<div> Weighted Goal*: <strong>Lose 867,238 lbs.</strong> <br><strong>0 Participants have lost 0 lbs.</strong> so far <br><strong>0%</strong> of Goal Reached <br>Challenge Rank (US & Canada): <strong>#0 of 64</strong> <br> <br> <div style="background-color:#ffffff;padding:5px;margin:5px;">     AZ Obesity Rate: <strong>24%**</strong>     <br>Est # of Obese Adults: <strong>1,181,244</strong> </div> <h3>*Goal based on est. # of obese adults in AZ</h3> <h3>Population data: Census Data 2010 (census.gov)</h3> <h3>**Obesity data: CDC 2012 (cdc.gov)</h3> <div style="background-color:#ffffff;padding:5px;margin:5px;">     <center>Challenge Tracking Powered By:      <br><a href="http://habitforge.com" target="_blank"><img src="http://habitforge.com/home/images/logos/HF-ETR-Logo-Header_120.png" /></a></center> </div></div>',
       'upcolor':'#EBECED',
       'overcolor':'#99CC00',
       'downcolor':'#993366',
@@ -73,7 +73,7 @@ var map_config = {
   'map_4':{
       'namesId':'AR',
       'name':'ARKANSAS',
-      'data':'<div>Population-Adjusted Goal for Arkansas: <strong>Lose 494,522 lbs.</strong><br># of Challenge Participants: 0 have signed up<br>Lbs lost so far: 0 lbs.<br>% of Goal Reached: 0%<br>Challenge Rank (US & Canada): #0 out of 64<br><br><br><br>-- Obesity Facts for AR --<br>Total Population: 2,915,918<br>Obesity Rate: 30%<br>Est # of Obese Adults: 673,576</div>',
+      'data':'<div> Weighted Goal*: <strong>Lose 494,522 lbs.</strong> <br><strong>0 Participants have lost 0 lbs.</strong> so far <br><strong>0%</strong> of Goal Reached <br>Challenge Rank (US & Canada): <strong>#0 of 64</strong> <br> <br> <div style="background-color:#ffffff;padding:5px;margin:5px;">     AR Obesity Rate: <strong>30%**</strong>     <br>Est # of Obese Adults: <strong>673,576</strong> </div> <h3>*Goal based on est. # of obese adults in AR</h3> <h3>Population data: Census Data 2010 (census.gov)</h3> <h3>**Obesity data: CDC 2012 (cdc.gov)</h3> <div style="background-color:#ffffff;padding:5px;margin:5px;">     <center>Challenge Tracking Powered By:      <br><a href="http://habitforge.com" target="_blank"><img src="http://habitforge.com/home/images/logos/HF-ETR-Logo-Header_120.png" /></a></center> </div></div>',
       'upcolor':'#EBECED',
       'overcolor':'#99CC00',
       'downcolor':'#993366',
@@ -82,7 +82,7 @@ var map_config = {
   'map_5':{
       'namesId':'CA',
       'name':'CALIFORNIA',
-      'data':'<div>Population-Adjusted Goal for California: <strong>Lose 5,054,444 lbs.</strong><br># of Challenge Participants: 0 have signed up<br>Lbs lost so far: 0 lbs.<br>% of Goal Reached: 0%<br>Challenge Rank (US & Canada): #0 out of 64<br><br><br><br>-- Obesity Facts for CA --<br>Total Population: 37,253,956<br>Obesity Rate: 24%<br>Est # of Obese Adults: 6,884,531</div>',
+      'data':'<div> Weighted Goal*: <strong>Lose 5,054,444 lbs.</strong> <br><strong>0 Participants have lost 0 lbs.</strong> so far <br><strong>0%</strong> of Goal Reached <br>Challenge Rank (US & Canada): <strong>#0 of 64</strong> <br> <br> <div style="background-color:#ffffff;padding:5px;margin:5px;">     CA Obesity Rate: <strong>24%**</strong>     <br>Est # of Obese Adults: <strong>6,884,531</strong> </div> <h3>*Goal based on est. # of obese adults in CA</h3> <h3>Population data: Census Data 2010 (census.gov)</h3> <h3>**Obesity data: CDC 2012 (cdc.gov)</h3> <div style="background-color:#ffffff;padding:5px;margin:5px;">     <center>Challenge Tracking Powered By:      <br><a href="http://habitforge.com" target="_blank"><img src="http://habitforge.com/home/images/logos/HF-ETR-Logo-Header_120.png" /></a></center> </div></div>',
       'upcolor':'#EBECED',
       'overcolor':'#99CC00',
       'downcolor':'#993366',
@@ -91,7 +91,7 @@ var map_config = {
   'map_6':{
       'namesId':'CO',
       'name':'COLORADO',
-      'data':'<div>Population-Adjusted Goal for Colorado: <strong>Lose 597,045 lbs.</strong><br># of Challenge Participants: 0 have signed up<br>Lbs lost so far: 0 lbs.<br>% of Goal Reached: 0%<br>Challenge Rank (US & Canada): #0 out of 64<br><br><br><br>-- Obesity Facts for CO --<br>Total Population: 5,029,196<br>Obesity Rate: 21%<br>Est # of Obese Adults: 813,220</div>',
+      'data':'<div> Weighted Goal*: <strong>Lose 597,045 lbs.</strong> <br><strong>0 Participants have lost 0 lbs.</strong> so far <br><strong>0%</strong> of Goal Reached <br>Challenge Rank (US & Canada): <strong>#0 of 64</strong> <br> <br> <div style="background-color:#ffffff;padding:5px;margin:5px;">     CO Obesity Rate: <strong>21%**</strong>     <br>Est # of Obese Adults: <strong>813,220</strong> </div> <h3>*Goal based on est. # of obese adults in CO</h3> <h3>Population data: Census Data 2010 (census.gov)</h3> <h3>**Obesity data: CDC 2012 (cdc.gov)</h3> <div style="background-color:#ffffff;padding:5px;margin:5px;">     <center>Challenge Tracking Powered By:      <br><a href="http://habitforge.com" target="_blank"><img src="http://habitforge.com/home/images/logos/HF-ETR-Logo-Header_120.png" /></a></center> </div></div>',
       'upcolor':'#EBECED',
       'overcolor':'#99CC00',
       'downcolor':'#993366',
@@ -100,7 +100,7 @@ var map_config = {
   'map_7':{
       'namesId':'CT',
       'name':'CONNECTICUT',
-      'data':'<div>Population-Adjusted Goal for Connecticut: <strong>Lose 464,711 lbs.</strong><br># of Challenge Participants: 0 have signed up<br>Lbs lost so far: 0 lbs.<br>% of Goal Reached: 0%<br>Challenge Rank (US & Canada): #0 out of 64<br><br><br><br>-- Obesity Facts for CT --<br>Total Population: 3,574,097<br>Obesity Rate: 23%<br>Est # of Obese Adults: 632,972</div>',
+      'data':'<div> Weighted Goal*: <strong>Lose 464,711 lbs.</strong> <br><strong>0 Participants have lost 0 lbs.</strong> so far <br><strong>0%</strong> of Goal Reached <br>Challenge Rank (US & Canada): <strong>#0 of 64</strong> <br> <br> <div style="background-color:#ffffff;padding:5px;margin:5px;">     CT Obesity Rate: <strong>23%**</strong>     <br>Est # of Obese Adults: <strong>632,972</strong> </div> <h3>*Goal based on est. # of obese adults in CT</h3> <h3>Population data: Census Data 2010 (census.gov)</h3> <h3>**Obesity data: CDC 2012 (cdc.gov)</h3> <div style="background-color:#ffffff;padding:5px;margin:5px;">     <center>Challenge Tracking Powered By:      <br><a href="http://habitforge.com" target="_blank"><img src="http://habitforge.com/home/images/logos/HF-ETR-Logo-Header_120.png" /></a></center> </div></div>',
       'upcolor':'#EBECED',
       'overcolor':'#99CC00',
       'downcolor':'#993366',
@@ -109,7 +109,7 @@ var map_config = {
   'map_8':{
       'namesId':'DE',
       'name':'DELAWARE',
-      'data':'<div>Population-Adjusted Goal for Delaware: <strong>Lose 142,131 lbs.</strong><br># of Challenge Participants: 0 have signed up<br>Lbs lost so far: 0 lbs.<br>% of Goal Reached: 0%<br>Challenge Rank (US & Canada): #0 out of 64<br><br><br><br>-- Obesity Facts for DE --<br>Total Population: 897,934<br>Obesity Rate: 28%<br>Est # of Obese Adults: 193,594</div>',
+      'data':'<div> Weighted Goal*: <strong>Lose 142,131 lbs.</strong> <br><strong>0 Participants have lost 0 lbs.</strong> so far <br><strong>0%</strong> of Goal Reached <br>Challenge Rank (US & Canada): <strong>#0 of 64</strong> <br> <br> <div style="background-color:#ffffff;padding:5px;margin:5px;">     DE Obesity Rate: <strong>28%**</strong>     <br>Est # of Obese Adults: <strong>193,594</strong> </div> <h3>*Goal based on est. # of obese adults in DE</h3> <h3>Population data: Census Data 2010 (census.gov)</h3> <h3>**Obesity data: CDC 2012 (cdc.gov)</h3> <div style="background-color:#ffffff;padding:5px;margin:5px;">     <center>Challenge Tracking Powered By:      <br><a href="http://habitforge.com" target="_blank"><img src="http://habitforge.com/home/images/logos/HF-ETR-Logo-Header_120.png" /></a></center> </div></div>',
       'upcolor':'#EBECED',
       'overcolor':'#99CC00',
       'downcolor':'#993366',
@@ -118,7 +118,7 @@ var map_config = {
   'map_51':{
       'namesId':'DC',
       'name':'DISTRICT OF COLUMBIA',
-      'data':'<div>Population-Adjusted Goal for District of Columbia: <strong>Lose 91,843 lbs.</strong><br># of Challenge Participants: 0 have signed up<br>Lbs lost so far: 0 lbs.<br>% of Goal Reached: 0%<br>Challenge Rank (US & Canada): #0 out of 64<br><br><br><br>-- Obesity Facts for DC --<br>Total Population: 601,723<br>Obesity Rate: 27%<br>Est # of Obese Adults: 125,098</div>',
+      'data':'<div> Weighted Goal*: <strong>Lose 91,843 lbs.</strong> <br><strong>0 Participants have lost 0 lbs.</strong> so far <br><strong>0%</strong> of Goal Reached <br>Challenge Rank (US & Canada): <strong>#0 of 64</strong> <br> <br> <div style="background-color:#ffffff;padding:5px;margin:5px;">     DC Obesity Rate: <strong>27%**</strong>     <br>Est # of Obese Adults: <strong>125,098</strong> </div> <h3>*Goal based on est. # of obese adults in DC</h3> <h3>Population data: Census Data 2010 (census.gov)</h3> <h3>**Obesity data: CDC 2012 (cdc.gov)</h3> <div style="background-color:#ffffff;padding:5px;margin:5px;">     <center>Challenge Tracking Powered By:      <br><a href="http://habitforge.com" target="_blank"><img src="http://habitforge.com/home/images/logos/HF-ETR-Logo-Header_120.png" /></a></center> </div></div>',
       'upcolor':'#EBECED',
       'overcolor':'#99CC00',
       'downcolor':'#993366',
@@ -127,7 +127,7 @@ var map_config = {
   'map_9':{
       'namesId':'FL',
       'name':'FLORIDA',
-      'data':'<div>Population-Adjusted Goal for Florida: <strong>Lose 2,869,734 lbs.</strong><br># of Challenge Participants: 0 have signed up<br>Lbs lost so far: 0 lbs.<br>% of Goal Reached: 0%<br>Challenge Rank (US & Canada): #0 out of 64<br><br><br><br>-- Obesity Facts for FL --<br>Total Population: 18,801,310<br>Obesity Rate: 27%<br>Est # of Obese Adults: 3,908,792</div>',
+      'data':'<div> Weighted Goal*: <strong>Lose 2,869,734 lbs.</strong> <br><strong>0 Participants have lost 0 lbs.</strong> so far <br><strong>0%</strong> of Goal Reached <br>Challenge Rank (US & Canada): <strong>#0 of 64</strong> <br> <br> <div style="background-color:#ffffff;padding:5px;margin:5px;">     FL Obesity Rate: <strong>27%**</strong>     <br>Est # of Obese Adults: <strong>3,908,792</strong> </div> <h3>*Goal based on est. # of obese adults in FL</h3> <h3>Population data: Census Data 2010 (census.gov)</h3> <h3>**Obesity data: CDC 2012 (cdc.gov)</h3> <div style="background-color:#ffffff;padding:5px;margin:5px;">     <center>Challenge Tracking Powered By:      <br><a href="http://habitforge.com" target="_blank"><img src="http://habitforge.com/home/images/logos/HF-ETR-Logo-Header_120.png" /></a></center> </div></div>',
       'upcolor':'#EBECED',
       'overcolor':'#99CC00',
       'downcolor':'#993366',
@@ -136,7 +136,7 @@ var map_config = {
   'map_10':{
       'namesId':'GA',
       'name':'GEORGIA',
-      'data':'<div>Population-Adjusted Goal for Georgia: <strong>Lose 1,642,969 lbs.</strong><br># of Challenge Participants: 0 have signed up<br>Lbs lost so far: 0 lbs.<br>% of Goal Reached: 0%<br>Challenge Rank (US & Canada): #0 out of 64<br><br><br><br>-- Obesity Facts for GA --<br>Total Population: 9,687,653<br>Obesity Rate: 30%<br>Est # of Obese Adults: 2,237,847</div>',
+      'data':'<div> Weighted Goal*: <strong>Lose 1,642,969 lbs.</strong> <br><strong>0 Participants have lost 0 lbs.</strong> so far <br><strong>0%</strong> of Goal Reached <br>Challenge Rank (US & Canada): <strong>#0 of 64</strong> <br> <br> <div style="background-color:#ffffff;padding:5px;margin:5px;">     GA Obesity Rate: <strong>30%**</strong>     <br>Est # of Obese Adults: <strong>2,237,847</strong> </div> <h3>*Goal based on est. # of obese adults in GA</h3> <h3>Population data: Census Data 2010 (census.gov)</h3> <h3>**Obesity data: CDC 2012 (cdc.gov)</h3> <div style="background-color:#ffffff;padding:5px;margin:5px;">     <center>Challenge Tracking Powered By:      <br><a href="http://habitforge.com" target="_blank"><img src="http://habitforge.com/home/images/logos/HF-ETR-Logo-Header_120.png" /></a></center> </div></div>',
       'upcolor':'#EBECED',
       'overcolor':'#99CC00',
       'downcolor':'#993366',
@@ -145,7 +145,7 @@ var map_config = {
   'map_11':{
       'namesId':'HI',
       'name':'HAWAII',
-      'data':'<div>Population-Adjusted Goal for Hawaii: <strong>Lose 176,869 lbs.</strong><br># of Challenge Participants: 0 have signed up<br>Lbs lost so far: 0 lbs.<br>% of Goal Reached: 0%<br>Challenge Rank (US & Canada): #0 out of 64<br><br><br><br>-- Obesity Facts for HI --<br>Total Population: 1,360,301<br>Obesity Rate: 23%<br>Est # of Obese Adults: 240,909</div>',
+      'data':'<div> Weighted Goal*: <strong>Lose 176,869 lbs.</strong> <br><strong>0 Participants have lost 0 lbs.</strong> so far <br><strong>0%</strong> of Goal Reached <br>Challenge Rank (US & Canada): <strong>#0 of 64</strong> <br> <br> <div style="background-color:#ffffff;padding:5px;margin:5px;">     HI Obesity Rate: <strong>23%**</strong>     <br>Est # of Obese Adults: <strong>240,909</strong> </div> <h3>*Goal based on est. # of obese adults in HI</h3> <h3>Population data: Census Data 2010 (census.gov)</h3> <h3>**Obesity data: CDC 2012 (cdc.gov)</h3> <div style="background-color:#ffffff;padding:5px;margin:5px;">     <center>Challenge Tracking Powered By:      <br><a href="http://habitforge.com" target="_blank"><img src="http://habitforge.com/home/images/logos/HF-ETR-Logo-Header_120.png" /></a></center> </div></div>',
       'upcolor':'#EBECED',
       'overcolor':'#99CC00',
       'downcolor':'#993366',
@@ -154,7 +154,7 @@ var map_config = {
   'map_12':{
       'namesId':'ID',
       'name':'IDAHO',
-      'data':'<div>Population-Adjusted Goal for Idaho: <strong>Lose 239,267 lbs.</strong><br># of Challenge Participants: 0 have signed up<br>Lbs lost so far: 0 lbs.<br>% of Goal Reached: 0%<br>Challenge Rank (US & Canada): #0 out of 64<br><br><br><br>-- Obesity Facts for ID --<br>Total Population: 1,567,582<br>Obesity Rate: 27%<br>Est # of Obese Adults: 325,900</div>',
+      'data':'<div> Weighted Goal*: <strong>Lose 239,267 lbs.</strong> <br><strong>0 Participants have lost 0 lbs.</strong> so far <br><strong>0%</strong> of Goal Reached <br>Challenge Rank (US & Canada): <strong>#0 of 64</strong> <br> <br> <div style="background-color:#ffffff;padding:5px;margin:5px;">     ID Obesity Rate: <strong>27%**</strong>     <br>Est # of Obese Adults: <strong>325,900</strong> </div> <h3>*Goal based on est. # of obese adults in ID</h3> <h3>Population data: Census Data 2010 (census.gov)</h3> <h3>**Obesity data: CDC 2012 (cdc.gov)</h3> <div style="background-color:#ffffff;padding:5px;margin:5px;">     <center>Challenge Tracking Powered By:      <br><a href="http://habitforge.com" target="_blank"><img src="http://habitforge.com/home/images/logos/HF-ETR-Logo-Header_120.png" /></a></center> </div></div>',
       'upcolor':'#EBECED',
       'overcolor':'#99CC00',
       'downcolor':'#993366',
@@ -163,7 +163,7 @@ var map_config = {
   'map_13':{
       'namesId':'IL',
       'name':'ILLINOIS',
-      'data':'<div>Population-Adjusted Goal for Illinois: <strong>Lose 2,030,934 lbs.</strong><br># of Challenge Participants: 0 have signed up<br>Lbs lost so far: 0 lbs.<br>% of Goal Reached: 0%<br>Challenge Rank (US & Canada): #0 out of 64<br><br><br><br>-- Obesity Facts for IL --<br>Total Population: 12,830,632<br>Obesity Rate: 28%<br>Est # of Obese Adults: 2,766,284</div>',
+      'data':'<div> Weighted Goal*: <strong>Lose 2,030,934 lbs.</strong> <br><strong>0 Participants have lost 0 lbs.</strong> so far <br><strong>0%</strong> of Goal Reached <br>Challenge Rank (US & Canada): <strong>#0 of 64</strong> <br> <br> <div style="background-color:#ffffff;padding:5px;margin:5px;">     IL Obesity Rate: <strong>28%**</strong>     <br>Est # of Obese Adults: <strong>2,766,284</strong> </div> <h3>*Goal based on est. # of obese adults in IL</h3> <h3>Population data: Census Data 2010 (census.gov)</h3> <h3>**Obesity data: CDC 2012 (cdc.gov)</h3> <div style="background-color:#ffffff;padding:5px;margin:5px;">     <center>Challenge Tracking Powered By:      <br><a href="http://habitforge.com" target="_blank"><img src="http://habitforge.com/home/images/logos/HF-ETR-Logo-Header_120.png" /></a></center> </div></div>',
       'upcolor':'#EBECED',
       'overcolor':'#99CC00',
       'downcolor':'#993366',
@@ -172,7 +172,7 @@ var map_config = {
   'map_14':{
       'namesId':'IN',
       'name':'INDIANA',
-      'data':'<div>Population-Adjusted Goal for Indiana: <strong>Lose 1,099,615 lbs.</strong><br># of Challenge Participants: 0 have signed up<br>Lbs lost so far: 0 lbs.<br>% of Goal Reached: 0%<br>Challenge Rank (US & Canada): #0 out of 64<br><br><br><br>-- Obesity Facts for IN --<br>Total Population: 6,483,802<br>Obesity Rate: 30%<br>Est # of Obese Adults: 1,497,758</div>',
+      'data':'<div> Weighted Goal*: <strong>Lose 1,099,615 lbs.</strong> <br><strong>0 Participants have lost 0 lbs.</strong> so far <br><strong>0%</strong> of Goal Reached <br>Challenge Rank (US & Canada): <strong>#0 of 64</strong> <br> <br> <div style="background-color:#ffffff;padding:5px;margin:5px;">     IN Obesity Rate: <strong>30%**</strong>     <br>Est # of Obese Adults: <strong>1,497,758</strong> </div> <h3>*Goal based on est. # of obese adults in IN</h3> <h3>Population data: Census Data 2010 (census.gov)</h3> <h3>**Obesity data: CDC 2012 (cdc.gov)</h3> <div style="background-color:#ffffff;padding:5px;margin:5px;">     <center>Challenge Tracking Powered By:      <br><a href="http://habitforge.com" target="_blank"><img src="http://habitforge.com/home/images/logos/HF-ETR-Logo-Header_120.png" /></a></center> </div></div>',
       'upcolor':'#EBECED',
       'overcolor':'#99CC00',
       'downcolor':'#993366',
@@ -181,7 +181,7 @@ var map_config = {
   'map_15':{
       'namesId':'IA',
       'name':'IOWA',
-      'data':'<div>Population-Adjusted Goal for Iowa: <strong>Lose 482,201 lbs.</strong><br># of Challenge Participants: 0 have signed up<br>Lbs lost so far: 0 lbs.<br>% of Goal Reached: 0%<br>Challenge Rank (US & Canada): #0 out of 64<br><br><br><br>-- Obesity Facts for IA --<br>Total Population: 3,046,355<br>Obesity Rate: 28%<br>Est # of Obese Adults: 656,794</div>',
+      'data':'<div> Weighted Goal*: <strong>Lose 482,201 lbs.</strong> <br><strong>0 Participants have lost 0 lbs.</strong> so far <br><strong>0%</strong> of Goal Reached <br>Challenge Rank (US & Canada): <strong>#0 of 64</strong> <br> <br> <div style="background-color:#ffffff;padding:5px;margin:5px;">     IA Obesity Rate: <strong>28%**</strong>     <br>Est # of Obese Adults: <strong>656,794</strong> </div> <h3>*Goal based on est. # of obese adults in IA</h3> <h3>Population data: Census Data 2010 (census.gov)</h3> <h3>**Obesity data: CDC 2012 (cdc.gov)</h3> <div style="background-color:#ffffff;padding:5px;margin:5px;">     <center>Challenge Tracking Powered By:      <br><a href="http://habitforge.com" target="_blank"><img src="http://habitforge.com/home/images/logos/HF-ETR-Logo-Header_120.png" /></a></center> </div></div>',
       'upcolor':'#EBECED',
       'overcolor':'#99CC00',
       'downcolor':'#993366',
@@ -190,7 +190,7 @@ var map_config = {
   'map_16':{
       'namesId':'KS',
       'name':'KANSAS',
-      'data':'<div>Population-Adjusted Goal for Kansas: <strong>Lose 467,743 lbs.</strong><br># of Challenge Participants: 0 have signed up<br>Lbs lost so far: 0 lbs.<br>% of Goal Reached: 0%<br>Challenge Rank (US & Canada): #0 out of 64<br><br><br><br>-- Obesity Facts for KS --<br>Total Population: 2,853,118<br>Obesity Rate: 29%<br>Est # of Obese Adults: 637,101</div>',
+      'data':'<div> Weighted Goal*: <strong>Lose 467,743 lbs.</strong> <br><strong>0 Participants have lost 0 lbs.</strong> so far <br><strong>0%</strong> of Goal Reached <br>Challenge Rank (US & Canada): <strong>#0 of 64</strong> <br> <br> <div style="background-color:#ffffff;padding:5px;margin:5px;">     KS Obesity Rate: <strong>29%**</strong>     <br>Est # of Obese Adults: <strong>637,101</strong> </div> <h3>*Goal based on est. # of obese adults in KS</h3> <h3>Population data: Census Data 2010 (census.gov)</h3> <h3>**Obesity data: CDC 2012 (cdc.gov)</h3> <div style="background-color:#ffffff;padding:5px;margin:5px;">     <center>Challenge Tracking Powered By:      <br><a href="http://habitforge.com" target="_blank"><img src="http://habitforge.com/home/images/logos/HF-ETR-Logo-Header_120.png" /></a></center> </div></div>',
       'upcolor':'#EBECED',
       'overcolor':'#99CC00',
       'downcolor':'#993366',
@@ -199,7 +199,7 @@ var map_config = {
   'map_17':{
       'namesId':'KY',
       'name':'KENTUCKY',
-      'data':'<div>Population-Adjusted Goal for Kentucky: <strong>Lose 760,461 lbs.</strong><br># of Challenge Participants: 0 have signed up<br>Lbs lost so far: 0 lbs.<br>% of Goal Reached: 0%<br>Challenge Rank (US & Canada): #0 out of 64<br><br><br><br>-- Obesity Facts for KY --<br>Total Population: 4,339,367<br>Obesity Rate: 31%<br>Est # of Obese Adults: 1,035,806</div>',
+      'data':'<div> Weighted Goal*: <strong>Lose 760,461 lbs.</strong> <br><strong>0 Participants have lost 0 lbs.</strong> so far <br><strong>0%</strong> of Goal Reached <br>Challenge Rank (US & Canada): <strong>#0 of 64</strong> <br> <br> <div style="background-color:#ffffff;padding:5px;margin:5px;">     KY Obesity Rate: <strong>31%**</strong>     <br>Est # of Obese Adults: <strong>1,035,806</strong> </div> <h3>*Goal based on est. # of obese adults in KY</h3> <h3>Population data: Census Data 2010 (census.gov)</h3> <h3>**Obesity data: CDC 2012 (cdc.gov)</h3> <div style="background-color:#ffffff;padding:5px;margin:5px;">     <center>Challenge Tracking Powered By:      <br><a href="http://habitforge.com" target="_blank"><img src="http://habitforge.com/home/images/logos/HF-ETR-Logo-Header_120.png" /></a></center> </div></div>',
       'upcolor':'#EBECED',
       'overcolor':'#99CC00',
       'downcolor':'#993366',
@@ -208,7 +208,7 @@ var map_config = {
   'map_18':{
       'namesId':'LA',
       'name':'LOUISIANA',
-      'data':'<div>Population-Adjusted Goal for Louisiana: <strong>Lose 794,460 lbs.</strong><br># of Challenge Participants: 0 have signed up<br>Lbs lost so far: 0 lbs.<br>% of Goal Reached: 0%<br>Challenge Rank (US & Canada): #0 out of 64<br><br><br><br>-- Obesity Facts for LA --<br>Total Population: 4,533,372<br>Obesity Rate: 31%<br>Est # of Obese Adults: 1,082,115</div>',
+      'data':'<div> Weighted Goal*: <strong>Lose 794,460 lbs.</strong> <br><strong>0 Participants have lost 0 lbs.</strong> so far <br><strong>0%</strong> of Goal Reached <br>Challenge Rank (US & Canada): <strong>#0 of 64</strong> <br> <br> <div style="background-color:#ffffff;padding:5px;margin:5px;">     LA Obesity Rate: <strong>31%**</strong>     <br>Est # of Obese Adults: <strong>1,082,115</strong> </div> <h3>*Goal based on est. # of obese adults in LA</h3> <h3>Population data: Census Data 2010 (census.gov)</h3> <h3>**Obesity data: CDC 2012 (cdc.gov)</h3> <div style="background-color:#ffffff;padding:5px;margin:5px;">     <center>Challenge Tracking Powered By:      <br><a href="http://habitforge.com" target="_blank"><img src="http://habitforge.com/home/images/logos/HF-ETR-Logo-Header_120.png" /></a></center> </div></div>',
       'upcolor':'#EBECED',
       'overcolor':'#99CC00',
       'downcolor':'#993366',
@@ -217,7 +217,7 @@ var map_config = {
   'map_19':{
       'namesId':'ME',
       'name':'MAINE',
-      'data':'<div>Population-Adjusted Goal for Maine: <strong>Lose 202,753 lbs.</strong><br># of Challenge Participants: 0 have signed up<br>Lbs lost so far: 0 lbs.<br>% of Goal Reached: 0%<br>Challenge Rank (US & Canada): #0 out of 64<br><br><br><br>-- Obesity Facts for ME --<br>Total Population: 1,328,361<br>Obesity Rate: 27%<br>Est # of Obese Adults: 276,165</div>',
+      'data':'<div> Weighted Goal*: <strong>Lose 202,753 lbs.</strong> <br><strong>0 Participants have lost 0 lbs.</strong> so far <br><strong>0%</strong> of Goal Reached <br>Challenge Rank (US & Canada): <strong>#0 of 64</strong> <br> <br> <div style="background-color:#ffffff;padding:5px;margin:5px;">     ME Obesity Rate: <strong>27%**</strong>     <br>Est # of Obese Adults: <strong>276,165</strong> </div> <h3>*Goal based on est. # of obese adults in ME</h3> <h3>Population data: Census Data 2010 (census.gov)</h3> <h3>**Obesity data: CDC 2012 (cdc.gov)</h3> <div style="background-color:#ffffff;padding:5px;margin:5px;">     <center>Challenge Tracking Powered By:      <br><a href="http://habitforge.com" target="_blank"><img src="http://habitforge.com/home/images/logos/HF-ETR-Logo-Header_120.png" /></a></center> </div></div>',
       'upcolor':'#EBECED',
       'overcolor':'#99CC00',
       'downcolor':'#993366',
@@ -226,7 +226,7 @@ var map_config = {
   'map_20':{
       'namesId':'MD',
       'name':'MARYLAND',
-      'data':'<div>Population-Adjusted Goal for Maryland: <strong>Lose 881,244 lbs.</strong><br># of Challenge Participants: 0 have signed up<br>Lbs lost so far: 0 lbs.<br>% of Goal Reached: 0%<br>Challenge Rank (US & Canada): #0 out of 64<br><br><br><br>-- Obesity Facts for MD --<br>Total Population: 5,773,552<br>Obesity Rate: 27%<br>Est # of Obese Adults: 1,200,321</div>',
+      'data':'<div> Weighted Goal*: <strong>Lose 881,244 lbs.</strong> <br><strong>0 Participants have lost 0 lbs.</strong> so far <br><strong>0%</strong> of Goal Reached <br>Challenge Rank (US & Canada): <strong>#0 of 64</strong> <br> <br> <div style="background-color:#ffffff;padding:5px;margin:5px;">     MD Obesity Rate: <strong>27%**</strong>     <br>Est # of Obese Adults: <strong>1,200,321</strong> </div> <h3>*Goal based on est. # of obese adults in MD</h3> <h3>Population data: Census Data 2010 (census.gov)</h3> <h3>**Obesity data: CDC 2012 (cdc.gov)</h3> <div style="background-color:#ffffff;padding:5px;margin:5px;">     <center>Challenge Tracking Powered By:      <br><a href="http://habitforge.com" target="_blank"><img src="http://habitforge.com/home/images/logos/HF-ETR-Logo-Header_120.png" /></a></center> </div></div>',
       'upcolor':'#EBECED',
       'overcolor':'#99CC00',
       'downcolor':'#993366',
@@ -235,7 +235,7 @@ var map_config = {
   'map_21':{
       'namesId':'MA',
       'name':'MASSACHUSETTS',
-      'data':'<div>Population-Adjusted Goal for Massachusetts: <strong>Lose 851,337 lbs.</strong><br># of Challenge Participants: 0 have signed up<br>Lbs lost so far: 0 lbs.<br>% of Goal Reached: 0%<br>Challenge Rank (US & Canada): #0 out of 64<br><br><br><br>-- Obesity Facts for MA --<br>Total Population: 6,547,629<br>Obesity Rate: 23%<br>Est # of Obese Adults: 1,159,585</div>',
+      'data':'<div> Weighted Goal*: <strong>Lose 851,337 lbs.</strong> <br><strong>0 Participants have lost 0 lbs.</strong> so far <br><strong>0%</strong> of Goal Reached <br>Challenge Rank (US & Canada): <strong>#0 of 64</strong> <br> <br> <div style="background-color:#ffffff;padding:5px;margin:5px;">     MA Obesity Rate: <strong>23%**</strong>     <br>Est # of Obese Adults: <strong>1,159,585</strong> </div> <h3>*Goal based on est. # of obese adults in MA</h3> <h3>Population data: Census Data 2010 (census.gov)</h3> <h3>**Obesity data: CDC 2012 (cdc.gov)</h3> <div style="background-color:#ffffff;padding:5px;margin:5px;">     <center>Challenge Tracking Powered By:      <br><a href="http://habitforge.com" target="_blank"><img src="http://habitforge.com/home/images/logos/HF-ETR-Logo-Header_120.png" /></a></center> </div></div>',
       'upcolor':'#EBECED',
       'overcolor':'#99CC00',
       'downcolor':'#993366',
@@ -244,7 +244,7 @@ var map_config = {
   'map_22':{
       'namesId':'MI',
       'name':'MICHIGAN',
-      'data':'<div>Population-Adjusted Goal for Michigan: <strong>Lose 1,732,081 lbs.</strong><br># of Challenge Participants: 0 have signed up<br>Lbs lost so far: 0 lbs.<br>% of Goal Reached: 0%<br>Challenge Rank (US & Canada): #0 out of 64<br><br><br><br>-- Obesity Facts for MI --<br>Total Population: 9,883,640<br>Obesity Rate: 31%<br>Est # of Obese Adults: 2,359,224</div>',
+      'data':'<div> Weighted Goal*: <strong>Lose 1,732,081 lbs.</strong> <br><strong>0 Participants have lost 0 lbs.</strong> so far <br><strong>0%</strong> of Goal Reached <br>Challenge Rank (US & Canada): <strong>#0 of 64</strong> <br> <br> <div style="background-color:#ffffff;padding:5px;margin:5px;">     MI Obesity Rate: <strong>31%**</strong>     <br>Est # of Obese Adults: <strong>2,359,224</strong> </div> <h3>*Goal based on est. # of obese adults in MI</h3> <h3>Population data: Census Data 2010 (census.gov)</h3> <h3>**Obesity data: CDC 2012 (cdc.gov)</h3> <div style="background-color:#ffffff;padding:5px;margin:5px;">     <center>Challenge Tracking Powered By:      <br><a href="http://habitforge.com" target="_blank"><img src="http://habitforge.com/home/images/logos/HF-ETR-Logo-Header_120.png" /></a></center> </div></div>',
       'upcolor':'#EBECED',
       'overcolor':'#99CC00',
       'downcolor':'#993366',
@@ -253,7 +253,7 @@ var map_config = {
   'map_23':{
       'namesId':'MN',
       'name':'MINNESOTA',
-      'data':'<div>Population-Adjusted Goal for Minnesota: <strong>Lose 749,595 lbs.</strong><br># of Challenge Participants: 0 have signed up<br>Lbs lost so far: 0 lbs.<br>% of Goal Reached: 0%<br>Challenge Rank (US & Canada): #0 out of 64<br><br><br><br>-- Obesity Facts for MN --<br>Total Population: 5,303,925<br>Obesity Rate: 25%<br>Est # of Obese Adults: 1,021,005</div>',
+      'data':'<div> Weighted Goal*: <strong>Lose 749,595 lbs.</strong> <br><strong>0 Participants have lost 0 lbs.</strong> so far <br><strong>0%</strong> of Goal Reached <br>Challenge Rank (US & Canada): <strong>#0 of 64</strong> <br> <br> <div style="background-color:#ffffff;padding:5px;margin:5px;">     MN Obesity Rate: <strong>25%**</strong>     <br>Est # of Obese Adults: <strong>1,021,005</strong> </div> <h3>*Goal based on est. # of obese adults in MN</h3> <h3>Population data: Census Data 2010 (census.gov)</h3> <h3>**Obesity data: CDC 2012 (cdc.gov)</h3> <div style="background-color:#ffffff;padding:5px;margin:5px;">     <center>Challenge Tracking Powered By:      <br><a href="http://habitforge.com" target="_blank"><img src="http://habitforge.com/home/images/logos/HF-ETR-Logo-Header_120.png" /></a></center> </div></div>',
       'upcolor':'#EBECED',
       'overcolor':'#99CC00',
       'downcolor':'#993366',
@@ -262,7 +262,7 @@ var map_config = {
   'map_24':{
       'namesId':'MS',
       'name':'MISSISSIPPI',
-      'data':'<div>Population-Adjusted Goal for Mississippi: <strong>Lose 570,334 lbs.</strong><br># of Challenge Participants: 0 have signed up<br>Lbs lost so far: 0 lbs.<br>% of Goal Reached: 0%<br>Challenge Rank (US & Canada): #0 out of 64<br><br><br><br>-- Obesity Facts for MS --<br>Total Population: 2,967,297<br>Obesity Rate: 34%<br>Est # of Obese Adults: 776,838</div>',
+      'data':'<div> Weighted Goal*: <strong>Lose 570,334 lbs.</strong> <br><strong>0 Participants have lost 0 lbs.</strong> so far <br><strong>0%</strong> of Goal Reached <br>Challenge Rank (US & Canada): <strong>#0 of 64</strong> <br> <br> <div style="background-color:#ffffff;padding:5px;margin:5px;">     MS Obesity Rate: <strong>34%**</strong>     <br>Est # of Obese Adults: <strong>776,838</strong> </div> <h3>*Goal based on est. # of obese adults in MS</h3> <h3>Population data: Census Data 2010 (census.gov)</h3> <h3>**Obesity data: CDC 2012 (cdc.gov)</h3> <div style="background-color:#ffffff;padding:5px;margin:5px;">     <center>Challenge Tracking Powered By:      <br><a href="http://habitforge.com" target="_blank"><img src="http://habitforge.com/home/images/logos/HF-ETR-Logo-Header_120.png" /></a></center> </div></div>',
       'upcolor':'#EBECED',
       'overcolor':'#99CC00',
       'downcolor':'#993366',
@@ -271,7 +271,7 @@ var map_config = {
   'map_25':{
       'namesId':'MO',
       'name':'MISSOURI',
-      'data':'<div>Population-Adjusted Goal for Missouri: <strong>Lose 1,049,543 lbs.</strong><br># of Challenge Participants: 0 have signed up<br>Lbs lost so far: 0 lbs.<br>% of Goal Reached: 0%<br>Challenge Rank (US & Canada): #0 out of 64<br><br><br><br>-- Obesity Facts for MO --<br>Total Population: 5,988,927<br>Obesity Rate: 31%<br>Est # of Obese Adults: 1,429,556</div>',
+      'data':'<div> Weighted Goal*: <strong>Lose 1,049,543 lbs.</strong> <br><strong>0 Participants have lost 0 lbs.</strong> so far <br><strong>0%</strong> of Goal Reached <br>Challenge Rank (US & Canada): <strong>#0 of 64</strong> <br> <br> <div style="background-color:#ffffff;padding:5px;margin:5px;">     MO Obesity Rate: <strong>31%**</strong>     <br>Est # of Obese Adults: <strong>1,429,556</strong> </div> <h3>*Goal based on est. # of obese adults in MO</h3> <h3>Population data: Census Data 2010 (census.gov)</h3> <h3>**Obesity data: CDC 2012 (cdc.gov)</h3> <div style="background-color:#ffffff;padding:5px;margin:5px;">     <center>Challenge Tracking Powered By:      <br><a href="http://habitforge.com" target="_blank"><img src="http://habitforge.com/home/images/logos/HF-ETR-Logo-Header_120.png" /></a></center> </div></div>',
       'upcolor':'#EBECED',
       'overcolor':'#99CC00',
       'downcolor':'#993366',
@@ -280,7 +280,7 @@ var map_config = {
   'map_26':{
       'namesId':'MT',
       'name':'MONTANA',
-      'data':'<div>Population-Adjusted Goal for Montana: <strong>Lose 128,645 lbs.</strong><br># of Challenge Participants: 0 have signed up<br>Lbs lost so far: 0 lbs.<br>% of Goal Reached: 0%<br>Challenge Rank (US & Canada): #0 out of 64<br><br><br><br>-- Obesity Facts for MT --<br>Total Population: 989,415<br>Obesity Rate: 23%<br>Est # of Obese Adults: 175,225</div>',
+      'data':'<div> Weighted Goal*: <strong>Lose 128,645 lbs.</strong> <br><strong>0 Participants have lost 0 lbs.</strong> so far <br><strong>0%</strong> of Goal Reached <br>Challenge Rank (US & Canada): <strong>#0 of 64</strong> <br> <br> <div style="background-color:#ffffff;padding:5px;margin:5px;">     MT Obesity Rate: <strong>23%**</strong>     <br>Est # of Obese Adults: <strong>175,225</strong> </div> <h3>*Goal based on est. # of obese adults in MT</h3> <h3>Population data: Census Data 2010 (census.gov)</h3> <h3>**Obesity data: CDC 2012 (cdc.gov)</h3> <div style="background-color:#ffffff;padding:5px;margin:5px;">     <center>Challenge Tracking Powered By:      <br><a href="http://habitforge.com" target="_blank"><img src="http://habitforge.com/home/images/logos/HF-ETR-Logo-Header_120.png" /></a></center> </div></div>',
       'upcolor':'#EBECED',
       'overcolor':'#99CC00',
       'downcolor':'#993366',
@@ -289,7 +289,7 @@ var map_config = {
   'map_27':{
       'namesId':'NE',
       'name':'NEBRASKA',
-      'data':'<div>Population-Adjusted Goal for Nebraska: <strong>Lose 278,762 lbs.</strong><br># of Challenge Participants: 0 have signed up<br>Lbs lost so far: 0 lbs.<br>% of Goal Reached: 0%<br>Challenge Rank (US & Canada): #0 out of 64<br><br><br><br>-- Obesity Facts for NE --<br>Total Population: 1,826,341<br>Obesity Rate: 27%<br>Est # of Obese Adults: 379,696</div>',
+      'data':'<div> Weighted Goal*: <strong>Lose 278,762 lbs.</strong> <br><strong>0 Participants have lost 0 lbs.</strong> so far <br><strong>0%</strong> of Goal Reached <br>Challenge Rank (US & Canada): <strong>#0 of 64</strong> <br> <br> <div style="background-color:#ffffff;padding:5px;margin:5px;">     NE Obesity Rate: <strong>27%**</strong>     <br>Est # of Obese Adults: <strong>379,696</strong> </div> <h3>*Goal based on est. # of obese adults in NE</h3> <h3>Population data: Census Data 2010 (census.gov)</h3> <h3>**Obesity data: CDC 2012 (cdc.gov)</h3> <div style="background-color:#ffffff;padding:5px;margin:5px;">     <center>Challenge Tracking Powered By:      <br><a href="http://habitforge.com" target="_blank"><img src="http://habitforge.com/home/images/logos/HF-ETR-Logo-Header_120.png" /></a></center> </div></div>',
       'upcolor':'#EBECED',
       'overcolor':'#99CC00',
       'downcolor':'#993366',
@@ -298,7 +298,7 @@ var map_config = {
   'map_28':{
       'namesId':'NV',
       'name':'NEVADA',
-      'data':'<div>Population-Adjusted Goal for Nevada: <strong>Lose 335,864 lbs.</strong><br># of Challenge Participants: 0 have signed up<br>Lbs lost so far: 0 lbs.<br>% of Goal Reached: 0%<br>Challenge Rank (US & Canada): #0 out of 64<br><br><br><br>-- Obesity Facts for NV --<br>Total Population: 2,700,551<br>Obesity Rate: 22%<br>Est # of Obese Adults: 457,473</div>',
+      'data':'<div> Weighted Goal*: <strong>Lose 335,864 lbs.</strong> <br><strong>0 Participants have lost 0 lbs.</strong> so far <br><strong>0%</strong> of Goal Reached <br>Challenge Rank (US & Canada): <strong>#0 of 64</strong> <br> <br> <div style="background-color:#ffffff;padding:5px;margin:5px;">     NV Obesity Rate: <strong>22%**</strong>     <br>Est # of Obese Adults: <strong>457,473</strong> </div> <h3>*Goal based on est. # of obese adults in NV</h3> <h3>Population data: Census Data 2010 (census.gov)</h3> <h3>**Obesity data: CDC 2012 (cdc.gov)</h3> <div style="background-color:#ffffff;padding:5px;margin:5px;">     <center>Challenge Tracking Powered By:      <br><a href="http://habitforge.com" target="_blank"><img src="http://habitforge.com/home/images/logos/HF-ETR-Logo-Header_120.png" /></a></center> </div></div>',
       'upcolor':'#EBECED',
       'overcolor':'#99CC00',
       'downcolor':'#993366',
@@ -307,7 +307,7 @@ var map_config = {
   'map_29':{
       'namesId':'NH',
       'name':'NEW HAMPSHIRE',
-      'data':'<div>Population-Adjusted Goal for New Hampshire: <strong>Lose 186,054 lbs.</strong><br># of Challenge Participants: 0 have signed up<br>Lbs lost so far: 0 lbs.<br>% of Goal Reached: 0%<br>Challenge Rank (US & Canada): #0 out of 64<br><br><br><br>-- Obesity Facts for NH --<br>Total Population: 1,316,470<br>Obesity Rate: 25%<br>Est # of Obese Adults: 253,420</div>',
+      'data':'<div> Weighted Goal*: <strong>Lose 186,054 lbs.</strong> <br><strong>0 Participants have lost 0 lbs.</strong> so far <br><strong>0%</strong> of Goal Reached <br>Challenge Rank (US & Canada): <strong>#0 of 64</strong> <br> <br> <div style="background-color:#ffffff;padding:5px;margin:5px;">     NH Obesity Rate: <strong>25%**</strong>     <br>Est # of Obese Adults: <strong>253,420</strong> </div> <h3>*Goal based on est. # of obese adults in NH</h3> <h3>Population data: Census Data 2010 (census.gov)</h3> <h3>**Obesity data: CDC 2012 (cdc.gov)</h3> <div style="background-color:#ffffff;padding:5px;margin:5px;">     <center>Challenge Tracking Powered By:      <br><a href="http://habitforge.com" target="_blank"><img src="http://habitforge.com/home/images/logos/HF-ETR-Logo-Header_120.png" /></a></center> </div></div>',
       'upcolor':'#EBECED',
       'overcolor':'#99CC00',
       'downcolor':'#993366',
@@ -316,7 +316,7 @@ var map_config = {
   'map_30':{
       'namesId':'NJ',
       'name':'NEW JERSEY',
-      'data':'<div>Population-Adjusted Goal for New Jersey: <strong>Lose 1,192,842 lbs.</strong><br># of Challenge Participants: 0 have signed up<br>Lbs lost so far: 0 lbs.<br>% of Goal Reached: 0%<br>Challenge Rank (US & Canada): #0 out of 64<br><br><br><br>-- Obesity Facts for NJ --<br>Total Population: 8,791,894<br>Obesity Rate: 24%<br>Est # of Obese Adults: 1,624,741</div>',
+      'data':'<div> Weighted Goal*: <strong>Lose 1,192,842 lbs.</strong> <br><strong>0 Participants have lost 0 lbs.</strong> so far <br><strong>0%</strong> of Goal Reached <br>Challenge Rank (US & Canada): <strong>#0 of 64</strong> <br> <br> <div style="background-color:#ffffff;padding:5px;margin:5px;">     NJ Obesity Rate: <strong>24%**</strong>     <br>Est # of Obese Adults: <strong>1,624,741</strong> </div> <h3>*Goal based on est. # of obese adults in NJ</h3> <h3>Population data: Census Data 2010 (census.gov)</h3> <h3>**Obesity data: CDC 2012 (cdc.gov)</h3> <div style="background-color:#ffffff;padding:5px;margin:5px;">     <center>Challenge Tracking Powered By:      <br><a href="http://habitforge.com" target="_blank"><img src="http://habitforge.com/home/images/logos/HF-ETR-Logo-Header_120.png" /></a></center> </div></div>',
       'upcolor':'#EBECED',
       'overcolor':'#99CC00',
       'downcolor':'#993366',
@@ -325,7 +325,7 @@ var map_config = {
   'map_31':{
       'namesId':'NM',
       'name':'NEW MEXICO',
-      'data':'<div>Population-Adjusted Goal for New Mexico: <strong>Lose 291,020 lbs.</strong><br># of Challenge Participants: 0 have signed up<br>Lbs lost so far: 0 lbs.<br>% of Goal Reached: 0%<br>Challenge Rank (US & Canada): #0 out of 64<br><br><br><br>-- Obesity Facts for NM --<br>Total Population: 2,059,179<br>Obesity Rate: 25%<br>Est # of Obese Adults: 396,391</div>',
+      'data':'<div> Weighted Goal*: <strong>Lose 291,020 lbs.</strong> <br><strong>0 Participants have lost 0 lbs.</strong> so far <br><strong>0%</strong> of Goal Reached <br>Challenge Rank (US & Canada): <strong>#0 of 64</strong> <br> <br> <div style="background-color:#ffffff;padding:5px;margin:5px;">     NM Obesity Rate: <strong>25%**</strong>     <br>Est # of Obese Adults: <strong>396,391</strong> </div> <h3>*Goal based on est. # of obese adults in NM</h3> <h3>Population data: Census Data 2010 (census.gov)</h3> <h3>**Obesity data: CDC 2012 (cdc.gov)</h3> <div style="background-color:#ffffff;padding:5px;margin:5px;">     <center>Challenge Tracking Powered By:      <br><a href="http://habitforge.com" target="_blank"><img src="http://habitforge.com/home/images/logos/HF-ETR-Logo-Header_120.png" /></a></center> </div></div>',
       'upcolor':'#EBECED',
       'overcolor':'#99CC00',
       'downcolor':'#993366',
@@ -334,7 +334,7 @@ var map_config = {
   'map_32':{
       'namesId':'NY',
       'name':'NEW YORK',
-      'data':'<div>Population-Adjusted Goal for New York: <strong>Lose 2,629,131 lbs.</strong><br># of Challenge Participants: 0 have signed up<br>Lbs lost so far: 0 lbs.<br>% of Goal Reached: 0%<br>Challenge Rank (US & Canada): #0 out of 64<br><br><br><br>-- Obesity Facts for NY --<br>Total Population: 19,378,102<br>Obesity Rate: 24%<br>Est # of Obese Adults: 3,581,073</div>',
+      'data':'<div> Weighted Goal*: <strong>Lose 2,629,131 lbs.</strong> <br><strong>0 Participants have lost 0 lbs.</strong> so far <br><strong>0%</strong> of Goal Reached <br>Challenge Rank (US & Canada): <strong>#0 of 64</strong> <br> <br> <div style="background-color:#ffffff;padding:5px;margin:5px;">     NY Obesity Rate: <strong>24%**</strong>     <br>Est # of Obese Adults: <strong>3,581,073</strong> </div> <h3>*Goal based on est. # of obese adults in NY</h3> <h3>Population data: Census Data 2010 (census.gov)</h3> <h3>**Obesity data: CDC 2012 (cdc.gov)</h3> <div style="background-color:#ffffff;padding:5px;margin:5px;">     <center>Challenge Tracking Powered By:      <br><a href="http://habitforge.com" target="_blank"><img src="http://habitforge.com/home/images/logos/HF-ETR-Logo-Header_120.png" /></a></center> </div></div>',
       'upcolor':'#EBECED',
       'overcolor':'#99CC00',
       'downcolor':'#993366',
@@ -343,7 +343,7 @@ var map_config = {
   'map_33':{
       'namesId':'NC',
       'name':'NORTH CAROLINA',
-      'data':'<div>Population-Adjusted Goal for North Carolina: <strong>Lose 1,509,351 lbs.</strong><br># of Challenge Participants: 0 have signed up<br>Lbs lost so far: 0 lbs.<br>% of Goal Reached: 0%<br>Challenge Rank (US & Canada): #0 out of 64<br><br><br><br>-- Obesity Facts for NC --<br>Total Population: 9,535,483<br>Obesity Rate: 28%<br>Est # of Obese Adults: 2,055,849</div>',
+      'data':'<div> Weighted Goal*: <strong>Lose 1,509,351 lbs.</strong> <br><strong>0 Participants have lost 0 lbs.</strong> so far <br><strong>0%</strong> of Goal Reached <br>Challenge Rank (US & Canada): <strong>#0 of 64</strong> <br> <br> <div style="background-color:#ffffff;padding:5px;margin:5px;">     NC Obesity Rate: <strong>28%**</strong>     <br>Est # of Obese Adults: <strong>2,055,849</strong> </div> <h3>*Goal based on est. # of obese adults in NC</h3> <h3>Population data: Census Data 2010 (census.gov)</h3> <h3>**Obesity data: CDC 2012 (cdc.gov)</h3> <div style="background-color:#ffffff;padding:5px;margin:5px;">     <center>Challenge Tracking Powered By:      <br><a href="http://habitforge.com" target="_blank"><img src="http://habitforge.com/home/images/logos/HF-ETR-Logo-Header_120.png" /></a></center> </div></div>',
       'upcolor':'#EBECED',
       'overcolor':'#99CC00',
       'downcolor':'#993366',
@@ -352,7 +352,7 @@ var map_config = {
   'map_34':{
       'namesId':'ND',
       'name':'NORTH DAKOTA',
-      'data':'<div>Population-Adjusted Goal for North Dakota: <strong>Lose 102,660 lbs.</strong><br># of Challenge Participants: 0 have signed up<br>Lbs lost so far: 0 lbs.<br>% of Goal Reached: 0%<br>Challenge Rank (US & Canada): #0 out of 64<br><br><br><br>-- Obesity Facts for ND --<br>Total Population: 672,591<br>Obesity Rate: 27%<br>Est # of Obese Adults: 139,831</div>',
+      'data':'<div> Weighted Goal*: <strong>Lose 102,660 lbs.</strong> <br><strong>0 Participants have lost 0 lbs.</strong> so far <br><strong>0%</strong> of Goal Reached <br>Challenge Rank (US & Canada): <strong>#0 of 64</strong> <br> <br> <div style="background-color:#ffffff;padding:5px;margin:5px;">     ND Obesity Rate: <strong>27%**</strong>     <br>Est # of Obese Adults: <strong>139,831</strong> </div> <h3>*Goal based on est. # of obese adults in ND</h3> <h3>Population data: Census Data 2010 (census.gov)</h3> <h3>**Obesity data: CDC 2012 (cdc.gov)</h3> <div style="background-color:#ffffff;padding:5px;margin:5px;">     <center>Challenge Tracking Powered By:      <br><a href="http://habitforge.com" target="_blank"><img src="http://habitforge.com/home/images/logos/HF-ETR-Logo-Header_120.png" /></a></center> </div></div>',
       'upcolor':'#EBECED',
       'overcolor':'#99CC00',
       'downcolor':'#993366',
@@ -361,7 +361,7 @@ var map_config = {
   'map_35':{
       'namesId':'OH',
       'name':'OHIO',
-      'data':'<div>Population-Adjusted Goal for Ohio: <strong>Lose 1,891,306 lbs.</strong><br># of Challenge Participants: 0 have signed up<br>Lbs lost so far: 0 lbs.<br>% of Goal Reached: 0%<br>Challenge Rank (US & Canada): #0 out of 64<br><br><br><br>-- Obesity Facts for OH --<br>Total Population: 11,536,504<br>Obesity Rate: 29%<br>Est # of Obese Adults: 2,576,101</div>',
+      'data':'<div> Weighted Goal*: <strong>Lose 1,891,306 lbs.</strong> <br><strong>0 Participants have lost 0 lbs.</strong> so far <br><strong>0%</strong> of Goal Reached <br>Challenge Rank (US & Canada): <strong>#0 of 64</strong> <br> <br> <div style="background-color:#ffffff;padding:5px;margin:5px;">     OH Obesity Rate: <strong>29%**</strong>     <br>Est # of Obese Adults: <strong>2,576,101</strong> </div> <h3>*Goal based on est. # of obese adults in OH</h3> <h3>Population data: Census Data 2010 (census.gov)</h3> <h3>**Obesity data: CDC 2012 (cdc.gov)</h3> <div style="background-color:#ffffff;padding:5px;margin:5px;">     <center>Challenge Tracking Powered By:      <br><a href="http://habitforge.com" target="_blank"><img src="http://habitforge.com/home/images/logos/HF-ETR-Logo-Header_120.png" /></a></center> </div></div>',
       'upcolor':'#EBECED',
       'overcolor':'#99CC00',
       'downcolor':'#993366',
@@ -370,7 +370,7 @@ var map_config = {
   'map_36':{
       'namesId':'OK',
       'name':'OKLAHOMA',
-      'data':'<div>Population-Adjusted Goal for Oklahoma: <strong>Lose 636,207 lbs.</strong><br># of Challenge Participants: 0 have signed up<br>Lbs lost so far: 0 lbs.<br>% of Goal Reached: 0%<br>Challenge Rank (US & Canada): #0 out of 64<br><br><br><br>-- Obesity Facts for OK --<br>Total Population: 3,751,351<br>Obesity Rate: 30%<br>Est # of Obese Adults: 866,562</div>',
+      'data':'<div> Weighted Goal*: <strong>Lose 636,207 lbs.</strong> <br><strong>0 Participants have lost 0 lbs.</strong> so far <br><strong>0%</strong> of Goal Reached <br>Challenge Rank (US & Canada): <strong>#0 of 64</strong> <br> <br> <div style="background-color:#ffffff;padding:5px;margin:5px;">     OK Obesity Rate: <strong>30%**</strong>     <br>Est # of Obese Adults: <strong>866,562</strong> </div> <h3>*Goal based on est. # of obese adults in OK</h3> <h3>Population data: Census Data 2010 (census.gov)</h3> <h3>**Obesity data: CDC 2012 (cdc.gov)</h3> <div style="background-color:#ffffff;padding:5px;margin:5px;">     <center>Challenge Tracking Powered By:      <br><a href="http://habitforge.com" target="_blank"><img src="http://habitforge.com/home/images/logos/HF-ETR-Logo-Header_120.png" /></a></center> </div></div>',
       'upcolor':'#EBECED',
       'overcolor':'#99CC00',
       'downcolor':'#993366',
@@ -379,7 +379,7 @@ var map_config = {
   'map_37':{
       'namesId':'OR',
       'name':'OREGON',
-      'data':'<div>Population-Adjusted Goal for Oregon: <strong>Lose 584,755 lbs.</strong><br># of Challenge Participants: 0 have signed up<br>Lbs lost so far: 0 lbs.<br>% of Goal Reached: 0%<br>Challenge Rank (US & Canada): #0 out of 64<br><br><br><br>-- Obesity Facts for OR --<br>Total Population: 3,831,074<br>Obesity Rate: 27%<br>Est # of Obese Adults: 796,480</div>',
+      'data':'<div> Weighted Goal*: <strong>Lose 584,755 lbs.</strong> <br><strong>0 Participants have lost 0 lbs.</strong> so far <br><strong>0%</strong> of Goal Reached <br>Challenge Rank (US & Canada): <strong>#0 of 64</strong> <br> <br> <div style="background-color:#ffffff;padding:5px;margin:5px;">     OR Obesity Rate: <strong>27%**</strong>     <br>Est # of Obese Adults: <strong>796,480</strong> </div> <h3>*Goal based on est. # of obese adults in OR</h3> <h3>Population data: Census Data 2010 (census.gov)</h3> <h3>**Obesity data: CDC 2012 (cdc.gov)</h3> <div style="background-color:#ffffff;padding:5px;margin:5px;">     <center>Challenge Tracking Powered By:      <br><a href="http://habitforge.com" target="_blank"><img src="http://habitforge.com/home/images/logos/HF-ETR-Logo-Header_120.png" /></a></center> </div></div>',
       'upcolor':'#EBECED',
       'overcolor':'#99CC00',
       'downcolor':'#993366',
@@ -388,7 +388,7 @@ var map_config = {
   'map_38':{
       'namesId':'PA',
       'name':'PENNSYLVANIA',
-      'data':'<div>Population-Adjusted Goal for Pennsylvania: <strong>Lose 2,082,440 lbs.</strong><br># of Challenge Participants: 0 have signed up<br>Lbs lost so far: 0 lbs.<br>% of Goal Reached: 0%<br>Challenge Rank (US & Canada): #0 out of 64<br><br><br><br>-- Obesity Facts for PA --<br>Total Population: 12,702,379<br>Obesity Rate: 29%<br>Est # of Obese Adults: 2,836,440</div>',
+      'data':'<div> Weighted Goal*: <strong>Lose 2,082,440 lbs.</strong> <br><strong>0 Participants have lost 0 lbs.</strong> so far <br><strong>0%</strong> of Goal Reached <br>Challenge Rank (US & Canada): <strong>#0 of 64</strong> <br> <br> <div style="background-color:#ffffff;padding:5px;margin:5px;">     PA Obesity Rate: <strong>29%**</strong>     <br>Est # of Obese Adults: <strong>2,836,440</strong> </div> <h3>*Goal based on est. # of obese adults in PA</h3> <h3>Population data: Census Data 2010 (census.gov)</h3> <h3>**Obesity data: CDC 2012 (cdc.gov)</h3> <div style="background-color:#ffffff;padding:5px;margin:5px;">     <center>Challenge Tracking Powered By:      <br><a href="http://habitforge.com" target="_blank"><img src="http://habitforge.com/home/images/logos/HF-ETR-Logo-Header_120.png" /></a></center> </div></div>',
       'upcolor':'#EBECED',
       'overcolor':'#99CC00',
       'downcolor':'#993366',
@@ -397,7 +397,7 @@ var map_config = {
   'map_39':{
       'namesId':'RI',
       'name':'RHODE ISLAND',
-      'data':'<div>Population-Adjusted Goal for Rhode Island: <strong>Lose 154,707 lbs.</strong><br># of Challenge Participants: 0 have signed up<br>Lbs lost so far: 0 lbs.<br>% of Goal Reached: 0%<br>Challenge Rank (US & Canada): #0 out of 64<br><br><br><br>-- Obesity Facts for RI --<br>Total Population: 1,052,567<br>Obesity Rate: 26%<br>Est # of Obese Adults: 210,723</div>',
+      'data':'<div> Weighted Goal*: <strong>Lose 154,707 lbs.</strong> <br><strong>0 Participants have lost 0 lbs.</strong> so far <br><strong>0%</strong> of Goal Reached <br>Challenge Rank (US & Canada): <strong>#0 of 64</strong> <br> <br> <div style="background-color:#ffffff;padding:5px;margin:5px;">     RI Obesity Rate: <strong>26%**</strong>     <br>Est # of Obese Adults: <strong>210,723</strong> </div> <h3>*Goal based on est. # of obese adults in RI</h3> <h3>Population data: Census Data 2010 (census.gov)</h3> <h3>**Obesity data: CDC 2012 (cdc.gov)</h3> <div style="background-color:#ffffff;padding:5px;margin:5px;">     <center>Challenge Tracking Powered By:      <br><a href="http://habitforge.com" target="_blank"><img src="http://habitforge.com/home/images/logos/HF-ETR-Logo-Header_120.png" /></a></center> </div></div>',
       'upcolor':'#EBECED',
       'overcolor':'#99CC00',
       'downcolor':'#993366',
@@ -406,7 +406,7 @@ var map_config = {
   'map_40':{
       'namesId':'SC',
       'name':'SOUTH CAROLINA',
-      'data':'<div>Population-Adjusted Goal for South Carolina: <strong>Lose 836,730 lbs.</strong><br># of Challenge Participants: 0 have signed up<br>Lbs lost so far: 0 lbs.<br>% of Goal Reached: 0%<br>Challenge Rank (US & Canada): #0 out of 64<br><br><br><br>-- Obesity Facts for SC --<br>Total Population: 4,625,364<br>Obesity Rate: 32%<br>Est # of Obese Adults: 1,139,689</div>',
+      'data':'<div> Weighted Goal*: <strong>Lose 836,730 lbs.</strong> <br><strong>0 Participants have lost 0 lbs.</strong> so far <br><strong>0%</strong> of Goal Reached <br>Challenge Rank (US & Canada): <strong>#0 of 64</strong> <br> <br> <div style="background-color:#ffffff;padding:5px;margin:5px;">     SC Obesity Rate: <strong>32%**</strong>     <br>Est # of Obese Adults: <strong>1,139,689</strong> </div> <h3>*Goal based on est. # of obese adults in SC</h3> <h3>Population data: Census Data 2010 (census.gov)</h3> <h3>**Obesity data: CDC 2012 (cdc.gov)</h3> <div style="background-color:#ffffff;padding:5px;margin:5px;">     <center>Challenge Tracking Powered By:      <br><a href="http://habitforge.com" target="_blank"><img src="http://habitforge.com/home/images/logos/HF-ETR-Logo-Header_120.png" /></a></center> </div></div>',
       'upcolor':'#EBECED',
       'overcolor':'#99CC00',
       'downcolor':'#993366',
@@ -415,7 +415,7 @@ var map_config = {
   'map_41':{
       'namesId':'SD',
       'name':'SOUTH DAKOTA',
-      'data':'<div>Population-Adjusted Goal for South Dakota: <strong>Lose 124,271 lbs.</strong><br># of Challenge Participants: 0 have signed up<br>Lbs lost so far: 0 lbs.<br>% of Goal Reached: 0%<br>Challenge Rank (US & Canada): #0 out of 64<br><br><br><br>-- Obesity Facts for SD --<br>Total Population: 814,180<br>Obesity Rate: 27%<br>Est # of Obese Adults: 169,267</div>',
+      'data':'<div> Weighted Goal*: <strong>Lose 124,271 lbs.</strong> <br><strong>0 Participants have lost 0 lbs.</strong> so far <br><strong>0%</strong> of Goal Reached <br>Challenge Rank (US & Canada): <strong>#0 of 64</strong> <br> <br> <div style="background-color:#ffffff;padding:5px;margin:5px;">     SD Obesity Rate: <strong>27%**</strong>     <br>Est # of Obese Adults: <strong>169,267</strong> </div> <h3>*Goal based on est. # of obese adults in SD</h3> <h3>Population data: Census Data 2010 (census.gov)</h3> <h3>**Obesity data: CDC 2012 (cdc.gov)</h3> <div style="background-color:#ffffff;padding:5px;margin:5px;">     <center>Challenge Tracking Powered By:      <br><a href="http://habitforge.com" target="_blank"><img src="http://habitforge.com/home/images/logos/HF-ETR-Logo-Header_120.png" /></a></center> </div></div>',
       'upcolor':'#EBECED',
       'overcolor':'#99CC00',
       'downcolor':'#993366',
@@ -424,7 +424,7 @@ var map_config = {
   'map_42':{
       'namesId':'TN',
       'name':'TENNESSEE',
-      'data':'<div>Population-Adjusted Goal for Tennessee: <strong>Lose 1,112,138 lbs.</strong><br># of Challenge Participants: 0 have signed up<br>Lbs lost so far: 0 lbs.<br>% of Goal Reached: 0%<br>Challenge Rank (US & Canada): #0 out of 64<br><br><br><br>-- Obesity Facts for TN --<br>Total Population: 6,346,105<br>Obesity Rate: 31%<br>Est # of Obese Adults: 1,514,815</div>',
+      'data':'<div> Weighted Goal*: <strong>Lose 1,112,138 lbs.</strong> <br><strong>0 Participants have lost 0 lbs.</strong> so far <br><strong>0%</strong> of Goal Reached <br>Challenge Rank (US & Canada): <strong>#0 of 64</strong> <br> <br> <div style="background-color:#ffffff;padding:5px;margin:5px;">     TN Obesity Rate: <strong>31%**</strong>     <br>Est # of Obese Adults: <strong>1,514,815</strong> </div> <h3>*Goal based on est. # of obese adults in TN</h3> <h3>Population data: Census Data 2010 (census.gov)</h3> <h3>**Obesity data: CDC 2012 (cdc.gov)</h3> <div style="background-color:#ffffff;padding:5px;margin:5px;">     <center>Challenge Tracking Powered By:      <br><a href="http://habitforge.com" target="_blank"><img src="http://habitforge.com/home/images/logos/HF-ETR-Logo-Header_120.png" /></a></center> </div></div>',
       'upcolor':'#EBECED',
       'overcolor':'#99CC00',
       'downcolor':'#993366',
@@ -433,7 +433,7 @@ var map_config = {
   'map_43':{
       'namesId':'TX',
       'name':'TEXAS',
-      'data':'<div>Population-Adjusted Goal for Texas: <strong>Lose 4,406,693 lbs.</strong><br># of Challenge Participants: 0 have signed up<br>Lbs lost so far: 0 lbs.<br>% of Goal Reached: 0%<br>Challenge Rank (US & Canada): #0 out of 64<br><br><br><br>-- Obesity Facts for TX --<br>Total Population: 25,145,561<br>Obesity Rate: 31%<br>Est # of Obese Adults: 6,002,245</div>',
+      'data':'<div> Weighted Goal*: <strong>Lose 4,406,693 lbs.</strong> <br><strong>0 Participants have lost 0 lbs.</strong> so far <br><strong>0%</strong> of Goal Reached <br>Challenge Rank (US & Canada): <strong>#0 of 64</strong> <br> <br> <div style="background-color:#ffffff;padding:5px;margin:5px;">     TX Obesity Rate: <strong>31%**</strong>     <br>Est # of Obese Adults: <strong>6,002,245</strong> </div> <h3>*Goal based on est. # of obese adults in TX</h3> <h3>Population data: Census Data 2010 (census.gov)</h3> <h3>**Obesity data: CDC 2012 (cdc.gov)</h3> <div style="background-color:#ffffff;padding:5px;margin:5px;">     <center>Challenge Tracking Powered By:      <br><a href="http://habitforge.com" target="_blank"><img src="http://habitforge.com/home/images/logos/HF-ETR-Logo-Header_120.png" /></a></center> </div></div>',
       'upcolor':'#EBECED',
       'overcolor':'#99CC00',
       'downcolor':'#993366',
@@ -442,7 +442,7 @@ var map_config = {
   'map_44':{
       'namesId':'UT',
       'name':'UTAH',
-      'data':'<div>Population-Adjusted Goal for Utah: <strong>Lose 359,365 lbs.</strong><br># of Challenge Participants: 0 have signed up<br>Lbs lost so far: 0 lbs.<br>% of Goal Reached: 0%<br>Challenge Rank (US & Canada): #0 out of 64<br><br><br><br>-- Obesity Facts for UT --<br>Total Population: 2,763,885<br>Obesity Rate: 23%<br>Est # of Obese Adults: 489,483</div>',
+      'data':'<div> Weighted Goal*: <strong>Lose 359,365 lbs.</strong> <br><strong>0 Participants have lost 0 lbs.</strong> so far <br><strong>0%</strong> of Goal Reached <br>Challenge Rank (US & Canada): <strong>#0 of 64</strong> <br> <br> <div style="background-color:#ffffff;padding:5px;margin:5px;">     UT Obesity Rate: <strong>23%**</strong>     <br>Est # of Obese Adults: <strong>489,483</strong> </div> <h3>*Goal based on est. # of obese adults in UT</h3> <h3>Population data: Census Data 2010 (census.gov)</h3> <h3>**Obesity data: CDC 2012 (cdc.gov)</h3> <div style="background-color:#ffffff;padding:5px;margin:5px;">     <center>Challenge Tracking Powered By:      <br><a href="http://habitforge.com" target="_blank"><img src="http://habitforge.com/home/images/logos/HF-ETR-Logo-Header_120.png" /></a></center> </div></div>',
       'upcolor':'#EBECED',
       'overcolor':'#99CC00',
       'downcolor':'#993366',
@@ -451,7 +451,7 @@ var map_config = {
   'map_45':{
       'namesId':'VT',
       'name':'VERMONT',
-      'data':'<div>Population-Adjusted Goal for Vermont: <strong>Lose 81,359 lbs.</strong><br># of Challenge Participants: 0 have signed up<br>Lbs lost so far: 0 lbs.<br>% of Goal Reached: 0%<br>Challenge Rank (US & Canada): #0 out of 64<br><br><br><br>-- Obesity Facts for VT --<br>Total Population: 625,741<br>Obesity Rate: 23%<br>Est # of Obese Adults: 110,818</div>',
+      'data':'<div> Weighted Goal*: <strong>Lose 81,359 lbs.</strong> <br><strong>0 Participants have lost 0 lbs.</strong> so far <br><strong>0%</strong> of Goal Reached <br>Challenge Rank (US & Canada): <strong>#0 of 64</strong> <br> <br> <div style="background-color:#ffffff;padding:5px;margin:5px;">     VT Obesity Rate: <strong>23%**</strong>     <br>Est # of Obese Adults: <strong>110,818</strong> </div> <h3>*Goal based on est. # of obese adults in VT</h3> <h3>Population data: Census Data 2010 (census.gov)</h3> <h3>**Obesity data: CDC 2012 (cdc.gov)</h3> <div style="background-color:#ffffff;padding:5px;margin:5px;">     <center>Challenge Tracking Powered By:      <br><a href="http://habitforge.com" target="_blank"><img src="http://habitforge.com/home/images/logos/HF-ETR-Logo-Header_120.png" /></a></center> </div></div>',
       'upcolor':'#EBECED',
       'overcolor':'#99CC00',
       'downcolor':'#993366',
@@ -460,7 +460,7 @@ var map_config = {
   'map_46':{
       'namesId':'VA',
       'name':'VIRGINIA',
-      'data':'<div>Population-Adjusted Goal for Virginia: <strong>Lose 1,176,003 lbs.</strong><br># of Challenge Participants: 0 have signed up<br>Lbs lost so far: 0 lbs.<br>% of Goal Reached: 0%<br>Challenge Rank (US & Canada): #0 out of 64<br><br><br><br>-- Obesity Facts for VA --<br>Total Population: 8,001,024<br>Obesity Rate: 26%<br>Est # of Obese Adults: 1,601,804</div>',
+      'data':'<div> Weighted Goal*: <strong>Lose 1,176,003 lbs.</strong> <br><strong>0 Participants have lost 0 lbs.</strong> so far <br><strong>0%</strong> of Goal Reached <br>Challenge Rank (US & Canada): <strong>#0 of 64</strong> <br> <br> <div style="background-color:#ffffff;padding:5px;margin:5px;">     VA Obesity Rate: <strong>26%**</strong>     <br>Est # of Obese Adults: <strong>1,601,804</strong> </div> <h3>*Goal based on est. # of obese adults in VA</h3> <h3>Population data: Census Data 2010 (census.gov)</h3> <h3>**Obesity data: CDC 2012 (cdc.gov)</h3> <div style="background-color:#ffffff;padding:5px;margin:5px;">     <center>Challenge Tracking Powered By:      <br><a href="http://habitforge.com" target="_blank"><img src="http://habitforge.com/home/images/logos/HF-ETR-Logo-Header_120.png" /></a></center> </div></div>',
       'upcolor':'#EBECED',
       'overcolor':'#99CC00',
       'downcolor':'#993366',
@@ -469,7 +469,7 @@ var map_config = {
   'map_47':{
       'namesId':'WA',
       'name':'WASHINGTON',
-      'data':'<div>Population-Adjusted Goal for Washington: <strong>Lose 988,383 lbs.</strong><br># of Challenge Participants: 0 have signed up<br>Lbs lost so far: 0 lbs.<br>% of Goal Reached: 0%<br>Challenge Rank (US & Canada): #0 out of 64<br><br><br><br>-- Obesity Facts for WA --<br>Total Population: 6,724,540<br>Obesity Rate: 26%<br>Est # of Obese Adults: 1,346,252</div>',
+      'data':'<div> Weighted Goal*: <strong>Lose 988,383 lbs.</strong> <br><strong>0 Participants have lost 0 lbs.</strong> so far <br><strong>0%</strong> of Goal Reached <br>Challenge Rank (US & Canada): <strong>#0 of 64</strong> <br> <br> <div style="background-color:#ffffff;padding:5px;margin:5px;">     WA Obesity Rate: <strong>26%**</strong>     <br>Est # of Obese Adults: <strong>1,346,252</strong> </div> <h3>*Goal based on est. # of obese adults in WA</h3> <h3>Population data: Census Data 2010 (census.gov)</h3> <h3>**Obesity data: CDC 2012 (cdc.gov)</h3> <div style="background-color:#ffffff;padding:5px;margin:5px;">     <center>Challenge Tracking Powered By:      <br><a href="http://habitforge.com" target="_blank"><img src="http://habitforge.com/home/images/logos/HF-ETR-Logo-Header_120.png" /></a></center> </div></div>',
       'upcolor':'#EBECED',
       'overcolor':'#99CC00',
       'downcolor':'#993366',
@@ -478,7 +478,7 @@ var map_config = {
   'map_48':{
       'namesId':'WV',
       'name':'WEST VIRGINIA',
-      'data':'<div>Population-Adjusted Goal for West Virginia: <strong>Lose 345,682 lbs.</strong><br># of Challenge Participants: 0 have signed up<br>Lbs lost so far: 0 lbs.<br>% of Goal Reached: 0%<br>Challenge Rank (US & Canada): #0 out of 64<br><br><br><br>-- Obesity Facts for WV --<br>Total Population: 1,852,994<br>Obesity Rate: 33%<br>Est # of Obese Adults: 470,845</div>',
+      'data':'<div> Weighted Goal*: <strong>Lose 345,682 lbs.</strong> <br><strong>0 Participants have lost 0 lbs.</strong> so far <br><strong>0%</strong> of Goal Reached <br>Challenge Rank (US & Canada): <strong>#0 of 64</strong> <br> <br> <div style="background-color:#ffffff;padding:5px;margin:5px;">     WV Obesity Rate: <strong>33%**</strong>     <br>Est # of Obese Adults: <strong>470,845</strong> </div> <h3>*Goal based on est. # of obese adults in WV</h3> <h3>Population data: Census Data 2010 (census.gov)</h3> <h3>**Obesity data: CDC 2012 (cdc.gov)</h3> <div style="background-color:#ffffff;padding:5px;margin:5px;">     <center>Challenge Tracking Powered By:      <br><a href="http://habitforge.com" target="_blank"><img src="http://habitforge.com/home/images/logos/HF-ETR-Logo-Header_120.png" /></a></center> </div></div>',
       'upcolor':'#EBECED',
       'overcolor':'#99CC00',
       'downcolor':'#993366',
@@ -487,7 +487,7 @@ var map_config = {
   'map_49':{
       'namesId':'WI',
       'name':'WISCONSIN',
-      'data':'<div>Population-Adjusted Goal for Wisconsin: <strong>Lose 835,882 lbs.</strong><br># of Challenge Participants: 0 have signed up<br>Lbs lost so far: 0 lbs.<br>% of Goal Reached: 0%<br>Challenge Rank (US & Canada): #0 out of 64<br><br><br><br>-- Obesity Facts for WI --<br>Total Population: 5,686,986<br>Obesity Rate: 26%<br>Est # of Obese Adults: 1,138,534</div>',
+      'data':'<div> Weighted Goal*: <strong>Lose 835,882 lbs.</strong> <br><strong>0 Participants have lost 0 lbs.</strong> so far <br><strong>0%</strong> of Goal Reached <br>Challenge Rank (US & Canada): <strong>#0 of 64</strong> <br> <br> <div style="background-color:#ffffff;padding:5px;margin:5px;">     WI Obesity Rate: <strong>26%**</strong>     <br>Est # of Obese Adults: <strong>1,138,534</strong> </div> <h3>*Goal based on est. # of obese adults in WI</h3> <h3>Population data: Census Data 2010 (census.gov)</h3> <h3>**Obesity data: CDC 2012 (cdc.gov)</h3> <div style="background-color:#ffffff;padding:5px;margin:5px;">     <center>Challenge Tracking Powered By:      <br><a href="http://habitforge.com" target="_blank"><img src="http://habitforge.com/home/images/logos/HF-ETR-Logo-Header_120.png" /></a></center> </div></div>',
       'upcolor':'#EBECED',
       'overcolor':'#99CC00',
       'downcolor':'#993366',
@@ -496,7 +496,7 @@ var map_config = {
   'map_50':{
       'namesId':'WY',
       'name':'WYOMING',
-      'data':'<div>Population-Adjusted Goal for Wyoming: <strong>Lose 79,656 lbs.</strong><br># of Challenge Participants: 0 have signed up<br>Lbs lost so far: 0 lbs.<br>% of Goal Reached: 0%<br>Challenge Rank (US & Canada): #0 out of 64<br><br><br><br>-- Obesity Facts for WY --<br>Total Population: 563,626<br>Obesity Rate: 25%<br>Est # of Obese Adults: 108,498</div>',
+      'data':'<div> Weighted Goal*: <strong>Lose 79,656 lbs.</strong> <br><strong>0 Participants have lost 0 lbs.</strong> so far <br><strong>0%</strong> of Goal Reached <br>Challenge Rank (US & Canada): <strong>#0 of 64</strong> <br> <br> <div style="background-color:#ffffff;padding:5px;margin:5px;">     WY Obesity Rate: <strong>25%**</strong>     <br>Est # of Obese Adults: <strong>108,498</strong> </div> <h3>*Goal based on est. # of obese adults in WY</h3> <h3>Population data: Census Data 2010 (census.gov)</h3> <h3>**Obesity data: CDC 2012 (cdc.gov)</h3> <div style="background-color:#ffffff;padding:5px;margin:5px;">     <center>Challenge Tracking Powered By:      <br><a href="http://habitforge.com" target="_blank"><img src="http://habitforge.com/home/images/logos/HF-ETR-Logo-Header_120.png" /></a></center> </div></div>',
       'upcolor':'#EBECED',
       'overcolor':'#99CC00',
       'downcolor':'#993366',

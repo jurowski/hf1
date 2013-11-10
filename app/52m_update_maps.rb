@@ -77,57 +77,61 @@ output_me("info", "----------------------------------------")
 
 
 # hash_states = Hash.new()
-# # for each state in weight_loss_by_states
-# states = WeightLossByState.all
-# states.each do |state|
+# for each state in weight_loss_by_states
+states = WeightLossByState.all
+states.each do |state|
 
-#     challenge_qty_total_signed_up = 0
-#     #count the number of people in the challenge for that state
-#     goals = Goal.find(:all, :conditions => "goal_added_through_template_from_program_id = '4'")
-#     if goals
-#         goals.each do |goal|
-#             if goal.user.state_code == state.state_code and goal.tracker
-#                 challenge_qty_total_signed_up += 1
+    challenge_qty_total_signed_up = 0
+    challenge_total_lbs_lost = 0
+    #count the number of people in the challenge for that state
+    goals = Goal.find(:all, :conditions => "goal_added_through_template_from_program_id = '4'")
+    if goals
+        goals.each do |goal|
+            if goal.user.state_code == state.state_code and goal.tracker
+                challenge_qty_total_signed_up += 1
 
-#                 person_amount_lost = 0
-#                 start_weight = goal.quant_first
-#                 current_weight = goal.quant_last
-#                 if start_weight >  50 and current_weight > 50
-#                     increment challenge_qty_total_weighing_in
-#                     append to challenge_lbs_starting_weight_total
-#                     append to challenge_lbs_last_weight_total
-#                     person_amount_lost = start_weight - current_weight
-#                     append person_amount_lost to challenge_lbs_lost_total
-#                 end
+                person_amount_lost = 0
+                start_weight = goal.quant_first
+                current_weight = goal.quant_last
+                if start_weight >  50 and current_weight > 50
+                    if goal.quant_diff_between_first_and_last
+                        challenge_total_lbs_lost += goal.quant_diff_between_first_and_last
+                    end
+                #     increment challenge_qty_total_weighing_in
+                #     append to challenge_lbs_starting_weight_total
+                #     append to challenge_lbs_last_weight_total
+                #     person_amount_lost = start_weight - current_weight
+                #     append person_amount_lost to challenge_lbs_lost_total
+                end
 
-#             end
-#         end
-#     end
-#     state.challenge_qty_total_signed_up = challenge_qty_total_signed_up
-
-
-#     challenge_lbs_starting_weight_total = 0
-#     challenge_lbs_last_weight_total = 0
-#     challenge_lbs_lost_total = 0
-
-
-#     challenge_qty_total_weighing_in = 0
+            end
+        end
+    end
+    state.challenge_lbs_lost_total = challenge_total_lbs_lost
+    state.challenge_qty_active = challenge_qty_total_signed_up
 
 
+    # challenge_lbs_starting_weight_total = 0
+    # challenge_lbs_last_weight_total = 0
+    # challenge_lbs_lost_total = 0
 
-#     state.challenge_qty_total_signed_up = challenge_qty_total_signed_up
-#     state.challenge_lbs_starting_weight_total = challenge_lbs_starting_weight_total
-#     state.challenge_lbs_last_weight_total = challenge_lbs_last_weight_total
-#     state.challenge_lbs_lost_total = challenge_lbs_lost_total
-#     state.challenge_qty_total_weighing_in = challenge_qty_total_weighing_in
 
-#     state.challenge_percent_of_goal_met = 0
-#     if state.challenge_weighted_goal > 0
-#         state.challenge_percent_of_goal_met = (((state.challenge_lbs_lost_total + 0.0) / state.challenge_weighted_goal)*100).floor
-#     end
+    # challenge_qty_total_weighing_in = 0
 
-#     hash_states["#{state.state_code}"] = state.challenge_percent_of_goal_met
-#   end ### end for each state
+
+    # state.challenge_qty_total_signed_up = challenge_qty_total_signed_up
+    # state.challenge_lbs_starting_weight_total = challenge_lbs_starting_weight_total
+    # state.challenge_lbs_last_weight_total = challenge_lbs_last_weight_total
+    # state.challenge_lbs_lost_total = challenge_lbs_lost_total
+    # state.challenge_qty_total_weighing_in = challenge_qty_total_weighing_in
+
+    state.challenge_percent_of_goal_met = 0
+    if state.challenge_weighted_goal > 0
+        state.challenge_percent_of_goal_met = (((state.challenge_lbs_lost_total + 0.0) / state.challenge_weighted_goal)*100).floor
+    end
+
+    # hash_states["#{state.state_code}"] = state.challenge_percent_of_goal_met
+  end ### end for each state
 
 
 #   hash_ordered = hash_states.sort_by {|_key, value| value}.reverse
