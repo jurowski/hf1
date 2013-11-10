@@ -5,10 +5,10 @@
 <!-- <h3>Tracking History:</h3> -->
 
 
-<!-- Oldest: <%= @goal.quant_last.measurement_display %>
-Newest: <%= @goal.quant_first.measurement_display %>
+<!-- Oldest: < @goal.quant_last.measurement_display >
+Newest: < @goal.quant_first.measurement_display >
 
-Diff: <%= @goal.quant_diff_between_first_and_last %>
+Diff: < @goal.quant_diff_between_first_and_last >
  -->
 <% @quants = Quant.find(:all, :conditions => "goal_id = '#{@goal.id}'", :order => "measurement_date DESC, measurement_hour DESC, measurement_taken_timestamp DESC") %>
 <% if @quants.size == 0 %>
