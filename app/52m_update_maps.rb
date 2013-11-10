@@ -87,7 +87,7 @@ states.each do |state|
     goals = Goal.find(:all, :conditions => "goal_added_through_template_from_program_id = '4'")
     if goals
         goals.each do |goal|
-            if goal.user.state_code == state.state_code and goal.tracker
+            if (goal.user.state_code == state.state_code or goal.user.state == state.state_code) and goal.tracker
                 challenge_qty_total_signed_up += 1
 
                 if goal.quant_diff_between_first_and_last
