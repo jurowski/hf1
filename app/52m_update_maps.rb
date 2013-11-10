@@ -91,7 +91,7 @@ states.each do |state|
                 challenge_qty_total_signed_up += 1
 
                 if goal.quant_diff_between_first_and_last
-                    challenge_total_lbs_lost += goal.quant_diff_between_first_and_last
+                    challenge_total_lbs_lost += goal.quant_diff_between_first_and_last.to_i
                 end
 
             end
