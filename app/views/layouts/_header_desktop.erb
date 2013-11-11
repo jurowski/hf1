@@ -182,7 +182,16 @@
               #if !session[:google_access_token] and request.url.include? '&access_token='
 
               %>
-              <%= request.url %>
+              URL:<%= request.url %>
+              <br>
+              Access Token:
+              <% if session[:google_access_token] %>
+                <%= session[:google_access_token] %>
+              <% else %>
+                NONE
+              <% end %>
+              <br>
+              
               <%
               if request.url.include? '&access_token='              
 

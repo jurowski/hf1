@@ -19,13 +19,6 @@ NEXT
 ------------ 
 
 
--- add to weight_loss_by_states: 
-challenge_qty_total_weighing_in
-challenge_qty_total_signed_up
-challenge_lbs_starting_weight_total
-challenge_lbs_last_weight_total
-
---write the cron job to generate stats for the states, save in db
 
 --map:(set color based on % reached threshold)
 
