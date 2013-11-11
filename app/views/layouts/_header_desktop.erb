@@ -222,7 +222,7 @@
               <br>
               URI:<%= request.request_uri %>
               <br>
-              URL_FOR:<%= url_for %>
+              URL_FOR:<%= url_for(:only_path => false) %>
               <br>
 <!--               http://stackoverflow.com/questions/2165665/how-do-i-get-the-current-url-in-ruby-on-rails -->
               ORIGINAL_URL: not avail in rails 2 < request.original_url >
