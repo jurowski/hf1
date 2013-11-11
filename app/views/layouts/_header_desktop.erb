@@ -181,6 +181,9 @@
 
 #### THE CORE PROBLEM HERE IS THAT WHEN GOOGLE KICKS BACK TO HF.COM, IT DOES NOT PRESENT THE ACCESS_TOKEN IN THE URL AT ALL... 
 
+### ACTUALLY THE PROBLEM IS THAT "ANCHORS" (ANYTHING AFTER #) ARE NEVER SENT TO THE SERVER AND WOULD HAVE TO BE GRABBED BY THE CLIENT IN JAVASCRIPT:
+### http://stackoverflow.com/questions/4108082/get-anchor-part-of-url-in-controller-in-ruby-on-rails
+
               #if !session[:google_access_token] and request.url.include? '&access_token='
 
               %>
