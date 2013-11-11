@@ -184,19 +184,13 @@
               #if !session[:google_access_token] and request.url.include? '&access_token='
 
               %>
-              URL:<%= request.url %>
-              <br>
-              Access Token:
-              <% if session[:google_access_token] %>
-                <%= session[:google_access_token] %>
-              <% else %>
-                NONE
-              <% end %>
-              <br>
+
 
               <%
               if request.url.include? '&access_token='              
-
+                %>
+                SAW ACCESS_TOKEN
+                <%
                 arr_url = request.split "&"
                 arr_access_token = arr_url[1].split "="
                 session[:google_access_token] = arr_access_token[1]
@@ -216,8 +210,23 @@
 
                 #session[:google_access_token] = params[:access_token] 
 
+              else
+                %>
+                DID NOT SEE ACCESS TOKEN
+                <%
               end 
               %>
+
+              URL:<%= request.url %>
+              <br>
+              Access Token:
+              <% if session[:google_access_token] %>
+                <%= session[:google_access_token] %>
+              <% else %>
+                NONE
+              <% end %>
+              <br>
+
 
             <% else %>
               <a style="" href="#" id='signup_google' title="Coming Soon... (for now, please register with Facebook or with your email address)" rel="signup_google" onmouseover="this.getElementById('image_button_signup_google').src='/home/images/Button-Google-Hover.png'" onmouseout="this.getElementById('image_button_signup_google').src='/home/images/Button-Google.png'">
