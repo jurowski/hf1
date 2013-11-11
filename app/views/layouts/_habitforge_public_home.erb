@@ -325,16 +325,6 @@ http://www.cssnewbie.com/cross-browser-support-for-html5-placeholder-text-in-for
   req.send(null);
 
 
-  /// SGJ PART 
-  /// FROM: http://stackoverflow.com/questions/4108082/get-anchor-part-of-url-in-controller-in-ruby-on-rails
-  var anchor_value;
-  //var stripped_url = document.location.toString().split("#");
-  var stripped_url = document.location.toString().split("#state=/profile&");
-
-  if (stripped_url.length > 1)
-    anchor_value = stripped_url[1];
-  window.location = "http://habitforge.com/?google_auth_code_follows=1&"+anchor_value;
-  // END SGJ PART
 
   </SCRIPT>
   <!-- END GOOGLE AUTH -->
