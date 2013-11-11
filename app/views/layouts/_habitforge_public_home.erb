@@ -307,8 +307,8 @@ http://www.cssnewbie.com/cross-browser-support-for-html5-placeholder-text-in-for
   // consider using POST so query isn't logged
   req.open('GET', 'https://' + window.location.host + '/catchtoken?' + queryString, true);
 
-  alert(params['state'])
-  
+  alert(params['state']);
+
   req.onreadystatechange = function (e) {
     if (req.readyState == 4) {
        if(req.status == 200){
