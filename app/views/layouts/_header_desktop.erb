@@ -220,12 +220,12 @@
 
               URL:<%= request.url %>
               <br>
-              URI:<%= request.request.uri %>
+              URI:<%= request.request_uri %>
               <br>
 <!--               http://stackoverflow.com/questions/2165665/how-do-i-get-the-current-url-in-ruby-on-rails -->
-              ORIGINAL_URL: request.original_url 
+              ORIGINAL_URL: <%= request.original_url %>
               <br>
-              FULLPATH: not available in rails2 request.fullpath 
+              FULLPATH: not available in rails2 <%= request.fullpath %>
               <br>
               Access Token:
               <% if session[:google_access_token] %>
