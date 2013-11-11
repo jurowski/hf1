@@ -222,10 +222,12 @@
               <br>
               URI:<%= request.request_uri %>
               <br>
-<!--               http://stackoverflow.com/questions/2165665/how-do-i-get-the-current-url-in-ruby-on-rails -->
-              ORIGINAL_URL: <%= request.original_url %>
+              URL_FOR:<%= url_for %>
               <br>
-              FULLPATH: not available in rails2 <%= request.fullpath %>
+<!--               http://stackoverflow.com/questions/2165665/how-do-i-get-the-current-url-in-ruby-on-rails -->
+              ORIGINAL_URL: not avail in rails 2 < request.original_url >
+              <br>
+              FULLPATH: not available in rails2 < request.fullpath >
               <br>
               Access Token:
               <% if session[:google_access_token] %>
