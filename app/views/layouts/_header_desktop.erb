@@ -192,9 +192,10 @@
 
               logger.info("sgj:_header_desktop.erb:GOOGLE AUTH:")
 
-              if 1 == 2 and !session[:google_access_token] and params[:access_token] 
+              if !session[:google_access_token] and params[:access_token] 
                 ## verify the token and read what comes back
                 token = params[:access_token]
+
                 open("https://www.googleapis.com/oauth2/v1/tokeninfo?access_token=#{token}") {|f|
                   f.each_line {|line| 
                     %>
