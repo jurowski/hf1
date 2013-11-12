@@ -200,7 +200,7 @@
 
               if !session[:google_access_token] and params[:access_token] 
                 ## verify the token and read what comes back
-                open("https://www.googleapis.com/oauth2/v1/tokeninfo?access_token=#{params[:access_token]}") {|f|
+                open("https://www.googleapis.com/oauth2/v1/tokeninfo?access_token="+params[:access_token]) {|f|
                   f.each_line {|line| 
                     %>
                     <!-- p line -->
