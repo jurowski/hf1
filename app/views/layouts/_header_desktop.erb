@@ -172,8 +172,8 @@
   /// SGJ PART 
   /// FROM: http://stackoverflow.com/questions/4108082/get-anchor-part-of-url-in-controller-in-ruby-on-rails
   var anchor_value;
-  //var stripped_url = document.location.toString().split("#");
-  var stripped_url = document.location.toString().split("#state=/profile&");
+  var stripped_url = document.location.toString().split("#");
+  // var stripped_url = document.location.toString().split("#state=/profile&");
 
   if (stripped_url.length > 1)
     anchor_value = stripped_url[1];
