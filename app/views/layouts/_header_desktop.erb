@@ -165,22 +165,9 @@
             </td><td>
 
             <% if session[:test_layout] %>
-              <a href="https://accounts.google.com/o/oauth2/auth?scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile&state=%2Fprofile&redirect_uri=https%3A%2F%2Fhabitforge.com&response_type=token&client_id=332087264928.apps.googleusercontent.com">
+              <a href="https://accounts.google.com/o/oauth2/auth?scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile&state=%2Fprofile&redirect_uri=https%3A%2F%2Fhabitforge.com%2Fgoogle_auth.html&response_type=token&client_id=332087264928.apps.googleusercontent.com">
                 <img src="/home/images/Button-Google.png" /> 
               </a>
-  <script>
-  /// SGJ PART 
-  /// FROM: http://stackoverflow.com/questions/4108082/get-anchor-part-of-url-in-controller-in-ruby-on-rails
-  var anchor_value;
-  //var stripped_url = document.location.toString().split("#");
-  var stripped_url = document.location.toString().split("#state=/profile&");
-
-  if (stripped_url.length > 1) {
-    anchor_value = stripped_url[1];
-    //window.location = "http://habitforge.com/?google_auth_code_follows=1&"+anchor_value;
-    }
-  // END SGJ PART
-  </script>
 
               <% 
   ####
