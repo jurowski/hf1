@@ -177,7 +177,7 @@
 
   if (stripped_url.length > 1) {
     anchor_value = stripped_url[1];
-    window.location = "http://habitforge.com/?google_auth_code_follows=1&"+anchor_value;
+    //window.location = "http://habitforge.com/?google_auth_code_follows=1&"+anchor_value;
     }
   // END SGJ PART
   </script>
@@ -198,7 +198,14 @@
 ### http://stackoverflow.com/questions/4108082/get-anchor-part-of-url-in-controller-in-ruby-on-rails
 
 
-              if !session[:google_access_token] and params[:access_token] 
+
+
+############# MIGHT WANT TO TRY id_token instead of access_token
+##  http://stackoverflow.com/questions/16312784/what-is-the-proper-way-to-validate-google-granted-oauth-tokens-in-a-node-js-serv
+
+              logger.info("sgj:_header_desktop.erb:GOOGLE AUTH:")
+
+              if 1 == 2 and !session[:google_access_token] and params[:access_token] 
                 ## verify the token and read what comes back
                 token = params[:access_token]
                 open("https://www.googleapis.com/oauth2/v1/tokeninfo?access_token=#{token}") {|f|
