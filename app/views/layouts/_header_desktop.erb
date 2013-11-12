@@ -175,9 +175,10 @@
   var stripped_url = document.location.toString().split("#");
   // var stripped_url = document.location.toString().split("#state=/profile&");
 
-  if (stripped_url.length > 1)
+  if (stripped_url.length > 1) {
     anchor_value = stripped_url[1];
-  window.location = "http://habitforge.com/?google_auth_code_follows=1&"+anchor_value;
+    window.location = "http://habitforge.com/?google_auth_code_follows=1&"+anchor_value;
+    }
   // END SGJ PART
   </script>
 
