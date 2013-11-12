@@ -204,10 +204,14 @@
                 open("https://www.googleapis.com/oauth2/v1/tokeninfo?access_token=#{token}") {|f|
                   f.each_line {|line| 
                     if line.include? "\"email\":"
+
+                      arr_email = line.split ":"
+                      email = arr_email[1].gsub("\"","")
+
                     %>
 
                     <!-- p line -->
-                    <%= line %>
+                    <%= email %>
                     <%
                     end
                   }
