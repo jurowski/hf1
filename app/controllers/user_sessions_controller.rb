@@ -79,6 +79,9 @@ class UserSessionsController < ApplicationController
     session[:fb_gender] = nil
     session[:fb_timezone] = nil
 
+    ### UNSET GOOGLE ITEMS ####
+    session[:google_user_id] = nil
+    session[:google_email] = nil
     
     flash[:notice] = "Logout successful!"
     redirect_to("/")

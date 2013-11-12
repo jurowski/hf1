@@ -141,55 +141,12 @@ GRAPHIC REDESIGN and NEW SIGNUP PUT ON HOLD UNTIL ROWLEY 52M is done
 -------------------------------------------------------------------
 
 -----------------
-Google Login
+FB and Google Login
 -----------------
 
 -- NEXT --
-https://developers.google.com/accounts/docs/OAuth2UserAgent
-
-client (app) name: HabitForge
-client-id: ultra-acre-385
-
-When I log in w/ Google, I get this back:
-
-http://habitforge.com/#state=/profile&access_token=ya29.AHES6ZRtjOE4zfbncHFUnGDrkPPn9Ca3kxOpz3nXGWBw91o&token_type=Bearer&expires_in=3600
-
-access_token=
-ya29.AHES6ZRtjOE4zfbncHFUnGDrkPPn9Ca3kxOpz3nXGWBw91o
-
-
-http://habitforge.com/#state=/profile&access_token=ya29.AHES6ZQPe_Bpsl6YmaRXX-zWaWVetxotBLx6FsA_GmK_BrvgGUQAyuU&token_type=Bearer&expires_in=3600
-
-
-
-If I "VERFIY THE TOKEN" like this:
- nya29.AHES6ZRtjOE4zfbncHFUnGDrkPPn9Ca3kxOpz3nXGWBw91o
-
-I get back a page stating:
-{
- "issued_to": "332087264928.apps.googleusercontent.com",
- "audience": "332087264928.apps.googleusercontent.com",
- "user_id": "108766425892026094873",
- "scope": "https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile",
- "expires_in": 3511,
- "email": "support@habitforge.com",
- "verified_email": true,
- "access_type": "online"
-}
-
-
-
-
-https://www.googleapis.com/oauth2/v1/userinfo?access_token=1/
-
-http://habitforge.com/#state=/profile&access_token=ya29.AHES6ZRmzSIhCUvR1lkJFc2xsOglK63YXl3J60peJYYcAaAH0jTRyg&token_type=Bearer&expires_in=3600
-
-
-https://www.googleapis.com/oauth2/v1/userinfo?access_token=1/ya29.AHES6ZRmzSIhCUvR1lkJFc2xsOglK63YXl3J60peJYYcAaAH0jTRyg
-
-{"web":{"auth_uri":"https://accounts.google.com/o/oauth2/auth","client_secret":"xk65MOCf9TwucBKFnTaeA1mE","token_uri":"https://accounts.google.com/o/oauth2/token","client_email":"332087264928@project.googleusercontent.com","client_x509_cert_url":"https://www.googleapis.com/robot/v1/metadata/x509/332087264928@project.googleusercontent.com","client_id":"332087264928.project.googleusercontent.com","auth_provider_x509_cert_url":"https://www.googleapis.com/oauth2/v1/certs"}}
-
-
+Deal w/ the form variables as "sessions" instead of just "params" so that those invited to join for certain goals/teams don't lose that info when re-directed
+(likely doesn't work for FB, and I know it doesn't work for Google)
 
 -- LATER ON --
 ALLOW USER TO LOG OUT WHILE FB IS STILL LOGGED IN ELSEWHERE

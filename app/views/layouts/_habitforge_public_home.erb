@@ -19,6 +19,11 @@ if @email_duplicate or (@email_blank == true or (@email_valid != nil and @email_
     session[:fb_last_name] = nil
     session[:fb_gender] = nil
     session[:fb_timezone] = nil
+
+    ### UNSET GOOGLE AUTH ITEMS ####
+    session[:google_user_id] = nil
+    session[:google_email] = nil
+
 end 
 %>
 

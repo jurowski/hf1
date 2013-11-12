@@ -108,12 +108,30 @@
 
             </td><td>
 
+
+
+
+            <% if session[:test_layout] %>
+
+              <div style="margin-top:0px;padding-right:0px;">
+              <%= render :partial => "layouts/google_signup.erb" %>
+              </div>
+
+
+            <% else %>
+
       <!--       <img src="/home/images/Button-Google.png" />  -->
-            <a style="" href="#" id='signup_google' title="Coming Soon... (for now, please register with your email address)" rel="signup_google" onmouseover="this.getElementById('image_button_signup_google').src='/home/images/Button-Google-Hover.png'" onmouseout="this.getElementById('image_button_signup_google').src='/home/images/Button-Google.png'">
-            </a>
-            <script type='text/javascript'>
-                $('#signup_google').tipsy();
-            </script>
+              <a style="" href="#" id='signup_google' title="Coming Soon... (for now, please register with your email address)" rel="signup_google" onmouseover="this.getElementById('image_button_signup_google').src='/home/images/Button-Google-Hover.png'" onmouseout="this.getElementById('image_button_signup_google').src='/home/images/Button-Google.png'">
+              </a>
+              <script type='text/javascript'>
+                  $('#signup_google').tipsy();
+              </script>
+
+
+
+            <% end %>
+
+
 
             </td></tr></table>
             </center>
@@ -126,6 +144,15 @@
           <% email_value = "" %>
           <% if params[:fb_email] %>
             <% email_value = params[:fb_email] %>
+          <% end %>
+
+
+          <% if params[:email] %>
+            <% session[:google_email] = nil %>
+          <% end %>
+          
+          <% if !params[:email] and session[:google_email] %>
+            <% email_value = session[:google_email] %>
           <% end %>
 
 
@@ -165,6 +192,14 @@
             formSubmit('form_signup1');
             </script>
           <% end %>
+
+
+          <% if !current_user and session[:google_email] %>
+            <script>
+            formSubmit('form_signup1');
+            </script>
+          <% end %>
+
 
           <% if current_user %>
             <script>

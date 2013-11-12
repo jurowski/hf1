@@ -25,9 +25,33 @@
 
 
 <!--             <div style="margin-top:-25px;padding-right:5px;"> -->
-            <div>
-            <%= render :partial => "layouts/fb_signup.erb" %>
-            </div>
+
+
+            <% if session[:test_layout] %>
+
+              <table>
+                <tr>
+                  <td>
+                    <div>
+                    <%= render :partial => "layouts/fb_signup.erb" %>
+                    </div>
+                  </td>
+                  <td>
+                    <div style="margin-top:0px;padding-right:0px;">
+                    <%= render :partial => "layouts/google_signup.erb" %>
+                    </div>
+                  </td>
+                </tr>
+              </table>
+
+            <% else %>
+
+              <div>
+              <%= render :partial => "layouts/fb_signup.erb" %>
+              </div>
+
+            <% end %>
+
             <br>
 
             OR

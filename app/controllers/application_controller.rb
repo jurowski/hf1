@@ -226,6 +226,22 @@ class ApplicationController < ActionController::Base
         end
       end
 
+      if session[:google_email]
+        user = User.find(:first, :conditions => "google_email = '#{session[:google_email]}'")
+        if user
+          @current_user = user
+          return @current_user
+        end
+
+        user = User.find(:first, :conditions => "email = '#{session[:google_email]}'")
+        if user
+          @current_user = user
+          return @current_user
+        end
+
+      end
+
+
 
       if params[:single_login] and params[:email]
         session[:email] = params[:email]

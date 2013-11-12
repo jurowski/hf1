@@ -426,6 +426,16 @@ class UsersController < ApplicationController
         logger.info("sgj:users_controller:quicksignup_v2:5.1")
         begin
 
+
+          ### SET ANY GOOGLE LOGIN ITEMS
+          if session[:google_email]
+            user.google_email = session[:google_email]
+          end
+          if session[:google_user_id]
+            user.google_user_id = session[:google_user_id]
+          end
+
+
           ### SET ANY FB ITEMS ####
           if session[:fb_id]
             user.fb_id = session[:fb_id].to_i

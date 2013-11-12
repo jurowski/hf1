@@ -166,7 +166,7 @@
 
             <% if session[:test_layout] %>
 
-              <div style="margin-top:-25px;padding-right:5px;">
+              <div style="margin-top:0px;padding-right:0px;">
               <%= render :partial => "layouts/google_signup.erb" %>
               </div>
 
@@ -190,6 +190,14 @@
           <% email_value = "" %>
           <% if params[:fb_email] %>
             <% email_value = params[:fb_email] %>
+          <% end %>
+
+          <% if params[:email] %>
+            <% session[:google_email] = nil %>
+          <% end %>
+
+          <% if !params[:email] and session[:google_email] %>
+            <% email_value = session[:google_email] %>
           <% end %>
 
           <% if params[:signup_intent_paid] %>
@@ -217,6 +225,15 @@
             formSubmit('form_signup1');
             </script>
           <% end %>
+
+          <% if !current_user and session[:google_email] %>
+            <script>
+            formSubmit('form_signup1');
+            </script>
+          <% end %>
+
+
+
 
           <% if current_user %>
             <script>
