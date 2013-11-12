@@ -198,10 +198,13 @@
 
                 open("https://www.googleapis.com/oauth2/v1/tokeninfo?access_token=#{token}") {|f|
                   f.each_line {|line| 
+                    if line.include? "\"email\":"
                     %>
+
                     <!-- p line -->
                     <%= line %>
                     <%
+                    end
                   }
                 }
 
