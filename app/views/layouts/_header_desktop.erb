@@ -197,35 +197,20 @@
 ### ACTUALLY THE PROBLEM IS THAT "ANCHORS" (ANYTHING AFTER #) ARE NEVER SENT TO THE SERVER AND WOULD HAVE TO BE GRABBED BY THE CLIENT IN JAVASCRIPT:
 ### http://stackoverflow.com/questions/4108082/get-anchor-part-of-url-in-controller-in-ruby-on-rails
 
-              #if !session[:google_access_token] and request.url.include? '&access_token='
 
-              %>
-
-              <%
-
-              # if request.url.include? '&access_token='                           
-              if request.request_uri.include? '&access_token='              
-                %>
-                SAW ACCESS_TOKEN
-                <%
-                arr_url = request.split "&"
-                arr_access_token = arr_url[1].split "="
-                session[:google_access_token] = arr_access_token[1]
-                %>
-                access_token = <%= session[:google_access_token] %>
-                <%
-                ### verify the token and read what comes back
-                # open("https://www.googleapis.com/oauth2/v1/tokeninfo?access_token=#{session[:google_access_token]}") {|f|
-                #   f.each_line {|line| 
-                #     %>
-                #     <!-- p line -->
-                #     <%= line %>
-                #     <%
-                #   }
-                # }
+              if !session[:google_access_token] and params[:access_token] 
+                ## verify the token and read what comes back
+                open("https://www.googleapis.com/oauth2/v1/tokeninfo?access_token=#{session[:google_access_token]}") {|f|
+                  f.each_line {|line| 
+                    %>
+                    <!-- p line -->
+                    <%= line %>
+                    <%
+                  }
+                }
 
 
-                #session[:google_access_token] = params[:access_token] 
+                session[:google_access_token] = params[:access_token] 
 
               else
                 %>
@@ -233,27 +218,8 @@
                 <%
               end 
               %>
-
-              URL:<%= request.url %>
               <br>
 
-              URL + STATUS: <%=  params[:status] %>
-              <br>
-              URI:<%= request.request_uri %>
-              <br>
-              Query String:<%= request.query_string %>
-              <br>
-              <br>
-              HOST:<%= request.host %>
-              <br>
-              PATH:<%= request.path %>
-              <br>
-              URL_FOR:<%= url_for(:only_path => false) %>
-              <br>
-<!--               http://stackoverflow.com/questions/2165665/how-do-i-get-the-current-url-in-ruby-on-rails -->
-              ORIGINAL_URL: not avail in rails 2 < request.original_url >
-              <br>
-              FULLPATH: not available in rails2 < request.fullpath >
               <br>
               Access Token:
               <% if session[:google_access_token] %>
