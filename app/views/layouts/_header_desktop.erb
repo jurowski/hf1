@@ -165,77 +165,10 @@
             </td><td>
 
             <% if session[:test_layout] %>
-              <a href="https://accounts.google.com/o/oauth2/auth?scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile&state=%2Fprofile&redirect_uri=https%3A%2F%2Fhabitforge.com%2Fgoogle_auth.html&response_type=token&client_id=332087264928.apps.googleusercontent.com">
-                <img src="/home/images/Button-Google.png" /> 
-              </a>
 
-              <% 
-  ####
-  # NOTE THAT THIS IS WORKING BUTTTTTTT
-  # What you really wanted to get back from google in the first place was:
-  # http://habitforge.com/?access_token=ya29.AHES6ZQzuTMUdXlvHajq_XMsrdoZY3olIT2NL81Jlgs-jzk&token_type=Bearer&expires_in=3600
-  # What you get instead is:
-  # http://habitforge.com/#state=/profile&access_token=ya29.AHES6ZQzuTMUdXlvHajq_XMsrdoZY3olIT2NL81Jlgs-jzk&token_type=Bearer&expires_in=3600
-  # ... meaning, what you need to do is grab the "access_token" out of the URI instead of just as a param
-  #   because  that "#state=" thing is there instead of a "?" so it's not really a param yet
-
-#### THE CORE PROBLEM HERE IS THAT WHEN GOOGLE KICKS BACK TO HF.COM, IT DOES NOT PRESENT THE ACCESS_TOKEN IN THE URL AT ALL... 
-
-### ACTUALLY THE PROBLEM IS THAT "ANCHORS" (ANYTHING AFTER #) ARE NEVER SENT TO THE SERVER AND WOULD HAVE TO BE GRABBED BY THE CLIENT IN JAVASCRIPT:
-### http://stackoverflow.com/questions/4108082/get-anchor-part-of-url-in-controller-in-ruby-on-rails
-
-
-
-
-############# MIGHT WANT TO TRY id_token instead of access_token
-##  http://stackoverflow.com/questions/16312784/what-is-the-proper-way-to-validate-google-granted-oauth-tokens-in-a-node-js-serv
-
-              logger.info("sgj:_header_desktop.erb:GOOGLE AUTH:")
-
-              if session[:google_access_token] or params[:access_token] 
-
-                if params[:access_token]
-                  session[:google_access_token] = params[:access_token] 
-                end
-
-                ## verify the token and read what comes back
-                token = session[:google_access_token]
-
-                open("https://www.googleapis.com/oauth2/v1/tokeninfo?access_token=#{token}") {|f|
-                  f.each_line {|line| 
-                    if line.include? "\"email\":"
-
-                      arr_email = line.split ":"
-                      email = arr_email[1].gsub("\"","")
-
-                    %>
-
-                    <!-- p line -->
-                    <%= email %>
-                    <%
-                    end
-                  }
-                }
-
-
-
-
-              else
-                %>
-                DID NOT SEE ACCESS TOKEN
-                <%
-              end 
-              %>
-              <br>
-
-              <br>
-              Access Token:
-              <% if session[:google_access_token] %>
-                <%= session[:google_access_token] %>
-              <% else %>
-                NONE
-              <% end %>
-              <br>
+              <div style="margin-top:-25px;padding-right:5px;">
+              <%= render :partial => "layouts/google_signup.erb" %>
+              </div>
 
 
             <% else %>

@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131030064358) do
+ActiveRecord::Schema.define(:version => 20131112202958) do
 
   create_table "achievemints", :force => true do |t|
     t.string   "name"
@@ -888,6 +888,8 @@ ActiveRecord::Schema.define(:version => 20131030064358) do
     t.string   "fb_last_name"
     t.string   "fb_gender"
     t.string   "fb_timezone"
+    t.integer  "google_user_id"
+    t.string   "google_email"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email"

@@ -1,0 +1,78 @@
+
+<!-- GOOGLE SIGNUP CODE -->
+
+
+<a href="https://accounts.google.com/o/oauth2/auth?scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile&state=%2Fprofile&redirect_uri=https%3A%2F%2Fhabitforge.com%2Fgoogle_auth.html&response_type=token&client_id=332087264928.apps.googleusercontent.com">
+  <img src="/home/images/Button-Google.png" /> 
+</a>
+
+<% 
+
+### THE PROBLEM IS THAT "ANCHORS" (ANYTHING AFTER #) ARE NEVER SENT TO THE SERVER AND WOULD HAVE TO BE GRABBED BY THE CLIENT IN JAVASCRIPT:
+### http://stackoverflow.com/questions/4108082/get-anchor-part-of-url-in-controller-in-ruby-on-rails
+
+logger.info("sgj:_header_desktop.erb:GOOGLE AUTH:")
+
+#### GOOGLE AUTH KICKS BACK TO HF.COM/google_auth.html which kicks the token into a param
+#### so that we can read the token via the URL and then verify it
+if session[:google_access_token] or params[:access_token] 
+
+  if params[:access_token]
+    session[:google_access_token] = params[:access_token] 
+  end
+
+  ## verify the token and read what comes back
+  token = session[:google_access_token]
+  open("https://www.googleapis.com/oauth2/v1/tokeninfo?access_token=#{token}") {|f|
+    f.each_line {|line| 
+
+
+      #### BELOW IS THE TEXT RETURNED FROM THE TOKEN VALIDATION REQUEST
+      # {
+      #  "issued_to": "332087264928.apps.googleusercontent.com",
+      #  "audience": "332087264928.apps.googleusercontent.com",
+      #  "user_id": "104749481844376154446",
+      #  "scope": "https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile",
+      #  "expires_in": 3458,
+      #  "email": "jurowski@gmail.com",
+      #  "verified_email": true,
+      #  "access_type": "online"
+      # }
+
+      if line.include? "\"email\":"
+
+        #### this line looks like this:    
+        ####     "email":"jurowski@gmail.com",
+        arr_email = line.split ":"
+
+        ### remove quotes and comma
+        @google_email = arr_email[1].gsub("\"","").gsub(",","")
+      end
+
+      if line.include? "\"user_id\":"
+
+        #### this line looks like this:    
+        ####     "user_id": "104749481844376154446",
+        arr_user_id = line.split ":"
+
+        ### remove quotes and comma
+        @google_user_id = arr_user_id[1].gsub("\"","").gsub(",","")
+      end
+
+    end
+    } ### end each line
+  } ### end the OPEN command (opening a URL and returning results)
+end 
+
+
+if @google_email and @google_user_id
+  ### if an HF account exists w/ @google_email, log them in
+
+  ### if no HF account exists w/ @google_email, create one
+
+end
+%>
+
+
+
+
