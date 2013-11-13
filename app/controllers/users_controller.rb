@@ -361,7 +361,7 @@ class UsersController < ApplicationController
 
       if session[:google_email]
         ### just sign them in... they'll be picked up by the app controller "current user"
-        redirect_url_string = "/goals"
+        redirect_url_string = "/goals?google_email=" + session[:google_email]
         redirect_to(redirect_url_string)
       end
       
