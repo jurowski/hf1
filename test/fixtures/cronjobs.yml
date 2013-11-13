@@ -1,0 +1,31 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  name: MyString
+  started_at: 2013-11-12 21:59:17
+  completed_at: 2013-11-12 21:59:17
+  metric_1_name: MyString
+  metric_1_value: 1
+  metric_2_name: MyString
+  metric_2_value: 1
+  metric_3_name: MyString
+  metric_3_value: 1
+  success: false
+  failure: false
+  notes: MyText
+  cron_entry_text: MyString
+
+two:
+  name: MyString
+  started_at: 2013-11-12 21:59:17
+  completed_at: 2013-11-12 21:59:17
+  metric_1_name: MyString
+  metric_1_value: 1
+  metric_2_name: MyString
+  metric_2_value: 1
+  metric_3_name: MyString
+  metric_3_value: 1
+  success: false
+  failure: false
+  notes: MyText
+  cron_entry_text: MyString

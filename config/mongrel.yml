@@ -7,4 +7,5 @@
 :port: 12003
 :daemon: true
 :cwd: /home/jurowsk1/etc/rails_apps/habitforge/current
+#:cwd: ~/etc/rails_apps/habitforge/releases/hf1
 :pid_file: log/mongrel.pid

@@ -1,0 +1,68 @@
+<p>
+  <b>Name:</b>
+  <%=h @cronjob.name %>
+</p>
+
+<p>
+  <b>Started at:</b>
+  <%=h @cronjob.started_at %>
+</p>
+
+<p>
+  <b>Completed at:</b>
+  <%=h @cronjob.completed_at %>
+</p>
+
+<p>
+  <b>Metric 1 name:</b>
+  <%=h @cronjob.metric_1_name %>
+</p>
+
+<p>
+  <b>Metric 1 value:</b>
+  <%=h @cronjob.metric_1_value %>
+</p>
+
+<p>
+  <b>Metric 2 name:</b>
+  <%=h @cronjob.metric_2_name %>
+</p>
+
+<p>
+  <b>Metric 2 value:</b>
+  <%=h @cronjob.metric_2_value %>
+</p>
+
+<p>
+  <b>Metric 3 name:</b>
+  <%=h @cronjob.metric_3_name %>
+</p>
+
+<p>
+  <b>Metric 3 value:</b>
+  <%=h @cronjob.metric_3_value %>
+</p>
+
+<p>
+  <b>Success:</b>
+  <%=h @cronjob.success %>
+</p>
+
+<p>
+  <b>Failure:</b>
+  <%=h @cronjob.failure %>
+</p>
+
+<p>
+  <b>Notes:</b>
+  <%=h @cronjob.notes %>
+</p>
+
+<p>
+  <b>Cron entry text:</b>
+  <%=h @cronjob.cron_entry_text %>
+</p>
+
+
+<%= link_to 'Edit', edit_cronjob_path(@cronjob) %> |
+<%= link_to 'Back', cronjobs_path %>

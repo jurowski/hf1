@@ -1,4 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :cronjobs
+
   map.resources :weight_loss_by_states
 
 

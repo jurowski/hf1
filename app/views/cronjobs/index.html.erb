@@ -1,0 +1,44 @@
+<h1>Listing cronjobs</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Started at</th>
+    <th>Completed at</th>
+    <th>Metric 1 name</th>
+    <th>Metric 1 value</th>
+    <th>Metric 2 name</th>
+    <th>Metric 2 value</th>
+    <th>Metric 3 name</th>
+    <th>Metric 3 value</th>
+    <th>Success</th>
+    <th>Failure</th>
+    <th>Notes</th>
+    <th>Cron entry text</th>
+  </tr>
+
+<% @cronjobs.each do |cronjob| %>
+  <tr>
+    <td><%=h cronjob.name %></td>
+    <td><%=h cronjob.started_at %></td>
+    <td><%=h cronjob.completed_at %></td>
+    <td><%=h cronjob.metric_1_name %></td>
+    <td><%=h cronjob.metric_1_value %></td>
+    <td><%=h cronjob.metric_2_name %></td>
+    <td><%=h cronjob.metric_2_value %></td>
+    <td><%=h cronjob.metric_3_name %></td>
+    <td><%=h cronjob.metric_3_value %></td>
+    <td><%=h cronjob.success %></td>
+    <td><%=h cronjob.failure %></td>
+    <td><%=h cronjob.notes %></td>
+    <td><%=h cronjob.cron_entry_text %></td>
+    <td><%= link_to 'Show', cronjob %></td>
+    <td><%= link_to 'Edit', edit_cronjob_path(cronjob) %></td>
+    <td><%= link_to 'Destroy', cronjob, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New cronjob', new_cronjob_path %>

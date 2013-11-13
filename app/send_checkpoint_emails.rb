@@ -4,6 +4,27 @@ require 'logger'
 class SendCheckpointEmails < ActiveRecord::Base
   # This script emails people who have checkins due on their goals
 
+    ### CRONJOB fields
+    # t.string   "name"
+    # t.datetime "started_at"
+    # t.datetime "completed_at"
+    # t.string   "metric_1_name"
+    # t.integer  "metric_1_value"
+    # t.string   "metric_2_name"
+    # t.integer  "metric_2_value"
+    # t.string   "metric_3_name"
+    # t.integer  "metric_3_value"
+    # t.boolean  "success"
+    # t.boolean  "failure"
+    # t.text     "notes"
+    # t.string   "cron_entry_text"
+
+  cronjob = Cronjob.new
+  cronjob.name = "send_checkpoint_emails.rb"
+  cronjob.started_at = DateTime.now
+  cronjob.notes = ""
+  cronjob.save
+
 
   if `uname -n`.strip == 'adv.adventurino.com'
     #### HABITFORGE SETTINGS ON VPS
@@ -74,7 +95,7 @@ class SendCheckpointEmails < ActiveRecord::Base
     retried_times = retried_times + 1
     
     puts "start er up"
-    FileUtils.touch 'launched_update_stats_at'
+    #FileUtils.touch 'launched_update_stats_at'
 
 
     
@@ -381,7 +402,9 @@ class SendCheckpointEmails < ActiveRecord::Base
               puts logtext
               logger.info logtext 
             else
-              puts "ERROR creating checkpoint for #{goal.id} on #{checkin_date}"        
+              the_message = "ERROR creating checkpoint for #{goal.id} on #{checkin_date}"
+              puts the_message         
+              cronjob.notes += "<br>" the_message
             end
             #### END CREATE CHECKPOINT
           end    
@@ -682,6 +705,10 @@ class SendCheckpointEmails < ActiveRecord::Base
                             the_message = "SGJerror failed to send single HF checkpoint email to " + checkpoint.goal.user.email 
                             puts the_message
                             logger.error the_message
+
+                            cronjob.notes += "<br>" + the_message
+
+
                         end
                       end
                       #puts "sent email cause I was told to"
@@ -755,6 +782,7 @@ class SendCheckpointEmails < ActiveRecord::Base
                                     the_message = "SGJerror failed to send multiple HF checkpoint email to " + checkpoint.goal.user.email 
                                     puts the_message
                                     logger.error the_message
+                                    cronjob.notes += "<br>" + the_message
                                 end
                         elsif checkpoint.goal.user.sponsor == "forittobe"
                             ### risky to put this before the actual send, but can't figure out why it fails every few weeks when it used to be "after" the actual send
@@ -780,6 +808,7 @@ class SendCheckpointEmails < ActiveRecord::Base
                                     the_message = "SGJerror failed to send multiple HF checkpoint email to " + checkpoint.goal.user.email 
                                     puts the_message
                                     logger.error the_message
+                                    cronjob.notes += "<br>" + the_message
                                 end
                         end
                         #puts "sent email cause I was told to"
@@ -917,11 +946,34 @@ class SendCheckpointEmails < ActiveRecord::Base
 
     
     puts "end of script"
-    FileUtils.touch 'finished_update_stats_at'    
+    #FileUtils.touch 'finished_update_stats_at'    
   rescue Timeout::Error
-    puts "Timeout error on run number #{retried_times}... restarting script from the top"
+    the_message = "Timeout error on run number #{retried_times}... restarting script from the top"
+    puts the_message
+    cronjob.notes "<br>" + the_message
     if retried_times < retried_times_limit
       retry
     end
   end
+
+      ### CRONJOB fields
+    # t.string   "name"
+    # t.datetime "started_at"
+    # t.datetime "completed_at"
+    # t.string   "metric_1_name"
+    # t.integer  "metric_1_value"
+    # t.string   "metric_2_name"
+    # t.integer  "metric_2_value"
+    # t.string   "metric_3_name"
+    # t.integer  "metric_3_value"
+    # t.boolean  "success"
+    # t.boolean  "failure"
+    # t.text     "notes"
+    # t.string   "cron_entry_text"
+
+  cronjob.metric_1_name = "emails sent this hour"
+  cronjob.metric_1_value = @stat.checkpointemailssent
+  cronjob.completed_at = DateTime.now
+  cronjob.save
+
 end

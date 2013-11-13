@@ -4,6 +4,7 @@ clean: true
 log_file: log/mongrel.log
 port: 12003
 cwd: /home/jurowsk1/etc/rails_apps/habitforge/current
+#cwd: ~/etc/rails_apps/habitforge/releases/hf1
 environment: production
 user: jurowsk1
 group: jurowsk1

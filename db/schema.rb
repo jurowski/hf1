@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131112202958) do
+ActiveRecord::Schema.define(:version => 20131113035917) do
 
   create_table "achievemints", :force => true do |t|
     t.string   "name"
@@ -182,6 +182,24 @@ ActiveRecord::Schema.define(:version => 20131112202958) do
   create_table "counter_images_sets", :force => true do |t|
     t.string   "counter_set_name"
     t.integer  "counter_limit_number"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "cronjobs", :force => true do |t|
+    t.string   "name"
+    t.datetime "started_at"
+    t.datetime "completed_at"
+    t.string   "metric_1_name"
+    t.integer  "metric_1_value"
+    t.string   "metric_2_name"
+    t.integer  "metric_2_value"
+    t.string   "metric_3_name"
+    t.integer  "metric_3_value"
+    t.boolean  "success"
+    t.boolean  "failure"
+    t.text     "notes"
+    t.string   "cron_entry_text"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

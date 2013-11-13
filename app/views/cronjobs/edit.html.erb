@@ -1,0 +1,64 @@
+<h1>Editing cronjob</h1>
+
+<% form_for(@cronjob) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label :started_at %><br />
+    <%= f.datetime_select :started_at %>
+  </p>
+  <p>
+    <%= f.label :completed_at %><br />
+    <%= f.datetime_select :completed_at %>
+  </p>
+  <p>
+    <%= f.label :metric_1_name %><br />
+    <%= f.text_field :metric_1_name %>
+  </p>
+  <p>
+    <%= f.label :metric_1_value %><br />
+    <%= f.text_field :metric_1_value %>
+  </p>
+  <p>
+    <%= f.label :metric_2_name %><br />
+    <%= f.text_field :metric_2_name %>
+  </p>
+  <p>
+    <%= f.label :metric_2_value %><br />
+    <%= f.text_field :metric_2_value %>
+  </p>
+  <p>
+    <%= f.label :metric_3_name %><br />
+    <%= f.text_field :metric_3_name %>
+  </p>
+  <p>
+    <%= f.label :metric_3_value %><br />
+    <%= f.text_field :metric_3_value %>
+  </p>
+  <p>
+    <%= f.label :success %><br />
+    <%= f.check_box :success %>
+  </p>
+  <p>
+    <%= f.label :failure %><br />
+    <%= f.check_box :failure %>
+  </p>
+  <p>
+    <%= f.label :notes %><br />
+    <%= f.text_area :notes %>
+  </p>
+  <p>
+    <%= f.label :cron_entry_text %><br />
+    <%= f.text_field :cron_entry_text %>
+  </p>
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @cronjob %> |
+<%= link_to 'Back', cronjobs_path %>
