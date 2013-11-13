@@ -41,12 +41,12 @@ if session[:google_access_token] or params[:access_token]
 
       if line.include? "\"email\":"
 
-        #### this line looks like this:    
-        ####     "email":"jurowski@gmail.com",
+        #### this line looks like this (note the space):    
+        ####     "email": "jurowski@gmail.com",
         arr_email = line.split ":"
 
-        ### remove quotes and comma
-        session[:google_email] = arr_email[1].gsub("\"","").gsub(",","")
+        ### remove quotes and comma and space
+        session[:google_email] = arr_email[1].gsub("\"","").gsub(",","").gsub(" ","")
 
     
       end
