@@ -155,7 +155,7 @@
 
           <% else %>
 
-            <input type="text" name="email" placeholder="Enter your email for a free account..." style="width:220px;"/>
+            <input type="text" name="email" value="<%= email_value %>" placeholder="Enter your email for a free account..." style="width:220px;"/>
             <br>    
             <br>
             <a style="margin-left:40px;" href="#" rel="signup_email" onmouseover="this.getElementById('image_button_signup_email').src='/home/images/Button-SignUp-Hover.png'" onmouseout="this.getElementById('image_button_signup_email').src='/home/images/Button-SignUp.png'" onclick="toggle_show('spinner_page_load');formSubmit('form_signup1')">
