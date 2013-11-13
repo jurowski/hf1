@@ -109,6 +109,10 @@
           <input type="hidden" name="form_submitted" value=1>
 
 
+          <% if session[:google_access_token] %>
+            <input type="hidden" name="session_google_access_token" value="<%= session[:google_access_token] %>">
+          <% end %>
+
           
       <div style="float:left;display:block;width:350px;min-width:350px;margin-top:25px;" id="div_signup_box" name="div_signup_box">
         <span style="position:absolute;margin-top:10px;padding-left:50px;font-family: 'Gochi Hand', cursive;color:#ffffff;font-size:3.0em;">
