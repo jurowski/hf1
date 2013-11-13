@@ -111,25 +111,11 @@
 
 
 
-            <% if session[:test_layout] %>
 
               <div style="margin-top:0px;padding-right:0px;">
               <%= render :partial => "layouts/google_signup.erb" %>
               </div>
 
-
-            <% else %>
-
-      <!--       <img src="/home/images/Button-Google.png" />  -->
-              <a style="" href="#" id='signup_google' title="Coming Soon... (for now, please register with your email address)" rel="signup_google" onmouseover="this.getElementById('image_button_signup_google').src='/home/images/Button-Google-Hover.png'" onmouseout="this.getElementById('image_button_signup_google').src='/home/images/Button-Google.png'">
-              </a>
-              <script type='text/javascript'>
-                  $('#signup_google').tipsy();
-              </script>
-
-
-
-            <% end %>
 
 
 

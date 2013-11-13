@@ -23,7 +23,7 @@ if @email_duplicate or (@email_blank == true or (@email_valid != nil and @email_
     ### UNSET GOOGLE AUTH ITEMS ####
 
     ### only do this on a logout, b/c otherwise it steps on things
-    
+
     #session[:google_user_id] = nil
     #session[:google_email] = nil
 
@@ -642,11 +642,8 @@ http://www.cssnewbie.com/cross-browser-support-for-html5-placeholder-text-in-for
       <td>
 <!--         <div style="float:left;min-width:105px;max-width:105px;"> -->
   <!--       <img src="/home/images/Button-Google.png" />  -->
-        <a style="z-index:100;position:relative;" href="#" id='signup_google2' title="Coming Soon... (for now, please register with Facebook or your email address)" rel="signup_google2" onmouseover="this.getElementById('image_button_signup_google2').src='/home/images/Button-Google-Hover.png'" onmouseout="this.getElementById('image_button_signup_google2').src='/home/images/Button-Google.png'">
-        </a>
-        <script type='text/javascript'>
-            $('#signup_google2').tipsy();
-        </script>
+
+      <%= render :partial => "layouts/google_signup.erb" %>
 <!--         </div>       -->
       </td>
       <td>
@@ -911,11 +908,10 @@ http://www.cssnewbie.com/cross-browser-support-for-html5-placeholder-text-in-for
   
 <!--         <div style="float:left;min-width:105px;max-width:105px;"> -->
  <!--       <img src="/home/images/Button-Google.png" />  -->
-        <a style="z-index:100;position:relative;" href="#" id='signup_google3' title="Coming Soon... (for now, please register with Facebook or with your email address)" rel="signup_google2" onmouseover="this.getElementById('image_button_signup_google3').src='/home/images/Button-Google-Hover.png'" onmouseout="this.getElementById('image_button_signup_google3').src='/home/images/Button-Google.png'">
-        </a>
-        <script type='text/javascript'>
-            $('#signup_google3').tipsy();
-        </script>
+
+
+            <%= render :partial => "layouts/google_signup.erb" %>
+
 <!--         </div> -->
       </td>
       <td>
