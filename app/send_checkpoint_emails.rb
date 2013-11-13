@@ -4,6 +4,11 @@ require 'logger'
 class SendCheckpointEmails < ActiveRecord::Base
   # This script emails people who have checkins due on their goals
 
+
+
+  ### RUN IN DEV:
+  ### rvm use 1.8.7;cd /home/sgj700/rails_apps/hf1/;ruby script/runner app/send_checkpoint_emails.rb
+
     ### CRONJOB fields
     # t.string   "name"
     # t.datetime "started_at"
@@ -404,7 +409,7 @@ class SendCheckpointEmails < ActiveRecord::Base
             else
               the_message = "ERROR creating checkpoint for #{goal.id} on #{checkin_date}"
               puts the_message         
-              cronjob.notes += "<br>" the_message
+              cronjob.notes += "<br>" + the_message
             end
             #### END CREATE CHECKPOINT
           end    
