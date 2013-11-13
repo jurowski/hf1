@@ -21,8 +21,11 @@ if @email_duplicate or (@email_blank == true or (@email_valid != nil and @email_
     session[:fb_timezone] = nil
 
     ### UNSET GOOGLE AUTH ITEMS ####
-    session[:google_user_id] = nil
-    session[:google_email] = nil
+
+    ### only do this on a logout, b/c otherwise it steps on things
+    
+    #session[:google_user_id] = nil
+    #session[:google_email] = nil
 
 end 
 %>
