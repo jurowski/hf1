@@ -10,7 +10,7 @@ if `uname -n`.strip == 'adv.adventurino.com'
       :port => 25,
       :domain => "habitforge.com",
       :user_name => "jurowsk1@habitforge.com",
-      :password => "ZHabitforge1!",
+      :password => "abcd1234",
       :authentication => :login
   
   }
