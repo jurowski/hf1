@@ -21,6 +21,7 @@ if session[:google_access_token] or params[:access_token]
     session[:google_access_token] = params[:access_token] 
   end
 
+  begin
   ## verify the token and read what comes back
   token = session[:google_access_token]
   open("https://www.googleapis.com/oauth2/v1/tokeninfo?access_token=#{token}") {|f|
@@ -65,6 +66,11 @@ if session[:google_access_token] or params[:access_token]
     
     } ### end each line
   } ### end the OPEN command (opening a URL and returning results)
+
+  rescue
+    session[:google_access_token] = nil
+  end
+
 end 
 
 
