@@ -41,6 +41,17 @@ class ApplicationController < ActionController::Base
     end
 
     def mobile_device?
+      if params[:mobile_screen_test] == "1"
+        session[:mobile_screen_test] = true
+      end
+      if params[:mobile_screen_test] == "0"
+        session[:mobile_screen_test] = false
+      end
+      if session[:mobile_screen_test]
+        return true
+      end
+
+
       if session[:mobile_param]
         session[:mobile_param] == "1"
       else

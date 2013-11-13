@@ -144,6 +144,8 @@ GRAPHIC REDESIGN and NEW SIGNUP PUT ON HOLD UNTIL ROWLEY 52M is done
 FB and Google Login
 -----------------
 
+BE ABLE TO LOG OUT OF  GOOGLE OR FB !!!! (not working right now)
+
 -- NEXT --
 Deal w/ the form variables as "sessions" instead of just "params" so that those invited to join for certain goals/teams don't lose that info when re-directed
 (likely doesn't work for FB, and I know it doesn't work for Google)
