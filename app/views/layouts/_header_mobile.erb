@@ -155,13 +155,6 @@
             <% email_value = session[:google_email] %>
           <% end %>
 
-          <%
-          ### remove a "+" from the front of the string (saw this occasionally)
-          if email_value.index('+') == 0
-            ### replace first occurrence of + with nothing
-            email_value = email_value.sub("+","")
-          end 
-          %>
 
           <% if params[:signup_intent_paid] %>
             <input type="hidden" name="signup_intent_paid" value=1>

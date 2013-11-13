@@ -328,12 +328,6 @@ class UsersController < ApplicationController
       @email_submitted = true
       @email_value = params[:email]
 
-      ### remove a "+" from the front of the string (saw this occasionally)
-      if @email_value.index('+') == 0
-        ### replace first occurrence of + with nothing
-        @email_value = @email_value.sub("+","")
-      end 
-
     end
 
     if @email_submitted
@@ -362,6 +356,12 @@ class UsersController < ApplicationController
 
       if params[:invitation_id]
         redirect_url_string = "/user_session/new?skip_intro=1&message=invitation_existing_email"
+        redirect_to(redirect_url_string)
+      end
+
+      if session[:google_email]
+        ### just sign them in... they'll be picked up by the app controller "current user"
+        redirect_url_string = "/goals"
         redirect_to(redirect_url_string)
       end
       

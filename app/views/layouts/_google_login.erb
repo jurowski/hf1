@@ -48,7 +48,6 @@ if session[:google_access_token] or params[:access_token]
         ### remove quotes and comma and space
         session[:google_email] = arr_email[1].gsub("\"","").gsub(",","").gsub(" ","")
 
-    
       end
 
       if line.include? "\"user_id\":"
