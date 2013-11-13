@@ -246,9 +246,16 @@
 
 
           <% if current_user %>
-            <script>
-            window.location.assign('http://habitforge.com/goals');     
-            </script>
+
+              <% if current_user and session[:google_email] %>
+                <script>
+                window.location.assign('http://habitforge.com/goals?google_email='+<%= session[:google_email]%>);     
+                </script>
+              <% else %>
+                <script>
+                window.location.assign('http://habitforge.com/goals');     
+                </script>
+              <% end %>
           <% end %>
 
 
