@@ -2,7 +2,34 @@ require 'active_record'
 require 'date'
 require 'logger'
 class SendReminders < ActiveRecord::Base
-  # This script emails reminders to people abou their goals
+  # This script emails reminders to people about their goals
+
+
+  ### RUN IN DEV:
+  ### rvm use 1.8.7;cd /home/sgj700/rails_apps/hf1/;ruby script/runner app/send_reminders.rb
+
+    ### CRONJOB fields
+    # t.string   "name"
+    # t.datetime "started_at"
+    # t.datetime "completed_at"
+    # t.string   "metric_1_name"
+    # t.integer  "metric_1_value"
+    # t.string   "metric_2_name"
+    # t.integer  "metric_2_value"
+    # t.string   "metric_3_name"
+    # t.integer  "metric_3_value"
+    # t.boolean  "success"
+    # t.boolean  "failure"
+    # t.text     "notes"
+    # t.string   "cron_entry_text"
+
+  cronjob = Cronjob.new
+  cronjob.name = "send_reminders.rb"
+  cronjob.started_at = DateTime.now
+  cronjob.notes = ""
+  cronjob.save
+
+  sent_counter = 0
 
 
   if `uname -n`.strip == 'adv.adventurino.com'
@@ -193,10 +220,12 @@ class SendReminders < ActiveRecord::Base
                           Notifier.deliver_daily_reminder_to_user(goal) # sends the email
                           logger.debug "reminder sent for " + goal.user.email + " " + goal.title
                           reminder_sent = true
+
                       rescue
                           the_message = "SGJerror failed to send HF reminder for goal " + goal.id.to_s + " entitled " + goal.title + " to " + goal.user.email 
                           puts the_message
                           logger.error the_message
+                          cronjob.notes += "<br>" + the_message
                       end
               end
               if goal.user.sponsor == "forittobe"
@@ -204,6 +233,7 @@ class SendReminders < ActiveRecord::Base
                           Notifier.deliver_daily_reminder_to_user_forittobe(goal) # sends the email 
                           logger.debug "reminder sent for " + goal.user.email + " " + goal.title
                           reminder_sent = true
+
                       rescue
                           the_message = "SGJerror failed to send FORITTOBE reminder to " + goal.user.email 
                           puts the_message
@@ -215,6 +245,7 @@ class SendReminders < ActiveRecord::Base
                           Notifier.deliver_daily_reminder_to_user_clearworth(goal) # sends the email 
                           logger.debug "reminder sent for " + goal.user.email + " " + goal.title
                           reminder_sent = true
+
                       rescue
                           the_message = "SGJerror failed to send CLEARWORTH reminder to " + goal.user.email 
                           puts the_message
@@ -223,6 +254,7 @@ class SendReminders < ActiveRecord::Base
               end
           
               if reminder_sent
+                  sent_counter += 1
                   goal.reminder_last_sent_date = dnow
                   goal.save
 
@@ -250,4 +282,30 @@ class SendReminders < ActiveRecord::Base
       retry
     end
   end
+
+
+      ### CRONJOB fields
+    # t.string   "name"
+    # t.datetime "started_at"
+    # t.datetime "completed_at"
+    # t.string   "metric_1_name"
+    # t.integer  "metric_1_value"
+    # t.string   "metric_2_name"
+    # t.integer  "metric_2_value"
+    # t.string   "metric_3_name"
+    # t.integer  "metric_3_value"
+    # t.boolean  "success"
+    # t.boolean  "failure"
+    # t.text     "notes"
+    # t.string   "cron_entry_text"
+
+  cronjob.metric_1_name = "reminder emails sent"
+  cronjob.metric_1_value = sent_counter
+
+  cronjob.metric_2_name = "retried times"
+  cronjob.metric_2_value = retried_times
+
+  cronjob.completed_at = DateTime.now
+  cronjob.save
+
 end
