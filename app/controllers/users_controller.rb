@@ -333,7 +333,7 @@ class UsersController < ApplicationController
         ### replace first occurrence of + with nothing
         @email_value = @email_value.sub("+","")
       end 
-      
+
     end
 
     if @email_submitted
@@ -386,8 +386,8 @@ class UsersController < ApplicationController
 
 
 
-      user.email = email_value
-      user.email_confirmation = email_value
+      user.email = @email_value
+      user.email_confirmation = @email_value
       random_pw_number = rand(1000) + 1 #between 1 and 1000
       user.password = "xty" + random_pw_number.to_s
       user.password_confirmation = user.password
