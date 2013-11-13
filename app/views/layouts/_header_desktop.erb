@@ -198,9 +198,12 @@
             <% email_value = params[:fb_email] %>
           <% end %>
 
-          <% if params[:email] %>
-            <% session[:google_email] = nil %>
-          <% end %>
+          <!-- this can mess w/ login, so disabling for now -->
+<!--           < if params[:email] >
+            < session[:google_email] = nil >
+          < end >
+ -->          
+
 
           <% if !params[:email] and session[:google_email] %>
             <% email_value = session[:google_email] %>
