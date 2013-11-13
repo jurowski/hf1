@@ -229,12 +229,18 @@ class ApplicationController < ActionController::Base
       if session[:google_email]
         user = User.find(:first, :conditions => "google_email = '#{session[:google_email]}'")
         if user
+          session[:email] = user.email
+          session[:single_login] = true
+
           @current_user = user
           return @current_user
         end
 
         user = User.find(:first, :conditions => "email = '#{session[:google_email]}'")
         if user
+          session[:email] = user.email
+          session[:single_login] = true
+
           @current_user = user
           return @current_user
         end
