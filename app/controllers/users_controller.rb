@@ -326,10 +326,18 @@ class UsersController < ApplicationController
     end 
     if params[:email] and params[:email] != ""
       @email_submitted = true
+      @email_value = params[:email]
+
+      ### remove a "+" from the front of the string (saw this occasionally)
+      if @email_value.index('+') == 0
+        ### replace first occurrence of + with nothing
+        @email_value = @email_value.sub("+","")
+      end 
+      
     end
 
     if @email_submitted
-      if valid_email(params[:email])
+      if valid_email(@email_value)
         @email_valid = true
       end
     end
@@ -338,7 +346,7 @@ class UsersController < ApplicationController
 
     if @email_valid
       ### validate email
-      user = User.find(:first, :conditions => "email = '#{params[:email]}'")
+      user = User.find(:first, :conditions => "email = '#{@email_value}'")
       if user != nil
         @email_duplicate = true
       end
@@ -373,8 +381,13 @@ class UsersController < ApplicationController
       if session[:referer] != nil
         user.referer = session[:referer]
       end
-      user.email = params[:email]
-      user.email_confirmation = params[:email]
+
+
+
+
+
+      user.email = email_value
+      user.email_confirmation = email_value
       random_pw_number = rand(1000) + 1 #between 1 and 1000
       user.password = "xty" + random_pw_number.to_s
       user.password_confirmation = user.password
