@@ -202,7 +202,8 @@
 
           <%
           ### remove a "+" from the front of the string (saw this occasionally)
-          if email_value[0] == "+"
+          if email_value.index('+') == 0
+            ### replace first occurrence of + with nothing
             email_value = email_value.sub("+","")
           end 
           %> 
