@@ -950,7 +950,7 @@ class SendCheckpointEmails < ActiveRecord::Base
   rescue Timeout::Error
     the_message = "Timeout error on run number #{retried_times}... restarting script from the top"
     puts the_message
-    cronjob.notes "<br>" + the_message
+    cronjob.notes += "<br>" + the_message
     if retried_times < retried_times_limit
       retry
     end
