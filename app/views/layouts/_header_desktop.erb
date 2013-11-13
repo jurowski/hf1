@@ -200,6 +200,13 @@
             <% email_value = session[:google_email] %>
           <% end %>
 
+        <%
+        ### remove a "+" from the front of the string (saw this occasionally)
+        if email_value[0] == "+"
+          email_value = email_value.sub("+","")
+        end 
+        %> 
+
           <% if params[:signup_intent_paid] %>
 
             <input type="text" name="email" value="<%= email_value %>" placeholder="Enter your email to get started..." style="width:220px;"/>

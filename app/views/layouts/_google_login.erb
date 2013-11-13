@@ -48,10 +48,7 @@ if session[:google_access_token] or params[:access_token]
         ### remove quotes and comma
         session[:google_email] = arr_email[1].gsub("\"","").gsub(",","")
 
-        ### remove a "+" from the front of the string (saw this occasionally)
-        if session[:google_email][0] == "+"
-          session[:google_email] = session[:google_email].sub("+","")
-        end        
+    
       end
 
       if line.include? "\"user_id\":"
