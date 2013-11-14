@@ -1135,19 +1135,29 @@ $('.confirmation').on('click',function(){return confirm('Are you sure?');});
 <!--                   <a href="/goals/new?category=Writing&goal_template_text=reaching%20your%20word%20count%20goal"> -->
 
                     <% 
-                    max = 2
+                    max = 3
                     random_number = 0
-                    random_number = rand(max) + 0 #between 0 and arr_congrats.size
+                    random_number = rand(max) + 1 #between 1 and max
                     %>
 
                     <% if random_number == 1 %>
 
-                      <a href="/goals?program_id=6&programs=1&browse_recommended_habits=1#browse_recommended_habits">
-                      <img src="/home/images/banners/banner_nanowrimo_728_x_90.png" /></a>
-
-                    <% else %>
                       <a href="/goals?program_id=5&programs=1&browse_recommended_habits=1#browse_recommended_habits">
                       <img src="/home/images/banners/banner_awesomer_728_x_90.png" /></a>
+
+                    <% end %>
+
+                    <% if random_number == 2 %>
+
+                      <a href="/goals/new?template_user_parent_goal_id=143730">
+                      <img src="/home/images/banners/banner_smartphone_728_x_90.png" /></a>
+
+                    <% end %>
+
+                    <% if random_number == 3 %>
+
+                      <a href="/goals/new?template_user_parent_goal_id=143729">
+                      <img src="/home/images/banners/banner_water_728_x_90.png" /></a>
 
                     <% end %>
 
