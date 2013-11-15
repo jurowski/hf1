@@ -1,0 +1,130 @@
+
+
+
+
+<form>
+  <input type="textbox" name="search_for">
+  <input type="submit" name="find" value="Find">
+</form>
+<h1>Listing <%= @users.size %> users</h1>
+
+<%
+counter_last_3_days = 0
+counter_last_3_days_yes = 0
+counter_last_3_days_no = 0
+counter_goals_no_checkins = 0
+counter_no_goals = 0
+counter_have_goals = 0
+%>
+<% @users.each do |user| %>
+    <%=h user.created_at.strftime("%m/%d") %>
+    <%
+    if session[:current_user_is_admin] == true
+    %>
+        <%= link_to user.id.to_s, edit_user_path(user) %>
+        |
+        <a href="users?impersonate=<%=user.id%>">Impersonate</a>
+         |
+        <% if !user.confirmed_address %>
+
+              <a href="users?confirm_id=<%=user.id%>">Confirm Account</a>
+
+        <% end %>
+
+         |
+        <% if session[:sponsor] == "habitforge" %>
+            <% if user.unlimited_goals == 1 %>
+                <strong>Premium Member</strong>
+            <% else %>
+                <%= user.supportpoints %> pts ... 
+
+                <% if user.got_free_membership %>
+                    (free membership given on <%= user.got_free_membership.to_s %>)
+                <% else %>
+                    <% if user.id > 85758 %>
+                      <a href="users?days=90&upgrade_id=<%=user.id%>">Upgrade 3 months, subtract 100pts, and Send Email</a>
+                    <% else %>
+                      <a href="users?days=365&upgrade_id=<%=user.id%>">Upgrade 1 year, subtract 100pts, and Send Email</a>
+                    <% end %>
+                <% end %>
+
+            <% end %>
+        <% end %>
+         |
+        <%= link_to 'Delete', user, :confirm => 'Delete '+user.email+', goals and stats?', :method => :delete %>
+    <%
+    end
+    %>
+    <%=h user.first_name %>
+    <%=h user.last_name %>
+    <a href="mailto:<%=user.email%>"><%=user.email%></a> 
+    <%
+    dnow = get_dnow
+    latest_date = ""
+    latest_status = ""
+    goals_number = 0
+    goal_conditions = "user_id = #{user.id}"
+    goal_conditions = goal_conditions + " and status != 'hold'"
+    @goals = Goal.find(:all, :conditions => goal_conditions)
+    for goal in @goals
+        goals_number = goals_number + 1
+        if goal.laststatusdate != nil and goal.laststatus != nil
+            if latest_date == ""
+                latest_date = goal.laststatusdate
+                latest_status = goal.laststatus
+            else
+                if goal.laststatusdate > latest_date
+                    latest_date = goal.laststatusdate
+                    latest_status = goal.laststatus
+                end
+            end
+        end
+    end    
+    if goals_number > 0
+        if latest_date != ""
+            lag_time = dnow - latest_date
+            if lag_time > 3
+                %>
+                <font color=gray>(Last checkin was a "<%= latest_status %>" on <%= latest_date %>)</font>  
+                <%
+            else
+                counter_last_3_days = counter_last_3_days + 1
+                %>
+                <font color=green>(Last checkin was a "<%= latest_status %>" on <%= latest_date %>)</font>  
+                <%                
+                if latest_status == "yes"
+                    counter_last_3_days_yes = counter_last_3_days_yes + 1
+                end
+                if latest_status == "no"
+                    counter_last_3_days_no = counter_last_3_days_no + 1
+                end
+            end
+        else
+            counter_goals_no_checkins = counter_goals_no_checkins + 1
+            %>
+            <font=red>Goals, but no "yes/no" checkins</font>
+            <%
+        end
+        counter_have_goals = counter_have_goals + 1
+    else
+        counter_no_goals = counter_no_goals + 1
+        %>
+        <font=red>No goals</font>
+        <%
+    end
+    %>    
+    <br>
+<% end %>
+<hr>
+<strong>TOTALS</strong>
+<hr>
+<br><%= counter_have_goals %> people have goals.
+<br><%= counter_no_goals %> people do not have goals entered.
+<br><%= counter_goals_no_checkins %> people have goals but never checked in with a "yes" or "no".
+<hr>
+<br>Of the <%= counter_last_3_days %> people who checked in during the last 3 days, 
+<%= counter_last_3_days_yes %> said "YES" and <%= counter_last_3_days_no %> said "NO".
+<hr>
+
+<br />
+

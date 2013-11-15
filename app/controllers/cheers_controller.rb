@@ -16,6 +16,9 @@ class CheersController < ApplicationController
   # GET /cheers
   # GET /cheers.xml
   def index
+
+
+
       if current_user_is_admin
         @cheers = Cheer.find(:all)
       else

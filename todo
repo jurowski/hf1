@@ -8,6 +8,70 @@
 
 
 
+--------------------------------------
+users, friends, groups, organizations
+--------------------------------------
+
+as a user
+i want to be able to build a list of friends to interact with
+i want to be able to join a group
+maybe that group is part of an organization or maybe it is not
+if i am sending out an invitation to be part of my team, 
+  i want to be able to choose from my list of friends
+when i am part of a group
+  i want to be able to view all of the users in that group
+
+
+
+user_friends
+  user_id
+  friend_id
+
+user_enemies ### those you want to block
+  user_id
+  enemy_id
+
+user_groups
+  user_id
+  group_id
+
+groups
+  name
+  description
+  organization_id
+
+group_admins
+  group_id
+  user_id
+
+group_members
+  group_id
+  user_id
+
+group_goaltemplates
+  group_id
+  goaltemplate_id
+
+group_programs
+  group_id
+  program_id
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 -------------------------------------------------------------------
 ROWLEY 52M

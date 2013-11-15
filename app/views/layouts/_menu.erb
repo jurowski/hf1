@@ -10,11 +10,7 @@
 
         <!-- #### START CUSTOM LIST MENU ITEMS SGJ #### -->
 
-        <% if !secure_page? %>
-        <!-- BLOG -->
-        <li><a href="http://habitforge.wordpress.com" ><i class='icon-book'></i>Blog</a>
-        </li> 
-        <% end %>
+
 
 
         <% if !current_user %>
@@ -53,13 +49,18 @@
             </li>
           <% end %>
 
-          <li>
-          <a href="/goals?templates=1&browse_recommended_habits=1&popular=1#browse_recommended_habits">Popular</a>
-          </li>
+          <li 
+          <% if @cn == "cheers" %> 
+            class="active" 
+          <% end %>
+          ><%= link_to "<i class='icon-globe'></i>Friends", "/cheers" %></li>
 
           <li>
-          <a href="/goals?programs=1&templates=1&browse_recommended_habits=1#browse_recommended_habits">Success Programs (beta)</a>
+<!--           Suggested:
+          <a href="/goals?templates=1&browse_recommended_habits=1&popular=1#browse_recommended_habits">Popular</a> -->
+          <a href="/goals?programs=1&templates=1&browse_recommended_habits=1#browse_recommended_habits">                <i class="icon-cogs"></i> Programs</a>
           </li>
+
 
           <% if current_user and current_user.number_of_teams_i_own > 0 %>
             <li
@@ -103,11 +104,6 @@
  -->
 
 
-              <li 
-              <% if @cn == "cheers" %> 
-                class="active" 
-              <% end %>
-              ><%= link_to "<i class='icon-globe'></i>Community", "/cheers" %></li>
 
 
           <li><a href="#" onclick="return popitup_bigger1('/impact_points.html')" %>
@@ -164,6 +160,7 @@
 
 
 
+
         <% if current_user and current_user.is_admin %>
             <li><%= link_to 'Users', '/users' %></li>
             <li><%= link_to 'New user', new_account_path %></li>
@@ -211,8 +208,17 @@
               end
         end 
         %>
+        
+        <% if !secure_page? %>
+        <!-- BLOG -->
         <li>
-          <a href="#jump_to_support" onclick="toggle_show('support');"><i class='icon-bullhorn'></i>Support and Feedback</a>
+          <a href="http://www.earlytorise.com" target="_blank">
+            <i class='icon-book'></i>Blog</a>
+        </li> 
+        <% end %>
+
+        <li>
+          <a href="#jump_to_support" onclick="toggle_show('support');"><i class='icon-bullhorn'></i>Help and Feedback</a>
         </li>
 
 
