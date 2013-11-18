@@ -49,11 +49,24 @@
             </li>
           <% end %>
 
+          <% if test_layout? %>
+
+            <li 
+            <% if @cn == "user_friends" %> 
+              class="active" 
+            <% end %>
+            ><%= link_to "<i class='icon-globe'></i>Friends", "/user_friends" %></li>
+
+          <% end %>
+
+
           <li 
           <% if @cn == "cheers" %> 
             class="active" 
           <% end %>
-          ><%= link_to "<i class='icon-globe'></i>Friends", "/cheers" %></li>
+          ><%= link_to "<i class='icon-globe'></i>Community", "/cheers" %></li>
+
+
 
           <li>
 <!--           Suggested:

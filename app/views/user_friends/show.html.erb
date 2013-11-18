@@ -1,0 +1,13 @@
+<p>
+  <b>User:</b>
+  <%=h @user_friend.user_id %>
+</p>
+
+<p>
+  <b>Friend:</b>
+  <%=h @user_friend.friend_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_user_friend_path(@user_friend) %> |
+<%= link_to 'Back', user_friends_path %>

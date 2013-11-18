@@ -1,0 +1,38 @@
+
+
+
+
+<!-- FRIEND FINDER -->
+<div id="spinner_catchup_friend_finder%>" style="display:none;">
+    <center><img src="/images/spinner.gif"/></center>
+</div>
+<div class="class_friend_finder ">
+  
+    <%= render :partial => "user_friends/friend_finder"  %>
+  
+</div>
+<!-- FRIEND FINDER -->
+
+
+<% if @user_friends %>
+  <br>
+  <br>
+  <h1>My Friends List</h1>
+
+  <table>
+    <tr>
+      <th>User</th>
+      <th>Friend</th>
+    </tr>
+
+  <% @user_friends.each do |user_friend| %>
+    <tr>
+      <td><%=h user_friend.user_id %></td>
+      <td><%=h user_friend.friend_id %></td>
+      <td><%= link_to 'Show', user_friend %></td>
+      <td><%= link_to 'Edit', edit_user_friend_path(user_friend) %></td>
+      <td><%= link_to 'Destroy', user_friend, :confirm => 'Are you sure?', :method => :delete %></td>
+    </tr>
+  <% end %>
+  </table>
+<% end %>

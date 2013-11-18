@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131113035917) do
+ActiveRecord::Schema.define(:version => 20131118112529) do
 
   create_table "achievemints", :force => true do |t|
     t.string   "name"
@@ -787,6 +787,13 @@ ActiveRecord::Schema.define(:version => 20131113035917) do
     t.datetime "updated_at"
   end
 
+  create_table "user_friends", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "friend_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "user_motivation_types", :force => true do |t|
     t.integer  "user_id"
     t.integer  "motivation_id"
@@ -908,6 +915,7 @@ ActiveRecord::Schema.define(:version => 20131113035917) do
     t.string   "fb_timezone"
     t.integer  "google_user_id"
     t.string   "google_email"
+    t.string   "handle"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email"

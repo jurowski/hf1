@@ -1,0 +1,99 @@
+
+<% begin %>
+<%
+if params[:search_for]
+  @found_users = User.find(:all, :conditions => "first_name like '%#{params[:search_for]}%' or last_name like '%#{params[:search_for]}%' or email like '%#{params[:search_for]}%'", :order => "id DESC")
+end
+%>
+
+
+
+<form>
+  <input type="textbox" name="search_for">
+  <input type="submit" name="find" value="Find">
+</form>
+
+
+<% if @found_users %>
+  <h1>Listing <%= @found_users.size %> users</h1>
+
+  <%
+  counter_last_3_days = 0
+  counter_last_3_days_yes = 0
+  counter_last_3_days_no = 0
+  counter_goals_no_checkins = 0
+  counter_no_goals = 0
+  counter_have_goals = 0
+  %>
+  <% @found_users.each do |user| %>
+      Joined <%=h user.created_at.strftime("%m/%d/%y") %>
+
+      <%=h user.first_name %>
+      <%=h user.last_name %>
+      <a href="mailto:<%=user.email%>"><%=user.email%></a> 
+      <%
+      dnow = get_dnow
+      latest_date = ""
+      latest_status = ""
+      goals_number = 0
+      goal_conditions = "user_id = #{user.id}"
+      goal_conditions = goal_conditions + " and status != 'hold'"
+      @goals = Goal.find(:all, :conditions => goal_conditions)
+      for goal in @goals
+          goals_number = goals_number + 1
+          if goal.laststatusdate != nil and goal.laststatus != nil
+              if latest_date == ""
+                  latest_date = goal.laststatusdate
+                  latest_status = goal.laststatus
+              else
+                  if goal.laststatusdate > latest_date
+                      latest_date = goal.laststatusdate
+                      latest_status = goal.laststatus
+                  end
+              end
+          end
+      end    
+      if goals_number > 0
+          if latest_date != ""
+              lag_time = dnow - latest_date
+              if lag_time > 3
+                  %>
+                  <font color=gray>(Last checkin was a "<%= latest_status %>" on <%= latest_date %>)</font>  
+                  <%
+              else
+                  counter_last_3_days = counter_last_3_days + 1
+                  %>
+                  <font color=green>(Last checkin was a "<%= latest_status %>" on <%= latest_date %>)</font>  
+                  <%                
+                  if latest_status == "yes"
+                      counter_last_3_days_yes = counter_last_3_days_yes + 1
+                  end
+                  if latest_status == "no"
+                      counter_last_3_days_no = counter_last_3_days_no + 1
+                  end
+              end
+          else
+              counter_goals_no_checkins = counter_goals_no_checkins + 1
+              %>
+              <font=red>Goals, but no "yes/no" checkins</font>
+              <%
+          end
+          counter_have_goals = counter_have_goals + 1
+      else
+          counter_no_goals = counter_no_goals + 1
+          %>
+          <font=red>No goals</font>
+          <%
+      end
+      %>    
+      <br>
+  <% end %>
+<% end ### end whether @founds_users = nil %>
+
+<% 
+rescue 
+%>
+There was an error in the Friend Finder.
+<% 
+end 
+%>
