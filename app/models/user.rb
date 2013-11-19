@@ -42,6 +42,42 @@ class User < ActiveRecord::Base
   # validates_uniqueness_of :fb_id
 
 
+
+  ### should use this anytime we're displaying someone's handle
+  ### to avoid nil errors for any place that creates users
+  ### without the handle already having been assigned
+  def show_handle
+    if !self.handle
+      self.assign_unique_handle
+    end
+    return self.handle
+  end
+
+  def assign_unique_handle
+    self.handle = generate_unique_handle
+    self.save
+  end
+
+  def generate_unique_handle
+
+    counter = 1
+    first_name = self.first_name.gsub(" ", "").downcase
+    while !would_this_handle_be_unique?(first_name + counter.to_s)
+      counter += 1
+    end
+    return first_name + counter.to_s
+
+  end
+
+  def would_this_handle_be_unique?(handle)
+    user = User.find(:first, :conditions => "handle = '#{handle}'")
+    if user and user.id != self.id
+      return false
+    else
+      return true
+    end
+  end
+
   def profile_info
 
     my_info = self.name
@@ -71,6 +107,8 @@ class User < ActiveRecord::Base
         my_info += self.country
       end
     end
+
+    my_info += ", Member since " + self.created_at.strftime("%B %Y")
 
     if my_info == self.name
       my_info += " (no additional profile info)"

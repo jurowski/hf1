@@ -56,6 +56,15 @@
 
             <br>
             <br>
+
+
+            <% if @user.handle %>
+            <p><strong>Friend-Searchable User ID</strong>: &nbsp &nbsp &nbsp &nbsp &nbsp <%=h @user.handle %>
+            </p>
+            <br>
+            <% end %>
+
+
             <strong>Feed Preferences:</strong>
             <br>
             <% if current_user.feed_filter_hide_pmo %>

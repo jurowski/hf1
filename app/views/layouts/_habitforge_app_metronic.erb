@@ -445,6 +445,17 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
     }
 
 
+    // function reload_handle_checker(handle) {
+    //   $('.dynamic_handle_checker').load('users/dynamic_handle_checker/1?handle='+handle);
+    // }
+    function reload_handle_checker(handle) {
+      // putting this in goals instead of users b/c
+      // any link to "users" is being re-written dynamically as "accounts" and failing
+      // YOU DO NEED THE SLASH IN "/goals" BELOW otherwise it will put "account" in front
+      $('.dynamic_handle_checker').load('/goals/dynamic_handle_checker/1?handle='+handle);
+    }
+
+
 
 
     function reload_catch_up_goal_id(id) {

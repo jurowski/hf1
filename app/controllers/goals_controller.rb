@@ -48,6 +48,16 @@ class GoalsController < ApplicationController
   
 
   ### http://stackoverflow.com/questions/10539143/reloading-partial-in-an-rails-app
+  # GET /users/dynamic_handle_checker
+  # // putting this in goals instead of users b/c
+  # // any link to "users" is being re-written dynamically as "accounts" and failing
+  def dynamic_handle_checker
+
+    render :partial => "goals/dynamic_handle_checker"
+  end
+
+
+  ### http://stackoverflow.com/questions/10539143/reloading-partial-in-an-rails-app
   # GET /goals/dynamic_latest_public_checkins
   def dynamic_latest_public_checkins
 

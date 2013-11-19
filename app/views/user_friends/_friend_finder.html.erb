@@ -1,91 +1,107 @@
 
+<br>
+<br>
 <% begin %>
 <%
-if params[:search_for]
-  @found_users = User.find(:all, :conditions => "first_name like '%#{params[:search_for]}%' or last_name like '%#{params[:search_for]}%' or email like '%#{params[:search_for]}%'", :order => "id DESC")
+if params[:search_for] and params[:search_for].size > 2
+  # @found_users = User.find(:all, :conditions => "first_name like '%#{params[:search_for]}%' or last_name like '%#{params[:search_for]}%' or email like '%#{params[:search_for]}%' or handle like '%#{params[:search_for]}%'", :order => "id DESC")
+
+
+    my_conditions =  "first_name like '%#{params[:search_for]}%' or last_name like '%#{params[:search_for]}%' or email like '%#{params[:search_for]}%' or handle like '%#{params[:search_for]}%'"
+
+    @found_users = User.paginate(:page => params[:page],
+                               :per_page   => 10,
+                               :order      => 'id DESC',
+                               :conditions => my_conditions)
+end
+%>
+
+<%
+if params[:search_for] and params[:search_for].size <= 2
+%>
+Please enter 3 or more characters to search for.
+<%
 end
 %>
 
 
-
 <form>
-  <input type="textbox" name="search_for">
+  <input type="textbox" name="search_for" placeholder="Enter a name or user id to search for.">
   <input type="submit" name="find" value="Find">
 </form>
 
 
 <% if @found_users %>
-  <h1>Listing <%= @found_users.size %> users</h1>
 
-  <%
-  counter_last_3_days = 0
-  counter_last_3_days_yes = 0
-  counter_last_3_days_no = 0
-  counter_goals_no_checkins = 0
-  counter_no_goals = 0
-  counter_have_goals = 0
-  %>
+
+  <% if @found_users.current_page != 1 %>
+
+     <a href="/user_friends?search_for=<%= params[:search_for] %>&find=Find&page=1">Page 1</a> ... 
+
+     <a href="/user_friends?search_for=<%= params[:search_for] %>&find=Find&page=<%=@found_users.current_page-1%>"><< Previous</a> 
+  <% end %>
+  | Page <%= @found_users.current_page %> of <%= @found_users.total_pages %> |
+  <% if @found_users.current_page < @found_users.total_pages %>
+      <a href="/user_friends?search_for=<%= params[:search_for] %>&find=Find&page=<%=@found_users.current_page+1%>">Next >></a> 
+     <a href="/user_friends?search_for=<%= params[:search_for] %>&find=Find&page=<%=@found_users.total_pages%>"> ... Page <%= @found_users.total_pages%></a>
+  <% end %>
+  <hr>
+
   <% @found_users.each do |user| %>
-      Joined <%=h user.created_at.strftime("%m/%d/%y") %>
+
+      <!-- if user.show_gravatar -->
+      <% gravatar = "http://www.gravatar.com/avatar/#{Digest::MD5.hexdigest(user.email.downcase)}?d=mm" %>
+      <a href="/users/<%= user.id.to_s %>/profile"><img id="grav1_<%= user.id.to_s %>" title="<%= user.profile_info %>" src="<%= gravatar %>&s=34" style="padding-top:2px;" /></a>            
+      <script type='text/javascript'>
+      $('#grav1_<%= user.id.to_s %>').tipsy();
+      </script>
+
+
+      <% ########## IMPACT IMAGE #####################
+      show_impact_image = false
+      impact_image = "100"
+      if user.impact_points
+        if user.impact_points >= 100 and user.impact_points < 250
+          show_impact_image = true
+          impact_image = "100"
+        end
+        if user.impact_points >= 250 and user.impact_points < 500
+          show_impact_image = true
+          impact_image = "250"
+        end
+        if user.impact_points >= 500 and user.impact_points < 750
+          show_impact_image = true
+          impact_image = "500"
+        end
+        if user.impact_points >= 750 and user.impact_points < 1000
+          show_impact_image = true
+          impact_image = "750"
+        end
+        if user.impact_points >= 1000
+          show_impact_image = true
+          impact_image = "1000"
+        end
+      end
+      %>
+      <% if show_impact_image %>
+        <img id="impact1_<%= user.id.to_s %>" title="<%= user.impact_points.to_s %> impact points" src="/home/images/badges/badge_impact_points_<%= impact_image %>.png" />
+        <script type='text/javascript'>
+        $('#impact1_<%= user.id.to_s %>').tipsy();
+        </script>
+      <% end %>
+      <!-- ####################  END IMPACT IMAGE ################### -->
+
+
+
+      <% if (current_user.id == user.id) %>
+          <a href="#" class="btn disabled"><i class="icon-thumbs-up"></i></a>
+      <% else %>
+        <a href="/tomessages/new?from_type=member&tomessage_subject=hello&to_id=<%= user.id %>" id='send_message_<%= user.id.to_s %>' class="btn " style="font-size:1.5em;" title='Send a message to <%= user.name %>!'> <i class="icon-thumbs-up"></i></a>
+      <% end %>
 
       <%=h user.first_name %>
       <%=h user.last_name %>
-      <a href="mailto:<%=user.email%>"><%=user.email%></a> 
-      <%
-      dnow = get_dnow
-      latest_date = ""
-      latest_status = ""
-      goals_number = 0
-      goal_conditions = "user_id = #{user.id}"
-      goal_conditions = goal_conditions + " and status != 'hold'"
-      @goals = Goal.find(:all, :conditions => goal_conditions)
-      for goal in @goals
-          goals_number = goals_number + 1
-          if goal.laststatusdate != nil and goal.laststatus != nil
-              if latest_date == ""
-                  latest_date = goal.laststatusdate
-                  latest_status = goal.laststatus
-              else
-                  if goal.laststatusdate > latest_date
-                      latest_date = goal.laststatusdate
-                      latest_status = goal.laststatus
-                  end
-              end
-          end
-      end    
-      if goals_number > 0
-          if latest_date != ""
-              lag_time = dnow - latest_date
-              if lag_time > 3
-                  %>
-                  <font color=gray>(Last checkin was a "<%= latest_status %>" on <%= latest_date %>)</font>  
-                  <%
-              else
-                  counter_last_3_days = counter_last_3_days + 1
-                  %>
-                  <font color=green>(Last checkin was a "<%= latest_status %>" on <%= latest_date %>)</font>  
-                  <%                
-                  if latest_status == "yes"
-                      counter_last_3_days_yes = counter_last_3_days_yes + 1
-                  end
-                  if latest_status == "no"
-                      counter_last_3_days_no = counter_last_3_days_no + 1
-                  end
-              end
-          else
-              counter_goals_no_checkins = counter_goals_no_checkins + 1
-              %>
-              <font=red>Goals, but no "yes/no" checkins</font>
-              <%
-          end
-          counter_have_goals = counter_have_goals + 1
-      else
-          counter_no_goals = counter_no_goals + 1
-          %>
-          <font=red>No goals</font>
-          <%
-      end
-      %>    
+      (<%=user.show_handle%>)
       <br>
   <% end %>
 <% end ### end whether @founds_users = nil %>
@@ -93,7 +109,7 @@ end
 <% 
 rescue 
 %>
-There was an error in the Friend Finder.
+<!-- There was an error in the Friend Finder. -->
 <% 
 end 
 %>

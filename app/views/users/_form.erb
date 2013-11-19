@@ -76,6 +76,33 @@
     <tr>
 
 
+
+
+
+    <tr><td>&nbsp</td></tr>
+    <td valign=top nowrap>
+    <strong>Searchable User ID</strong><font color=red>*</font>
+    </td>
+    <td valign=top nowrap>
+
+      <%= form.text_field :handle %>   
+
+<input name="buttonCheckHandle" onclick="reload_handle_checker(document.getElementById('user_handle').value)" type="button" value="Check Availability" />
+
+    <span class="dynamic_handle_checker">
+        <!-- LOADS THE BELOW WHEN THE BUTTON IS PUSHED -->
+        <!-- render :partial => 'goals/dynamic_handle_checker' -->
+    </span>
+    <br>
+    (give this to your friends so they can find you easily) 
+
+    <br />    
+
+
+    </td>
+    </tr>
+    <tr><td>&nbsp</td></tr>
+
     <tr><td>&nbsp</td></tr>
     <td valign=top nowrap>
     <strong>Country</strong>

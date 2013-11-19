@@ -9,12 +9,12 @@
 <div class="class_friend_finder ">
   
     <%= render :partial => "user_friends/friend_finder"  %>
-  
+
 </div>
 <!-- FRIEND FINDER -->
 
 
-<% if @user_friends %>
+<% if @user_friends and @user_friends.size > 0 %>
   <br>
   <br>
   <h1>My Friends List</h1>

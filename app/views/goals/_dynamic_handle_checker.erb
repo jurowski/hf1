@@ -1,0 +1,9 @@
+<!-- Time.now() -->
+
+	<% if params[:handle] %>
+		<% if current_user.would_this_handle_be_unique?(params[:handle]) %>
+			<span style="color:#00FF00;"><%= params[:handle] %> is available.</span>
+		<% else %>
+			<span style="color:#FF0000;">Sorry, <%= params[:handle] %> is taken, but <%= current_user.generate_unique_handle %> is available.</span>
+		<% end %>
+	<% end %>

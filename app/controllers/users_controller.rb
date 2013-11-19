@@ -22,6 +22,8 @@ class UsersController < ApplicationController
   #before_filter :require_user, :only => [:show, :edit, :update]
 
 
+
+
   def stats_increment_new_user
 
       ### GET DATE NOW ###
@@ -284,6 +286,10 @@ class UsersController < ApplicationController
     @user = @current_user
 
 
+      if !@user.handle
+        @user.assign_unique_handle
+      end
+
       if params[:set_combine_daily_emails]=="1"
         current_user.combine_daily_emails = 1
         current_user.save
@@ -428,6 +434,10 @@ class UsersController < ApplicationController
       logger.info("sgj:users_controller:quicksignup_v2:5")
 
       if user.save
+
+        if !user.handle
+          user.assign_unique_handle
+        end
 
         if params[:signup_intent_paid]
           logger.info("sgj:users_controller:quicksignup_v2: PAID USER INTENT")
@@ -761,6 +771,12 @@ class UsersController < ApplicationController
       @user = User.find(params[:id])
     else
       @user = @current_user # makes our views "cleaner" and more consistent      
+
+      if !@user.handle
+        @user.assign_unique_handle
+      end
+
+
     end
 
   end
@@ -877,8 +893,18 @@ class UsersController < ApplicationController
       @user = User.find(params[:id])
     else
       @user = @current_user # makes our views "cleaner" and more consistent      
+
+      if !@user.handle
+        @user.assign_unique_handle
+      end
+
     end
     
+
+
+
+
+
 
     email_original = @user.email
 
@@ -893,6 +919,14 @@ class UsersController < ApplicationController
     end
     
     if @user.update_attributes(params[:user])
+
+
+      if !@user.would_this_handle_be_unique?(@user.handle)
+        @user.assign_unique_handle
+        flash[:notice] = "Sorry, that User ID is taken. We've re-assigned a unique one below (feel free to try a different one though)."
+        # render :action => :edit
+      end
+
 
       if session[:sfm_virgin_need_to_confirm_timezone]
         session[:sfm_virgin_need_to_confirm_timezone] = false
