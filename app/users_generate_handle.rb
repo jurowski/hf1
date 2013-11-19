@@ -42,7 +42,7 @@ output_me("info", "----------------------------------------")
 output_me("info", "----------------------------------------")
 
 
-max = 100
+max = 1000
 
 users = User.find(:all, :limit => max, :conditions => "handle is null or handle = ''")
 users.each do |user|
