@@ -157,6 +157,50 @@
     </td>
     </tr>
 
+
+    <tr>
+    <td valign=top nowrap>
+    <strong>Merge Check-Ins:</strong>
+    </td>
+    <td valign=top nowrap>
+         &nbsp &nbsp
+    <%= form.check_box(:combine_daily_emails, options = {}, checked_value = "true", unchecked_value = "false") %> Combine any same-hour email check-ins into 1 email
+    
+    </td>
+    </tr>
+
+
+    <tr>
+    <td valign=top nowrap>
+    <strong>Private by default:</strong>
+    </td>
+    <td valign=top nowrap>
+         &nbsp &nbsp
+
+
+         <% if current_user.is_premium %>
+            <%= form.check_box(:premium_only_default_private_goal, options = {}, checked_value = "true", unchecked_value = "false") %> Make new habits "private" by default
+
+         <% else %>
+              <% if current_user.premium_only_default_private_goal %>
+                <input type=checkbox checked disabled>
+              <% else %>
+                <input type=checkbox disabled>
+              <% end %>
+              Make new habits "private" by default (requires <a href="https://www.securepublications.com/habit-gse3.php?ref=<%= current_user.id.to_s %>&email=<%= current_user.email %>" >Premium Membership</a>)
+
+         <% end %>
+
+
+    
+    </td>
+    </tr>
+
+
+
+
+
+
 </table>
 
 <br />

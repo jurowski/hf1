@@ -418,6 +418,9 @@ class GoalsController < ApplicationController
 
 
       @goal.publish = 1
+      if current_user.premium_only_default_private_goal
+        @goal.publish = 0
+      end
 
       if params[:goal_template_text]
         session[:goal_template_text] = params[:goal_template_text]

@@ -684,7 +684,13 @@ class User < ActiveRecord::Base
   end
 
 
-
+  def is_premium
+    if is_habitforge_supporting_member
+      return true
+    else
+      return false
+    end
+  end
 
   def is_habitforge_supporting_member
       ### things are a little messed up w/ clearworth

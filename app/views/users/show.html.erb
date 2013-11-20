@@ -78,47 +78,32 @@
                 current_user.feed_filter_show_my_categories_only 
             -->
 
-            <%
-            if current_user.number_of_active_habits > 1
-            %>
-              <br>
-              <br>
-              <h3>Combine any same-hour email check-ins into 1 email?</h3>
-              <%
-              if current_user.combine_daily_emails == 0
-              %>
-                  <h4>
-                  Currently set to NO. 
-                  <br>
-                  <a href="/account?set_combine_daily_emails=1">Change to YES.</a>
-                  </h4>        
-              <%
-              else
-              %>
-                  <h4>
-                 Currently set to YES.
-                  <br>
-                  <a href="/account?set_combine_daily_emails=0">Change to NO.</a>
-                  </h4>
-              <%
-              end
-              %>
-            <%
-            end
-            %>
+            <div style="background-color:#eeeeee;padding:10px;padding-top:5px;margin:10px;">
+              <h3>Habit Options <a href="/account/edit" class="btn blue mini">Edit</a></h3>
+              <% if current_user.combine_daily_emails %>
+                <input type=checkbox checked disabled>
+              <% else %>
+                <input type=checkbox disabled>
+              <% end %>
+              Combine any same-hour email check-ins into 1 email?
 
-            
-            <% 
-              if @current_user_is_admin == 1
-                %>
-                <br>Current server time is <%= Time.now %>
-                <% Time.zone = @user.time_zone %>
-                <br>User time is <%= Time.zone.now %>
-                <br>User UTC offset is <%= Time.zone.formatted_offset(false) %><% #Save this value in each goal, and use that to do checkpoint searches w/ cronjob  %>
-                <br>Checkpoint emails scheduled to arrive at 12:00am midnight your time, or XXXX server time.
-                <%
-              end
-            %>
+              <br>
+
+              <% if current_user.premium_only_default_private_goal %>
+                <input type=checkbox checked disabled>
+              <% else %>
+                <input type=checkbox disabled>
+              <% end %>
+              Make new habits "private" by default 
+
+              <% if !current_user.is_premium %>(requires <a href="https://www.securepublications.com/habit-gse3.php?ref=<%= current_user.id.to_s %>&email=<%= current_user.email %>" >Premium Membership</a>)<% end %>
+
+
+
+              
+            </div>
+
+
         </div>
 
 
