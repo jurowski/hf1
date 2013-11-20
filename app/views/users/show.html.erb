@@ -17,7 +17,7 @@
 
 
             <div style="background-color:#eeeeee;padding:10px;padding-top:5px;margin:10px;">
-              <h3>Private Info</h3>
+              <h3>Private Info  <a href="/account/edit" class="btn blue mini">Edit</a></h3>
 
               User Name: <%=h @user.email %>
               </br>  
@@ -27,7 +27,7 @@
             </div>
 
             <div style="background-color:#eeeeee;padding:10px;padding-top:5px;margin:10px;">
-              <h3>Public Profile</h3>
+              <h3>Public Profile  <a href="/account/edit" class="btn blue mini">Edit</a></h3>
               <table>
                 <tr>
                   <td>
@@ -64,7 +64,7 @@
 
 
             <div style="background-color:#eeeeee;padding:10px;padding-top:5px;margin:10px;">
-              <h3>Activity Feed</h3>
+              <h3>Activity Feed  <a href="/account/edit" class="btn blue mini">Edit</a></h3>
               <% if current_user.feed_filter_hide_pmo %>
                 <input type=checkbox checked disabled>
               <% else %>
@@ -279,7 +279,7 @@
 <!-- END TAB PORTLET-->
 
 
- <a href="/account/edit" class="btn">Edit My Account Info</a>
+ <a href="/account/edit" class="btn blue">Edit My Account Info</a>
  &nbsp &nbsp
 
  <% if recurring_payment %>

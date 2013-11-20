@@ -10,7 +10,7 @@ end
   <% form_for @user do |f| %>
     <%= f.error_messages %>
     <%= render :partial => "form", :object => f %>
-    <%= f.submit "Save Changes" %>
+    <%= f.submit "Save Changes", :class => "btn blue" %> <%= link_to "Cancel Editing", account_path %>
   <% end %>
 <% end %>
 
@@ -21,8 +21,7 @@ end
     <%= render :partial => "form", :object => f %>
     <br>
     <br>
-    <%= f.submit "Save Changes" %>
+    <%= f.submit "Save Changes", :class => "btn blue" %> <%= link_to "Cancel Editing", account_path %>
   <% end %>
 <% end %>
 
-<%= link_to "Cancel Editing", account_path %>

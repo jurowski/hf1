@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131118112529) do
+ActiveRecord::Schema.define(:version => 20131120121055) do
 
   create_table "achievemints", :force => true do |t|
     t.string   "name"
@@ -916,6 +916,9 @@ ActiveRecord::Schema.define(:version => 20131118112529) do
     t.integer  "google_user_id"
     t.string   "google_email"
     t.string   "handle"
+    t.boolean  "hide_feed"
+    t.boolean  "premium_only_complete_privacy"
+    t.boolean  "premium_only_default_private_goal"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email"
