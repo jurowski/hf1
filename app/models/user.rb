@@ -91,6 +91,7 @@ class User < ActiveRecord::Base
       year_today = arr_today[0].to_i 
       age = year_today - self.yob 
       if age > 0 
+        # my_info += ", " + age.to_s + " years young"
         my_info += ", " + age.to_s + " years young"
       end
     end
@@ -108,11 +109,11 @@ class User < ActiveRecord::Base
       end
     end
 
-    my_info += ", Member since " + self.created_at.strftime("%B %Y")
+    # my_info += ", Member since " + self.created_at.strftime("%B %Y")
 
-    if my_info == self.name
-      my_info += " (no additional profile info)"
-    end
+    # if my_info == self.name
+    #   my_info += " (no additional profile info)"
+    # end
 
     return my_info
 
