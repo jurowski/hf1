@@ -172,7 +172,7 @@
         end
       end
 
-      simple_subject = "a little support"
+      simple_subject = "hello"
       if params[:message_type] and params[:message_type] == "congrats"
         simple_subject = "Good work"
       end
@@ -193,7 +193,15 @@
         </p>
         <p>
           <%= f.label :body %><br />
-          <textarea cols="80" id="tomessage_body" name="tomessage[body]" rows="10" style="width:95%;"><% if subject_value_default  and params[:tomessage_subject] %>I just wanted to send you some words of encouragement regarding your '<%= params[:tomessage_subject]%>' goal! You can do it! I really want to see you succeed!<% else %><%= subject_value %><% end %></textarea>
+          <% if params[:tomessage_subject] and params[:tomessage_subject] == "hello" %>
+
+            <textarea cols="80" id="tomessage_body" name="tomessage[body]" rows="10" placeholder="Write something!" style="width:95%;"> </textarea>
+
+          <% else %>
+
+            <textarea cols="80" id="tomessage_body" name="tomessage[body]" rows="10" style="width:95%;"><% if subject_value_default  and params[:tomessage_subject] %>I just wanted to send you some words of encouragement regarding your '<%= params[:tomessage_subject]%>' goal! You can do it! I really want to see you succeed!<% else %><%= subject_value %><% end %></textarea>
+
+          <% end %>
 
         </p>
         <p>

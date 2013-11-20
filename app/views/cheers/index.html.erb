@@ -3,6 +3,7 @@
 begin
 %>
 
+
 <!-- START FLASH MESSAGES -->
 <% if params[:flash] == "message_sent" %>
     <div class="alert">
@@ -17,6 +18,14 @@ begin
 <% end %>
 <!-- END FLASH MESSAGES END -->
 
+
+
+  <p>
+        <blockquote>
+          <p>"When somebody else succeeds at achieving their goal, it feels like you're succeeding too. That's the neat thing about a community." </p>
+          <small>Bill Phillips (writer of Body for Life)</small>
+        </blockquote>
+  </p>
 
 <%
 
@@ -198,12 +207,7 @@ else
   <p>
     <h2>Who could use a boost?</h2>
   </p>
-  <p>
-        <blockquote>
-          <p>"When somebody else succeeds at achieving their goal, it feels like you're succeeding too. That's the neat thing about a community." </p>
-          <small>Bill Phillips (writer of Body for Life)</small>
-        </blockquote>
-  </p>
+
   <p>
       <%
       # slacker_goals = Goal.paginate(:page => params[:page],
