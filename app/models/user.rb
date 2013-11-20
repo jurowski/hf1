@@ -80,7 +80,7 @@ class User < ActiveRecord::Base
 
   def profile_info
 
-    my_info = self.name + " (" + self.handle + ")"
+    my_info = self.name + " (" + self.show_handle + ")"
 
     if self.gender
       my_info += ", " + self.gender
