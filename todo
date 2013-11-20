@@ -9,8 +9,12 @@
 --------
 GENERAL
 --------
--- make sure "handle" gets indexed
--- mod the "mass assign handle" script to do 1000 at a time
+
+make these (already applied in prod. db) respected in the UI:
+    add_column :users, :hide_feed, :boolean
+    add_column :users, :premium_only_complete_privacy, :boolean
+    add_column :users, :premium_only_default_private_goal, :boolean
+
 
 
 -----------
