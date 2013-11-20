@@ -8,71 +8,70 @@
   <div class="portlet-body">
     <div class="tabbable portlet-tabs">
       <ul class="nav nav-tabs">
-        <li><a href="#portlet_tab3" data-toggle="tab">Sharing Info</a></li>
+
         <li><a href="#portlet_tab2" data-toggle="tab">Membership Plan</a></li>
         <li class="active"><a href="#portlet_tab1" data-toggle="tab">Account Details</a></li>
       </ul>
       <div class="tab-content">
         <div class="tab-pane active" id="portlet_tab1">
 
-          <p>
 
-            <p><strong>Name</strong>: &nbsp &nbsp &nbsp &nbsp &nbsp <%=h @user.first_name %>   <%=h @user.last_name %>
-            </p>
+            <div style="background-color:#eeeeee;padding:10px;padding-top:5px;margin:10px;">
+              <h3>Private Info</h3>
 
-            <p><strong>User Name (Email address)</strong>: &nbsp &nbsp &nbsp &nbsp &nbsp <%=h @user.email %>
-            </p>  
+              User Name: <%=h @user.email %>
+              </br>  
 
-            <% if @user.state %>
-            <p><strong>State</strong>:&nbsp &nbsp &nbsp &nbsp &nbsp <%=h @user.state %>
-            </p>
-            <% end %>
+              Time Zone: <%=h @user.time_zone %>
+              <br>
+            </div>
 
-            <% if @user.country %>
-            <p><strong>Country</strong>: &nbsp &nbsp &nbsp &nbsp &nbsp <%=h @user.country %>
-            </p>
-            <% end %>
+            <div style="background-color:#eeeeee;padding:10px;padding-top:5px;margin:10px;">
+              <h3>Public Profile</h3>
+              <table>
+                <tr>
+                  <td>
+                    <% if current_user.show_gravatar %>
+                      <% gravatar = "http://www.gravatar.com/avatar/#{Digest::MD5.hexdigest(current_user.email.downcase)}?d=mm" %>
+                                  
+                      <a href="https://habitforge.uservoice.com/knowledgebase/articles/223282-how-can-i-change-my-picture-my-avatar-" target="_blank">
+                          <img src="<%= gravatar %>&s=60" />
+                      </a>
 
-            
-            <p><strong>Time Zone</strong>: &nbsp &nbsp &nbsp &nbsp &nbsp <%=h @user.time_zone %>
-            </p>
-            <br>
+                    <% else %>
 
-            <strong>My Avatar:</strong> 
-            <% if current_user.show_gravatar %>
-              <% gravatar = "http://www.gravatar.com/avatar/#{Digest::MD5.hexdigest(current_user.email.downcase)}?d=mm" %>
-                          
-              <a href="https://habitforge.uservoice.com/knowledgebase/articles/223282-how-can-i-change-my-picture-my-avatar-" target="_blank">
-                  <img src="<%= gravatar %>&s=60" />
-              </a>
+                      <a href="https://habitforge.uservoice.com/knowledgebase/articles/223282-how-can-i-change-my-picture-my-avatar-" target="_blank">
+                        <img src="/home/images/default_gravatar.png" />
+                      </a>
 
-            <% else %>
+                    <% end %>
+                  </td>
+                  <td>
+                    &nbsp &nbsp <%= @user.profile_info %>
+                  </td>
+                </tr>
+              </table>
 
-              <a href="https://habitforge.uservoice.com/knowledgebase/articles/223282-how-can-i-change-my-picture-my-avatar-" target="_blank">
-                <img src="/home/images/default_gravatar.png" />
-              </a>
-
-            <% end %>
-
-            <br>
-            <br>
-
-
-            <% if @user.handle %>
-            <p><strong>Friend-Searchable User ID</strong>: &nbsp &nbsp &nbsp &nbsp &nbsp <%=h @user.handle %>
-            </p>
-            <br>
-            <% end %>
+          <br>
+          Link to share my public active habits: 
+          <a href="<%= session[:site_url] %>/cheers/1/shared?shared_u=<%= current_user.id %>" target="_blank"><%= session[:site_url] %>/cheers/1/shared?shared_u=<%= current_user.id %></a>
+ 
+                <a name="fb_share" type="button" share_url="<%= session[:site_url] %>/cheers/1/shared?shared_u=<%= current_user.id %>" href="http://www.facebook.com/sharer.php">My <%= session[:site_name]%> Progress</a><script src="http://static.ak.fbcdn.net/connect.php/js/FB.Share" type="text/javascript"></script>
 
 
-            <strong>Feed Preferences:</strong>
-            <br>
-            <% if current_user.feed_filter_hide_pmo %>
-              <input type=checkbox checked disabled>
-            <% else %>
-              <input type=checkbox disabled>
-            <% end %>
-             Hide goal statuses for others working on addictions to alcohol/drugs/porn 
+            </div>
+
+
+
+            <div style="background-color:#eeeeee;padding:10px;padding-top:5px;margin:10px;">
+              <h3>Activity Feed</h3>
+              <% if current_user.feed_filter_hide_pmo %>
+                <input type=checkbox checked disabled>
+              <% else %>
+                <input type=checkbox disabled>
+              <% end %>
+               Hide goal statuses for others working on addictions to alcohol/drugs/porn 
+            </div>
 
             <!-- OPTIONAL FOR LATER: 
                 this field already exists but is not active:
@@ -84,8 +83,7 @@
             %>
               <br>
               <br>
-              <strong>Combine any same-hour email check-ins into 1 email?</strong>
-              <p>
+              <h3>Combine any same-hour email check-ins into 1 email?</h3>
               <%
               if current_user.combine_daily_emails == 0
               %>
@@ -105,13 +103,11 @@
               <%
               end
               %>
-              </p>
             <%
             end
             %>
 
             
-            <p>
             <% 
               if @current_user_is_admin == 1
                 %>
@@ -123,7 +119,6 @@
                 <%
               end
             %>
-          </p>
         </div>
 
 
@@ -137,8 +132,7 @@
           <%
           if !current_user.is_habitforge_supporting_member
           %>
-            <strong>Current Membership:</strong> Free (Ad-supported, limited to 1 active habit)
-                <p />
+            <h3>Current Membership</h3> Free (Ad-supported, limited to 1 active habit)
 
                 <%
                 if current_user.kill_ads_until == nil
@@ -278,16 +272,6 @@
 
         </div>
 
-        <div class="tab-pane" id="portlet_tab3">
-          <strong>Sharing? Link to show others any active habits that I have "made public": </strong>
-          <p>&nbsp &nbsp &nbsp &nbsp &nbsp <a href="<%= session[:site_url] %>/cheers/1/shared?shared_u=<%= current_user.id %>" target="_blank"><%= session[:site_url] %>/cheers/1/shared?shared_u=<%= current_user.id %></a>
-                <br>
-                &nbsp &nbsp &nbsp &nbsp &nbsp 
-                <a name="fb_share" type="button" share_url="<%= session[:site_url] %>/cheers/1/shared?shared_u=<%= current_user.id %>" href="http://www.facebook.com/sharer.php">My <%= session[:site_name]%> Progress</a><script src="http://static.ak.fbcdn.net/connect.php/js/FB.Share" type="text/javascript"></script>
-
-          </p>
-
-        </div>
       </div>
     </div>
   </div>
