@@ -1542,37 +1542,40 @@ $('.confirmation').on('click',function(){return confirm('Are you sure?');});
 <!--         </div>
         <div class="span6">  -->
 
-        <% if @production %>
+        <!-- SHOW FACEBOOK BOX AT THE BOTTOM -->
+        <% if @cn == "user_friends" %>
+          <% if @production %>
 
-          <% if !secure_page? %>
-            <div id="fb-root"></div>
-            <script>
-              // Load the SDK Asynchronously
-              (function(d, s, id){
-                 var js, fjs = d.getElementsByTagName(s)[0];
-                 if (d.getElementById(id)) {return;}
-                 js = d.createElement(s); js.id = id;
-                 js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
-                 fjs.parentNode.insertBefore(js, fjs);
-               }(document, 'script', 'facebook-jssdk'));
-            </script>
+            <% if !secure_page? %>
+              <div id="fb-root"></div>
+              <script>
+                // Load the SDK Asynchronously
+                (function(d, s, id){
+                   var js, fjs = d.getElementsByTagName(s)[0];
+                   if (d.getElementById(id)) {return;}
+                   js = d.createElement(s); js.id = id;
+                   js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+                   fjs.parentNode.insertBefore(js, fjs);
+                 }(document, 'script', 'facebook-jssdk'));
+              </script>
 
 
 
 
-            <div class="fb-like-box" data-href="http://www.facebook.com/pages/habitforgecom/281059421608" data-width="292" data-show-faces="true" data-stream="false" data-header="true"></div>
-      
+              <div class="fb-like-box" data-href="http://www.facebook.com/pages/habitforgecom/281059421608" data-width="292" data-show-faces="true" data-stream="false" data-header="true"></div>
+        
+            <% end %>
+            
+  <!--           <span class='st_fblike' displayText='Like HabitForge!'></span> -->
+            <span class='st_facebook' displayText='Share on Facebook'></span>
+            <span class='st_twitter' displayText='Tweet'></span>
+            <span class='st_pinterest' displayText='Pinterest'></span>
+
+            <br>
+          <% else %>
+            In production we'd have some facebook, twitter and pinterest links here.
           <% end %>
-          
-<!--           <span class='st_fblike' displayText='Like HabitForge!'></span> -->
-          <span class='st_facebook' displayText='Share on Facebook'></span>
-          <span class='st_twitter' displayText='Tweet'></span>
-          <span class='st_pinterest' displayText='Pinterest'></span>
-
-          <br>
-        <% else %>
-          In production we'd have some facebook, twitter and pinterest links here.
-        <% end %>
+          <% end %>
         </div>
       </div>
 
