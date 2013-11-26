@@ -50,7 +50,7 @@
           <div class="div_habit">
 
 
-                    <% if current_user.goal_ids_that_i_follow.include?(goal.id) %>
+                    <% if current_user and current_user.goal_ids_that_i_follow.include?(goal.id) %>
                       <a href="#" class="btn disabled">Following</a>
                     <% else %>
 

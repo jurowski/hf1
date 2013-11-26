@@ -19,181 +19,186 @@ dnow = Date.new(tnow_Y, tnow_m, tnow_d) + jump_forward_days
 
 goal = @cheer.goal
 
-daysgoneby = dnow - goal.start
-daysleft = goal.stop - dnow
-@checkpoints = Checkpoint.find(:all, :conditions => "goal_id = '#{goal.id}'")
-totalsize = @checkpoints.size
+if goal
 
-%>
+  daysgoneby = dnow - goal.start
+  daysleft = goal.stop - dnow
+  @checkpoints = Checkpoint.find(:all, :conditions => "goal_id = '#{goal.id}'")
+  totalsize = @checkpoints.size
 
-<%= link_to 'Back', cheers_path %>
-
-<br>
-<br>
-
-<h3><%=h @cheer.goal.user.first_name %>'s Progress with "<%= @cheer.goal.title %>"</h3>
-<a href="/tomessages/new?from_type=follower&to_id=<%= @cheer.goal.user.id %>">Send <%= @cheer.goal.user.first_name %> a Message!</a>
-
-<br>
-<br>
-<%
-if goal.status == "hold"
   %>
-  <img src="/images/ring_buttons_hold.png" alt="On Hold" width = 75/>
-  <%    
-end
-%>
-<br>
-<%
-if goal.status == "start"
-  %>
-  <img src="/images/ring_buttons<%= daysgoneby %>.png" alt="" width = 75/>
+
+  <%= link_to 'Back', cheers_path %>
+
+  <br>
+  <br>
+
+  <h3><%=h @cheer.goal.user.first_name %>'s Progress with "<%= @cheer.goal.title %>"</h3>
+  <a href="/tomessages/new?from_type=follower&to_id=<%= @cheer.goal.user.id %>">Send <%= @cheer.goal.user.first_name %> a Message!</a>
+
+  <br>
+  <br>
   <%
-end
-%>
-
-<div id="show_me_<%=goal.id %>">
-<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-
-
-<% 
-if goal.status == "start"
-  ### If we've established the goal, ask if they want it monitored
-  if goal.established_on > goal.start
-  %>
-    <b>Habit Established!
-    <br>  
-  <%
-  else
-    if daysleft < 1
+  if goal.status == "hold"
     %>
-      <b>21 day period lapsed, but we didn't get all of the responses
-      <br>
-    <%
-    end
-    %>
-    <% #<b>In progress</b> %>
-    <br>
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <%=h goal.start %> -->  <%=h goal.stop %> (<%= @checkpoints.size %> checkpoints)
-    <br>
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <%= daysgoneby %> days down, 
-    <%= daysleft %> days to go!
-    (
-    <% if daysgoneby > 0 %>
-      <%= (((daysgoneby + 0.0)/(daysgoneby + daysleft))*100).floor %>        
-    <% else %>
-      0
-    <% end %>
-    % done)
-    <%
-
-    @checkpoints_missing = Checkpoint.find(:all, :conditions => "goal_id = '#{goal.id}' and checkin_date >= '#{goal.start}' and checkin_date <= '#{goal.stop}' and status = 'email sent'")
-    if @checkpoints_missing.size > 0
-    %>        
-      <br>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <b>There are <%= @checkpoints_missing.size %> checkpoint(s) that we're missing responses for.
-    <%
-    end
-    %>
-  <%
+    <img src="/images/ring_buttons_hold.png" alt="On Hold" width = 75/>
+    <%    
   end
-end
-%>  
-
-<%
-if goal.status == "hold"
-%>
-  <b>On Hold</b>
-<%
-end
-%>
-
-<%
-if goal.status == "monitor"
-%>
-  <b>Monitoring from <%=h goal.start %> through <%=h goal.stop %></b>
-
-  <% if totalsize > 0 %>
-    <%
-    @no = Checkpoint.find(:all, :conditions => "status = 'no' and goal_id = '#{goal.id}'")
-    %>
-    <% no_percent = (((@no.size + 0.0) / totalsize)*100).floor  %>
-    <br>
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    Success Rate: 
-    <%
-    @yes = Checkpoint.find(:all, :conditions => "status = 'yes' and goal_id = '#{goal.id}'")
-    %>
-    <% yes_percent = (((@yes.size + 0.0) / totalsize)*100).floor %>
-    <%= yes_percent%>% (<%= @yes.size %> yes, 
-
-    <%= @no.size %> no, 
-    <%
-    @missing = Checkpoint.find(:all, :conditions => "status = 'email sent' and goal_id = '#{goal.id}'")
-    %>
-    <% 
-    # Convert these Ints into Floats by adding 0.0
-    missing = @missing.size + 0.0
-    total = totalsize + 0.0
-    missing_percent = ((missing / total)*100).floor
-    %>
-    <%= @missing.size %> no reply of 
-    <%= totalsize %> Past Checkpoints )
-    <% #missing_percent %>
-
-  <% else %>
-    <br>
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    no stats yet
-  <% end %>
-
-<%
-end
-%>
-
-<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-
-<%
-@my_checkpoints = Checkpoint.find(:all, :conditions => "goal_id = '#{goal.id}'") 
-if @my_checkpoints.size == 0
-%>
-  No Checkpoints Yet
-<%
-else
-%>
-  <!-- link_to_function ("All Checkpoints") {
-   |page| page.visual_effect :toggle_appear, "checkpoints_for_goal_#{goal.id}" 
-  } 
-  -->
-
-  <a href="#undefined" onclick="toggle_show_hide('checkpoints_for_goal_<%= goal.id %>')">All Checkpoints</a>
-
-  <div id="checkpoints_for_goal_<%=goal.id %>" style="display:none;">
-
+  %>
+  <br>
   <%
-  @my_checkpoints.each do |checkpoint| %>
-      <%
-      if checkpoint.checkin_date == goal.start
+  if goal.status == "start"
+    %>
+    <img src="/images/ring_buttons<%= daysgoneby %>.png" alt="" width = 75/>
+    <%
+  end
+  %>
+
+  <div id="show_me_<%=goal.id %>">
+  <br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+
+  <% 
+  if goal.status == "start"
+    ### If we've established the goal, ask if they want it monitored
+    if goal.established_on > goal.start
+    %>
+      <b>Habit Established!
+      <br>  
+    <%
+    else
+      if daysleft < 1
       %>
-        <hr>Start of 21 days<hr>
+        <b>21 day period lapsed, but we didn't get all of the responses
+        <br>
       <%
       end
       %>
+      <% #<b>In progress</b> %>
       <br>
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <%=h checkpoint.checkin_date.strftime("%a, %b %d, %Y") %>
-      <b><%=h checkpoint.status %></b> <% if checkpoint.comment %> <%= checkpoint.comment %> <% end %>
-  <% end %>
+      <%=h goal.start %> -->  <%=h goal.stop %> (<%= @checkpoints.size %> checkpoints)
+      <br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <%= daysgoneby %> days down, 
+      <%= daysleft %> days to go!
+      (
+      <% if daysgoneby > 0 %>
+        <%= (((daysgoneby + 0.0)/(daysgoneby + daysleft))*100).floor %>        
+      <% else %>
+        0
+      <% end %>
+      % done)
+      <%
+
+      @checkpoints_missing = Checkpoint.find(:all, :conditions => "goal_id = '#{goal.id}' and checkin_date >= '#{goal.start}' and checkin_date <= '#{goal.stop}' and status = 'email sent'")
+      if @checkpoints_missing.size > 0
+      %>        
+        <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <b>There are <%= @checkpoints_missing.size %> checkpoint(s) that we're missing responses for.
+      <%
+      end
+      %>
+    <%
+    end
+  end
+  %>  
+
+  <%
+  if goal.status == "hold"
+  %>
+    <b>On Hold</b>
+  <%
+  end
+  %>
+
+  <%
+  if goal.status == "monitor"
+  %>
+    <b>Monitoring from <%=h goal.start %> through <%=h goal.stop %></b>
+
+    <% if totalsize > 0 %>
+      <%
+      @no = Checkpoint.find(:all, :conditions => "status = 'no' and goal_id = '#{goal.id}'")
+      %>
+      <% no_percent = (((@no.size + 0.0) / totalsize)*100).floor  %>
+      <br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      Success Rate: 
+      <%
+      @yes = Checkpoint.find(:all, :conditions => "status = 'yes' and goal_id = '#{goal.id}'")
+      %>
+      <% yes_percent = (((@yes.size + 0.0) / totalsize)*100).floor %>
+      <%= yes_percent%>% (<%= @yes.size %> yes, 
+
+      <%= @no.size %> no, 
+      <%
+      @missing = Checkpoint.find(:all, :conditions => "status = 'email sent' and goal_id = '#{goal.id}'")
+      %>
+      <% 
+      # Convert these Ints into Floats by adding 0.0
+      missing = @missing.size + 0.0
+      total = totalsize + 0.0
+      missing_percent = ((missing / total)*100).floor
+      %>
+      <%= @missing.size %> no reply of 
+      <%= totalsize %> Past Checkpoints )
+      <% #missing_percent %>
+
+    <% else %>
+      <br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      no stats yet
+    <% end %>
+
+  <%
+  end
+  %>
+
+  <br />
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+  <%
+  @my_checkpoints = Checkpoint.find(:all, :conditions => "goal_id = '#{goal.id}'") 
+  if @my_checkpoints.size == 0
+  %>
+    No Checkpoints Yet
+  <%
+  else
+  %>
+    <!-- link_to_function ("All Checkpoints") {
+     |page| page.visual_effect :toggle_appear, "checkpoints_for_goal_#{goal.id}" 
+    } 
+    -->
+
+    <a href="#undefined" onclick="toggle_show_hide('checkpoints_for_goal_<%= goal.id %>')">All Checkpoints</a>
+
+    <div id="checkpoints_for_goal_<%=goal.id %>" style="display:none;">
+
+    <%
+    @my_checkpoints.each do |checkpoint| %>
+        <%
+        if checkpoint.checkin_date == goal.start
+        %>
+          <hr>Start of 21 days<hr>
+        <%
+        end
+        %>
+        <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <%=h checkpoint.checkin_date.strftime("%a, %b %d, %Y") %>
+        <b><%=h checkpoint.status %></b> <% if checkpoint.comment %> <%= checkpoint.comment %> <% end %>
+    <% end %>
+    </div>
+  <%
+  end
+  %>
+  <hr>
+  <p>
   </div>
-<%
-end
-%>
-<hr>
-<p>
-</div>
-<br>
+  <br>
+<% else %>
+  Goal not found.
+<% end ### end if goal %>

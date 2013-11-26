@@ -1,6 +1,6 @@
 <!-- Time.now() -->
 
-	<% if params[:handle] %>
+	<% if params[:handle] and current_user %>
 		<% if current_user.would_this_handle_be_unique?(params[:handle]) %>
 			<span style="color:#00FF00;"><%= params[:handle] %> is available.</span>
 		<% else %>
