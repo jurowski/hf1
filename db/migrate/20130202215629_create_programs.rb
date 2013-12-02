@@ -10,6 +10,7 @@ class CreatePrograms < ActiveRecord::Migration
       t.text :current_count
       t.integer :rating_stars
       t.integer :rating_votes
+
       t.string :catch_phrase
       t.integer :stale_after_days_of_silence_count
       t.string :difficulty_rating
@@ -20,7 +21,9 @@ class CreatePrograms < ActiveRecord::Migration
     end
   end
 
+
+
   def self.down
-    drop_table :programs
+   drop_table :programs
   end
 end

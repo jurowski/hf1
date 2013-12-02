@@ -92,6 +92,14 @@ class GoalsController < ApplicationController
   # GET /goals
   # GET /goals.xml
 
+  def esfl
+    program = Program.find(:first, :conditions => "name = 'Extremely Simple Fat Loss'")
+    if program
+      redirect_to("/goals?program_id=#{program.id.to_s}&programs=1&browse_recommended_habits=1#browse_recommended_habits")
+    else
+      redirect_to("/goals")
+    end
+  end
 
   def index2
     #test index page

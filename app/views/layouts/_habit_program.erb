@@ -13,7 +13,7 @@ end
 %>
 
 
-<% if @program and @program.status and @program.status == "live" %> 
+<% if @program and @program.status and (@program.status == "live" or @program.status == "dev") %> 
 
 
     <% 
@@ -140,7 +140,7 @@ end
     <br>
     <div class="error">
         <br>
-        <h2>No Program Found with that ID.</h2>
+        <h2> No matching programs ( see  layouts/_habit_program.erb ) </h2>
     </div>
 <% end %>
 

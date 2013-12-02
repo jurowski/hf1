@@ -603,6 +603,11 @@ ActiveRecord::Schema.define(:version => 20131120121055) do
     t.integer  "rating_votes"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "catch_phrase"
+    t.string   "stale_after_days_of_silence_count"
+    t.string   "difficulty_rating"
+    t.string   "version_number"
+    t.string   "status"
   end
 
   create_table "promotion1s", :force => true do |t|

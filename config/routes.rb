@@ -146,7 +146,8 @@ ActionController::Routing::Routes.draw do |map|
   map.connect 'cheers/:id/shared', :controller => 'cheers', :action => 'shared'
   
   map.connect 'goals/:id/sharelinks', :controller => 'goals', :action => 'sharelinks'
-    
+
+  map.connect 'esfl', :controller => 'goals', :action => 'esfl'  
   #map.connect '/shared.html', 'http://habitforge.com/shared.html')
   ########
   ### keep these in this order
