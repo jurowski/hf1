@@ -1,3 +1,4 @@
+
 <% 
 @production = true
 if `uname -n`.strip == 'adv.adventurino.com'
@@ -364,8 +365,10 @@ http://www.cssnewbie.com/cross-browser-support-for-html5-placeholder-text-in-for
 
 
   <!-- START DECIDE IF ONLY SHOW HABIT LIBRARY -->
-  <% if params[:browse_recommended_habits] and current_user %>
+<!--   if params[:browse_recommended_habits] and current_user -->
 
+
+  <% if params[:browse_recommended_habits] %>
     <div style="padding:20px;">
       <% if params[:program_id] %>
         <!-- 
@@ -382,7 +385,6 @@ http://www.cssnewbie.com/cross-browser-support-for-html5-placeholder-text-in-for
 
 
   <% else %>
-
     <!-- Header Start -->
 
     <!-- THIS PUTS AN ORANGE LINE AT THE TOP OF THE SCREEN -->

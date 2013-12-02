@@ -444,7 +444,7 @@ class ApplicationController < ActionController::Base
       end
     end
 
-    def require_user_unless_newly_paid
+    def require_user_unless_newly_paid_or_browsing
       # Newly Paid User
       # (When someone comes back from infusionsoft having just paid for a premium account)
       # http://habitforge.com/goals?optimize_my_first_goal=1&ga_goal=1&email=newuser@test.com&single_login=1
@@ -457,13 +457,25 @@ class ApplicationController < ActionController::Base
           return false
         end
       else
-        unless current_user
-          store_location
-          flash[:notice] = "You must be logged in to access this page"
-          #redirect_to new_user_session_url
-          redirect_to "/user_session/new?skip_intro=1"
-          return false
+
+        ### if wanting to view a success program
+        if params[:program_id] and params[:programs] and params[:browse_recommended_habits]
+
+          return true
+
+        else
+
+          unless current_user
+            store_location
+            flash[:notice] = "You must be logged in to access this page"
+            #redirect_to new_user_session_url
+            redirect_to "/user_session/new?skip_intro=1"
+            return false
+          end
+
+
         end
+
       end
     end
 

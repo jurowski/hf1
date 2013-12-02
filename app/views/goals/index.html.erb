@@ -1,3 +1,12 @@
+
+<!-- THERE ARE TIMES WHEN WE NEED THIS PAGE TO COME UP WHEN SOMEONE IS NOT LOGGED IN
+    MAINLY WHEN LOOKING AT A SUCCESS PROGRAM LIKE THIS:
+    /goals?program_id=14&programs=1&browse_recommended_habits=1#browse_recommended_habits
+
+-->
+<% if current_user %>
+
+
 <!-- START FLASH MESSAGES -->
 <% if params[:flash] == "message_sent" %>
     <div class="alert alert-info">
@@ -1485,3 +1494,4 @@ http://localhost:3000/goals?update_checkpoint_status=yes&date=2012-02-12&e0=106&
 ****************************************************************
 -->
 
+<% end %> <!-- END IF CURRENT USER (show nothing from index.html if not current user)-->
