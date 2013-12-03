@@ -10,20 +10,24 @@
 GENERAL
 --------
 
-do the rest of Jeff's recent requests:
+do the rest of Jeff/Garnett's recent requests:
 -- (done) change reminder default to none
 -- (done) make "green" the habits in the listing area
 -- (done) open up the customization by default (see email for detail)
--- see emails from him and Garnett for the rest
+-- add a disclaimer in a terms and conditions page that they'll also be signing up for ETR newsletter
+-- make the customize arrow visible again after first creating a habit but not when coming from index.html
+-- add a subtle background color to the homepage for larger screens
+-- centering on the homepage
+-- add the coffee desktop image stuff for those w/ larger screens, if poss.
+-- get the dials back for success rates (they've been gone for a while)
+-- improve the check-in emails look/feel
+-- John Rowley logo at bottom
 
 
 
 
 make this (already applied in prod. db) respected in the UI:
-
     add_column :users, :premium_only_complete_privacy, :boolean
-
-change the "hide_feed" for those who actually do want to see the feed by default
 
 
 -- ask in the reminder, for exercise goals, "What time are you going to work out today?" ... and then give them an array of options to click on ... and then an hour before that time, stick in the public feed "John was planning to work out 1 hour from now... send him a reminder to do it!" (warn them in the email that this will happen) ... and then if they don't check in an hour afterward, stick something in the feed saying "John was going to work out an hour ago... ask him how the workout was!"

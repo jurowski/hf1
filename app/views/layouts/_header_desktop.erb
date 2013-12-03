@@ -248,8 +248,44 @@
           <% end %>
 
 
+          <div style="position:relative;margin-top:-5px;font-size:0.8em;margin-left:0px;">
+            <label><input class="checkbox_input" name="terms" id="terms" type="checkbox" DISABLED CHECKED />
+            I agree to 
+            <a href="#" onclick="return popitup_bigger1('/terms.html')">
+            Terms and Conditions
+            </a>
+            </label>
+          </div>
+
+          <!-- checkbox label alignment sanity -->
+          <!-- http://stackoverflow.com/questions/306252/how-to-align-checkboxes-and-their-labels-consistently-cross-browsers -->
+          <style type="text/css">
+          label {
+              display: block;
+              padding-left: 15px;
+              text-indent: -15px;
+          }
+          .checkbox_input {
+              width: 13px;
+              height: 13px;
+              padding: 0;
+              margin:0;
+              vertical-align: bottom;
+              position: relative;
+              top: -1px;
+              *overflow: hidden;
+          }
+          </style>
+          <!-- end checkbox label alignment sanity -->
+
+
         </form>
+
+
+
         </span>
+
+
       </div><!-- end div_signup_box -->
 
 
