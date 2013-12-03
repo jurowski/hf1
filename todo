@@ -26,6 +26,9 @@ make this (already applied in prod. db) respected in the UI:
 change the "hide_feed" for those who actually do want to see the feed by default
 
 
+-- ask in the reminder, for exercise goals, "What time are you going to work out today?" ... and then give them an array of options to click on ... and then an hour before that time, stick in the public feed "John was planning to work out 1 hour from now... send him a reminder to do it!" (warn them in the email that this will happen) ... and then if they don't check in an hour afterward, stick something in the feed saying "John was going to work out an hour ago... ask him how the workout was!"
+
+
 
 -----------
 ESFL
@@ -35,7 +38,7 @@ ESFL
 
 --At the point of adding the first (generic) habit, actually give them the choice of choosing from a pulldown of a list of empowering habits (not the disempowering habits).
 
---There is one link only, used in the book: http://habitforge.com/esfl
+--(done, but needs work)There is one link only, used in the book: http://habitforge.com/esfl
 
 --Do not auto-create their account when they sign up for ESFL ... wait until they click the ESFL link
 

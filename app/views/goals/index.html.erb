@@ -381,7 +381,7 @@ for goal in current_user.active_goals_sorted_by_next_action_day
 
 
     if current_user.number_of_active_habits == 1
-        collapse = false
+        collapse = true
     end
 
     @goal = goal
@@ -389,7 +389,7 @@ for goal in current_user.active_goals_sorted_by_next_action_day
     if number_goals_today > 0
         if !printed_today_actions_once
             printed_today_actions_once = true
-            collapse = false
+            collapse = true
             %>
             <div>
 
@@ -480,9 +480,9 @@ for goal in current_user.active_goals_sorted_by_next_action_day
     <!-- BEGIN CUSTOM BUTTONS WITH ICONS PORTLET-->
 
     <% if goal.publish %>
-    <div class="portlet box blue " >
+    <div class="portlet box" style="background-color:#28b779;padding-top:15px;padding:10px;" >
     <% else %>
-    <div class="portlet box yellow" >
+    <div class="portlet box" style="background-color:#28b779;padding-top:15px;padding:10px;" >
     <% end %>
         <div class="portlet-title">
 
@@ -513,16 +513,33 @@ for goal in current_user.active_goals_sorted_by_next_action_day
                 <% end %>
 
             </div>
-            <div class="tools">
+            <div class="tools" style="padding-bottom:10px;">
+
+
+                <script type='text/javascript'>
+                $('#customize_<%= goal.id.to_s %>').tipsy();
+                </script>
+
               <% if collapse %>
-                  <a href="javascript:;" class="expand"></a>
+                  <a href="javascript:;" class="expand" title="Show/Hide Details" id="expand_<%= goal.id.to_s %>"></a>
+                <script type='text/javascript'>
+                $('#expand_<%= goal.id.to_s %>').tipsy();
+                </script>
+
               <% else %>
-                  <a href="javascript:;" class="collapse"></a>
+                  <a href="javascript:;" class="collapse" title="Show/Hide Details" id="collapse_<%= goal.id.to_s %>"></a>
+                <script type='text/javascript'>
+                $('#collapse_<%= goal.id.to_s %>').tipsy();
+                </script>
+
               <% end %>
+
+              <a href="/goals/<%= goal.id %>/edit" style="color:#ffffff;padding-bottom:10px;"><i class="icon-cog" style="font-size:3em;" id="customize_<%= goal.id.to_s %>" title="Customize"></i></a>
 
               <!-- <a href="#portlet-config" data-toggle="modal" class="config"></a> -->
               <!-- <a href="javascript:;" class="reload"></a> -->
               <!-- <a href="javascript:;" class="remove"></a> -->
+
             </div>
         </div>
 
@@ -538,8 +555,6 @@ for goal in current_user.active_goals_sorted_by_next_action_day
             <!-- START GOAL LINK OPTIONS -->
             <DIV>
                 <p>
-                <i class='icon-wrench'></i> <%= link_to "Customize", edit_goal_path(goal.id)  %>
-                &nbsp
                 <i class='icon-calendar'></i> <a href="/goals/single/<%= goal.id %>">All Checkpoints</a>
                 &nbsp
 
