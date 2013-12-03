@@ -356,7 +356,15 @@
 <!-- *********** -->
 
 
-
+<% if !current_user.hide_feed %>
+    <!-- SHOW LATEST PUBLIC CHECKINS -->
+    <div class="dynamic_latest_public_checkins">
+        <%= render :partial => 'goals/dynamic_latest_public_checkins' %>
+    </div>
+    <div id="spinner_dynamic_latest_public_checkins" style="display:none;">
+        <center><img src="/images/spinner.gif"/></center>
+    </div>
+<% end %>
 
 
 
@@ -536,7 +544,7 @@ for goal in current_user.active_goals_sorted_by_next_action_day
                 <script type='text/javascript'>
                 $('#customize_<%= goal.id.to_s %>').tipsy();
                 </script>
-                
+
               <!-- <a href="#portlet-config" data-toggle="modal" class="config"></a> -->
               <!-- <a href="javascript:;" class="reload"></a> -->
               <!-- <a href="javascript:;" class="remove"></a> -->

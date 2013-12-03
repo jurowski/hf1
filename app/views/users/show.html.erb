@@ -89,6 +89,15 @@
 
               <br>
 
+              <% if current_user.hide_feed %>
+                <input type=checkbox checked disabled>
+              <% else %>
+                <input type=checkbox disabled>
+              <% end %>
+              Hide the activity feed on the main (My Habits) page?
+
+              <br>
+
               <% if current_user.premium_only_default_private_goal %>
                 <input type=checkbox checked disabled>
               <% else %>
