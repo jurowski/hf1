@@ -542,7 +542,8 @@ class SendCheckpointEmails < ActiveRecord::Base
               #### This user only has one matching goal,
               #### OR This user wants one email per goal,
               ####  so proceed normally with a single goal email
-              logtext = "Emailing #{goal.user.email} single goal email for #{goal.id} for #{checkin_date}. Their time is #{tnow.to_s}. Server time is #{tservernow.to_s}."
+              # logtext = "Emailing #{goal.user.email} single goal email for #{goal.id} for #{checkin_date}. Their time is #{tnow.to_s}. Server time is #{tservernow.to_s}."
+              logtext = "Emailing #{goal.user.email} single goal email for #{goal.id} for #{checkin_date}."
               puts logtext
               logger.info logtext 
               begin
@@ -594,15 +595,15 @@ class SendCheckpointEmails < ActiveRecord::Base
                       else
                         begin
                             ### risky to put this before the actual send, but can't figure out why it fails every few weeks when it used to be "after" the actual send
-	                    logger.info("sgj:about to set checkpoint status to 'email sent' and then save")
+	                    # logger.info("sgj:about to set checkpoint status to 'email sent' and then save")
                             checkpoint.status = 'email sent'
                             checkpoint.save
-	                    logger.info("sgj:successfully set checkpoint status to 'email sent' and saved")
+	                    # logger.info("sgj:successfully set checkpoint status to 'email sent' and saved")
 
 
-	                    logger.info("sgj:about to email checkppoint email to " + checkpoint.goal.user.email)
+	                    # logger.info("sgj:about to email checkppoint email to " + checkpoint.goal.user.email)
                             Notifier.deliver_checkpoint_notification_sameday(checkpoint) # sends the email                                
-	                    logger.info("sgj:back from sending email checkppoint email to " + checkpoint.goal.user.email)
+	                    # logger.info("sgj:back from sending email checkppoint email to " + checkpoint.goal.user.email)
 
                             sent_successfully = true
                         rescue
