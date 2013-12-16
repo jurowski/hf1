@@ -1301,6 +1301,9 @@ class Goal < ActiveRecord::Base
                     if gap > 1
                         ##logger.debug 'GAP GREATER THAN 1... CHECK FOR DAYS OF WEEK'
 
+
+logger.info("sgj:goal.rb:create_checkpoints_where_missing:POTENTIALLY DB INTENSIVE OP: MISSING CHECKPOINT GAP = " + gap.to_s)
+
                         traverse_counter = 1
                         while traverse_counter < gap
                             new_checkpoint_date = previous_date - traverse_counter

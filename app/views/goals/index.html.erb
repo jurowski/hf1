@@ -387,11 +387,11 @@ printed_tomorrow_actions_once = false
 printed_future_actions_once = false
 for goal in current_user.active_goals_sorted_by_next_action_day
 
-    collapse = true
+    collapse = false
 
 
     if current_user.number_of_active_habits == 1
-        collapse = true
+        collapse = false
     end
 
     @goal = goal
@@ -399,7 +399,8 @@ for goal in current_user.active_goals_sorted_by_next_action_day
     if number_goals_today > 0
         if !printed_today_actions_once
             printed_today_actions_once = true
-            collapse = true
+            #collapse = true
+            collapse = false
             %>
             <div>
 
@@ -419,6 +420,8 @@ for goal in current_user.active_goals_sorted_by_next_action_day
                 </h2>
             </div>
             <%
+        else
+            collapse = true
         end
     end ### End of: if number_goals_today > 0
 
