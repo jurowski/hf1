@@ -1,3 +1,12 @@
+<% 
+if params[:program_id] 
+  @program_template.program_id = params[:program_id].to_i
+end
+
+if params[:template_goal_id] 
+  @program_template.template_goal_id = params[:template_goal_id].to_i
+end
+%>
 
 
   <% if @program_template.program_id %>

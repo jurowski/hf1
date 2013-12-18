@@ -1,20 +1,45 @@
+<% 
+if params[:program_id] 
+  @program_template.program_id = params[:program_id].to_i
+end
+
+if params[:template_goal_id] 
+  @program_template.template_goal_id = params[:template_goal_id].to_i
+end
+%>
+
+
 <h1>Editing program_template</h1>
 
 <% form_for(@program_template) do |f| %>
   <%= f.error_messages %>
 
   <p>
-    <%= f.label :program_id %><br />
-    <%= f.text_field :program_id %>
+      Choose a program:
+      <% if current_user.is_admin %>
+        <% @programs = Program.all %>
+        <%= f.collection_select :program_id, @programs, :id, :name, :prompt => "Choose a program" %>
+      <% else %>
+        <%= f.collection_select :program_id, current_user.programs_i_own, :id, :name, :prompt => "Choose a program" %>
+      <% end %>
   </p>
   <p>
-    <%= f.label :template_goal_id %><br />
-    <%= f.text_field :template_goal_id %>
+      Choose a goal template:
+      <% if current_user.is_admin %>
+        <% @goals = Goal.find(:all, :conditions => "template_owner_is_a_template is true") %>
+        <%= f.collection_select :template_goal_id, @goals, :id, :title, :prompt => "Choose a goal template" %>
+      <% else %>
+        <%= f.collection_select :template_goal_id, current_user.templates_i_own, :id, :title, :prompt => "Choose a goal template" %>
+      <% end %>
+  </p>
+  <p>
+    Listing position: <%= f.text_field :listing_position %>
   </p>
   <p>
     <%= f.submit 'Update' %>
   </p>
 <% end %>
+
 
 <%= link_to 'Show', @program_template %> |
 <%= link_to 'Back', program_templates_path %>
