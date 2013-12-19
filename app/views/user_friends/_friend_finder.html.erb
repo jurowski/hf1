@@ -94,9 +94,9 @@ end
 
 
       <% if (current_user.id == user.id) %>
-          <a href="#" class="btn disabled"><i class="icon-thumbs-up"></i></a>
+          <a href="#" class="btn disabled"><i class="icon-envelope"></i></a>
       <% else %>
-        <a href="/tomessages/new?from_type=member&tomessage_subject=hello&to_id=<%= user.id %>" id='send_message_<%= user.id.to_s %>' class="btn " style="font-size:1.5em;" title='Send a message to <%= user.name %>!'> <i class="icon-thumbs-up"></i></a>
+        <a href="/tomessages/new?from_type=member&tomessage_subject=hello&to_id=<%= user.id %>" id='send_message_<%= user.id.to_s %>' class="btn " style="font-size:1.5em;" title='Send a message to <%= user.name %>!'> <i class="icon-envelope"></i></a>
       <% end %>
 
       <%=h user.first_name %>

@@ -95,7 +95,8 @@ class GoalsController < ApplicationController
   def esfl
     program = Program.find(:first, :conditions => "name = 'Extremely Simple Fat Loss'")
     if program
-      redirect_to("/goals?program_id=#{program.id.to_s}&programs=1&browse_recommended_habits=1#browse_recommended_habits")
+      #redirect_to("/goals?program_id=#{program.id.to_s}&programs=1&browse_recommended_habits=1#browse_recommended_habits")
+      redirect_to("/programs/#{program.id.to_s}/view")
     else
       redirect_to("/goals")
     end

@@ -133,6 +133,7 @@ ActionController::Routing::Routes.draw do |map|
 
   map.connect 'users/:id/profile', :controller => 'users', :action => 'profile'
 
+  map.connect 'programs/:id/view', :controller => 'programs', :action => 'view'
 
   map.connect 'goals/:id/shared', :controller => 'goals', :action => 'shared'
 

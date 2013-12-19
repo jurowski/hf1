@@ -145,6 +145,8 @@ if session[:sponsor] == "habitforge"
   if params[:browse_recommended_habits]
     sponsor_layout = default_public_layout
   end
+
+
 end
 %>
 
@@ -169,6 +171,11 @@ end
 
 
   <% if !main_content_rendered and @cn == "checkpoints" %>
+     <% main_content_rendered = true %>
+     <%= render :partial => sponsor_layout %>
+  <% end %>
+
+  <% if !main_content_rendered and @cn == "programs" %>
      <% main_content_rendered = true %>
      <%= render :partial => sponsor_layout %>
   <% end %>

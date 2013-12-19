@@ -2,8 +2,16 @@ class ProgramsController < ApplicationController
 
   layout "application"
 
-  before_filter :require_user_can_make_templates
-  before_filter :require_program_scope
+  before_filter :require_user, :except => [:view]
+  before_filter :require_user_can_make_templates, :except => [:view]
+  before_filter :require_program_scope, :except => [:view]
+
+  ### Do you want to be able to create new users when someone is logged in?
+  #before_filter :require_no_user, :only => [:new, :create]
+  # before_filter :require_no_user, :only => [:quicksignup_v2]
+  # before_filter :require_user, :only => [:show, :edit, :update, :index, :destroy, :profile]
+  #before_filter :require_user, :only => [:show, :edit, :update]
+
 
   # GET /programs
   # GET /programs.xml
@@ -29,6 +37,18 @@ class ProgramsController < ApplicationController
 
     respond_to do |format|
       format.html # show.html.erb
+      format.xml  { render :xml => @program }
+    end
+  end
+
+
+  # GET /programs/1
+  # GET /programs/1.xml
+  def view
+    @program = Program.find(params[:id])
+
+    respond_to do |format|
+      format.html # view.html.erb
       format.xml  { render :xml => @program }
     end
   end

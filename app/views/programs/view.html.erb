@@ -1,0 +1,118 @@
+
+
+<h1>Program: <%= @program.name %>
+<% if @program.managed_by_user %>
+    <% if current_user and @program.managed_by_user == current_user %>
+        <%= link_to "Modify", @program, :class => "btn blue" %>
+    <% end %>
+<% end %>
+</h1>
+
+
+<div style="background-color:#ffffff;padding:10px;padding-top:5px;margin:10px;margin-left:0px;">
+
+
+
+
+<% if @program.image_logo %>
+  <img src="/home/images/programs/<%= @program.image_logo %>" />
+<% end %>
+
+
+<% if @program.about %>
+  <p>
+    <br>
+    <%=h @program.about %>
+  </p>
+<% end %>
+
+
+
+  <% if @program.organization %>
+    <p>
+      <b>Organization:</b> 
+      <%=h @program.organization_id %>
+    </p>
+  <% end %>
+
+<p>
+  <b>Managed by:</b>
+  <% #h @program.managed_by_user_id %>
+
+  <!-- if member_goal.user.show_gravatar -->
+  <% gravatar = "http://www.gravatar.com/avatar/#{Digest::MD5.hexdigest(@program.managed_by_user.email.downcase)}?d=mm" %>
+  <a href="/users/<%= @program.managed_by_user.id.to_s %>/profile"><img id="grav1" title="<%= @program.managed_by_user.profile_info %>" src="<%= gravatar %>&s=34" style="padding-top:2px;" /></a>            
+  <script type='text/javascript'>
+  $('#grav1').tipsy();
+  </script>
+
+  <% if current_user %>
+    <% if (current_user.id == @program.managed_by_user.id) %>
+        <a href="#" class="btn disabled"><i class="icon-envelope"></i></a>
+    <% else %>
+      <a href="/tomessages/new?from_type=member&tomessage_subject=hello&to_id=<%= @program.managed_by_user.id %>" id='send_message_<%= @program.managed_by_user.id.to_s %>' class="btn " style="font-size:1.5em;" title='Send a message to <%= @program.managed_by_user.name %>!'> <i class="icon-envelope"></i></a>
+    <% end %>
+  <% else %>
+      <a href="/" id='send_message_<%= @program.managed_by_user.id.to_s %>' class="btn " style="font-size:1.5em;" title='You must be logged in to message <%= @program.managed_by_user.name %>!'> <i class="icon-envelope"></i></a>
+  <% end %>
+  <script type='text/javascript'>
+  $('#send_message_<%= @program.managed_by_user.id.to_s %>').tipsy();
+  </script>
+
+
+
+  <%= @program.managed_by_user.name %>
+</p>
+
+<% if @program.actions_list_dropdown %>
+
+<% else %>
+
+
+<% end %>
+
+
+</div>
+
+<hr>
+<h3>Action Items for this Program</h3>
+
+<div class="" style="border-style:dotted;border-width:1px;padding:10px;margin:10px;margin-left:0px;">
+<% @program_templates = ProgramTemplate.find(:all, :conditions => "program_id = '#{@program.id}'", :order => "listing_position") %>
+
+
+<% 
+url_prefix = "/" 
+url_prefix_header = ""
+if current_user
+    url_prefix = "/goals/new"
+    url_prefix_header = "/goals"
+end
+%>
+
+<% @program_templates.each do |program_template| %>
+
+  <br>
+
+
+    <h4><%= program_template.template.template_tagline %></h4>
+
+
+
+                        <%= program_template.template.template_description %>
+                        <br>
+                        <br>
+                        <span style="color:#000000;">Daily question:</span> "Were you successful today at <%= program_template.template.response_question %>?"
+                        <br>
+                        <span style="color:#000000;">Goal: </span> <%= program_template.template.goal_days_per_week %> days/week
+                        <br>
+                        <br>
+                        <a href="<%= url_prefix %>?goal_template_text=<%= program_template.template.response_question%>&category=<%= program_template.template.category%>&template_user_parent_goal_id=<%=program_template.template.id.to_s%>&goal_added_through_template_from_program_id=<%= @program.id.to_s %>" class="btn green">+ Start Doing This One</a><!-- or <a href="#" class="btn start">Start the Full Challenge</a>-->
+                        <hr>
+
+
+
+    <br>
+<% end %>
+
+</div>
