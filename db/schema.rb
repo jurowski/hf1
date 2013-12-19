@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131120121055) do
+ActiveRecord::Schema.define(:version => 20131219113052) do
 
   create_table "achievemints", :force => true do |t|
     t.string   "name"
@@ -608,6 +608,7 @@ ActiveRecord::Schema.define(:version => 20131120121055) do
     t.string   "difficulty_rating"
     t.string   "version_number"
     t.string   "status"
+    t.boolean  "actions_list_dropdown"
   end
 
   create_table "promotion1s", :force => true do |t|

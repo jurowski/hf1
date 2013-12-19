@@ -1,17 +1,28 @@
-<p>
-  <b>Name:</b>
-  <%=h @program.name %>
-</p>
 
-<p>
-  <b>Organization:</b>
-  <%=h @program.organization_id %>
-</p>
+
+<h1>Program: <%= @program.name %></h1>
+
+<div style="background-color:#eeeeee;padding:10px;padding-top:5px;margin:10px;margin-left:0px;">
+
+  <% if @program.organization %>
+    <p>
+      <b>Organization:</b>
+      <%=h @program.organization_id %>
+    </p>
+  <% end %>
 
 <p>
   <b>Managed by user:</b>
-  <%=h @program.managed_by_user_id %>
+  <% #h @program.managed_by_user_id %>
+  <%= @program.managed_by_user.name %> (<%= @program.managed_by_user.email %>)
 </p>
+
+<% if @program.about %>
+<p>
+  <b>About:</b>
+  <%=h @program.about %>
+</p>
+<% end %>
 
 <p>
   <b>Image logo:</b>
@@ -21,40 +32,40 @@
 
 
 
-<p>
-  <b>About:</b>
-  <%=h @program.about %>
-</p>
-
-<p>
-  <b>Joined count:</b>
-  <%=h @program.joined_count %>
-</p>
-
-<p>
-  <b>Current count:</b>
-  <%=h @program.current_count %>
-</p>
-
-<p>
-  <b>Rating stars:</b>
-  <%=h @program.rating_stars %>
-</p>
-
-<p>
-  <b>Rating votes:</b>
-  <%=h @program.rating_votes %>
-</p>
+<% if @program.actions_list_dropdown %>
+  <input type=checkbox checked disabled>
+<% else %>
+  <input type=checkbox disabled>
+<% end %>
+ Display actions as a dropdown instead of a list
 
 
-<%= link_to 'Edit', edit_program_path(@program) %>
+</div>
+
+<%= link_to 'Modify Program Details', edit_program_path(@program), :class => "btn blue" %> 
+<%= link_to 'Preview Program View', '/goals?program_id=' + @program.id.to_s + '&programs=1&browse_recommended_habits=1#browse_recommended_habits', :class => "btn" %>
 <hr>
 <h3>Action Items for this Program</h3>
-<% counter = 1 %>
-<% @program.templates.each do |template| %>
-  <br><%= counter.to_s %>. <%= template.template_tagline %>
-  <% counter += 1 %>
+
+<div class="" style="border-style:dotted;border-width:1px;padding:10px;margin:10px;margin-left:0px;">
+<% @program_templates = ProgramTemplate.find(:all, :conditions => "program_id = '#{@program.id}'", :order => "listing_position") %>
+
+<% @program_templates.each do |program_template| %>
+
+  <br>
+
+    <% 
+    pos = ""
+    if program_template.listing_position
+      pos = program_template.listing_position.to_s + ". "
+    end
+    %>
+
+    <%= pos %><%= link_to program_template.template.template_tagline, program_template %>
+    <%= link_to '- Remove', program_template, :confirm => 'Drop "' + program_template.template.template_tagline + '" from this program? (this will not delete the action template itself)', :method => :delete, :class => "btn mini red" %>
+    <br>
 <% end %>
-<br>
-<a href="/program_templates/new?program_id=<%= @program.id.to_s %>" class="btn">+ Add an Action Item</a>
+
+</div>
+<a href="/program_templates/new?program_id=<%= @program.id.to_s %>" class="btn green">+ Add an Action Item</a>
 <hr>

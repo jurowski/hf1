@@ -1,14 +1,17 @@
-
+<br>
+<br>
 <p>
-  <b>Program:</b>
-  <%=h @program_template.program.name %>
+  <%= link_to 'Modify', edit_program_template_path(@program_template), :class => "btn" %>
+  <b>This template goal:</b>
+  <%= link_to @program_template.template.title, @program_template.template %>
+
+  <% if @program_template.listing_position %>
+  	<b> is action item #<%= @program_template.listing_position %> in this program:</b>
+  <% else %>
+  	<b> is used in this program:</b>
+  <% end %>
+
+   <%= link_to @program_template.program.name, @program_template.program %>
 </p>
 
-<p>
-  <b>Template goal:</b>
-  <%=h @program_template.template.title %>
-</p>
 
-
-<%= link_to 'Edit', edit_program_template_path(@program_template) %> |
-<%= link_to 'Back', program_templates_path %>

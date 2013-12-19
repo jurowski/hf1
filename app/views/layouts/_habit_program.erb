@@ -40,7 +40,8 @@ end
         <h2>
             <% if @program.managed_by_user %>
                 <% if current_user and @program.managed_by_user == current_user %>
-                    <a href="/programs/<%= @program.id.to_s %>/edit" class="btn">Edit Program</a>
+                    <%= link_to "Show Details", @program, :class => "btn blue" %>
+                    <a href="/programs/<%= @program.id.to_s %>/edit" class="btn blue">Edit Program</a>
                 <% end %>
             <% end %>
             <%= @program.name %></h2>

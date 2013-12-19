@@ -9,7 +9,7 @@ end
 %>
 
 
-<h1>Editing program_template</h1>
+<h1>Action Item Edit</h1>
 
 <% form_for(@program_template) do |f| %>
   <%= f.error_messages %>
@@ -31,9 +31,10 @@ end
       <% else %>
         <%= f.collection_select :template_goal_id, current_user.templates_i_own, :id, :title, :prompt => "Choose a goal template" %>
       <% end %>
+
   </p>
   <p>
-    Listing position: <%= f.text_field :listing_position %>
+    Listing position: <%= f.text_field :listing_position, :size => 2, :style => "width:20px;" %>
   </p>
   <p>
     <%= f.submit 'Update' %>
