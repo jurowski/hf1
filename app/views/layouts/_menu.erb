@@ -67,11 +67,16 @@
           ><%= link_to "<i class='icon-globe'></i>Community", "/cheers" %></li>
 
 
-
-          <li>
+          <% if @cn == "programs" and @ca == "list" %>
+            <li class="active">
+          <% else %>
+            <li>
+          <% end %>
 <!--           Suggested:
           <a href="/goals?templates=1&browse_recommended_habits=1&popular=1#browse_recommended_habits">Popular</a> -->
-          <a href="/goals?programs=1&templates=1&browse_recommended_habits=1#browse_recommended_habits">                <i class="icon-cogs"></i> Programs</a>
+
+<!--          <a href="/goals?programs=1&templates=1&browse_recommended_habits=1#browse_recommended_habits">-->               <a href="/programs/1/list">
+            <i class="icon-cogs"></i> Programs</a>
           </li>
 
 
@@ -84,7 +89,7 @@
           <% end %>
 
           <% if current_user and current_user.can_make_templates %>
-            <% if @cn == "programs" %> 
+            <% if @cn == "programs" and @ca == "index" %> 
               <li class="active">
                 <a href="/programs">
                 <i class="icon-cogs"></i> 
