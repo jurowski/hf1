@@ -9,7 +9,7 @@
 </h1>
 
 
-<div style="background-color:#ffffff;padding:10px;padding-top:5px;margin:10px;margin-left:0px;">
+<div style="border-style:dotted;border-width:1px;background-color:#ffffff;padding:10px;padding-top:5px;margin:10px;margin-left:0px;">
 
 
 
@@ -35,8 +35,12 @@
     </p>
   <% end %>
 
+<br>
+<div style="background-color:#efefef;padding:5px;">
 <p>
-  <b>Goalista:</b>
+  <b>Managed by:</b>
+    <%= @program.managed_by_user.name %>
+
   <br>
   <% #h @program.managed_by_user_id %>
 
@@ -62,8 +66,8 @@
 
   <br>
 
-  <%= @program.managed_by_user.name %>
 </p>
+</div>
 
 <% if @program.actions_list_dropdown %>
 
@@ -75,10 +79,10 @@
 
 </div>
 
-<hr>
+<br>
 <h3>Action Items for this Program</h3>
 
-<div class="" style="border-style:dotted;border-width:1px;padding:10px;margin:10px;margin-left:0px;">
+<div class="" style="border-style:dotted;border-width:1px;padding:10px;margin:10px;margin-left:30px;">
 <% @program_templates = ProgramTemplate.find(:all, :conditions => "program_id = '#{@program.id}'", :order => "listing_position") %>
 
 
@@ -91,29 +95,62 @@ if current_user
 end
 %>
 
-<% @program_templates.each do |program_template| %>
 
-  <br>
+<% if @program.actions_list_dropdown %>
+  <!-- show the action items in a pulldown -->
+
+  <form action="<%= url_prefix %>">
+
+    <input type="hidden" name="goal_added_through_template_from_program_id" value="<%= @program.id.to_s%>"/>
+    <select style="width:350px;" name="template_user_parent_goal_id">
+      <option>-- Choose an Empowering Habit  --</option>
+
+      <% @program_templates.each do |program_template| %>
+
+        <option value="<%=program_template.template.id.to_s%>">
+          <%= program_template.template.template_tagline %>
+        </option>
+          
+      <% end %>
+    </select>
+
+    <input type="submit" value="+ Start Doing This Now!" class="btn green">
+  </form>
+  
 
 
-    <h2><%= program_template.template.template_tagline %></h2>
+<% else %>
+  <!-- show the action items in a list -->
 
+  <% counter = 0 %>
+  <% @program_templates.each do |program_template| %>
 
+    <% counter += 1 %>
 
-    <%= program_template.template.template_description %>
     <br>
-    <br>
-    <span style="color:#000000;">Daily question:</span> <mark>"Were you successful today at <%= program_template.template.response_question %>?"</mark>
-    <br>
-    <span style="color:#000000;">Goal: </span> <%= program_template.template.goal_days_per_week %> days/week
-    <br>
-    <br>
-    <a href="<%= url_prefix %>?goal_template_text=<%= program_template.template.response_question%>&category=<%= program_template.template.category%>&template_user_parent_goal_id=<%=program_template.template.id.to_s%>&goal_added_through_template_from_program_id=<%= @program.id.to_s %>" class="btn green">+ Start Doing This One</a><!-- or <a href="#" class="btn start">Start the Full Challenge</a>-->
-    <hr>
+
+
+      <h2><%= counter.to_s %>. <%= program_template.template.template_tagline %></h2>
 
 
 
-    <br>
-<% end %>
+      <%= program_template.template.template_description %>
+      <br>
+      <br>
+      <span style="color:#000000;">Daily question:</span> <mark>"Were you successful today at <%= program_template.template.response_question %>?"</mark>
+      <br>
+      <span style="color:#000000;">Goal: </span> <%= program_template.template.goal_days_per_week %> days/week
+      <br>
+      <br>
+      <a href="<%= url_prefix %>?goal_template_text=<%= program_template.template.response_question%>&category=<%= program_template.template.category%>&template_user_parent_goal_id=<%=program_template.template.id.to_s%>&goal_added_through_template_from_program_id=<%= @program.id.to_s %>" class="btn green">+ Start Doing This One</a><!-- or <a href="#" class="btn start">Start the Full Challenge</a>-->
+      <hr>
+
+
+
+      <br>
+  <% end ### end (list version) @program_templates.each do |program_template|%>
+
+<% end ### if @program.actions_list_dropdown %>
+
 
 </div>

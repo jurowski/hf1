@@ -34,6 +34,11 @@ make this (already applied in prod. db) respected in the UI:
 ESFL
 -----------
 
+!!!! while it now adds the template, at least when not logged in, it does not add the "program_id" to the new goal
+
+!!! when "starting" but not yet signed up, plop a notice at the top that we'll get started w/ the program and goal (name it) once you create an account
+
+
 --Have John's photo as asking the daily question on the templated ESFL ones.
 
 --At the point of adding the first (generic) habit, actually give them the choice of choosing from a pulldown of a list of empowering habits (not the disempowering habits).
