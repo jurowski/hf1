@@ -2,6 +2,10 @@
 
 <% @programs.each do |program| %>
     <br><%= link_to program.name, '/programs/' + program.id.to_s + '/view' %>
+    <br><%=h program.about %>
+    <br>
+    <hr>
+
 <% end %>
 
 <br />
