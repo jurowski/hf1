@@ -1,7 +1,14 @@
 <h3>My Programs</h3>
 
 <% @programs.each do |program| %>
-    <br><%= link_to program.name, program %>
+
+	<br>
+	<% if program.status and program.status == "live" %>
+	  <mark>Published</mark> 
+	<% else %>
+	  (dev) 
+	<% end %>
+    <%= link_to program.name, program %>
 <% end %>
 
 <br />
