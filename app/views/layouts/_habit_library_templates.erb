@@ -82,9 +82,15 @@
 
                     <div>
 <!--                <div style="background-color:#efefef;margin-top:3px;padding:5px;"> -->
-                        <a href="<%= url_prefix_header %>?program_id=<%= program.id.to_s %>&programs=1&browse_recommended_habits=1#browse_recommended_habits" style="font-size:2em;">
+
+
+<!--                        <a href="<= url_prefix_header %>?program_id=<= program.id.to_s >&programs=1&browse_recommended_habits=1#browse_recommended_habits" style="font-size:2em;">
                         More Info
                         </a>
+
+-->
+
+                            <a href="<%= url_prefix_header %>/programs/<%= program.id.to_s %>/view" style="font-size:2em;">More Info</a>
                     </div>
                 </li>
             <% end %>

@@ -2,9 +2,9 @@ class ProgramsController < ApplicationController
 
   layout "application"
 
-  before_filter :require_user, :except => [:view]
-  before_filter :require_user_can_make_templates, :except => [:view]
-  before_filter :require_program_scope, :except => [:view]
+  before_filter :require_user, :except => [:view, :list]
+  before_filter :require_user_can_make_templates, :except => [:view, :list]
+  before_filter :require_program_scope, :except => [:view, :list]
 
   ### Do you want to be able to create new users when someone is logged in?
   #before_filter :require_no_user, :only => [:new, :create]
@@ -26,6 +26,22 @@ class ProgramsController < ApplicationController
 
     respond_to do |format|
       format.html # index.html.erb
+      format.xml  { render :xml => @programs }
+    end
+  end
+
+
+  ### kind of like "index" but for the public to view... production programs only
+  ### so where program.status == "live" and not "dev"
+
+  # GET /programs/list
+  # GET /programs/list.xml
+  def list
+
+    @programs = Program.find(:all, :conditions => "status = 'live'")
+
+    respond_to do |format|
+      format.html # list.html.erb
       format.xml  { render :xml => @programs }
     end
   end
