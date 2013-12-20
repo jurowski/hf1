@@ -70,13 +70,14 @@
 
 			
 			<div style="padding-top:5px;">
-			<span style="font-size:.7em;"><%= time_ago_in_words(e.updated_at) %> ago...</span>
-			<br>
 
 			<% if !e.encourage_type_new_goal_bool and !e.encourage_type_new_checkpoint_bool %>
 				<!-- IT IS A SLACKER -->
 
 				<% if !@hide_slackers %>
+
+					<span style="font-size:.7em;"><%= time_ago_in_words(e.updated_at) %> ago...</span>
+					<br>
 
 					<image src="/images/icons/nothing_50px.png" id="sprout_<%= e.goal_id.to_s %>" title="This Habit Needs a Boost!"/>
 					<script type='text/javascript'>
@@ -167,6 +168,9 @@
 
 			<% else %>
 				<!-- IT IS EITHER A CONGRATS CHECKPOINT OR A NEW GOAL -->
+
+				<span style="font-size:.7em;"><%= time_ago_in_words(e.updated_at) %> ago...</span>
+				<br>
 
 
 				<% if e.encourage_type_new_goal_bool %>
