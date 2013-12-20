@@ -31,6 +31,15 @@
 </p>
 
 
+<% if @program.status and @program.status == "live" %>
+  <input type=checkbox checked disabled>
+<% else %>
+  <input type=checkbox disabled>
+<% end %>
+ Publish
+
+ <br>
+
 
 <% if @program.actions_list_dropdown %>
   <input type=checkbox checked disabled>

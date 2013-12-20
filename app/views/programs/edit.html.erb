@@ -34,6 +34,14 @@
   <p>
     <b>About:</b><%= f.text_area :about %>
   </p>
+
+      <input id="program_organization_id" name="program[organization_id]" placeholder="ex: 72" size="30" type="text" />
+
+  <p>
+    <%= f.check_box(:status, options = {}, checked_value = "live", unchecked_value = "dev") %> Publish (leave unchecked if you're not ready to display it to the world)
+  </p>
+    
+
   <p>
     <%= f.check_box(:actions_list_dropdown, options = {}, checked_value = "true", unchecked_value = "false") %> Display action items as a dropdown instead of a list
   </p>
