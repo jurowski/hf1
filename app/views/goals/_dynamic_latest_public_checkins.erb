@@ -1,3 +1,8 @@
+<% 
+### whether to display in the feed those who haven't checked in for a while 
+@hide_slackers = true 
+%>
+
 <!-- Time.now() -->
 <div style="padding:5px;"> 
 <!-- <div style="background-color:#F7F8E0;padding:5px;">  -->
@@ -22,12 +27,27 @@
 	<% 
 	if current_user.feed_filter_hide_pmo
 
-		encourage_items = EncourageItem.find(:all, :conditions => "goal_category != 'PMO' and goal_category != 'Drugs' and goal_category != 'Drinking' and checkpoint_date >= '#{current_user.dyesterday }' or encourage_type_new_goal_bool = '1'", :order => "id DESC", :limit => (max + 10))
+		# if @hide_slackers
 
+
+
+		# 	encourage_items = EncourageItem.find(:all, :conditions => "goal_category != 'PMO' and goal_category != 'Drugs' and goal_category != 'Drinking' and checkpoint_date >= '#{current_user.dyesterday }' and (encourage_type_new_goal_bool = '1' or encourage_type_new_checkpoint_bool = '1')", :order => "id DESC", :limit => (max + 10))
+
+
+		# else
+
+		encourage_items = EncourageItem.find(:all, :conditions => "goal_category != 'PMO' and goal_category != 'Drugs' and goal_category != 'Drinking' and checkpoint_date >= '#{current_user.dyesterday }' or encourage_type_new_goal_bool = '1'", :order => "id DESC", :limit => (max + 10))
+		# end
 	else
 
+		# if @hide_slackers
+
+		# 	encourage_items = EncourageItem.find(:all, :conditions => "checkpoint_date >= '#{current_user.dyesterday }' and (encourage_type_new_goal_bool = '1' or encourage_type_new_checkpoint_bool = '1')", :order => "id DESC", :limit => (max + 10))
+
+		# else
 		encourage_items = EncourageItem.find(:all, :conditions => "checkpoint_date >= '#{current_user.dyesterday }' or encourage_type_new_goal_bool = '1'", :order => "id DESC", :limit => (max + 10))
 
+		# end
 	end
 	%>
 
@@ -56,93 +76,94 @@
 			<% if !e.encourage_type_new_goal_bool and !e.encourage_type_new_checkpoint_bool %>
 				<!-- IT IS A SLACKER -->
 
+				<% if !@hide_slackers %>
 
-				<image src="/images/icons/nothing_50px.png" id="sprout_<%= e.goal_id.to_s %>" title="This Habit Needs a Boost!"/>
-				<script type='text/javascript'>
-				$('#sprout_<%= e.goal_id.to_s %>').tipsy();
-				</script>
-
-				<% if current_user.goal_ids_that_i_follow.include?(e.goal_id) or (current_user.id == e.user_id) %>
-				    <a href="#" class="btn disabled"><i class="icon-rss"></i></a>
-				<% else %>
-			        <a href="/cheers?start_following_goal_id=<%= e.goal_id.to_s %>&email=<%= current_user.email %>" onclick="return confirm('Are you sure?')" id='follow_<%= e.goal_id.to_s %>'  class="btn" style="font-size:1.5em;" title="Follow <%= e.user_name %>'s Progress" ><i class="icon-rss"></i></a>
-			        <script type='text/javascript'>
-			            $('#follow_<%= e.goal_id.to_s %>').tipsy();
-			        </script>
-				<% end %>
-
-
-				<% if (current_user.id == e.user_id) %>
-				    <a href="#" class="btn disabled"><i class="icon-heart-empty"></i></a>
-				<% else %>
-					<a href="/tomessages/new?gid=<%=e.goal_id.to_s%>&goal_id=<%=e.goal_id.to_s%>&from_type=member&tomessage_subject=<%= e.goal_name %>&to_id=<%= e.user_id %>" id='encourage_<%= e.goal_id.to_s %>' class="btn red" style="font-size:1.5em;" title='Encourage <%= e.user_name %>!'> <i class="icon-heart-empty"></i></a> <span style="font-weight:bold;font-size:1.2em;"> 
-				<% end %>
-
-				<!-- if member_goal.user.show_gravatar -->
-				<% gravatar = "http://www.gravatar.com/avatar/#{Digest::MD5.hexdigest(e.user_email.downcase)}?d=mm" %>
-				<a href="/users/<%= e.user_id.to_s %>/profile"><img id="grav1_<%= e.goal_id.to_s %>" title="<%= e_user.profile_info %>" src="<%= gravatar %>&s=34" style="padding-top:2px;" /></a>            
-				<script type='text/javascript'>
-				$('#grav1_<%= e.goal_id.to_s %>').tipsy();
-				</script>
-
-				<% 
-				show_impact_image = false
-				impact_image = "100"
-				if e_user.impact_points
-					if e_user.impact_points >= 100 and e_user.impact_points < 250
-						show_impact_image = true
-						impact_image = "100"
-					end
-					if e_user.impact_points >= 250 and e_user.impact_points < 500
-						show_impact_image = true
-						impact_image = "250"
-					end
-					if e_user.impact_points >= 500 and e_user.impact_points < 750
-						show_impact_image = true
-						impact_image = "500"
-					end
-					if e_user.impact_points >= 750 and e_user.impact_points < 1000
-						show_impact_image = true
-						impact_image = "750"
-					end
-					if e_user.impact_points >= 1000
-						show_impact_image = true
-						impact_image = "1000"
-					end
-				end
-				%>
-				<% if show_impact_image %>
-					<img id="impact1_<%= e.goal_id.to_s %>" title="<%= e_user.impact_points.to_s %> impact points" src="/home/images/badges/badge_impact_points_<%= impact_image %>.png" />
+					<image src="/images/icons/nothing_50px.png" id="sprout_<%= e.goal_id.to_s %>" title="This Habit Needs a Boost!"/>
 					<script type='text/javascript'>
-					$('#impact1_<%= e.goal_id.to_s %>').tipsy();
+					$('#sprout_<%= e.goal_id.to_s %>').tipsy();
 					</script>
-				<% end %>
-				<!-- else -->
-				<!--img src="/home/images/default_gravatar.png" height="20px"/-->
-				<!-- end -->
 
-				<%
-				arr_subject = Array.new
-				arr_subject.push(["could use some encouragement with"])
-				arr_subject.push(["has not checked in for a while with"])
-				arr_subject.push(["needs a boost to keep"])
-
-				random_number = 0
-				random_number = rand(arr_subject.size) + 0 #between 0 and arr_subject.size
-				random_subject = arr_subject[random_number]
-
-				subject_value = random_subject.to_s
-				%>
-
-				<%= e.user_name %></span> <%= subject_value %> <span style="background-color:#FFFF99;">
+					<% if current_user.goal_ids_that_i_follow.include?(e.goal_id) or (current_user.id == e.user_id) %>
+					    <a href="#" class="btn disabled"><i class="icon-rss"></i></a>
+					<% else %>
+				        <a href="/cheers?start_following_goal_id=<%= e.goal_id.to_s %>&email=<%= current_user.email %>" onclick="return confirm('Are you sure?')" id='follow_<%= e.goal_id.to_s %>'  class="btn" style="font-size:1.5em;" title="Follow <%= e.user_name %>'s Progress" ><i class="icon-rss"></i></a>
+				        <script type='text/javascript'>
+				            $('#follow_<%= e.goal_id.to_s %>').tipsy();
+				        </script>
+					<% end %>
 
 
-				<a href="/goals/new?goal_template_text=<%= e.goal_name %>&category=<%= e.goal_category %>" id='start_<%= e.goal_id.to_s %>' title="Do this! Start <%= e.goal_name %>!"><%= e.goal_name %></a><script type='text/javascript'>$('#start_<%= e.goal_id.to_s %>').tipsy();</script></span>
-				<script type='text/javascript'>
-				$('#encourage_<%= e.goal_id.to_s %>').tipsy();
-				</script>   
+					<% if (current_user.id == e.user_id) %>
+					    <a href="#" class="btn disabled"><i class="icon-heart-empty"></i></a>
+					<% else %>
+						<a href="/tomessages/new?gid=<%=e.goal_id.to_s%>&goal_id=<%=e.goal_id.to_s%>&from_type=member&tomessage_subject=<%= e.goal_name %>&to_id=<%= e.user_id %>" id='encourage_<%= e.goal_id.to_s %>' class="btn red" style="font-size:1.5em;" title='Encourage <%= e.user_name %>!'> <i class="icon-heart-empty"></i></a> <span style="font-weight:bold;font-size:1.2em;"> 
+					<% end %>
+
+					<!-- if member_goal.user.show_gravatar -->
+					<% gravatar = "http://www.gravatar.com/avatar/#{Digest::MD5.hexdigest(e.user_email.downcase)}?d=mm" %>
+					<a href="/users/<%= e.user_id.to_s %>/profile"><img id="grav1_<%= e.goal_id.to_s %>" title="<%= e_user.profile_info %>" src="<%= gravatar %>&s=34" style="padding-top:2px;" /></a>            
+					<script type='text/javascript'>
+					$('#grav1_<%= e.goal_id.to_s %>').tipsy();
+					</script>
+
+					<% 
+					show_impact_image = false
+					impact_image = "100"
+					if e_user.impact_points
+						if e_user.impact_points >= 100 and e_user.impact_points < 250
+							show_impact_image = true
+							impact_image = "100"
+						end
+						if e_user.impact_points >= 250 and e_user.impact_points < 500
+							show_impact_image = true
+							impact_image = "250"
+						end
+						if e_user.impact_points >= 500 and e_user.impact_points < 750
+							show_impact_image = true
+							impact_image = "500"
+						end
+						if e_user.impact_points >= 750 and e_user.impact_points < 1000
+							show_impact_image = true
+							impact_image = "750"
+						end
+						if e_user.impact_points >= 1000
+							show_impact_image = true
+							impact_image = "1000"
+						end
+					end
+					%>
+					<% if show_impact_image %>
+						<img id="impact1_<%= e.goal_id.to_s %>" title="<%= e_user.impact_points.to_s %> impact points" src="/home/images/badges/badge_impact_points_<%= impact_image %>.png" />
+						<script type='text/javascript'>
+						$('#impact1_<%= e.goal_id.to_s %>').tipsy();
+						</script>
+					<% end %>
+					<!-- else -->
+					<!--img src="/home/images/default_gravatar.png" height="20px"/-->
+					<!-- end -->
+
+					<%
+					arr_subject = Array.new
+					arr_subject.push(["could use some encouragement with"])
+					arr_subject.push(["has not checked in for a while with"])
+					arr_subject.push(["needs a boost to keep"])
+
+					random_number = 0
+					random_number = rand(arr_subject.size) + 0 #between 0 and arr_subject.size
+					random_subject = arr_subject[random_number]
+
+					subject_value = random_subject.to_s
+					%>
+
+					<%= e.user_name %></span> <%= subject_value %> <span style="background-color:#FFFF99;">
 
 
+					<a href="/goals/new?goal_template_text=<%= e.goal_name %>&category=<%= e.goal_category %>" id='start_<%= e.goal_id.to_s %>' title="Do this! Start <%= e.goal_name %>!"><%= e.goal_name %></a><script type='text/javascript'>$('#start_<%= e.goal_id.to_s %>').tipsy();</script></span>
+					<script type='text/javascript'>
+					$('#encourage_<%= e.goal_id.to_s %>').tipsy();
+					</script>   
+
+				<% end #if !@hide_slackers %>
 
 			<% else %>
 				<!-- IT IS EITHER A CONGRATS CHECKPOINT OR A NEW GOAL -->
