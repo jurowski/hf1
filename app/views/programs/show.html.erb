@@ -52,7 +52,7 @@
 </div>
 
 <%= link_to 'Modify Program Details', edit_program_path(@program), :class => "btn blue" %> 
-<%= link_to 'Preview Program View', '/goals?program_id=' + @program.id.to_s + '&programs=1&browse_recommended_habits=1#browse_recommended_habits', :class => "btn" %>
+<%= link_to 'Preview Program View', '/programs/' + @program.id.to_s + '/view', :class => "btn" %>
 <hr>
 <h3>Action Items for this Program</h3>
 
