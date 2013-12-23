@@ -518,7 +518,10 @@ for goal in current_user.active_goals_sorted_by_next_action_day
                     <!-- if this goal was added through a template that belongs to a program -->
                     <!-- via goal_added_through_template_from_program_id -->
                     <% if goal.program %>
-                        <a href="/goals/?program_id=<%= goal.program.id.to_s %>&programs=1&browse_recommended_habits=1#browse_recommended_habits"><%= goal.program.name %> >></a> 
+<!--                         <a href="/goals/?program_id=<%= goal.program.id.to_s %>&programs=1&browse_recommended_habits=1#browse_recommended_habits">
+ -->                        <a href="/programs/<%= goal.program.id.to_s %>/view">
+
+                            <%= goal.program.name %> >></a> 
                     <% end %>
                     <%= goal.template_user_parent_goal.template_tagline %>
                 <% else %>

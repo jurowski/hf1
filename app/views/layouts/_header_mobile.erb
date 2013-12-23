@@ -28,11 +28,33 @@
           </div>
       <% end %>
 
+
+      <% if params[:template_user_parent_goal_id] %>
+        <%
+        goal = Goal.find(:first, :conditions => "id = '#{params[:template_user_parent_goal_id].to_i}'")
+        if goal
+          %>
+          <div class="pane info" style="margin:20px;">
+            <h3>To started the habit of "<%= goal.title %>", simply sign up below!</h3>
+          </div>
+          <%
+        end
+        %>
+      <% end %>
+
+
       <a name="signup" id="signup"></a>
         <form id="form_signup1" name="form_signup1" action="/quicksignup_v2">
 
 
           <%
+          if params[:goal_added_through_template_from_program_id]
+            %>
+            <input type="hidden" name="goal_added_through_template_from_program_id" value="<%= params[:goal_added_through_template_from_program_id] %>">
+            <%
+          end
+
+
           if params[:invitation_id]
             %>
             <input type="hidden" name="invitation_id" value="<%= params[:invitation_id] %>">

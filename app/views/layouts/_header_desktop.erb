@@ -79,6 +79,13 @@
 
 
           <%
+
+          if params[:goal_added_through_template_from_program_id]
+            %>
+            <input type="hidden" name="goal_added_through_template_from_program_id" value="<%= params[:goal_added_through_template_from_program_id] %>">
+            <%
+          end
+
           if params[:invitation_id]
             %>
             <input type="hidden" name="invitation_id" value="<%= params[:invitation_id] %>">
@@ -315,6 +322,21 @@
                   <% end %>
               </div>
               </center>
+          <% end %>
+
+          <% if params[:template_user_parent_goal_id] %>
+            <%
+            goal = Goal.find(:first, :conditions => "id = '#{params[:template_user_parent_goal_id].to_i}'")
+            if goal
+              %>
+              <center>
+              <div class="pane info" style="width:50%;padding:10px;">
+                <h3>To started the habit of "<%= goal.title %>", simply sign up above!</h3>
+              </div>
+              </center>
+              <%
+            end
+            %>
           <% end %>
 
 

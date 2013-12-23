@@ -34,8 +34,6 @@ make this (already applied in prod. db) respected in the UI:
 ESFL
 -----------
 
-!!!! while it now adds the template, at least when not logged in, it does not add the "program_id" to the new goal
-
 !!! when "starting" but not yet signed up, plop a notice at the top that we'll get started w/ the program and goal (name it) once you create an account
 
 
@@ -49,6 +47,12 @@ ESFL
 
 --Landing Page: "So, one general landing place inside HF for buyers who click the link. Then a dropdown of the Empowering Habits they saw listed in the book (Empowering only, not Destructive)" --Kevin Rogers
 
+--(now that the code is there), TEST whether sending an invite to another person from a program-owned template goal also adds their new goal to that program
+
+-----------------------------
+stair climbing for UWHealth
+-----------------------------
+(see email from diane scherschel)
 
 
 --------------------------------------

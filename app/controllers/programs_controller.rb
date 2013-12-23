@@ -2,9 +2,9 @@ class ProgramsController < ApplicationController
 
   layout "application"
 
-  before_filter :require_user, :except => [:view, :list]
-  before_filter :require_user_can_make_templates, :except => [:view, :list]
-  before_filter :require_program_scope, :except => [:view, :list]
+  before_filter :require_user, :except => [:view, :index, :list]
+  before_filter :require_user_can_make_templates, :except => [:view, :index, :list]
+  before_filter :require_program_scope, :except => [:view, :index, :list]
 
   ### Do you want to be able to create new users when someone is logged in?
   #before_filter :require_no_user, :only => [:new, :create]
@@ -17,17 +17,25 @@ class ProgramsController < ApplicationController
   # GET /programs.xml
   def index
 
-    @programs = Array.new()
-    if current_user.is_admin
-      @programs = Program.all
+    if !current_user
+      ### redirect to the "list" action
+      first_program = Program.find(:first)
+      redirect_to '/programs/list/' + first_program.id.to_s
     else
-      @programs = Program.find(:all, :conditions => "managed_by_user_id = '#{current_user.id}'")
+      @programs = Array.new()
+      if current_user.is_admin
+        @programs = Program.all
+      else
+        @programs = Program.find(:all, :conditions => "managed_by_user_id = '#{current_user.id}'")
+      end
+
+      respond_to do |format|
+        format.html # index.html.erb
+        format.xml  { render :xml => @programs }
+      end
+
     end
 
-    respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render :xml => @programs }
-    end
   end
 
 
@@ -37,6 +45,8 @@ class ProgramsController < ApplicationController
   # GET /programs/list
   # GET /programs/list.xml
   def list
+
+
 
     @programs = Program.find(:all, :conditions => "status = 'live'")
 

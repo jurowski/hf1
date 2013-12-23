@@ -655,9 +655,21 @@ class UsersController < ApplicationController
               #http://localhost:3000?template_user_parent_goal_id=127494
               
 
+
               if params[:template_user_parent_goal_id]
                 redirect_url_string += "&template_user_parent_goal_id=" + params[:template_user_parent_goal_id]
+
+                #### if also part of a program
+                if params[:goal_added_through_template_from_program_id]
+                  redirect_url_string += "&goal_added_through_template_from_program_id=" + params[:goal_added_through_template_from_program_id]
+                else
+                  new_goal = Goal.find(:first, :conditions => "id = '#{params[:template_user_parent_goal_id].to_i}'")
+                  if new_goal and new_goal.goal_added_through_template_from_program_id
+                    redirect_url_string += "&goal_added_through_template_from_program_id=" + new_goal.goal_added_through_template_from_program_id.to_s
+                  end
+                end
               end
+              
               if params[:goal_template_text]
                 redirect_url_string += "&goal_template_text=" + params[:goal_template_text]
                 #goal_template_text = "&goal_template_text=" + params[:goal_template_text]
@@ -697,6 +709,9 @@ class UsersController < ApplicationController
               end
               if params[:goal_template_text]
                 redirect_url_string += "&goal_template_text=" + params[:goal_template_text]
+              end
+              if params[:goal_added_through_template_from_program_id]
+                redirect_url_string += "&goal_added_through_template_from_program_id=" + params[:goal_added_through_template_from_program_id]
               end
 
             end

@@ -136,9 +136,10 @@ ActionController::Routing::Routes.draw do |map|
   map.connect 'programs/:id/view', :controller => 'programs', :action => 'view'
 
   ### wanted to do map.connect 'programs/list' but it kept 
-  ### giving an error message about not being able to find id 0
-  map.connect 'programs/:id/list', :controller => 'programs', :action => 'list'
-
+  ### giving an error message about not being able to find id 0  map.connect 'programs/:id/list', :controller => 'programs', :action => 'list'
+  ### so instead having people go to 'programs/list/1'
+  ### and this also does not work:
+  #map.connect 'programs/list', :controller => 'programs', :action => 'list', :id => '1'
 
   map.connect 'goals/:id/shared', :controller => 'goals', :action => 'shared'
 
