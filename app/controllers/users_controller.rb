@@ -709,7 +709,7 @@ class UsersController < ApplicationController
                 redirect_url_string += "&template_user_parent_goal_id=" + params[:template_user_parent_goal_id]
               else
                 if session[:template_user_parent_goal_id]
-                  redirect_url_string += "&template_user_parent_goal_id=" + session[:template_user_parent_goal_id]
+                  redirect_url_string += "&template_user_parent_goal_id=" + session[:template_user_parent_goal_id].to_s
                 end                
               end
               if params[:goal_template_text]
@@ -719,7 +719,7 @@ class UsersController < ApplicationController
                 redirect_url_string += "&goal_added_through_template_from_program_id=" + params[:goal_added_through_template_from_program_id]
               else
                 if session[:goal_added_through_template_from_program_id]
-                  redirect_url_string += "&goal_added_through_template_from_program_id=" + session[:goal_added_through_template_from_program_id]
+                  redirect_url_string += "&goal_added_through_template_from_program_id=" + session[:goal_added_through_template_from_program_id].to_s
                 end                
               end
 
