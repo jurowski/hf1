@@ -669,7 +669,7 @@ class UsersController < ApplicationController
                   end
                 end
               end
-              
+
               if params[:goal_template_text]
                 redirect_url_string += "&goal_template_text=" + params[:goal_template_text]
                 #goal_template_text = "&goal_template_text=" + params[:goal_template_text]
@@ -704,14 +704,23 @@ class UsersController < ApplicationController
               if params[:category]
                 redirect_url_string += "&category=" + params[:category]
               end
+
               if params[:template_user_parent_goal_id]
                 redirect_url_string += "&template_user_parent_goal_id=" + params[:template_user_parent_goal_id]
+              else
+                if session[:template_user_parent_goal_id]
+                  redirect_url_string += "&template_user_parent_goal_id=" + session[:template_user_parent_goal_id]
+                end                
               end
               if params[:goal_template_text]
                 redirect_url_string += "&goal_template_text=" + params[:goal_template_text]
               end
               if params[:goal_added_through_template_from_program_id]
                 redirect_url_string += "&goal_added_through_template_from_program_id=" + params[:goal_added_through_template_from_program_id]
+              else
+                if session[:goal_added_through_template_from_program_id]
+                  redirect_url_string += "&goal_added_through_template_from_program_id=" + session[:goal_added_through_template_from_program_id]
+                end                
               end
 
             end

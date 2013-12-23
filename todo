@@ -34,6 +34,10 @@ make this (already applied in prod. db) respected in the UI:
 ESFL
 -----------
 
+-- when signing up via FB, it ignores all params!!
+it just goes instead to: /goals/new?welcome=1
+
+
 deployed, but TEST IN PROD: !!! when "starting" but not yet signed up, plop a notice at the top that we'll get started w/ the program and goal (name it) once you create an account
 
 
