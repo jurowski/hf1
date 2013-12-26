@@ -880,6 +880,11 @@ class GoalsController < ApplicationController
           else
             flash[:notice] = 'Goal was successfully created.'
 
+            ### show my PMO homies
+            if @goal.category == "PMO"
+              @goal.user.feed_filter_hide_pmo = false
+            end
+
 
             ### update last activity date
             @goal.user.last_activity_date = @goal.user.dtoday

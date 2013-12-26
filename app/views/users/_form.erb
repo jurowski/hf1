@@ -153,10 +153,12 @@
     </td>
     <td valign=top nowrap>
          &nbsp &nbsp
-    <%= form.check_box(:feed_filter_hide_pmo, options = {}, checked_value = "true", unchecked_value = "false") %> Hide goal statuses for others working on addictions to alcohol/drugs/porn
+    <%= form.check_box(:hide_feed, options = {}, checked_value = "true", unchecked_value = "false") %> Hide the activity feed on the main (My Habits) page?
+    
     
     </td>
     </tr>
+
 
     <tr>
     <td valign=top nowrap>
@@ -164,8 +166,22 @@
     </td>
     <td valign=top nowrap>
          &nbsp &nbsp
-    <%= form.check_box(:hide_feed, options = {}, checked_value = "true", unchecked_value = "false") %> Hide the activity feed on the main (My Habits) page?
-    
+
+    <%= form.check_box(:feed_filter_show_my_categories_only, options = {}, checked_value = "true", unchecked_value = "false") %> Only show activity on the main page for those who share the same categories as you
+
+    </td>
+    </tr>
+
+
+    <tr>
+    <td valign=top nowrap>
+        &nbsp
+    </td>
+    <td valign=top nowrap>
+         &nbsp &nbsp
+
+    <%= form.check_box(:feed_filter_hide_pmo, options = {}, checked_value = "true", unchecked_value = "false") %> Hide goal statuses for others working on addictions to alcohol/drugs/porn
+
     </td>
     </tr>
 

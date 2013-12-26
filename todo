@@ -34,20 +34,11 @@ make this (already applied in prod. db) respected in the UI:
 ESFL
 -----------
 
--- when signing up via FB, it ignores all params!!
-it just goes instead to: /goals/new?welcome=1
-
-
-deployed, but TEST IN PROD: !!! when "starting" but not yet signed up, plop a notice at the top that we'll get started w/ the program and goal (name it) once you create an account
 
 
 deployed, but TEST IN PROD: TEST whether sending an invite to another person from a program-owned template goal also adds their new goal to that program
 
 --Have John's photo as asking the daily question on the templated ESFL ones.
-
---At the point of adding the first (generic) habit, actually give them the choice of choosing from a pulldown of a list of empowering habits (not the disempowering habits).
-
---(done, but needs work)There is one link only, used in the book: http://habitforge.com/esfl
 
 --Do not auto-create their account when they sign up for ESFL ... wait until they click the ESFL link
 

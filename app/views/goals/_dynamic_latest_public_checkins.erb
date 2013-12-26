@@ -20,35 +20,58 @@
 	%>
 
 	<% max = session[:dynamic_latest_public_checkins_max] %>
+	<% headroom = 10 %>
 	<% counter = 0 %>
 
 	<!--Latest <= max - 1 > Successes...<br> -->
 
 	<% 
-	if current_user.feed_filter_hide_pmo
+	# if current_user.feed_filter_hide_pmo
 
-		# if @hide_slackers
+	# 	encourage_items = EncourageItem.find(:all, :conditions => "goal_category != 'PMO' and goal_category != 'Drugs' and goal_category != 'Drinking' and checkpoint_date >= '#{current_user.dyesterday }' or encourage_type_new_goal_bool = '1'", :order => "id DESC", :limit => (max + 10))
+
+	# else
+
+	# 	encourage_items = EncourageItem.find(:all, :conditions => "checkpoint_date >= '#{current_user.dyesterday }' or encourage_type_new_goal_bool = '1'", :order => "id DESC", :limit => (max + 10))
+
+	# end
+
+	encourage_conditions = ""
+
+	if current_user.feed_filter_show_my_categories_only
+
+		need_first = true
+		current_user.my_goal_categories.each do |category|
+
+			if category != ""
+				if need_first
+					need_first = false
+					encourage_conditions += "(goal_category = '" + category + "'"
+				else
+					encourage_conditions += " or goal_category = '" + category + "'"
+				end
+			end
+
+		end
+		if !need_first
+			encourage_conditions += ") and "
+		end
 
 
-
-		# 	encourage_items = EncourageItem.find(:all, :conditions => "goal_category != 'PMO' and goal_category != 'Drugs' and goal_category != 'Drinking' and checkpoint_date >= '#{current_user.dyesterday }' and (encourage_type_new_goal_bool = '1' or encourage_type_new_checkpoint_bool = '1')", :order => "id DESC", :limit => (max + 10))
-
-
-		# else
-
-		encourage_items = EncourageItem.find(:all, :conditions => "goal_category != 'PMO' and goal_category != 'Drugs' and goal_category != 'Drinking' and checkpoint_date >= '#{current_user.dyesterday }' or encourage_type_new_goal_bool = '1'", :order => "id DESC", :limit => (max + 10))
-		# end
 	else
+		### show all categories
+		### should we hide PMO, drinking and drugs?
+		if current_user.feed_filter_hide_pmo
+			encourage_conditions += "goal_category != 'PMO' and goal_category != 'Drugs' and goal_category != 'Drinking' and "
+		end
 
-		# if @hide_slackers
-
-		# 	encourage_items = EncourageItem.find(:all, :conditions => "checkpoint_date >= '#{current_user.dyesterday }' and (encourage_type_new_goal_bool = '1' or encourage_type_new_checkpoint_bool = '1')", :order => "id DESC", :limit => (max + 10))
-
-		# else
-		encourage_items = EncourageItem.find(:all, :conditions => "checkpoint_date >= '#{current_user.dyesterday }' or encourage_type_new_goal_bool = '1'", :order => "id DESC", :limit => (max + 10))
-
-		# end
 	end
+
+
+	encourage_conditions += "checkpoint_date >= '#{current_user.dyesterday }' or encourage_type_new_goal_bool = '1'"
+
+
+	encourage_items = EncourageItem.find(:all, :conditions => encourage_conditions, :order => "id DESC", :limit => (max + headroom))
 	%>
 
 

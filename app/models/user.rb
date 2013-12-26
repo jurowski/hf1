@@ -468,6 +468,8 @@ class User < ActiveRecord::Base
     return size
   end
 
+
+
   def goal_ids_that_i_follow
     goal_ids = Array.new()
     cheers = Cheer.find(:all, :conditions => "email = '#{self.email}'")
@@ -541,6 +543,16 @@ class User < ActiveRecord::Base
           size = self.active_public_goals.size
       end
       return size
+  end
+
+  def my_goal_categories
+    my_categories = Array.new()
+    self.active_goals.each do |goal|
+      my_categories << goal.category
+    end
+
+    ### return only unique values
+    return my_categories.uniq
   end
 
   def all_goals

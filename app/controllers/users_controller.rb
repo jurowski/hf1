@@ -391,6 +391,8 @@ class UsersController < ApplicationController
 
 
 
+      user.feed_filter_hide_pmo = true
+      user.feed_filter_show_my_categories_only = true
 
       user.email = @email_value
       user.email_confirmation = @email_value

@@ -65,6 +65,26 @@
 
             <div style="background-color:#eeeeee;padding:10px;padding-top:5px;margin:10px;">
               <h3>Activity Feed  <a href="/account/edit" class="btn blue mini">Edit</a></h3>
+
+
+              <% if current_user.hide_feed %>
+                <input type=checkbox checked disabled>
+              <% else %>
+                <input type=checkbox disabled>
+              <% end %>
+              Hide the activity feed on the main (My Habits) page
+
+              <br>
+
+              <% if current_user.feed_filter_show_my_categories_only %>
+                <input type=checkbox checked disabled>
+              <% else %>
+                <input type=checkbox disabled>
+              <% end %>
+              Only show activity on the main page for those who share the same categories as you
+              <br>
+
+
               <% if current_user.feed_filter_hide_pmo %>
                 <input type=checkbox checked disabled>
               <% else %>
@@ -89,14 +109,7 @@
 
               <br>
 
-              <% if current_user.hide_feed %>
-                <input type=checkbox checked disabled>
-              <% else %>
-                <input type=checkbox disabled>
-              <% end %>
-              Hide the activity feed on the main (My Habits) page?
 
-              <br>
 
               <% if current_user.premium_only_default_private_goal %>
                 <input type=checkbox checked disabled>
