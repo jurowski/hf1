@@ -927,10 +927,11 @@ class Goal < ActiveRecord::Base
 
 
             if self.status == "monitor"
-                output << "<br>"
+                output << "<div style='padding:5px;margin:5px;border-style:solid;border-color:#efefef;border-width:5px;'>"
                 output << this_week_results
-                output << "<br>"
+                output << "<br /><br />"
                 output << last_week_results
+                output << "</div>"
             end
             
 
@@ -2000,6 +2001,12 @@ logger.info("sgj:goal.rb:create_checkpoints_where_missing:POTENTIALLY DB INTENSI
     end
     last_week_result = "Last week (Mon-Sun): " + last_week_image + last_week_wins + win_or_wins + last_week_result
     
+
+    if last_week_wins == ""
+      last_week_result = ""
+    end
+
+
     return last_week_result
   end
 
@@ -2027,6 +2034,9 @@ logger.info("sgj:goal.rb:create_checkpoints_where_missing:POTENTIALLY DB INTENSI
     end
     this_week_result = "Since Monday: " + this_week_image + this_week_wins + win_or_wins + "so far this week..." + this_week_result
     
+    if this_week_wins == ""
+      this_week_result = "Your \"wins-per-week\" will show up once you're 7 days in."
+    end
 
     return this_week_result
   end
