@@ -369,9 +369,9 @@ var FormComponents = function () {
             handleNewDatetimePicker();
             handleClockfaceTimePickers();
             handleColorPicker();
-            handleSelec2();
-            handleInputMasks();
-            handleIPAddressInput();
+            //handleSelec2(); // buggy
+            //handleInputMasks(); //buggy
+            //handleIPAddressInput(); // not needed
         }
 
     };
