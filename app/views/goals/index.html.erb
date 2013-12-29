@@ -808,23 +808,62 @@ tracker_name = "<i class='icon-bar-chart'></i> Tracker"
 
 
 
+                   <% momentum = @goal.momentum %>
 
+                   <%
+                   image_number = 1
+                   if momentum >= 25
+                    image_number = 2
+                   end
+                   if momentum >= 50
+                    image_number = 3
+                   end
+                   if momentum >= 75
+                    images = 4
+                   end
+                   spin_speed = 0 
+                   if momentum > 0
+                    spin_speed = 100/momentum
+                   end
+                   %>
                    <div class="row-fluid">
-                      <div class="span4">
+                      <div class="span5">
                             <%= render :partial => "goals/stats", :locals => { :stats => @goal }  %>
                       </div>
                       <div class="margin-bottom-10 visible-phone"></div>
+
+                      <div class="span5">
+                        <img id="gear_<%= @goal.id %>" title="Inertia or Momentum is calculated by: (Success Rate Last 7 Days + Success Rate Last 30 Days) / 2)" src="/home/images/gears/gear_thick_small_orange_<%= image_number.to_s %>.png" />
+                        <script type='text/javascript'>
+                        $('#gear_<%= @goal.id.to_s %>').tipsy();
+                        </script>
+                        <style>
+ 
+                        #gear_<%= @goal.id %> {
+                            -webkit-animation: rotation <%= spin_speed%>s infinite linear;
+                        }
+
+                        @-webkit-keyframes rotation {
+                            from {-webkit-transform: rotate(0deg);}
+                            to   {-webkit-transform: rotate(359deg);}
+                        }
+                        </style>
+                        <%= momentum %>% inertia
+
+
+                      </div>
+
                     <%
                     if @goal.days_since_first_checkpoint > 30
                     %>
 
-                      <div class="span4">
+                      <div class="span5">
                          <div class="easy-pie-chart">
                             <div class="number visits"  data-percent="<%= @goal.percent_of_checkpoints_with_answer_of_yes(true) %>"><span><%= @goal.percent_of_checkpoints_with_answer_of_yes(true) %></span>%</div>Overall
                          </div>
                       </div>
                       <div class="margin-bottom-10 visible-phone"></div>
-                      <div class="span4">
+                      <div class="span5">
                          <div class="easy-pie-chart">
                             <div class="number visits"  data-percent="<%= @goal.percent_of_checkpoints_with_answer_of_yes %>"><span><%= @goal.percent_of_checkpoints_with_answer_of_yes %></span>%</div>
                             Last 30 Days
@@ -839,7 +878,7 @@ tracker_name = "<i class='icon-bar-chart'></i> Tracker"
                     if @goal.days_since_first_checkpoint <= 30
                     %>
                      <div class="margin-bottom-10 visible-phone"></div>
-                     <div class="span4">
+                     <div class="span5">
                      <div class="easy-pie-chart">
                         <div class="number visits"  data-percent="<%= @goal.percent_of_checkpoints_with_answer_of_yes %>"><span><%= @goal.percent_of_checkpoints_with_answer_of_yes %></span>%</div>
                         <%= @goal.successful_days_in_a_row_without_9s %> straight

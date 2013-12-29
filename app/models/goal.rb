@@ -1859,6 +1859,44 @@ logger.info("sgj:goal.rb:create_checkpoints_where_missing:POTENTIALLY DB INTENSI
   end
 
 
+
+  def momentum
+    momentum_rate = 0
+    success_rate_combined = 0
+    days_in = self.days_since_first_checkpoint
+
+    arr_elements = Array.new()
+    if days_in >= 7
+      arr_elements << self.success_rate_during_past_n_days(7)
+    else
+      if days_in > 0
+        arr_elements << self.success_rate_during_past_n_days(days_in)
+      end
+    end
+    if days_in >= 30
+      arr_elements << self.success_rate_during_past_n_days(30)
+    end
+
+
+    if arr_elements.size > 0
+
+      arr_elements.each do |element|
+        success_rate_combined += element
+      end
+      if success_rate_combined > 0
+        elements = 2
+        ### elements = 2 = the number of elements that ideally we'd have
+        ### so keep it at 2 even if the goal is less than 7 days old
+        momentum_rate = success_rate_combined/elements
+        
+        ### the rotation speed = momentum_rate = 100/(success_rate_combined/elements)
+      end
+    end
+
+    return momentum_rate
+
+  end
+
   def success_rate_during_past_n_days(number_of_days)
     yes_percent = 0
     relative_success_rate = 0
