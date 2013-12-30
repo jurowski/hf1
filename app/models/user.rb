@@ -548,7 +548,9 @@ class User < ActiveRecord::Base
   def my_goal_categories
     my_categories = Array.new()
     self.active_goals.each do |goal|
-      my_categories << goal.category
+      if goal.category and goal.category != ""
+        my_categories << goal.category
+      end
     end
 
     ### return only unique values

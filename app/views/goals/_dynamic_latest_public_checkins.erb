@@ -38,7 +38,7 @@
 
 	encourage_conditions = ""
 
-	if current_user.feed_filter_show_my_categories_only
+	if current_user and current_user.feed_filter_show_my_categories_only
 
 		need_first = true
 		current_user.my_goal_categories.each do |category|
