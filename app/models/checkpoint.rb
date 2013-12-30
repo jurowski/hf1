@@ -115,6 +115,7 @@ class Checkpoint < ActiveRecord::Base
                   encourage_item.goal_daysstraight = self.goal.daysstraight
                   encourage_item.goal_days_into_it = self.goal.days_into_it
                   encourage_item.goal_success_rate_percentage = self.goal.success_rate_percentage
+                  encourage_item.goal_momentum = self.goal.momentum
                   encourage_item.user_id = self.goal.user.id
                   encourage_item.user_name = self.goal.user.first_name
                   encourage_item.user_email = self.goal.user.email
@@ -229,6 +230,7 @@ class Checkpoint < ActiveRecord::Base
                           encourage_item_slack.goal_days_into_it = focus_slacker_goal.days_into_it
       # logger.info("sgj:3")
                           encourage_item_slack.goal_success_rate_percentage = focus_slacker_goal.success_rate_percentage
+                          encourage_item_slack.goal_momentum = focus_slacker_goal.momentum
                           encourage_item_slack.user_id = focus_slacker_goal.user.id
                           encourage_item_slack.user_name = focus_slacker_goal.user.first_name
                           encourage_item_slack.user_email = focus_slacker_goal.user.email

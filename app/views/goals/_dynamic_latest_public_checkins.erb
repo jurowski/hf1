@@ -76,7 +76,7 @@
 
 
 
-
+	<% arr_spin_speed = Array.new() %>
 	<% encourage_items.each do |e| %>
 
 		<% 
@@ -201,39 +201,90 @@
 				<% else %>
 
 
-					<% if e.goal_days_into_it and  e.goal_days_into_it > 30 %>
 
-						<% if e.goal_success_rate_percentage and e.goal_success_rate_percentage > 74 %>
 
-							<% found_category = false %>
+					<% if e.goal_momentum and e.goal_momentum < 75 %>
 
-							<% if !found_category and e.goal_category and e.goal_category == "Exercise" %>
-								<% found_category = true %>
-								<image src="/images/icons/sprout_grown_exercise_50px.png" id="sprout_<%= e.goal_id.to_s %>" title="Exercise Habit <%= e.goal_days_into_it %> Days in with <%= e.goal_success_rate_percentage %>% Success during the past 30 days"/>	
-							<% end %>
+	                   <% momentum = e.goal_momentum %>
 
-							<% if !found_category and e.goal_category and e.goal_category == "Diet, Healthy Foods and Water" %>
-								<% found_category = true %>
-								<image src="/images/icons/sprout_grown_food1_50px.png" id="sprout_<%= e.goal_id.to_s %>" title="Diet, Healthy Foods and Water Habit <%= e.goal_days_into_it %> Days in with <%= e.goal_success_rate_percentage %>% Success during the past 30 days"/>	
-							<% end %>
+	                   <%
+	                   image_number = 1
+	                   if momentum >= 25
+	                    image_number = 2
+	                   end
+	                   if momentum >= 50
+	                    image_number = 3
+	                   end
+	                   if momentum >= 75
+	                    images = 4
+	                   end
 
-							<% if !found_category and e.goal_category and e.goal_category == "Relationships" %>
-								<% found_category = true %>
-								<image src="/images/icons/sprout_grown_relationships_50px.png" id="sprout_<%= e.goal_id.to_s %>" title="Relationships Habit <%= e.goal_days_into_it %> Days in with <%= e.goal_success_rate_percentage %>% Success during the past 30 days"/>	
-							<% end %>
+	                   arr_spin_speed[e.goal_id] = 0 
+	                   if momentum > 0
+	                    arr_spin_speed[e.goal_id] = 100/momentum
+	                   end
+	                   %>
 
-							<% if !found_category %>
-								<% found_category = true %>
-								<image src="/images/icons/sprout_grown_50px.png" id="sprout_<%= e.goal_id.to_s %>" title="Habit <%= e.goal_days_into_it %> Days in with <%= e.goal_success_rate_percentage %>% Success during the past 30 days"/>	
-							<% end %>
+                        <img id="gear_<%= e.goal_id.to_s %>" title="<%= momentum %>% Inertia (Last 7 Days + Last 30 Days) / 2" src="/home/images/gears/gear_thick_small_orange_<%= image_number.to_s %>.png" />
+                        <script type='text/javascript'>
+                        $('#gear_<%= e.goal_id.to_s %>').tipsy();
+                        </script>
+                        <style>
+ 
+                        #gear_<%= e.goal_id.to_s %> {
+                            -webkit-animation: rotation <%= arr_spin_speed[e.goal_id]%>s infinite linear;
+                        }
 
-						<% else %>
-							<image src="/images/icons/sprout_growing_water_50px.png" id="sprout_<%= e.goal_id.to_s %>" title="Growing this Habit: <%= e.goal_days_into_it %> Days in with <%= e.goal_success_rate_percentage %>% Success during the past 30 days" />
-						<% end %> 
+                        @-webkit-keyframes rotation {
+                            from {-webkit-transform: rotate(0deg);}
+                            to   {-webkit-transform: rotate(359deg);}
+                        }
+                        </style>
+                        
 
 					<% else %>
-						<image src="/images/icons/sprout_growing_water_50px.png" id="sprout_<%= e.goal_id.to_s %>" title="Growing this Habit: <%= e.goal_days_into_it %> Days in with <%= e.goal_success_rate_percentage %>% Success"/>
-					<% end %>   				
+
+
+						<% if e.goal_days_into_it and  e.goal_days_into_it > 30 %>
+
+							<% if e.goal_success_rate_percentage and e.goal_success_rate_percentage > 74 %>
+
+								<% found_category = false %>
+
+								<% if !found_category and e.goal_category and e.goal_category == "Exercise" %>
+									<% found_category = true %>
+									<image src="/images/icons/sprout_grown_exercise_50px.png" id="sprout_<%= e.goal_id.to_s %>" title="Exercise Habit <%= e.goal_days_into_it %> Days in with <%= e.goal_success_rate_percentage %>% Success during the past 30 days"/>	
+								<% end %>
+
+								<% if !found_category and e.goal_category and e.goal_category == "Diet, Healthy Foods and Water" %>
+									<% found_category = true %>
+									<image src="/images/icons/sprout_grown_food1_50px.png" id="sprout_<%= e.goal_id.to_s %>" title="Diet, Healthy Foods and Water Habit <%= e.goal_days_into_it %> Days in with <%= e.goal_success_rate_percentage %>% Success during the past 30 days"/>	
+								<% end %>
+
+								<% if !found_category and e.goal_category and e.goal_category == "Relationships" %>
+									<% found_category = true %>
+									<image src="/images/icons/sprout_grown_relationships_50px.png" id="sprout_<%= e.goal_id.to_s %>" title="Relationships Habit <%= e.goal_days_into_it %> Days in with <%= e.goal_success_rate_percentage %>% Success during the past 30 days"/>	
+								<% end %>
+
+								<% if !found_category %>
+									<% found_category = true %>
+									<image src="/images/icons/sprout_grown_50px.png" id="sprout_<%= e.goal_id.to_s %>" title="Habit <%= e.goal_days_into_it %> Days in with <%= e.goal_success_rate_percentage %>% Success during the past 30 days"/>	
+								<% end %>
+
+							<% else %>
+								<image src="/images/icons/sprout_growing_water_50px.png" id="sprout_<%= e.goal_id.to_s %>" title="Growing this Habit: <%= e.goal_days_into_it %> Days in with <%= e.goal_success_rate_percentage %>% Success during the past 30 days" />
+							<% end %> 
+
+						<% else %>
+							<image src="/images/icons/sprout_growing_water_50px.png" id="sprout_<%= e.goal_id.to_s %>" title="Growing this Habit: <%= e.goal_days_into_it %> Days in with <%= e.goal_success_rate_percentage %>% Success"/>
+						<% end %>   
+
+
+
+					<% end %>
+
+
+				
 
 				<% end %>
 				<script type='text/javascript'>
