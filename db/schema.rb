@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131230024645) do
+ActiveRecord::Schema.define(:version => 20131231122038) do
 
   create_table "achievemints", :force => true do |t|
     t.string   "name"
@@ -570,9 +570,29 @@ ActiveRecord::Schema.define(:version => 20131230024645) do
     t.datetime "updated_at"
   end
 
+  create_table "program_enrollments", :force => true do |t|
+    t.integer  "program_id"
+    t.integer  "user_id"
+    t.boolean  "active"
+    t.boolean  "ongoing"
+    t.integer  "program_session_id"
+    t.date     "personal_start_date"
+    t.date     "personal_end_date"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "program_motivation_types", :force => true do |t|
     t.integer  "program_id"
     t.integer  "motivation_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "program_sessions", :force => true do |t|
+    t.integer  "program_id"
+    t.date     "start_date"
+    t.date     "end_date"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -610,6 +630,12 @@ ActiveRecord::Schema.define(:version => 20131230024645) do
     t.string   "version_number"
     t.string   "status"
     t.boolean  "actions_list_dropdown"
+    t.boolean  "duration_ongoing",                  :default => true
+    t.boolean  "duration_is_in_months_bool",        :default => false
+    t.boolean  "duration_is_in_weeks_bool",         :default => false
+    t.boolean  "duration_is_in_days_bool",          :default => false
+    t.integer  "duration_qty",                      :default => 0
+    t.boolean  "duration_start_is_fixed",           :default => false
   end
 
   create_table "promotion1s", :force => true do |t|

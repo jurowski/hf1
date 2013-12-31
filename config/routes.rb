@@ -1,4 +1,8 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :program_sessions
+
+  map.resources :program_enrollments
+
   map.resources :user_friends
 
   map.resources :cronjobs

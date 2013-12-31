@@ -1,0 +1,33 @@
+<p>
+  <b>Program:</b>
+  <%=h @program_enrollment.program_id %>
+</p>
+
+<p>
+  <b>User:</b>
+  <%=h @program_enrollment.user_id %>
+</p>
+
+<p>
+  <b>Active:</b>
+  <%=h @program_enrollment.active %>
+</p>
+
+<p>
+  <b>Ongoing:</b>
+  <%=h @program_enrollment.ongoing %>
+</p>
+
+<p>
+  <b>Start date:</b>
+  <%=h @program_enrollment.start_date %>
+</p>
+
+<p>
+  <b>End date:</b>
+  <%=h @program_enrollment.end_date %>
+</p>
+
+
+<%= link_to 'Edit', edit_program_enrollment_path(@program_enrollment) %> |
+<%= link_to 'Back', program_enrollments_path %>

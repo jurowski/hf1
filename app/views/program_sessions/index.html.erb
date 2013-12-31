@@ -1,0 +1,24 @@
+<h1>Listing program_sessions</h1>
+
+<table>
+  <tr>
+    <th>Program</th>
+    <th>Start date</th>
+    <th>End date</th>
+  </tr>
+
+<% @program_sessions.each do |program_session| %>
+  <tr>
+    <td><%=h program_session.program_id %></td>
+    <td><%=h program_session.start_date %></td>
+    <td><%=h program_session.end_date %></td>
+    <td><%= link_to 'Show', program_session %></td>
+    <td><%= link_to 'Edit', edit_program_session_path(program_session) %></td>
+    <td><%= link_to 'Destroy', program_session, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New program_session', new_program_session_path %>

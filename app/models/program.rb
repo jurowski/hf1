@@ -4,7 +4,8 @@ class Program < ActiveRecord::Base
   has_many :program_tags
   has_many :tags, :through => :program_tags
 
-
+  has_many :program_enrollments
+  has_many :program_sessions
 
   has_many :program_templates
 

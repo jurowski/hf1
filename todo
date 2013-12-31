@@ -52,6 +52,44 @@ stair climbing for UWHealth
 (see email from diane scherschel)
 
 
+Beginner: skyscrapers 1,2,3
+Intermediate: skyscrapers 1,3,5
+Advanced: skyscrapers 4,5,6
+Expert: (all) skyscrapers 1,2,3,4,5,6
+
+
+You are currently climbing the "Torre Agbar in Barcelona, Spain (421 stairs)".
+
+STRUCTURE example:
+
+Program: 
+  stop_date = start_date + 8 weeks
+  Beginner
+    Actions/Templated Goals: 
+      skyscraper 1 (completed once you get to 421 stairs)
+      skyscraper 2 (completed once you get to 586 stairs)
+      skyscraper 3 (completed once you get to 623 stairs)
+
+-- modify the program UI so that you can take advantage of the recently-added "duration/ongoing" fields
+
+-- modify the program UI to be able to CRUD program_sessions
+
+-- be able to "join" a program wholesale... not being able to pick and choose actions, but joining a real "program/session" and being beholden to its rules
+
+--once a program's stop date comes due, put the program's actions on hold
+(see the schema for "triggers" for programs)
+(people will want this to be realtime, so do a trigger check on checkpoint update and on quant entry, not via cron)
+
+
+--i think the structure had allowed for a goal to be reached upon a certain success rate,
+but we need to also let it be reached once a tracker summation is reached for that goal 
+(people will want this to be realtime, so do a trigger check on quant entry, not via cron)
+
+
+
+
+
+
 --------------------------------------
 users, friends, groups, organizations
 --------------------------------------
