@@ -636,6 +636,7 @@ ActiveRecord::Schema.define(:version => 20131231122038) do
     t.boolean  "duration_is_in_days_bool",          :default => false
     t.integer  "duration_qty",                      :default => 0
     t.boolean  "duration_start_is_fixed",           :default => false
+    t.boolean  "structured",                        :default => false
   end
 
   create_table "promotion1s", :force => true do |t|

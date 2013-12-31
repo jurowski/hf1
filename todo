@@ -70,6 +70,8 @@ Program:
       skyscraper 2 (completed once you get to 586 stairs)
       skyscraper 3 (completed once you get to 623 stairs)
 
+-- db changes have all been pushed and applied to prod
+
 -- modify the program UI so that you can take advantage of the recently-added "duration/ongoing" fields
 
 -- modify the program UI to be able to CRUD program_sessions
