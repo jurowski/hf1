@@ -22,19 +22,29 @@ class ProgramsController < ApplicationController
       first_program = Program.find(:first)
       redirect_to '/programs/list/' + first_program.id.to_s
     else
-      @programs = Array.new()
-      if current_user.is_admin
-        @programs = Program.all
+
+      if !params[:mine]
+        ### redirect to the "list" action
+        first_program = Program.find(:first)
+        redirect_to '/programs/list/' + first_program.id.to_s
       else
-        @programs = Program.find(:all, :conditions => "managed_by_user_id = '#{current_user.id}'")
+        @programs = Array.new()
+        if current_user.is_admin
+          @programs = Program.all
+        else
+          @programs = Program.find(:all, :conditions => "managed_by_user_id = '#{current_user.id}'")
+        end
+
+        respond_to do |format|
+          format.html # index.html.erb
+          format.xml  { render :xml => @programs }
+        end
+
       end
 
-      respond_to do |format|
-        format.html # index.html.erb
-        format.xml  { render :xml => @programs }
-      end
 
     end
+
 
   end
 

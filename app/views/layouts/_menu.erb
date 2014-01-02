@@ -75,7 +75,7 @@
 <!--           Suggested:
           <a href="/goals?templates=1&browse_recommended_habits=1&popular=1#browse_recommended_habits">Popular</a> -->
 
-<!--          <a href="/goals?programs=1&templates=1&browse_recommended_habits=1#browse_recommended_habits">-->               <a href="/programs/1/list">
+<!--          <a href="/goals?programs=1&templates=1&browse_recommended_habits=1#browse_recommended_habits">-->               <a href="/programs">
             <i class="icon-cogs"></i> Programs</a>
           </li>
 
@@ -91,7 +91,7 @@
           <% if current_user and current_user.can_make_templates %>
             <% if @cn == "programs" and @ca == "index" %> 
               <li class="active">
-                <a href="/programs">
+                <a href="/programs?mine=1">
                 <i class="icon-cogs"></i> 
                 <span class="title">My Programs</span>
                 <span class="selected"></span>
@@ -99,7 +99,7 @@
               </li>
             <% else %>
               <li>
-                <a href="/programs">
+                <a href="/programs?mine=1">
                 <i class="icon-cogs"></i> 
                 <span class="title">My Programs</span>
                 </a>   
