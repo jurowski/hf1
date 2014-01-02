@@ -100,7 +100,13 @@
 
             <div style="background-color:#eeeeee;padding:10px;padding-top:5px;margin:10px;">
               <h3>Habit Options <a href="/account/edit" class="btn blue mini">Edit</a></h3>
-              <% if current_user.combine_daily_emails %>
+
+              <!-- 
+              NOTE: combine_daily_emails is actually an INTEGER in the db
+              wheras premium_only_default_private_goal is a BOOLEAN
+              so they need different treatment
+              -->
+              <% if current_user.combine_daily_emails and current_user.combine_daily_emails == 1 %>
                 <input type=checkbox checked disabled>
               <% else %>
                 <input type=checkbox disabled>

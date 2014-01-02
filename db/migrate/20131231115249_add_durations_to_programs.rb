@@ -14,12 +14,12 @@ class AddDurationsToPrograms < ActiveRecord::Migration
 
   def self.down
 
-  	# remove_column :programs, :duration_ongoing
-  	# remove_column :programs, :duration_is_in_months_bool
-  	# remove_column :programs, :duration_is_in_weeks_bool
-  	# remove_column :programs, :duration_is_in_days_bool
-  	# remove_column :programs, :duration_qty
-  	# remove_column :programs, :duration_start_is_fixed
-  	# remove_column :programs, :structured
+  	remove_column :programs, :duration_ongoing
+  	remove_column :programs, :duration_is_in_months_bool
+  	remove_column :programs, :duration_is_in_weeks_bool
+  	remove_column :programs, :duration_is_in_days_bool
+  	remove_column :programs, :duration_qty
+  	remove_column :programs, :duration_start_is_fixed
+  	remove_column :programs, :structured
   end
 end

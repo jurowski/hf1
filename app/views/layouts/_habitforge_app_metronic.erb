@@ -1453,7 +1453,9 @@ $('.confirmation').on('click',function(){return confirm('Are you sure?');});
             </div>
           < end > -->
 
-
+          <% if !production %>
+          <%if @cn %><%= @cn %>:<% end %><% if @ca %><%= @ca %><% end %>
+          <% end %>
 
           <%= yield %>          
         </div>

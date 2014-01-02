@@ -290,14 +290,14 @@ class UsersController < ApplicationController
         @user.assign_unique_handle
       end
 
-      if params[:set_combine_daily_emails]=="1"
-        current_user.combine_daily_emails = 1
-        current_user.save
-      end
-      if params[:set_combine_daily_emails]=="0"
-        current_user.combine_daily_emails = 0
-        current_user.save
-      end
+      # if params[:set_combine_daily_emails]=="1"
+      #   current_user.combine_daily_emails = 1
+      #   current_user.save
+      # end
+      # if params[:set_combine_daily_emails]=="0"
+      #   current_user.combine_daily_emails = 0
+      #   current_user.save
+      # end
 
       if session[:take_me_to_goals_page_after_i_log_in]
         session[:take_me_to_goals_page_after_i_log_in] = nil

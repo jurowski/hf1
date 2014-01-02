@@ -1,4 +1,10 @@
 class OrganizationsController < ApplicationController
+
+  layout "application"
+
+  before_filter :require_user, :except => [:view, :index, :list]
+  before_filter :require_organization_scope, :except => [:view, :index, :list]
+
   # GET /organizations
   # GET /organizations.xml
   def index

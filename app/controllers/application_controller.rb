@@ -16,7 +16,7 @@ class ApplicationController < ActionController::Base
   #protect_from_forgery # See ActionController::RequestForgeryProtection for details
   
   ### Any private variables that you create must be listed here to be accessed elsewhere (unless they're in the helper file, in which they're public):
-  helper_method :current_user_session, :current_user, :current_user_is_admin, :server_root_url, :fully_logged_in, :mobile_device?, :arr_random_slacker_goals, :secure_page?, :test_layout?
+  helper_method :current_user_session, :current_user, :current_user_is_admin, :server_root_url, :fully_logged_in, :mobile_device?, :arr_random_slacker_goals, :secure_page?, :test_layout?, :production
 
   filter_parameter_logging :password, :password_confirmation
 
@@ -130,6 +130,14 @@ class ApplicationController < ActionController::Base
       end
 
     end 
+
+    def production
+      if server_root_url.include? "localhost"
+        return false
+      else
+        return true
+      end
+    end
 
     def server_root_url
       if `uname -n`.strip == 'adv.adventurino.com'
@@ -485,6 +493,35 @@ class ApplicationController < ActionController::Base
           flash[:notice] = "You do not have rights to access that page."
           redirect_to "/"
           return false
+      end
+    end
+
+    def require_organization_users_scope
+
+      ### you'll want to write this since organization_user is a collection of users
+      ### of which there could be many admins (so we should not actually rely on organization.managed_by_user_id
+      ### but should rather see if the current user is one of potentially many admins for that org)
+      if params[:id]
+        organization_user = OrganizationUser.find(params[:id].to_i)
+        if organization_user
+          organization = organization_user.organization
+          unless (current_user and organization and (current_user.is_admin or (current_user.id == organization.managed_by_user_id)))
+            flash[:notice] = "You do not have rights to access that page."
+            redirect_to "/"
+            return false          
+          end          
+        end
+      end
+    end
+
+    def require_organization_scope
+      if params[:id]
+        organization = Organization.find(params[:id].to_i)
+        unless (current_user and organization and (current_user.is_admin or (current_user.id == organization.managed_by_user_id)))
+          flash[:notice] = "You do not have rights to access that page."
+          redirect_to "/"
+          return false          
+        end
       end
     end
 

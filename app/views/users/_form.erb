@@ -192,7 +192,16 @@
     </td>
     <td valign=top nowrap>
          &nbsp &nbsp
-    <%= form.check_box(:combine_daily_emails, options = {}, checked_value = "true", unchecked_value = "false") %> Combine any same-hour email check-ins into 1 email
+
+
+      <!-- 
+      NOTE: combine_daily_emails is actually an INTEGER in the db
+      wheras premium_only_default_private_goal is a BOOLEAN
+      so they need different treatment
+      -->
+    <%= form.check_box(:combine_daily_emails, options = {}, checked_value = 1, unchecked_value = 0) %> Combine any same-hour email check-ins into 1 email
+
+
     
     </td>
     </tr>

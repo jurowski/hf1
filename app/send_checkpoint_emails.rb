@@ -750,7 +750,10 @@ class SendCheckpointEmails < ActiveRecord::Base
               end      
             else
               #### This user has more goals that just this one, so concatonate them into one email
-              #puts "This user has more goals that just this one (#{@goals_additional.size}), so concatonate them into one email"
+              message = "This user has more goals that just this one (#{@goals_additional.size.to_s}), so concatonate them into one email"
+              puts message
+              logger.info("sgj:" + message)
+
               limit_one = 0
               for goal_additional in @goals_additional
                 begin
