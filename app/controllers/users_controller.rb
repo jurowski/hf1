@@ -299,9 +299,17 @@ class UsersController < ApplicationController
       #   current_user.save
       # end
 
-      if session[:take_me_to_goals_page_after_i_log_in]
-        session[:take_me_to_goals_page_after_i_log_in] = nil
-        redirect_to("/goals")
+      if params[:from_menu]
+        ### the user chose to visit "my account" from the menu
+        ### so just render show.html.erb        
+      else
+        ### you are probably here only because the user just logged in
+        ### and the system wants to take them to the account page
+        ### after log-in
+        if session[:take_me_to_goals_page_after_i_log_in]
+          session[:take_me_to_goals_page_after_i_log_in] = nil
+          redirect_to("/goals")
+        end
       end
 
     #@user = User.find(params[:id])
