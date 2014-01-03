@@ -129,7 +129,7 @@ class Goal < ActiveRecord::Base
       image = "sprout_grown_50px"
     end
 
-    image += image + level_mod + ".png"
+    image += level_mod + ".png"
 
 
   end

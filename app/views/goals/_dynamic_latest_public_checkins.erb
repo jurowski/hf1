@@ -288,57 +288,49 @@
                         </style>
                         
 
-					<% else %>
-
-						<% if e.goal_momentum and e.goal_momentum > 74 %>
-							<!-- established habit -->
-
-							<% if e.goal_category and e.category_image_name %>
-								<image src="/images/icons/<%= e.category_image_name %>" id="sprout_<%= e.goal_id.to_s %>" title="<%= e.goal_category %> Habit with <%= e.goal_momentum %>% Momentum"/>	
-							<% else %>
-								<!-- delete this part after 20140104
-								because by then all "e" records will have
-								image info recorded in the db record
-								instead of dynamically assigned -->
-
-								<% found_category = false %>
-
-								<% if !found_category and e.goal_category and e.goal_category == "Exercise" %>
-									<% found_category = true %>
-									<image src="/images/icons/sprout_grown_exercise_50px.png" id="sprout_<%= e.goal_id.to_s %>" title="Exercise Habit <%= e.goal_days_into_it %> Days in with <%= e.goal_success_rate_percentage %>% Success during the past 30 days"/>	
-								<% end %>
-
-								<% if !found_category and e.goal_category and e.goal_category == "Diet, Healthy Foods and Water" %>
-									<% found_category = true %>
-									<image src="/images/icons/sprout_grown_food1_50px.png" id="sprout_<%= e.goal_id.to_s %>" title="Diet, Healthy Foods and Water Habit <%= e.goal_days_into_it %> Days in with <%= e.goal_success_rate_percentage %>% Success during the past 30 days"/>	
-								<% end %>
-
-								<% if !found_category and e.goal_category and e.goal_category == "Relationships" %>
-									<% found_category = true %>
-									<image src="/images/icons/sprout_grown_relationships_50px.png" id="sprout_<%= e.goal_id.to_s %>" title="Relationships Habit <%= e.goal_days_into_it %> Days in with <%= e.goal_success_rate_percentage %>% Success during the past 30 days"/>	
-								<% end %>
-
-								<% if !found_category %>
-									<% found_category = true %>
-									<image src="/images/icons/sprout_grown_50px.png" id="sprout_<%= e.goal_id.to_s %>" title="Habit <%= e.goal_days_into_it %> Days in with <%= e.goal_success_rate_percentage %>% Success during the past 30 days"/>	
-								<% end %>
+					<% end %> <!-- end whether to show gear -->
 
 
-							<% end %> <!-- end whether "e" record has image info in it -->
+					<!-- show category image... whether established or not 
+					(that part is handled in the model) -->
+					<% if e.goal_momentum %>
 
-
-
-
+						<% if e.goal_category and e.category_image_name %>
+							<image src="/images/icons/<%= e.category_image_name %>" id="sprout_<%= e.goal_id.to_s %>" title="<%= e.goal_category %> Habit with <%= e.goal_momentum %>% Momentum"/>	
 						<% else %>
+							<!-- delete this part after 20140104
+							because by then all "e" records will have
+							image info recorded in the db record
+							instead of dynamically assigned -->
 
-							<!-- there is no e.goal_momentum value -->
-							<% if e.goal_success_rate_percentage and e.goal_days_into_it %>
-							<image src="/images/icons/sprout_growing_water_50px.png" id="sprout_<%= e.goal_id.to_s %>" title="Growing this Habit: <%= e.goal_days_into_it %> Days in with <%= e.goal_success_rate_percentage %>% Success during the past 30 days" />
+							<% found_category = false %>
+
+							<% if !found_category and e.goal_category and e.goal_category == "Exercise" %>
+								<% found_category = true %>
+								<image src="/images/icons/sprout_grown_exercise_50px.png" id="sprout_<%= e.goal_id.to_s %>" title="Exercise Habit <%= e.goal_days_into_it %> Days in with <%= e.goal_success_rate_percentage %>% Success during the past 30 days"/>	
 							<% end %>
 
-						<% end %> <!-- end whether goal_momentum > 74 -->
+							<% if !found_category and e.goal_category and e.goal_category == "Diet, Healthy Foods and Water" %>
+								<% found_category = true %>
+								<image src="/images/icons/sprout_grown_food1_50px.png" id="sprout_<%= e.goal_id.to_s %>" title="Diet, Healthy Foods and Water Habit <%= e.goal_days_into_it %> Days in with <%= e.goal_success_rate_percentage %>% Success during the past 30 days"/>	
+							<% end %>
 
-					<% end %>
+							<% if !found_category and e.goal_category and e.goal_category == "Relationships" %>
+								<% found_category = true %>
+								<image src="/images/icons/sprout_grown_relationships_50px.png" id="sprout_<%= e.goal_id.to_s %>" title="Relationships Habit <%= e.goal_days_into_it %> Days in with <%= e.goal_success_rate_percentage %>% Success during the past 30 days"/>	
+							<% end %>
+
+							<% if !found_category %>
+								<% found_category = true %>
+								<image src="/images/icons/sprout_grown_50px.png" id="sprout_<%= e.goal_id.to_s %>" title="Habit <%= e.goal_days_into_it %> Days in with <%= e.goal_success_rate_percentage %>% Success during the past 30 days"/>	
+							<% end %>
+
+
+						<% end %> <!-- end whether "e" record has image info in it -->
+
+
+					<% end %> <!-- end whether goal_momentum exists-->
+
 
 
 				<% end %>
@@ -350,14 +342,6 @@
 
 
 
-				<% if current_user.goal_ids_that_i_follow.include?(e.goal_id) or (current_user.id == e.user_id) %>
-				    <a href="#" class="btn disabled"><i class="icon-rss"></i></a>
-				<% else %>
-			        <a href="/cheers?start_following_goal_id=<%= e.goal_id.to_s %>&email=<%= current_user.email %>" onclick="return confirm('Are you sure?')" id='follow_<%= e.goal_id.to_s %>'  class="btn" style="font-size:1.5em;" title="Follow <%= e.user_name %>'s Progress" ><i class="icon-rss"></i></a>
-			        <script type='text/javascript'>
-			            $('#follow_<%= e.goal_id.to_s %>').tipsy();
-			        </script>
-				<% end %>
 
 
 				<% if e.encourage_type_new_goal_bool %>
