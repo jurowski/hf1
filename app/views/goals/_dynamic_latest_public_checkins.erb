@@ -225,7 +225,7 @@
 	                   end
 	                   %>
 
-                        <img id="gear_<%= e.goal_id.to_s %>" title="<%= momentum %>% Inertia" src="/home/images/gears/gear_thick_small_orange_<%= image_number.to_s %>.png" />
+                        <img id="gear_<%= e.goal_id.to_s %>" title="<%= momentum %>% Momentum" src="/home/images/gears/gear_thick_small_orange_<%= image_number.to_s %>.png" />
                         <script type='text/javascript'>
                         $('#gear_<%= e.goal_id.to_s %>').tipsy();
                         </script>
@@ -290,10 +290,16 @@
 
 					<% else %>
 
+						<% if e.goal_momentum and e.goal_momentum > 74 %>
+							<!-- established habit -->
 
-						<% if e.goal_days_into_it and  e.goal_days_into_it > 30 %>
-
-							<% if e.goal_success_rate_percentage and e.goal_success_rate_percentage > 74 %>
+							<% if e.goal_category and e.category_image_name %>
+								<image src="/images/icons/<%= e.category_image_name %>" id="sprout_<%= e.goal_id.to_s %>" title="<%= e.goal_category %> Habit with <%= e.goal_momentum %>% Momentum"/>	
+							<% else %>
+								<!-- delete this part after 20140104
+								because by then all "e" records will have
+								image info recorded in the db record
+								instead of dynamically assigned -->
 
 								<% found_category = false %>
 
@@ -317,20 +323,23 @@
 									<image src="/images/icons/sprout_grown_50px.png" id="sprout_<%= e.goal_id.to_s %>" title="Habit <%= e.goal_days_into_it %> Days in with <%= e.goal_success_rate_percentage %>% Success during the past 30 days"/>	
 								<% end %>
 
-							<% else %>
-								<image src="/images/icons/sprout_growing_water_50px.png" id="sprout_<%= e.goal_id.to_s %>" title="Growing this Habit: <%= e.goal_days_into_it %> Days in with <%= e.goal_success_rate_percentage %>% Success during the past 30 days" />
-							<% end %> 
+
+							<% end %> <!-- end whether "e" record has image info in it -->
+
+
+
 
 						<% else %>
-							<image src="/images/icons/sprout_growing_water_50px.png" id="sprout_<%= e.goal_id.to_s %>" title="Growing this Habit: <%= e.goal_days_into_it %> Days in with <%= e.goal_success_rate_percentage %>% Success"/>
-						<% end %>   
 
+							<!-- there is no e.goal_momentum value -->
+							<% if e.goal_success_rate_percentage and e.goal_days_into_it %>
+							<image src="/images/icons/sprout_growing_water_50px.png" id="sprout_<%= e.goal_id.to_s %>" title="Growing this Habit: <%= e.goal_days_into_it %> Days in with <%= e.goal_success_rate_percentage %>% Success during the past 30 days" />
+							<% end %>
 
+						<% end %> <!-- end whether goal_momentum > 74 -->
 
 					<% end %>
 
-
-				
 
 				<% end %>
 				<script type='text/javascript'>

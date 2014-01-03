@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131231122038) do
+ActiveRecord::Schema.define(:version => 20140103000000) do
 
   create_table "achievemints", :force => true do |t|
     t.string   "name"
@@ -232,6 +232,7 @@ ActiveRecord::Schema.define(:version => 20131231122038) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "goal_momentum",                      :default => 0
+    t.string   "category_image_name"
   end
 
   create_table "expiredcheckpoints", :force => true do |t|

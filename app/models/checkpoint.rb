@@ -109,6 +109,8 @@ class Checkpoint < ActiveRecord::Base
                   encourage_item.goal_id = self.goal.id
                   encourage_item.goal_name = self.goal.title
                   encourage_item.goal_category = self.goal.category
+
+                  
                   encourage_item.goal_created_at_datetime = self.goal.created_at
                   encourage_item.goal_publish = self.goal.publish
                   encourage_item.goal_first_start_date = self.goal.first_start_date
@@ -116,6 +118,14 @@ class Checkpoint < ActiveRecord::Base
                   encourage_item.goal_days_into_it = self.goal.days_into_it
                   encourage_item.goal_success_rate_percentage = self.goal.success_rate_percentage
                   encourage_item.goal_momentum = self.goal.momentum
+
+                  if encourage_item.goal_momentum > 74
+                    encourage_item.category_image_name = self.goal.category_image(4)
+                  else
+                    encourage_item.category_image_name = self.goal.category_image(3)
+                  end
+
+
                   encourage_item.user_id = self.goal.user.id
                   encourage_item.user_name = self.goal.user.first_name
                   encourage_item.user_email = self.goal.user.email

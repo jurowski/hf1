@@ -100,6 +100,39 @@ class Goal < ActiveRecord::Base
     end
   end
 
+  ### level = how far along they are
+  ### where 4 is all the way
+  def category_image(level = 4)
+
+    level_mod = ""
+    case level
+    when 4
+      level_mod = ""
+    else
+      level_mod = "_bw"
+    end
+
+    category = ""
+    if self.category
+      category = self.category
+    end
+
+    image = ""
+    case category
+    when "Exercise"
+      image = "sprout_grown_exercise_50px"
+    when "Diet, Healthy Foods and Water"
+      image = "sprout_grown_food1_50px"
+    when "Relationships"
+      image = "sprout_grown_relationships_50px"
+    else
+      image = "sprout_grown_50px"
+    end
+
+    image += image + level_mod + ".png"
+
+
+  end
 
   ### copy template-relevant values from the goal to a new template goal
   #### make this new template copy the "parent" of the original goal
