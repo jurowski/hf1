@@ -296,7 +296,12 @@
 					<% if e.goal_momentum %>
 
 						<% if e.goal_category and e.category_image_name %>
-							<image src="/images/icons/<%= e.category_image_name %>" id="sprout_<%= e.goal_id.to_s %>" title="<%= e.goal_category %> Habit with <%= e.goal_momentum %>% Momentum"/>	
+							<% if e.goal_momentum > 74 %>
+								<image src="/images/icons/<%= e.category_image_name %>" id="sprout_<%= e.goal_id.to_s %>" title="Forged <%= e.goal_category %> Habit with <%= e.goal_momentum %>% Momentum"/>	
+							<% else %>
+								<image src="/images/subnav-arrow.png" />
+								<image src="/images/icons/<%= e.category_image_name %>" id="sprout_<%= e.goal_id.to_s %>" title="Forging this <%= e.goal_category %> Habit"/>	
+							<% end %>
 						<% else %>
 							<!-- delete this part after 20140104
 							because by then all "e" records will have
