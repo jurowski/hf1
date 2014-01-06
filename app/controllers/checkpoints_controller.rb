@@ -13,10 +13,37 @@ class CheckpointsController < ApplicationController
   # GET /checkpoints.xml
   def index
 
+    # ex:
+    # SELECT status, COUNT( * ) AS count FROM checkpoints
+    # WHERE checkin_date = '2014-01-01'
+    # GROUP BY status
+
+    # produces:
+    # email not yet sent
+    # 12
+
+    # email queued
+    # 67
+
+    # email sent
+    # 450
+
+    # no
+    # 277
+
+    # yes
+    # 593
+
+
     @conditions = "id = 99999999"
 
     if params[:find_date] and params[:find_date] != ""
       @conditions = "checkin_date = '#{params[:find_date]}'"
+
+      if params[:find_status] and params[:find_status] != ""
+        @conditions += " and status = '#{params[:find_status]}'"
+      end
+
     end
 
 

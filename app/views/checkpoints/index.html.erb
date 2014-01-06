@@ -3,7 +3,19 @@
 <% if @checkpoints %>
 
 
-  <div class="alert">Conditions: <%= @conditions %></div>
+  <div class="alert">
+    Conditions: <%= @conditions %>
+    <br>
+    <br>
+    Example: find failed checkpoints for one date: /checkpoints<strong>?find_date=2014-01-04&find_status=email%20queued</strong>
+    <br>
+    Statuses:
+    <br>email not yet sent
+    <br>email queued
+    <br>email sent
+    <br>no
+    <br>yes
+  </div>
 
   <% if @checkpoints.current_page != 1 %>
 
@@ -29,9 +41,22 @@
     %>
     <tr bgcolor="<%= alt_color %>">
       <td><%=h checkpoint.checkin_date %></td>
-      <td><%=h checkpoint.goal.user.email %></td>
-      <td><%=h checkpoint.goal.title %></td>
       <td><%=h checkpoint.status %></td>
+      <% if checkpoint.goal %>
+
+        <% if checkpoint.goal.user %>
+          <td><%=h checkpoint.goal.user.email %></td>
+        <% else %>
+          <td><span style="color:red;">NO USER</span></td>
+        <% end %>
+
+        <td><%=h checkpoint.goal.title %></td>
+
+      <% else %>
+        <td><span style="color:red;">NO GOAL</span></td>
+        <td></td>
+      <% end %>
+      
       <td><%= link_to 'Edit', edit_checkpoint_path(checkpoint) %></td>
       <td><%= link_to 'Destroy', checkpoint, :confirm => 'Are you sure?', :method => :delete %></td>
     </tr>
