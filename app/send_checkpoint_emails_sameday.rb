@@ -564,9 +564,9 @@ class SendCheckpointEmails < ActiveRecord::Base
                       sent_successfully = true
                       if checkpoint.goal.user.sponsor == "clearworth"
                         begin
-			    ### risky to put this before the actual send, but can't figure out why it fails every few weeks when it used to be "after" the actual send
-			    checkpoint.status = 'email sent'
-			    checkpoint.save
+                  			    ### risky to put this before the actual send, but can't figure out why it fails every few weeks when it used to be "after" the actual send
+                  			    checkpoint.status = 'email sent'
+                  			    checkpoint.save
 
                             Notifier.deliver_checkpoint_notification_sameday_clearworth(checkpoint) # sends the email                                
                             sent_successfully = true

@@ -3,20 +3,7 @@
 <% if @checkpoints %>
 
 
-  <div class="alert">
-    Conditions: <%= @conditions %>
-    <br>
-    <br>
-    Example: find failed checkpoints for user on one date: /checkpoints<strong>?find_date=2014-01-04&find_status=email%20queued&find_email=someone@gmail.com</strong>
-    <br>
-    <br>
-    <strong>Statuses:</strong>
-    <br>email not yet sent
-    <br>email queued
-    <br>email sent
-    <br>no
-    <br>yes
-  </div>
+
 
   <% if @checkpoints.current_page != 1 %>
 
@@ -66,3 +53,20 @@
 <% end %>
   
 </table>
+
+
+  <div class="alert">
+    Conditions: <%= @conditions %>
+    <br>
+    <br>
+    Example: find failed checkpoints for user on one date: /checkpoints<strong>?find_date=2014-01-04&find_status=email%20queued&find_email=someone@gmail.com</strong>
+    <br>
+    <br>
+    <strong>Statuses:</strong>
+    <br>email not yet sent
+    <br>email queued
+    <br>email failure
+    <br>email sent  (d-check exim logs to be sure if a question arises)
+    <br>no
+    <br>yes
+  </div>
