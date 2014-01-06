@@ -34,7 +34,18 @@ class CheckpointsController < ApplicationController
     # yes
     # 593
 
+    @params_sent = ""
+    if params[:find_date]
+      @params_sent += "find_date=<%= params[:find_date] %>"
+    end
+    if params[:find_status]
+      @params_sent += "&find_status=<%= params[:find_status]"
+    end
+    if params[:find_email]
+      @params_sent += "&find_email=<%= params[:find_email]"
+    end
 
+    
     @conditions = "id = 99999999"
 
     if params[:find_date] and params[:find_date] != ""
@@ -42,6 +53,25 @@ class CheckpointsController < ApplicationController
 
       if params[:find_status] and params[:find_status] != ""
         @conditions += " and status = '#{params[:find_status]}'"
+      end
+
+      if params[:find_email] and params[:find_email] != ""
+        user = User.find(:first, :conditions => "email = '#{params[:find_email]}'")
+        if user
+          found_one = false
+          user.active_goals.each do |goal|
+            if !found_one
+              @conditions += " and ("
+            else
+              @conditions += " or"
+            end
+            @conditions += " goal_id = #{goal.id}"
+            if !found_one
+              @conditions += ")"
+              found_one = true
+            end
+          end
+        end
       end
 
     end
