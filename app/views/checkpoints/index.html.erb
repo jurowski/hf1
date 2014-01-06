@@ -17,16 +17,17 @@
     <br>yes
   </div>
 
+  <% params_sent = "find_date=<%= params[:find_date] %>&find_status=<%= params[:find_status]%>" %>
   <% if @checkpoints.current_page != 1 %>
 
-     <a href="/checkpoints?find_date=<%= params[:find_date] %>&page=1">Page 1</a> ... 
+     <a href="/checkpoints?<%= params_sent %>&page=1">Page 1</a> ... 
 
-     <a href="/checkpoints?find_date=<%= params[:find_date] %>&page=<%=@checkpoints.current_page-1%>"><< Previous</a> 
+     <a href="/checkpoints?<%= params_sent %>&page=<%=@checkpoints.current_page-1%>"><< Previous</a> 
   <% end %>
   | Page <%= @checkpoints.current_page %> of <%= @checkpoints.total_pages %> |
   <% if @checkpoints.current_page < @checkpoints.total_pages %>
-      <a href="/checkpoints?find_date=<%= params[:find_date] %>&page=<%=@checkpoints.current_page+1%>">Next >></a> 
-     <a href="/checkpoints?find_date=<%= params[:find_date] %>&page=<%=@checkpoints.total_pages%>"> ... Page <%= @checkpoints.total_pages%></a>
+      <a href="/checkpoints?<%= params_sent %>&page=<%=@checkpoints.current_page+1%>">Next >></a> 
+     <a href="/checkpoints?<%= params_sent %>&page=<%=@checkpoints.total_pages%>"> ... Page <%= @checkpoints.total_pages%></a>
   <% end %>
   <hr>
 
