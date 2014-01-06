@@ -36,16 +36,16 @@ class CheckpointsController < ApplicationController
 
     @params_sent = ""
     if params[:find_date]
-      @params_sent += "find_date=<%= params[:find_date] %>"
+      @params_sent += "find_date=#{params[:find_date]}"
     end
     if params[:find_status]
-      @params_sent += "&find_status=<%= params[:find_status]"
+      @params_sent += "&find_status=#{params[:find_status]}"
     end
     if params[:find_email]
-      @params_sent += "&find_email=<%= params[:find_email]"
+      @params_sent += "&find_email=#{params[:find_email]}"
     end
 
-    
+
     @conditions = "id = 99999999"
 
     if params[:find_date] and params[:find_date] != ""
