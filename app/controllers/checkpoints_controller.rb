@@ -52,7 +52,7 @@ class CheckpointsController < ApplicationController
       @conditions = "checkin_date = '#{params[:find_date]}'"
 
       if params[:find_status] and params[:find_status] != ""
-        @conditions += " and status = '#{params[:find_status]}'"
+        @conditions += " and status like '%#{params[:find_status]}%'"
       end
 
       if params[:find_email] and params[:find_email] != ""
