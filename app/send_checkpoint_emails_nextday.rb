@@ -662,7 +662,7 @@ class SendCheckpointEmails < ActiveRecord::Base
                     ### increment the number of emails going out
                     @stat.checkpointemailssent = @stat.checkpointemailssent + 1
                     @stat.save
-                    checkpoint.status = 'email queued'
+                    checkpoint.status = 'email queued (nextday:665)'
                     if checkpoint.save
                       #puts "Checkpoint was successfully updated to 'email queued'."
                     end                
@@ -671,9 +671,9 @@ class SendCheckpointEmails < ActiveRecord::Base
                       sent_successfully = true
                       if checkpoint.goal.user.sponsor == "clearworth"
                         begin
-			    ### risky to put this before the actual send, but can't figure out why it fails every few weeks when it used to be "after" the actual send
-			    checkpoint.status = 'email sent'
-			    checkpoint.save
+                  			    ### risky to put this before the actual send, but can't figure out why it fails every few weeks when it used to be "after" the actual send
+                  			    checkpoint.status = 'email sent'
+                  			    checkpoint.save
 
                             Notifier.deliver_checkpoint_notification_clearworth(checkpoint) # sends the email                                
                             sent_successfully = true
@@ -762,7 +762,7 @@ class SendCheckpointEmails < ActiveRecord::Base
                   if @checkpoints.size == 1
                     #puts "Updating #{goal_additional.user.email}'s goal #{goal_additional.id}, checkpoint of #{checkin_date}."
                     for checkpoint in @checkpoints
-                      checkpoint.status = 'email queued'
+                      checkpoint.status = 'email queued (nextday:765)'
                       if checkpoint.save
                         #puts "SUCCESS Checkpoint was successfully updated to 'email queued'."
                       end                

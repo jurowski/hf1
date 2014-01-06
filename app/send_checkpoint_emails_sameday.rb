@@ -554,7 +554,7 @@ class SendCheckpointEmails < ActiveRecord::Base
                     ### increment the number of emails going out
                     @stat.checkpointemailssent = @stat.checkpointemailssent + 1
                     @stat.save
-                    checkpoint.status = 'email queued'
+                    checkpoint.status = 'email queued (sameday:557)'
                     checkpoint.save
                     #if checkpoint.save
                     # #puts "Checkpoint was successfully updated to 'email queued'."
@@ -657,7 +657,7 @@ class SendCheckpointEmails < ActiveRecord::Base
                   if @checkpoints.size == 1
                     #puts "Updating #{goal_additional.user.email}'s goal #{goal_additional.id}, checkpoint of #{checkin_date}."
                     for checkpoint in @checkpoints
-                      checkpoint.status = 'email queued'
+                      checkpoint.status = 'email queued (sameday:660)'
                       checkpoint.save
 
                       #if checkpoint.save
