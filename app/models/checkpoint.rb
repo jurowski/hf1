@@ -3,7 +3,7 @@ require "date"
 class Checkpoint < ActiveRecord::Base
   belongs_to :goal
   validates_length_of :status, :minimum => 2
-  validates_inclusion_of :status, :in => ["no", "yes", "email sent", "email failure", "email not yet sent", "email queued"]
+  #validates_inclusion_of :status, :in => ["no", "yes", "email sent", "email failure", "email not yet sent", "email queued"]
   validates_uniqueness_of :checkin_date, :scope => :goal_id
 
   def update_status(status, comment = "")
