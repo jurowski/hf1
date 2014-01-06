@@ -7,12 +7,23 @@ class CheckpointsController < ApplicationController
 
   before_filter :require_user, :only => [:view_checkpoint_multiple_email, :view_checkpoint_single_email, :show, :new, :edit, :destroy, :update]
 
+  before_filter :require_admin_user, :only => [:index]
   
   # GET /checkpoints
   # GET /checkpoints.xml
   def index
-    ### This would kill your server... disable it
-    redirect_to(server_root_url)
+
+    @conditions = "id = 99999999"
+
+    if params[:find_date] and params[:find_date] != ""
+      @conditions = "checkin_date = '#{params[:find_date]}'"
+    end
+
+
+    @checkpoints = Checkpoint.paginate(:page => params[:page],
+                               :per_page   => 10,
+                               :order      => 'status DESC',
+                               :conditions => @conditions)
   end
 
   def view_checkpoint_single_email

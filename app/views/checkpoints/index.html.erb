@@ -1,38 +1,37 @@
-<h1>Listing checkpoints</h1>
+<table cellpadding=5 cellspacing=5 border=1>
 
-<table>
-  <tr>
-  <th>Checkin date</th>
-  <% #<th>Checkin time</th> %>
-    <th>Goal Title</th>
-    <th>Status</th>
-  </tr>
+<% if @checkpoints %>
 
 
+  <div class="alert">Conditions: <%= @conditions %></div>
 
+  <% if @checkpoints.current_page != 1 %>
 
-<%
-if current_user.first_name == "Admin" && current_user.email == "jurowski2@gmail.com" 
-  current_user_is_admin = true
-else
-  current_user_is_admin = false
-end
+     <a href="/checkpoints?find_date=<%= params[:find_date] %>&page=1">Page 1</a> ... 
 
-if current_user_is_admin
-  @my_goals = Goal.find(:all) 
-else
-  @my_goals = Goal.find(:all, :conditions => "user_id = '#{current_user.id}'") 
-end
-@my_goals.each do |goal| %>
-  <%
-  @my_checkpoints = Checkpoint.find(:all, :conditions => "goal_id = '#{goal.id}'") 
-  @my_checkpoints.each do |checkpoint| %>
-    <tr>
-      <td><%=h checkpoint.checkin_date.strftime("%a, %b %d, %Y") %></td>
-      <td><% #h checkpoint.checkin_time.strftime("%I:%M %p") %></td>
-      <td>  <%=h checkpoint.goal.title + "(" + checkpoint.goal.user.last_name + ", " + checkpoint.goal.user.first_name + ")"   %></td>
+     <a href="/checkpoints?find_date=<%= params[:find_date] %>&page=<%=@checkpoints.current_page-1%>"><< Previous</a> 
+  <% end %>
+  | Page <%= @checkpoints.current_page %> of <%= @checkpoints.total_pages %> |
+  <% if @checkpoints.current_page < @checkpoints.total_pages %>
+      <a href="/checkpoints?find_date=<%= params[:find_date] %>&page=<%=@checkpoints.current_page+1%>">Next >></a> 
+     <a href="/checkpoints?find_date=<%= params[:find_date] %>&page=<%=@checkpoints.total_pages%>"> ... Page <%= @checkpoints.total_pages%></a>
+  <% end %>
+  <hr>
+
+  <% alt_color = "#ffffff" %>
+  <% @checkpoints.each do |checkpoint| %>
+    <% 
+    if alt_color == "#ffffff" 
+      alt_color = "#efefef"
+    else
+      alt_color = "#ffffff"
+    end
+    %>
+    <tr bgcolor="<%= alt_color %>">
+      <td><%=h checkpoint.checkin_date %></td>
+      <td><%=h checkpoint.goal.user.email %></td>
+      <td><%=h checkpoint.goal.title %></td>
       <td><%=h checkpoint.status %></td>
-      <td><%=h checkpoint.comment %></td>
       <td><%= link_to 'Edit', edit_checkpoint_path(checkpoint) %></td>
       <td><%= link_to 'Destroy', checkpoint, :confirm => 'Are you sure?', :method => :delete %></td>
     </tr>
@@ -41,7 +40,3 @@ end
 <% end %>
   
 </table>
-
-<br />
-
-<%= link_to 'New checkpoint', new_checkpoint_path %>

@@ -181,6 +181,7 @@
 
         <% if current_user and current_user.is_admin %>
             <li><%= link_to 'Users', '/users' %></li>
+            <li><%= link_to 'Checkpoints', '/checkpoints' %></li>
             <li><%= link_to 'New user', new_account_path %></li>
             <li><%= link_to 'Affiliates', affiliates_path %></li>
             <li><%= link_to 'Coaches', coaches_path %></li>
