@@ -1,4 +1,8 @@
 class CheckpointRemovedsController < ApplicationController
+
+  before_filter :require_admin_user
+  layout "application"
+  
   # GET /checkpoint_removeds
   # GET /checkpoint_removeds.xml
   def index

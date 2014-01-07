@@ -1,4 +1,7 @@
 class UserRemovedsController < ApplicationController
+
+  before_filter :require_admin_user
+  layout "application"
   # GET /user_removeds
   # GET /user_removeds.xml
   def index

@@ -16,10 +16,12 @@ Diff: < @goal.quant_diff_between_first_and_last >
 <% else %>
 	<% @quants.each do |quant| %>
 
-	  <br><strong><%= quant.measurement_display %> <%= quant.goal.tracker_units %></strong> on <%= quant.measurement_date.strftime("%a, %b %d, %Y") %> @ <%= am_pm(quant.measurement_hour) %> <span style="font-size:.7em;">
-	  	<!-- (recorded <%= time_ago_in_words(quant.measurement_taken_timestamp) %> ago...) -->
-		</span> 
-	  	  <%= link_to 'Delete', quant, :confirm => 'Delete this measurement of ' + quant.measurement_display.to_s + ' ?', :method => :delete %>
+		<% if quant.measurement_date and quant.measurement_hour %>
+		  <br><strong><%= quant.measurement_display %> <%= quant.goal.tracker_units %></strong> on <%= quant.measurement_date.strftime("%a, %b %d, %Y") %> @ <%= am_pm(quant.measurement_hour) %> <span style="font-size:.7em;">
+		  	<!-- (recorded <%= time_ago_in_words(quant.measurement_taken_timestamp) %> ago...) -->
+			</span> 
+		  	  <%= link_to 'Delete', quant, :confirm => 'Delete this measurement of ' + quant.measurement_display.to_s + ' ?', :method => :delete %>
+		<% end ### end if quant.measurement_date and quant.measurement_hour %>
 
-	<% end %>
+	<% end ### end for each quant %>
 <% end %>

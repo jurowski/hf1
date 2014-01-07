@@ -1,4 +1,7 @@
 class GoalRemovedsController < ApplicationController
+
+  before_filter :require_admin_user
+  layout "application"
   # GET /goal_removeds
   # GET /goal_removeds.xml
   def index
