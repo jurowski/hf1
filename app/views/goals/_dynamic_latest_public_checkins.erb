@@ -87,6 +87,7 @@
 	<% encourage_items.each do |e| %>
 
 		<% 
+		habit_info = ""
 		begin
 			e_user = User.find(e.user_id) 
 		rescue
@@ -109,7 +110,8 @@
 					<span style="font-size:.7em;"><%= time_ago_in_words(e.updated_at) %> ago...</span>
 					<br>
 
-					<image src="/images/icons/nothing_50px.png" id="sprout_<%= e.goal_id.to_s %>" title="This Habit Needs a Boost!"/>
+					<image src="/images/icons/nothing_50px.png" id="sprout_<%= e.goal_id.to_s %>" />
+						<% habit_info += " This Habit Needs a Boost!" %>
 					<script type='text/javascript'>
 					$('#sprout_<%= e.goal_id.to_s %>').tipsy();
 					</script>
@@ -127,7 +129,7 @@
 					<% if (current_user.id == e.user_id) %>
 					    <a href="#" class="btn disabled"><i class="icon-heart-empty"></i></a>
 					<% else %>
-						<a href="/tomessages/new?gid=<%=e.goal_id.to_s%>&goal_id=<%=e.goal_id.to_s%>&from_type=member&tomessage_subject=<%= e.goal_name %>&to_id=<%= e.user_id %>" id='encourage_<%= e.goal_id.to_s %>' class="btn red" style="font-size:1.5em;" title='Encourage <%= e.user_name %>!'> <i class="icon-heart-empty"></i></a> <span style="font-weight:bold;font-size:1.2em;"> 
+						<a href="/tomessages/new?gid=<%=e.goal_id.to_s%>&goal_id=<%=e.goal_id.to_s%>&from_type=member&tomessage_subject=<%= e.goal_name %>&to_id=<%= e.user_id %>" id='encourage_<%= e.goal_id.to_s %>' class="btn red" style="font-size:1.5em;" title='Encourage <%= e.user_name %>! <%= habit_info %>'> <i class="icon-heart-empty"></i></a> <span style="font-weight:bold;font-size:1.2em;"> 
 					<% end %>
 
 					<!-- if member_goal.user.show_gravatar -->
@@ -204,7 +206,8 @@
 
 
 				<% if e.encourage_type_new_goal_bool %>
-					<image src="/images/icons/sprout_50px.png" id="sprout_<%= e.goal_id.to_s %>" title="Just Starting this Habit"/>
+					<image src="/images/icons/sprout_50px.png" id="sprout_<%= e.goal_id.to_s %>" />
+					<% habit_info += " Just starting this Habit!" %>
 				<% else %>
 
 
@@ -232,10 +235,8 @@
 	                   end
 	                   %>
 
-                        <img id="gear_<%= e.goal_id.to_s %>" title="Habit Strength: <%= momentum %>% Momentum" src="/home/images/gears/gear_thick_small_orange_<%= image_number.to_s %>.png" />
-                        <script type='text/javascript'>
-                        $('#gear_<%= e.goal_id.to_s %>').tipsy();
-                        </script>
+                        <img id="gear_<%= e.goal_id.to_s %>" src="/home/images/gears/gear_thick_small_orange_<%= image_number.to_s %>.png" />
+                        <% habit_info += " Habit Strength: " + momentum.to_s + "% Momentum" %>
                         <style>
  
 /*                        #gear_<%= e.goal_id.to_s %> {
@@ -312,8 +313,8 @@
                                     <span class="number visits" name="chart_num_<%= e.goal_id.to_s %>" id="chart_num_<%= e.goal_id.to_s %>" style="margin-top:-20px;padding:20px;padding-left:15px;"  data-percent="<%= e.goal_momentum %>">
                                     	<span>
 
-											<image src="/images/icons/<%= e.category_image_name %>" id="sprout_<%= e.goal_id.to_s %>" title="Forged <%= e.goal_category %> Habit with <%= e.goal_momentum %>% Momentum"/>	
-
+											<image src="/images/icons/<%= e.category_image_name %>" id="sprout_<%= e.goal_id.to_s %>" />	
+											<% habit_info += " Forged " + e.goal_category + " Habit with " + e.goal_momentum.to_s + "% Momentum." %>
                                     	</span>
                                     </span>
                                  </span>
@@ -326,7 +327,8 @@
                                  <span class="easy-pie-chart" name="chart_<%= e.goal_id.to_s %>" id="chart_<%= e.goal_id.to_s %>">
                                     <span class="number transactions" name="chart_num_<%= e.goal_id.to_s %>" id="chart_num_<%= e.goal_id.to_s %>" style="margin-top:-20px;padding:20px;padding-left:15px;"  data-percent="<%= e.goal_momentum %>">
                                     	<span>
-											<image src="/images/icons/<%= e.category_image_name %>" id="sprout_<%= e.goal_id.to_s %>" title="Forging this <%= e.goal_category %> Habit"/>	
+											<image src="/images/icons/<%= e.category_image_name %>" id="sprout_<%= e.goal_id.to_s %>" />	
+											<% habit_info += " Forging this " + e.goal_category + " Habit." %>
 
                                     	</span>
                                     </span>
@@ -343,22 +345,29 @@
 
 							<% if !found_category and e.goal_category and e.goal_category == "Exercise" %>
 								<% found_category = true %>
-								<image src="/images/icons/sprout_grown_exercise_50px.png" id="sprout_<%= e.goal_id.to_s %>" title="Exercise Habit <%= e.goal_days_into_it %> Days in with <%= e.goal_success_rate_percentage %>% Success during the past 30 days"/>	
+								<image src="/images/icons/sprout_grown_exercise_50px.png" id="sprout_<%= e.goal_id.to_s %>" />	
+								<% habit_info += " Exercise Habit " + e.goal_days_into_it.to_s + " Days in with " + e.goal_success_rate_percentage.to_s + "% Success during the past 30 days." %>
 							<% end %>
 
 							<% if !found_category and e.goal_category and e.goal_category == "Diet, Healthy Foods and Water" %>
 								<% found_category = true %>
-								<image src="/images/icons/sprout_grown_food1_50px.png" id="sprout_<%= e.goal_id.to_s %>" title="Diet, Healthy Foods and Water Habit <%= e.goal_days_into_it %> Days in with <%= e.goal_success_rate_percentage %>% Success during the past 30 days"/>	
+								<image src="/images/icons/sprout_grown_food1_50px.png" id="sprout_<%= e.goal_id.to_s %>" />	
+								<% habit_info += " Diet, Healthy Foods and Water Habit " + e.goal_days_into_it.to_s + " Days in with " + e.goal_success_rate_percentage.to_s + "% Success during the past 30 days." %>
+
 							<% end %>
 
 							<% if !found_category and e.goal_category and e.goal_category == "Relationships" %>
 								<% found_category = true %>
-								<image src="/images/icons/sprout_grown_relationships_50px.png" id="sprout_<%= e.goal_id.to_s %>" title="Relationships Habit <%= e.goal_days_into_it %> Days in with <%= e.goal_success_rate_percentage %>% Success during the past 30 days"/>	
+								<image src="/images/icons/sprout_grown_relationships_50px.png" id="sprout_<%= e.goal_id.to_s %>" />	
+
+								<% habit_info += " Relationships Habit " + e.goal_days_into_it.to_s + " Days in with " + e.goal_success_rate_percentage.to_s + "% Success during the past 30 days." %>
 							<% end %>
 
 							<% if !found_category %>
 								<% found_category = true %>
-								<image src="/images/icons/sprout_grown_50px.png" id="sprout_<%= e.goal_id.to_s %>" title="Habit <%= e.goal_days_into_it %> Days in with <%= e.goal_success_rate_percentage %>% Success during the past 30 days"/>	
+								<image src="/images/icons/sprout_grown_50px.png" id="sprout_<%= e.goal_id.to_s %>" />	
+
+								<% habit_info += " Habit " + e.goal_days_into_it.to_s + " Days in with " + e.goal_success_rate_percentage.to_s + "% Success during the past 30 days." %>
 							<% end %>
 
 
@@ -388,7 +397,7 @@
 					<% if (current_user.id == e.user_id) %>
 					    <a href="#" class="btn disabled"><i class="icon-thumbs-up"></i></a>
 					<% else %>
-						<a href="/tomessages/new?gid=<%=e.goal_id.to_s%>&goal_id=<%=e.goal_id.to_s%>&from_type=member&tomessage_subject=<%= e.goal_name %>&to_id=<%= e.user_id %>" id='encourage_<%= e.goal_id.to_s %>' class="btn " style="font-size:1.5em;" title='Encourage <%= e.user_name %>!'> <i class="icon-thumbs-up"></i></a> <span style="font-weight:bold;font-size:1.2em;"> 
+						<a href="/tomessages/new?gid=<%=e.goal_id.to_s%>&goal_id=<%=e.goal_id.to_s%>&from_type=member&tomessage_subject=<%= e.goal_name %>&to_id=<%= e.user_id %>" id='encourage_<%= e.goal_id.to_s %>' class="btn " style="font-size:1.5em;" title="Encourage <%= e.user_name %>! <%= habit_info %>"> <i class="icon-thumbs-up"></i></a> <span style="font-weight:bold;font-size:1.2em;"> 
 					<% end %>
 
 				<% else %>
@@ -397,7 +406,7 @@
 					<% if (current_user.id == e.user_id) %>
 					    <a href="#" class="btn disabled"><i class="icon-thumbs-up"></i></a>
 					<% else %>
-						<a href="/tomessages/new?gid=<%=e.goal_id.to_s%>&goal_id=<%=e.goal_id.to_s%>&from_type=member&message_type=congrats&tomessage_subject=<%= e.goal_name %>&to_id=<%= e.user_id %>" id='encourage_<%= e.goal_id.to_s %>' class="btn " style="font-size:1.5em;" title='Congratulate <%= e.user_name %>!'> <i class="icon-thumbs-up"></i></a> <span style="font-weight:bold;font-size:1.2em;"> 
+						<a href="/tomessages/new?gid=<%=e.goal_id.to_s%>&goal_id=<%=e.goal_id.to_s%>&from_type=member&message_type=congrats&tomessage_subject=<%= e.goal_name %>&to_id=<%= e.user_id %>" id='encourage_<%= e.goal_id.to_s %>' class="btn " style="font-size:1.5em;" title="Congratulate <%= e.user_name %>!  <%= habit_info %>"> <i class="icon-thumbs-up"></i></a> <span style="font-weight:bold;font-size:1.2em;"> 
 					<% end %>
 
 				<% end %>
