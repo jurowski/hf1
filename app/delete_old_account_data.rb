@@ -76,6 +76,7 @@ class DeleteOldAccountData < ActiveRecord::Base
   puts "Current timestamp is #{tnow.to_s}"
   dnow = Date.new(tnow_Y, tnow_m, tnow_d) + jump_forward_days
   dlastyear = dnow - 365
+  d6monthsago = dnow - 180
   dlastweek = dnow - 7
   ######
     
@@ -89,8 +90,12 @@ class DeleteOldAccountData < ActiveRecord::Base
 
     limit = 10
 
+    #datelimit = dlastyear
+    datelimit = d6monthsago
+
+
     ### can't use "updated_at" since any user migration changes that for all
-    users = User.find(:all, :conditions => "kill_ads_until is null and last_request_at < '#{dlastyear}' and last_activity_date < '#{dlastyear}'", :order => "id DESC", :limit => "#{limit}")
+    users = User.find(:all, :conditions => "kill_ads_until is null and last_request_at < '#{datelimit}' and last_activity_date < '#{datelimit}'", :order => "id DESC", :limit => "#{limit}")
 
     users.each do |user|
       c = "old user = " + user.email + " and last_request_at: " + user.last_request_at.to_s + " and last_activity_date: " + user.last_activity_date.to_s

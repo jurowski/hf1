@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140103000000) do
+ActiveRecord::Schema.define(:version => 20140107112112) do
 
   create_table "achievemints", :force => true do |t|
     t.string   "name"
@@ -954,6 +954,7 @@ ActiveRecord::Schema.define(:version => 20140103000000) do
     t.boolean  "hide_feed"
     t.boolean  "premium_only_complete_privacy"
     t.boolean  "premium_only_default_private_goal"
+    t.date     "deletion_warning"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email"
