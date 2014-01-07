@@ -299,8 +299,17 @@
 							<% if e.goal_momentum > 74 %>
 								<image src="/images/icons/<%= e.category_image_name %>" id="sprout_<%= e.goal_id.to_s %>" title="Forged <%= e.goal_category %> Habit with <%= e.goal_momentum %>% Momentum"/>	
 							<% else %>
+
 								<image src="/images/subnav-arrow.png" />
-								<image src="/images/icons/<%= e.category_image_name %>" id="sprout_<%= e.goal_id.to_s %>" title="Forging this <%= e.goal_category %> Habit"/>	
+                                 <span class="easy-pie-chart">
+                                    <span class="number transactions" style="margin-top:-20px;padding:20px;padding-left:15px;"  data-percent="<%= e.goal_momentum %>">
+                                    	<span>
+											<image src="/images/icons/<%= e.category_image_name %>" id="sprout_<%= e.goal_id.to_s %>" title="Forging this <%= e.goal_category %> Habit"/>	
+
+                                    	</span>
+                                    </span>
+                                 </span>
+
 							<% end %>
 						<% else %>
 							<!-- delete this part after 20140104
