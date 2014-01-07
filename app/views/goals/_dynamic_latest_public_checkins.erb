@@ -304,7 +304,22 @@
 
 						<% if e.goal_category and e.category_image_name %>
 							<% if e.goal_momentum > 74 %>
-								<image src="/images/icons/<%= e.category_image_name %>" id="sprout_<%= e.goal_id.to_s %>" title="Forged <%= e.goal_category %> Habit with <%= e.goal_momentum %>% Momentum"/>	
+
+
+
+
+                                 <span class="easy-pie-chart" name="chart_<%= e.goal_id.to_s %>" id="chart_<%= e.goal_id.to_s %>">
+                                    <span class="number visits" name="chart_num_<%= e.goal_id.to_s %>" id="chart_num_<%= e.goal_id.to_s %>" style="margin-top:-20px;padding:20px;padding-left:15px;"  data-percent="<%= e.goal_momentum %>">
+                                    	<span>
+
+											<image src="/images/icons/<%= e.category_image_name %>" id="sprout_<%= e.goal_id.to_s %>" title="Forged <%= e.goal_category %> Habit with <%= e.goal_momentum %>% Momentum"/>	
+
+                                    	</span>
+                                    </span>
+                                 </span>
+
+
+
 							<% else %>
 
 								<image src="/images/subnav-arrow.png" />
