@@ -1,0 +1,2 @@
+module CheckpointRemovedsHelper
+end

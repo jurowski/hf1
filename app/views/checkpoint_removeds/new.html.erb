@@ -1,0 +1,15 @@
+<h1>New checkpoint_removed</h1>
+
+<% form_for(@checkpoint_removed) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :checkpoint_id %><br />
+    <%= f.text_field :checkpoint_id %>
+  </p>
+  <p>
+    <%= f.submit 'Create' %>
+  </p>
+<% end %>
+
+<%= link_to 'Back', checkpoint_removeds_path %>

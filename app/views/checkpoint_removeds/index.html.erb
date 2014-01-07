@@ -1,0 +1,20 @@
+<h1>Listing checkpoint_removeds</h1>
+
+<table>
+  <tr>
+    <th>Checkpoint</th>
+  </tr>
+
+<% @checkpoint_removeds.each do |checkpoint_removed| %>
+  <tr>
+    <td><%=h checkpoint_removed.checkpoint_id %></td>
+    <td><%= link_to 'Show', checkpoint_removed %></td>
+    <td><%= link_to 'Edit', edit_checkpoint_removed_path(checkpoint_removed) %></td>
+    <td><%= link_to 'Destroy', checkpoint_removed, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New checkpoint_removed', new_checkpoint_removed_path %>
