@@ -55,6 +55,8 @@ class Checkpoint < ActiveRecord::Base
 
             ### update last activity date
             self.goal.user.last_activity_date = self.goal.user.dtoday
+            ### make sure the user will not get deleted due to inactivity
+            self.goal.user.deletion_warning = nil
             self.goal.user.save
         else
             success = false

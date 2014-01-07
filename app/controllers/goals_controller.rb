@@ -888,6 +888,7 @@ class GoalsController < ApplicationController
 
             ### update last activity date
             @goal.user.last_activity_date = @goal.user.dtoday
+            @goal.user.deletion_warning = nil
             @goal.user.save
      
             ###############################################

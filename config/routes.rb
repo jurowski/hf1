@@ -1,4 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :user_removeds
+
   map.resources :program_sessions
 
   map.resources :program_enrollments

@@ -56,6 +56,14 @@ class Notifier < ActionMailer::Base
     content_type "text/html"
   end 
 
+  def user_deletion_soon_notification(user, inactivity_period, grace_period)
+    recipients user.first_name + "<" + user.email + ">"
+    #bcc         "support@habitforge.com"
+    from       "habitforge <support@habitforge.com>"
+    subject    "Account Inactivity Removal Notice: Your HabitForge account will be deleted in " + inactivity_period + " unless you take action!"
+    body       :user => user, :inactivity_period => inactivity_period, :grace_period => grace_period
+    content_type "text/html"
+  end 
 
 
   def user_upgrade_3month_notification(user)

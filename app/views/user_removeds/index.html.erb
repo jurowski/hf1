@@ -1,0 +1,20 @@
+<h1>Listing user_removeds</h1>
+
+<table>
+  <tr>
+    <th>User</th>
+  </tr>
+
+<% @user_removeds.each do |user_removed| %>
+  <tr>
+    <td><%=h user_removed.user_id %></td>
+    <td><%= link_to 'Show', user_removed %></td>
+    <td><%= link_to 'Edit', edit_user_removed_path(user_removed) %></td>
+    <td><%= link_to 'Destroy', user_removed, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New user_removed', new_user_removed_path %>
