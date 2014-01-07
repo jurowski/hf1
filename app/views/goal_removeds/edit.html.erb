@@ -1,0 +1,16 @@
+<h1>Editing goal_removed</h1>
+
+<% form_for(@goal_removed) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :goal_id %><br />
+    <%= f.text_field :goal_id %>
+  </p>
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @goal_removed %> |
+<%= link_to 'Back', goal_removeds_path %>

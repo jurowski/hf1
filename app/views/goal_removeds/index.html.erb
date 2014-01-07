@@ -1,0 +1,20 @@
+<h1>Listing goal_removeds</h1>
+
+<table>
+  <tr>
+    <th>Goal</th>
+  </tr>
+
+<% @goal_removeds.each do |goal_removed| %>
+  <tr>
+    <td><%=h goal_removed.goal_id %></td>
+    <td><%= link_to 'Show', goal_removed %></td>
+    <td><%= link_to 'Edit', edit_goal_removed_path(goal_removed) %></td>
+    <td><%= link_to 'Destroy', goal_removed, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New goal_removed', new_goal_removed_path %>
