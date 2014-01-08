@@ -169,7 +169,7 @@ class DeleteOldAccountData < ActiveRecord::Base
                 puts c
                 logger.info("sgj:delete_old_account_data.rb:" + c )                
 
-                c_copy = Checkpoint_removed.new
+                c_copy = CheckpointRemoved.new
                 c_copy.checkpoint_id = checkpoint.id
 
                 c_copy.deleted_by = "delete_old_account_data.rb"
@@ -208,7 +208,7 @@ class DeleteOldAccountData < ActiveRecord::Base
               puts g
               logger.info("sgj:delete_old_account_data.rb:" + g )                
 
-              g_copy = Goal_removed.new
+              g_copy = GoalRemoved.new
 
               g_copy.goal_id = goal.id
               g_copy.deleted_by = "delete_old_account_data.rb"
@@ -376,7 +376,7 @@ class DeleteOldAccountData < ActiveRecord::Base
         puts u
         logger.info("sgj:delete_old_account_data.rb:" + u )                
 
-        u_copy = User_removed.new
+        u_copy = UserRemoved.new
         u_copy.user_id = user.id
 
         u_copy.deleted_by = "delete_old_account_data.rb"
