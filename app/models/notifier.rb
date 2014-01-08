@@ -60,7 +60,7 @@ class Notifier < ActionMailer::Base
     recipients user.first_name + "<" + user.email + ">"
     bcc         "support@habitforge.com"
     from       "habitforge <support@habitforge.com>"
-    subject    "Account Inactivity Removal Notice: Your HabitForge account will be deleted in " + inactivity_period + " unless you take action!"
+    subject    "Account Inactivity Removal Notice: Your HabitForge account will be deleted in " + grace_period + " unless you take action!"
     body       :user => user, :inactivity_period => inactivity_period, :grace_period => grace_period
     content_type "text/html"
   end 
