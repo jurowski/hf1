@@ -48,19 +48,25 @@ class DeleteOldAccountData < ActiveRecord::Base
 ################ DANGER DANGER DANGER
 ################ DANGER DANGER DANGER
 
-### RAILS_ENV=production /usr/bin/ruby /home/jurowsk1/etc/rails_apps/habitforge/current/script/runner /home/jurowsk1/etc/rails_apps/habitforge/current/app/update_user-number_active_goals.rb
-#RAILS_ENV=production 
-#/usr/bin/ruby 
-#/home/jurowsk1/etc/rails_apps/habitforge/current/script/runner 
-#/home/jurowsk1/etc/rails_apps/habitforge/current/app/update_user-number_active_goals.rb
+  ### RAILS_ENV=production /usr/bin/ruby /home/jurowsk1/etc/rails_apps/habitforge/current/script/runner /home/jurowsk1/etc/rails_apps/habitforge/current/app/delete_old_account_data.rb
+  #RAILS_ENV=production 
+  #/usr/bin/ruby 
+  #/home/jurowsk1/etc/rails_apps/habitforge/current/script/runner 
+  #/home/jurowsk1/etc/rails_apps/habitforge/current/app/delete_old_account_data.rb
+
+
+  ### RUN IN DEV:
+  ### rvm use 1.8.7;cd /home/sgj700/rails_apps/hf1/;ruby script/runner app/delete_old_account_data.rb
 
   # This script:
   # deletes any user data for users who have not had activity in 1 year
   # and who are not paid users
 
   ### Whether to run the above steps
-  run_1 = "no"
+  run_1 = "yes"
 
+  ### whether to notify users that they'll be removed soon
+  run_0 = "yes"
   
   
   ### GET DATE NOW ###
@@ -79,7 +85,54 @@ class DeleteOldAccountData < ActiveRecord::Base
   d6monthsago = dnow - 180
   dlastweek = dnow - 7
   ######
-    
+
+
+  ### datelimit = how much inactivity will be tolerated before deletion    
+  #datelimit = dlastyear
+  datelimit = d6monthsago
+  inactivity_period_human = "6 months"
+
+  ### grace_days = how many days from now their account will be removed unless they act
+  grace_days = 7
+  grace_days_human = "7 days"
+
+  ## deletion_warning = the actual date that their account will be removed unless they act
+  deletion_warning = dnow + grace_days
+
+
+  #######
+  # START 0.1 notify any users that their account will be removed at a
+  # date near in the future if they do not take action
+  #######
+  if run_0 == "yes"
+
+
+
+
+    limit = 10
+
+    ### can't use "updated_at" since any user migration changes that for all
+    users = User.find(:all, :conditions => "kill_ads_until is null and last_request_at < '#{datelimit}' and last_activity_date < '#{datelimit}' and deletion_warning is null", :order => "id DESC", :limit => "#{limit}")
+
+    users.each do |user|
+
+      if user.number_of_active_habits == 0 and user.number_of_templates_i_own == 0
+
+        u = "Notify old user = " + user.email + " and last_request_at: " + user.last_request_at.to_s + " and last_activity_date: " + user.last_activity_date.to_s
+        puts u
+        logger.info("sgj:delete_old_account_data.rb:" + u )
+
+        Notifier.deliver_user_deletion_soon_notification(user, inactivity_period_human, grace_days_human)
+
+        user.deletion_warning = deletion_warning
+        user.save
+
+
+      end ### end user.number_of_active_habits == 0 and user.number_of_templates_i_own == 0
+
+    end ### end each user
+
+  end ### end if run_0 == "yes"
 
 
   #######
@@ -90,12 +143,9 @@ class DeleteOldAccountData < ActiveRecord::Base
 
     limit = 10
 
-    #datelimit = dlastyear
-    datelimit = d6monthsago
-
 
     ### can't use "updated_at" since any user migration changes that for all
-    users = User.find(:all, :conditions => "kill_ads_until is null and last_request_at < '#{datelimit}' and last_activity_date < '#{datelimit}'", :order => "id DESC", :limit => "#{limit}")
+    users = User.find(:all, :conditions => "kill_ads_until is null and last_request_at < '#{datelimit}' and last_activity_date < '#{datelimit}' and deletion_warning <= '#{dnow}'", :order => "id DESC", :limit => "#{limit}")
 
     users.each do |user|
       c = "old user = " + user.email + " and last_request_at: " + user.last_request_at.to_s + " and last_activity_date: " + user.last_activity_date.to_s

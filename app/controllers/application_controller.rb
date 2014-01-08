@@ -287,11 +287,34 @@ class ApplicationController < ActionController::Base
 
 
 
+      #### THIS IS DANGEROUS
       if params[:single_login] and params[:email]
         session[:email] = params[:email]
         session[:single_login] = params[:single_login]
       end
+      ### END THIS IS DANGEROUS
 
+
+      #################################################################
+      #################################################################
+      ### HOW TO LOG IN w/out PW
+      #################################################################
+      ### let them in if they have email, uid, e0 and f0 that all match
+      ### ex: http://habitforge.com/?email=howdy@something.com&u=89491&e0=99&f0=67
+      if params[:email] and params[:u] and params[:e0] and params[:f0]
+        user = User.find(params[:u].to_i)
+        if user
+          if user.email == params[:email] and user.id == params[:u].to_i and user.email[0] == params[:e0].to_i and user.first_name[0] == params[:f0].to_i
+              @current_user = user
+              session[:email] = user.email
+              session[:single_login] = true
+          end
+        end
+      end
+      #################################################################
+      ### END HOW TO LOG IN w/out PW
+      #################################################################
+      #################################################################
 
       if session[:email] and session[:single_login]
         user = User.find(:first, :conditions => "email = '#{session[:email]}'")
@@ -300,6 +323,10 @@ class ApplicationController < ActionController::Base
           return @current_user
         end
       end
+
+
+
+
 
 
      if session[:current_user_is_admin] == true and (params[:impersonate] or session[:impersonate])

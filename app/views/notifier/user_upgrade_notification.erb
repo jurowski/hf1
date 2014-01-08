@@ -1,4 +1,9 @@
+<% if @user.first_name.include? "nknown" %>
+Congratulations!
+<% else %>
 Congratulations <%= @user.first_name %>!
+<% end %>
+
 
 You have just become the newest Premium Member of HabitForge!
 

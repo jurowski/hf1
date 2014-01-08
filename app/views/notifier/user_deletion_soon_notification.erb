@@ -5,20 +5,29 @@
 </head>
 <body>
 <p>
+<% if @user.first_name.include? "nknown" %>
+Hello!
+<% else %>
 Hi <%= @user.first_name %>.
-<br>
-<br>Your HabitForge account and any goal, history, and log data will be deleted in <%= @grace_period %> unless you log into your account and either create a goal or "check-in" on an existing goal.
-<br>
-<br>(In order to optimize the user experience for our active HabitForge members, we need to remove inactive accounts every <%= @inactivity_period %>)
-<br>
-<br>To avoid having your account removed, you can simply log into your account at http://habitforge.com . If you're having trouble logging in, feel free to email support@habitforge.com and we can help.
+<% end %>
 <br>
 <br>
+Your HabitForge account and any goal, history, and log data will be deleted in <%= @grace_period %> unless you log into your account and either create a goal or "check-in" on an existing goal.
 <br>
-<a href="http://habitforge.com">Log In and Create a Habit</a>
+<br>
+(In order to optimize the user experience for our active HabitForge members, we need to remove inactive accounts every <%= @inactivity_period %>).
 <br>
 <br>
-<br>Thanks for your continued support, and best of luck with your goals!
+To avoid having your account removed, simply click the link below and either re-activate an old goal, or create a brand new one. If you want your account removed, you don't need to take any action, and it will be removed in <%= @grace_period %>.
+<br>
+<br>
+<br>
+
+<a href= "http://habitforge.com/?email=<%= @user.email %>&u=<%= @user.id.to_s %>&e0=<%= @user.email[0] %>&f0=<%= @user.first_name[0] %>" style="font-size:2em;">Click Here to Log In and Start Something New</a>
+
+<br>
+<br>
+<br>Best of luck with your goals!
 <br>
 <br>Sandon Jurowski
 <br>HabitForge Creator
