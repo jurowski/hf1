@@ -109,7 +109,7 @@ class DeleteOldAccountData < ActiveRecord::Base
 
 
 
-    limit = 10
+    limit = 25
 
     ### can't use "updated_at" since any user migration changes that for all
     users = User.find(:all, :conditions => "kill_ads_until is null and last_request_at < '#{datelimit}' and last_activity_date < '#{datelimit}' and deletion_warning is null", :order => "id DESC", :limit => "#{limit}")
@@ -136,16 +136,17 @@ class DeleteOldAccountData < ActiveRecord::Base
 
 
   #######
-  # START 1. delete any data for users who have not had activity for 1 year
-  # 
+  # START 1. delete any data for users who have not had activity for a while
+  # and who have already been warned
   #######
   if run_1 == "yes"
 
-    limit = 10
+    limit = 25
 
 
     ### can't use "updated_at" since any user migration changes that for all
-    users = User.find(:all, :conditions => "kill_ads_until is null and last_request_at < '#{datelimit}' and last_activity_date < '#{datelimit}' and deletion_warning <= '#{dnow}'", :order => "id DESC", :limit => "#{limit}")
+    #users = User.find(:all, :conditions => "kill_ads_until is null and last_request_at < '#{datelimit}' and last_activity_date < '#{datelimit}' and deletion_warning <= '#{dnow}'", :order => "id DESC", :limit => "#{limit}")
+    users = User.find(:all, :conditions => "email = 'jurowski@pediatrics.wisc.edu'")
 
     users.each do |user|
       c = "old user = " + user.email + " and last_request_at: " + user.last_request_at.to_s + " and last_activity_date: " + user.last_activity_date.to_s
@@ -155,7 +156,7 @@ class DeleteOldAccountData < ActiveRecord::Base
 
       continue_with_goal_copy_and_removal = true
 
-      if user.number_of_active_habits == 0 and user.number_of_templates_i_own == 0
+      if user.email == "jurowski@pediatrics.wisc.edu" or (user.number_of_active_habits == 0 and user.number_of_templates_i_own == 0)
         user.all_goals.each do |goal|
 
 
