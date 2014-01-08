@@ -145,8 +145,8 @@ class DeleteOldAccountData < ActiveRecord::Base
 
 
     ### can't use "updated_at" since any user migration changes that for all
-    #users = User.find(:all, :conditions => "kill_ads_until is null and last_request_at < '#{datelimit}' and last_activity_date < '#{datelimit}' and deletion_warning <= '#{dnow}'", :order => "id DESC", :limit => "#{limit}")
-    users = User.find(:all, :conditions => "email = 'jurowski@pediatrics.wisc.edu'")
+    users = User.find(:all, :conditions => "kill_ads_until is null and last_request_at < '#{datelimit}' and last_activity_date < '#{datelimit}' and deletion_warning <= '#{dnow}'", :order => "id DESC", :limit => "#{limit}")
+    #users = User.find(:all, :conditions => "email = 'jurowski@pediatrics.wisc.edu'")
 
     users.each do |user|
       c = "old user = " + user.email + " and last_request_at: " + user.last_request_at.to_s + " and last_activity_date: " + user.last_activity_date.to_s
@@ -156,7 +156,7 @@ class DeleteOldAccountData < ActiveRecord::Base
 
       continue_with_goal_copy_and_removal = true
 
-      if user.email == "jurowski@pediatrics.wisc.edu" or (user.number_of_active_habits == 0 and user.number_of_templates_i_own == 0)
+      if user.number_of_active_habits == 0 and user.number_of_templates_i_own == 0
         user.all_goals.each do |goal|
 
 
