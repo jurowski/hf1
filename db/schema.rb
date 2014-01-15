@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140107120700) do
+ActiveRecord::Schema.define(:version => 20140113121345) do
 
   create_table "achievemints", :force => true do |t|
     t.string   "name"
@@ -567,6 +567,7 @@ ActiveRecord::Schema.define(:version => 20140107120700) do
     t.datetime "updated_at"
     t.text     "invitation_body"
     t.string   "invitation_subject"
+    t.integer  "purpose_join_program_id"
   end
 
   create_table "level_goals", :force => true do |t|
@@ -778,6 +779,9 @@ ActiveRecord::Schema.define(:version => 20140107120700) do
     t.integer  "duration_qty",                      :default => 0
     t.boolean  "duration_start_is_fixed",           :default => false
     t.boolean  "structured",                        :default => false
+    t.boolean  "invite_only"
+    t.text     "invitation_body"
+    t.string   "invitation_subject"
   end
 
   create_table "promotion1s", :force => true do |t|

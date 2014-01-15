@@ -4,13 +4,19 @@ class Program < ActiveRecord::Base
   has_many :program_tags
   has_many :tags, :through => :program_tags
 
-  has_many :program_enrollments
-  has_many :program_sessions
 
   has_many :program_templates
-
-  ### the below might not work right... will have to test
   has_many :templates, :through => :program_templates
+
+
+  has_many :program_enrollments
+  has_many :users, :through => :program_enrollments
+
+
+  has_many :program_sessions
+
+
+
 
 ### how to reference via diff. names
 ### as per:
@@ -27,4 +33,36 @@ class Program < ActiveRecord::Base
 
 
   validates_uniqueness_of :name, :scope => :managed_by_user_id
+
+  def can_delete
+
+    if self.templates and self.templates.size > 0
+      #### you will need to remove the member template associations first
+      return false
+    else
+
+      ### you have no member template associations, BUT
+      ### is anyone attached to the program itself?
+
+      if self.users and self.users.size > 0
+        ### you would need to first remove the member user associations
+        return false
+      else
+
+        ### there are no member user associations
+        return true
+      end
+    end
+  end ### end def can_delete
+
+
+
+  def is_this_user_enrolled(user)
+    if self.users.include? user
+      return true
+    else
+      return false
+    end
+  end
+
 end

@@ -517,6 +517,11 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
     }
 
 
+    function create_invite_then_reload_manage_program_invites(program_id, invite_name, invite_email, invite_body, invite_subject) {
+      //reload div
+      $('.div_program_'+program_id+'_manage_program_invites').load('/invites/manage_program_invites/1?program_id='+program_id+'&invite_name='+invite_name+'&invite_email='+invite_email+'&invite_body='+invite_body+'&invite_subject='+invite_subject);
+    }
+
    </script>
    <!-- END TEST RELOAD AJAX CONTENT FOR UPDATING PARTIALS w/out Prototype -->
 

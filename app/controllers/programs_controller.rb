@@ -94,6 +94,26 @@ class ProgramsController < ApplicationController
   def new
     @program = Program.new
 
+
+    ##############################################
+    ####### INVITE-RELATED FIELDS ################
+    @program.invitation_subject = "Come join this Program!"
+
+    @program.invitation_body = "Hello... this is " + current_user.first_name + ", and I'm using the HabitForge"
+    @program.invitation_body += " web application. "
+    @program.invitation_body += " 
+
+I've started a brand new Program that I'd love for you to join!
+
+You'd just need to create a free account on the HabitForge site (use the Join link below this message). 
+
+
+"
+    @program.invitation_body += "--" + current_user.first_name
+    ####### END INVITE-RELATED FIELDS ###########
+    #############################################
+
+
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @program }
@@ -149,7 +169,9 @@ class ProgramsController < ApplicationController
     @program.destroy
 
     respond_to do |format|
-      format.html { redirect_to(programs_url) }
+
+      #format.html { redirect_to(programs_url) }
+      format.html { redirect_to("/programs?mine=1") }
       format.xml  { head :ok }
     end
   end

@@ -26,6 +26,8 @@ class User < ActiveRecord::Base
   has_many :coach_templates
   has_many :coach_template_goals, :through => :coach_templates
 
+  has_many :program_enrollments
+  has_many :programs, :through => :program_enrollments
 
   
   acts_as_authentic

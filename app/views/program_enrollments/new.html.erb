@@ -1,35 +1,50 @@
-<h1>New program_enrollment</h1>
+<div class="alert info">
+Need help modifying this view? See "program_templates/new" for ideas
+</div>
 
-<% form_for(@program_enrollment) do |f| %>
-  <%= f.error_messages %>
 
-  <p>
-    <%= f.label :program_id %><br />
-    <%= f.text_field :program_id %>
-  </p>
-  <p>
-    <%= f.label :user_id %><br />
-    <%= f.text_field :user_id %>
-  </p>
-  <p>
-    <%= f.label :active %><br />
-    <%= f.check_box :active %>
-  </p>
-  <p>
-    <%= f.label :ongoing %><br />
-    <%= f.check_box :ongoing %>
-  </p>
-  <p>
-    <%= f.label :start_date %><br />
-    <%= f.date_select :start_date %>
-  </p>
-  <p>
-    <%= f.label :end_date %><br />
-    <%= f.date_select :end_date %>
-  </p>
-  <p>
-    <%= f.submit 'Create' %>
-  </p>
+
+<% 
+if params[:program_id] 
+  @program_enrollment.program_id = params[:program_id].to_i
+end
+
+if params[:user_id] 
+  @program_enrollment.user_id = params[:user_id].to_i
+end
+
+if params[:program_session_id] 
+  @program_enrollment.program_session_id = params[:program_session_id].to_i
+end
+%>
+
+
+<% if @program_enrollment.user_id %>
+
+  Enrolling <%= @program_enrollment.user.name %> 
+<% else %>
+
+
+  <!-- FRIEND FINDER -->
+  <div id="spinner_catchup_friend_finder%>" style="display:none;">
+    <center><img src="/images/spinner.gif"/></center>
+  </div>
+  <div class="class_friend_finder ">
+
+    <%= render :partial => "user_friends/friend_finder", :locals => {:program_id => @program_enrollment.program_id}  %>
+
+  </div>
+  <!-- FRIEND FINDER -->
+
 <% end %>
 
-<%= link_to 'Back', program_enrollments_path %>
+
+
+
+
+
+
+
+
+
+

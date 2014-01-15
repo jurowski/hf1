@@ -1,0 +1,71 @@
+
+<%= Time.now.getutc %>
+
+
+<br>
+<br>
+
+<div class="portlet box grey">
+	<div class="portlet-title">
+		<div class="caption">
+			 Invitations
+		</div>
+		<div class="tools">
+		   <a href="javascript:;" class="collapse"></a>
+		</div>
+	</div>
+	<div class="portlet-body">
+
+
+		<% if @invite_create_message %>
+			<div class="alert alert-error">
+			<%= @invite_create_message %>
+			</div>
+		<% end %>
+
+		<% @invites = Invite.find(:all, :conditions => "purpose_join_program_id = '#{@program.id}' and accepted_on is null") %>
+		<% if @invites.size > 0 %>
+			<h3><%= @invites.size %> Invites Sent:</h3>
+			<% @invites.each do |invite| %>
+			  <!-- for automation of removing an item and re-loading the partial, see:
+			  views/template_tags/_manage -->
+			  <%= invite.to_name %> (<%= invite.to_email%>) invited <%= time_ago_in_words(invite.created_at) %> ago<br>
+			<% end %>
+
+			<br>
+			<h3>Invite another friend to this program!</h3>
+		<% else %>
+			<h3>Invite a friend to this program!</h3>
+		<% end %>
+
+
+		Name: <input type="text" name="<%= @program.id %>_invite_name" id="<%= @program.id %>_invite_name" placeholder="ex: Joe Smith">
+
+		&nbsp &nbsp &nbsp Email: 
+		<input type="text" name="<%= @program.id %>_invite_email" id="<%= @program.id %>_invite_email" placeholder="ex: joe@example.com">
+
+		&nbsp
+		<a class="btn green" onclick="create_invite_then_reload_manage_program_invites('<%= @program.id %>',document.getElementById('<%= @program.id %>_invite_name').value,document.getElementById('<%= @program.id %>_invite_email').value);">Send Invite</a>
+
+
+		<br>
+		<h3>When Sending Invitations, Use the Text Below</h3>
+		<div class="alert alert-warning">
+		<strong>Subject:</strong> <%=h @program.invitation_subject %>
+		<br>
+		<br>
+		<strong>Body:</strong>
+		<br>
+		<% if @program.invitation_body %>
+		<%= @program.invitation_body.gsub("\n", "<br>") %>
+		<% else %>
+		<%= @program.invitation_body %>
+		<% end %>
+		<br>
+		<br>
+		<strong>Note: We will add a "Click to Join This program Now" button at the end of the message</strong>
+		</div>
+		<%= link_to 'Edit Invitation Message', edit_program_path(@program), :class => "btn" %>
+
+	</div> <!-- end class portlet-body -->
+</div> <!-- end class portlet -->

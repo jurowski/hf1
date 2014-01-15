@@ -1,6 +1,6 @@
 
 
-<h1>Program: <%= @program.name %></h1>
+<h1>Challenge Program: <%= @program.name %></h1>
 
 <div style="background-color:#eeeeee;padding:10px;padding-top:5px;margin:10px;margin-left:0px;">
 
@@ -51,8 +51,30 @@
 
 </div>
 
-<%= link_to 'Modify Program Details', edit_program_path(@program), :class => "btn blue" %> 
-<%= link_to 'Preview Program View', '/programs/' + @program.id.to_s + '/view', :class => "btn" %>
+<%= link_to 'Edit', edit_program_path(@program), :class => "btn blue", :title => "Modify Program Details.", :id => "edit_" + @program.id.to_s %>
+    <script type='text/javascript'>
+        $('#edit_<%= @program.id.to_s %>').tipsy();
+    </script>
+
+<%= link_to 'Preview', '/programs/' + @program.id.to_s + '/view', :class => "btn blue", :title => "Show how the program will look when other people view it.", :id => "preview_" + @program.id.to_s %>
+    <script type='text/javascript'>
+        $('#preview_<%= @program.id.to_s %>').tipsy();
+    </script>
+
+
+<% if @program.can_delete %>
+(no actions, no users, delete program    <%= link_to '- Delete Program', @program, :confirm => 'Delete this program? (there are no associated users or actions)', :method => :delete, :class => "btn mini red" %>)
+<% else %>
+
+
+    <a id='delete_disabled_<%= @program.id.to_s %>'  class="btn disabled" title="(There are associated actions or users, so can not delete)." ><i class="icon-pause"></i>- Delete Program</a>
+    <script type='text/javascript'>
+        $('#delete_disabled_<%= @program.id.to_s %>').tipsy();
+    </script>
+
+
+<% end %>
+
 <hr>
 <h3>Action Items for this Program</h3>
 
@@ -71,10 +93,41 @@
     %>
 
     <%= pos %><%= link_to program_template.template.template_tagline, program_template %>
-    <%= link_to '- Remove', program_template, :confirm => 'Drop "' + program_template.template.template_tagline + '" from this program? (this will not delete the action template itself)', :method => :delete, :class => "btn mini red" %>
+    <%= link_to '- Drop from Program', program_template, :confirm => 'Drop "' + program_template.template.template_tagline + '" from this program? (this will not delete the action template itself)', :method => :delete, :class => "btn mini red" %>
     <br>
 <% end %>
 
 </div>
 <a href="/program_templates/new?program_id=<%= @program.id.to_s %>" class="btn green">+ Add an Action Item</a>
+<hr>
+
+
+
+<h3>Users Enrolled in this Program</h3>
+
+<div class="" style="border-style:dotted;border-width:1px;padding:10px;margin:10px;margin-left:0px;">
+<% @program_enrollments = ProgramEnrollment.find(:all, :conditions => "program_id = '#{@program.id}'") %>
+
+<% @program_enrollments.each do |program_enrollment| %>
+
+  <br>
+
+    <%= link_to program_enrollment.user.name, program_enrollment %>
+    <%= link_to '- Drop from Program', program_enrollment, :confirm => 'Drop "' + program_template.user.name + '" from this program? (this will not delete the actual user record, but will remove the enrollment)', :method => :delete, :class => "btn mini red" %>
+    <br>
+<% end %>
+
+
+</div>
+
+<div class="alert">
+  LIST INVITEES HERE...THOSE PENDING ENROLLMENT
+
+  <div class="div_program_<%= @program.id %>_manage_program_invites" id="div_program_<%= @program.id %>_manage_program_invites">
+    <%= render :partial => "invites/manage_program_invites", :locals => { :program => @program }  %>
+  </div>
+
+</div>
+
+<a href="/program_enrollments/new?program_id=<%= @program.id.to_s %>" class="btn green">+ Invite a User to Enroll</a>
 <hr>

@@ -4,28 +4,11 @@
 --------------------- :::TODO::: ----------------------------
 
 
-!!!! SHOW THE 7-day and 30-day success rates over the _bw and color category images, so that people see it and can comment on it (dynamic spot)
+-- re-format the goals listing on the main page to incorporate new graphics for stats and for the bw vs color habit badge
 
+-- add in the uservoice ticket image idea in the new check-in format that says "so and so succeeded, did you?" but make an option to hide that stuff too
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+-- add in the UV ticket image idea of teams going after badges that another team is also competing for, and display the competition at the bottom of the main page
 
 
 :::CURRENT::: 
@@ -94,9 +77,15 @@ Program:
       skyscraper 2 (completed once you get to 586 stairs)
       skyscraper 3 (completed once you get to 623 stairs)
 
--- db changes have all been pushed and applied to prod
+-- db changes have all been pushed and applied to prod:
+program_session  (just a start/stop date record)
+program_enrollment (a program_id for a user, and optionally a program_session_id)
+program now has optional "duration"-related fields
 
 -- modify the program UI so that you can take advantage of the recently-added "duration/ongoing" fields
+
+...need to be able to delete a program if no active users of the program itself and if no action items - give option to delete the actions themselves that are associated w/ the program but only if no active users
+
 
 -- modify the program UI to be able to CRUD program_sessions
 
@@ -106,11 +95,13 @@ Program:
 (see the schema for "triggers" for programs)
 (people will want this to be realtime, so do a trigger check on checkpoint update and on quant entry, not via cron)
 
+-- new class: badges ... a user should have badges as well as a team
 
 --i think the structure had allowed for a goal to be reached upon a certain success rate,
 but we need to also let it be reached once a tracker summation is reached for that goal 
 (people will want this to be realtime, so do a trigger check on quant entry, not via cron)
 
+--also add the ability to require that everyone on that team reach a particular goal before a badge win is recorded for the team
 
 
 
