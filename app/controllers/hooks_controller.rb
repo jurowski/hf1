@@ -2,6 +2,7 @@ require 'rexml/document'
 require 'date'
 require 'geocoder'
 
+skip_before_filter :verify_authenticity_token  
 
 class HooksController < ApplicationController
   protect_from_forgery :except => :create
@@ -10,7 +11,477 @@ class HooksController < ApplicationController
 
 
 
-  def new_rowley_user
+ def new_rowley_user
+
+    ### What comes back once they confirm
+    # Processing HooksController#new_rowley_user (for 207.106.13.51 at 2013-11-04 16:49:54) [GET]
+    # 2013-11-04 22:49:54 GMT | INFO | 22818 |   Parameters: {"contact_name"=>"Sandon", "ACCOUNT_ID"=>"dqcM", "action"=>"new_rowley_user", "account_login"=>"johnrowley", "CONTACT_ID"=>"Aham3", "campaign_name"=>"52_million_pound_challenge", "contact_ip"=>"144.92.221.139", "contact_origin"=>"www", "controller"=>"hooks", "contact_email"=>"support%40habitforge.com", "CAMPAIGN_ID"=>"7bjl"}
+    # 2013-11-04 22:49:54 GMT | INFO | 22818 | Completed in 1ms (View: 0, DB: 0) | 200 OK [http://habitforge.com/hooks/rowley_52m/new_rowley_user?CONTACT_ID=Aham3&ACCOUNT_ID=dqcM&account_login=johnrowley&contact_name=Sandon&campaign_name=52_million_pound_challenge&contact_ip=144.92.221.139&CAMPAIGN_ID=7bjl&contact_email=support%2540habitforge.com&contact_origin=www&action=subscribe]
+    # 2013-11-04 22:50:03 GMT | INFO | 22818 | 
+
+    #ex: http://habitforge.com/hooks/rowley_52m/new_rowley_user?CONTACT_ID=AhaCe&ACCOUNT_ID=dqcM&account_login=johnrowley&contact_name=SJ&campaign_name=52_million_pound_challenge&contact_ip=144.92.221.130&CAMPAIGN_ID=7bjl&contact_email=jurowski%2540wisc.edu&contact_origin=www&action=subscribe
+    # "contact_name"=>"Sandon", 
+    # "ACCOUNT_ID"=>"dqcM", 
+    # "action"=>"new_rowley_user", 
+    # "account_login"=>"johnrowley", 
+    # "CONTACT_ID"=>"Aham3", 
+    # "campaign_name"=>"52_million_pound_challenge", 
+    # "contact_ip"=>"144.92.221.139", 
+    # "contact_origin"=>"www", 
+    # "controller"=>"hooks", 
+    # "contact_email"=>"support%40habitforge.com", 
+    # "CAMPAIGN_ID"=>"7bjl"
+
+
+    if params[:contact_email] and params[:contact_ip] and params[:contact_name] and params[:campaign_name] and params[:campaign_name] == "52_million_pound_challenge"
+      logger.info("sgj:52m_new_users:ROWLEY NEW SIGNUP:email=" + params[:contact_email] + ":name=" + params[:contact_name] + ":IP=" + params[:contact_ip] )
+
+      params_email = params[:contact_email].gsub('%40', "@")
+
+      @user_already_exists = false
+      user = User.find(:first, :conditions => "email = '#{params_email}'") 
+      if user
+        ### sorry, there's already an HF account with that email address
+        logger.info("sgj:52m_new_users:USER ALREADY EXISTS WITH email=" + params_email)
+        @user_already_exists = true
+      end
+
+
+      if !@user_already_exists
+        logger.info("sgj:52m_new_users:ATTEMPT NEW USER CREATION WITH email=" + params_email)
+        user = User.new
+        user.first_name = params[:contact_name].gsub('%20', " ")
+        user.last_name = ""
+        user.email = params_email
+        user.email_confirmation = user.email
+        random_pw_number = rand(1000) + 1 #between 1 and 1000
+        user.password = "xty" + random_pw_number.to_s
+        user.password_confirmation = user.password
+        user.password_temp = user.password
+        user.sponsor = "habitforge"
+        user.time_zone = "Central Time (US & Canada)"
+        ### having periods in the first name kills the attempts to email that person, so remove periods
+        user.first_name = user.first_name.gsub(".", "")
+        ### Setting this to something other than 0 so that this person
+        ### is included in the next morning's cron job to send emails
+        ### this will get reset to the right number once each day via cron
+        ### but set it now in case user is being created after that job runs
+        user.update_number_active_goals = 1
+
+
+        if user.save
+
+
+
+          begin
+            logger.info("sgj:52m_new_users:ATTEMPT GEOLOOKUP FOR new user email=" + user.email)
+            s = Geocoder.search(params[:contact_ip])
+            user.state_code = s[0].state_code
+            user.state = user.state_code
+            user.country_code = s[0].country_code
+            user.country = s[0].country
+
+            if user.country_code == "US"
+              user.country = "usa"
+            end
+
+            if user.country_code == "CA"
+              user.country = "canada"
+            end
+
+            logger.info("sgj:52m_new_users:INFO FROM GEOLOOKUP FOR new user email=" + user.email + "... state_code=" + user.state_code + ":country=" + user.country + ":country_code=" + user.country_code)
+          rescue
+            logger.info("sgj:52m_new_users:FAILURE DURING GEOLOOKUP FOR new user email=" + user.email)
+          end
+
+
+          ### update last activity date
+          user.last_activity_date = user.dtoday
+
+          user.date_of_signup = user.dtoday
+          #user.confirmed_address = true ### since user via rowley getresponse already confirmed
+
+
+          #stats_increment_new_user## not available in hook
+          logger.info("sgj:52m_new_users:SUCCESS SAVING new user email=" + user.email)
+
+          begin
+            logger.info("sgj:52m_new_users:ATTEMPT TO SEND USER CONF EMAIL FOR new user email=" + user.email)
+            #### ALLOW FOR EMAIL ADDRESS CONFIRMATION
+            random_confirm_token = rand(1000) + 1 #between 1 and 1000
+            user.confirmed_address_token = "xtynzsc" + random_confirm_token.to_s
+            user.save
+            #### now that we have saved and have the user id, we can send the email 
+            the_subject = "Get Started with the 52 Million Challenge and HabitForge"
+            Notifier.deliver_user_confirm_52m(user, the_subject) # sends the email
+          rescue
+            logger.info("sgj:52m_new_users:FAILURE SENDING USER CONF EMAIL FOR new user email=" + user.email)
+          end
+
+
+          begin
+            logger.info("sgj:52m_new_users:will try creating an infusionsoft contact for user with email " + user.email)
+            #400: hf new signup funnel v2 free no goal yet
+            #398: hf new signup funnel v2 free created goal
+            new_contact_id = Infusionsoft.contact_add({:FirstName => user.first_name, :LastName => user.last_name, :Email => user.email})
+            Infusionsoft.email_optin(user.email, 'HabitForge signup')
+            Infusionsoft.contact_add_to_group(new_contact_id, 400)
+
+            ### add them to ETR mailing list
+            Infusionsoft.contact_add_to_group(new_contact_id, 103)
+
+             logger.info("sgj:52m_new_users:SUCCESS creating an infusionsoft contact with new_contact_id=" + new_contact_id.to_s + " for user with email " + user.email)
+          rescue
+            logger.info("sgj:52m_new_users:ERROR creating an infusionsoft contact for user with email " + user.email)
+          end
+
+
+
+          begin
+
+            logger.info("sgj:52m_new_users:will try adding to infusionsoft followup funnel sequence the infusionsoft_contact_id: " + new_contact_id.to_s + " for user with email " + user.email)
+
+            url = "https://sdc90018.infusionsoft.com/api/xmlrpc"
+            uri = URI.parse(url)
+            http = Net::HTTP.new(uri.host, uri.port)
+            http.use_ssl = true if (uri.scheme == 'https')
+            data = "<?xml version='1.0' encoding='UTF-8'?>\
+            <methodCall>\
+            <methodName>FunnelService.achieveGoal</methodName>\
+            <params>\
+            <param><value><string>d541e86effd15eb57f1f9f6344fc8eee</string></value></param>\
+            <param><value><string>sdc90018</string></value></param>\
+            <param><value><string>HabitForgeFollowUp</string></value></param>\
+            <param><value><int>#{new_contact_id}</int></value></param>\
+            </params>\
+            </methodCall>"
+            headers = {'Content-Type' => 'text/xml'}
+            # warning, uri.path will drop queries, use uri.path + uri.query if you need to
+            resp, body = http.post(uri.path, data, headers)
+
+            logger.info("sgj:52m_new_users:xml response from adding new person with email " + user.email + " to infusionsoft sequence: " + resp.to_s + body.to_s)
+
+          rescue
+            logger.error("sgj:52m_new_users:error adding " + user.email + " to infusionsoft followup funnel sequence")
+          end
+
+
+          logger.info("sgj:52m_new_users:NOW CREATE GOAL FOR NEW USER")
+
+          ##########################
+          #### START CREATE GOAL FOR NEW USER
+          ##########################
+          ##########################
+          @goal = Goal.new
+
+          @goal.user = user
+
+          @goal.tracker_set_checkpoint_to_yes_if_any_answer = false # the db default is true, but false is better
+          @goal.tracker_set_checkpoint_to_yes_only_if_answer_acceptable = false # the db default is true, but false is safer for now
+
+          @goal.reminder_time = DateTime.new(2009,1,1,0,0,0)
+
+          @goal.reminder_send_hour = 8 #### 8am
+          @goal.usersendhour = 20 ### 8pm
+
+          @goal.daym = 1
+          @goal.dayt = 1
+          @goal.dayw = 1
+          @goal.dayr = 1
+          @goal.dayf = 1
+          @goal.days = 1
+          @goal.dayn = 1
+
+          @goal.more_reminders_enabled = false
+          @goal.more_reminders_start = 8
+          @goal.more_reminders_end = 22
+          @goal.more_reminders_every_n_hours = 4
+          @goal.more_reminders_last_sent = 0
+
+
+          @goal.publish = 1
+
+          @goal.title = "eating healthy"
+          @goal.response_question = @goal.title
+
+          @goal.category = "Diet, Healthy Foods and Water"
+
+          ### PROGRAM ID = 4 (for John Rowley's 52 Milion Pound Challenge)
+          @goal.goal_added_through_template_from_program_id = 4
+
+          ### TEMPLATE ID = 143092 (the "Eat Healthy!" one)
+          template_user_parent_goal_id = 143092 
+
+          @goal.template_user_parent_goal_id = template_user_parent_goal_id
+
+          template_user_parent_goal = Goal.find(template_user_parent_goal_id)
+          if template_user_parent_goal
+            @goal.template_user_parent_goal_id = template_user_parent_goal.id
+            @goal.title = template_user_parent_goal.title
+            @goal.response_question = template_user_parent_goal.response_question
+            @goal.category = template_user_parent_goal.category
+            @goal.reminder_time = template_user_parent_goal.reminder_time
+            @goal.daym = template_user_parent_goal.daym
+            @goal.dayt = template_user_parent_goal.dayt
+            @goal.dayw = template_user_parent_goal.dayw
+            @goal.dayr = template_user_parent_goal.dayr
+            @goal.dayf = template_user_parent_goal.dayf
+            @goal.days = template_user_parent_goal.days
+            @goal.dayn = template_user_parent_goal.dayn
+            @goal.goal_days_per_week = template_user_parent_goal.goal_days_per_week
+            @goal.remind_me = template_user_parent_goal.remind_me
+            @goal.reminder_send_hour = template_user_parent_goal.reminder_send_hour
+            @goal.check_in_same_day = template_user_parent_goal.check_in_same_day
+            @goal.usersendhour = template_user_parent_goal.usersendhour
+
+
+            if template_user_parent_goal.tracker != nil
+            @goal.tracker = template_user_parent_goal.tracker
+            end
+            if template_user_parent_goal.tracker_question != nil
+            @goal.tracker_question = template_user_parent_goal.tracker_question
+            end
+            if template_user_parent_goal.tracker_statement != nil
+            @goal.tracker_statement = template_user_parent_goal.tracker_statement
+            end
+            if template_user_parent_goal.tracker_units != nil
+            @goal.tracker_units = template_user_parent_goal.tracker_units
+            end
+            if template_user_parent_goal.tracker_digits_after_decimal != nil
+            @goal.tracker_digits_after_decimal = template_user_parent_goal.tracker_digits_after_decimal
+            end
+            if template_user_parent_goal.tracker_standard_deviation_from_last_measurement != nil
+            @goal.tracker_standard_deviation_from_last_measurement = template_user_parent_goal.tracker_standard_deviation_from_last_measurement
+            end
+            if template_user_parent_goal.tracker_type_starts_at_zero_daily != nil
+            @goal.tracker_type_starts_at_zero_daily = template_user_parent_goal.tracker_type_starts_at_zero_daily
+            end
+            if template_user_parent_goal.tracker_target_higher_value_is_better != nil
+            @goal.tracker_target_higher_value_is_better = template_user_parent_goal.tracker_target_higher_value_is_better
+            end
+            if template_user_parent_goal.tracker_set_checkpoint_to_yes_if_any_answer != nil
+            @goal.tracker_set_checkpoint_to_yes_if_any_answer = template_user_parent_goal.tracker_set_checkpoint_to_yes_if_any_answer
+            end
+            if template_user_parent_goal.tracker_set_checkpoint_to_yes_only_if_answer_acceptable != nil
+            @goal.tracker_set_checkpoint_to_yes_only_if_answer_acceptable = template_user_parent_goal.tracker_set_checkpoint_to_yes_only_if_answer_acceptable
+            end
+            if template_user_parent_goal.tracker_target_threshold_bad1 != nil
+            @goal.tracker_target_threshold_bad1 = template_user_parent_goal.tracker_target_threshold_bad1
+            end
+            if template_user_parent_goal.tracker_target_threshold_bad2 != nil
+            @goal.tracker_target_threshold_bad2 = template_user_parent_goal.tracker_target_threshold_bad2
+            end
+            if template_user_parent_goal.tracker_target_threshold_bad3 != nil
+            @goal.tracker_target_threshold_bad3 = template_user_parent_goal.tracker_target_threshold_bad3
+            end
+            if template_user_parent_goal.tracker_target_threshold_good1 != nil
+            @goal.tracker_target_threshold_good1 = template_user_parent_goal.tracker_target_threshold_good1
+            end
+            if template_user_parent_goal.tracker_target_threshold_good2 != nil
+            @goal.tracker_target_threshold_good2 = template_user_parent_goal.tracker_target_threshold_good2
+            end
+            if template_user_parent_goal.tracker_target_threshold_good3 != nil
+            @goal.tracker_target_threshold_good3 = template_user_parent_goal.tracker_target_threshold_good3
+            end
+            if template_user_parent_goal.tracker_measurement_worst_yet != nil
+            @goal.tracker_measurement_worst_yet = template_user_parent_goal.tracker_measurement_worst_yet
+            end
+            if template_user_parent_goal.tracker_measurement_best_yet != nil
+            @goal.tracker_measurement_best_yet = template_user_parent_goal.tracker_measurement_best_yet
+            end
+            if template_user_parent_goal.tracker_measurement_last_taken_on_date != nil
+            @goal.tracker_measurement_last_taken_on_date = template_user_parent_goal.tracker_measurement_last_taken_on_date
+            end
+            if template_user_parent_goal.tracker_measurement_last_taken_on_hour != nil
+            @goal.tracker_measurement_last_taken_on_hour = template_user_parent_goal.tracker_measurement_last_taken_on_hour
+            end
+            if template_user_parent_goal.tracker_measurement_last_taken_value != nil
+            @goal.tracker_measurement_last_taken_value = template_user_parent_goal.tracker_measurement_last_taken_value
+            end
+            if template_user_parent_goal.tracker_measurement_last_taken_timestamp != nil
+            @goal.tracker_measurement_last_taken_timestamp = template_user_parent_goal.tracker_measurement_last_taken_timestamp
+            end
+            if template_user_parent_goal.tracker_prompt_after_n_days_without_entry != nil
+            @goal.tracker_prompt_after_n_days_without_entry = template_user_parent_goal.tracker_prompt_after_n_days_without_entry
+            end
+            if template_user_parent_goal.tracker_prompt_for_an_initial_value != nil
+            @goal.tracker_prompt_for_an_initial_value = template_user_parent_goal.tracker_prompt_for_an_initial_value
+            end
+            if template_user_parent_goal.tracker_track_difference_between_initial_and_latest != nil
+            @goal.tracker_track_difference_between_initial_and_latest = template_user_parent_goal.tracker_track_difference_between_initial_and_latest
+            end
+            if template_user_parent_goal.tracker_difference_between_initial_and_latest != nil
+            @goal.tracker_difference_between_initial_and_latest = template_user_parent_goal.tracker_difference_between_initial_and_latest
+            end
+          end
+
+
+          @goal.title = @goal.response_question
+          @goal.pushes_allowed_per_day = 1
+
+          ### update last activity date
+          @goal.user.last_activity_date = @goal.user.dtoday
+          @goal.user.save
+
+
+          Time.zone = @goal.user.time_zone
+          utcoffset = Time.zone.formatted_offset(false)
+          offset_seconds = Time.zone.now.gmt_offset 
+          send_time = Time.utc(2000, "jan", 1, @goal.usersendhour, 0, 0) #2000-01-01 01:00:00 UTC
+          central_time_offset = 21600 #add this in since we're doing UTC
+          server_time = send_time - offset_seconds - central_time_offset
+          @goal.serversendhour = server_time.strftime('%k')
+          @goal.gmtoffset = utcoffset          
+          #############
+
+          @goal.status = "start"
+
+        
+          @goal.established_on = Date.new(1900, 1, 1)
+
+          @goal.days_to_form_a_habit = 21
+
+          start_day_offset = 1
+          @goal.start = @goal.user.dtoday + start_day_offset
+          @goal.stop = @goal.start + @goal.days_to_form_a_habit
+          @goal.first_start_date = @goal.start          
+
+          if @goal.save
+            logger.info("sgj:52m_new_users:SUCCESS SAVING 52M GOAL FOR new user email=" + user.email)            
+
+            begin
+              logger.info("sgj:52m_new_users:ATTEMPT UPDATING INFUSIONSOFT CONTACT FOR new user email=" + user.email)            
+              ### PRODUCTION GROUP/TAG IDS
+              #400: hf new signup funnel v2 free no goal yet
+              #398: hf new signup funnel v2 free created goal
+
+              Infusionsoft.contact_update(new_contact_id, {:FirstName => user.first_name, :LastName => user.last_name})
+              Infusionsoft.contact_add_to_group(new_contact_id, 398)
+              Infusionsoft.contact_remove_from_group(new_contact_id, 400)
+              ####          END INFUSIONSOFT CONTACT           ####
+              logger.info("sgj:52m_new_users:SUCCESS UPDATING INFUSIONSOFT CONTACT FOR new user email=" + user.email)            
+            rescue
+              logger.info("sgj:52m_new_users:FAILURE UPDATING INFUSIONSOFT CONTACT FOR new user email=" + user.email)            
+            end
+
+
+            # begin              
+            #   Notifier.deliver_goal_creation_notification(@goal) # sends the email
+            #   logger.info("sgj:52m_new_users:SENT GOAL CREATION NOTIFICATION EMAIL to new user email=" + user.email)            
+            # rescue
+            #   logger.info("sgj:52m_new_users:ERROR SENDING GOAL CREATION NOTIFICATION EMAIL to new user email=" + user.email)            
+            # end
+
+
+
+
+            begin 
+              logger.info("sgj:52m_new_users:ATTEMPT TO ADD TO ENCOURAGE TIMELINE for new user email=" + user.email)            
+              ### attempt to add to encourage_items
+
+
+              # when a goal is created,
+              # if username != unknown,
+              # if the goal is public,
+              # then enter it into encourage_items
+
+              # --- encourage_item ---
+              # encourage_type_new_checkpoint_bool (index)
+              # encourage_type_new_goal_bool (index)
+              # checkpoint_id
+              # checkpoint_status
+              # checkpoint_date (index)
+              # checkpoint_updated_at_datetime
+              # goal_id (index)
+              # goal_name
+              # goal_category
+              # goal_created_at_datetime
+              # goal_publish
+              # goal_first_start_date (index)
+              # goal_daysstraight
+              # goal_days_into_it
+              # goal_success_rate_percentage
+              # user_id (index)
+              # user_name
+              # user_email
+
+              logger.debug "sgj:goals_controller.rb:consider adding to encourage_items"
+              if @goal.user.first_name != "unknown"
+                if @goal.is_public
+                  logger.debug "sgj:goals_controller.rb:candidate for encourage_items"
+
+                  encourage_item = EncourageItem.new
+                  logger.debug "sgj:goals_controller.rb:new encourage_items instantiated"
+
+                  encourage_item.encourage_type_new_checkpoint_bool = false
+                  encourage_item.encourage_type_new_goal_bool = true
+
+                  #encourage_item.checkpoint_id = nil
+                  encourage_item.checkpoint_id = @goal.id ### a workaround to the validation that checkpoint_id is unique
+
+                  encourage_item.checkpoint_status = nil
+                  encourage_item.checkpoint_date = nil
+                  encourage_item.checkpoint_updated_at_datetime = nil
+                  encourage_item.goal_id = @goal.id
+                  encourage_item.goal_name = @goal.title
+                  encourage_item.goal_category = @goal.category
+                  encourage_item.goal_created_at_datetime = @goal.created_at
+                  encourage_item.goal_publish = @goal.publish
+                  encourage_item.goal_first_start_date = @goal.first_start_date
+                  encourage_item.goal_daysstraight = @goal.daysstraight
+                  encourage_item.goal_days_into_it = @goal.days_into_it
+                  encourage_item.goal_success_rate_percentage = @goal.success_rate_percentage
+                  encourage_item.user_id = @goal.user.id
+                  encourage_item.user_name = @goal.user.first_name
+                  encourage_item.user_email = @goal.user.email
+
+
+
+                  if encourage_item.save
+                    logger.info("sgj:52m_new_users:SUCCESS ADDING TO ENCOURAGE TIMELINE for new user email=" + user.email)            
+                    # logger.info("sgj:goals_controller.rb:success saving encourage_item")
+                  else
+                    # logger.error("sgj:goals_controller.rb:error saving encourage_item")
+                    logger.info("sgj:52m_new_users:FAILURE ADDING TO ENCOURAGE TIMELINE for new user email=" + user.email)            
+                  end
+                  # logger.debug "sgj:goals_controller.rb:new encourage_item.id = " + encourage_item.id.to_s
+
+                end
+              end
+
+            rescue
+              logger.info("sgj:52m_new_users:ERROR WHILE ADDING TO ENCOURAGE TIMELINE for new user email=" + user.email)            
+            end
+
+          else
+            logger.info("sgj:52m_new_users:FAILURE SAVING 52M GOAL FOR new user email=" + user.email)            
+          end
+
+
+
+          ##########################
+          #### END CREATE GOAL FOR NEW USER
+          ##########################
+          ##########################
+
+
+        else
+          ### error saving user
+          logger.info("sgj:52m_new_users:FAILURE DURING USER SAVE FOR new user email=" + params[:contact_email])
+        end
+
+
+
+      end
+
+      #`cat "#{params[:email]},#{params[:name]},#{params[:country]},#{params[:state]}" >> 52m_new_users.csv`
+      #`cat hello >> 52m_new_users.csv`
+    end
+    render :nothing => true
+  end
+
+
+  def new_rowley_user_OLD_GETRESPONSE_VERSION
 
     ### What comes back once they confirm
     # Processing HooksController#new_rowley_user (for 207.106.13.51 at 2013-11-04 16:49:54) [GET]
