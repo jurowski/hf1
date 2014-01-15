@@ -2,7 +2,7 @@ require 'rexml/document'
 require 'date'
 require 'geocoder'
 
-skip_before_filter :verify_authenticity_token  
+#skip_before_filter :verify_authenticity_token  
 
 class HooksController < ApplicationController
   protect_from_forgery :except => :create
