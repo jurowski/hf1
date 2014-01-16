@@ -6,11 +6,11 @@
 
 
 PROGRAMS - INVITATIONS
-...edit the invitation message from the partial
-
-!!! at least for program invites, when sending, it dies if there is a space in the name (so first last kills it) ... probably the same for team invites
 
 
+SUCCESS: the email invites to programs are working
+NEXT STEP: make it so that when someone clicks on it, it reacts the same way as it does for accepting a team invite. Below is the URL that gets put at the bottom of the "join my program" emails.
+http://habitforge.com/quicksignup_v2?invitation_id=21&email=support@habitforge.com&to_name=HFSupport&form_submitted=1
 
 
 
