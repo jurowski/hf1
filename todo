@@ -4,6 +4,18 @@
 --------------------- :::TODO::: ----------------------------
 
 
+
+PROGRAMS - INVITATIONS
+...edit the invitation message from the partial
+
+!!! at least for program invites, when sending, it dies if there is a space in the name (so first last kills it) ... probably the same for team invites
+
+
+
+
+
+
+
 -- re-format the goals listing on the main page to incorporate new graphics for stats and for the bw vs color habit badge
 
 -- add in the uservoice ticket image idea in the new check-in format that says "so and so succeeded, did you?" but make an option to hide that stuff too

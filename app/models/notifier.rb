@@ -459,6 +459,27 @@ class Notifier < ActionMailer::Base
   end
 
 
+  def invite_a_friend_to_program(user, email, the_body, the_subject)  
+    recipients  email
+    bcc         "support@habitforge.com"
+    from        user.first_name + " via habitforge <support@habitforge.com>"
+    subject     the_subject  
+    body        the_body
+    content_type "text/html"
+  end
+
+
+
+  def to_program_owner_invite_accepted(invited_user, program_owner)
+    recipients  program_owner.name + "<" + program_owner.email + ">"
+    from        "HabitForge <support@habitforge.com>"
+    bcc         ["support@habitforge.com"]
+    subject     "[HF] #{invited_user.name} acccepted the invitation to join your program!"
+    body        :invited_user => invited_user, :program_owner =>  program_owner
+    content_type "text/html"
+  end
+
+
 
 
 

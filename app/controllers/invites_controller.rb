@@ -14,7 +14,7 @@ class InvitesController < ApplicationController
   before_filter :require_user
   before_filter :require_owner_or_recipient, :only => [:show]
   #before_filter :require_admin_user, :only => [:index]
-  before_filter :require_owner_invite, :except => [:new, :create, :manage_team_invites, :show]
+  before_filter :require_owner_invite, :except => [:new, :create, :manage_team_invites, :manage_program_invites, :show]
 
 
   def valid_email( value )

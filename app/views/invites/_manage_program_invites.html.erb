@@ -1,5 +1,23 @@
 
-<%= Time.now.getutc %>
+<!-- Time.now.getutc -->
+
+<!-- ########################################### -->
+<!-- ########################################### -->
+<!-- DEAL WITH ANY HTML ENCODING FOR INVITE NAME -->
+<script>
+//http://stackoverflow.com/questions/784586/convert-special-characters-to-html-in-javascript
+function HtmlEncode(s)
+{
+  var el = document.createElement("div");
+  el.innerText = el.textContent = s;
+  s = el.innerHTML;
+  return s;
+}
+
+</script>
+<!-- END DEAL WITH ANY HTML ENCODING FOR INVITE NAME -->
+<!-- ############################################### -->
+<!-- ############################################### -->
 
 
 <br>
@@ -45,7 +63,7 @@
 		<input type="text" name="<%= @program.id %>_invite_email" id="<%= @program.id %>_invite_email" placeholder="ex: joe@example.com">
 
 		&nbsp
-		<a class="btn green" onclick="create_invite_then_reload_manage_program_invites('<%= @program.id %>',document.getElementById('<%= @program.id %>_invite_name').value,document.getElementById('<%= @program.id %>_invite_email').value);">Send Invite</a>
+		<a class="btn green" onclick="create_invite_then_reload_manage_program_invites('<%= @program.id %>',HtmlEncode(document.getElementById('<%= @program.id %>_invite_name').value.replace(/ /g, '')),document.getElementById('<%= @program.id %>_invite_email').value);">Send Invite</a>
 
 
 		<br>

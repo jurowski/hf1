@@ -68,6 +68,18 @@
     </p>
     <br>
 
+
+  <h3>When sending invitations, use the text below:</h3>
+  <br>Subject: 
+  <br>
+  <%= f.text_field :invitation_subject, :value => @program.invitation_subject %>
+  <br>
+  <br>
+  Body:
+  <br>
+  <%= f.text_area :invitation_body, :value => @program.invitation_body, :cols => 80, :rows => 20 %>
+
+
   <p>
     <%= f.submit 'Save Changes', :class => "btn green" %>
     <%= link_to 'Cancel Changes', @program, :class => "btn red" %> 
