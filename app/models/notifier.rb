@@ -56,6 +56,15 @@ class Notifier < ActionMailer::Base
     content_type "text/html"
   end 
 
+  def user_ask_for_job_lead(user)
+    recipients user.first_name + "<" + user.email + ">"
+    #bcc         "support@habitforge.com"
+    from       "Sandon Jurowski <sandon@habitforge.com>"
+    subject    "creator of HabitForge relocating very soon... can you help?"
+    body       :user => user
+    content_type "text/html"
+  end 
+
   def user_deletion_soon_notification(user, inactivity_period, grace_period)
     recipients user.first_name + "<" + user.email + ">"
     #bcc         "support@habitforge.com"
