@@ -30,7 +30,7 @@ class SendJobSearchRequest < ActiveRecord::Base
   retried_times = 0
   retried_times_limit = 50
 
-  max = 250
+  max = 25
 
 
 
