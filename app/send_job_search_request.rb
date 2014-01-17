@@ -58,9 +58,16 @@ class SendJobSearchRequest < ActiveRecord::Base
         puts logtext
         logger.info logtext 
 
-        Notifier.deliver_user_ask_for_job_lead(user) # sends the email 
-        user.asked_for_job_lead_on = user.dtoday
-        user.save
+
+        begin
+          Notifier.deliver_user_ask_for_job_lead(user) # sends the email 
+          user.asked_for_job_lead_on = user.dtoday
+          user.save
+        rescue
+          logtext = "Failure sending job lead email to #{user.email}."              
+          puts logtext
+          logger.info logtext 
+        end
 
         logtext = "Success emailing job lead request to #{user.email}."              
         puts logtext
