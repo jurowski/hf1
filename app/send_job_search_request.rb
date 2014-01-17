@@ -47,6 +47,8 @@ class SendJobSearchRequest < ActiveRecord::Base
   #user_conditions = user_conditions + " and email = 'jurowski@gmail.com'"
 
   user_conditions = user_conditions + " and asked_for_job_lead_on is null"
+  user_conditions = user_conditions + " and asked_for_job_lead_on_failure is null"
+
   user_conditions = user_conditions + " and first_name != 'unknown'"
   user_conditions = user_conditions + " and update_number_active_goals > 0"
 
@@ -72,6 +74,10 @@ class SendJobSearchRequest < ActiveRecord::Base
           logtext = "Failure sending job lead email to #{user.email}."              
           puts logtext
           logger.info logtext 
+
+          user.asked_for_job_lead_on_failure = user.dtoday
+          user.save
+
         end
 
     end
