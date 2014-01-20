@@ -42,7 +42,7 @@ class HooksController < ApplicationController
       params_email = params[:email].gsub('%40', "@")
 
       @user_already_exists = false
-      user = User.find(:first, :conditions => "email = '#{email}'") 
+      user = User.find(:first, :conditions => "email = '#{params_email}'") 
       if user
         ### sorry, there's already an HF account with that email address
         logger.info("sgj:52m_new_users:USER ALREADY EXISTS WITH email=" + params_email)
