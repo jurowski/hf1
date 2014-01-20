@@ -72,7 +72,7 @@ class HooksController < ApplicationController
         user.update_number_active_goals = 1
 
 
-        if user.save and (1 == 2)
+        if user.save
 
 
 
@@ -483,7 +483,7 @@ class HooksController < ApplicationController
 
         else
           ### error saving user
-          logger.info("sgj:52m_new_users:FAILURE DURING USER SAVE FOR new user email=" + params[:contact_email])
+          logger.info("sgj:52m_new_users:FAILURE DURING USER SAVE FOR new user email=" + params[:email])
         end
 
 
