@@ -99,16 +99,19 @@ class HooksController < ApplicationController
           # end
 
 
-          user.country_code = params[:country]
-          user.state = params[:state]
 
-          if user.country_code == "US"
+          if params[:country] == "United States"
+            user.country_code = "US"
             user.country = "usa"
           end
 
-          if user.country_code == "CA"
+
+          if params[:country] == "Canada"
+            user.country_code = "CA"
             user.country = "canada"
           end
+
+
 
 
           ### update last activity date
