@@ -2,11 +2,14 @@ require 'rexml/document'
 require 'date'
 require 'geocoder'
 
-#skip_before_filter :verify_authenticity_token, :only=> [:new_rowley_user]
 
 class HooksController < ApplicationController
   protect_from_forgery :except => :create
-  
+ 
+  skip_before_filter :verify_authenticity_token, :only=> [:new_rowley_user]
+ 
+  #before_filter :authorize, :except => [:edit, :update]
+
   require 'logger'
 
 
