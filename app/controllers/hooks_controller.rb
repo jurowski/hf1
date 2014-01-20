@@ -36,13 +36,13 @@ class HooksController < ApplicationController
     # "CAMPAIGN_ID"=>"7bjl"
 
 
-    if params[:contact_email] and params[:contact_ip] and params[:contact_name] and params[:campaign_name] and params[:campaign_name] == "52_million_pound_challenge"
-      logger.info("sgj:52m_new_users:ROWLEY NEW SIGNUP:email=" + params[:contact_email] + ":name=" + params[:contact_name] + ":IP=" + params[:contact_ip] )
+    if params[:email] and params[:name] and params[:country] and params[:state]
+      logger.info("sgj:52m_new_users:ROWLEY NEW SIGNUP:email=" + params[:email] + ":country=" + params[:country] + ":STATE=" + params[:state] )
 
-      params_email = params[:contact_email].gsub('%40', "@")
+      params_email = params[:email].gsub('%40', "@")
 
       @user_already_exists = false
-      user = User.find(:first, :conditions => "email = '#{params_email}'") 
+      user = User.find(:first, :conditions => "email = '#{email}'") 
       if user
         ### sorry, there's already an HF account with that email address
         logger.info("sgj:52m_new_users:USER ALREADY EXISTS WITH email=" + params_email)
@@ -53,7 +53,7 @@ class HooksController < ApplicationController
       if !@user_already_exists
         logger.info("sgj:52m_new_users:ATTEMPT NEW USER CREATION WITH email=" + params_email)
         user = User.new
-        user.first_name = params[:contact_name].gsub('%20', " ")
+        user.first_name = params[:name].gsub('%20', " ")
         user.last_name = ""
         user.email = params_email
         user.email_confirmation = user.email
@@ -72,29 +72,42 @@ class HooksController < ApplicationController
         user.update_number_active_goals = 1
 
 
-        if user.save
+        if user.save and (1 == 2)
 
 
 
-          begin
-            logger.info("sgj:52m_new_users:ATTEMPT GEOLOOKUP FOR new user email=" + user.email)
-            s = Geocoder.search(params[:contact_ip])
-            user.state_code = s[0].state_code
-            user.state = user.state_code
-            user.country_code = s[0].country_code
-            user.country = s[0].country
+          # begin
+          #   logger.info("sgj:52m_new_users:ATTEMPT GEOLOOKUP FOR new user email=" + user.email)
 
-            if user.country_code == "US"
-              user.country = "usa"
-            end
+          #   s = Geocoder.search(params[:contact_ip])
+          #   user.state_code = s[0].state_code
+          #   user.state = user.state_code
+          #   user.country_code = s[0].country_code
+          #   user.country = s[0].country
 
-            if user.country_code == "CA"
-              user.country = "canada"
-            end
+          #   if user.country_code == "US"
+          #     user.country = "usa"
+          #   end
 
-            logger.info("sgj:52m_new_users:INFO FROM GEOLOOKUP FOR new user email=" + user.email + "... state_code=" + user.state_code + ":country=" + user.country + ":country_code=" + user.country_code)
-          rescue
-            logger.info("sgj:52m_new_users:FAILURE DURING GEOLOOKUP FOR new user email=" + user.email)
+          #   if user.country_code == "CA"
+          #     user.country = "canada"
+          #   end
+
+          #   logger.info("sgj:52m_new_users:INFO FROM GEOLOOKUP FOR new user email=" + user.email + "... state_code=" + user.state_code + ":country=" + user.country + ":country_code=" + user.country_code)
+          # rescue
+          #   logger.info("sgj:52m_new_users:FAILURE DURING GEOLOOKUP FOR new user email=" + user.email)
+          # end
+
+
+          user.country_code = params[:country]
+          user.state = params[:state]
+
+          if user.country_code == "US"
+            user.country = "usa"
+          end
+
+          if user.country_code == "CA"
+            user.country = "canada"
           end
 
 
