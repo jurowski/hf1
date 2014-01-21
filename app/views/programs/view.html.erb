@@ -9,7 +9,7 @@
 </h1>
 
 
-<div style="border-style:dotted;border-width:1px;background-color:#ffffff;padding:10px;padding-top:5px;margin:10px;margin-left:0px;">
+<div style="border-style:none;border-width:1px;background-color:#ffffff;padding:10px;padding-top:5px;margin:10px;margin-left:0px;">
 
 
 
@@ -35,12 +35,14 @@
     </p>
   <% end %>
 
+
+<% show_manager = false %>
+<% if show_manager %>
 <br>
 <div style="background-color:#efefef;padding:5px;">
 <p>
   <b>Managed by:</b>
     <%= @program.managed_by_user.name %>
-
   <br>
   <% #h @program.managed_by_user_id %>
 
@@ -68,6 +70,8 @@
 
 </p>
 </div>
+<% end %> <!-- end if show_manager -->
+
 
 <% if @program.actions_list_dropdown %>
 
@@ -82,7 +86,7 @@
 <br>
 <h3>Action Items for this Program</h3>
 
-<div class="" style="border-style:dotted;border-width:1px;padding:10px;margin:10px;margin-left:30px;">
+<div class="" style="border-style:none;border-width:1px;padding:10px;margin:10px;margin-left:30px;">
 <% @program_templates = ProgramTemplate.find(:all, :conditions => "program_id = '#{@program.id}'", :order => "listing_position") %>
 
 
