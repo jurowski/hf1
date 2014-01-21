@@ -6,34 +6,33 @@ require 'geocoder'
 class HooksController < ApplicationController
   protect_from_forgery :except => :create
  
+
+  ### necessary b/c otherwise it would see a POST sumbission from another server as suspicious
   skip_before_filter :verify_authenticity_token, :only=> [:new_rowley_user]
  
-  #before_filter :authorize, :except => [:edit, :update]
-
   require 'logger'
 
 
 
  def new_rowley_user
 
-    ### What comes back once they confirm
-    # Processing HooksController#new_rowley_user (for 207.106.13.51 at 2013-11-04 16:49:54) [GET]
-    # 2013-11-04 22:49:54 GMT | INFO | 22818 |   Parameters: {"contact_name"=>"Sandon", "ACCOUNT_ID"=>"dqcM", "action"=>"new_rowley_user", "account_login"=>"johnrowley", "CONTACT_ID"=>"Aham3", "campaign_name"=>"52_million_pound_challenge", "contact_ip"=>"144.92.221.139", "contact_origin"=>"www", "controller"=>"hooks", "contact_email"=>"support%40habitforge.com", "CAMPAIGN_ID"=>"7bjl"}
-    # 2013-11-04 22:49:54 GMT | INFO | 22818 | Completed in 1ms (View: 0, DB: 0) | 200 OK [http://habitforge.com/hooks/rowley_52m/new_rowley_user?CONTACT_ID=Aham3&ACCOUNT_ID=dqcM&account_login=johnrowley&contact_name=Sandon&campaign_name=52_million_pound_challenge&contact_ip=144.92.221.139&CAMPAIGN_ID=7bjl&contact_email=support%2540habitforge.com&contact_origin=www&action=subscribe]
-    # 2013-11-04 22:50:03 GMT | INFO | 22818 | 
 
-    #ex: http://habitforge.com/hooks/rowley_52m/new_rowley_user?CONTACT_ID=AhaCe&ACCOUNT_ID=dqcM&account_login=johnrowley&contact_name=SJ&campaign_name=52_million_pound_challenge&contact_ip=144.92.221.130&CAMPAIGN_ID=7bjl&contact_email=jurowski%2540wisc.edu&contact_origin=www&action=subscribe
-    # "contact_name"=>"Sandon", 
-    # "ACCOUNT_ID"=>"dqcM", 
-    # "action"=>"new_rowley_user", 
-    # "account_login"=>"johnrowley", 
-    # "CONTACT_ID"=>"Aham3", 
-    # "campaign_name"=>"52_million_pound_challenge", 
-    # "contact_ip"=>"144.92.221.139", 
-    # "contact_origin"=>"www", 
-    # "controller"=>"hooks", 
-    # "contact_email"=>"support%40habitforge.com", 
-    # "CAMPAIGN_ID"=>"7bjl"
+    # ### where the signups are starting
+    # http://52millionpoundchallenge.com/join-the-challenge/
+
+    # ### the php page sending a POST form to HF
+    # http://52millionpoundchallenge.com/thanks.php?contact_fields%5Bemail%5D=bjloves%40gmail.com&contact_fields%5Bfirst_name%5D=BJ&custom_fields%5Bcountry%5D=United+States&custom_fields%5Bregion%5D=WI
+
+
+    # ### how it is coming through
+    # Processing HooksController#new_rowley_user (for 199.30.241.194 at 2014-01-20 06:04:33) [POST]
+    # 2014-01-20 12:04:33 GMT | INFO | 26926 |   Parameters: {"name"=>"BJ", "country"=>"United States", "action"=>"new_rowley_user", "controller"=>"hooks", "email"=>"bjtest1@gmail.com", "state"=>"WI"}
+    # 2014-01-20 12:04:33 GMT | INFO | 26926 | sgj:52m_new_users:ROWLEY NEW SIGNUP:email=bjtest1@gmail.com:country=United States:STATE=WI
+    # 2014-01-20 12:04:33 GMT | INFO | 26926 | sgj:52m_new_users:ATTEMPT NEW USER CREATION WITH email=bjtest1@gmail.com
+    # 2014-01-20 12:04:34 GMT | INFO | 26926 | sgj:52m_new_users:SUCCESS SAVING new user email=bjtest1@gmail.com
+    # 2014-01-20 12:04:34 GMT | INFO | 26926 | sgj:52m_new_users:ATTEMPT TO SEND USER CONF EMAIL FOR new user email=bjtest1@gmail.com
+    # 2014-01-20 12:04:34 GMT | INFO | 26926 | Sent mail to bjtest1@gmail.com
+
 
 
     if params[:email] and params[:name] and params[:country] and params[:state]
