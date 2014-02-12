@@ -26,7 +26,7 @@ function HtmlEncode(s)
 <div class="portlet box grey">
 	<div class="portlet-title">
 		<div class="caption">
-			 Invitations
+			 Program Preview Invitations
 		</div>
 		<div class="tools">
 		   <a href="javascript:;" class="collapse"></a>
@@ -34,6 +34,15 @@ function HtmlEncode(s)
 	</div>
 	<div class="portlet-body">
 
+		<div class="alert info">
+			<strong>What happens when I invite someone to Preview this Program?</strong>
+			<p>
+				They will get an email from HabitForge (you can customize it below) asking them to check out your program. There will be a link at the bottom that, if clicked, will take them to
+				<a href="/programs/<%= @program.id.to_s %>/view" target="_blank">this preview page</a>
+				. They will then have the option to join the program if they are interested. No HabitForge account will be created for them until they choose to join the program.
+
+			</p>
+		</div>
 
 		<% if @invite_create_message %>
 			<div class="alert alert-error">
@@ -43,17 +52,18 @@ function HtmlEncode(s)
 
 		<% @invites = Invite.find(:all, :conditions => "purpose_join_program_id = '#{@program.id}' and accepted_on is null") %>
 		<% if @invites.size > 0 %>
-			<h3><%= @invites.size %> Invites Sent:</h3>
-			<% @invites.each do |invite| %>
+<!-- 			<h3><%= @invites.size %> Invites Sent:</h3>
+ -->			
+ 			<% @invites.each do |invite| %>
 			  <!-- for automation of removing an item and re-loading the partial, see:
 			  views/template_tags/_manage -->
-			  <%= invite.to_name %> (<%= invite.to_email%>) invited <%= time_ago_in_words(invite.created_at) %> ago<br>
+			  <%= invite.to_name %> (<%= invite.to_email%>) was invited <%= time_ago_in_words(invite.created_at) %> ago<br>
 			<% end %>
 
 			<br>
-			<h3>Invite another friend to this program!</h3>
+			<h3>Invite another friend to Preview this Program!</h3>
 		<% else %>
-			<h3>Invite a friend to this program!</h3>
+			<h3>Invite a friend to Preview this Program!</h3>
 		<% end %>
 
 
@@ -67,8 +77,9 @@ function HtmlEncode(s)
 
 
 		<br>
-		<h3>When Sending Invitations, Use the Text Below</h3>
-		<div class="alert alert-warning">
+		<h3>Invite Text:</h3>
+
+		<div style="background-color:#ffffff;padding:10px;padding-top:5px;margin:10px;margin-left:0px;border-color:#eeeeee;border:2px;border-style:solid;">
 		<strong>Subject:</strong> <%=h @program.invitation_subject %>
 		<br>
 		<br>
@@ -81,7 +92,7 @@ function HtmlEncode(s)
 		<% end %>
 		<br>
 		<br>
-		<strong>Note: We will add a "Click to Join This program Now" button at the end of the message</strong>
+		<strong>Note: We will add a "Click to Preview This Program Now" button at the end of the message</strong>
 		</div>
 		<%= link_to 'Edit Invitation Message', edit_program_path(@program), :class => "btn" %>
 

@@ -284,7 +284,7 @@ class InvitesController < ApplicationController
                   logger.info("sgj:invites_controller.rb:manage_program_invites:about to send new invite")
 
                   #Notifier.deliver_invite_a_friend_to_program(current_user, params[:invite_email], @program.invitation_body.gsub("\n", "<br>") + "<br><br><a href=''>Click Here to Join This Program!</a>", @program.invitation_subject) # sends the email      
-                  if Notifier.deliver_invite_a_friend_to_program(current_user, params[:invite_email], @program.invitation_body.gsub("\n", "<br>") + "<br><br><a href='" + join_url + "'>Click Here to Join " + current_user.first_name + "'s " + @program.name + " Program!</a>", @program.invitation_subject) # sends the email      
+                  if Notifier.deliver_invite_a_friend_to_program(current_user, params[:invite_email], @program.invitation_body.gsub("\n", "<br>") + "<br><br><a href='" + join_url + "'>Click Here to Preview " + current_user.first_name + "'s " + @program.name + " Program!</a>", @program.invitation_subject) # sends the email      
                     logger.info("sgj:invites_controller.rb:manage_program_invites:SUCCESS SENDING INVITE EMAIL")                    
                   else
                     logger.error("sgj:invites_controller.rb:manage_program_invites:ERROR SENDING INVITE EMAIL")                    

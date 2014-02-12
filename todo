@@ -8,15 +8,6 @@
 
 
 
-PROGRAMS - INVITATIONS
-
-
-SUCCESS: the email invites to programs are working
-NEXT STEP: make it so that when someone clicks on it, it reacts the same way as it does for accepting a team invite. Below is the URL that gets put at the bottom of the "join my program" emails.
-http://habitforge.com/quicksignup_v2?invitation_id=21&email=support@habitforge.com&to_name=HFSupport&form_submitted=1
-
-
-
 
 
 -- re-format the goals listing on the main page to incorporate new graphics for stats and for the bw vs color habit badge
@@ -72,6 +63,19 @@ deployed, but TEST IN PROD: TEST whether sending an invite to another person fro
 stair climbing for UWHealth
 -----------------------------
 (see email from diane scherschel)
+
+
+PROGRAMS - INVITATIONS
+SUCCESS: the email invites to programs are working
+NEXT STEP: make it so that when someone clicks on it, it reacts the same way as it does for accepting a team invite. Below is the URL that gets put at the bottom of the "join my program" emails.
+http://habitforge.com/quicksignup_v2?invitation_id=21&email=support@habitforge.com&to_name=HFSupport&form_submitted=1
+
+
+What does it mean to "(join)PREVIEW a program"? 
+Actually let's rename that to say that you are going to "preview" the program.
+YES: Does it mean that I am simply taken to the Program page and asked to choose something!
+NO: Does it mean that I am auto-added to a particular Challenge for that Program?
+(let them choose)
 
 
 Beginner: skyscrapers 1,2,3

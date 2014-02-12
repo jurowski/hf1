@@ -2,7 +2,7 @@
 
 <h1>Challenge Program: <%= @program.name %></h1>
 
-<div style="background-color:#eeeeee;padding:10px;padding-top:5px;margin:10px;margin-left:0px;">
+<div style="background-color:#ffffff;padding:10px;padding-top:5px;margin:10px;margin-left:0px;border-color:#eeeeee;border:2px;border-style:solid;">
 
   <% if @program.organization %>
     <p>
@@ -78,7 +78,7 @@
 <hr>
 <h3>Action Items for this Program</h3>
 
-<div class="" style="border-style:dotted;border-width:1px;padding:10px;margin:10px;margin-left:0px;">
+<div style="background-color:#ffffff;padding:10px;padding-top:5px;margin:10px;margin-left:0px;border-color:#eeeeee;border:2px;border-style:solid;">
 <% @program_templates = ProgramTemplate.find(:all, :conditions => "program_id = '#{@program.id}'", :order => "listing_position") %>
 
 <% @program_templates.each do |program_template| %>
@@ -105,9 +105,12 @@
 
 <h3>Users Enrolled in this Program</h3>
 
-<div class="" style="border-style:dotted;border-width:1px;padding:10px;margin:10px;margin-left:0px;">
+<div style="background-color:#ffffff;padding:10px;padding-top:5px;margin:10px;margin-left:0px;border-color:#eeeeee;border:2px;border-style:solid;">
 <% @program_enrollments = ProgramEnrollment.find(:all, :conditions => "program_id = '#{@program.id}'") %>
 
+<% if @program_enrollments.size == 0 %>
+  (None)
+<% end %>
 <% @program_enrollments.each do |program_enrollment| %>
 
   <br>
@@ -120,13 +123,12 @@
 
 </div>
 
-<div class="alert">
+
 
   <div class="div_program_<%= @program.id %>_manage_program_invites" id="div_program_<%= @program.id %>_manage_program_invites">
     <%= render :partial => "invites/manage_program_invites", :locals => { :program => @program }  %>
   </div>
 
-</div>
 
-<a href="/program_enrollments/new?program_id=<%= @program.id.to_s %>" class="btn green">+ Invite a User to Enroll</a>
+<a href="/program_enrollments/new?program_id=<%= @program.id.to_s %>" class="btn green">+ Invite a User to Preview this Program</a>
 <hr>
