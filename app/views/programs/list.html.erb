@@ -1,9 +1,26 @@
-<h3>HabitForge Challenge Programs</h3>
+<h1>HabitForge Challenge Programs</h1>
+<div class="alert info">
+<p>
+At the moment, a Challenge Program is simply a collection of "good habits" that you can embark on with a single click.
+<br>
+Over time, Challenge Programs will evolve into interactive, informative, structured, group-based challenges that push you toward your personal development goals with badge-earning challenges and team competitions.
+<br>
+<br>
+Best of all, you'll be able to create your own programs and manage them on your own for your own set of users.
+<br>
+<br>
+<strong>Have an idea for a challenge program?</strong> Use the "Help and Feedback" tab or email us: support@habitforge.com
+</p>
+</div>
+<br>
 
 <% @programs.each do |program| %>
-    <br><%= link_to program.name, '/programs/' + program.id.to_s + '/view' %>
-    <br><%= program.about %>
-    <br>
+	<h3><%= program.name %></h3>
+    <p><%= program.about %></p>
+
+    <br><%= link_to 'More Info', '/programs/' + program.id.to_s + '/view', :class => "btn blue" %>
+
+    
     <hr>
 
 <% end %>
