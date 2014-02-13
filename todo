@@ -66,17 +66,33 @@ stair climbing for UWHealth
 
 
 PROGRAMS - INVITATIONS
+
+
+--Any current HF users with an active goal that has a "parent program" should get a new "enrollment record" created.
+
+--Have a way for a user to "drop" a program (independent of child goals being put on hold or going stale)
+
 SUCCESS: the email invites to programs are working
 NEXT STEP: make it so that when someone clicks on it, it reacts the same way as it does for accepting a team invite. Below is the URL that gets put at the bottom of the "join my program" emails.
 http://habitforge.com/quicksignup_v2?invitation_id=21&email=support@habitforge.com&to_name=HFSupport&form_submitted=1
 
 
-What does it mean to "(join)PREVIEW a program"? 
-Actually let's rename that to say that you are going to "preview" the program.
-YES: Does it mean that I am simply taken to the Program page and asked to choose something!
-NO: Does it mean that I am auto-added to a particular Challenge for that Program?
-(let them choose)
+What does it mean to "PREVIEW a program"? 
+Does it mean that I am simply taken to the Program page and asked to Join (Become a Member)!
+BUT: We do still need to pass through their email address and invitation id so that if they do choose to join, we still know who they are on signup and can link them back
 
+What does it mean to "JOIN a program"? 
+A program_enrollment record is created
+An invite, if you were invited, is marked as 'accepted' 
+An invitee, if you were invited, is emailed letting them know you accepted
+From there, you're "in the program", to show your interest. You are a member. 
+You can be noticed and talked to.
+(Next step would be to join a "session" or to choose a "challenge/goal" to begin)
+
+
+
+
+GET THE ABOVE WORKING PROPERLY, AND THEN MOVE FORWARD. NOT UNTIL THEN.
 
 Beginner: skyscrapers 1,2,3
 Intermediate: skyscrapers 1,3,5

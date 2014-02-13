@@ -37,9 +37,9 @@ function HtmlEncode(s)
 		<div class="alert info">
 			<strong>What happens when I invite someone to Preview this Program?</strong>
 			<p>
-				They will get an email from HabitForge (you can customize it below) asking them to check out your program. There will be a link at the bottom that, if clicked, will take them to
-				<a href="/programs/<%= @program.id.to_s %>/view" target="_blank">this preview page</a>
-				. They will then have the option to join the program if they are interested. No HabitForge account will be created for them until they choose to join the program.
+				They will get an email from HabitForge (you can customize it below) asking them to learn more about your program by clicking a 
+				<a href="/programs/<%= @program.id.to_s %>/view" target="_blank">Program Info Link</a>
+				. From that page they can join if they choose (no HabitForge account will be created for them until they choose to join the program).
 
 			</p>
 		</div>
@@ -79,7 +79,7 @@ function HtmlEncode(s)
 		<br>
 		<h3>Invite Text:</h3>
 
-		<div style="background-color:#ffffff;padding:10px;padding-top:5px;margin:10px;margin-left:0px;border-color:#eeeeee;border:2px;border-style:solid;">
+		<div style="background-color:#ffffff;padding:10px;padding-top:5px;margin:10px;margin-left:0px;border-color:#eeeeee;border:1px;border-style:solid;">
 		<strong>Subject:</strong> <%=h @program.invitation_subject %>
 		<br>
 		<br>

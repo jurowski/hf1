@@ -1104,6 +1104,35 @@ class GoalsController < ApplicationController
 
 
 
+          ####################################################################
+          ####################################################################
+          #####     PROGRAM ENROLLMENT
+          ####################################################################
+
+          ### create a program enrollment record if a program is involved
+          ### goal and program are linked via goal.goal_added_through_template_from_program_id
+          if @goal.program
+            enrollment = ProgramEnrollment.new()
+            # t.integer  "program_id"
+            # t.integer  "user_id"
+            # t.boolean  "active"
+            # t.boolean  "ongoing"
+            # t.integer  "program_session_id"
+            # t.date     "personal_start_date"
+            # t.date     "personal_end_date"
+            enrollment.program_id = @goal.program.id
+            enrollment.user_id = @goal.user.id
+            enrollment.active = true
+            enrollment.ongoing = true
+
+            enrollment.save
+          end
+
+          ####################################################################
+          #####     END PROGRAM ENROLLMENT
+          ####################################################################
+          ####################################################################
+
 
 
           ### we don't need/want these anymore

@@ -6,12 +6,14 @@ class UpdateUserNumberActiveGoals < ActiveRecord::Base
   # 2. updates the number of active goals that each user has
   # 3. moves any checkpoints for "held" goals that were never established that are XXX days old to expiredcheckpoints
   # 4. updates whether the user follows any active goals
+  # 5. creates a program_enrollment record if an active goal was created via a program
 
   ### Whether to run the above steps
   run_1 = "no" ### just do this manually when needed
   run_2 = "yes" ### or just do this manually when needed
   run_3 = "no" ### just do this manually when needed
-  
+  run_5 = true
+
   ### Careful, the below can kill if running from terminal and not cron
   #FileUtils.touch 'tmp/launched_update_user-number_active_goals_at'
   
@@ -160,6 +162,55 @@ class UpdateUserNumberActiveGoals < ActiveRecord::Base
   # END 3. moves any checkpoints for "held" goals that were never established that are XXX days old to expiredcheckpoints
   # 
   #######
+
+  ########################################
+  ########################################
+  ### 5. create a program enrollment record if a program is involved
+  ########################################
+  if run_5
+
+    ####################################################################
+    ####################################################################
+    #####     PROGRAM ENROLLMENT
+    ####################################################################
+
+    program_enrollment_counter = 0
+    @active_users = User.find(:all, :conditions => "update_number_active_goals > 0")
+    for user in @active_users
+      goal_count = 0
+      goals_active = Goal.find(:all, :conditions => "user_id = '#{user.id}' and status !='hold' and ((stop >= '#{dnow}') or (laststatusdate is not null and laststatusdate > '#{user.dstop_after_stale_days}'))")
+      goals_active.each do |goal|
+        ### create a program enrollment record if a program is involved
+        ### goal and program are linked via goal.goal_added_through_template_from_program_id
+        if goal.program
+          enrollment = ProgramEnrollment.new()
+          # t.integer  "program_id"
+          # t.integer  "user_id"
+          # t.boolean  "active"
+          # t.boolean  "ongoing"
+          # t.integer  "program_session_id"
+          # t.date     "personal_start_date"
+          # t.date     "personal_end_date"
+          enrollment.program_id = goal.program.id
+          enrollment.user_id = goal.user.id
+          enrollment.active = true
+          enrollment.ongoing = true
+
+          enrollment.save
+          program_enrollment_counter += 1
+        end
+        ####################################################################
+        #####     END PROGRAM ENROLLMENT
+        ####################################################################
+        ####################################################################
+      end ## end each active goal
+    end ## end each active user
+
+  end ### end if run_5
+  ########################################
+  ### END 5. create a program enrollment record if a program is involved
+  ########################################
+  ########################################
 
 
 puts "end of script"

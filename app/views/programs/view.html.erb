@@ -73,12 +73,18 @@
 <% end %> <!-- end if show_manager -->
 
 
-<% if @program.actions_list_dropdown %>
+<!-- 
+######################
+!!! over time this could become db intensive
+PLAN TO CHANGE THIS TO A SAVED/CALCULATED FIELD VIA CRON
+######################
+-->
+<h3>Current Members: <%= @program.program_enrollments.size %></h3>
+<!--
+######################
+-->
 
-<% else %>
 
-
-<% end %>
 
 
 </div>
