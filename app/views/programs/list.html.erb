@@ -1,3 +1,5 @@
+
+
 <h1>HabitForge Challenge Programs</h1>
 <div class="alert info">
 <p>
@@ -15,14 +17,40 @@ Best of all, you'll be able to create your own programs and manage them on your 
 </div>
 <br>
 
+
+<% if current_user and current_user.program_enrollments.size > 0 %>
+	<h2>Programs I've Joined</h3>
+	<hr>
+	<%
+	arr_my_programs = Array.new()
+	current_user.program_enrollments.each do |enrollment|
+		arr_my_programs << enrollment.program.id
+		%>
+	    <%= link_to enrollment.program.name, '/programs/' + enrollment.program.id.to_s + '/view' %>
+	    <br>
+	    <%
+	end
+	%>
+<% end %>
+
+<div><p>&nbsp</p></div>
+<div><p>&nbsp</p></div>
+
+<% if arr_my_programs.size > 0 %>
+	<h2>Other Programs</h2>
+	<hr>
+<% end %>
+
 <% @programs.each do |program| %>
-	<h3><%= program.name %></h3>
+	<% if !arr_my_programs.include? program.id %> 
+	<h4><%= program.name %></h4>
     <p><%= program.about %></p>
 
     <br><%= link_to 'More Info', '/programs/' + program.id.to_s + '/view', :class => "btn blue" %>
-
-    
     <hr>
+
+    <% end %>
+    
 
 <% end %>
 

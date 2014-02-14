@@ -12,7 +12,7 @@ class UpdateUserNumberActiveGoals < ActiveRecord::Base
   run_1 = "no" ### just do this manually when needed
   run_2 = "yes" ### or just do this manually when needed
   run_3 = "no" ### just do this manually when needed
-  run_5 = true
+  run_5 = false
 
   ### Careful, the below can kill if running from terminal and not cron
   #FileUtils.touch 'tmp/launched_update_user-number_active_goals_at'
@@ -168,6 +168,9 @@ class UpdateUserNumberActiveGoals < ActiveRecord::Base
   ### 5. create a program enrollment record if a program is involved
   ########################################
   if run_5
+
+    ### should not need to run this more than once, now that
+    ### program_enrollment records are created as needed on goal/new
 
     ####################################################################
     ####################################################################
