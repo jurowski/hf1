@@ -116,7 +116,7 @@
   <br>
 
     <%= link_to program_enrollment.user.name, program_enrollment %>
-    <%= link_to '- Drop from Program', program_enrollment, :confirm => 'Drop "' + program_template.user.name + '" from this program? (this will not delete the actual user record, but will remove the enrollment)', :method => :delete, :class => "btn mini red" %>
+    <%= link_to '- Drop from Program', program_enrollment, :confirm => 'Drop "' + program_enrollment.user.name + '" from this program? (this will not delete the actual user record, but will remove the enrollment)', :method => :delete, :class => "btn mini red" %>
     <br>
 <% end %>
 
