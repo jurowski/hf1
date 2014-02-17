@@ -24,11 +24,13 @@ Best of all, you'll be able to create your own programs and manage them on your 
 	<%
 	arr_my_programs = Array.new()
 	current_user.program_enrollments.each do |enrollment|
-		arr_my_programs << enrollment.program.id
-		%>
-	    <%= link_to enrollment.program.name, '/programs/' + enrollment.program.id.to_s + '/view' %>
-	    <br>
-	    <%
+		if !arr_my_programs.include? enrollment.program.id
+			arr_my_programs << enrollment.program.id
+			%>
+		    <%= link_to enrollment.program.name, '/programs/' + enrollment.program.id.to_s + '/view' %>
+		    <br>
+		    <%
+		end
 	end
 	%>
 <% end %>
@@ -43,7 +45,7 @@ Best of all, you'll be able to create your own programs and manage them on your 
 
 <% @programs.each do |program| %>
 	<% if !arr_my_programs.include? program.id %> 
-	<h4><%= program.name %></h4>
+	<h4><strong><%= program.name %></strong></h4>
 	<h4>Current Members: 
 	<% if program.count_of_enrolled_users %>
 	  <%= program.count_of_enrolled_users %>
