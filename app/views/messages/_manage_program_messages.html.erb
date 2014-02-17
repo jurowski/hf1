@@ -1,0 +1,100 @@
+
+<!-- Time.now.getutc -->
+
+<!-- ########################################### -->
+<!-- ########################################### -->
+<!-- DEAL WITH ANY HTML ENCODING FOR INVITE NAME -->
+<script>
+//http://stackoverflow.com/questions/784586/convert-special-characters-to-html-in-javascript
+function HtmlEncode(s)
+{
+  var el = document.createElement("div");
+  el.innerText = el.textContent = s;
+  s = el.innerHTML;
+  return s;
+}
+
+</script>
+<!-- END DEAL WITH ANY HTML ENCODING FOR INVITE NAME -->
+<!-- ############################################### -->
+<!-- ############################################### -->
+
+
+<br>
+<br>
+
+<div class="portlet box grey">
+	<div class="portlet-title">
+		<div class="caption">
+			 Program Preview Invitations
+		</div>
+		<div class="tools">
+		   <a href="javascript:;" class="collapse"></a>
+		</div>
+	</div>
+	<div class="portlet-body">
+
+		<div class="alert info">
+			<strong>What happens when I invite someone to Preview this Program?</strong>
+			<p>
+				They will get an email from HabitForge (you can customize it below) asking them to learn more about your program by clicking a 
+				<a href="/programs/<%= @program.id.to_s %>/view" target="_blank">Program Info Link</a>
+				. From that page they can join if they choose (no HabitForge account will be created for them until they choose to join the program).
+
+			</p>
+		</div>
+
+		<% if @invite_create_message %>
+			<div class="alert alert-error">
+			<%= @invite_create_message %>
+			</div>
+		<% end %>
+
+		<% @invites = Invite.find(:all, :conditions => "purpose_join_program_id = '#{@program.id}' and accepted_on is null") %>
+		<% if @invites.size > 0 %>
+<!-- 			<h3><%= @invites.size %> Invites Sent:</h3>
+ -->			
+ 			<% @invites.each do |invite| %>
+			  <!-- for automation of removing an item and re-loading the partial, see:
+			  views/template_tags/_manage -->
+			  <%= invite.to_name %> (<%= invite.to_email%>) was invited <%= time_ago_in_words(invite.created_at) %> ago<br>
+			<% end %>
+
+			<br>
+			<h3>Invite another friend to Preview this Program!</h3>
+		<% else %>
+			<h3>Invite a friend to Preview this Program!</h3>
+		<% end %>
+
+
+		Name: <input type="text" name="<%= @program.id %>_invite_name" id="<%= @program.id %>_invite_name" placeholder="ex: Joe Smith">
+
+		&nbsp &nbsp &nbsp Email: 
+		<input type="text" name="<%= @program.id %>_invite_email" id="<%= @program.id %>_invite_email" placeholder="ex: joe@example.com">
+
+		&nbsp
+		<a class="btn green" onclick="create_invite_then_reload_manage_program_invites('<%= @program.id %>',HtmlEncode(document.getElementById('<%= @program.id %>_invite_name').value.replace(/ /g, '')),document.getElementById('<%= @program.id %>_invite_email').value);">Send Invite</a>
+
+
+		<br>
+		<h3>Invite Text:</h3>
+
+		<div style="background-color:#ffffff;padding:10px;padding-top:5px;margin:10px;margin-left:0px;border-color:#eeeeee;border:1px;border-style:solid;">
+		<strong>Subject:</strong> <%=h @program.invitation_subject %>
+		<br>
+		<br>
+		<strong>Body:</strong>
+		<br>
+		<% if @program.invitation_body %>
+		<%= @program.invitation_body.gsub("\n", "<br>") %>
+		<% else %>
+		<%= @program.invitation_body %>
+		<% end %>
+		<br>
+		<br>
+		<strong>Note: We will add a "Click to Preview This Program Now" button at the end of the message</strong>
+		</div>
+		<%= link_to 'Edit Invitation Message', edit_program_path(@program), :class => "btn" %>
+
+	</div> <!-- end class portlet-body -->
+</div> <!-- end class portlet -->

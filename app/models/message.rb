@@ -9,5 +9,27 @@ class Message < ActiveRecord::Base
   has_many :message_tags
   has_many :tags, :through => :message_tags
 
+  #### had to hack the below together b/c message.rb for some reason is not able to
+  #### see the current_user function from application_controller.rb
+  def i_am_owner_or_admin(user_id)
+  	user_to_check = User.find(user_id)
+  	if user_to_check
+  		if user_to_check.is_admin
+  			return true
+  		else
+  			### currently only "program" aware
+	  		if self.program and self.program.i_am_owner_or_admin(user_id)
+	  			return true
+	  		else
+	  			return false
+	  		end
+  		end
+
+  	end
+
+  end ### end def i_am_owner_or_admin(user_id)
+
+
+
 
 end

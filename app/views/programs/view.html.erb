@@ -73,16 +73,15 @@
 <% end %> <!-- end if show_manager -->
 
 
-<!-- 
-######################
-!!! over time this could become db intensive
-PLAN TO CHANGE THIS TO A SAVED/CALCULATED FIELD VIA CRON
-######################
--->
-<h3>Current Members: <%= @program.program_enrollments.size %></h3>
-<!--
-######################
--->
+
+<h3>Current Members: 
+<% if @program.count_of_enrolled_users %>
+  <%= @program.count_of_enrolled_users %>
+<% else %>
+  (<%= @program.program_enrollments.size %>)
+<% end %>
+</h3>
+
 
 
 

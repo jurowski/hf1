@@ -67,7 +67,8 @@ stair climbing for UWHealth
 
 PROGRAMS - INVITATIONS
 
---Have a way for a user to "drop" a program (independent of child goals being put on hold or going stale)
+
+For anyone enrolled in a Program, add ability for owner to post snippets for all members to read. These snippets can be set to be listed as date-sensitive (so listed newest first) or as randomized (listed in a different spot, and insertable into reminder emails)
 
 SUCCESS: the email invites to programs are working
 NEXT STEP: make it so that when someone clicks on it, it reacts the same way as it does for accepting a team invite. Below is the URL that gets put at the bottom of the "join my program" emails.

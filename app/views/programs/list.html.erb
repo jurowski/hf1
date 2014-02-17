@@ -44,6 +44,14 @@ Best of all, you'll be able to create your own programs and manage them on your 
 <% @programs.each do |program| %>
 	<% if !arr_my_programs.include? program.id %> 
 	<h4><%= program.name %></h4>
+	<h4>Current Members: 
+	<% if program.count_of_enrolled_users %>
+	  <%= program.count_of_enrolled_users %>
+	<% else %>
+	  (<%= program.program_enrollments.size %>)
+	<% end %>
+	</h4>
+
     <p><%= program.about %></p>
 
     <br><%= link_to 'More Info', '/programs/' + program.id.to_s + '/view', :class => "btn blue" %>

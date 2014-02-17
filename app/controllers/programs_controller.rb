@@ -58,7 +58,7 @@ class ProgramsController < ApplicationController
 
 
 
-    @programs = Program.find(:all, :conditions => "status = 'live'")
+    @programs = Program.find(:all, :conditions => "status = 'live'", :order => "count_of_enrolled_users DESC")
 
     respond_to do |format|
       format.html # list.html.erb

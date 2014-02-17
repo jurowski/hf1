@@ -8,16 +8,24 @@ class UpdateUserNumberActiveGoals < ActiveRecord::Base
   # 4. updates whether the user follows any active goals
   # 5. creates a program_enrollment record if an active goal was created via a program
 
+  ### RUN IN DEV:
+  ### rvm use 1.8.7;cd /home/sgj700/rails_apps/hf1/;ruby script/runner app/update_user-number_active_goals.rb
+
+
   ### Whether to run the above steps
   run_1 = "no" ### just do this manually when needed
   run_2 = "yes" ### or just do this manually when needed
   run_3 = "no" ### just do this manually when needed
   run_5 = false
+  run_6 = true
+
 
   ### Careful, the below can kill if running from terminal and not cron
   #FileUtils.touch 'tmp/launched_update_user-number_active_goals_at'
   
   
+
+
   ### GET DATE NOW ###
   jump_forward_days = 0
   
@@ -212,6 +220,26 @@ class UpdateUserNumberActiveGoals < ActiveRecord::Base
   end ### end if run_5
   ########################################
   ### END 5. create a program enrollment record if a program is involved
+  ########################################
+  ########################################
+
+
+
+  ########################################
+  ########################################
+  ### 6. save a program's number of enrolled users
+  ########################################
+  if run_6
+
+    programs = Program.find(:all)
+    programs.each do |program|
+      program.count_of_enrolled_users = program.program_enrollments.size
+      program.save
+    end
+
+  end ### end if run_6
+  ########################################
+  ### END 6. save a program's number of enrolled users
   ########################################
   ########################################
 
