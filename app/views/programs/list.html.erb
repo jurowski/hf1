@@ -46,13 +46,21 @@ Best of all, you'll be able to create your own programs and manage them on your 
 <% @programs.each do |program| %>
 	<% if !arr_my_programs.include? program.id %> 
 	<h4><strong><%= program.name %></strong></h4>
-	<h4>Current Members: 
+
+
 	<% if program.count_of_enrolled_users %>
+	  <% if program.count_of_enrolled_users > 0 %>
+	  <h4>Current Members: 
 	  <%= program.count_of_enrolled_users %>
+	  </h4>
+	  <% end %>
 	<% else %>
+	  <% if program.program_enrollments.size > 0 %>
+	  <h4>Current Members: 
 	  (<%= program.program_enrollments.size %>)
+	   </h4>
+	   <% end %>
 	<% end %>
-	</h4>
 
     <p><%= program.about %></p>
 

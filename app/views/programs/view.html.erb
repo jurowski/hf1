@@ -74,13 +74,20 @@
 
 
 
-<h3>Current Members: 
 <% if @program.count_of_enrolled_users %>
+  <% if @program.count_of_enrolled_users > 0 %>
+  <h3>Current Members: 
   <%= @program.count_of_enrolled_users %>
+  </h3>
+  <% end %>
 <% else %>
+  <% if @program.program_enrollments.size > 0 %>
+  <h3>Current Members: 
   (<%= @program.program_enrollments.size %>)
+   </h3>
+   <% end %>
 <% end %>
-</h3>
+
 
 
 
