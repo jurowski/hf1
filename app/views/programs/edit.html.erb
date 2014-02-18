@@ -83,6 +83,8 @@
      </div>
 
 
+
+
      <div class="control-group">
         <label class="control-label"><b>Action List</b></label>
         <div class="controls">
@@ -91,6 +93,44 @@
      </div>
 
 
+
+     <br />
+     <h3>External Website</h3>
+
+
+     <div class="control-group">
+        <label class="control-label"><b>URL for External Link</b></label>
+        <div class="controls">
+          <%= f.text_field :external_membership_url, :value => @program.external_membership_url, :placeholder => "ex: http:\\\\bellybuster.com" %>
+        </div>
+     </div>
+
+     <div class="control-group">
+        <label class="control-label"><b>Name of External Site</b></label>
+        <div class="controls">
+          <%= f.text_field :external_membership_text, :value => @program.external_membership_url, :placeholder => "ex: The Belly Buster" %>
+        </div>     
+     </div>
+
+
+     <div class="control-group">
+        <label class="control-label"><b>Program Image Links to External URL? </b></label>
+        <div class="controls">
+        <%= f.check_box(:link_image_to_external_site, options = {}, checked_value = "true", unchecked_value = "false") %> Yes, make the Program Image clickable, linked to External URL
+        </div>
+     </div>
+
+
+     <div class="control-group">
+        <label class="control-label"><b>Point the Join Link to External URL? </b></label>
+        <div class="controls">
+        <%= f.check_box(:requires_external_membership, options = {}, checked_value = "true", unchecked_value = "false") %> Yes, External Membership Required to Join (Hides Action Items and points the Join Button to External URL)
+        </div>
+     </div>
+
+
+
+     <br />
     <h3>When sending invitations, use the text below:</h3>
 
 

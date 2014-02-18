@@ -27,7 +27,12 @@
 <p>
   <b>Image logo:</b>
   <%=h @program.image_logo %>
+
+  <% if @program.link_image_to_external_site and @program.external_membership_url %>
+  <a href="<%= @program.external_membership_url %>" target="_parent"><img src="/home/images/programs/<%= @program.image_logo %>" /></a>
+  <% else %>
   <img src="/home/images/programs/<%= @program.image_logo %>" />
+  <% end %>
 </p>
 
 
@@ -47,6 +52,42 @@
   <input type=checkbox disabled>
 <% end %>
  Display actions as a dropdown instead of a list
+
+
+
+<h3>External Site</h3>
+
+<p>
+  <b>URL for External Link:</b>
+  <%=h @program.external_membership_url %>
+</p>
+
+<p>
+  <b>Name of External Site:</b>
+  <%=h @program.external_membership_text %>
+</p>
+
+<p>
+<% if @program.link_image_to_external_site %>
+  <input type=checkbox checked disabled>
+<% else %>
+  <input type=checkbox disabled>
+<% end %>
+Make the Program Image clickable, linked to External URL
+</p>
+
+<p>
+<% if @program.requires_external_membership %>
+  <input type=checkbox checked disabled>
+<% else %>
+  <input type=checkbox disabled>
+<% end %>
+ External Membership Required to Join (Hides Action Items and point the Join Button to External URL)
+</p>
+
+
+
+
 
 
 </div>

@@ -3,7 +3,7 @@
 <h1><%= @program.name %>
 <% if @program.managed_by_user %>
     <% if current_user and @program.managed_by_user == current_user %>
-        <%= link_to "Modify", @program, :class => "btn blue" %>
+        <%= link_to "(Admin) Modify", @program, :class => "btn" %>
     <% end %>
 <% end %>
 </h1>
@@ -15,7 +15,13 @@
 
 
 <% if @program.image_logo %>
+
+  <% if @program.link_image_to_external_site and @program.external_membership_url %>
+  <a href="<%= @program.external_membership_url %>" target="_parent"><img src="/home/images/programs/<%= @program.image_logo %>" /></a>
+  <% else %>
   <img src="/home/images/programs/<%= @program.image_logo %>" />
+  <% end %>
+
 <% end %>
 
 
@@ -177,6 +183,14 @@ end
 
 
 </div>
+<% else %>
+  <!-- 
+  External Membership is required
+  Just show a More Info button that points to External URL 
+  -->
+  <%= link_to "More Info", @program.external_membership_url, :class => "btn blue" %>
+
+
 <% end ### if !@program.requires_external_membership or (@program.requires_external_membership and current_user.programs.include? @program)%>
 <!-- 
 END

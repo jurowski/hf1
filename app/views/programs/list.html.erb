@@ -17,12 +17,11 @@ Best of all, you'll be able to create your own programs and manage them on your 
 </div>
 <br>
 
-
+<% 	arr_my_programs = Array.new() %>
 <% if current_user and current_user.program_enrollments.size > 0 %>
 	<h2>Programs I've Joined</h3>
 	<hr>
 	<%
-	arr_my_programs = Array.new()
 	current_user.program_enrollments.each do |enrollment|
 		if !arr_my_programs.include? enrollment.program.id
 			arr_my_programs << enrollment.program.id
