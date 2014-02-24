@@ -544,6 +544,26 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
       $('.div_program_'+program_id+'_manage_program_invites').load('/invites/manage_program_invites/1?program_id='+program_id+'&invite_name='+invite_name+'&invite_email='+invite_email+'&invite_body='+invite_body+'&invite_subject='+invite_subject);
     }
 
+
+
+    function create_message_then_reload_manage_program_messages(program_id, subject, body, random_quote, for_this_date_only, insert_in_checkin_emails, insert_in_reminder_emails, insert_in_webpage) {
+
+      // ### REQUIRED PARAMS
+      // # t.integer  "program_id"
+      // # t.text     "body"
+      // # t.string   "subject"
+      // # t.boolean  "random_quote"
+      // # t.date     "for_this_date_only"
+      // # t.boolean  "insert_in_checkin_emails"
+      // # t.boolean  "insert_in_reminder_emails"
+      // # t.boolean  "insert_in_webpage"
+
+      //reload div
+      $('.div_program_'+program_id+'_manage_program_messages').load('/messages/manage_program_messages?program_id='+program_id+'&subject='+subject+'&body='+body+'&random_quote='+random_quote+'&for_this_date_only='+for_this_date_only+'&insert_in_checkin_emails='+insert_in_checkin_emails+'&insert_in_reminder_emails='+insert_in_reminder_emails+'&insert_in_webpage='+insert_in_webpage);
+    }
+
+
+
    </script>
    <!-- END TEST RELOAD AJAX CONTENT FOR UPDATING PARTIALS w/out Prototype -->
 

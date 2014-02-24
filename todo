@@ -65,13 +65,13 @@ stair climbing for UWHealth
 (see email from diane scherschel)
 
 
-PROGRAMS - INVITATIONS
+!!! -- NEXT -- !!!!
+Figure out how to handle spaces correctly in SUBJECT and BODY
+when passing in variable values from this file: _manage_program_messages
+...then get the "this date only" and the bool values of "insert_into" working
 
-!!! IMPLEMENT OPTION TO ONLY SHOW START ACTIONS IF ALREADY SIGNED UP FOR THE PROGRAM
-THUS FORCING EXTERNAL MEMBERSHIP BUY-IN
-...ALSO TO LINK THE IMAGE TO AN EXTERNAL SITE
-...ALSO TO PROVIDE TEXT AND URL FOR THE EXTERNAL SITE
-(DB VALUES ALREADY THERE ON PROD AND DEV)
+
+PROGRAMS - INVITATIONS
 
 For anyone enrolled in a Program, add ability for owner to post snippets for all members to read. These snippets can be set to be listed as date-sensitive (so listed newest first) or as randomized (listed in a different spot, and insertable into reminder emails)
 

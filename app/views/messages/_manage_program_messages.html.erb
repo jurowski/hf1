@@ -1,9 +1,9 @@
 
-<!-- Time.now.getutc -->
+<%= Time.now.getutc %>
 
 <!-- ########################################### -->
 <!-- ########################################### -->
-<!-- DEAL WITH ANY HTML ENCODING FOR INVITE NAME -->
+<!-- DEAL WITH ANY HTML ENCODING  -->
 <script>
 //http://stackoverflow.com/questions/784586/convert-special-characters-to-html-in-javascript
 function HtmlEncode(s)
@@ -15,7 +15,7 @@ function HtmlEncode(s)
 }
 
 </script>
-<!-- END DEAL WITH ANY HTML ENCODING FOR INVITE NAME -->
+<!-- END DEAL WITH ANY HTML ENCODING -->
 <!-- ############################################### -->
 <!-- ############################################### -->
 
@@ -26,7 +26,7 @@ function HtmlEncode(s)
 <div class="portlet box grey">
 	<div class="portlet-title">
 		<div class="caption">
-			 Program Preview Invitations
+			 Program Messages
 		</div>
 		<div class="tools">
 		   <a href="javascript:;" class="collapse"></a>
@@ -35,66 +35,51 @@ function HtmlEncode(s)
 	<div class="portlet-body">
 
 		<div class="alert info">
-			<strong>What happens when I invite someone to Preview this Program?</strong>
+			<strong>Where and when will these messages be displayed?</strong>
 			<p>
-				They will get an email from HabitForge (you can customize it below) asking them to learn more about your program by clicking a 
-				<a href="/programs/<%= @program.id.to_s %>/view" target="_blank">Program Info Link</a>
-				. From that page they can join if they choose (no HabitForge account will be created for them until they choose to join the program).
-
+				You can create messages to be embedded into a participant's daily check-in emails, or into their reminder emails, or on the "Program" web-page itself. You can control whether a message will appear only on a specific date or if instead it will be added to a pool of randomized messages for that program.
 			</p>
 		</div>
 
-		<% if @invite_create_message %>
+		<% if @program_create_message %>
 			<div class="alert alert-error">
-			<%= @invite_create_message %>
+			<%= @program_create_message %>
 			</div>
 		<% end %>
 
-		<% @invites = Invite.find(:all, :conditions => "purpose_join_program_id = '#{@program.id}' and accepted_on is null") %>
-		<% if @invites.size > 0 %>
-<!-- 			<h3><%= @invites.size %> Invites Sent:</h3>
+		<% if @program.messages.size > 0 %>
+<!-- 			<h3><%= @program.messages.size %> Messages:</h3>
  -->			
- 			<% @invites.each do |invite| %>
+ 			<% @program.messages.each do |message| %>
 			  <!-- for automation of removing an item and re-loading the partial, see:
 			  views/template_tags/_manage -->
-			  <%= invite.to_name %> (<%= invite.to_email%>) was invited <%= time_ago_in_words(invite.created_at) %> ago<br>
+			  <strong><%= message.subject %></strong> <%= message.body %> <i>was created <%= time_ago_in_words(message.created_at) %> ago</i><br>
 			<% end %>
 
 			<br>
-			<h3>Invite another friend to Preview this Program!</h3>
+			<h3>Create another Message for this Program!</h3>
 		<% else %>
-			<h3>Invite a friend to Preview this Program!</h3>
+			<h3>Create a Message for this Program!</h3>
 		<% end %>
 
 
-		Name: <input type="text" name="<%= @program.id %>_invite_name" id="<%= @program.id %>_invite_name" placeholder="ex: Joe Smith">
+		Subject: <input type="text" name="<%= @program.id %>_message_subject" id="<%= @program.id %>_message_subject" placeholder="ex: Daily Tip">
 
-		&nbsp &nbsp &nbsp Email: 
-		<input type="text" name="<%= @program.id %>_invite_email" id="<%= @program.id %>_invite_email" placeholder="ex: joe@example.com">
+		Body: <input type="text" name="<%= @program.id %>_message_body" id="<%= @program.id %>_message_body" placeholder="">
+		<br />
 
-		&nbsp
-		<a class="btn green" onclick="create_invite_then_reload_manage_program_invites('<%= @program.id %>',HtmlEncode(document.getElementById('<%= @program.id %>_invite_name').value.replace(/ /g, '')),document.getElementById('<%= @program.id %>_invite_email').value);">Send Invite</a>
-
-
-		<br>
-		<h3>Invite Text:</h3>
-
-		<div style="background-color:#ffffff;padding:10px;padding-top:5px;margin:10px;margin-left:0px;border-color:#eeeeee;border:1px;border-style:solid;">
-		<strong>Subject:</strong> <%=h @program.invitation_subject %>
-		<br>
-		<br>
-		<strong>Body:</strong>
-		<br>
-		<% if @program.invitation_body %>
-		<%= @program.invitation_body.gsub("\n", "<br>") %>
-		<% else %>
-		<%= @program.invitation_body %>
-		<% end %>
-		<br>
-		<br>
-		<strong>Note: We will add a "Click to Preview This Program Now" button at the end of the message</strong>
-		</div>
-		<%= link_to 'Edit Invitation Message', edit_program_path(@program), :class => "btn" %>
+		<%
+		random_quote = true
+		for_this_date_only = ""
+		insert_in_checkin_emails = ""
+		insert_in_reminder_emails = ""
+		insert_in_webpage = true
+		%>
+	    <!--
+	     CALL THIS FUNCTION:
+	     function create_message_then_reload_manage_program_messages(program_id, subject, body, random_quote, for_this_date_only, insert_in_checkin_emails, insert_in_reminder_emails, insert_in_webpage)
+	    -->
+		<a class="btn green" onclick="create_message_then_reload_manage_program_messages('<%= @program.id %>',HtmlEncode(document.getElementById('<%= @program.id %>_message_subject').value.replace(/ /g, '')),HtmlEncode(document.getElementById('<%= @program.id %>_message_body').value.replace(/ /g, '')),'<%= random_quote %>','<%= for_this_date_only %>','<%= insert_in_checkin_emails %>','<%= insert_in_reminder_emails %>','<%= insert_in_webpage %>');">Save Message</a>
 
 	</div> <!-- end class portlet-body -->
 </div> <!-- end class portlet -->

@@ -171,5 +171,10 @@ Make the Program Image clickable, linked to External URL
   </div>
 
 
-<a href="/program_enrollments/new?program_id=<%= @program.id.to_s %>" class="btn green">+ Invite a User to Preview this Program</a>
+<a href="/program_enrollments/new?program_id=<%= @program.id.to_s %>" class="btn green">+ Invite a Current HF User to Preview this Program</a>
 <hr>
+
+
+<div class="div_program_<%= @program.id %>_manage_program_messages" id="div_program_<%= @program.id %>_manage_program_messages">
+  <%= render :partial => "messages/manage_program_messages", :locals => { :program => @program }  %>
+</div>

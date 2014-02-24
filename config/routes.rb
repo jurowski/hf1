@@ -58,6 +58,8 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :message_goals
 
+
+  map.connect 'messages/manage_program_messages', :controller => "messages", :action => "manage_program_messages"
   map.resources :messages
 
   map.resources :triggers

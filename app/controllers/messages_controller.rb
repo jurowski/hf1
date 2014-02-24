@@ -15,7 +15,8 @@ class MessagesController < ApplicationController
   before_filter :require_user, :except => [:show]
   # before_filter :require_owner_or_recipient, :only => [:show]
   #before_filter :require_admin_user, :only => [:index]
-  before_filter :require_owner_message, :except => [:new, :create, :manage_program_messages]
+  #before_filter :require_owner_message, :except => [:new, :create, :manage_program_messages]
+  before_filter :require_owner_message, :except => [:new, :create]
 
 
   def require_owner_message
@@ -42,127 +43,112 @@ class MessagesController < ApplicationController
 
 
   ### THIS IS GETTING CALLED FROM JS IN _habitforge_app layout:
-    # function create_message_then_reload_manage_program_messages(program_id, subject, body, random_quote, insert_in_webpage) {
+    # function create_message_then_reload_manage_program_messages(program_id, subject, body, random_quote, for_this_date_only, insert_in_checkin_emails, insert_in_reminder_emails, insert_in_webpage) {
     #   //reload div
-    #   $('.div_program_'+program_id+'_manage_program_messages').load('/messages/manage_program_messages/1?program_id='+program_id+'&subject='+subject+'&body='+body+'&random_quote='+random_quote+'&insert_into_webpage='+insert_into_webpage);
+    #   $('.div_program_'+program_id+'_manage_program_messages').load('/messages/manage_program_messages/1?program_id='+program_id+'&subject='+subject+'&body='+body+'&random_quote='+random_quote+'&for_this_date_only='+for_this_date_only+'&insert_in_checkin_emails='+insert_in_checkin_emails&insert_in_reminder_emails='+insert_in_reminder_emails&insert_in_webpage='+insert_in_webpage);
     # }
   ### http://stackoverflow.com/questions/10539143/reloading-partial-in-an-rails-app
   # GET /invites/manage_program_messages
   def manage_program_messages
 
-KEEP MODIFYING BELOW TO REPLACE INVITE TEXT WITH MESSAGE TEXT
 
-    @invite_create_message = ""
+    @program_create_message = ""
     @progam = Program.new()
 
     if params[:program_id]
 
-
       @program = Program.find(params[:program_id].to_i)
 
-      if @program and (!@program.invitation_body or !@program.invitation_subject)
-        if !@program.invitation_body
-          @program.invitation_body = ""
-        end
-        if !@program.invitation_subject
-          @program.invitation_subject = ""
-        end
+      ### Params:
+      ### program_id:subject:body:random_quote:for_this_date_only:insert_in_checkin_emails:insert_in_reminder_emails:insert_in_webpage
 
-        @program.save
-      end
+      if params[:body] \
+        and params[:body] != "" \
+        and params[:subject] \
+        and params[:random_quote] \
+        and params[:for_this_date_only] \
+        and params[:insert_in_checkin_emails] \
+        and params[:insert_in_reminder_emails] \
+        and params[:insert_in_webpage]
 
-
-
-      if params[:invite_name] and params[:invite_name] != "" and params[:invite_email] and params[:invite_email] != ""
-
-        #logger.debug("sgj:invites_controller.rb:manage_program_invites:send new invite:1")
+        logger.debug("sgj:messages_controller.rb:manage_program_messages:create new message:1")
         begin
-          invite = Invite.new()
-          invite.purpose_join_program_id = @program.id
-          invite.from_user_id = current_user.id
-          invite.to_name = params[:invite_name]
-          invite.to_email = params[:invite_email]
-          invite.first_sent_on = current_user.dtoday
+          m = Message.new()
 
-          #logger.debug("sgj:invites_controller.rb:manage_program_invites:send new invite:2")
+          ### REQUIRED PARAMS
+          # t.integer  "program_id"
+          # t.text     "body"
+          # t.string   "subject"
+          # t.boolean  "random_quote"
+          # t.date     "for_this_date_only"
+          # t.boolean  "insert_in_checkin_emails"
+          # t.boolean  "insert_in_reminder_emails"
+          # t.boolean  "insert_in_webpage"
 
-          if !valid_email(params[:invite_email])
-            @invite_create_message = "There was a problem creating the invitation. Make sure you enter a Name and a valid email address."
-          else
+          m.program_id = @program.id
+          m.body = params[:body]
+          m.subject = params[:subject]
 
-            #logger.debug("sgj:invites_controller.rb:manage_program_invites:send new invite:3")
-
-            ### do not allow duplicates
-            check_invites = Invite.find(:first, :conditions => "purpose_join_program_id = '#{@program.id}' and to_email = '#{params[:invite_email]}'")
-            if !check_invites
-              if invite.save
-
-                #logger.debug("sgj:invites_controller.rb:manage_program_invites:send new invite:5")
-
-                @invite_create_message = "Invitation created."
-
-                join_url = server_root_url + "/quicksignup_v2?invitation_id=" + invite.id.to_s + "&email=" + invite.to_email + "&to_name=" + invite.to_name + "&form_submitted=1"
-                
-                #logger.debug("sgj:invites_controller.rb:manage_program_invites:send new invite:6")
-
-
-                begin
-
-                  logger.info("sgj:invites_controller.rb:manage_program_invites:about to send new invite")
-
-                  #Notifier.deliver_invite_a_friend_to_program(current_user, params[:invite_email], @program.invitation_body.gsub("\n", "<br>") + "<br><br><a href=''>Click Here to Join This Program!</a>", @program.invitation_subject) # sends the email      
-                  if Notifier.deliver_invite_a_friend_to_program(current_user, params[:invite_email], @program.invitation_body.gsub("\n", "<br>") + "<br><br><a href='" + join_url + "'>Click Here to Preview " + current_user.first_name + "'s " + @program.name + " Program!</a>", @program.invitation_subject) # sends the email      
-                    logger.info("sgj:invites_controller.rb:manage_program_invites:SUCCESS SENDING INVITE EMAIL")                    
-                  else
-                    logger.error("sgj:invites_controller.rb:manage_program_invites:ERROR SENDING INVITE EMAIL")                    
-                  end
-
-                  #logger.debug("sgj:invites_controller.rb:manage_program_invites:send new invite:12")
-
-                  @invite_create_message += " Message sent to " + params[:invite_name] + "."
-                rescue
-
-                  #logger.debug("sgj:invites_controller.rb:manage_program_invites:send new invite:13")
-                  @invite_create_message += " However, there was a problem sending the email. Contact support@habitforge.com so that we can assist."
-                end
-
-                #logger.debug("sgj:invites_controller.rb:manage_program_invites:send new invite:14")
-
-              else
-                #logger.debug("sgj:invites_controller.rb:manage_program_invites:send new invite:15")
-                @invite_create_message = "There was a problem creating the invitation. Make sure you enter a Name and a valid email address."
-              end
-              #logger.debug("sgj:invites_controller.rb:manage_program_invites:send new invite:16")
-            else
-              #logger.debug("sgj:invites_controller.rb:manage_program_invites:send new invite:17")
-              @invite_create_message = "You've already sent an invitation to " + params[:invite_email]
-            end
-            #logger.debug("sgj:invites_controller.rb:manage_program_invites:send new invite:18")
+          if params[:random_quote] != ""
+            m.random_quote = true
           end
 
-          #logger.debug("sgj:invites_controller.rb:manage_program_invites:send new invite:19")
+          if params[:for_this_date_only] != ""
+            m.for_this_date_only = params[:for_this_date_only]
+          end
+
+          if params[:insert_in_checkin_emails] != ""
+            m.insert_in_checkin_emails = true
+          end
+
+          if params[:insert_in_reminder_emails] != ""
+            m.insert_in_reminder_emails = true
+          end
+
+          if params[:insert_in_webpage] != ""
+            m.insert_in_webpage = true
+          end
+
+
+          logger.debug("sgj:messages_controller.rb:manage_program_messages:create new message:2")
+
+          ### do not allow duplicates
+          check_messages = Message.find(:first, :conditions => "program_id = '#{@program.id}' and body = '#{params[:body]}'")
+          if !check_messages
+            if m.save
+              #logger.debug("sgj:messages_controller.rb:manage_program_messages:create new message:3")
+              @program_create_message = "Message created."
+            else
+              #logger.debug("sgj:messages_controller.rb:manage_program_messages:create new message:4")
+              @program_create_message = "There was a problem creating the message."
+            end
+            #logger.debug("sgj:messages_controller.rb:manage_program_messages:create new message:5")
+          else
+            #logger.debug("sgj:messages_controller.rb:manage_program_messages:create new message:6")
+            @program_create_message = "Message already exists."
+          end
+          #logger.debug("sgj:messages_controller.rb:manage_program_messages:create new message:7")
 
         rescue
 
-          #logger.debug("sgj:invites_controller.rb:manage_program_invites:send new invite:20")
-          @invite_create_message = "Error creating invitation."
+          #logger.debug("sgj:messages_controller.rb:manage_program_messages:create new message:8")
+          @program_create_message = "Error creating message."
         end
 
-        #logger.debug("sgj:invites_controller.rb:manage_program_invites:send new invite:21")
+        #logger.debug("sgj:messages_controller.rb:manage_program_messages:create new message:9")
 
       else
-          #logger.debug("sgj:invites_controller.rb:manage_program_invites:send new invite:22")
-          @invite_create_message = "Error creating invitation. Invite Name and Email are both required."        
+          #logger.debug("sgj:messages_controller.rb:manage_program_messages:create new message:10")
+          @program_create_message = "Error creating message. Missing parameters."
       end
 
-      #logger.debug("sgj:invites_controller.rb:manage_program_invites:send new invite:23")
+      #logger.debug("sgj:messages_controller.rb:manage_program_messages:create new message:11")
     end
+    #logger.debug("sgj:messages_controller.rb:manage_program_messages:create new message:12")
 
-    #logger.debug("sgj:invites_controller.rb:manage_program_invites:send new invite:24")
+    render :partial => "messages/manage_program_messages", :locals => { :program => @program, :program_create_message => @program_create_message } 
 
-    render :partial => "invites/manage_program_invites", :locals => { :program => @program, :invite_create_message => @invite_create_message } 
-
-  end ### end def manage_program_invites
+  end ### end def manage_program_messages
 
 
 
