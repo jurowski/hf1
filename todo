@@ -66,9 +66,13 @@ stair climbing for UWHealth
 
 
 !!! -- NEXT -- !!!!
-Figure out how to handle spaces correctly in SUBJECT and BODY
-when passing in variable values from this file: _manage_program_messages
-...then get the "this date only" and the bool values of "insert_into" working
+to get wysiwyg working, you need to recognize that the CSS and JS need to be visible from the partialsomodify the thing accordingly
+...add in the WSIWG text editor for messages (see programs/edit view)
+...modify the "messages" partial and js so that messages can be created at the "template goal" level as well
+...assign a "coach img" to a program
+...assign a "coach img" to a template goal
+...fit the "coach img" into each message that goes out 
+...get the "this date only" working on messages
 
 
 PROGRAMS - INVITATIONS

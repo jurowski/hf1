@@ -52,16 +52,32 @@ class MessagesController < ApplicationController
   def manage_program_messages
 
 
-    @program_create_message = ""
+    @program_message_status = ""
     @progam = Program.new()
 
     if params[:program_id]
 
       @program = Program.find(params[:program_id].to_i)
 
+
+      @destroyed_message = false
+      #############################
+      ### DESTROY
+      #############################
+      if params[:remove_message_id]
+        m = Message.find(params[:remove_message_id].to_i)
+        if m
+          m.destroy
+          @destroyed_message = true
+        end
+      end
+
+
+      #############################
+      ### CREATE
+      #############################
       ### Params:
       ### program_id:subject:body:random_quote:for_this_date_only:insert_in_checkin_emails:insert_in_reminder_emails:insert_in_webpage
-
       if params[:body] \
         and params[:body] != "" \
         and params[:subject] \
@@ -97,15 +113,15 @@ class MessagesController < ApplicationController
             m.for_this_date_only = params[:for_this_date_only]
           end
 
-          if params[:insert_in_checkin_emails] != ""
+          if params[:insert_in_checkin_emails] == "true"
             m.insert_in_checkin_emails = true
           end
 
-          if params[:insert_in_reminder_emails] != ""
+          if params[:insert_in_reminder_emails] == "true"
             m.insert_in_reminder_emails = true
           end
 
-          if params[:insert_in_webpage] != ""
+          if params[:insert_in_webpage] == "true"
             m.insert_in_webpage = true
           end
 
@@ -117,36 +133,40 @@ class MessagesController < ApplicationController
           if !check_messages
             if m.save
               #logger.debug("sgj:messages_controller.rb:manage_program_messages:create new message:3")
-              @program_create_message = "Message created."
+              @program_message_status = "Message created."
             else
               #logger.debug("sgj:messages_controller.rb:manage_program_messages:create new message:4")
-              @program_create_message = "There was a problem creating the message."
+              @program_message_status = "There was a problem creating the message."
             end
             #logger.debug("sgj:messages_controller.rb:manage_program_messages:create new message:5")
           else
             #logger.debug("sgj:messages_controller.rb:manage_program_messages:create new message:6")
-            @program_create_message = "Message already exists."
+            @program_message_status = "Message already exists."
           end
           #logger.debug("sgj:messages_controller.rb:manage_program_messages:create new message:7")
 
         rescue
 
           #logger.debug("sgj:messages_controller.rb:manage_program_messages:create new message:8")
-          @program_create_message = "Error creating message."
+          @program_message_status = "Error creating message."
         end
 
         #logger.debug("sgj:messages_controller.rb:manage_program_messages:create new message:9")
 
       else
-          #logger.debug("sgj:messages_controller.rb:manage_program_messages:create new message:10")
-          @program_create_message = "Error creating message. Missing parameters."
+          if @destroyed_message
+            @program_message_status = "Message deleted."
+          else
+            #logger.debug("sgj:messages_controller.rb:manage_program_messages:create new message:10")
+            @program_message_status = "Error creating message. Missing parameters."
+          end
       end
 
       #logger.debug("sgj:messages_controller.rb:manage_program_messages:create new message:11")
     end
     #logger.debug("sgj:messages_controller.rb:manage_program_messages:create new message:12")
 
-    render :partial => "messages/manage_program_messages", :locals => { :program => @program, :program_create_message => @program_create_message } 
+    render :partial => "messages/manage_program_messages", :locals => { :program => @program, :program_create_message => @program_message_status } 
 
   end ### end def manage_program_messages
 

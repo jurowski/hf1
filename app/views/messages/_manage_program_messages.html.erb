@@ -53,7 +53,17 @@ function HtmlEncode(s)
  			<% @program.messages.each do |message| %>
 			  <!-- for automation of removing an item and re-loading the partial, see:
 			  views/template_tags/_manage -->
-			  <strong><%= message.subject %></strong> <%= message.body %> <i>was created <%= time_ago_in_words(message.created_at) %> ago</i><br>
+
+			  [
+			  <% if message.insert_in_checkin_emails %><strong>C</strong><%else%>C<%end%>
+			  <% if message.insert_in_reminder_emails %><strong>R</strong><%else%>R<%end%>
+			  <% if message.insert_in_webpage %><strong>W</strong><%else%>W<%end%>
+			  ]
+			  <strong><%= message.subject %></strong> <%= message.body %> <i>was created <%= time_ago_in_words(message.created_at) %> ago</i>
+
+			  <span class="btn" style="padding:2px;"><a onclick="remove_message_then_reload_program_messages('<%= message.id %>','<%= @program.id %>');">delete</a></span>
+			  <br />
+
 			<% end %>
 
 			<br>
@@ -63,23 +73,45 @@ function HtmlEncode(s)
 		<% end %>
 
 
-		Subject: <input type="text" name="<%= @program.id %>_message_subject" id="<%= @program.id %>_message_subject" placeholder="ex: Daily Tip">
+		Subject (Optional): <input type="text" name="<%= @program.id %>_message_subject" id="<%= @program.id %>_message_subject" placeholder="ex: Daily Tip" size="40">
 
-		Body: <input type="text" name="<%= @program.id %>_message_body" id="<%= @program.id %>_message_body" placeholder="">
-		<br />
+<!-- 		<br />
+		Body<span style="color:red;">*</span>: 
+		<textarea name="<%= @program.id %>_message_body" id="<%= @program.id %>_message_body" placeholder="" rows="3" cols="40" ></textarea> -->
+
+
+	     <div class="control-group">
+	        <label class="control-label">Body<span style="color:red;">*</span>:</label>
+	        <div class="controls">
+				<textarea name="<%= @program.id %>_message_body" id="<%= @program.id %>_message_body" placeholder="" rows="3" cols="40" class = "span12 wysihtml5 m-wrap" ></textarea>
+	        </div>
+	     </div>
+
+
+	     <div class="control-group">
+<!-- 	        <label class="control-label"><b>Structured?</b></label> -->
+	        <div class="controls">
+	        <input type="checkbox" name="<%= @program.id %>_message_insert_in_checkin_emails" id="<%= @program.id %>_message_insert_in_checkin_emails" value="true" CHECKED/> Insert (randomly) into Daily Check-in Emails
+	        </div>
+	        <input type="checkbox" name="<%= @program.id %>_message_insert_in_reminder_emails" id="<%= @program.id %>_message_insert_in_reminder_emails" value="true" CHECKED/> Insert (randomly) into Daily Reminder Emails
+	        </div>
+	        <input type="checkbox" name="<%= @program.id %>_message_insert_in_webpage" id="<%= @program.id %>_message_insert_in_webpage" value="true" CHECKED/> Display (randomly) on Web Page for Members
+	        </div>
+
+	     </div>
 
 		<%
 		random_quote = true
 		for_this_date_only = ""
-		insert_in_checkin_emails = ""
-		insert_in_reminder_emails = ""
-		insert_in_webpage = true
+		# insert_in_checkin_emails = ""
+		# insert_in_reminder_emails = ""
+		# insert_in_webpage = true
 		%>
 	    <!--
 	     CALL THIS FUNCTION:
 	     function create_message_then_reload_manage_program_messages(program_id, subject, body, random_quote, for_this_date_only, insert_in_checkin_emails, insert_in_reminder_emails, insert_in_webpage)
 	    -->
-		<a class="btn green" onclick="create_message_then_reload_manage_program_messages('<%= @program.id %>',HtmlEncode(document.getElementById('<%= @program.id %>_message_subject').value.replace(/ /g, '')),HtmlEncode(document.getElementById('<%= @program.id %>_message_body').value.replace(/ /g, '')),'<%= random_quote %>','<%= for_this_date_only %>','<%= insert_in_checkin_emails %>','<%= insert_in_reminder_emails %>','<%= insert_in_webpage %>');">Save Message</a>
+		<a class="btn green" onclick="create_message_then_reload_manage_program_messages('<%= @program.id %>',HtmlEncode(document.getElementById('<%= @program.id %>_message_subject').value.replace(/ /g, '%20')),HtmlEncode(document.getElementById('<%= @program.id %>_message_body').value.replace(/ /g, '%20')),'<%= random_quote %>','<%= for_this_date_only %>',document.getElementById('<%= @program.id %>_message_insert_in_checkin_emails').checked,document.getElementById('<%= @program.id %>_message_insert_in_reminder_emails').checked,document.getElementById('<%= @program.id %>_message_insert_in_webpage').checked);">Save Message</a>
 
 	</div> <!-- end class portlet-body -->
 </div> <!-- end class portlet -->

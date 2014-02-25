@@ -23,7 +23,7 @@ d3days_ago = dnow - 3
 
 
 wysiwyg = false
-if @cn == "programs" and @ca == "edit"
+if @cn == "programs" and (@ca == "edit" or @ca == "show")
   wysiwyg = true
 end
 
@@ -328,7 +328,7 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
     <script src="/assets/scripts/index.js" type="text/javascript"></script>    
 
     <% if wysiwyg %>
-    <script src="/assets/scripts/form-components.js"></script>     
+    <script src="/assets/scripts/form-components.js" type="text/javascript"></script>     
     <% end %>
 
    <!-- END PAGE LEVEL SCRIPTS -->  
@@ -526,6 +526,10 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
         $('.manage').load('/program_tags/manage/1?remove_tag_from_program=1&tag_id='+tag_id+'&program_id='+program_id);
     }
 
+    function remove_message_then_reload_program_messages(message_id,program_id) {
+      //reload div
+      $('.div_program_'+program_id+'_manage_program_messages').load('/messages/manage_program_messages?program_id='+program_id+'&remove_message_id='+message_id);
+    }
 
     function update_checkpoint_then_reload_goal_catch_up(goal_id, checkin_date, status, e0, f0, u) {
       $('.class_catch_up_on_checkpoints_goal_id_'+goal_id).load('/goals/catch_up_on_checkpoints/1?goal_id='+goal_id+'&date='+checkin_date+'&update_checkpoint_status='+status+'&e0='+e0+'&f0='+f0+'&u='+u);
