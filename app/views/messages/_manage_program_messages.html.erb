@@ -91,14 +91,26 @@ function HtmlEncode(s)
 	     <div class="control-group">
 <!-- 	        <label class="control-label"><b>Structured?</b></label> -->
 	        <div class="controls">
-	        <input type="checkbox" name="<%= @program.id %>_message_insert_in_checkin_emails" id="<%= @program.id %>_message_insert_in_checkin_emails" value="true" CHECKED/> Insert (randomly) into Daily Check-in Emails
+	        <input type="checkbox" name="<%= @program.id %>_message_insert_in_checkin_emails" id="<%= @program.id %>_message_insert_in_checkin_emails" value="true" CHECKED/> Insert into Daily Check-in Emails
 	        </div>
-	        <input type="checkbox" name="<%= @program.id %>_message_insert_in_reminder_emails" id="<%= @program.id %>_message_insert_in_reminder_emails" value="true" CHECKED/> Insert (randomly) into Daily Reminder Emails
+	        <input type="checkbox" name="<%= @program.id %>_message_insert_in_reminder_emails" id="<%= @program.id %>_message_insert_in_reminder_emails" value="true" CHECKED/> Insert into Daily Reminder Emails
 	        </div>
-	        <input type="checkbox" name="<%= @program.id %>_message_insert_in_webpage" id="<%= @program.id %>_message_insert_in_webpage" value="true" CHECKED/> Display (randomly) on Web Page for Members
+	        <input type="checkbox" name="<%= @program.id %>_message_insert_in_webpage" id="<%= @program.id %>_message_insert_in_webpage" value="true" CHECKED/> Display on Web Page for Members
 	        </div>
 
 	     </div>
+
+		<div class="control-group">
+		  <label class="control-label"></label>
+		  <div class="controls">Relevant from
+		     <input class="m-wrap small" size="16" type="text" value="" name="<%= @program.id %>_message_not_before_this_date" id="<%= @program.id %>_message_not_before_this_date"/>
+		     <span class="text-inline">&nbsp;to&nbsp;</span>
+		     <input class="m-wrap small" size="16" type="text" value="" name="<%= @program.id %>_message_not_after_this_date" id="<%= @program.id %>_message_not_after_this_date"/>
+		     <span class="text-inline">(leave blank if relevant on any date)</span>
+		  </div>
+		</div>
+
+
 
 		<%
 		random_quote = true
@@ -115,3 +127,4 @@ function HtmlEncode(s)
 
 	</div> <!-- end class portlet-body -->
 </div> <!-- end class portlet -->
+
