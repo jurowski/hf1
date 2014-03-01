@@ -67,8 +67,10 @@ stair climbing for UWHealth
 
 !!! -- NEXT -- !!!!
 ...get the "this date only" working on messages
-...review where the logic exists for saying what kind of message it is (ex: "congrats" vs. "oops") and see whether we want it added directly at the messages table level
-...modify the "messages" partial and js so that messages can be created at the "template goal" level as well
+...get the template_goal_id working on messages (use a pulldown to indicate which program.goal it is for, if any... if none, then it is for any of them)
+
+... test it out ... identify where physically to put these things in the emails and on the web, and start your own "sleep 7+ hours" program
+
 ...assign a "coach img" to a program
 ...assign a "coach img" to a template goal
 ...fit the "coach img" into each message that goes out 

@@ -59,6 +59,25 @@ function HtmlEncode(s)
 			  <% if message.insert_in_reminder_emails %><strong>R</strong><%else%>R<%end%>
 			  <% if message.insert_in_webpage %><strong>W</strong><%else%>W<%end%>
 			  ]
+
+			  <% if message.for_this_date_only %>
+			  	 (for <%= message.for_this_date_only.to_s %>)
+			  <% else %>
+			  	(for any date)
+			  <% end %>
+
+			  <% if message.template_goal_id %>
+			  	<% goal = Goal.find(message.template_goal_id) %>
+			  	<% if goal %>
+				  	(for action: <%= goal.title %>)
+			  	<% else %>
+			  		invalid action id
+			  	<% end %>
+			  <% else %>
+			  	(for all actions)
+			  <% end %>
+
+
 			  <strong><%= message.subject %></strong> <%= message.body %> <i>was created <%= time_ago_in_words(message.created_at) %> ago</i>
 
 			  <span class="btn" style="padding:2px;"><a onclick="remove_message_then_reload_program_messages('<%= message.id %>','<%= @program.id %>');">delete</a></span>
@@ -89,41 +108,61 @@ function HtmlEncode(s)
 
 
 	     <div class="control-group">
-<!-- 	        <label class="control-label"><b>Structured?</b></label> -->
+			<label class="control-label"><b>Where?</b></label>
 	        <div class="controls">
 	        <input type="checkbox" name="<%= @program.id %>_message_insert_in_checkin_emails" id="<%= @program.id %>_message_insert_in_checkin_emails" value="true" CHECKED/> Insert into Daily Check-in Emails
-	        </div>
+	        <br />
 	        <input type="checkbox" name="<%= @program.id %>_message_insert_in_reminder_emails" id="<%= @program.id %>_message_insert_in_reminder_emails" value="true" CHECKED/> Insert into Daily Reminder Emails
-	        </div>
+	        <br />
 	        <input type="checkbox" name="<%= @program.id %>_message_insert_in_webpage" id="<%= @program.id %>_message_insert_in_webpage" value="true" CHECKED/> Display on Web Page for Members
 	        </div>
-
 	     </div>
 
 		<div class="control-group">
-		  <label class="control-label"></label>
-		  <div class="controls">Relevant from
-		     <input class="m-wrap small" size="16" type="text" value="" name="<%= @program.id %>_message_not_before_this_date" id="<%= @program.id %>_message_not_before_this_date"/>
-		     <span class="text-inline">&nbsp;to&nbsp;</span>
-		     <input class="m-wrap small" size="16" type="text" value="" name="<%= @program.id %>_message_not_after_this_date" id="<%= @program.id %>_message_not_after_this_date"/>
-		     <span class="text-inline">(leave blank if relevant on any date)</span>
+		  <label class="control-label"><b>When?</b></label>
+		  <div class="controls">Display on this date: (Format: YYYY-MM-DD) 
+		     <input class="m-wrap small" size="16" type="text" value="" name="<%= @program.id %>_message_for_this_date_only" id="<%= @program.id %>_message_for_this_date_only" />
+		     <span class="text-inline"><i>Leave blank to display it randomly on any date.</i></span>
+		     <br>
 		  </div>
 		</div>
 
 
+		<% @program_templates = ProgramTemplate.find(:all, :conditions => "program_id = '#{@program.id}'", :order => "listing_position") %>
+
+  		<!-- show the action items in a pulldown -->
+  		Use only for this action item: 
+	    <select style="width:350px;" id="<%= @program.id %>_message_template_goal_id" name="<%= @program.id %>_message_template_goal_id">
+	      <option value="">-- Use for all action items --</option>
+
+	      <% @program_templates.each do |program_template| %>
+
+	        <option value="<%=program_template.template.id.to_s%>">
+	          <%= program_template.template.template_tagline %>
+	        </option>
+	          
+	      <% end %>
+	    </select>
+
+		  
 
 		<%
 		random_quote = true
-		for_this_date_only = ""
+		#for_this_date_only = ""
 		# insert_in_checkin_emails = ""
 		# insert_in_reminder_emails = ""
 		# insert_in_webpage = true
 		%>
 	    <!--
 	     CALL THIS FUNCTION:
-	     function create_message_then_reload_manage_program_messages(program_id, subject, body, random_quote, for_this_date_only, insert_in_checkin_emails, insert_in_reminder_emails, insert_in_webpage)
+	     function create_message_then_reload_manage_program_messages(program_id, template_goal_id, subject, body, random_quote, for_this_date_only, insert_in_checkin_emails, insert_in_reminder_emails, insert_in_webpage)
+
+		 Get chosen value of the select pulldown via:
+		 var e = document.getElementById("ddlViewBy");
+		 var strUser = e.options[e.selectedIndex].value;
+		 as per: http://stackoverflow.com/questions/1085801/how-to-get-the-selected-value-of-dropdownlist-using-javascript
 	    -->
-		<a class="btn green" onclick="create_message_then_reload_manage_program_messages('<%= @program.id %>',HtmlEncode(document.getElementById('<%= @program.id %>_message_subject').value.replace(/ /g, '%20')),HtmlEncode(document.getElementById('<%= @program.id %>_message_body').value.replace(/ /g, '%20')),'<%= random_quote %>','<%= for_this_date_only %>',document.getElementById('<%= @program.id %>_message_insert_in_checkin_emails').checked,document.getElementById('<%= @program.id %>_message_insert_in_reminder_emails').checked,document.getElementById('<%= @program.id %>_message_insert_in_webpage').checked);">Save Message</a>
+		<a class="btn green" onclick="var e = document.getElementById('<%= @program.id %>_message_template_goal_id');var strGoalID = e.options[e.selectedIndex].value;create_message_then_reload_manage_program_messages('<%= @program.id %>',strGoalID,HtmlEncode(document.getElementById('<%= @program.id %>_message_subject').value.replace(/ /g, '%20')),HtmlEncode(document.getElementById('<%= @program.id %>_message_body').value.replace(/ /g, '%20')),'<%= random_quote %>',document.getElementById('<%= @program.id %>_message_for_this_date_only').value,document.getElementById('<%= @program.id %>_message_insert_in_checkin_emails').checked,document.getElementById('<%= @program.id %>_message_insert_in_reminder_emails').checked,document.getElementById('<%= @program.id %>_message_insert_in_webpage').checked);">Save Message</a>
 
 	</div> <!-- end class portlet-body -->
 </div> <!-- end class portlet -->

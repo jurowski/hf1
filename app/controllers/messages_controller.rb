@@ -79,6 +79,7 @@ class MessagesController < ApplicationController
       ### Params:
       ### program_id:subject:body:random_quote:for_this_date_only:insert_in_checkin_emails:insert_in_reminder_emails:insert_in_webpage
       if params[:body] \
+        and params[:template_goal_id] \
         and params[:body] != "" \
         and params[:subject] \
         and params[:random_quote] \
@@ -93,6 +94,7 @@ class MessagesController < ApplicationController
 
           ### REQUIRED PARAMS
           # t.integer  "program_id"
+          # t.integer  "template_goal_id"
           # t.text     "body"
           # t.string   "subject"
           # t.boolean  "random_quote"
@@ -104,6 +106,10 @@ class MessagesController < ApplicationController
           m.program_id = @program.id
           m.body = params[:body]
           m.subject = params[:subject]
+
+          if params[:template_goal_id] != ""
+            m.template_goal_id = params[:template_goal_id].to_i
+          end
 
           if params[:random_quote] != ""
             m.random_quote = true
