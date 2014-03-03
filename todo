@@ -66,10 +66,18 @@ stair climbing for UWHealth
 
 
 !!! -- NEXT -- !!!!
-...get the "this date only" working on messages
-...get the template_goal_id working on messages (use a pulldown to indicate which program.goal it is for, if any... if none, then it is for any of them)
 
-... test it out ... identify where physically to put these things in the emails and on the web, and start your own "sleep 7+ hours" program
+!!!! never underestimate the flexibility you added into the "messages" schema combined with the "triggers" schema that you're still not using. You could use it for SO MANY THINGS !!!!
+
+... add in the "trigger/conditions" and include them on a message using the same tech you did for adding "tags" to a program
+
+... btw, you DO have a datepicker CSS/JS working already in your "tracker" backdate area
+
+... re-design the check-in emails to include inertia images and btn class and optional message text
+
+... test out the adding messages ... populate your own "sleep 7+ hours" program
+
+... identify where physically to put these things in the emails and on the web
 
 ...assign a "coach img" to a program
 ...assign a "coach img" to a template goal

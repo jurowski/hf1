@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140217123130) do
+ActiveRecord::Schema.define(:version => 20140303110904) do
 
   create_table "achievemints", :force => true do |t|
     t.string   "name"
@@ -969,6 +969,8 @@ ActiveRecord::Schema.define(:version => 20140217123130) do
     t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "trigger_on_momentum_rate"
+    t.integer  "max_success_or_failure_rate"
   end
 
   create_table "user_friends", :force => true do |t|
