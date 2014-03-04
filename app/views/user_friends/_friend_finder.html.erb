@@ -106,19 +106,37 @@ end
 
 
 
-      <% if (current_user.id == user.id) %>
-          <a href="#" class="btn disabled"><i class="icon-envelope"></i></a>
-      <% else %>
-        <a href="/tomessages/new?from_type=member&tomessage_subject=hello&to_id=<%= user.id %>" id='send_message_<%= user.id.to_s %>' class="btn " style="font-size:1.5em;" title='Send a message to <%= user.name %>!'> <i class="icon-envelope"></i></a>
-      <% end %>
 
       <% if @program %>
+
+        <!-- YES IT IS A PROGRAM INVITE -->
+        <% if (current_user.id == user.id) %>
+            <a href="#" class="btn disabled"><i class="icon-envelope"></i></a>
+        <% else %>
+          <a href="/tomessages/new?from_type=member&tomessage_subject=hello&to_id=<%= user.id %>&program_id=<%= @program.id %>" id='send_message_<%= user.id.to_s %>' class="btn " style="font-size:1.5em;" title='Invite <%= user.name %> to preview <%= @program.name %>'> <i class="icon-envelope"></i></a>
+        <% end %>
+
         <% if @program.is_this_user_enrolled(user) %>
           [already enrolled]
-        <% else %>
-          [send invite to <%= @program.name %>]
         <% end %>
-      <% end %>
+
+      <% else %> <!-- whether @program -->
+
+        <!-- NO IT IS NOT A PROGRAM INVITE -->
+        <% if (current_user.id == user.id) %>
+            <a href="#" class="btn disabled"><i class="icon-envelope"></i></a>
+        <% else %>
+          <a href="/tomessages/new?from_type=member&tomessage_subject=hello&to_id=<%= user.id %>" id='send_message_<%= user.id.to_s %>' class="btn " style="font-size:1.5em;" title='Send a message to <%= user.name %>!'> <i class="icon-envelope"></i></a>
+        <% end %>
+
+
+      <% end %> <!-- end whether @program -->
+
+
+
+
+
+
 
       <%=h user.first_name %>
       <%=h user.last_name %>

@@ -69,6 +69,14 @@ stair climbing for UWHealth
 
 !!!! never underestimate the flexibility you added into the "messages" schema combined with the "triggers" schema that you're still not using. You could use it for SO MANY THINGS !!!!
 
+... plan to do some random challenge programs, similar to "lovedare (copyright infringe)" and "a course in miracles copyright infringe", or "guitar chords" or "daily writing challenge"
+
+...joining a program that is "structured" is just a "start now" button that is the same as a "start doing this now" button link that happens to point to the first action ... and then each time they check in, you look for matching triggers for that goal... if they have met a rule/trigger that would have them "pass", then mark the current one as "hold" and also as "program completed", and incrment their program points, but do not show it in the normal "hold" area on their screen... and start up the next goal
+
+
+... if you are wanting to do daily challenges that are different, do not change it via just "message" and "trigger"... change it by "level"...that way the checkpoints will already be linked to the right questions, and it'll give you options on when to move to the next "question"
+
+
 ... add in the "trigger/conditions" and include them on a message using the same tech you did for adding "tags" to a program
 
 ... btw, you DO have a datepicker CSS/JS working already in your "tracker" backdate area

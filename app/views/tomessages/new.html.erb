@@ -186,22 +186,56 @@
 
 
         <p>
-          <%= f.label :subject %><br />
 
-
+          <strong>Subject</strong>
           <input id="tomessage_subject" name="tomessage[subject]" value="<%= simple_subject %>" type="text" length="100" style="width:95%;">
         </p>
         <p>
-          <%= f.label :body %><br />
-          <% if params[:tomessage_subject] and params[:tomessage_subject] == "hello" %>
 
-            <textarea cols="80" id="tomessage_body" name="tomessage[body]" rows="10" placeholder="Write something!" style="width:95%;"> </textarea>
+          <% if params[:program_id] %>
+            <!-- YES THIS IS A PROGRAM INVITATION -->
 
-          <% else %>
+             <div class="control-group">
+                <label class="control-label"><b>Body</b></label>
+                <div class="controls">
 
-            <textarea cols="80" id="tomessage_body" name="tomessage[body]" rows="10" style="width:95%;"><% if subject_value_default  and params[:tomessage_subject] %>I just wanted to send you some words of encouragement regarding your '<%= params[:tomessage_subject]%>' goal! You can do it! I really want to see you succeed!<% else %><%= subject_value %><% end %></textarea>
+                  <textarea cols="80" id="tomessage_body" name="tomessage[body]" class="span12 wysihtml5 m-wrap" rows="6" style="width:95%;">Hey <%= @to_user.first_name %>, I hope all is well.<br><br>I just wanted to invite you to <a href="http://habitforge.com/programs/<%= params[:program_id] %>/view">Check out this HF Challenge Program!</a><br><br>--<%= current_user.name %>
+                  </textarea>
 
-          <% end %>
+                </div>
+             </div>
+
+          <% else %> <!-- whether program_id -->
+
+            <!-- NO THIS IS NOT A PROGRAM INVITATION -->
+
+
+             <div class="control-group">
+                <label class="control-label"><b>Body</b></label>
+                <div class="controls">
+
+
+                  <% if params[:tomessage_subject] and params[:tomessage_subject] == "hello" %>
+
+                    <textarea cols="80" id="tomessage_body" name="tomessage[body]" class="span12 wysihtml5 m-wrap" rows="6" style="width:95%;" placeholder="Write something!">
+                    </textarea>
+
+                  <% else %>
+
+                    <textarea cols="80" id="tomessage_body" name="tomessage[body]" class="span12 wysihtml5 m-wrap" rows="6" style="width:95%;">Hey <%= @to_user.first_name %>, <br><br><% if subject_value_default  and params[:tomessage_subject] %>I just wanted to send you some words of encouragement regarding your '<%= params[:tomessage_subject]%>' goal! You can do it! I really want to see you succeed!<% else %><%= subject_value %><% end %><br><br>--<%= current_user.name %>
+                    </textarea>
+
+                  <% end %>
+
+
+                </div>
+             </div>
+
+
+
+
+          <% end %> <!-- whether program_id -->
+
 
         </p>
         <p>

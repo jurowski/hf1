@@ -117,48 +117,70 @@ Make the Program Image clickable, linked to External URL
 <% end %>
 
 <hr>
-<h3>Action Items for this Program</h3>
 
 <div style="background-color:#ffffff;padding:10px;padding-top:5px;margin:10px;margin-left:0px;border-color:#eeeeee;border:2px;border-style:solid;">
 <% @program_templates = ProgramTemplate.find(:all, :conditions => "program_id = '#{@program.id}'", :order => "listing_position") %>
 
-<% @program_templates.each do |program_template| %>
+<% if @program_templates.size == 0 %>
 
-  <br>
+  <a href="/program_templates/new?program_id=<%= @program.id.to_s %>" class="btn green">+ Add an Action Item!</a>
 
-    <% 
-    pos = ""
-    if program_template.listing_position
-      pos = program_template.listing_position.to_s + ". "
-    end
-    %>
 
-    <%= pos %><%= link_to program_template.template.template_tagline, program_template %>
-    <%= link_to '- Drop from Program', program_template, :confirm => 'Drop "' + program_template.template.template_tagline + '" from this program? (this will not delete the action template itself)', :method => :delete, :class => "btn mini red" %>
+<% else %>
+
+  <h3>Action Items for this Program</h3>
+
+  <% @program_templates.each do |program_template| %>
+
     <br>
-<% end %>
 
+      <% 
+      pos = ""
+      if program_template.listing_position
+        pos = program_template.listing_position.to_s + ". "
+      end
+      %>
+
+      <%= pos %><%= link_to program_template.template.template_tagline, program_template %>
+      <%= link_to '- Drop from Program', program_template, :confirm => 'Drop "' + program_template.template.template_tagline + '" from this program? (this will not delete the action template itself)', :method => :delete, :class => "btn mini red" %>
+      <br>
+  <% end %>
+
+  <a href="/program_templates/new?program_id=<%= @program.id.to_s %>" class="btn green">+ Add another Action Item!</a>
+
+<% end %>
 </div>
-<a href="/program_templates/new?program_id=<%= @program.id.to_s %>" class="btn green">+ Add an Action Item</a>
+
+
 <hr>
 
-
-
-<h3>Users Enrolled in this Program</h3>
 
 <div style="background-color:#ffffff;padding:10px;padding-top:5px;margin:10px;margin-left:0px;border-color:#eeeeee;border:2px;border-style:solid;">
 <% @program_enrollments = ProgramEnrollment.find(:all, :conditions => "program_id = '#{@program.id}'") %>
 
 <% if @program_enrollments.size == 0 %>
-  (None)
-<% end %>
-<% @program_enrollments.each do |program_enrollment| %>
+  No Users Enrolled in this Program
+<% else %>
+  <%= @program_enrollments.size.to_s %> Users Enrolled in this Program 
 
-  <br>
+  <% if params[:show_users] and params[:show_users] == "1" %>
 
-    <%= link_to program_enrollment.user.name, program_enrollment %>
-    <%= link_to '- Drop from Program', program_enrollment, :confirm => 'Drop "' + program_enrollment.user.name + '" from this program? (this will not delete the actual user record, but will remove the enrollment)', :method => :delete, :class => "btn mini red" %>
-    <br>
+    <%= link_to 'Hide Users', program_path(:show_users => "0"), :class => "btn blue mini" %> 
+
+    <% @program_enrollments.each do |program_enrollment| %>
+
+      <br>
+
+        <%= link_to program_enrollment.user.name, program_enrollment %>
+        <%= link_to '- Drop from Program', program_enrollment, :confirm => 'Drop "' + program_enrollment.user.name + '" from this program? (this will not delete the actual user record, but will remove the enrollment)', :method => :delete, :class => "btn mini red" %>
+        <br>
+    <% end %>
+
+  <% else %>
+    <%= link_to 'List Users', program_path(:show_users => "1"), :class => "btn blue mini" %> 
+  <% end %>
+
+
 <% end %>
 
 
