@@ -950,13 +950,13 @@ class Goal < ActiveRecord::Base
                 output << self.days_left_until_habit_is_formed.to_s + " left to go!"
             end
 
-            if self.forged_in and ( self.forged_in >= self.days_to_form_a_habit )
-                if self.forged_in > (self.days_to_form_a_habit + 20 )
-                    output << "This habit was 'forged' (#{self.days_to_form_a_habit} days straight)... it took #{self.forged_in} days, but you did it!"
-                else
-                    output << "This habit was 'forged' (#{self.days_to_form_a_habit} days straight)... after just #{self.forged_in} days!"
-                end
-            end
+            # if self.forged_in and ( self.forged_in >= self.days_to_form_a_habit )
+            #     if self.forged_in > (self.days_to_form_a_habit + 20 )
+            #         output << "This habit was 'forged' (#{self.days_to_form_a_habit} days straight)... it took #{self.forged_in} days, but you did it!"
+            #     else
+            #         output << "This habit was 'forged' (#{self.days_to_form_a_habit} days straight)... after just #{self.forged_in} days!"
+            #     end
+            # end
 
 
             if self.status == "monitor"
