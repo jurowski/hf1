@@ -22,6 +22,11 @@ ActiveRecord::Schema.define(:version => 20140303110904) do
     t.datetime "updated_at"
   end
 
+
+
+
+
+
   create_table "affiliates", :force => true do |t|
     t.string   "email"
     t.string   "last_name"
