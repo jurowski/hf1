@@ -67,11 +67,21 @@ stair climbing for UWHealth
 
 !!! -- NEXT -- !!!!
 
-!!!! never underestimate the flexibility you added into the "messages" schema combined with the "triggers" schema that you're still not using. You could use it for SO MANY THINGS !!!!
 
-... plan to do some random challenge programs, similar to "lovedare (copyright infringe)" and "a course in miracles copyright infringe", or "guitar chords" or "daily writing challenge"
+plan to do some random challenge programs, similar to "lovedare (copyright infringe)" and "a course in miracles copyright infringe", or "guitar chords" or "daily writing challenge"
 
-GIT STASH ISSUE ON ADV.ADVENTURINO !!!!
+You HAVE to use "Levels" to wrap goals within a structured program (levels hold tempt_badges, and achieved levels are stored in level_goal)
+
+--create migrations for:
+goal.template_level_parent_level_id integer
+level.first_template_goal_id
+
+--set up model relationships between level (parent) and goal (child)
+
+--for a program, be able to CRUD a Level w/ some tempt_badges
+--for a level, be able to CRUD action items (goal_templates) linked via goal.template_level_parent_level_id integer
+--for action items w/in a level, be able to specify the order of them (using goal.template_next_template_goal_id )
+--for a level, be able to set the "first goal template" using level.first_template_goal_id
 
 
 

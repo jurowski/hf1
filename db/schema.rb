@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140303110904) do
+ActiveRecord::Schema.define(:version => 20140310111112) do
 
   create_table "achievemints", :force => true do |t|
     t.string   "name"
@@ -21,11 +21,6 @@ ActiveRecord::Schema.define(:version => 20140303110904) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
-
-
-
-
-
 
   create_table "affiliates", :force => true do |t|
     t.string   "email"
@@ -535,6 +530,7 @@ ActiveRecord::Schema.define(:version => 20140303110904) do
     t.boolean  "tracker_prompt_for_an_initial_value"
     t.boolean  "tracker_track_difference_between_initial_and_latest"
     t.integer  "tracker_difference_between_initial_and_latest",           :limit => 10, :precision => 10, :scale => 0
+    t.integer  "template_level_parent_level_id"
   end
 
   add_index "goals", ["allow_push", "last_success_date", "next_push_on_or_after_date", "pushes_remaining_on_next_push_date"], :name => "allow_push"
@@ -614,6 +610,7 @@ ActiveRecord::Schema.define(:version => 20140303110904) do
     t.integer  "counter_images_set_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "first_template_goal_id"
   end
 
   create_table "message_emotions", :force => true do |t|
