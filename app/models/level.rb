@@ -18,5 +18,14 @@ class Level < ActiveRecord::Base
   has_many :level_goals
   has_many :goals, :through => :level_goals
 
+  ### trying to represent goal_templates that have this level as a parent
+  ### the below might not work right... will have to test
+  has_many :goal_templates, :class_name => 'Goal', :foreign_key => 'template_level_parent_level_id'
+
+
+  has_many :message_goals
+  has_many :messages, :through => :message_goals
+
+
 
 end

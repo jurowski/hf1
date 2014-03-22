@@ -52,7 +52,27 @@ end
 
 
 <% if (params[:template_owner_is_a_template] and params[:template_owner_is_a_template] == "1") %>
-  <h3>...a new template for others to use</h3>
+
+  <% if params[:program_id] %>
+    <%
+    begin
+    program = Program.find(params[:program_id].to_i)
+    rescue
+    end
+    if program
+      %>
+      <h3>New Action Item for the "<%= program.name %>" Program</h3>
+      <%
+    else
+      %>
+      <div class="alert">PROGRAM NOT FOUND</div>
+      <%
+    end
+    %>
+  <% else %>
+    <h3>...a new template for others to use</h3>
+  <% end %>
+
 <% else %>
 
   <% if params[:welcome] %>
@@ -121,13 +141,13 @@ end
     <!-- END NO FIRST NAME -->
 
 
-    <%= render :partial => "form", :object => f %>
-
+    <!-- render :partial => "form", :object => f -->
+    <%= render :partial => "form", :locals => {:form => f, :program => program} %>
 
     <p>
 
     <% if @goal.template_owner_is_a_template %>
-      <input type="submit" value="Launch This New Action Template" class="btn_red_gradient_forge" >
+      <input type="submit" value="Save this Action Template" class="btn_red_gradient_forge" >
     <% else %>
       <input type="submit" value="Forge My Habit" class="btn_red_gradient_forge" style="line-height:10px;padding-top:10px;height:40px;">
     <% end %>

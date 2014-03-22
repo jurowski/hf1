@@ -43,6 +43,10 @@ class Goal < ActiveRecord::Base
   belongs_to :program, :class_name => 'Program', :foreign_key => 'goal_added_through_template_from_program_id'
 
 
+  ### parent level
+  belongs_to :level, :class_name => 'Level', :foreign_key => 'template_level_parent_level_id'
+
+
   has_many :message_goals
   has_many :messages, :through => :message_goals
 

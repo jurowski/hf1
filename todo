@@ -4,7 +4,21 @@
 --------------------- :::TODO::: ----------------------------
 
 
+I believe that levels right now are "overengineerimg"
+I have a gut feeling that says that the "level" is an over-complicating layer...
+...and that Programs and Actions is all that's really needed
+...and that you can chain together actions that kick one another off as needed
+without the added complexity of levels
 
+SO
+
+with that said, let's not implement levels, at least not until it's proven that they are needed
+
+Let's instead get some real "programs" off the ground
+
+A Relationship Builder can be the first, because it's simple enough in that it's one thing each day
+
+Once that is working, go on to a "Happiness Builder" ... and then Meditations and then Exercises
 
 
 
@@ -69,17 +83,22 @@ stair climbing for UWHealth
 
 
 plan to do some random challenge programs, similar to "lovedare (copyright infringe)" and "a course in miracles copyright infringe", or "guitar chords" or "daily writing challenge"
+or the "blue zone 100 yrs + and spry" from TED or the "power moves and pencil in mouth" from TED
 
 You HAVE to use "Levels" to wrap goals within a structured program (levels hold tempt_badges, and achieved levels are stored in level_goal)
 
---create migrations for:
+You already created migrations for:
 goal.template_level_parent_level_id integer
 level.first_template_goal_id
+(and applied them on prod and dev)
 
---set up model relationships between level (parent) and goal (child)
+-T-set up model relationships between level (parent) and goal (child)
+
+--for a program, be able to CRUD a Level
+
+--for a level, be able to CRUD action items (goal_templates) linked via goal.template_level_parent_level_id integer
 
 --for a program, be able to CRUD a Level w/ some tempt_badges
---for a level, be able to CRUD action items (goal_templates) linked via goal.template_level_parent_level_id integer
 --for action items w/in a level, be able to specify the order of them (using goal.template_next_template_goal_id )
 --for a level, be able to set the "first goal template" using level.first_template_goal_id
 

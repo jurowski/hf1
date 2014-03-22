@@ -170,7 +170,13 @@ show_monitor_option_details = 0
 
 <% if @ca == "new" %>
 <div style="padding-top:0px;">
-<span style="color:#ff3300;font-size:2em;font-weight:bold;">What habit would you like to forge?</span>
+<span style="color:#ff3300;font-size:2em;font-weight:bold;">
+  <% if program %>
+    Describe the action item below.
+  <% else %>
+    What habit would you like to forge?
+  <% end %>
+</span>
 </div>
 <% end %>
 
@@ -199,7 +205,11 @@ show_monitor_option_details = 0
 
 <div style="padding-top:10px;">
 <span style="font-size:1.2em;font-weight:normal;">
-Your email check-ins will read...
+  <% if program %>
+    The participant's email check-ins will read...
+  <% else %>
+    Your email check-ins will read...
+  <% end %>
 </span>
 </div>
 
