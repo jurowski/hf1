@@ -755,6 +755,7 @@ ActiveRecord::Schema.define(:version => 20140322212755) do
     t.integer  "listing_position"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "one_then_done",    :default => false
   end
 
   create_table "programs", :force => true do |t|
