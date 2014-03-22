@@ -89,7 +89,7 @@ class ProgramTemplatesController < ApplicationController
     @program_template.destroy
 
     respond_to do |format|
-      format.html { redirect_to("/programs/" + @program_template.program.id.to_s) }
+      format.html { redirect_to("/programs/" + @program_template.program.id.to_s + "#action_items") }
       format.xml  { head :ok }
     end
   end

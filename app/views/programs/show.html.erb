@@ -1,8 +1,8 @@
 
 
-<h1>Challenge Program: <%= @program.name %></h1>
+<h1>"<%= @program.name %>" Challenge Program</h1>
 
-<div style="background-color:#ffffff;padding:10px;padding-top:5px;margin:10px;margin-left:0px;border-color:#eeeeee;border:2px;border-style:solid;">
+<div style="background-color:#ffffff;padding:10px;padding-top:5px;margin:10px;margin-left:0px;border-color:#eeeeee;border:1px;border-style:solid;">
 
   <% if @program.organization %>
     <p>
@@ -17,12 +17,32 @@
   <%= @program.managed_by_user.name %> (<%= @program.managed_by_user.email %>)
 </p>
 
-<% if @program.about %>
-<p>
-  <b>About:</b>
-  <%= @program.about %>
-</p>
+<% if @program.category %>
+  <p>
+  <b>Category:</b>
+  <%= @program.category %>
+  </p>
 <% end %>
+
+<p>
+  <b>Type:</b>
+<% if @program.structured %>
+  Structured (Controlled Order of What Actions are to be done When)
+<% else %>
+  Unstructured Collection of Habits
+<% end %>
+</p>
+
+
+<% if @program.about %>
+<div class="alert">
+  <b>About <%= @program.name %></b>
+  <br>
+  <i><%= @program.about %></i>
+</div>
+<% end %>
+
+
 
 <p>
   <b>Image logo:</b>
@@ -36,12 +56,14 @@
 </p>
 
 
+<p>
+<b>Status:</b>
 <% if @program.status and @program.status == "live" %>
-  <input type=checkbox checked disabled>
+  Published (people can join)
 <% else %>
-  <input type=checkbox disabled>
+  Dev Mode (no one can join yet)
 <% end %>
- Publish
+</p>
 
  <br>
 
@@ -118,7 +140,7 @@ Make the Program Image clickable, linked to External URL
 
 <hr>
 
-<div style="background-color:#ffffff;padding:10px;padding-top:5px;margin:10px;margin-left:0px;border-color:#eeeeee;border:2px;border-style:solid;">
+<div style="background-color:#ffffff;padding:10px;padding-top:5px;margin:10px;margin-left:0px;border-color:#eeeeee;border:1px;border-style:solid;">
 <% @program_templates = ProgramTemplate.find(:all, :conditions => "program_id = '#{@program.id}'", :order => "listing_position") %>
 
 <% if @program_templates.size == 0 %>
@@ -128,7 +150,19 @@ Make the Program Image clickable, linked to External URL
 
 <% else %>
 
-  <h3>Action Items for this Program</h3>
+  <a id="action_items"></a>
+  <h3>"<%= @program.name %>" Action Items</h3>
+
+
+  <p>
+  <% if @program.structured %>
+    There is a Controlled Order of when these actions are to be done
+    <br><i>Users move from one item to the next only after hitting a pre-defined success rate for their current goal.</i>
+  <% else %>
+    This is an Unstructured Collection of Habits
+    <br><i>Users can choose one or many habits from the collection at will.</i>
+  <% end %>
+  </p>
 
   <% @program_templates.each do |program_template| %>
 
@@ -146,7 +180,10 @@ Make the Program Image clickable, linked to External URL
       <br>
   <% end %>
 
-  <a href="/program_templates/new?program_id=<%= @program.id.to_s %>" class="btn green">+ Add another Action Item!</a>
+  <br>
+  <a href="/goals/new?template_owner_is_a_template=1&program_id=<%= @program.id.to_s %>" class="btn green">
+<!--   <a href="/program_templates/new?program_id=<%= @program.id.to_s %>" class="btn green"> -->
+    + Add another Action Item!</a>
 
 <% end %>
 </div>
@@ -155,7 +192,7 @@ Make the Program Image clickable, linked to External URL
 <hr>
 
 
-<div style="background-color:#ffffff;padding:10px;padding-top:5px;margin:10px;margin-left:0px;border-color:#eeeeee;border:2px;border-style:solid;">
+<div style="background-color:#ffffff;padding:10px;padding-top:5px;margin:10px;margin-left:0px;border-color:#eeeeee;border:1px;border-style:solid;">
 <% @program_enrollments = ProgramEnrollment.find(:all, :conditions => "program_id = '#{@program.id}'") %>
 
 <% if @program_enrollments.size == 0 %>

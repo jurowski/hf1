@@ -65,4 +65,16 @@ class Program < ActiveRecord::Base
     end
   end
 
+  def get_next_listing_position
+    highest_listing_position = 0
+
+    self.program_templates.each do |t|
+      if t.listing_position and t.listing_position > highest_listing_position
+        highest_listing_position = t.listing_position
+      end
+    end
+    return highest_listing_position + 1
+
+  end
+
 end

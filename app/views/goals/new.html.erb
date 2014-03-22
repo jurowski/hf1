@@ -60,9 +60,15 @@ end
     rescue
     end
     if program
-      %>
-      <h3>New Action Item for the "<%= program.name %>" Program</h3>
-      <%
+      if program.category and program.category != ""
+        %>
+        <h3>New "<%= program.category %>" Action Item for the "<%= program.name %>" Program</h3>
+        <%
+      else
+        %>
+        <h3>New Action Item for the "<%= program.name %>" Program</h3>
+        <%
+      end
     else
       %>
       <div class="alert">PROGRAM NOT FOUND</div>
@@ -147,7 +153,7 @@ end
     <p>
 
     <% if @goal.template_owner_is_a_template %>
-      <input type="submit" value="Save this Action Template" class="btn_red_gradient_forge" >
+      <input type="submit" value="Save" class="btn_red_gradient_forge" >
     <% else %>
       <input type="submit" value="Forge My Habit" class="btn_red_gradient_forge" style="line-height:10px;padding-top:10px;height:40px;">
     <% end %>

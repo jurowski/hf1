@@ -871,9 +871,14 @@ class GoalsController < ApplicationController
 
             ### if this new template was created to be part of an existing program
             if params[:program_id]
+              program = Program.find(params[:program_id])
+
               program_template = ProgramTemplate.new()
-              program_template.program_id = params[:program_id].to_i
+              program_template.program_id = program.id
               program_template.template_goal_id = @goal.id
+
+              program_template.listing_position = program.get_next_listing_position
+
               program_template.save
             end
 
@@ -1166,7 +1171,7 @@ class GoalsController < ApplicationController
 
           ### if this new template was created to be part of an existing program
           if params[:program_id]
-            format.html {redirect_to("/programs/#{params[:program_id]}")}
+            format.html {redirect_to("/programs/#{params[:program_id]}#action_items")}
           else
 
             begin 

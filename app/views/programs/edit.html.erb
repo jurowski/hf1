@@ -15,6 +15,20 @@
         </div>
      </div>
 
+
+
+
+     <div class="control-group">
+        <label class="control-label"><b>Category</b></label>
+        <div class="controls">
+          <%
+          @arr = arr_goal_categories  
+          %>
+          <%= select(:program, :category, @arr)%>
+        </div>
+     </div>
+
+
      <div class="control-group">
         <label class="control-label"><b>About</b></label>
         <div class="controls">
