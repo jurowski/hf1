@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140322212755) do
+ActiveRecord::Schema.define(:version => 20140323004951) do
 
   create_table "achievemints", :force => true do |t|
     t.string   "name"
@@ -756,6 +756,7 @@ ActiveRecord::Schema.define(:version => 20140322212755) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "one_then_done",    :default => false
+    t.integer  "track_number"
   end
 
   create_table "programs", :force => true do |t|
@@ -792,6 +793,16 @@ ActiveRecord::Schema.define(:version => 20140322212755) do
     t.string   "external_membership_url"
     t.string   "external_membership_text"
     t.string   "category"
+    t.string   "track_1_name"
+    t.string   "track_2_name"
+    t.string   "track_3_name"
+    t.string   "track_4_name"
+    t.string   "track_5_name"
+    t.string   "track_6_name"
+    t.string   "track_7_name"
+    t.string   "track_8_name"
+    t.string   "track_9_name"
+    t.string   "track_10_name"
   end
 
   create_table "promotion1s", :force => true do |t|

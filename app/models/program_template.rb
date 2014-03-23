@@ -14,4 +14,25 @@ class ProgramTemplate < ActiveRecord::Base
 
 
   validates_uniqueness_of :template_goal_id, :scope => :program_id
+
+
+  def get_next_listing_position
+  	if self.listing_position
+  		action_item = ProgramTemplate.find(:first, :conditions => "program_id = '#{self.program_id}' and listing_position > '#{self.listing_position}'", :order => listing_position)
+  		if action_item
+  			return action_item.listing_position
+  		else
+  			return false
+  		end
+  	else
+  		action_item = ProgramTemplate.find(:first, :conditions => "program_id = '#{self.program_id}'}'", :order => listing_position)
+  		if action_item
+  			return action_item.listing_position
+  		else
+  			return false
+  		end
+	end
+  end
+
+
 end

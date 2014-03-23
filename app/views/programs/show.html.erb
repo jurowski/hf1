@@ -175,7 +175,15 @@ Make the Program Image clickable, linked to External URL
       end
       %>
 
-      <%= pos %><%= link_to program_template.template.template_tagline, program_template %>
+      <%= pos %><%= link_to program_template.template.template_tagline, "/program_templates/" + program_template.id.to_s + "/edit" %>
+      <% if program_template.one_then_done %>
+        (then progress to  
+        <% if program_template.get_next_listing_position %>
+          #<%= program_template.get_next_listing_position.to_s %>)
+        <% else %>
+          next one
+        <% end %>
+      <% end %>
       <%= link_to '- Drop from Program', program_template, :confirm => 'Drop "' + program_template.template.template_tagline + '" from this program? (this will not delete the action template itself)', :method => :delete, :class => "btn mini red" %>
       <br>
   <% end %>

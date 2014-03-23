@@ -9,10 +9,14 @@ end
 %>
 
 
-<h1>Action Item Edit</h1>
+<h3>Action Item Details</h3>
+  
 
 <% form_for(@program_template) do |f| %>
   <%= f.error_messages %>
+
+  <% show_me = false %>
+  <% if show_me %>
 
   <p>
       Choose a program:
@@ -33,14 +37,27 @@ end
       <% end %>
 
   </p>
+  <% end %> <!-- end if show_me -->
+
+
   <p>
-    Listing position: <%= f.text_field :listing_position, :size => 2, :style => "width:20px;" %>
+     "<%= link_to @program_template.template.title, @program_template.template %>" is currently Action Item #<%= f.text_field :listing_position, :size => 2, :style => "width:20px;" %> 
+    in the
+     "<%= link_to @program_template.program.name, "/programs/" + @program_template.program.id.to_s + "#action_items" %>" Challenge Program
+
   </p>
+
+ <div class="control-group">
+    <label class="control-label"><b>When should they move up to the next Action Item?</b></label>
+    <div class="controls">
+    <%= f.check_box(:one_then_done, options = {}, checked_value = "true", unchecked_value = "false") %> As soon as they check in with a "yes", assign them to the next Action Item
+    </div>
+ </div>
+ <hr>
   <p>
-    <%= f.submit 'Update' %>
+    <%= f.submit 'Save Changes' %>
+    or <%= link_to "Cancel Changes", "/programs/" + @program_template.program.id.to_s + "#action_items" %>
   </p>
 <% end %>
 
 
-<%= link_to 'Show', @program_template %> |
-<%= link_to 'Back', program_templates_path %>

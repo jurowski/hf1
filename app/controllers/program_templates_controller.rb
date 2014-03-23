@@ -73,7 +73,11 @@ class ProgramTemplatesController < ApplicationController
     respond_to do |format|
       if @program_template.update_attributes(params[:program_template])
         flash[:notice] = 'ProgramTemplate was successfully updated.'
-        format.html { redirect_to(@program_template) }
+
+    
+        # format.html { redirect_to(@program_template) }
+        format.html { redirect_to("/programs/" + @program_template.program.id.to_s + "#action_items") }
+
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }

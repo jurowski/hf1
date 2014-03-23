@@ -11,7 +11,7 @@
   	<b> is used in this program:</b>
   <% end %>
 
-   <%= link_to @program_template.program.name, @program_template.program %>
+   <%= link_to @program_template.program.name, "/programs/" + @program_template.program.id.to_s + "#action_items" %>
 </p>
 
 

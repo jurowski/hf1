@@ -4,6 +4,6 @@ class AddOnethendoneToProgramtemplates < ActiveRecord::Migration
   end
 
   def self.down
-  	#remove_column :program_templates, :one_then_done
+  	remove_column :program_templates, :one_then_done
   end
 end
