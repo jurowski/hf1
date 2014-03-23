@@ -196,29 +196,89 @@ Make the Program Image clickable, linked to External URL
   <% end %>
   </p>
 
+
+  <%
+  if @program.get_tracks
+    %>
+    <table border=1 align=top>
+      <tr>
+    <%
+    @program.get_tracks.each do |arr_tracks|
+      %>
+      <td>
+        <h3><%= arr_tracks[0] %></h3>
+        <% @program_templates.each do |program_template| %>
+          <% if program_template.track_number == arr_tracks[1] %>
+            <br>
+
+            <% 
+            pos = ""
+            if program_template.listing_position
+              pos = program_template.listing_position.to_s + ". "
+            end
+            %>
+
+            <%= pos %><%= link_to program_template.template.template_tagline, "/program_templates/" + program_template.id.to_s + "/edit" %>
+            <% if program_template.one_then_done %>
+              (then progress to  
+              <% if program_template.get_next_listing_position %>
+                #<%= program_template.get_next_listing_position.to_s %>)
+              <% else %>
+                next one
+              <% end %>
+            <% end %>
+            <%= link_to '- Remove', program_template, :confirm => 'Drop "' + program_template.template.template_tagline + '" from this program? (this will not delete the action template itself)', :method => :delete, :class => "btn mini red" %>
+
+
+          <% end %>
+        <% end %>
+      </td>
+      <%
+    end
+    %>
+    </tr>
+    </table>    
+    <%
+  else
+    %>
+    NO TRACKS
+    <%
+  end
+  %>
+
+
+
+  <% found_first_one_with_no_track = false %>
   <% @program_templates.each do |program_template| %>
 
-    <br>
+      <% if !program_template.track_number %>
+          <% if !found_first_one_with_no_track %>
+            <h3>NEED A TRACK FOR THESE ACTIONS</h3>
+            <% found_first_one_with_no_track = true %>
+          <% end %>
+          <br>
 
-      <% 
-      pos = ""
-      if program_template.listing_position
-        pos = program_template.listing_position.to_s + ". "
-      end
-      %>
+          <% 
+          pos = ""
+          if program_template.listing_position
+            pos = program_template.listing_position.to_s + ". "
+          end
+          %>
 
-      <%= pos %><%= link_to program_template.template.template_tagline, "/program_templates/" + program_template.id.to_s + "/edit" %>
-      <% if program_template.one_then_done %>
-        (then progress to  
-        <% if program_template.get_next_listing_position %>
-          #<%= program_template.get_next_listing_position.to_s %>)
-        <% else %>
-          next one
-        <% end %>
-      <% end %>
-      <%= link_to '- Drop from Program', program_template, :confirm => 'Drop "' + program_template.template.template_tagline + '" from this program? (this will not delete the action template itself)', :method => :delete, :class => "btn mini red" %>
-      <br>
-  <% end %>
+          <%= pos %><%= link_to program_template.template.template_tagline, "/program_templates/" + program_template.id.to_s + "/edit" %>
+          <% if program_template.one_then_done %>
+            (then progress to  
+            <% if program_template.get_next_listing_position %>
+              #<%= program_template.get_next_listing_position.to_s %>)
+            <% else %>
+              next one
+            <% end %>
+          <% end %>
+          <%= link_to '- Drop', program_template, :confirm => 'Drop "' + program_template.template.template_tagline + '" from this program? (this will not delete the action template itself)', :method => :delete, :class => "btn mini red" %>
+        <% end %><!-- end if !program_tempalte.track_number -->
+  
+  <% end %><!-- end @program_templates.each do program_template-->
+
 
   <br>
   <a href="/goals/new?template_owner_is_a_template=1&program_id=<%= @program.id.to_s %>" class="btn green">
@@ -249,7 +309,7 @@ Make the Program Image clickable, linked to External URL
       <br>
 
         <%= link_to program_enrollment.user.name, program_enrollment %>
-        <%= link_to '- Drop from Program', program_enrollment, :confirm => 'Drop "' + program_enrollment.user.name + '" from this program? (this will not delete the actual user record, but will remove the enrollment)', :method => :delete, :class => "btn mini red" %>
+        <%= link_to '- Remove', program_enrollment, :confirm => 'Drop "' + program_enrollment.user.name + '" from this program? (this will not delete the actual user record, but will remove the enrollment)', :method => :delete, :class => "btn mini red" %>
         <br>
     <% end %>
 

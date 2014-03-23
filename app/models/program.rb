@@ -77,4 +77,60 @@ class Program < ActiveRecord::Base
 
   end
 
+
+
+  def get_tracks
+
+    we_have_at_least_one_track = false
+    arr_tracks = Array.new()
+    if self.track_1_name and self.track_1_name != ""
+      arr_tracks << [self.track_1_name,1] 
+      we_have_at_least_one_track = true
+    end
+    if self.track_2_name and self.track_2_name != ""
+      arr_tracks << [self.track_2_name,2] 
+      we_have_at_least_one_track = true
+    end
+    if self.track_3_name and self.track_3_name != ""
+      arr_tracks << [self.track_3_name,3] 
+      we_have_at_least_one_track = true
+    end
+    if self.track_4_name and self.track_4_name != ""
+      arr_tracks << [self.track_4_name,4] 
+      we_have_at_least_one_track = true
+    end
+    if self.track_5_name and self.track_5_name != ""
+      arr_tracks << [self.track_5_name,5] 
+      we_have_at_least_one_track = true
+    end
+    if self.track_6_name and self.track_6_name != ""
+      arr_tracks << [self.track_6_name,6] 
+      we_have_at_least_one_track = true
+    end
+    if self.track_7_name and self.track_7_name != ""
+      arr_tracks << [self.track_7_name,7] 
+      we_have_at_least_one_track = true
+    end
+    if self.track_8_name and self.track_8_name != ""
+      arr_tracks << [self.track_8_name,8] 
+      we_have_at_least_one_track = true
+    end
+    if self.track_9_name and self.track_9_name != ""
+      arr_tracks << [self.track_9_name,9] 
+      we_have_at_least_one_track = true
+    end
+    if self.track_10_name and self.track_10_name != ""
+      arr_tracks << [self.track_10_name,10] 
+      we_have_at_least_one_track = true
+    end
+
+    if !we_have_at_least_one_track
+      return false
+    else
+      return arr_tracks
+    end
+
+  end
+
+
 end

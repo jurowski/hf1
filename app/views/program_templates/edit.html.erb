@@ -9,8 +9,8 @@ end
 %>
 
 
-<h3>Action Item Details</h3>
   
+ <h2>"<%= link_to @program_template.program.name, "/programs/" + @program_template.program.id.to_s + "#action_items" %>" Action Item Details</h2>
 
 <% form_for(@program_template) do |f| %>
   <%= f.error_messages %>
@@ -41,9 +41,63 @@ end
 
 
   <p>
-     "<%= link_to @program_template.template.title, @program_template.template %>" is currently Action Item #<%= f.text_field :listing_position, :size => 2, :style => "width:20px;" %> 
-    in the
-     "<%= link_to @program_template.program.name, "/programs/" + @program_template.program.id.to_s + "#action_items" %>" Challenge Program
+     "<%= link_to @program_template.template.title, "/goals/" + @program_template.template.id.to_s + "/edit?program_id=" + @program_template.program.id.to_s %>" is currently Action Item #<%= f.text_field :listing_position, :size => 2, :style => "width:20px;" %> 
+
+          <%
+          we_have_at_least_one_track = false
+          arr_tracks = Array.new()
+
+          arr_tracks << ["-- Choose a Track --",""] 
+
+          if @program_template.program.track_1_name and @program_template.program.track_1_name != ""
+            arr_tracks << [@program_template.program.track_1_name,1] 
+            we_have_at_least_one_track = true
+          end
+          if @program_template.program.track_2_name and @program_template.program.track_2_name != ""
+            arr_tracks << [@program_template.program.track_2_name,2] 
+            we_have_at_least_one_track = true
+          end
+          if @program_template.program.track_3_name and @program_template.program.track_3_name != ""
+            arr_tracks << [@program_template.program.track_3_name,3] 
+            we_have_at_least_one_track = true
+          end
+          if @program_template.program.track_4_name and @program_template.program.track_4_name != ""
+            arr_tracks << [@program_template.program.track_4_name,4] 
+            we_have_at_least_one_track = true
+          end
+          if @program_template.program.track_5_name and @program_template.program.track_5_name != ""
+            arr_tracks << [@program_template.program.track_5_name,5] 
+            we_have_at_least_one_track = true
+          end
+          if @program_template.program.track_6_name and @program_template.program.track_6_name != ""
+            arr_tracks << [@program_template.program.track_6_name,6] 
+            we_have_at_least_one_track = true
+          end
+          if @program_template.program.track_7_name and @program_template.program.track_7_name != ""
+            arr_tracks << [@program_template.program.track_7_name,7] 
+            we_have_at_least_one_track = true
+          end
+          if @program_template.program.track_8_name and @program_template.program.track_8_name != ""
+            arr_tracks << [@program_template.program.track_8_name,8] 
+            we_have_at_least_one_track = true
+          end
+          if @program_template.program.track_9_name and @program_template.program.track_9_name != ""
+            arr_tracks << [@program_template.program.track_9_name,9] 
+            we_have_at_least_one_track = true
+          end
+          if @program_template.program.track_10_name and @program_template.program.track_10_name != ""
+            arr_tracks << [@program_template.program.track_10_name,10] 
+            we_have_at_least_one_track = true
+          end
+          %>
+
+          <% if !we_have_at_least_one_track %>
+             <h2><%= link_to "!!! You need to create at least one Track !!!", "/programs/" + @program_template.program.id.to_s + "/edit" %></h2>
+          <% else %>
+            in the <%= select(:program_template, :track_number, arr_tracks)%> Track.
+          <% end %>          
+
+    
 
   </p>
 

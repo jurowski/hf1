@@ -95,6 +95,7 @@ end
   <!-- Used when creating a new template for a particular program -->
   <% if params[:program_id] %>
     <input type="hidden" name="program_id" value="<%= params[:program_id] %>">
+    <% @program = Program.find(params[:program_id].to_i) %>
   <% end %>
 
 <% else
@@ -171,7 +172,7 @@ show_monitor_option_details = 0
 <% if @ca == "new" %>
 <div style="padding-top:0px;">
 <span style="color:#ff3300;font-size:2em;font-weight:bold;">
-  <% if program %>
+  <% if @program %>
 <!--     Describe the action item below.
  -->  
   <% else %>
@@ -206,7 +207,7 @@ show_monitor_option_details = 0
 
 <div style="padding-top:10px;">
 <span style="font-size:1.2em;font-weight:normal;">
-  <% if program %>
+  <% if @program %>
     The check-in emails for this action will read...
   <% else %>
     Your email check-ins will read...
@@ -322,8 +323,8 @@ end
     <div style="padding-top:10px;">
 
 
-    <% if program and program.category %>
-      <%= form.hidden_field :category, :value => program.category %>    
+    <% if @program and @program.category %>
+      <%= form.hidden_field :category, :value => @program.category %>    
     <% else %>
 
       <% if based_on_a_template or has_active_challenge or part_of_a_team_category %>

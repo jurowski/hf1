@@ -877,7 +877,9 @@ class GoalsController < ApplicationController
               program_template.program_id = program.id
               program_template.template_goal_id = @goal.id
 
-              program_template.listing_position = program.get_next_listing_position
+              ### you can't do this anymore now that 'next_listing_position' depends on the track
+              ### because right now we don't know which track this will be in
+              #program_template.listing_position = program.get_next_listing_position
 
               program_template.save
             end
@@ -1618,8 +1620,17 @@ class GoalsController < ApplicationController
             end
 
 
-            format.html { render :action => "index" } # index.html.erb
-            format.xml  { render :xml => @goal.errors, :status => :unprocessable_entity }            
+            ### if this template is for a program, redirect to the program
+            if @goal.template_owner_is_a_template and params[:program_id]
+              format.html {redirect_to("/programs/#{params[:program_id]}#action_items")}
+            else
+              format.html { render :action => "index" } # index.html.erb
+              format.xml  { render :xml => @goal.errors, :status => :unprocessable_entity }            
+            end
+
+
+
+
           end
         end
       end
