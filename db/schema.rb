@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140323004951) do
+ActiveRecord::Schema.define(:version => 20140324033458) do
 
   create_table "achievemints", :force => true do |t|
     t.string   "name"
@@ -755,8 +755,22 @@ ActiveRecord::Schema.define(:version => 20140323004951) do
     t.integer  "listing_position"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "one_then_done",    :default => false
+    t.boolean  "one_then_done",                     :default => false
     t.integer  "track_number"
+    t.boolean  "succeed_for_days_straight"
+    t.integer  "min_days_straight"
+    t.boolean  "succeed_for_lagging_success_rate"
+    t.integer  "lag_days"
+    t.integer  "min_lag_success_rate"
+    t.boolean  "succeed_for_total_days_of_success"
+    t.integer  "min_success_days"
+    t.boolean  "succeed_for_momentum"
+    t.integer  "min_momentum"
+    t.integer  "points_for_success"
+    t.string   "badge_name"
+    t.text     "badge_description"
+    t.string   "tempt_image_name"
+    t.string   "prize_image_name"
   end
 
   create_table "programs", :force => true do |t|

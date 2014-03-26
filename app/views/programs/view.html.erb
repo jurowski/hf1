@@ -108,81 +108,187 @@ ONLY SHOW ACTION ITEMS IF ALREADY MEMBER OR IF NO EXTERNAL MEMBERSHIP SITE REQUI
 <% if !@program.requires_external_membership or (@program.requires_external_membership and current_user.programs.include? @program) %>
 
 <br>
-<h3>Action Items for this Program</h3>
-
-<div class="" style="border-style:none;border-width:1px;padding:10px;margin:10px;margin-left:30px;">
-<% @program_templates = ProgramTemplate.find(:all, :conditions => "program_id = '#{@program.id}'", :order => "listing_position") %>
 
 
-<% 
-url_prefix = "/" 
-url_prefix_header = ""
-if current_user
-    url_prefix = "/goals/new"
-    url_prefix_header = "/goals"
-end
-%>
+
+  <h3>"<%= @program.name %>" Action Items</h3>
 
 
-<% if @program.actions_list_dropdown %>
-  <!-- show the action items in a pulldown -->
 
-  <form action="<%= url_prefix %>">
 
-    <input type="hidden" name="goal_added_through_template_from_program_id" value="<%= @program.id.to_s%>"/>
-    <select style="width:350px;" name="template_user_parent_goal_id">
-      <option>-- Choose an Empowering Habit  --</option>
+  <%
+  #################################################
+  #################################################
+  ###    IF STRUCTURED
+  #################################################
 
+  @program_templates = ProgramTemplate.find(:all, :conditions => "program_id = '#{@program.id}'", :order => "listing_position")
+
+  if @program.structured and @program.get_tracks and @program_templates.size > 0
+    %>
+    <table border=1 cellpadding=5 cellspacing=5 align=top>
+      <tr>
+    <%
+    @program.get_tracks.each do |arr_tracks|
+      %>
+      <td valign=top>
+        <h3><%= arr_tracks[0] %></h3>
+        <% @program_templates.each do |program_template| %>
+          <% if program_template.track_number == arr_tracks[1] %>
+            <br>
+
+            <%= program_template.template.template_tagline %>
+
+            <br>
+
+            <% if program_template.points_for_success %>
+              Earn <%= program_template.points_for_success %> pts: 
+            <% else %>
+              <!-- Succeed:  -->
+            <% end %>
+
+            <% if program_template.one_then_done %>
+              <!-- Do it Once -->
+            <% end %>
+
+
+            <% if program_template.succeed_for_days_straight and program_template.min_days_straight %>
+              Do it <%= program_template.min_days_straight %> times straight
+            <% end %>
+
+            <% if program_template.succeed_for_lagging_success_rate and program_template.lag_days and program_template.min_lag_success_rate %>
+              Do it <%= program_template.min_lag_success_rate %> % of the past <%= program_template.lag_days %> days
+            <% end %>
+
+            <% if program_template.succeed_for_total_days_of_success and program_template.min_success_days %>
+              Do it <%= program_template.min_success_days %> times
+            <% end %>
+
+            <% if program_template.succeed_for_momentum and program_template.min_momentum %>
+              Achieve a Momentum Rate of <%= program_template.min_momentum %> %
+            <% end %>
+            
+
+          <% end %>
+        <% end %>
+      </td>
+      <%
+    end
+    %>
+    </tr>
+    </table>    
+  <%
+  end ### end if @program.structured tracks
+  #################################################
+  ###    END IF STRUCTURED
+  #################################################
+  #################################################
+  %>
+
+
+
+
+
+  <!-- ##################################### -->
+  <!-- ##################################### -->
+  <!-- if not structured ... ignore "tracks" -->
+  <!-- ##################################### -->
+
+  <% if !@program.structured %>
+
+
+    <div class="" style="border-style:none;border-width:1px;padding:10px;margin:10px;margin-left:30px;">
+    <% @program_templates = ProgramTemplate.find(:all, :conditions => "program_id = '#{@program.id}'", :order => "listing_position") %>
+
+
+    <% 
+    url_prefix = "/" 
+    url_prefix_header = ""
+    if current_user
+        url_prefix = "/goals/new"
+        url_prefix_header = "/goals"
+    end
+    %>
+
+
+    <% if @program.actions_list_dropdown %>
+      <!-- show the action items in a pulldown -->
+
+      <form action="<%= url_prefix %>">
+
+        <input type="hidden" name="goal_added_through_template_from_program_id" value="<%= @program.id.to_s%>"/>
+        <select style="width:350px;" name="template_user_parent_goal_id">
+          <option>-- Choose an Empowering Habit  --</option>
+
+          <% @program_templates.each do |program_template| %>
+
+            <option value="<%=program_template.template.id.to_s%>">
+              <%= program_template.template.template_tagline %>
+            </option>
+              
+          <% end %>
+        </select>
+
+        <input type="submit" value="+ Start Doing This Now!" class="btn green">
+      </form>
+      
+
+
+    <% else %>
+      <!-- show the action items in a list -->
+
+      <% counter = 0 %>
       <% @program_templates.each do |program_template| %>
 
-        <option value="<%=program_template.template.id.to_s%>">
-          <%= program_template.template.template_tagline %>
-        </option>
-          
-      <% end %>
-    </select>
+        <% counter += 1 %>
 
-    <input type="submit" value="+ Start Doing This Now!" class="btn green">
-  </form>
-  
+        <br>
 
 
-<% else %>
-  <!-- show the action items in a list -->
-
-  <% counter = 0 %>
-  <% @program_templates.each do |program_template| %>
-
-    <% counter += 1 %>
-
-    <br>
-
-
-      <h2><%= counter.to_s %>. <%= program_template.template.template_tagline %></h2>
+          <h2><%= counter.to_s %>. <%= program_template.template.template_tagline %></h2>
 
 
 
-      <%= program_template.template.template_description %>
-      <br>
-      <br>
-      <span style="color:#000000;">Daily question:</span> <mark>"Were you successful today at <%= program_template.template.response_question %>?"</mark>
-      <br>
-      <span style="color:#000000;">Goal: </span> <%= program_template.template.goal_days_per_week %> days/week
-      <br>
-      <br>
+          <%= program_template.template.template_description %>
+          <br>
+          <br>
+          <span style="color:#000000;">Daily question:</span> <mark>"Were you successful today at <%= program_template.template.response_question %>?"</mark>
+          <br>
+          <span style="color:#000000;">Goal: </span> <%= program_template.template.goal_days_per_week %> days/week
+          <br>
+          <br>
 
-      <a href="<%= url_prefix %>?goal_template_text=<%= program_template.template.response_question%>&category=<%= program_template.template.category%>&template_user_parent_goal_id=<%=program_template.template.id.to_s%>&goal_added_through_template_from_program_id=<%= @program.id.to_s %>" class="btn green">+ Start Doing This One</a><!-- or <a href="#" class="btn start">Start the Full Challenge</a>-->
-      <hr>
-
-
-
-      <br>
-  <% end ### end (list version) @program_templates.each do |program_template|%>
-
-<% end ### if @program.actions_list_dropdown %>
+          <a href="<%= url_prefix %>?goal_template_text=<%= program_template.template.response_question%>&category=<%= program_template.template.category%>&template_user_parent_goal_id=<%=program_template.template.id.to_s%>&goal_added_through_template_from_program_id=<%= @program.id.to_s %>" class="btn green">+ Start Doing This One</a><!-- or <a href="#" class="btn start">Start the Full Challenge</a>-->
+          <hr>
 
 
-</div>
+
+          <br>
+      <% end ### end (list version) @program_templates.each do |program_template|%>
+
+    <% end ### if @program.actions_list_dropdown %>
+    </div>
+  <% end ### if !@program.structured %>
+  <!-- ##################################### -->
+  <!-- if not structured ... ignore "tracks" -->
+  <!-- ##################################### -->
+  <!-- ##################################### -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <% else %>
   <!-- 
   External Membership is required

@@ -101,12 +101,45 @@ end
 
   </p>
 
+
+
  <div class="control-group">
-    <label class="control-label"><b>When should they move up to the next Action Item?</b></label>
+    <label class="control-label"><h3>When should they move up to the next Action Item?</h3></label>
+
+
     <div class="controls">
-    <%= f.check_box(:one_then_done, options = {}, checked_value = "true", unchecked_value = "false") %> As soon as they check in with a "yes", assign them to the next Action Item
+    <%= f.check_box(:one_then_done, options = {}, checked_value = "true", unchecked_value = "false") %> As soon as they check in with a "yes" the first time
     </div>
+
+
+    <div class="controls">
+    <%= f.check_box(:succeed_for_total_days_of_success, options = {}, checked_value = "true", unchecked_value = "false") %> As soon as they succeed a total of <%= f.text_field :min_success_days, :size => 2, :style => "width:20px;" %> times
+    </div>
+
+
+    <div class="controls">
+    <%= f.check_box(:succeed_for_days_straight, options = {}, checked_value = "true", unchecked_value = "false") %> As soon as they succeed for <%= f.text_field :min_days_straight, :size => 2, :style => "width:20px;" %> days straight
+    </div>
+
+    <div class="controls">
+    <%= f.check_box(:succeed_for_lagging_success_rate, options = {}, checked_value = "true", unchecked_value = "false") %> As soon as their success rate for the past <%= f.text_field :lag_days, :size => 2, :style => "width:20px;" %> days is <%= f.text_field :min_lag_success_rate, :size => 2, :style => "width:20px;" %> %
+    </div>
+
+
+    <div class="controls">
+    <%= f.check_box(:succeed_for_momentum, options = {}, checked_value = "true", unchecked_value = "false") %> As soon as their Momentum Rate is <%= f.text_field :min_momentum, :size => 2, :style => "width:20px;" %> %
+    </div>
+
+
+
  </div>
+
+<h3>Rewards</h3>
+How many <b>Program Points</b> will they earn once success is achieved? <%= f.text_field :points_for_success, :size => 4, :style => "width:50px;" %>
+<br>What is the <b>Badge Name</b> of the Badge that is earned once success is achieved? <%= f.text_field :badge_name, :size => 40, :style => "width:200px;" %>
+<br>What is the <b>file name</b> for the Badge image that is earned once success is achieved? <%= f.text_field :prize_image_name, :size => 40, :style => "width:200px;" %>
+
+
  <hr>
   <p>
     <%= f.submit 'Save Changes' %>

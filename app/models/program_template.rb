@@ -25,26 +25,8 @@ class ProgramTemplate < ActiveRecord::Base
   			return false
   		end
   	else
-
-  		if self.track_number
-
-	  		action_item = ProgramTemplate.find(:first, :conditions => "program_id = '#{self.program_id}' and track_number = '#{self.track_number}'", :order => listing_position)
-	  		if action_item
-	  			return action_item.listing_position
-	  		else
-	  			return false
-	  		end
-
-  		else
-	  		action_item = ProgramTemplate.find(:first, :conditions => "program_id = '#{self.program_id}' and track_number is null", :order => listing_position)
-	  		if action_item
-	  			return action_item.listing_position
-	  		else
-	  			return false
-	  		end
-
-  		end
-	end
+      return false
+  	end
   end
 
 
