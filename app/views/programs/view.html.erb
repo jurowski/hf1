@@ -138,44 +138,8 @@ ONLY SHOW ACTION ITEMS IF ALREADY MEMBER OR IF NO EXTERNAL MEMBERSHIP SITE REQUI
     %>
 
 
-    <h3>If you join "<%= @program.name %>", you'll start out with these <%= @program.get_starter_program_templates_for_all_tracks.size %> goals:</h3>
-    <% @program.get_starter_program_templates_for_all_tracks.each do |program_template| %>
-      <br><% if program_template.track_number %>
 
-        <%
-        track_name = ""
-        case program_template.track_number
-        when 1
-          track_name = @program.track_1_name
-        when 2
-          track_name = @program.track_2_name
-        when 3
-          track_name = @program.track_3_name
-        when 4
-          track_name = @program.track_4_name
-        when 5
-          track_name = @program.track_5_name
-        when 6
-          track_name = @program.track_6_name
-        when 7
-          track_name = @program.track_7_name
-        when 8
-          track_name = @program.track_8_name
-        when 9
-          track_name = @program.track_9_name
-        when 10
-          track_name = @program.track_10_name
-        end
-        %>
-
-        <%= track_name %>: 
-      <% end %>
-      <%= program_template.template.template_tagline   %>
-    <% end %>
-
-
-
-    <h3>The Full Program is Below</h3>
+    <h3>The Program Agendar is Below</h3>
     <table border=1 cellpadding=5 cellspacing=5 align=top>
       <tr>
     <%
