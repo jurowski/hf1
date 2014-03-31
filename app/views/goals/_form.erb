@@ -155,7 +155,7 @@ show_monitor_option_details = 0
 %>
 
 
-<% if based_on_a_template or has_active_challenge or part_of_a_team_category %>
+<% if based_on_a_template or has_active_challenge or part_of_a_team_category and !params[:just_confirm] %>
   <h6>(Note: Some of the values below are locked because this goal is either part of a team, an accountability challenge, or was built to mirror a templated goal.)</h6>
 <% end %>
 
@@ -176,7 +176,10 @@ show_monitor_option_details = 0
 <!--     Describe the action item below.
  -->  
   <% else %>
+
+    <% if !params[:just_confirm] %>
     What habit would you like to forge?
+    <% end %>
   <% end %>
 </span>
 </div>
@@ -210,14 +213,20 @@ show_monitor_option_details = 0
   <% if @program %>
     The check-in emails for this action will read...
   <% else %>
+    <% if !params[:just_confirm] %>
     Your email check-ins will read...
+    <% end %>
   <% end %>
 </span>
 </div>
 
 <!-- <div class="alert"> -->
-<div class="" style="background-color:#28b779;color:#ffffff;margin-left:-20px;padding-left:20px;padding-top:7px;margin-right:-20px;">
 
+<% if !params[:just_confirm] %>
+<div class="" style="background-color:#28b779;color:#ffffff;margin-left:-20px;padding-left:20px;padding-top:7px;margin-right:-20px;">
+<% else %>
+<div>
+<% end %>
 
 <% 
 question_placeholder = "(enter your goal) ex: walking 20 minutes"
@@ -225,25 +234,30 @@ if part_of_a_team_category
   question_placeholder = ""
 end
 %>
+  <% if !params[:just_confirm] %>
   <span style="font-weight:bold;font-size:1.5em;">Were you successful at
+  <% end %>
 <% if !based_on_a_template and !has_active_challenge %>
  &nbsp
   <%= form.text_field :response_question, :placeholder => question_placeholder, :size => 40, :style=>'width:300px;' %> 
 <% else %>
+  <% if !params[:just_confirm] %>
   <%= @goal.response_question %>
+  <% end %>
   <%= form.hidden_field :response_question, :value => @goal.response_question %>
   <%= form.hidden_field :template_user_parent_goal_id, :value => @goal.template_user_parent_goal_id %>
   <%= form.hidden_field :goal_added_through_template_from_program_id, :value => @goal.goal_added_through_template_from_program_id %>
 <% end %>
 
 
-
-    <% if @goal.check_in_same_day == nil or @goal.check_in_same_day == true %>
-     today 
-    <% else %>
-     yesterday 
-    <% end %>
-?</span>
+<% if !params[:just_confirm] %>
+  <% if @goal.check_in_same_day == nil or @goal.check_in_same_day == true %>
+   today 
+  <% else %>
+   yesterday 
+  <% end %>
+  ?</span>
+<% end %>
 
 <% if @ca == "edit" %>
 <div style="float:right;margin-right:20px;margin-top:5px;padding-bottom:5px;">
@@ -328,7 +342,7 @@ end
     <% else %>
 
       <% if based_on_a_template or has_active_challenge or part_of_a_team_category %>
-        <% if @goal.category and @goal.category != "" %>
+        <% if @goal.category and @goal.category != "" and !params[:just_confirm]%>
           Category: 
         <% end %>
       <% else %>
@@ -342,7 +356,9 @@ end
         %>
         <%= select(:goal, :category, @arr)%>
       <% else %>
+        <% if !params[:just_confirm] %>
         <%= @goal.category %>
+        <% end %>
         <%= form.hidden_field :category, :value => @goal.category %>
       <% end %>
 

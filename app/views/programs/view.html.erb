@@ -1,3 +1,13 @@
+<% 
+url_prefix = "/" 
+url_prefix_header = ""
+if current_user
+    url_prefix = "/goals/new"
+    url_prefix_header = "/goals"
+end
+%>
+
+
 <%= link_to 'All Challenge Programs', '/programs' %> --> <%= @program.name %>
 <hr>
 <h1><%= @program.name %>
@@ -111,7 +121,7 @@ ONLY SHOW ACTION ITEMS IF ALREADY MEMBER OR IF NO EXTERNAL MEMBERSHIP SITE REQUI
 
 
 
-  <h3>"<%= @program.name %>" Action Items</h3>
+
 
 
 
@@ -126,21 +136,90 @@ ONLY SHOW ACTION ITEMS IF ALREADY MEMBER OR IF NO EXTERNAL MEMBERSHIP SITE REQUI
 
   if @program.structured and @program.get_tracks and @program_templates.size > 0
     %>
+
+
+    <h3>If you join "<%= @program.name %>", you'll start out with these <%= @program.get_starter_program_templates_for_all_tracks.size %> goals:</h3>
+    <% @program.get_starter_program_templates_for_all_tracks.each do |program_template| %>
+      <br><% if program_template.track_number %>
+
+        <%
+        track_name = ""
+        case program_template.track_number
+        when 1
+          track_name = @program.track_1_name
+        when 2
+          track_name = @program.track_2_name
+        when 3
+          track_name = @program.track_3_name
+        when 4
+          track_name = @program.track_4_name
+        when 5
+          track_name = @program.track_5_name
+        when 6
+          track_name = @program.track_6_name
+        when 7
+          track_name = @program.track_7_name
+        when 8
+          track_name = @program.track_8_name
+        when 9
+          track_name = @program.track_9_name
+        when 10
+          track_name = @program.track_10_name
+        end
+        %>
+
+        <%= track_name %>: 
+      <% end %>
+      <%= program_template.template.template_tagline   %>
+    <% end %>
+
+
+
+    <h3>The Full Program is Below</h3>
     <table border=1 cellpadding=5 cellspacing=5 align=top>
       <tr>
     <%
     @program.get_tracks.each do |arr_tracks|
       %>
-      <td valign=top>
+      <td valign=top center align=center>
         <h3><%= arr_tracks[0] %></h3>
+        
+        <% found_one_for_this_track = false %>
+
         <% @program_templates.each do |program_template| %>
           <% if program_template.track_number == arr_tracks[1] %>
+
+            <% if found_one_for_this_track %>
+              <br><img src="/images/icons/arrow_down.gif" />
+            <% else %>
+
+            <% if @program.user_has_active_habit_in_this_track(current_user, arr_tracks[1]) %>
+                <a href="" class="btn disabled"> Track Activated</a>
+            <% else %>
+                <a href="<%= url_prefix %>?goal_template_text=<%= program_template.template.response_question%>&category=<%= program_template.template.category%>&template_user_parent_goal_id=<%=program_template.template.id.to_s%>&goal_added_through_template_from_program_id=<%= @program.id.to_s %>&just_confirm=1&track_name=<%= arr_tracks[0] %>&starter_habit_tagline=<%= program_template.template.template_tagline %>" class="btn green">+ Start This Track</a>
+
+            <% end %>
+
+              <hr>
+              <% found_one_for_this_track = true %>
+            <% end %>
             <br>
 
-            <%= program_template.template.template_tagline %>
+            <% if @program.user_has_this_active_habit(current_user, program_template.template_goal_id) %>
+              <span style="background-color:#FFFF99;">
+                <a href="/goals">
+                  <img src="/images/star_16.png" />
+                  <%= program_template.template.template_tagline %>
+                </a>
+              </span>
+            <% else %>
+              <span style="background-color:#eeeeee;">
+                <b><%= program_template.template.template_tagline %></b>
+              </span>
+            <% end %>
 
             <br>
-
+            <i>
             <% if program_template.points_for_success %>
               Earn <%= program_template.points_for_success %> pts: 
             <% else %>
@@ -167,7 +246,7 @@ ONLY SHOW ACTION ITEMS IF ALREADY MEMBER OR IF NO EXTERNAL MEMBERSHIP SITE REQUI
             <% if program_template.succeed_for_momentum and program_template.min_momentum %>
               Achieve a Momentum Rate of <%= program_template.min_momentum %> %
             <% end %>
-            
+            </i>            
 
           <% end %>
         <% end %>
@@ -177,6 +256,7 @@ ONLY SHOW ACTION ITEMS IF ALREADY MEMBER OR IF NO EXTERNAL MEMBERSHIP SITE REQUI
     %>
     </tr>
     </table>    
+
   <%
   end ### end if @program.structured tracks
   #################################################
@@ -197,18 +277,13 @@ ONLY SHOW ACTION ITEMS IF ALREADY MEMBER OR IF NO EXTERNAL MEMBERSHIP SITE REQUI
   <% if !@program.structured %>
 
 
+    <h3>"<%= @program.name %>" Action Items</h3>
+
     <div class="" style="border-style:none;border-width:1px;padding:10px;margin:10px;margin-left:30px;">
     <% @program_templates = ProgramTemplate.find(:all, :conditions => "program_id = '#{@program.id}'", :order => "listing_position") %>
 
 
-    <% 
-    url_prefix = "/" 
-    url_prefix_header = ""
-    if current_user
-        url_prefix = "/goals/new"
-        url_prefix_header = "/goals"
-    end
-    %>
+
 
 
     <% if @program.actions_list_dropdown %>

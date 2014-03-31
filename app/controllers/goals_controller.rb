@@ -748,6 +748,12 @@ class GoalsController < ApplicationController
         @goal.status = "hold"
       end
 
+
+      ### remove question marks because:
+      ### people keep incorrectly adding their own question marks to the end of their question
+      ### which messes up phrasings in the rest of the program and never is needed
+      @goal.response_question = @goal.response_question.gsub("?", "")
+
       @goal.title = @goal.response_question
 
       if !@goal.pushes_allowed_per_day
@@ -1119,21 +1125,27 @@ class GoalsController < ApplicationController
           ### create a program enrollment record if a program is involved
           ### goal and program are linked via goal.goal_added_through_template_from_program_id
           if @goal.program
-            enrollment = ProgramEnrollment.new()
-            # t.integer  "program_id"
-            # t.integer  "user_id"
-            # t.boolean  "active"
-            # t.boolean  "ongoing"
-            # t.integer  "program_session_id"
-            # t.date     "personal_start_date"
-            # t.date     "personal_end_date"
-            enrollment.program_id = @goal.program.id
-            enrollment.user_id = @goal.user.id
-            enrollment.active = true
-            enrollment.ongoing = true
 
-            enrollment.save
-          end
+            ### check to see if an enrollment exists... if not, create one
+            enrollment = ProgramEnrollment.find(:first, :conditions => "program_id = '#{@goal.program.id}' and user_id = '#{@goal.user.id}'")
+            if !enrollment
+              enrollment = ProgramEnrollment.new()
+              # t.integer  "program_id"
+              # t.integer  "user_id"
+              # t.boolean  "active"
+              # t.boolean  "ongoing"
+              # t.integer  "program_session_id"
+              # t.date     "personal_start_date"
+              # t.date     "personal_end_date"
+              enrollment.program_id = @goal.program.id
+              enrollment.user_id = @goal.user.id
+              enrollment.active = true
+              enrollment.ongoing = true
+
+              enrollment.save
+
+            end ### end if !enrollment
+          end ### end if @goal.program
 
           ####################################################################
           #####     END PROGRAM ENROLLMENT
@@ -1172,8 +1184,13 @@ class GoalsController < ApplicationController
 
 
           ### if this new template was created to be part of an existing program
-          if params[:program_id]
-            format.html {redirect_to("/programs/#{params[:program_id]}#action_items")}
+          if params[:program_id] or params[:return_to_program_view]
+            if params[:return_to_program_view]
+              format.html {redirect_to("/programs/#{params[:return_to_program_view]}/view")}
+            else
+              format.html {redirect_to("/programs/#{params[:program_id]}#action_items")}
+            end
+
           else
 
             begin 

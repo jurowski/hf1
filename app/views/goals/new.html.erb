@@ -97,7 +97,11 @@ end
 
 
   <% else %>
-  <h3>Let's jump right in!</h3>
+
+    <% if !params[:just_confirm] %>
+      <h3>Let's jump right in!</h3>
+    <% end %>
+
   <% end %>
 <% end %>
 
@@ -150,15 +154,39 @@ end
     <!-- render :partial => "form", :object => f -->
     <%= render :partial => "form", :locals => {:form => f, :program => program} %>
 
+    <% cancel_destination = "/goals" %>
     <p>
 
     <% if @goal.template_owner_is_a_template %>
       <input type="submit" value="Save" class="btn_red_gradient_forge" >
     <% else %>
-      <input type="submit" value="Forge My Habit" class="btn_red_gradient_forge" style="line-height:10px;padding-top:10px;height:40px;">
+      <% submit_value = "Forge My Habit" %>
+
+      <% if params[:goal_added_through_template_from_program_id] %>
+        <%
+        begin
+        program = Program.find(params[:goal_added_through_template_from_program_id].to_i)
+        rescue
+        end
+        %>
+        <% if params[:just_confirm] and program and params[:track_name]%>
+
+          <p>Click below to confirm that you'd like to start the <%= params[:track_name] %> Track in the <%= program.name %>" Program.</p>
+          <i>(You're first committing to "<%= params[:starter_habit_tagline] %>".)</i>
+          <br>
+          <input type="hidden" name="return_to_program_view" value="<%=program.id.to_s%>" />
+          <% submit_value = "Start the #{params[:track_name]} Track!" %>
+
+          <% cancel_destination = "/programs/#{program.id.to_s}/view" %>
+
+        <% end %>
+      <% end %>
+
+
+      <input type="submit" value="<%= submit_value %>" class="btn_red_gradient_forge" style="line-height:10px;padding-top:10px;height:40px;">
     <% end %>
     <br>
-    <a href="/goals" >or, Cancel</a>
+    <a href="<%= cancel_destination%>" >or, Cancel</a>
     </p>
 
 <% end %>
