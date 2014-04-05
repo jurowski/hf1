@@ -24,6 +24,85 @@ Once that is working, go on to a "Happiness Builder" ... and then Meditations an
 
 
 
+=================================
+
+
+** the below needs to happen in 3 scenarios:
+1) an email check-in
+2) an "i did it today" check-in on the site
+3) a "let's catch up" ajax call
+
+
+db
+--
+create new fields in the goal for
+
+met_program_goal_date
+met_program_goal_notification_text
+met_program_goal_need_to_notify_user_screen
+met_program_goal_need_to_notify_user_email
+met_program_goal_need_to_notify_feed
+met_program_goal_points
+met_program_goal_badge
+
+
+When someone is checking in
+  if the goal is part of a program
+    if the program is a structured program
+      if the goal succeeds on XX inertia
+        if inertia is met
+          new_success = true
+      if the goal succeeds on XX success after XX lag
+        if goal success over XX days >= XX success threshold
+          new_success = true
+      if the goal succeeds on the first win
+        if this was a win
+          new_success = true
+      if the goal succeeds on XX wins in a row
+        if the wins in a row is >= XX
+          new_success = true
+      if new_success
+
+        if points get earned on goal success
+          assign points to program
+          append user notification w/ points info
+        if badge gets earned on goal success
+          add badge to trophy room
+          append user notification w/ badge info
+        if there is a "next goal"
+          put this goal on hold
+          "start" the next goal
+          append user notification w/ new goal info
+
+        if there is not a "next goal"
+          place the goal on hold
+          append user notification w/ program track complete info
+
+        send notice to feed
+        display notice to user on screen
+        email notice to user
+
+
+** in activity feed when someone joins a program track, mention the program in Activity Feed
+** when soemone joins a program track, email them with the details
+** make a 100-day burpee challenge
+
+
+
+
+
+
+
+
+
+
+
+
+
+================================
+
+
+
 -- re-format the goals listing on the main page to incorporate new graphics for stats and for the bw vs color habit badge
 
 -- add in the uservoice ticket image idea in the new check-in format that says "so and so succeeded, did you?" but make an option to hide that stuff too

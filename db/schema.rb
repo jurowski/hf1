@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140324033458) do
+ActiveRecord::Schema.define(:version => 20140405023357) do
 
   create_table "achievemints", :force => true do |t|
     t.string   "name"
@@ -531,6 +531,13 @@ ActiveRecord::Schema.define(:version => 20140324033458) do
     t.boolean  "tracker_track_difference_between_initial_and_latest"
     t.integer  "tracker_difference_between_initial_and_latest",           :limit => 10, :precision => 10, :scale => 0
     t.integer  "template_level_parent_level_id"
+    t.date     "program_met_goal_date"
+    t.text     "program_met_goal_notification_text"
+    t.boolean  "program_met_goal_need_to_notify_user_screen"
+    t.boolean  "program_met_goal_need_to_notify_user_email"
+    t.boolean  "program_met_goal_need_to_notify_feed"
+    t.integer  "program_met_goal_points"
+    t.string   "program_met_goal_badge"
   end
 
   add_index "goals", ["allow_push", "last_success_date", "next_push_on_or_after_date", "pushes_remaining_on_next_push_date"], :name => "allow_push"
