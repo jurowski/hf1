@@ -277,6 +277,109 @@ class Checkpoint < ActiveRecord::Base
         success = false
         logger.error "sgj:error in update_status(status)"
       end
+
+
+      begin
+        ##############################################
+        ##############################################
+        #### PROGRAM MET SUCCESS CHECK
+        ##############################################
+
+        # met_program_goal_date
+        # met_program_goal_notification_text
+        # met_program_goal_need_to_notify_user_screen
+        # met_program_goal_need_to_notify_user_email
+        # met_program_goal_need_to_notify_feed
+        # met_program_goal_points
+        # met_program_goal_badge
+
+
+        # create_table "program_templates", :force => true do |t|
+        #   t.integer  "program_id"
+        #   t.integer  "template_goal_id"
+        #   t.integer  "listing_position"
+        #   t.boolean  "one_then_done",                     :default => false
+        #   t.integer  "track_number"
+        #   t.boolean  "succeed_for_days_straight"
+        #   t.integer  "min_days_straight"
+        #   t.boolean  "succeed_for_lagging_success_rate"
+        #   t.integer  "lag_days"
+        #   t.integer  "min_lag_success_rate"
+        #   t.boolean  "succeed_for_total_days_of_success"
+        #   t.integer  "min_success_days"
+        #   t.boolean  "succeed_for_momentum"
+        #   t.integer  "min_momentum"
+        #   t.integer  "points_for_success"
+        #   t.string   "badge_name"
+        #   t.text     "badge_description"
+        #   t.string   "tempt_image_name"
+        #   t.string   "prize_image_name"
+        # end
+
+        # When someone is checking in
+        #   if the goal is part of a program
+        #     if the program is a structured program
+        #       if the goal succeeds on XX inertia
+        #         if inertia is met
+        #           new_success = true
+        #       if the goal succeeds on XX success after XX lag
+        #         if goal success over XX days >= XX success threshold
+        #           new_success = true
+        #       if the goal succeeds on the first win
+        #         if this was a win
+        #           new_success = true
+        #       if the goal succeeds on XX wins in a row
+        #         if the wins in a row is >= XX
+        #           new_success = true
+        #       if new_success
+
+        #         if goal.met_program_goal_date is null
+        #           goal.met_program_goal_date = dnow
+        #           goal.met_program_goal_notification_text = ""
+        #           goal.met_program_goal_need_to_notify_user_screen = true
+        #           goal.met_program_goal_need_to_notify_user_email = true
+        #           goal.met_program_goal_need_to_notify_feed = true
+
+
+        #         if points get earned on goal success
+        #           goal.met_program_goal_points = points
+        #           assign points to program
+        #           append user notification w/ points info
+        #         if badge gets earned on goal success
+        #           goal.met_program_goal_badge = badge
+        #           add badge to trophy room
+        #           append user notification w/ badge info
+        #         if there is a "next goal"
+        #           put this goal on hold
+        #           "start" the next goal
+        #           append user notification w/ new goal info
+
+        #         if there is not a "next goal"
+        #           place the goal on hold
+        #           append user notification w/ program track complete info
+
+        #         send notice to feed
+        #         display notice to user on screen
+        #         email notice to user
+
+
+        if self.goal.program and self.goal.program.structured
+          program_goal_met = false
+          pt = ProgramTemplate.find(:first, :conditions => "progam_id = '#{self.goal.program.id}' and template_goal_id = '#{self.goal.template_user_parent_goal.id}'")
+          if pt.succeed_for_momentum and pt.min_momentum and self.goal.momentum >= pt.min_momentum
+            program_goal_met = true
+          end
+
+        end ### end if goal.program and self.goal.program.structured
+
+        ##############################################
+        #### END PROGRAM MET SUCCESS CHECK
+        ##############################################
+        ##############################################
+      rescue
+        logger.error "sgj:error in update_status(status): in the PROGRAM MET SUCCESS CHECK area"
+      end
+
       return success
   end
 

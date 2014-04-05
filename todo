@@ -63,10 +63,20 @@ When someone is checking in
           new_success = true
       if new_success
 
+        if goal.met_program_goal_date is null
+          goal.met_program_goal_date = dnow
+          goal.met_program_goal_notification_text = ""
+          goal.met_program_goal_need_to_notify_user_screen = true
+          goal.met_program_goal_need_to_notify_user_email = true
+          goal.met_program_goal_need_to_notify_feed = true
+
+
         if points get earned on goal success
+          goal.met_program_goal_points = points
           assign points to program
           append user notification w/ points info
         if badge gets earned on goal success
+          goal.met_program_goal_badge = badge
           add badge to trophy room
           append user notification w/ badge info
         if there is a "next goal"
@@ -85,7 +95,6 @@ When someone is checking in
 
 ** in activity feed when someone joins a program track, mention the program in Activity Feed
 ** when soemone joins a program track, email them with the details
-** make a 100-day burpee challenge
 
 
 
