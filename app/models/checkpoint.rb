@@ -285,13 +285,14 @@ class Checkpoint < ActiveRecord::Base
         #### PROGRAM MET SUCCESS CHECK
         ##############################################
 
-        # met_program_goal_date
-        # met_program_goal_notification_text
-        # met_program_goal_need_to_notify_user_screen
-        # met_program_goal_need_to_notify_user_email
-        # met_program_goal_need_to_notify_feed
-        # met_program_goal_points
-        # met_program_goal_badge
+        #### additions to "goal" schema
+        # t.date     "program_met_goal_date"
+        # t.text     "program_met_goal_notification_text"
+        # t.boolean  "program_met_goal_need_to_notify_user_screen"
+        # t.boolean  "program_met_goal_need_to_notify_user_email"
+        # t.boolean  "program_met_goal_need_to_notify_feed"
+        # t.integer  "program_met_goal_points"
+        # t.string   "program_met_goal_badge"
 
 
         # create_table "program_templates", :force => true do |t|
@@ -331,6 +332,7 @@ class Checkpoint < ActiveRecord::Base
         #       if the goal succeeds on XX wins in a row
         #         if the wins in a row is >= XX
         #           new_success = true
+
         #       if new_success
 
         #         if goal.met_program_goal_date is null
@@ -363,12 +365,77 @@ class Checkpoint < ActiveRecord::Base
         #         email notice to user
 
 
+        ### are we in a structured program?
         if self.goal.program and self.goal.program.structured
+
+          ### assume failure
           program_goal_met = false
+
+          ### find our program_template record so we can find out what we need to succeed and proceed
           pt = ProgramTemplate.find(:first, :conditions => "progam_id = '#{self.goal.program.id}' and template_goal_id = '#{self.goal.template_user_parent_goal.id}'")
-          if pt.succeed_for_momentum and pt.min_momentum and self.goal.momentum >= pt.min_momentum
-            program_goal_met = true
+
+
+          ### if we succeed based on momentum/inertia
+          if pt.succeed_for_momentum and pt.min_momentum
+            if self.goal.momentum >= pt.min_momentum
+              program_goal_met = true
+            end
           end
+
+          ### if we succeed based on a lagging success rate
+          if pt.succeed_for_lagging_success_rate and pt.lag_days and pt.min_lag_success_rate
+
+            ### have we been doing this at least as long as the lag_days?
+            if self.goal.days_since_first_checkpoint >= pt.lag_days
+              if self.goal.success_rate_during_past_n_days(pt.lag_days) >= pt.min_lag_success_rate
+                program_goal_met = true
+              end
+            end ### if our days into it is at least as long as lag_days
+          end
+
+
+          ### if we succeed on the first win
+          if pt.one_then_done
+            if self.status == "yes"
+              program_goal_met = true
+            end
+          end
+
+          ### if the goal succeeds on XX wins in a row
+          if pt.succeed_for_days_straight
+            if self.goal.daysstraight >= pt.min_days_straight
+              program_goal_met = true
+            end
+          end
+
+          ### if we just now met our goal to move one within the program track
+          if program_goal_met and !self.goal.program_met_goal_date
+            self.goal.program_met_goal_date = self.checkin_date
+            self.goal.program_met_goal_notification_text = ""
+            self.goal.program_met_goal_need_to_notify_user_screen = true
+            self.goal.program_met_goal_need_to_notify_user_email = true
+            self.goal.program_met_goal_need_to_notify_feed = true
+
+            if pt.points_for_success
+              self.goal.program_met_goal_points = pt.points_for_success
+            end
+
+        #         if points get earned on goal success
+        #           goal.met_program_goal_points = points
+        #           assign points to program
+        #           append user notification w/ points info
+
+
+        # t.integer  "program_met_goal_points"
+        # t.string   "program_met_goal_badge"
+
+            self.goal.save
+
+
+
+          end ### if program_goal_met and !self.goal.program_met_goal_date
+
+
 
         end ### end if goal.program and self.goal.program.structured
 
