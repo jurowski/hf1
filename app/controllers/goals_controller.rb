@@ -1193,7 +1193,7 @@ class GoalsController < ApplicationController
               p = Program.find(params[:program_id].to_i)
               if p and p.structured
 
-                pt = ProgramTemplate.find(:first, :conditions => "progam_id = '#{p.id}' and template_goal_id = '#{@goal.id}'")
+                pt = ProgramTemplate.find(:first, :conditions => "program_id = '#{p.id}' and template_goal_id = '#{@goal.id}'")
                 format.html {redirect_to("/program_templates/#{pt.id.to_s}/edit")}
 
               else
