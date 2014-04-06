@@ -1188,7 +1188,19 @@ class GoalsController < ApplicationController
             if params[:return_to_program_view]
               format.html {redirect_to("/programs/#{params[:return_to_program_view]}/view")}
             else
-              format.html {redirect_to("/programs/#{params[:program_id]}#action_items")}
+
+              ### if the program is a "structured program" you're going to want to go directly to edit mode
+              p = Program.find(params[:program_id].to_i)
+              if p and p.structured
+
+                pt = ProgramTemplate.find(:first, :conditions => "progam_id = '#{p.id}' and template_goal_id = '#{@goal.id}'")
+                format.html {redirect_to("/program_templates/#{pt.id.to_s}/edit")}
+
+              else
+                format.html {redirect_to("/programs/#{params[:program_id]}#action_items")}
+              end
+
+
             end
 
           else
