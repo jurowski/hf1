@@ -368,17 +368,26 @@ class Checkpoint < ActiveRecord::Base
         ### are we in a structured program?
         if self.goal.program and self.goal.program.structured
 
+          logger.info "sgj:checkpoint.rb:checking in for a structured program"
+
           ### assume failure
           program_goal_met = false
+          program_goal_met_method = ""
+
+
 
           ### find our program_template record so we can find out what we need to succeed and proceed
-          pt = ProgramTemplate.find(:first, :conditions => "progam_id = '#{self.goal.program.id}' and template_goal_id = '#{self.goal.template_user_parent_goal.id}'")
+          pt = ProgramTemplate.find(:first, :conditions => "program_id = '#{self.goal.program.id}' and template_goal_id = '#{self.goal.template_user_parent_goal_id}'")
 
+          logger.info "sgj:checkpoint.rb:checking in for a structured program:found program_template"
 
           ### if we succeed based on momentum/inertia
           if pt.succeed_for_momentum and pt.min_momentum
             if self.goal.momentum >= pt.min_momentum
+              logger.info "sgj:checkpoint.rb:checking in for a structured program:success via inertia"
+
               program_goal_met = true
+              program_goal_met_method = " by earning an inertia rating of at least " + pt.min_momentum.to_s + "% (actual inertia was " + self.goal.momentum.to_s + "%)!" 
             end
           end
 
@@ -387,8 +396,12 @@ class Checkpoint < ActiveRecord::Base
 
             ### have we been doing this at least as long as the lag_days?
             if self.goal.days_since_first_checkpoint >= pt.lag_days
-              if self.goal.success_rate_during_past_n_days(pt.lag_days) >= pt.min_lag_success_rate
+              success_rate = self.goal.success_rate_during_past_n_days(pt.lag_days)
+              if success_rate >= pt.min_lag_success_rate
+                logger.info "sgj:checkpoint.rb:checking in for a structured program:success via lag day success rate"
+
                 program_goal_met = true
+                program_goal_met_method = " by succeeding at least " + pt.min_lag_success_rate.to_s + "% of the time during the past " + pt.lag_days.to_s + " days (actually succeeded @ " + success_rate.to_s + "% during that time)!" 
               end
             end ### if our days into it is at least as long as lag_days
           end
@@ -397,41 +410,103 @@ class Checkpoint < ActiveRecord::Base
           ### if we succeed on the first win
           if pt.one_then_done
             if self.status == "yes"
+
+              logger.info "sgj:checkpoint.rb:checking in for a structured program:success via one-and-done"
+
               program_goal_met = true
+              program_goal_met_method = "!"
             end
           end
 
           ### if the goal succeeds on XX wins in a row
           if pt.succeed_for_days_straight
             if self.goal.daysstraight >= pt.min_days_straight
+              logger.info "sgj:checkpoint.rb:checking in for a structured program:success via days straight"
+
               program_goal_met = true
+              program_goal_met_method = " by succeeding " + pt.min_days_straight.to_s + " days straight!"
             end
           end
 
           ### if we just now met our goal to move one within the program track
           if program_goal_met and !self.goal.program_met_goal_date
+
+
+            logger.info "sgj:checkpoint.rb:checking in for a structured program:fresh success"
+
             self.goal.program_met_goal_date = self.checkin_date
             self.goal.program_met_goal_notification_text = ""
-            self.goal.program_met_goal_need_to_notify_user_screen = true
-            self.goal.program_met_goal_need_to_notify_user_email = true
-            self.goal.program_met_goal_need_to_notify_feed = true
 
+            ### yes, we should do this
+            self.goal.program_met_goal_need_to_notify_user_screen = true
+
+            ### not emailing them or anyone else for now but might in the future
+            self.goal.program_met_goal_need_to_notify_user_email = false
+
+            ### not adding to feed just yet b/c it will require a lot of testing
+            self.goal.program_met_goal_need_to_notify_feed = false
+
+
+            logger.info "sgj:checkpoint.rb:checking in for a structured program:starting points"
+
+            points_on_the_line = 0
             if pt.points_for_success
-              self.goal.program_met_goal_points = pt.points_for_success
+              points_on_the_line = pt.points_for_success
             end
 
-        #         if points get earned on goal success
-        #           goal.met_program_goal_points = points
-        #           assign points to program
-        #           append user notification w/ points info
+
+            ### update the goal with the points earned for that goal
+            self.goal.program_met_goal_points = points_on_the_line
+
+            logger.info "sgj:checkpoint.rb:checking in for a structured program:points taken care of"
 
 
-        # t.integer  "program_met_goal_points"
-        # t.string   "program_met_goal_badge"
+            if points_on_the_line > 0
+              self.goal.program_met_goal_notification_text = " earned " + points_on_the_line + " points on the challenge of " + self.goal.title + program_goal_met_method
+            else
+              self.goal.program_met_goal_notification_text = " succeeded with the challenge of " + self.goal.title + program_goal_met_method
+            end
+
+
+            ### update the program_enrollment for this user appending the points earned
+            e = ProgramEnrollment.find(:first, :conditions => "program_id = '#{self.goal.program.id}' and user_id = '#{self.goal.user.id}'")
+            if e
+
+              logger.info "sgj:checkpoint.rb:checking in for a structured program:enrollment found"
+
+              if !e.points_earned
+                e.points_earned = 0
+              end
+              e.points_earned += points_on_the_line
+
+              if !e.success_log
+                e.success_log = ""
+              end
+              
+              e.success_log += "\nOn " + self.goal.program_met_goal_date.to_s + ", " + self.goal.user.name + self.goal.program_met_goal_notification_text
+
+              e.save
+
+              logger.info "sgj:checkpoint.rb:checking in for a structured program:enrollment saved"
+
+            end ### if program_enrollment found
+
+
+            ### Eventually earn badges as well
+            # pt.badge_name
+            # goal.program_met_goal_badge
+
+
 
             self.goal.save
 
 
+            logger.info "sgj:checkpoint.rb:checking in for a structured program:goal saved"
+
+
+            ### deal with putting the goal on hold and starting up the next goal outside of this
+            ### funtion ... by the calling view or controller, since this function gets called
+            ### by partials and only retuns a true/false
 
           end ### if program_goal_met and !self.goal.program_met_goal_date
 

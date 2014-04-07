@@ -13,6 +13,19 @@
         <h3>Message sent.</font> 
     </div>
 <% end %>
+
+<% if params[:goal_placed_on_hold_id] %>
+    <%
+    goal_placed_on_hold = Goal.find(:first, :conditions => "id = '#{params[:goal_placed_on_hold_id]}'")
+    if goal_placed_on_hold
+        %>
+        <div class="alert alert-info">
+            <h3>Your goal of "<%= goal_placed_on_hold.title %>" has been placed on hold.</font> 
+        </div>
+        <%
+    end
+    %>
+<% end %>
 <!-- END FLASH MESSAGES END -->
 
 <!-- Re-set the number of default "latest dynamic checkins" to show -->
@@ -1211,14 +1224,6 @@ TEST LOCALLY
 
          <a href="#undefined" onclick="toggle_show_hide('stats_lightbox_black');toggle_show_hide('stats_lightbox_white');toggle_show_hide('stats_lightbox_close');"><%= continue_phrase %></a>
     
-    <!-- link_to_function (continue_phrase) {
-        |page|
-     page.visual_effect(:fade, "goals_unsuccessful_lightbox_black", :duration => 0.0)
-     page.visual_effect(:fade, "goals_unsuccessful_lightbox_white", :duration => 0.0)
-     page.visual_effect(:fade, "goals_unsuccessful_lightbox_close", :duration => 0.0)
-    } 
-    -->
-
     </div>
 <% end %>
 
@@ -1257,18 +1262,59 @@ http://localhost:3000/goals?update_checkpoint_status=yes&date=2012-02-12&e0=106&
 
          <a href="#undefined" onclick="toggle_show_hide('stats_lightbox_black');toggle_show_hide('stats_lightbox_white');toggle_show_hide('stats_lightbox_close');"><img src='/images/close.png' /></a>
 
-        <!-- link_to_function ("<img src='/images/close.png' />") {
-            |page|
-         page.visual_effect(:fade, "stats_lightbox_black", :duration => 0.0)
-         page.visual_effect(:fade, "stats_lightbox_white", :duration => 0.0)
-         page.visual_effect(:fade, "stats_lightbox_close", :duration => 0.0)
-        } 
-        -->
         </div>
 
     <div id="stats_lightbox_white" class="white_content">
 
-      <center>
+
+        <!--
+        #######
+        #######
+        Did they just succeed at a program goal?
+        #######
+        -->
+        <% 
+        if @lightbox_goal.program and @lightbox_goal.program.structured and @lightbox_goal.program_met_goal_date and @lightbox_goal.program_met_goal_need_to_notify_user_screen %>
+
+            <div class="alert alert-info">
+                Way to go! You <%= @lightbox_goal.program_met_goal_notification_text %>
+                <br>
+                <br>
+
+                <% 
+                pt = ProgramTemplate.find(:first, :conditions => "program_id = '#{@lightbox_goal.program.id}' and template_goal_id = '#{@lightbox_goal.template_user_parent_goal_id}'")
+
+                if pt.get_next_program_template                
+                    %>
+                   <a href="/goals/hold/<%= @lightbox_goal.id.to_s %>?move_to_the_next_challenge=1" class="btn blue">+ Move Up to the Next Challenge!</a>
+                    <%
+                else
+                    %>
+                    You can either continue checking in each day with this same goal or <a href="/goals/hold/<%= @lightbox_goal.id.to_s %>"> place it on hold</a>
+                    <%
+                end
+                %>        
+            </div>
+            <%
+         end 
+         %> <!-- if @lightbox_goal.program and @lightbox_goal.program.structured -->
+        <!--
+        #######
+        END Did they just succeed at a program goal?
+        #######
+        #######
+        -->
+
+
+
+
+        <!-- 
+        ###########
+        ###########
+        STATUS
+        ###########
+        -->
+        <center>
               <h3><%= @lightbox_goal.status_phrase(params[:date]) %></h3>
                 <br>
                 <div class="stats_badge">
@@ -1286,8 +1332,15 @@ http://localhost:3000/goals?update_checkpoint_status=yes&date=2012-02-12&e0=106&
                       <% end %>
                 </div>
                 <br>
-
         </center>   
+        <!-- 
+        ###########
+        END STATUS
+        ###########
+        ###########
+        -->
+
+
     <br>
 
 

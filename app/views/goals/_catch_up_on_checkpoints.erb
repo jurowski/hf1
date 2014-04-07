@@ -1,5 +1,49 @@
 
 
+
+
+<!--
+#######
+#######
+Did they just succeed at a program goal?
+#######
+-->
+<% 
+if @goal.program and @goal.program.structured and @goal.program_met_goal_date and @goal.program_met_goal_need_to_notify_user_screen %>
+
+    <div class="alert alert-info">
+
+        <center>
+        <h3>Way to go! You <%= @goal.program_met_goal_notification_text %></h3>
+        <br>
+        <br>
+
+        <% 
+        pt = ProgramTemplate.find(:first, :conditions => "program_id = '#{@goal.program.id}' and template_goal_id = '#{@goal.template_user_parent_goal_id}'")
+
+        if pt.get_next_program_template                
+            %>
+           <a href="/goals/hold/<%= @goal.id.to_s %>?move_to_the_next_challenge=1" class="btn blue">+ Move Up to the Next Challenge!</a>
+            <%
+        else
+            %>
+            You can either continue checking in each day with this same goal or <a href="/goals/hold/<%= @goal.id.to_s %>"> place it on hold</a>
+            <%
+        end
+        %>
+        </center>
+    </div>    
+    <%
+ end 
+ %> <!-- if @goal.program and @goal.program.structured -->
+<!--
+#######
+END Did they just succeed at a program goal?
+#######
+#######
+-->
+
+
 <!-- START comments section --> 
 <% if @goal.is_this_a_relevant_day(@goal.user.dtoday) or @goal.is_this_a_relevant_day(@goal.user.dyesterday) %>
     <%

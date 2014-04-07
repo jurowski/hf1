@@ -163,24 +163,24 @@ class GoalsController < ApplicationController
         ### OLD MODE (AUTOUPDATE METHOD) http://localhost:3000/checkpoints/1080987/autoupdate?status=yes&return_to=goals&u=15706&g=25855
         ### NEW MODE EXAMPLE URL: http://localhost:3000/goals?update_checkpoint_status=no&date=2012-01-28&e0=106&f0=97&u=15706&goal_id=25855
         if params[:update_checkpoint_status] and params[:date] and params[:goal_id]
-            if goal
-                comment = ""
+          if goal
+            comment = ""
 
-                if goal.update_checkpoint(params[:date], params[:update_checkpoint_status], comment)
+            if goal.update_checkpoint(params[:date], params[:update_checkpoint_status], comment)
 
-                  flash[:notice] = 'Checkpoint Updated.'
-                  if params[:coming_from] == "email"
-                    @show_stats_lightbox = true
-                    @lightbox_goal = goal
-                  end
-                else
-                  logger.debug"SGJ error updating checkpoint"
-                  flash[:notice] = 'Error updating checkpoint.'
-                end
+              flash[:notice] = 'Checkpoint Updated.'
+              if params[:coming_from] == "email"
+                @show_stats_lightbox = true
+                @lightbox_goal = goal
+              end
             else
-              logger.debug"SGJ no such goal found to update checkpoint"
-              flash[:notice] = 'No such goal found to update checkpoint.'
+              logger.debug"SGJ error updating checkpoint"
+              flash[:notice] = 'Error updating checkpoint.'
             end
+          else
+            logger.debug"SGJ no such goal found to update checkpoint"
+            flash[:notice] = 'No such goal found to update checkpoint.'
+          end
         end
 
         if params[:update_comment] and params[:date] and params[:goal_id]
@@ -1413,8 +1413,25 @@ class GoalsController < ApplicationController
     @goal.start = Date.new(1900, 1, 1)
     @goal.stop = @goal.start 
     @goal.save    
-    #redirect_to(goals_url)
+
+    if params[:move_to_the_next_challenge]
+
+      if @goal.program and @goal.program.structured and @goal.program_met_goal_date
+        pt = ProgramTemplate.find(:first, :conditions => "program_id = '#{@goal.program.id}' and template_goal_id = '#{@goal.template_user_parent_goal_id}'")
+        if pt.get_next_program_template
+          next_parent_template = pt.get_next_program_template
+          redirect_to("/goals/new?goal_template_text=" + next_parent_template.template.response_question + "&category=" + next_parent_template.template.category + "&template_user_parent_goal_id=" + next_parent_template.template.id.to_s + "&goal_added_through_template_from_program_id=" + @goal.program.id.to_s + "&just_confirm=1&track_name=no_track_name&starter_habit_tagline=" + next_parent_template.template.template_tagline + "&continue_along_this_program_track=1")
+        end
+      end 
+
+    else
+      redirect_to("/goals?goal_placed_on_hold_id=#{params[:id].to_s}")
+    end
+
+
   end
+
+
   def go
     ### Scoped properly
 

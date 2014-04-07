@@ -81,6 +81,8 @@ class Program < ActiveRecord::Base
     end
   end
 
+  ### !!!!!!!! WARNING ################
+  ### do not use this if your program has tracks now that everything has tracks
   def get_next_listing_position
     highest_listing_position = 0
 

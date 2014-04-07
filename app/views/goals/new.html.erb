@@ -169,13 +169,27 @@ end
         rescue
         end
         %>
-        <% if params[:just_confirm] and program and params[:track_name]%>
+        <% if params[:just_confirm] and program and (params[:track_name] or params[:continue_along_this_program_track])%>
 
-          <p>Click below to confirm that you'd like to start the <%= params[:track_name] %> Track in the <%= program.name %>" Program.</p>
-          <i>(You're first committing to "<%= params[:starter_habit_tagline] %>".)</i>
-          <br>
-          <input type="hidden" name="return_to_program_view" value="<%=program.id.to_s%>" />
-          <% submit_value = "Start the #{params[:track_name]} Track!" %>
+
+          <% if params[:continue_along_this_program_track] %>
+
+            <p>Click below to confirm that you'd like to move to the next challenge in the <%= program.name %>" Program.</p>
+            <i>(Your next commitment is to "<%= params[:starter_habit_tagline] %>".)</i>
+            <br>
+            <input type="hidden" name="return_to_program_view" value="<%=program.id.to_s%>" />
+            <% submit_value = "Let's Do It!" %>
+
+
+          <% else %>
+
+            <p>Click below to confirm that you'd like to start the <%= params[:track_name] %> Track in the <%= program.name %>" Program.</p>
+            <i>(You're first committing to "<%= params[:starter_habit_tagline] %>".)</i>
+            <br>
+            <input type="hidden" name="return_to_program_view" value="<%=program.id.to_s%>" />
+            <% submit_value = "Start the #{params[:track_name]} Track!" %>
+
+          <% end %>
 
           <% cancel_destination = "/programs/#{program.id.to_s}/view" %>
 
