@@ -231,4 +231,22 @@ class Program < ActiveRecord::Base
   end
 
 
+
+  def i_am_owner_or_admin(user_id)
+    user_to_check = User.find(user_id)
+    if user_to_check
+      if user_to_check.is_admin
+        return true
+      else
+        if self.managed_by_user_id == user_to_check.id
+          return true
+        else
+          return false
+        end
+      end
+
+    end
+
+  end
+
 end
