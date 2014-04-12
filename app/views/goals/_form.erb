@@ -193,10 +193,9 @@ show_monitor_option_details = 0
           program_id = params[:goal_added_through_template_from_program_id].to_i
         end
         %>
-        <input type="hidden" name="program_id" value="<%= program_id %>">
-        <% @program = Program.find(program_id) %>
+        <% temp_program = Program.find(program_id) %>
 
-        Welcome to the <%= @program.name %> challenge program!
+        Welcome to the <%= temp_program.name %> challenge program!
       <% end %>
 
     <% end %>
