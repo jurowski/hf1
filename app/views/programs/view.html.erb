@@ -200,7 +200,7 @@ ONLY SHOW ACTION ITEMS IF ALREADY MEMBER OR IF NO EXTERNAL MEMBERSHIP SITE REQUI
             <% end %>
 
             <% if program_template.succeed_for_lagging_success_rate and program_template.lag_days and program_template.min_lag_success_rate %>
-              Do it <%= program_template.min_lag_success_rate %> % of the past <%= program_template.lag_days %> days
+              Do it <%= program_template.min_lag_success_rate %> % during any <%= program_template.lag_days %>-day period
             <% end %>
 
             <% if program_template.succeed_for_total_days_of_success and program_template.min_success_days %>
