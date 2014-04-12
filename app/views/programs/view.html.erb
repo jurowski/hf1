@@ -157,7 +157,7 @@ ONLY SHOW ACTION ITEMS IF ALREADY MEMBER OR IF NO EXTERNAL MEMBERSHIP SITE REQUI
               <br><img src="/images/icons/arrow_down.gif" />
             <% else %>
 
-            <% if @program.user_has_active_habit_in_this_track(current_user, arr_tracks[1]) %>
+            <% if current_user and @program.user_has_active_habit_in_this_track(current_user, arr_tracks[1]) %>
                 <a href="" class="btn disabled"> Track Activated</a>
             <% else %>
                 <a href="<%= url_prefix %>?goal_template_text=<%= program_template.template.response_question%>&category=<%= program_template.template.category%>&template_user_parent_goal_id=<%=program_template.template.id.to_s%>&goal_added_through_template_from_program_id=<%= @program.id.to_s %>&just_confirm=1&track_name=<%= arr_tracks[0] %>&starter_habit_tagline=<%= program_template.template.template_tagline %>" class="btn green">+ Start This Track</a>
@@ -169,7 +169,7 @@ ONLY SHOW ACTION ITEMS IF ALREADY MEMBER OR IF NO EXTERNAL MEMBERSHIP SITE REQUI
             <% end %>
             <br>
 
-            <% if @program.user_has_this_active_habit(current_user, program_template.template_goal_id) %>
+            <% if current_user and @program.user_has_this_active_habit(current_user, program_template.template_goal_id) %>
               <span style="background-color:#FFFF99;">
                 <a href="/goals">
 <!--                   <img src="/images/star_16.png" /> -->
