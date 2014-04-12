@@ -93,9 +93,18 @@ end
   <%= form.hidden_field :template_owner_is_a_template, :value => true %>
 
   <!-- Used when creating a new template for a particular program -->
-  <% if params[:program_id] %>
-    <input type="hidden" name="program_id" value="<%= params[:program_id] %>">
-    <% @program = Program.find(params[:program_id].to_i) %>
+  <% if params[:program_id] or params[:goal_added_through_template_from_program_id]%>
+    <% 
+    program_id = 0
+    if params[:program_id]
+      program_id = params[:program_id].to_i
+    end 
+    if params[:goal_added_through_template_from_program_id]
+      program_id = params[:goal_added_through_template_from_program_id].to_i
+    end
+    %>
+    <input type="hidden" name="program_id" value="<%= program_id %>">
+    <% @program = Program.find(program_id) %>
   <% end %>
 
 <% else
