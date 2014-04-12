@@ -227,9 +227,9 @@
                         <h2>
 
             <%    
-            if current_user.plan and (current_user.plan.include? 'Lifetime' or current_user.plan.include? 'Monthly' or current_user.plan.include? 'Yearly')
+            if current_user.plan and (current_user.plan.include? 'Lifetime' or current_user.plan.include? 'Monthly' or current_user.plan.include? 'Yearly') and current_user.kill_ads_until == '3000-01-01'
   
-              if current_user.plan.include? 'Monthly' or current_user.plan.include? 'Yearly'
+              if (current_user.plan.include? 'Monthly' or current_user.plan.include? 'Yearly') and current_user.kill_ads_until == '3000-01-01'
                 recurring_payment = true
               end
               %>
