@@ -93,15 +93,9 @@ end
   <%= form.hidden_field :template_owner_is_a_template, :value => true %>
 
   <!-- Used when creating a new template for a particular program -->
-  <% if params[:program_id] or params[:goal_added_through_template_from_program_id]%>
+  <% if params[:program_id] %>
     <% 
-    program_id = 0
-    if params[:program_id]
-      program_id = params[:program_id].to_i
-    end 
-    if params[:goal_added_through_template_from_program_id]
-      program_id = params[:goal_added_through_template_from_program_id].to_i
-    end
+    program_id = params[:program_id].to_i
     %>
     <input type="hidden" name="program_id" value="<%= program_id %>">
     <% @program = Program.find(program_id) %>
@@ -188,6 +182,23 @@ show_monitor_option_details = 0
 
     <% if !params[:just_confirm] %>
     What habit would you like to forge?
+    <% else %>
+
+
+      <!-- When starting a new program and a new goal within that program -->
+      <% if params[:goal_added_through_template_from_program_id]%>
+        <% 
+        program_id = 0
+        if params[:goal_added_through_template_from_program_id]
+          program_id = params[:goal_added_through_template_from_program_id].to_i
+        end
+        %>
+        <input type="hidden" name="program_id" value="<%= program_id %>">
+        <% @program = Program.find(program_id) %>
+
+        Welcome to the <%= @program.name %> challenge program!
+      <% end %>
+
     <% end %>
   <% end %>
 </span>
