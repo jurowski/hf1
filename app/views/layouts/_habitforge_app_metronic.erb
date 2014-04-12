@@ -153,6 +153,11 @@ if 1 == 1 ### whether to hide all ads
     show_programs = 0
   end
 
+  ### do not distract them if they are looking at programs
+  if @cn == "programs"
+    show_ads = 0
+    show_programs = 0
+  end
   ######################  END ADVERTISING #########################
 end
 %>
