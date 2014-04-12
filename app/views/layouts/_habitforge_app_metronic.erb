@@ -129,7 +129,7 @@ if 1 == 1 ### whether to hide all ads
 
 
   ### do not distract them with ads if already asking them to upgrade
-  if params[:too_many_active_habits]
+  if params[:too_many_active_habits] or params[:feature_limit]
     show_ads = 0
   end
 
