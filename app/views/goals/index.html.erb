@@ -1,3 +1,12 @@
+<% 
+@production = true
+if `uname -n`.strip == 'adv.adventurino.com'
+  #### HABITFORGE SETTINGS ON VPS
+  @production = true
+else
+  @production = false
+end
+%>
 
 <!-- THERE ARE TIMES WHEN WE NEED THIS PAGE TO COME UP WHEN SOMEONE IS NOT LOGGED IN
     MAINLY WHEN LOOKING AT A SUCCESS PROGRAM LIKE THIS:
