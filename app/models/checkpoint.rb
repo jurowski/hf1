@@ -462,10 +462,12 @@ class Checkpoint < ActiveRecord::Base
 
 
             if points_on_the_line > 0
-              self.goal.program_met_goal_notification_text = " earned " + points_on_the_line + " points on the challenge of " + self.goal.title + program_goal_met_method
+              self.goal.program_met_goal_notification_text = " earned " + points_on_the_line.to_s + " points on the challenge of " + self.goal.title + program_goal_met_method
             else
               self.goal.program_met_goal_notification_text = " succeeded with the challenge of " + self.goal.title + program_goal_met_method
             end
+
+            logger.info "sgj:checkpoint.rb:checking in for a structured program:wrote to goal.program_met_goal_notification_text"
 
 
             ### update the program_enrollment for this user appending the points earned
@@ -488,7 +490,8 @@ class Checkpoint < ActiveRecord::Base
               e.save
 
               logger.info "sgj:checkpoint.rb:checking in for a structured program:enrollment saved"
-
+            else
+              logger.info "sgj:checkpoint.rb:checking in for a structured program:no enrollment found"
             end ### if program_enrollment found
 
 
