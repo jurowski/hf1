@@ -1199,7 +1199,7 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
           -->
 
 
-            <% if 1 == 2 %>
+            <% if 1 == 1 %>
             <!-- START CAROUSEL -->
             <!-- This is the container for the carousel. -->
             <h2>Recommended Reading</h2>
@@ -1586,9 +1586,9 @@ $(document).ready(function(){
 });
  
 </script>
+
+
  -->
-
-
 
 <!-- 
 ADD ABILITY FOR CONFIRM DIALOG BOXES ON A HREF LINKS
@@ -1677,75 +1677,6 @@ $('.confirmation').on('click',function(){return confirm('Are you sure?');});
 
       </div>
 
-
-
-
-
-        <% if 1 == 1 %>
-        <div class="row-fluid">
-          <div class="span12"> 
-
-
-
-
-            <!-- ####################################### -->
-            <!-- START GOOGLE ADS BOTTOM -->
-            <% if show_ads == 1 %>
-              <% if @production and !secure_page? %>
-                  <br>
-
-                  <% if mobile_device? %>
-                    <!-- MOBILE SIZE -->
-                    <script type="text/javascript"><!--
-                    google_ad_client = "ca-pub-8620829126449222";
-                    /* mobile_banner_320x50_2 */
-                    google_ad_slot = "1829765434";
-                    google_ad_width = 320;
-                    google_ad_height = 50;
-                    //-->
-                    </script>
-                    <script type="text/javascript"
-                    src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-                    </script>
-
-                  <% else %>
-                    <!-- DESKTOP SIZE -->
-                    <script type="text/javascript"><!--
-                    google_ad_client = "ca-pub-8620829126449222";
-                    /* desktop_leaderboard_728x90_2 */
-                    google_ad_slot = "9492633038";
-                    google_ad_width = 728;
-                    google_ad_height = 90;
-                    //-->
-                    </script>
-                    <script type="text/javascript"
-                    src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-                    </script>
-                  <% end %>
-
-
-
-
-
-                  <br>
-
-              <% else %>
-                  <br>
-                  <div class="well" style="height:35px;">
-                    When running in production mode you will see
-                    <br>Some ad from google here ... about 35px w/ this div class.
-                  </div>
-              <% end %>
-
-             <a href="/goals?premium_more_info_hide_ads=1">Hide the ads...</a>
-
-            <% end %>            
-            <!-- END GOOGLE ADS BOTTOM -->
-            <!-- ####################################### -->
-
-          </div>
-        </div>
-        <% end %> <!-- end bottom ads -->
 
 
         <% end %> <!-- end only show if not "@new_goal_view" -->
