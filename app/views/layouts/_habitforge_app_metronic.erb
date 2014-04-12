@@ -90,37 +90,56 @@ end
 if 1 == 1 ### whether to hide all ads
   ######################  START ADVERTISING #########################
   show_ads = 0
+  show_programs = 0
   if current_user or @ca == "autoupdate" or @ca == "autoupdatemultiple" 
     ### Don't advertise if they've paid to skip ads
     if current_user
+
+
         if (session[:site_name] == "habitforge" or session[:sponsor] == "habitforge") and (current_user.kill_ads_until == nil or dnow > current_user.kill_ads_until)
 
 
           ### When Gather demographic data: don't show ads when asking for info (they might think it's an ad or be too distracted)
           if @cn == "cheers" and (current_user.yob == nil or current_user.gender == nil)
               show_ads = 0
+              show_programs = 0
           else
 
               ### don't show ads if they just signed up and haven't yet added a goal
               all_active_goals = Goal.find(:all, :conditions => "user_id = #{current_user.id} and status != 'hold'")
               if all_active_goals.size > 0
                   show_ads = 1
+                  show_programs = 1
               else
                   show_ads = 0
+                  show_programs = 0
               end
           end
 
+        else
+
+            ### don't show programs if they just signed up and haven't yet added a goal
+            all_active_goals = Goal.find(:all, :conditions => "user_id = #{current_user.id} and status != 'hold'")
+            if all_active_goals.size > 0
+                show_programs = 1
+            end
+
         end
+
+
+
     else
         if @ca == "autoupdate"
             if (session[:site_name] == "habitforge" or session[:sponsor] == "habitforge") and (@checkpoint.goal.user.kill_ads_until == nil or dnow > @checkpoint.goal.user.kill_ads_until)
               show_ads = 1
+              show_programs = 1
             end
         end
         if @ca == "autoupdatemultiple"
             if @goal != nil
                 if (session[:site_name] == "habitforge" or session[:sponsor] == "habitforge") and (@goal.user.kill_ads_until == nil or dnow > @goal.user.kill_ads_until)
                   show_ads = 1
+                  show_programs = 1
                 end
             end
         end
@@ -131,6 +150,7 @@ if 1 == 1 ### whether to hide all ads
   ### do not distract them with ads if already asking them to upgrade
   if params[:too_many_active_habits] or params[:feature_limit]
     show_ads = 0
+    show_programs = 0
   end
 
   ######################  END ADVERTISING #########################
@@ -818,8 +838,8 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
 
 
             <!-- ####################################### -->
-            <!-- START GOOGLE ADS TOP -->
-            <% if show_ads == 1  %>
+            <!-- START PROGRAMS ADS TOP -->
+            <% if show_programs == 1  %>
               <% if @production or !@production %>
                   <br>
 
