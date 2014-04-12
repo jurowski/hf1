@@ -245,8 +245,17 @@ class MessagesController < ApplicationController
     respond_to do |format|
       if @message.update_attributes(params[:message])
         flash[:notice] = 'Message was successfully updated.'
-        format.html { redirect_to(@message) }
-        format.xml  { head :ok }
+
+        if @message.program
+          
+          format.html { redirect_to(@message.program) }
+          format.xml  { head :ok }
+
+        else
+          format.html { redirect_to(@message) }
+          format.xml  { head :ok }
+        end
+
       else
         format.html { render :action => "edit" }
         format.xml  { render :xml => @message.errors, :status => :unprocessable_entity }

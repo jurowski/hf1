@@ -80,6 +80,9 @@ function HtmlEncode(s)
 
 			  <strong><%= message.subject %></strong> <%= message.body %> <i>was created <%= time_ago_in_words(message.created_at) %> ago</i>
 
+
+			  <span class="btn" style="padding:2px;"><a href="/messages/<%= message.id %>/edit");">edit</a></span>
+
 			  <span class="btn" style="padding:2px;"><a onclick="remove_message_then_reload_program_messages('<%= message.id %>','<%= @program.id %>');">delete</a></span>
 			  <br />
 

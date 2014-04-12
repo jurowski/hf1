@@ -24,7 +24,7 @@ d3days_ago = dnow - 3
 
 daterangepicker = false
 wysiwyg = false
-if @cn == "programs" and (@ca == "edit" or @ca == "show" or @ca == "create")
+if (@cn == "programs" or @cn == "messages") and (@ca == "edit" or @ca == "show" or @ca == "create")
   wysiwyg = true
   daterangepicker = true
 end
