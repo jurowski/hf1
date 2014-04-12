@@ -158,7 +158,7 @@ show_monitor_option_details = 0
 %>
 
 
-<% if based_on_a_template or has_active_challenge or part_of_a_team_category and !params[:just_confirm] %>
+<% if @ca != "new" and based_on_a_template or has_active_challenge or part_of_a_team_category and !params[:just_confirm] %>
   <h6>(Note: Some of the values below are locked because this goal is either part of a team, an accountability challenge, or was built to mirror a templated goal.)</h6>
 <% end %>
 
