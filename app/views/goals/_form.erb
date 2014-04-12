@@ -180,7 +180,7 @@ show_monitor_option_details = 0
  -->  
   <% else %>
 
-    <% if !params[:just_confirm] %>
+    <% if !params[:just_confirm] and !params[:goal_added_through_template_from_program_id] %>
     What habit would you like to forge?
     <% else %>
 
