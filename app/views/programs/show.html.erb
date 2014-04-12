@@ -323,7 +323,8 @@ Make the Program Image clickable, linked to External URL
         <%= link_to program_enrollment.user.name, program_enrollment %>
         <%= link_to '-', program_enrollment, :confirm => 'Drop "' + program_enrollment.user.name + '" from this program? (this will not delete the actual user record, but will remove the enrollment)', :method => :delete, :class => "btn mini red" %>
         <% else %>
-          <i>User ID <%= program_enrollment.user_id %> no longer exists</i>
+          <i>User ID <%= program_enrollment.user_id %> no longer exists ... deleting reocord</i>
+          <% program_enrollment.destroy %>
         <% end %>
         <br>
     <% end %>
