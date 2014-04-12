@@ -532,11 +532,63 @@ for goal in current_user.active_goals_sorted_by_next_action_day
                     <!-- via goal_added_through_template_from_program_id -->
                     <% if goal.program %>
 <!--                         <a href="/goals/?program_id=<%= goal.program.id.to_s %>&programs=1&browse_recommended_habits=1#browse_recommended_habits">
- -->                        <a href="/programs/<%= goal.program.id.to_s %>/view">
+ -->
 
-                            <%= goal.program.name %> >></a> 
+                            <%
+                            ### update the program_enrollment for this user appending the points earned
+                            e = ProgramEnrollment.find(:first, :conditions => "program_id = '#{goal.program.id}' and user_id = '#{goal.user.id}'")
+                            if e
+                              if e.points_earned and e.points_earned > 0
+                                %>
+                                <%= e.points_earned %> pts earned so far in the <a href="/programs/<%= goal.program.id.to_s %>/view">"<%= goal.program.name %>" challenge program</a> 
+                                <%
+                              else
+                                %>
+                                This is the <a href="/programs/<%= goal.program.id.to_s %>/view"><%= goal.program.name %> challenge program</a> 
+                                <%
+
+                              end
+                            end ### if program_enrollment found
+                            %>
+
+                            <br>
+                            <% program_template = ProgramTemplate.find(:first, :conditions => "program_id = '#{goal.program.id}' and template_goal_id = '#{goal.template_user_parent_goal_id}'")
+                            %>
+                             <label>
+                            <% if program_template.points_for_success %>
+                              You will earn <%= program_template.points_for_success %> points for 
+                            <% else %>
+                              <!-- Succeed:  -->
+                            <% end %>
+
+                            <%= goal.template_user_parent_goal.title %>
+
+
+                            <% if program_template.one_then_done %>
+                              <!-- Do it Once -->
+                            <% end %>
+
+
+                            <% if program_template.succeed_for_days_straight and program_template.min_days_straight %>
+                              Do it <%= program_template.min_days_straight %> times straight
+                            <% end %>
+
+                            <% if program_template.succeed_for_lagging_success_rate and program_template.lag_days and program_template.min_lag_success_rate %>
+                              Do it <%= program_template.min_lag_success_rate %> % of the past <%= program_template.lag_days %> days
+                            <% end %>
+
+                            <% if program_template.succeed_for_total_days_of_success and program_template.min_success_days %>
+                              Do it <%= program_template.min_success_days %> times
+                            <% end %>
+
+                            <% if program_template.succeed_for_momentum and program_template.min_momentum %>
+                              Achieve a Momentum Rate of <%= program_template.min_momentum %> %
+                            <% end %>
+                            </label>            
+
+                    <% else %>
+                        <%= goal.template_user_parent_goal.template_tagline %>
                     <% end %>
-                    <%= goal.template_user_parent_goal.template_tagline %>
                 <% else %>
                     <% if goal.category and  goal.category != "None" and goal.category != "" and goal.category != "Other" %><%= goal.category %>: <% end %>"<%= goal.title %>"
                 <% end %>
