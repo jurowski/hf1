@@ -699,19 +699,19 @@ for goal in current_user.active_goals_sorted_by_next_action_day
 
 
                             <% if program_template.succeed_for_days_straight and program_template.min_days_straight %>
-                              Do it <%= program_template.min_days_straight %> times straight
+                              once you it <%= program_template.min_days_straight %> times straight
                             <% end %>
 
                             <% if program_template.succeed_for_lagging_success_rate and program_template.lag_days and program_template.min_lag_success_rate %>
-                              Do it <%= program_template.min_lag_success_rate %> % during any <%= program_template.lag_days %>-day period
+                              once you do it <%= program_template.min_lag_success_rate %> % during any <%= program_template.lag_days %>-day period
                             <% end %>
 
                             <% if program_template.succeed_for_total_days_of_success and program_template.min_success_days %>
-                              Do it <%= program_template.min_success_days %> times
+                              once you do it <%= program_template.min_success_days %> times
                             <% end %>
 
                             <% if program_template.succeed_for_momentum and program_template.min_momentum %>
-                              Achieve a Momentum Rate of <%= program_template.min_momentum %> %
+                              once you achieve a Momentum Rate of <%= program_template.min_momentum %> %
                             <% end %>
                             </label>            
 
