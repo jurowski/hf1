@@ -174,8 +174,8 @@ end
 
           <% if params[:continue_along_this_program_track] %>
 
-            <p>Click below to confirm that you'd like to move to the next challenge in the <%= program.name %>" Program.</p>
-            <i>(Your next commitment is to "<%= params[:starter_habit_tagline] %>".)</i>
+            <h2>Ready for the next challenge in the <%= program.name %> Program?</h2>
+              <h3>("<%= params[:starter_habit_tagline] %>" is next.)</h3>
             <br>
             <input type="hidden" name="return_to_program_view" value="<%=program.id.to_s%>" />
             <% submit_value = "Let's Do It!" %>

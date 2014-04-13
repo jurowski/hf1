@@ -195,7 +195,10 @@ show_monitor_option_details = 0
         %>
         <% temp_program = Program.find(program_id) %>
 
-        Welcome to the <%= temp_program.name %> challenge program!
+
+        <% if !params[:continue_along_this_program_track] %>
+          Welcome to the <%= temp_program.name %> challenge program!
+        <% end %>
       <% end %>
 
     <% end %>

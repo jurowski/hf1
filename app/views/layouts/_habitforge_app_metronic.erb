@@ -158,6 +158,13 @@ if 1 == 1 ### whether to hide all ads
     show_ads = 0
     show_programs = 0
   end
+
+  ### do not distract if being asked to move forward within a program
+  ### because this would also look funny when loading in a partial
+  if params[:continue_along_this_program_track]
+    show_programs = 0
+    show_ads = 0
+  end
   ######################  END ADVERTISING #########################
 end
 %>

@@ -340,11 +340,27 @@ class Goal < ActiveRecord::Base
   def count_messages_for_program_goal_template
     num_quotes = 0
 
+    ### messages schema relevant...
+    # t.integer  "program_id"
+    # t.integer  "template_goal_id"
+
+
     ### see if there are any quotes yet for this program_goal_template
     if self.program and self.template_user_parent_goal
-      messages = Message.find(:all, :conditions => "template_goal_id = '#{self.template_user_parent_goal_id}'")
+      messages = Message.find(:all, :conditions => "program_id = '#{self.program.id}' and template_goal_id = '#{self.template_user_parent_goal_id}'")
       num_quotes = messages.size
+
+
+      ### if there weren't any messages specific to the goal template,
+      ### see if there are any for the program in general
+      if num_quotes == 0
+        messages = Message.find(:all, :conditions => "program_id = '#{self.program.id}' and template_goal_id IS NULL")
+        num_quotes = messages.size
+      end
+
     end
+
+
 
     return num_quotes
   end
@@ -365,6 +381,24 @@ class Goal < ActiveRecord::Base
             if message
                 body = message.body
             end
+
+        else
+
+          ### if there weren't any messages specific to the goal template,
+          ### see if there are any for the program in general
+          messages = Message.find(:all, :conditions => "program_id = '#{self.program.id}' and template_goal_id IS NULL")
+          num_messages = messages.size
+          if num_messages > 0  
+              random_number = rand(num_messages) #between 0 and num_messages
+              message = messages[random_number]
+              if message
+                  body = message.body
+              end
+
+          end
+
+
+
         end
 
       end

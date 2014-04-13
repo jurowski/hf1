@@ -84,7 +84,25 @@ class GoalsController < ApplicationController
       flash[:notice] = 'Error updating checkpoint.'
     end
 
-    render :partial => "goals/catch_up_on_checkpoints", :locals => { :goal => @goal } 
+
+    redirect_url = ""
+    ### did they just succeed at a program goal?
+    g = @goal
+    if g.program and g.program.structured and g.program_met_goal_date and g.program_met_goal_need_to_notify_user_screen
+
+      ## is there a "next goal" that we need to jump to?
+      pt = ProgramTemplate.find(:first, :conditions => "program_id = '#{g.program.id}' and template_goal_id = '#{g.template_user_parent_goal_id}'")
+      if pt.get_next_program_template
+       redirect_url = "/goals/hold/" + g.id.to_s + "?move_to_the_next_challenge=1"
+      end
+    end ### end if they have a newly-met goal
+
+    if redirect_url != ""
+      redirect_to(redirect_url)
+    else
+      render :partial => "goals/catch_up_on_checkpoints", :locals => { :goal => @goal } 
+    end
+
   end
 
 
@@ -131,6 +149,27 @@ class GoalsController < ApplicationController
   
   
   def index
+
+
+    redirect_url = ""
+    ### did they just succeed at a program goal?
+    if current_user 
+      current_user.active_goals.each do |g|
+        if g.program and g.program.structured and g.program_met_goal_date and g.program_met_goal_need_to_notify_user_screen
+
+          ## is there a "next goal" that we need to jump to?
+          pt = ProgramTemplate.find(:first, :conditions => "program_id = '#{g.program.id}' and template_goal_id = '#{g.template_user_parent_goal_id}'")
+          if pt.get_next_program_template
+           redirect_url = "/goals/hold/" + g.id.to_s + "?move_to_the_next_challenge=1"
+          end
+        end ### end if they have a newly-met goal
+      end
+    end #end if current_user
+
+    if redirect_url != ""
+      redirect_to(redirect_url)
+    else
+
     @show_autoupdatemultiple_personal_motivation = false
     @show_stats_lightbox = false
 
@@ -251,45 +290,45 @@ class GoalsController < ApplicationController
       if params[:push_message_id] and params[:push_message_goal_id]
         ### don't let them send twice by hitting refresh and getting more points
         if !current_user.date_i_last_pushed_a_slacker or current_user.date_i_last_pushed_a_slacker < get_dnow
-	  @push_message_to_slacker_attempt = true
-	  begin
-	        slacker_goal = Goal.find(params[:push_message_goal_id].to_i)
-        	if slacker_goal and slacker_goal.allow_push and (slacker_goal.next_push_on_or_after_date and (slacker_goal.next_push_on_or_after_date == get_dnow) and (slacker_goal.pushes_remaining_on_next_push_date > 0))
-          		if params[:push_message_id].to_i
-                	  push_message_id = params[:push_message_id].to_i
-                	  push_message = slacker_goal["phrase" + push_message_id.to_s]
+    @push_message_to_slacker_attempt = true
+    begin
+          slacker_goal = Goal.find(params[:push_message_goal_id].to_i)
+          if slacker_goal and slacker_goal.allow_push and (slacker_goal.next_push_on_or_after_date and (slacker_goal.next_push_on_or_after_date == get_dnow) and (slacker_goal.pushes_remaining_on_next_push_date > 0))
+              if params[:push_message_id].to_i
+                    push_message_id = params[:push_message_id].to_i
+                    push_message = slacker_goal["phrase" + push_message_id.to_s]
                 
-                	  Notifier.deliver_pushmessage_to_slacker(current_user, slacker_goal.user, slacker_goal, push_message) # sends the email
-			  @push_message_to_slacker_sent = true
+                    Notifier.deliver_pushmessage_to_slacker(current_user, slacker_goal.user, slacker_goal, push_message) # sends the email
+        @push_message_to_slacker_sent = true
  
 
-			  slacker_goal.pushes_remaining_on_next_push_date -= 1
-			  slacker_goal.save
+        slacker_goal.pushes_remaining_on_next_push_date -= 1
+        slacker_goal.save
 
-			  current_user.date_i_last_pushed_a_slacker = get_dnow
-			  current_user.slacker_id_that_i_last_pushed = slacker_goal.id
+        current_user.date_i_last_pushed_a_slacker = get_dnow
+        current_user.slacker_id_that_i_last_pushed = slacker_goal.id
 
-			  if !current_user.supportpoints
-				current_user.supportpoints = 5
-			  else
-				current_user.supportpoints += 5
-			  end
+        if !current_user.supportpoints
+        current_user.supportpoints = 5
+        else
+        current_user.supportpoints += 5
+        end
 
-		          flash[:notice] = "You just earned 5 SupportPoints for pushing #{slacker_goal.user.first_name} to work on '#{slacker_goal.title}'!"	
-	        	  
-			  if !current_user.supportpoints_log
-				current_user.supportpoints_log = ""
-			  end
-			  current_user.supportpoints_log += "\n" + flash[:notice]
+              flash[:notice] = "You just earned 5 SupportPoints for pushing #{slacker_goal.user.first_name} to work on '#{slacker_goal.title}'!"  
+              
+        if !current_user.supportpoints_log
+        current_user.supportpoints_log = ""
+        end
+        current_user.supportpoints_log += "\n" + flash[:notice]
 
-			
-          		  current_user.save
+      
+                current_user.save
 
-         		end
-        	end
-	  rescue
-    		@push_message_to_slacker_sent = false
-	  end
+            end
+          end
+    rescue
+        @push_message_to_slacker_sent = false
+    end
         end
       end
 
@@ -324,7 +363,14 @@ class GoalsController < ApplicationController
     #else
     #  redirect_to(server_root_url)
     #end
-  end
+
+
+
+
+    end ### end if redirect_url != ""
+
+
+  end ### end def index
 
   # GET /goals/1
   # GET /goals/1.xml
