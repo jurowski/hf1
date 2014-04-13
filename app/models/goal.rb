@@ -336,6 +336,46 @@ class Goal < ActiveRecord::Base
       end
   end  
 
+
+  def count_messages_for_program_goal_template
+    num_quotes = 0
+
+    ### see if there are any quotes yet for this program_goal_template
+    if self.program and self.template_user_parent_goal
+      messages = Message.find(:all, :conditions => "template_goal_id = '#{self.template_user_parent_goal_id}'")
+      num_quotes = messages.size
+    end
+
+    return num_quotes
+  end
+
+
+  def get_message_body_for_program_goal_template
+
+      body = ""
+
+      ### see if there are any quotes yet for this program_goal_template
+      if self.program and self.template_user_parent_goal
+        messages = Message.find(:all, :conditions => "template_goal_id = '#{self.template_user_parent_goal_id}'")
+        num_messages = messages.size
+
+        if num_messages > 0  
+            random_number = rand(num_messages) #between 0 and num_messages
+            message = messages[random_number]
+            if message
+                body = message.body
+            end
+        end
+
+      end
+
+
+      return body
+
+  end
+
+
+
   def count_quotes_for_category
     num_quotes_for_category = 0
 

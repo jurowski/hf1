@@ -224,18 +224,42 @@
                                 <br>
                                 </td>
                                 </tr>
-                                
+
+
+                                <!-- FIRST BEST CHOICE IS TO HAVE CATEGORY QUOTE + NORMAL QUOTE -->
+                                <% look_for_category_quote = true %>
+                                <%  if @goal.count_messages_for_program_goal_template > 0 %>
+
+                                  <%
+                                  look_for_category_quote = false
+                                  %>
+                                  <tr><td valign=top align=center width=1%>
+                                  <br>
+                                  <br>
+                                  <img src="/images/quote_image_brain tech-01.png" alt=" ">
+                                  </td>
+                                  <td valign=top align=left width=99%>
+                                      <div style="padding:.8em;margin-bottom:1em;border:2px solid #ddd;background:#FFFFFF;color:#000000;border-color:#BBBBBB;">
+                                          <p>
+
+                                          <%= @goal.get_message_body_for_program_goal_template %>
+                                        
+                                          </p>
+                                      </div>
+                                  </td></tr>
+
+                                  <tr>
+                                  <td>
+                                  
+                                  <br>
+                                  </td>
+                                  </tr>
+                                <% end %>
 
 
 
-
-
-
-
-
-
-
-                                <% if @goal.count_quotes_for_category > 0 %>
+                                <!-- SECOND BEST CHOICE IS TO HAVE CATEGORY QUOTE + NORMAL QUOTE -->
+                                <% if look_for_category_quote and @goal.count_quotes_for_category > 0 %>
 
 
                                   <%
@@ -306,7 +330,7 @@
                                   </tr>
 
                                 <% else %>
-
+                                  <!-- THIRD BEST CHOICE IS TO HAVE JUST NORMAL QUOTE -->
 
                                   <%
                                   random_quote_thought = "Seek the small improvement one day at a time. That’s the only way it happens — and when it happens, it lasts."
