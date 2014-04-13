@@ -856,42 +856,31 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
                     random_number = rand(max) + 1 #between 1 and max
                     %>
 
-                    <% if random_number == 1 %>
+                    <% if random_number == 1 or random_number == 2 %>
 
                       <a href="/programs/13/view">
-                      <img src="/home/images/banners/banner_slowcarb_728_x_90.png" /></a>
+                      <% if mobile_device? %>
+                      <img src="/home/images/banners/banner_slowcarb_373_x_95.png" />
+                      <% else %>
+                      <img src="/home/images/banners/banner_slowcarb_728_x_90.png" />
+                      <% end %>
+                      </a>
 
                     <% end %>
 
-                    <% if random_number == 2 %>
 
-                      <a href="/programs/13/view">
-                      <img src="/home/images/banners/banner_slowcarb_728_x_90.png" /></a>
-
-
-<!--                       <a href="/goals/new?template_user_parent_goal_id=143730">
-                      <img src="/home/images/banners/banner_smartphone_728_x_90.png" /></a>
- -->
-                    <% end %>
-
-                    <% if random_number == 3 %>
+                    <% if random_number == 3 or random_number == 4%>
 
                       <a href="/programs/12/view">
+                      <% if mobile_device? %>
+                      <img src="/home/images/banners/banner_burpee_363_x_90.png" /></a>
+                      <% else %>
                       <img src="/home/images/banners/banner_burpee_728_x_90.png" /></a>
+                      <% end %>
+                      </a>
 
                     <% end %>
 
-                    <% if random_number == 4 %>
-
-                      <a href="/programs/12/view">
-                      <img src="/home/images/banners/banner_burpee_728_x_90.png" /></a>
-
-                    <% end %>
-
-
-<!--                   <div class="dynamic_ads"> -->
-                      <!-- render :partial => 'goals/dynamic_ads' -->
-<!--                   </div> -->
 
 
                   <br>
