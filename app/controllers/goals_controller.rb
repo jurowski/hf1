@@ -151,6 +151,60 @@ class GoalsController < ApplicationController
   def index
 
 
+
+    @show_autoupdatemultiple_personal_motivation = false
+    @show_stats_lightbox = false
+
+    @push_message_to_slacker_attempt = false
+    @push_message_to_slacker_sent = false
+ 
+    #if current_user
+        ### see "applicatoin_controller.rb": this page is intended to be accessed via email URL:
+        ### let user fake a login for one page, if they have enough correct info for coming in via email URL
+        ### since there is no "current_user_session && current_user_session.record", it won't stay across requests        
+
+    goal = Goal.new()
+    @goal = Goal.new()
+    @lightbox_goal = Goal.new()
+    if params[:goal_id]
+        goal = Goal.find(params[:goal_id].to_i)
+        @goal = goal
+    end
+     
+    ### If coming from an autoupdatemultiple screen
+    if params[:coming_from] == "multiple" and session[:d]
+        ### if any of today's answers are "no", then show personal motivation for those
+        @goals_unsuccessful_needing_motivation = current_user.goals_unsuccessful_needing_personal_motivator_on_date(Date.parse(session[:d]))
+        if !@goals_unsuccessful_needing_motivation.empty?
+            @show_autoupdatemultiple_personal_motivation = true
+        end
+    end
+    
+    
+    ### OLD MODE (AUTOUPDATE METHOD) http://localhost:3000/checkpoints/1080987/autoupdate?status=yes&return_to=goals&u=15706&g=25855
+    ### NEW MODE EXAMPLE URL: http://localhost:3000/goals?update_checkpoint_status=no&date=2012-01-28&e0=106&f0=97&u=15706&goal_id=25855
+    if params[:update_checkpoint_status] and params[:date] and params[:goal_id]
+      if goal
+        comment = ""
+
+        if goal.update_checkpoint(params[:date], params[:update_checkpoint_status], comment)
+
+          flash[:notice] = 'Checkpoint Updated.'
+          if params[:coming_from] == "email"
+            @show_stats_lightbox = true
+            @lightbox_goal = goal
+          end
+        else
+          logger.debug"SGJ error updating checkpoint"
+          flash[:notice] = 'Error updating checkpoint.'
+        end
+      else
+        logger.debug"SGJ no such goal found to update checkpoint"
+        flash[:notice] = 'No such goal found to update checkpoint.'
+      end
+    end
+
+
     redirect_url = ""
     ### did they just succeed at a program goal?
     if current_user 
@@ -170,57 +224,7 @@ class GoalsController < ApplicationController
       redirect_to(redirect_url)
     else
 
-    @show_autoupdatemultiple_personal_motivation = false
-    @show_stats_lightbox = false
 
-    @push_message_to_slacker_attempt = false
-    @push_message_to_slacker_sent = false
- 
-    #if current_user
-        ### see "applicatoin_controller.rb": this page is intended to be accessed via email URL:
-        ### let user fake a login for one page, if they have enough correct info for coming in via email URL
-        ### since there is no "current_user_session && current_user_session.record", it won't stay across requests        
-
-        goal = Goal.new()
-        @goal = Goal.new()
-        @lightbox_goal = Goal.new()
-        if params[:goal_id]
-            goal = Goal.find(params[:goal_id].to_i)
-            @goal = goal
-        end
-         
-        ### If coming from an autoupdatemultiple screen
-        if params[:coming_from] == "multiple" and session[:d]
-            ### if any of today's answers are "no", then show personal motivation for those
-            @goals_unsuccessful_needing_motivation = current_user.goals_unsuccessful_needing_personal_motivator_on_date(Date.parse(session[:d]))
-            if !@goals_unsuccessful_needing_motivation.empty?
-                @show_autoupdatemultiple_personal_motivation = true
-            end
-        end
-        
-        
-        ### OLD MODE (AUTOUPDATE METHOD) http://localhost:3000/checkpoints/1080987/autoupdate?status=yes&return_to=goals&u=15706&g=25855
-        ### NEW MODE EXAMPLE URL: http://localhost:3000/goals?update_checkpoint_status=no&date=2012-01-28&e0=106&f0=97&u=15706&goal_id=25855
-        if params[:update_checkpoint_status] and params[:date] and params[:goal_id]
-          if goal
-            comment = ""
-
-            if goal.update_checkpoint(params[:date], params[:update_checkpoint_status], comment)
-
-              flash[:notice] = 'Checkpoint Updated.'
-              if params[:coming_from] == "email"
-                @show_stats_lightbox = true
-                @lightbox_goal = goal
-              end
-            else
-              logger.debug"SGJ error updating checkpoint"
-              flash[:notice] = 'Error updating checkpoint.'
-            end
-          else
-            logger.debug"SGJ no such goal found to update checkpoint"
-            flash[:notice] = 'No such goal found to update checkpoint.'
-          end
-        end
 
         if params[:update_comment] and params[:date] and params[:goal_id]
             if goal
