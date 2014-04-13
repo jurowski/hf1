@@ -90,19 +90,31 @@ end
 
 
 
-<% if @program.count_of_enrolled_users %>
-  <% if @program.count_of_enrolled_users > 0 %>
-  <h3>Current Members: 
-  <%= @program.count_of_enrolled_users %>
-  </h3>
-  <% end %>
-<% else %>
-  <% if @program.program_enrollments.size > 0 %>
-  <h3>Current Members: 
-  (<%= @program.program_enrollments.size %>)
-   </h3>
-   <% end %>
+<% if @program.managed_by_user %>
+    <% if current_user and @program.managed_by_user == current_user %>
+
+      <div class="alert info">
+        (visible only to program manager or admin)
+      <% if @program.count_of_enrolled_users %>
+        <% if @program.count_of_enrolled_users > 0 %>
+        <h3>Current Members: 
+        <%= @program.count_of_enrolled_users %>
+        </h3>
+        <% end %>
+      <% else %>
+        <% if @program.program_enrollments.size > 0 %>
+        <h3>Current Members: 
+        (<%= @program.program_enrollments.size %>)
+         </h3>
+         <% end %>
+      <% end %>
+    </div>
+
+
+    <% end %>
 <% end %>
+
+
 </div>
 
 

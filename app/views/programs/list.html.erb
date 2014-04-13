@@ -1,15 +1,9 @@
 
 
-<h1>HabitForge Challenge Programs</h1>
+<h1>HabitForge Programs</h1>
 <div class="alert info">
 <p>
-At the moment, a Challenge Program is simply a collection of "good habits" that you can embark on with a single click.
-<br>
-<br>
-Over time, Challenge Programs will evolve into interactive, informative, structured, group-based challenges that push you toward your personal development goals with badge-earning challenges and team competitions.
-<br>
-<br>
-Best of all, you'll be able to create your own programs and manage them on your own for your own set of users.
+HabitForge Programs are now evolving into interactive, informative, structured, group-based challenges that push you toward your personal development goals.
 <br>
 <br>
 <strong>Have an idea for a challenge program?</strong> Use the "Help and Feedback" tab or email us: support@habitforge.com
@@ -47,19 +41,32 @@ Best of all, you'll be able to create your own programs and manage them on your 
 	<h4><strong><%= program.name %></strong></h4>
 
 
-	<% if program.count_of_enrolled_users %>
-	  <% if program.count_of_enrolled_users > 0 %>
-	  <h4>Current Members: 
-	  <%= program.count_of_enrolled_users %>
-	  </h4>
-	  <% end %>
-	<% else %>
-	  <% if program.program_enrollments.size > 0 %>
-	  <h4>Current Members: 
-	  (<%= program.program_enrollments.size %>)
-	   </h4>
-	   <% end %>
+
+	<% if program.managed_by_user %>
+	    <% if current_user and program.managed_by_user == current_user %>
+
+	      <div class="alert info">
+	        (visible only to program manager or admin)
+	      <% if program.count_of_enrolled_users %>
+	        <% if program.count_of_enrolled_users > 0 %>
+	        <h3>Current Members: 
+	        <%= program.count_of_enrolled_users %>
+	        </h3>
+	        <% end %>
+	      <% else %>
+	        <% if program.program_enrollments.size > 0 %>
+	        <h3>Current Members: 
+	        (<%= program.program_enrollments.size %>)
+	         </h3>
+	         <% end %>
+	      <% end %>
+	    </div>
+
+
+	    <% end %>
 	<% end %>
+
+
 
     <p><%= program.about %></p>
 
