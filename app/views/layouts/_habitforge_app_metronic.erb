@@ -844,7 +844,6 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
 
             <!-- ####################################### -->
             <!-- START PROGRAMS ADS TOP -->
-            <% @banner_shown = false %>
             <% if show_programs == 1  %>
               <% if @production or !@production %>
                   <br>
@@ -852,7 +851,7 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
 <!--                   <a href="/goals/new?category=Writing&goal_template_text=reaching%20your%20word%20count%20goal"> -->
 
                     <% 
-                    max = 3
+                    max = 4
                     random_number = 0
                     random_number = rand(max) + 1 #between 1 and max
                     %>
@@ -880,13 +879,16 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
                       <a href="/programs/12/view">
                       <img src="/home/images/banners/banner_burpee_728_x_90.png" /></a>
 
-<!-- 
-                      <a href="/goals/new?template_user_parent_goal_id=143729">
-                      <img src="/home/images/banners/banner_water_728_x_90.png" /></a>
- -->
                     <% end %>
 
-                    <% @banner_shown = true %>
+                    <% if random_number == 4 %>
+
+                      <a href="/programs/12/view">
+                      <img src="/home/images/banners/banner_burpee_728_x_90.png" /></a>
+
+                    <% end %>
+
+
 <!--                   <div class="dynamic_ads"> -->
                       <!-- render :partial => 'goals/dynamic_ads' -->
 <!--                   </div> -->
