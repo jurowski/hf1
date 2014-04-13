@@ -354,10 +354,17 @@ end
     <center>
     <% if current_user.sponsor == "habitforge" and !current_user.is_habitforge_supporting_member and current_user.number_of_active_habits > 0 %>
           <!-- render :partial => "goals/upgrade_advertisement"  -->
-        <a href="/goals?too_many_active_habits=1" class="btn blue "><i class="icon-plus"></i>  Start Working on a New Habit</a>
+
+            <img src="/home/images/arrow_pointing_left_up.png">
+            Preview a Program, or  
+
+        <a href="/goals?too_many_active_habits=1" class="btn blue "></i>  Start some other New Habit</a>
 
     <% else %>
-        <a href="/goals/new" class="btn blue"><i class="icon-plus"></i>  Start Working on a New Habit</a>
+
+        <img src="/home/images/arrow_pointing_left_up.png">
+        Preview a Program, or 
+        <a href="/goals/new" class="btn blue"></i>  Start some other New Habit</a>
 
     <% end %>
 

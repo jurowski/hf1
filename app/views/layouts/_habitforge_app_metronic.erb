@@ -844,6 +844,7 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
 
             <!-- ####################################### -->
             <!-- START PROGRAMS ADS TOP -->
+            <% @banner_shown = false %>
             <% if show_programs == 1  %>
               <% if @production or !@production %>
                   <br>
@@ -885,6 +886,7 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
  -->
                     <% end %>
 
+                    <% @banner_shown = true %>
 <!--                   <div class="dynamic_ads"> -->
                       <!-- render :partial => 'goals/dynamic_ads' -->
 <!--                   </div> -->
@@ -909,6 +911,7 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
         </div>
         <!-- END PAGE HEADER-->
 
+<% @banner_shown = true %>
 
 
         <div>
