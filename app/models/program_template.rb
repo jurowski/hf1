@@ -30,7 +30,7 @@ class ProgramTemplate < ActiveRecord::Base
   end
 
   def get_next_program_template
-    if self.listing_position and self.track_numbers
+    if self.listing_position and self.track_number
       action_item = ProgramTemplate.find(:first, :conditions => "program_id = '#{self.program_id}' and listing_position > '#{self.listing_position}' and track_number = '#{self.track_number}'", :order => 'listing_position')
       if action_item
         return action_item
