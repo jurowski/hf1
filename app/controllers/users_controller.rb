@@ -545,6 +545,7 @@ class UsersController < ApplicationController
             # USERVOICE TICKET#529:
             #103: add to ETR "Newsletter Subscriber"
 
+
             if Rails.env.production?
               session[:infusionsoft_contact_id] = 0
               new_contact_id = Infusionsoft.contact_add({:FirstName => user.first_name, :LastName => user.last_name, :Email => user.email})
