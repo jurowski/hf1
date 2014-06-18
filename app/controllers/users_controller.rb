@@ -528,7 +528,8 @@ class UsersController < ApplicationController
         session[:sfm_virgin_need_to_email_temp_password] = true
         @account_created = true
 
-        if @production
+        if Rails.env.production?
+        #if @production
           begin 
             #####################################################
             #####################################################
