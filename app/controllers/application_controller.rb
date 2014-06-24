@@ -78,9 +78,13 @@ class ApplicationController < ActionController::Base
     end
 
     def save_referer
+      begin
         if !session[:referer]
           session[:referer] = request.env["HTTP_REFERER"] || 'none'
         end
+      rescue
+        logger.info("error while trying to save referrer")
+      end
     end
 
     def redirect_to_ssl
