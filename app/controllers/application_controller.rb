@@ -264,15 +264,20 @@ class ApplicationController < ActionController::Base
         session[:google_email] = params[:google_email]
       end     
 
-      if session[:fb_username]
-        user = User.find(:first, :conditions => "fb_username = '#{session[:fb_username]}'")
-        if user
-          @current_user = user
-          return @current_user
+
+      begin 
+        if session[:fb_username]
+          user = User.find(:first, :conditions => "fb_username = '#{session[:fb_username]}'")
+          if user
+            @current_user = user
+            return @current_user
+          end
         end
+      rescue
+        logger.error("sgj:application_controller.rb:error while working w/ facebook current_user code")
       end
 
-      if session[:google_email]
+      if session[:google_email] != nil
         user = User.find(:first, :conditions => "google_email = '#{session[:google_email]}'")
         if user
           session[:email] = user.email
