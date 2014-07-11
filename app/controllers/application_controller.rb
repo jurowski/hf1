@@ -321,6 +321,8 @@ class ApplicationController < ActionController::Base
               @current_user = user
               session[:email] = user.email
               session[:single_login] = true
+              return @current_user
+
           end
         end
       end
@@ -349,6 +351,8 @@ class ApplicationController < ActionController::Base
         session[:impersonate] = params[:impersonate]
        end       
        @current_user = User.find(session[:impersonate])
+       return @current_user
+
      else
         logger.debug("sgj:no current user, check for fake/single logins")
         ### let user fake a login for one page, if they have enough correct info for coming in via email URL
@@ -370,6 +374,7 @@ class ApplicationController < ActionController::Base
 
               session[:email] = user.email
               session[:single_login] = true
+              return @current_user
 
             end
 
@@ -391,6 +396,8 @@ class ApplicationController < ActionController::Base
 
                         session[:email] = goal.user.email
                         session[:single_login] = true
+                        return @current_user
+
                     end
                 end
             end
@@ -413,6 +420,8 @@ class ApplicationController < ActionController::Base
 
                   session[:email] = user.email
                   session[:single_login] = true
+                  return @current_user
+
               end
             else
 
@@ -430,6 +439,8 @@ class ApplicationController < ActionController::Base
 
                           session[:email] = goal.user.email
                           session[:single_login] = true
+                          return @current_user
+
                       end
                   end
               end
@@ -450,6 +461,8 @@ class ApplicationController < ActionController::Base
                             ### hey, let's not let them do the persistent
                             ### "session[:email] and session[:single_login]" here, b/c it is just too ease
                             ### for someone to pop in just any goal id and then become that person
+                            return @current_user
+
                         end 
                     end
                 end
@@ -466,6 +479,8 @@ class ApplicationController < ActionController::Base
                   user = User.find(:first, :conditions => "email = '#{session[:email]}'")
                   if user
                      @current_user = user
+                     return @current_user
+
                   end
                 rescue
                   logger.error("sgj:error finding user via params email")
@@ -477,6 +492,8 @@ class ApplicationController < ActionController::Base
             else
                 ######### NORMAL USER
                 @current_user = current_user_session && current_user_session.record            
+                return @current_user
+
             end
         end
      end
