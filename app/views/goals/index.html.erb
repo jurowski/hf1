@@ -1475,18 +1475,28 @@ http://localhost:3000/goals?update_checkpoint_status=yes&date=2012-02-12&e0=106&
         <%
         show_ads = 0
         if current_user or @ca == "autoupdate" or @ca == "autoupdatemultiple" 
-        ### Don't advertise if they've paid to skip ads
-        if current_user
-            if (session[:site_name] == "habitforge" or session[:sponsor] == "habitforge") and (current_user.kill_ads_until == nil or current_user.dtoday > current_user.kill_ads_until)
-                show_ads = 1
-            end
-        end #### END if current_user
+            ### Don't advertise if they've paid to skip ads
+            if current_user
+                # if (session[:site_name] == "habitforge" or session[:sponsor] == "habitforge") and (current_user.kill_ads_until == nil or current_user.dtoday > current_user.kill_ads_until)
+                #     show_ads = 1
+                # end
+
+                if current_user.kill_ads_until == nil or current_user.dtoday > current_user.kill_ads_until
+                    show_ads = 1
+                    logger.info("sgj:ads:planning to show_ads = 1")                
+                else
+                  logger.info("sgj:ads:not showing ad because current_user is premium")                                    
+                end
+            else
+              logger.info("sgj:ads:not showing ad because no current_user")                
+            end #### END if current_user
         end ##### END if current_user or @ca == "autoupdate" or @ca == "autoupdatemultiple" 
 
 
         ### do not distract them with ads if already asking them to upgrade
         if params[:too_many_active_habits] or params[:feature_limit]
-        show_ads = 0
+            show_ads = 0
+            logger.info("sgj:ads:not showing ad because asking them to upgrade") 
         end
         %>
 
@@ -1499,7 +1509,9 @@ http://localhost:3000/goals?update_checkpoint_status=yes&date=2012-02-12&e0=106&
             <!-- ####################################### -->
             <!-- START GOOGLE ADS  -->
             <% if show_ads == 1 %>
+              <% logger.debug("sgj:show_ads == 1") %>
               <% if @production and !secure_page? %>
+                  <% logger.info("sgj:ads:show_ads == 1 + @production + !secure_page") %>
                   <br>
 
                   <% if mobile_device? %>
