@@ -1467,6 +1467,90 @@ http://localhost:3000/goals?update_checkpoint_status=yes&date=2012-02-12&e0=106&
 
 
 
+
+
+
+        <!--
+        #######
+        #######
+        Did they just succeed at a program goal?
+        #######
+        -->
+        <% 
+        if @lightbox_goal.program and @lightbox_goal.program.structured and @lightbox_goal.program_met_goal_date and @lightbox_goal.program_met_goal_need_to_notify_user_screen %>
+
+            <div class="alert alert-info">
+                Way to go! You <%= @lightbox_goal.program_met_goal_notification_text %>
+                <br>
+                <br>
+
+                <% 
+                pt = ProgramTemplate.find(:first, :conditions => "program_id = '#{@lightbox_goal.program.id}' and template_goal_id = '#{@lightbox_goal.template_user_parent_goal_id}'")
+
+                if pt.get_next_program_template                
+                    %>
+                   <a href="/goals/hold/<%= @lightbox_goal.id.to_s %>?move_to_the_next_challenge=1" class="btn blue">+ Move Up to the Next Challenge!</a>
+                    <%
+                else
+                    %>
+                    You can either continue checking in each day with this same goal or <a href="/goals/hold/<%= @lightbox_goal.id.to_s %>"> place it on hold</a>
+                    <%
+                end
+                %>        
+            </div>
+            <%
+         end 
+         %> <!-- if @lightbox_goal.program and @lightbox_goal.program.structured -->
+        <!--
+        #######
+        END Did they just succeed at a program goal?
+        #######
+        #######
+        -->
+
+
+
+
+        <!-- 
+        ###########
+        ###########
+        STATUS
+        ###########
+        -->
+        <center>
+              <h3><%= @lightbox_goal.status_phrase(params[:date]) %></h3>
+                <br>
+                <div class="stats_badge">
+                    <!-- tried but kept getting stale results: 
+                        @lightbox_goal.get_latest_stats_badge 
+                        and 
+                        @lightbox_goal.get_latest_stats_badge_details 
+                    -->                    
+                    <%= @lightbox_goal.stats_image %>
+                    <%= @lightbox_goal.stats_output %>
+
+                      <% if @lightbox_goal.publish and @lightbox_goal.get_daily_status_for(params[:date]) == "yes" %>
+                        Share my success:
+                        <a name="fb_share" type="button" share_url="<%= server_root_url%>/cheers/1/shared?shared_u=<%= @lightbox_goal.user.id %>&one_g=<%= @lightbox_goal.id%>" href="http://www.facebook.com/sharer.php">My <%= session[:site_name]%> Progress</a><script src="http://static.ak.fbcdn.net/connect.php/js/FB.Share" type="text/javascript"></script>
+                      <% end %>
+                </div>
+                <br>
+        </center>   
+        <!-- 
+        ###########
+        END STATUS
+        ###########
+        ###########
+        -->
+
+
+    <br>
+
+
+
+
+
+
         <!--
         #################################################################
         #################################################################
@@ -1558,82 +1642,6 @@ http://localhost:3000/goals?update_checkpoint_status=yes&date=2012-02-12&e0=106&
         -->
 
 
-
-        <!--
-        #######
-        #######
-        Did they just succeed at a program goal?
-        #######
-        -->
-        <% 
-        if @lightbox_goal.program and @lightbox_goal.program.structured and @lightbox_goal.program_met_goal_date and @lightbox_goal.program_met_goal_need_to_notify_user_screen %>
-
-            <div class="alert alert-info">
-                Way to go! You <%= @lightbox_goal.program_met_goal_notification_text %>
-                <br>
-                <br>
-
-                <% 
-                pt = ProgramTemplate.find(:first, :conditions => "program_id = '#{@lightbox_goal.program.id}' and template_goal_id = '#{@lightbox_goal.template_user_parent_goal_id}'")
-
-                if pt.get_next_program_template                
-                    %>
-                   <a href="/goals/hold/<%= @lightbox_goal.id.to_s %>?move_to_the_next_challenge=1" class="btn blue">+ Move Up to the Next Challenge!</a>
-                    <%
-                else
-                    %>
-                    You can either continue checking in each day with this same goal or <a href="/goals/hold/<%= @lightbox_goal.id.to_s %>"> place it on hold</a>
-                    <%
-                end
-                %>        
-            </div>
-            <%
-         end 
-         %> <!-- if @lightbox_goal.program and @lightbox_goal.program.structured -->
-        <!--
-        #######
-        END Did they just succeed at a program goal?
-        #######
-        #######
-        -->
-
-
-
-
-        <!-- 
-        ###########
-        ###########
-        STATUS
-        ###########
-        -->
-        <center>
-              <h3><%= @lightbox_goal.status_phrase(params[:date]) %></h3>
-                <br>
-                <div class="stats_badge">
-                    <!-- tried but kept getting stale results: 
-                        @lightbox_goal.get_latest_stats_badge 
-                        and 
-                        @lightbox_goal.get_latest_stats_badge_details 
-                    -->                    
-                    <%= @lightbox_goal.stats_image %>
-                    <%= @lightbox_goal.stats_output %>
-
-                      <% if @lightbox_goal.publish and @lightbox_goal.get_daily_status_for(params[:date]) == "yes" %>
-                        Share my success:
-                        <a name="fb_share" type="button" share_url="<%= server_root_url%>/cheers/1/shared?shared_u=<%= @lightbox_goal.user.id %>&one_g=<%= @lightbox_goal.id%>" href="http://www.facebook.com/sharer.php">My <%= session[:site_name]%> Progress</a><script src="http://static.ak.fbcdn.net/connect.php/js/FB.Share" type="text/javascript"></script>
-                      <% end %>
-                </div>
-                <br>
-        </center>   
-        <!-- 
-        ###########
-        END STATUS
-        ###########
-        ###########
-        -->
-
-
-    <br>
 
 
 
