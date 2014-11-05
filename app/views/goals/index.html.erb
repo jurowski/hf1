@@ -391,25 +391,6 @@ end
 <!-- *********** -->
 
 
-<% if !current_user.hide_feed %>
-    <!-- SHOW LATEST PUBLIC CHECKINS -->
-    <div class="dynamic_latest_public_checkins">
-        <%= render :partial => 'goals/dynamic_latest_public_checkins' %>
-    </div>
-    <div id="spinner_dynamic_latest_public_checkins" style="display:none;">
-        <center><img src="/images/spinner.gif"/></center>
-    </div>
-<% end %>
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -512,10 +493,15 @@ end
 
 
 
-
-
-
-
+<% if !current_user.hide_feed %>
+    <!-- SHOW LATEST PUBLIC CHECKINS -->
+    <div class="dynamic_latest_public_checkins">
+        <%= render :partial => 'goals/dynamic_latest_public_checkins' %>
+    </div>
+    <div id="spinner_dynamic_latest_public_checkins" style="display:none;">
+        <center><img src="/images/spinner.gif"/></center>
+    </div>
+<% end %>
 
 
 
