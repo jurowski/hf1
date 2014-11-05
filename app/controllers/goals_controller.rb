@@ -457,8 +457,8 @@ class GoalsController < ApplicationController
 
       @goal.category = "Exercise" ## a reasonable default
 
-      #@goal.reminder_send_hour = 8 #### 8am
-      @goal.reminder_send_hour = -1 #### no reminder when set to -1
+      @goal.reminder_send_hour = 7 #### 8am
+      #@goal.reminder_send_hour = -1 #### no reminder when set to -1
 
 
       @goal.usersendhour = 20 ### 8pm
