@@ -428,7 +428,7 @@ end
 
 
     <!-- ####################################### -->
-    <!-- START GOOGLE ADS BOTTOM -->
+    <!-- START GOOGLE ADS TOP -->
     <% if show_ads == 1 %>
       <% if @production and !secure_page? %>
           <br>
@@ -475,12 +475,12 @@ end
      <a href="/goals?premium_more_info_hide_ads=1">Hide the ads...</a>
 
     <% end %>            
-    <!-- END GOOGLE ADS BOTTOM -->
+    <!-- END GOOGLE ADS TOP -->
     <!-- ####################################### -->
 
   </div>
 </div>
-<% end %> <!-- end bottom ads -->
+<% end %> <!-- end top ads -->
 
 <!--   
 
@@ -502,6 +502,68 @@ end
         <center><img src="/images/spinner.gif"/></center>
     </div>
 <% end %>
+
+
+
+<div class="row-fluid">
+  <div class="span12"> 
+
+
+
+    <!-- ####################################### -->
+    <!-- START GOOGLE ADS BOTTOM -->
+    <% if show_ads == 1 %>
+      <% if @production and !secure_page? %>
+          <br>
+
+          <% if mobile_device? %>
+            <!-- MOBILE SIZE -->
+            <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+            <!-- mobile banner v3 -->
+            <ins class="adsbygoogle"
+                 style="display:inline-block;width:320px;height:100px"
+                 data-ad-client="ca-pub-8620829126449222"
+                 data-ad-slot="6108801037"></ins>
+            <script>
+            (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+
+          <% else %>
+            <!-- DESKTOP SIZE -->
+            <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+            <!-- desktop leaderboard v3 -->
+            <ins class="adsbygoogle"
+                 style="display:inline-block;width:728px;height:90px"
+                 data-ad-client="ca-pub-8620829126449222"
+                 data-ad-slot="4632067835"></ins>
+            <script>
+            (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+          <% end %>
+
+          <br>
+
+      <% else %>
+          <br>
+          <div class="well" style="height:35px;">
+            When running in production mode you will see
+            <br>Some ad from google here ... about 35px w/ this div class.
+          </div>
+      <% end %>
+
+     <a href="/goals?premium_more_info_hide_ads=1">Hide the ads...</a>
+
+    <% end %>            
+    <!-- END GOOGLE ADS BOTTOM -->
+    <!-- ####################################### -->
+
+  </div>
+</div>
+<% end %> <!-- end top ads -->
+
+
+
+
 
 
 
