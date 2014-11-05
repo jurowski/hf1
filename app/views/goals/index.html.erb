@@ -408,7 +408,7 @@ show_ads = 0
 if current_user or @ca == "autoupdate" or @ca == "autoupdatemultiple" 
 ### Don't advertise if they've paid to skip ads
 if current_user
-    if (session[:site_name] == "habitforge" or session[:sponsor] == "habitforge") and (current_user.kill_ads_until == nil or current_user.dtoday > current_user.kill_ads_until)
+    if (session[:site_name] == "habitforge" or session[:sponsor] == "habitforge") and (current_user.kill_ads_until == nil or current_user.dtoday > current_user.kill_ads_until or current_user.email == 'jurowski@gmail.com')
         show_ads = 1
     end
 end #### END if current_user
