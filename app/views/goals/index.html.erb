@@ -391,6 +391,25 @@ end
 <!-- *********** -->
 
 
+<% if !current_user.hide_feed %>
+    <!-- SHOW LATEST PUBLIC CHECKINS -->
+    <div class="dynamic_latest_public_checkins">
+        <%= render :partial => 'goals/dynamic_latest_public_checkins' %>
+    </div>
+    <div id="spinner_dynamic_latest_public_checkins" style="display:none;">
+        <center><img src="/images/spinner.gif"/></center>
+    </div>
+<% end %>
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -408,7 +427,7 @@ show_ads = 0
 if current_user or @ca == "autoupdate" or @ca == "autoupdatemultiple" 
 ### Don't advertise if they've paid to skip ads
 if current_user
-    if (session[:site_name] == "habitforge" or session[:sponsor] == "habitforge") and (current_user.kill_ads_until == nil or current_user.dtoday > current_user.kill_ads_until or current_user.email == 'jurowski@gmail.com')
+    if (session[:site_name] == "habitforge" or session[:sponsor] == "habitforge") and (current_user.kill_ads_until == nil or current_user.dtoday > current_user.kill_ads_until)
         show_ads = 1
     end
 end #### END if current_user
@@ -428,7 +447,7 @@ end
 
 
     <!-- ####################################### -->
-    <!-- START GOOGLE ADS TOP -->
+    <!-- START GOOGLE ADS BOTTOM -->
     <% if show_ads == 1 %>
       <% if @production and !secure_page? %>
           <br>
@@ -475,12 +494,12 @@ end
      <a href="/goals?premium_more_info_hide_ads=1">Hide the ads...</a>
 
     <% end %>            
-    <!-- END GOOGLE ADS TOP -->
+    <!-- END GOOGLE ADS BOTTOM -->
     <!-- ####################################### -->
 
   </div>
 </div>
-<% end %> <!-- end top ads -->
+<% end %> <!-- end bottom ads -->
 
 <!--   
 
@@ -493,72 +512,10 @@ end
 
 
 
-<% if !current_user.hide_feed %>
-    <!-- SHOW LATEST PUBLIC CHECKINS -->
-    <div class="dynamic_latest_public_checkins">
-        <%= render :partial => 'goals/dynamic_latest_public_checkins' %>
-    </div>
-    <div id="spinner_dynamic_latest_public_checkins" style="display:none;">
-        <center><img src="/images/spinner.gif"/></center>
-    </div>
-<% end %>
 
 
 
-<div class="row-fluid">
-  <div class="span12"> 
 
-
-
-    <!-- ####################################### -->
-    <!-- START GOOGLE ADS BOTTOM -->
-    <% if show_ads == 1 %>
-      <% if @production and !secure_page? %>
-          <br>
-
-          <% if mobile_device? %>
-            <!-- MOBILE SIZE -->
-            <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-            <!-- mobile banner v3 -->
-            <ins class="adsbygoogle"
-                 style="display:inline-block;width:320px;height:100px"
-                 data-ad-client="ca-pub-8620829126449222"
-                 data-ad-slot="6108801037"></ins>
-            <script>
-            (adsbygoogle = window.adsbygoogle || []).push({});
-            </script>
-
-          <% else %>
-            <!-- DESKTOP SIZE -->
-            <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-            <!-- desktop leaderboard v3 -->
-            <ins class="adsbygoogle"
-                 style="display:inline-block;width:728px;height:90px"
-                 data-ad-client="ca-pub-8620829126449222"
-                 data-ad-slot="4632067835"></ins>
-            <script>
-            (adsbygoogle = window.adsbygoogle || []).push({});
-            </script>
-          <% end %>
-
-          <br>
-
-      <% else %>
-          <br>
-          <div class="well" style="height:35px;">
-            When running in production mode you will see
-            <br>Some ad from google here ... about 35px w/ this div class.
-          </div>
-      <% end %>
-
-     <a href="/goals?premium_more_info_hide_ads=1">Hide the ads...</a>
-
-    <% end %>            
-    <!-- END GOOGLE ADS BOTTOM -->
-    <!-- ####################################### -->
-
-  </div>
-</div>
 
 
 
