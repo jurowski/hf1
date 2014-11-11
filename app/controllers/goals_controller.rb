@@ -978,28 +978,28 @@ class GoalsController < ApplicationController
               end
 
 
-              begin
-                 #####################################################
-                 #####################################################
-                  #### UPDATE THE CONTACT FOR THEM IN INFUSIONSOFT ######
-                  ### SANDBOX GROUP/TAG IDS
-                  #112: hf new signup funnel v2 free no goal yet
-                  #120: hf new signup funnel v2 free created goal
-                  #
-                  ### PRODUCTION GROUP/TAG IDS
-                  #400: hf new signup funnel v2 free no goal yet
-                  #398: hf new signup funnel v2 free created goal
-                  if Rails.env.production?
-                    Infusionsoft.contact_update(session[:infusionsoft_contact_id].to_i, {:FirstName => current_user.first_name, :LastName => current_user.last_name})
-                    Infusionsoft.contact_add_to_group(session[:infusionsoft_contact_id].to_i, 398)
-                    Infusionsoft.contact_remove_from_group(session[:infusionsoft_contact_id].to_i, 400)
-                  end
-                  ####          END INFUSIONSOFT CONTACT           ####
-                  #####################################################
-                  #####################################################
-              rescue
-                logger.error("sgj:error updating contact in infusionsoft")
-              end
+              # begin
+              #    #####################################################
+              #    #####################################################
+              #     #### UPDATE THE CONTACT FOR THEM IN INFUSIONSOFT ######
+              #     ### SANDBOX GROUP/TAG IDS
+              #     #112: hf new signup funnel v2 free no goal yet
+              #     #120: hf new signup funnel v2 free created goal
+              #     #
+              #     ### PRODUCTION GROUP/TAG IDS
+              #     #400: hf new signup funnel v2 free no goal yet
+              #     #398: hf new signup funnel v2 free created goal
+              #     if Rails.env.production?
+              #       Infusionsoft.contact_update(session[:infusionsoft_contact_id].to_i, {:FirstName => current_user.first_name, :LastName => current_user.last_name})
+              #       Infusionsoft.contact_add_to_group(session[:infusionsoft_contact_id].to_i, 398)
+              #       Infusionsoft.contact_remove_from_group(session[:infusionsoft_contact_id].to_i, 400)
+              #     end
+              #     ####          END INFUSIONSOFT CONTACT           ####
+              #     #####################################################
+              #     #####################################################
+              # rescue
+              #   logger.error("sgj:error updating contact in infusionsoft")
+              # end
             end    ### END IF SFM_VIRGIN
             ###### END IF SFM_VIRGIN
             ###############################################

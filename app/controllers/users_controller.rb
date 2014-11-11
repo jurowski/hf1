@@ -528,109 +528,109 @@ class UsersController < ApplicationController
         session[:sfm_virgin_need_to_email_temp_password] = true
         @account_created = true
 
-        if Rails.env.production?
-        #if @production
-          begin 
-            #####################################################
-            #####################################################
-            #### CREATE A CONTACT FOR THEM IN INFUSIONSOFT ######
-            ### SANDBOX GROUP/TAG IDS
-            #112: hf new signup funnel v2 free no goal yet
-            #120: hf new signup funnel v2 free created goal
-            #
-            ### PRODUCTION GROUP/TAG IDS
-            #400: hf new signup funnel v2 free no goal yet
-            #398: hf new signup funnel v2 free created goal
+        # if Rails.env.production?
+        # #if @production
+        #   begin 
+        #     #####################################################
+        #     #####################################################
+        #     #### CREATE A CONTACT FOR THEM IN INFUSIONSOFT ######
+        #     ### SANDBOX GROUP/TAG IDS
+        #     #112: hf new signup funnel v2 free no goal yet
+        #     #120: hf new signup funnel v2 free created goal
+        #     #
+        #     ### PRODUCTION GROUP/TAG IDS
+        #     #400: hf new signup funnel v2 free no goal yet
+        #     #398: hf new signup funnel v2 free created goal
 
-            # USERVOICE TICKET#529:
-            #103: add to ETR "Newsletter Subscriber"
+        #     # USERVOICE TICKET#529:
+        #     #103: add to ETR "Newsletter Subscriber"
 
 
-            if Rails.env.production?
-              session[:infusionsoft_contact_id] = 0
-              new_contact_id = Infusionsoft.contact_add({:FirstName => user.first_name, :LastName => user.last_name, :Email => user.email})
-              Infusionsoft.email_optin(user.email, 'HabitForge signup')
-              Infusionsoft.contact_add_to_group(new_contact_id, 400)
+        #     if Rails.env.production?
+        #       session[:infusionsoft_contact_id] = 0
+        #       new_contact_id = Infusionsoft.contact_add({:FirstName => user.first_name, :LastName => user.last_name, :Email => user.email})
+        #       Infusionsoft.email_optin(user.email, 'HabitForge signup')
+        #       Infusionsoft.contact_add_to_group(new_contact_id, 400)
 
-              if params[:subscribe_etr]
-                Infusionsoft.contact_add_to_group(new_contact_id, 103)
-                logger.error("sgj:users_controller:YES user chose to be an etr newsletter subscriber")      
-              else
-                logger.error("sgj:users_controller:NO user chose not to be an etr newsletter subscriber")      
-              end
+        #       if params[:subscribe_etr]
+        #         Infusionsoft.contact_add_to_group(new_contact_id, 103)
+        #         logger.error("sgj:users_controller:YES user chose to be an etr newsletter subscriber")      
+        #       else
+        #         logger.error("sgj:users_controller:NO user chose not to be an etr newsletter subscriber")      
+        #       end
 
-              session[:infusionsoft_contact_id] = new_contact_id
-            end
-            ####          END INFUSIONSOFT CONTACT           ####
-            #####################################################
-            #####################################################
-          rescue
-            logger.error("sgj:users_controller:error creating infusionsoft contact")
-          end
-        end ## if production
+        #       session[:infusionsoft_contact_id] = new_contact_id
+        #     end
+        #     ####          END INFUSIONSOFT CONTACT           ####
+        #     #####################################################
+        #     #####################################################
+        #   rescue
+        #     logger.error("sgj:users_controller:error creating infusionsoft contact")
+        #   end
+        # end ## if production
 
         ############## ADD THEM TO FOLLOWUP SEQUENCE
         ############## http://help.infusionsoft.com/api-docs/funnelservice
 
         logger.info("sgj:users_controller:quicksignup_v2:6")
 
-        ### IF THEY ARE NOT A NEWLY PAID USER
-        if !params[:ga_goal]
-          begin
+        # ### IF THEY ARE NOT A NEWLY PAID USER
+        # if !params[:ga_goal]
+        #   begin
 
-            logger.info("sgj:users_controller:will try adding to infusionsoft followup funnel sequence the infusionsoft_contact_id: " + session[:infusionsoft_contact_id].to_s + " for current_user.id of " + current_user.id.to_s)
+        #     logger.info("sgj:users_controller:will try adding to infusionsoft followup funnel sequence the infusionsoft_contact_id: " + session[:infusionsoft_contact_id].to_s + " for current_user.id of " + current_user.id.to_s)
 
-            if Rails.env.production?
+        #     if Rails.env.production?
 
-              ### TRY #1
-              ############## http://stackoverflow.com/questions/629632/ruby-posting-xml-to-restful-web-service-using-nethttppost        
-              #url = URI.parse('http://sdc90018.infusionsoft.com:80')
-              #request = Net::HTTP::Post.new(url.path)
-              # request = Net::HTTP::Post.new("https://sdc90018.infusionsoft.com/api/xmlrpc")
-              # request.use_ssl = true
-              # request.content_type = 'text/xml'
-              # request.body = "<?xml version='1.0' encoding='UTF-8'?>\
-              # <methodCall>\
-              # <methodName>FunnelService.achieveGoal</methodName>\
-              # <params>\
-              # <param><value><string>d541e86effd15eb57f1f9f6344fc8eee</string></value></param>\
-              # <param><value><string>sdc90018</string></value></param>\
-              # <param><value><string>HabitForgeFollowUp</string></value></param>\
-              # <param><value><int>#{session[:infusionsoft_contact_id]}</int></value></param>\
-              # </params>\
-              # </methodCall>"
-              # #response = Net::HTTP.start(url.host, url.port) {|http| http.request(request)}
-              # response = Net::HTTP.start("sdc90018.infusionsoft.com", 80) {|http| http.request(request)}
-              # assert_equal '201 Created', response.get_fields('Status')[0]
+        #       ### TRY #1
+        #       ############## http://stackoverflow.com/questions/629632/ruby-posting-xml-to-restful-web-service-using-nethttppost        
+        #       #url = URI.parse('http://sdc90018.infusionsoft.com:80')
+        #       #request = Net::HTTP::Post.new(url.path)
+        #       # request = Net::HTTP::Post.new("https://sdc90018.infusionsoft.com/api/xmlrpc")
+        #       # request.use_ssl = true
+        #       # request.content_type = 'text/xml'
+        #       # request.body = "<?xml version='1.0' encoding='UTF-8'?>\
+        #       # <methodCall>\
+        #       # <methodName>FunnelService.achieveGoal</methodName>\
+        #       # <params>\
+        #       # <param><value><string>d541e86effd15eb57f1f9f6344fc8eee</string></value></param>\
+        #       # <param><value><string>sdc90018</string></value></param>\
+        #       # <param><value><string>HabitForgeFollowUp</string></value></param>\
+        #       # <param><value><int>#{session[:infusionsoft_contact_id]}</int></value></param>\
+        #       # </params>\
+        #       # </methodCall>"
+        #       # #response = Net::HTTP.start(url.host, url.port) {|http| http.request(request)}
+        #       # response = Net::HTTP.start("sdc90018.infusionsoft.com", 80) {|http| http.request(request)}
+        #       # assert_equal '201 Created', response.get_fields('Status')[0]
 
-              ### TRY #2
-              ### http://www.ruby-forum.com/topic/121529
-              #require 'net/https'
-              #require 'uri'
-              url = "https://sdc90018.infusionsoft.com/api/xmlrpc"
-              uri = URI.parse(url)
-              http = Net::HTTP.new(uri.host, uri.port)
-              http.use_ssl = true if (uri.scheme == 'https')
-              data = "<?xml version='1.0' encoding='UTF-8'?>\
-              <methodCall>\
-              <methodName>FunnelService.achieveGoal</methodName>\
-              <params>\
-              <param><value><string>d541e86effd15eb57f1f9f6344fc8eee</string></value></param>\
-              <param><value><string>sdc90018</string></value></param>\
-              <param><value><string>HabitForgeFollowUp</string></value></param>\
-              <param><value><int>#{session[:infusionsoft_contact_id]}</int></value></param>\
-              </params>\
-              </methodCall>"
-              headers = {'Content-Type' => 'text/xml'}
-              # warning, uri.path will drop queries, use uri.path + uri.query if you need to
-              resp, body = http.post(uri.path, data, headers)
+        #       ### TRY #2
+        #       ### http://www.ruby-forum.com/topic/121529
+        #       #require 'net/https'
+        #       #require 'uri'
+        #       url = "https://sdc90018.infusionsoft.com/api/xmlrpc"
+        #       uri = URI.parse(url)
+        #       http = Net::HTTP.new(uri.host, uri.port)
+        #       http.use_ssl = true if (uri.scheme == 'https')
+        #       data = "<?xml version='1.0' encoding='UTF-8'?>\
+        #       <methodCall>\
+        #       <methodName>FunnelService.achieveGoal</methodName>\
+        #       <params>\
+        #       <param><value><string>d541e86effd15eb57f1f9f6344fc8eee</string></value></param>\
+        #       <param><value><string>sdc90018</string></value></param>\
+        #       <param><value><string>HabitForgeFollowUp</string></value></param>\
+        #       <param><value><int>#{session[:infusionsoft_contact_id]}</int></value></param>\
+        #       </params>\
+        #       </methodCall>"
+        #       headers = {'Content-Type' => 'text/xml'}
+        #       # warning, uri.path will drop queries, use uri.path + uri.query if you need to
+        #       resp, body = http.post(uri.path, data, headers)
 
-              logger.info("sgj:users_controller:xml response from adding new person to infusionsoft sequence: " + resp.to_s + body.to_s)
-            end
-          rescue
-            logger.error("sgj:users_controller:error adding to infusionsoft followup funnel sequence")
-          end
-        end ### end whether they are a newly paid user
+        #       logger.info("sgj:users_controller:xml response from adding new person to infusionsoft sequence: " + resp.to_s + body.to_s)
+        #     end
+        #   rescue
+        #     logger.error("sgj:users_controller:error adding to infusionsoft followup funnel sequence")
+        #   end
+        # end ### end whether they are a newly paid user
 
 
         ### grab these vars from the URL so they are available on goal creation
@@ -984,35 +984,35 @@ class UsersController < ApplicationController
       email_now = @user.email
 
 
-      #####################################################
-      #####################################################
-      ##### update their email address in InfusionSoft
-      if Rails.env.production?
-        begin 
-          logger.info("sgj:users_controller:will attempt to update their email address in infusionsoft")
-          ### https://github.com/nateleavitt/infusionsoft/pull/9
-          ### Usage:
-          ###    selected_fields = ['Id', 'FirstName', 'LastName']
-          ###    contact = Infusionsoft.contact_find_by_email('user@example.com', selected_fields)
-          selected_fields = ['Id']
-          contact = Infusionsoft.contact_find_by_email(email_original, selected_fields)
-          if contact
-            Infusionsoft.contact_update(contact[0], { :Email => email_now})
-            logger.info("sgj:users_controller:success updating user email in infusionsoft from " + email_original + " to " + email_now )
-          else
-            logger.error("sgj:users_controller:could not find infusionsoft user " + email_original )
-          end
+      # #####################################################
+      # #####################################################
+      # ##### update their email address in InfusionSoft
+      # if Rails.env.production?
+      #   begin 
+      #     logger.info("sgj:users_controller:will attempt to update their email address in infusionsoft")
+      #     ### https://github.com/nateleavitt/infusionsoft/pull/9
+      #     ### Usage:
+      #     ###    selected_fields = ['Id', 'FirstName', 'LastName']
+      #     ###    contact = Infusionsoft.contact_find_by_email('user@example.com', selected_fields)
+      #     selected_fields = ['Id']
+      #     contact = Infusionsoft.contact_find_by_email(email_original, selected_fields)
+      #     if contact
+      #       Infusionsoft.contact_update(contact[0], { :Email => email_now})
+      #       logger.info("sgj:users_controller:success updating user email in infusionsoft from " + email_original + " to " + email_now )
+      #     else
+      #       logger.error("sgj:users_controller:could not find infusionsoft user " + email_original )
+      #     end
 
 
-        rescue
-          logger.error("sgj:users_controller:error opting-out infusionsoft contact")
-        end
-      else
-          logger.info("sgj:users_controller:in production we would have attempted to opt-out infusionsoft contact")          
-      end
-      ####          END udpate their email address in INFUSIONSOFT  ####
-      #####################################################
-      #####################################################
+      #   rescue
+      #     logger.error("sgj:users_controller:error opting-out infusionsoft contact")
+      #   end
+      # else
+      #     logger.info("sgj:users_controller:in production we would have attempted to opt-out infusionsoft contact")          
+      # end
+      # ####          END udpate their email address in INFUSIONSOFT  ####
+      # #####################################################
+      # #####################################################
 
 
 
@@ -1108,37 +1108,37 @@ class UsersController < ApplicationController
 
 
 
-        #####################################################
-        #####################################################
-        #### Add them to an OPT OUT group IN INFUSIONSOFT ######
-        if Rails.env.production?
-          begin 
-            #
-            ### PRODUCTION GROUP/TAG IDS
-            #291: OPT-OUT
+        # #####################################################
+        # #####################################################
+        # #### Add them to an OPT OUT group IN INFUSIONSOFT ######
+        # if Rails.env.production?
+        #   begin 
+        #     #
+        #     ### PRODUCTION GROUP/TAG IDS
+        #     #291: OPT-OUT
 
-            logger.info("sgj:users_controller:will attempt to opt-out infusionsoft contact")
-            ### https://github.com/nateleavitt/infusionsoft/pull/9
-            ### Usage:
-            ###    selected_fields = ['Id', 'FirstName', 'LastName']
-            ###    contact = Infusionsoft.contact_find_by_email('user@example.com', selected_fields)
-            selected_fields = ['Id']
-            contact = Infusionsoft.contact_find_by_email(@user.email, selected_fields)
-            if contact
-              Infusionsoft.contact_add_to_group(contact[0], 291)
-              logger.info("sgj:users_controller:success removing " + @user.email + " from infusionsoft (added them to OPT-OUT group 291")
-            else
-              logger.error("sgj:users_controller:could not find infusionsoft user " + @user.email + " to OPT-OUT")
-            end
-          rescue
-            logger.error("sgj:users_controller:error opting-out infusionsoft contact")
-          end
-        else
-            logger.info("sgj:users_controller:in production we would have attempted to opt-out infusionsoft contact")          
-        end
-        ####          END INFUSIONSOFT OPT-OUT CONTACT   ####
-        #####################################################
-        #####################################################
+        #     logger.info("sgj:users_controller:will attempt to opt-out infusionsoft contact")
+        #     ### https://github.com/nateleavitt/infusionsoft/pull/9
+        #     ### Usage:
+        #     ###    selected_fields = ['Id', 'FirstName', 'LastName']
+        #     ###    contact = Infusionsoft.contact_find_by_email('user@example.com', selected_fields)
+        #     selected_fields = ['Id']
+        #     contact = Infusionsoft.contact_find_by_email(@user.email, selected_fields)
+        #     if contact
+        #       Infusionsoft.contact_add_to_group(contact[0], 291)
+        #       logger.info("sgj:users_controller:success removing " + @user.email + " from infusionsoft (added them to OPT-OUT group 291")
+        #     else
+        #       logger.error("sgj:users_controller:could not find infusionsoft user " + @user.email + " to OPT-OUT")
+        #     end
+        #   rescue
+        #     logger.error("sgj:users_controller:error opting-out infusionsoft contact")
+        #   end
+        # else
+        #     logger.info("sgj:users_controller:in production we would have attempted to opt-out infusionsoft contact")          
+        # end
+        # ####          END INFUSIONSOFT OPT-OUT CONTACT   ####
+        # #####################################################
+        # #####################################################
 
 
 
