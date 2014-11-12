@@ -160,6 +160,8 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :hooks
   map.connect 'hooks/order/create', :controller => 'hooks', :action => 'create'
 
+  map.connect 'hooks/upgrade_from_paywhirl', :controller => 'hooks', :action => 'upgrade_from_paywhirl'
+
   map.connect 'hooks/rowley_52m/new_rowley_user', :controller => 'hooks', :action => 'new_rowley_user'
 
   map.connect 'cheers/:id/shared', :controller => 'cheers', :action => 'shared'

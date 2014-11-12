@@ -968,6 +968,14 @@ class HooksController < ApplicationController
     render :nothing => true
   end
 
+
+  def upgrade_from_paywhirl
+    logger.info 'SGJ-paywhirl start'
+    logger.info 'SGJ-paywhirl end'
+    render :nothing => true
+  end
+
+
   def create
     #Default to return 403 Forbidden
     status = 403

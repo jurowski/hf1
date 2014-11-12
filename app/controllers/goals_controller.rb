@@ -439,11 +439,12 @@ class GoalsController < ApplicationController
     end
 
     if restrict == true
-        if params[:goal_template_text]
-          redirect_to("/goals?too_many_active_habits=1&goal_template_text=#{params[:goal_template_text]}")
-        else
-          redirect_to("/goals?too_many_active_habits=1")
-        end
+        redirect_to("/upgrade.html")
+        # if params[:goal_template_text]
+        #   redirect_to("/goals?too_many_active_habits=1&goal_template_text=#{params[:goal_template_text]}")
+        # else
+        #   redirect_to("/goals?too_many_active_habits=1")
+        # end
     else
 
 
