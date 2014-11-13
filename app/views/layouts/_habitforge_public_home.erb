@@ -212,6 +212,17 @@ end
       </center>
     <!-- Press Logos End -->
 
+<% if 1 == 1 %>
+    <!-- SHOW LATEST PUBLIC CHECKINS -->
+
+    <div class="dynamic_latest_public_checkins" style="align:left;">
+        <%= render :partial => 'goals/dynamic_latest_public_checkins_no_user' %>
+    </div>
+    <div id="spinner_dynamic_latest_public_checkins" style="display:none;">
+        <center><img src="/images/spinner.gif"/></center>
+    </div>
+<% end %>
+
 
 
       <img src="/home/images/hr_fancy.png" />
