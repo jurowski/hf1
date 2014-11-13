@@ -451,19 +451,10 @@ end
 
           <% else %>
 
-            <table>
-                <tr>
-                    <td>
                       <input type="text" name="email" value="<%= email_value %>" placeholder="Enter your email for a free account..." style="width:280px;"/>
-                    </td>
-                    <td>
 
-                      <a style="margin-left:20px;" href="#" rel="signup_email" onmouseover="this.getElementById('image_button_signup_email').src='/home/images/Button-SignUp-Hover.png'" onmouseout="this.getElementById('image_button_signup_email').src='/home/images/Button-SignUp.png'" onclick="toggle_show('spinner_page_load');formSubmit('form_signup1')">
+                      <a style="margin-left:20px;" href="#" class="button" onclick="toggle_show('spinner_page_load');formSubmit('form_signup1')">Sign Up Free
                       </a>
-
-                    </td>
-                  </tr>
-                </table>
           <% end %>
 
             </center>
