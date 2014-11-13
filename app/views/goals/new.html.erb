@@ -92,14 +92,16 @@ end
   </span>
   </div>
   <span style="font-size:1.2em;">
-  Let's get started!
+    About your new habit...
   </span>
 
 
   <% else %>
 
     <% if !params[:just_confirm] %>
-      <h3>Let's jump right in!</h3>
+      <h3>
+        About your new habit...
+      </h3>
     <% end %>
 
   <% end %>
@@ -160,7 +162,7 @@ end
     <% if @goal.template_owner_is_a_template %>
       <input type="submit" value="Save" class="btn_red_gradient_forge" >
     <% else %>
-      <% submit_value = "Forge My Habit" %>
+      <% submit_value = "I'm Ready. Let's Go!" %>
 
       <% if params[:goal_added_through_template_from_program_id] %>
         <%
