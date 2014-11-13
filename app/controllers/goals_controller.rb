@@ -1354,11 +1354,11 @@ class GoalsController < ApplicationController
 
               ##### SUCCESSFULLY SAVED A NEW GOAL ... REDIRECT TO ???
 
-              if session[:sfm_virgin]
-                format.html { redirect_to("/goals/#{@goal.id}/edit?just_created_new_habit=1&just_created_first_habit=1")}
-              else 
-                format.html { redirect_to("/goals/#{@goal.id}/edit?just_created_new_habit=1")}
-              end
+              # if session[:sfm_virgin]
+              #   format.html { redirect_to("/goals/#{@goal.id}/edit?just_created_new_habit=1&just_created_first_habit=1")}
+              # else 
+              #   format.html { redirect_to("/goals/#{@goal.id}/edit?just_created_new_habit=1")}
+              # end
 
 
               # if !current_user.is_habitforge_supporting_member
@@ -1366,6 +1366,12 @@ class GoalsController < ApplicationController
               # else
               #   format.html { render :action => "index" } # index.html.erb
               # end
+          
+              if !current_user.is_habitforge_supporting_member
+                format.html { redirect_to("/upgrade.html")}
+              else
+                format.html { redirect_to("/goals/#{@goal.id}/edit?just_created_new_habit=1")}
+              end
 
 
 
