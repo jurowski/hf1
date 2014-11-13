@@ -891,7 +891,7 @@ followers_image = "<i class='icon-user'></i>"
 
 followers_name = "#{followers_image} Followers (#{@goal.number_invites_sent_to_followers})"
 if @goal.number_invites_sent_to_followers == 0
-    followers_name = "#{followers_image} Watchers"
+    followers_name = "#{followers_image} Followers"
 end
 
 
@@ -906,7 +906,7 @@ if @goal.number_my_active_bets > 0
     bets_image = "<i class='icon-coins'></i>  $#{bet.wager} to #{bet.recipient_name}?"
   end
 else
-  bets_image = "<i class='icon-money'></i>  Extra Accountability?"
+  bets_image = "<i class='icon-money'></i>  Friendly Wager"
 end
 
 
@@ -918,10 +918,10 @@ if @goal.is_part_of_a_team and @goal.team and !@goal.team.custom
     if my_teammates == ""
         team_name = "#{team_image} (waiting)"        
     else
-        team_name = "#{team_image} Team: (#{@goal.get_teammate_names_sans_me})"
+        team_name = "#{team_image} Habit Squad: (#{@goal.get_teammate_names_sans_me})"
     end
 else
-    team_name = "#{team_image} Team"
+    team_name = "#{team_image} Habit Squad"
 end
 
 ### DEFAULT TAB STATUS
