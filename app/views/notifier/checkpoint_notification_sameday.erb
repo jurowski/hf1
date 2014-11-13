@@ -290,14 +290,36 @@ end
                         <br>
                         <br>
                         <br>
+
+
+
+
+                              <table border=0 cellpadding=5 cellspacing=5>
+                                <tr><td valign=top align=center width=1%>
+                                <br>
+                                <br>
+                                <center>
+                                <img src="/home/images/coaches/woman1/coach_woman1_talking_small.jpg" alt="Lisa" />
+                                <br>
+                                Lisa
+                                </center>
+
+                                </td>
+                                <td valign=top align=left width=99%>
+                                    <div style="padding:.8em;margin-bottom:1em;border:2px solid #ddd;background:#FFFFCC;color:#514721;border-color:#BBBBBB;">
+                                    <p>
+                                    Hi <%= @checkpoint.goal.user.first_name %>!
+                                    <p/>
+                                    <p />
+                                    Were you successful today at <%= @checkpoint.goal.response_question %> ?
+                                <br>
+                                    (this is for <%= @checkpoint.checkin_date.strftime("%a, %b %d, %Y") %>)
+                                    <p>
+
+                                    </div>
+                                </td></tr>
+                              </table>
                         
-                        Hi <%= @checkpoint.goal.user.first_name %>!
-                        <p/>
-                        <p />
-                        Were you successful today at <%= @checkpoint.goal.response_question %> ?
-			<br>
-                        (this is for <%= @checkpoint.checkin_date.strftime("%a, %b %d, %Y") %>)
-                        <p>
                         </td>
                         </tr>
                         <tr>
@@ -385,7 +407,7 @@ end
                          <p>
                          Best of luck with your goal!
                          <br>
-                         <b>-HabitForge</b>
+                         <b>Lisa @ HabitForge</b>
                          <br>
                          <a href="http://<%= @sitename %>">http://<%= @sitename %></a>
                        </td>
