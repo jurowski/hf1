@@ -1,4 +1,8 @@
 <% 
+if params[:mobile_device]
+  mobile_device = true
+end
+
 @production = true
 if `uname -n`.strip == 'adv.adventurino.com'
   #### HABITFORGE SETTINGS ON VPS
@@ -51,9 +55,9 @@ end
 <link rel="stylesheet" type="text/css" href="/home/css/layout.css" />
 
 
-<link rel="stylesheet" type="text/css" href="/home/css/jqueryslidemenu.css" />
+<!-- <link rel="stylesheet" type="text/css" href="/home/css/jqueryslidemenu.css" />
 <link rel="stylesheet" type="text/css" href="/home/css/quicksand.css"/>
-<link rel="stylesheet" type="text/css" href="/home/css/elements.css"/>
+ --><link rel="stylesheet" type="text/css" href="/home/css/elements.css"/>
 <link rel="stylesheet" type="text/css" href="/home/css/widget.css"/>
 <link rel="stylesheet" type="text/css" href="/home/css/hoverdir.css"/>
 <link rel="stylesheet" type="text/css" href="/home/css/blog.css"/>
@@ -61,24 +65,28 @@ end
 <link rel="stylesheet" type="text/css" href="/home/css/responsive.css" />
 <link rel="stylesheet" type="text/css" href="/home/css/habitforge_custom.css" />
 
+<!--
 <link href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,500,600,700' rel='stylesheet' type='text/css'>
+-->
 
-<!-- fonts for the new iphone-hand home page design -->
+<!-- fonts for the new iphone-hand home page design
 <link href='http://fonts.googleapis.com/css?family=Gochi+Hand' rel='stylesheet' type='text/css'>
 <link href='http://fonts.googleapis.com/css?family=Patrick+Hand' rel='stylesheet' type='text/css'>
 <link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
+
+-->
 
 <!-- BORROWING FROM APP METRO FOR THE BUTTONS -->
 <link href="/assets/css/metro.css" rel="stylesheet" />
 
 
-<link href="/assets/css/hf_custom.css" rel="stylesheet" />
+<!--link href="/assets/css/hf_custom.css" rel="stylesheet" -->
 
 <link rel="stylesheet" href="/stylesheets/tipsy.css" type="text/css" /><!-- ToolTips (tipsy) -->
 
 
 <!-- bxSlider CSS file -->
-<link href="/home/css/jquery.bxslider.css" rel="stylesheet" />
+<!--link href="/home/css/jquery.bxslider.css" rel="stylesheet" /-->
 
 
 
@@ -174,72 +182,47 @@ end
   <% else %>
     <!-- Header Start -->
 
-    <!-- THIS PUTS AN ORANGE LINE AT THE TOP OF THE SCREEN -->
+    <!-- THIS PUTS AN ORANGE LINE AT THE TOP OF THE SCREEN >
     <section id="header_wrap">
     </section>
+    -->
 
-
-    <% if !mobile_device? %>
     <div style="min-width:360px;padding-right:40px;">
-    <% else %>
-    <div style="min-width:360px;">
-    <% end %>
       <!-- Logo Start -->
-      <div style="position:relative;float:left;width:40%;min-width:80px;max-width:300px;">
-        <a href="/"><img src="/home/images/logos/HF-ETR-Logo-Header.png" alt="HabitForge logo" /></a>
-      </div>
-      <!-- LOGO END -->
-
-
-      <% if !mobile_device? %>
-      <div style="width:100%;position:relative;float:right;margin-top:-102px;">
-      <% else %>
-      <div style="width:100%;position:relative;float:right;margin-top:-42px;">
-      <% end %>
-
-        <div style="width:50px;position:relative;min-width:50px;">
-          &nbsp
+      <center>
+        <div style="width:20%;">
+        <a href="/"><img src="/home/images/logos/hf_logo_shield_rocket_transparency.png" alt="HabitForge logo" /></a>
         </div>
-        <div style="width:350px;min-width:400px;position:relative;float:right;margin-top:0px;">
-<!--         <div id="navcontainer" style="position:relative;float:right;margin-top:-10%;width:400px;min-width:400px;margin-right:-20px;background-color:#dddddd;"> -->
-          <ul id="navlist">
-
-            <!-- DEFAULT SETTING -->
-            <% menu_link_class_about = "btn_orange_inactive" %>
-            <% menu_link_class_login = "btn_orange_inactive" %>
-            <% menu_link_class_signup = "btn_orange_active" %>
-
-            <% if (request.url.include? '/user_session/new' or request.url.include? '/account')  %>
-              <% menu_link_class_about = "btn_orange_inactive" %>
-              <% menu_link_class_login = "btn_orange_active" %>
-              <% menu_link_class_signup = "btn_orange_inactive" %>
-            <% end %>
-
-            <% if (request.url.include? '/about')  %>
-              <% menu_link_class_about = "btn_orange_active" %>
-              <% menu_link_class_login = "btn_orange_inactive" %>
-              <% menu_link_class_signup = "btn_orange_inactive" %>
-            <% end %>
+        <h1>Imagine an Improved You.</h1>
+        <h3>One month from today with a new, healthy, rock-solid habit.</h3>
+        <br>
+        <a href="#jump_to_sign_up" class="button" style="" >Try HabitForge for Free</a>
+        <br>
+        <br>
 
 
 
-            <li class="<%= menu_link_class_login %>" ><a href="/user_session/new?skip_intro=1" class="btn_orange">LOGIN</a></li>
-            <li class="<%= menu_link_class_about %>" ><a href="#about" class="show_hide btn_orange">ABOUT</a></li>
-            <li class="<%= menu_link_class_signup %>" ><a href="#signup" class="show_hide btn_orange">SIGN UP</a></li>
+      <img src="/home/images/faces_for_homepage.jpg" />
+ 
+     <!-- Press Logos Start -->
+      <center>
+        <img src="/home/images/logos/press_logos_v1_transparent.png" width="700" alt="press logos" />
+      </center>
+    <!-- Press Logos End -->
 
 
-            <!--
-            <li><a href="#browse_recommended_habits">Browse Habits</a></li>
-            <li>
-              <a href="#all_testimonials_anchor" onclick="toggle_show('all_testimonials')">
-              Testimonials
-              </a>
-            </li>
-            -->
 
+      <img src="/home/images/hr_fancy.png" />
+
+        <ul style="text-align:center;display:inline-table;">
+            <li style="display:inline;"><a href="/?more_testimonials=1#more_testimonials" style="color:#CC3300;">Testimonials</a> | </li>
+            <li style="display:inline;"><a href="/user_session/new?skip_intro=1" class="button-red" style="color:#CC3300;">Log In</a> | </li>
+            <li style="display:inline;"><a href="#jump_to_sign_up" style="color:#CC3300;">Sign Up</a></li>
           </ul>
-        </div>
-      </div>
+        <img src="/home/images/hr_fancy.png" />
+
+      </center>
+      <!-- LOGO END -->
 
 
 
@@ -247,55 +230,46 @@ end
 
 
 
+
+
     <div class="clear"></div>
 
 
-    <% if mobile_device? %>
-       <%= render :partial => "layouts/header_mobile.erb", :locals => { :retry_email_address => retry_email_address }  %>
-    <% else %>
-       <%= render :partial => "layouts/header_desktop.erb", :locals => { :retry_email_address => retry_email_address } %>    
-    <% end %>
 
-
-
-
-
-
-
-
-
-
-
+<br>
+<br>
 
 
 
     <center>
-    <img src="/home/images/hr_fancy.png" />
-
+      <img src="/home/images/blockquote_img.png" />
+    What is HabitForge? It's so much more than 'a tool'. 
     <br>
-    <div class="h1_font_oswald" style="padding-top:15px;padding-bottom:10px;">HOW IT WORKS</div>
+    It inspires, encourages, and checks in on you.
     <br>
-    <div style="padding-left:20px;padding-right:20px;max-width:600px;min-width:200px;font-family:LatoBold;color:#000000;font-size:1.4em;line-height:1.5em;">
-    Research shows that it takes at least <span style="font-family:Patrick Hand;color:#ff3300;font-size:1.3em;">21 Days</span> to form a new habit. 
-    HabitForge helps you stay on track so that you can form life-changing habits.
-    We keep track of your goals and send you reminders so you can get better every single day.
-    </div>
+    It builds teams and pushes us all to succeed.
     <br>
+    <br>
+    Because it's not what you do once in a while.
+    <br>
+    It's what you do every day that matters.
+    <br>
+    <br>
+    We're here to help you form
+    <br>
+    life-changing habits."
     </center>
 
+<br>
+<br>
+<br>
 
     <div style="">
-      <div style="float:left;width:50%;min-width:410px;">
-
-        <div style="padding-left:20px;padding-right:20px;">
-        <div style="float:right;margin-right:-70px;">
-            <img src="/home/images/circle_monitor.png" alt="img"  style="position:absolute;padding-left:20px;margin-left:-100px;margin-top:-5px;"/> 
-
-            <span style="font-family:LatoBold;font-size:1.6em;color:#000000;margin-left:10px;">1. Decide</span>
+      <center>
+            <span style="font-family:LatoBold;font-size:1.6em;color:#000000;margin-left:10px;">Tell us what habit you want to make or break</span>
             <div style="font-family:Lato;color:#000000;padding-top:10px;padding-bottom:5px;margin-left:10px;max-width:300px;min-width:300px;">
-            What could you do daily to improve your life?
-            We all have room to improve. Pick one thing and get started!
-            Life is short, so commit to taking action now!
+            What could you do daily to improve your life? 
+            <br>In under 60 seconds you can be set up with your first habit.
             </div>
             <div style="padding-bottom:5px;margin-left:0px;max-width:350px;min-width:350px;">
             <img src="/home/images/hr_steps.png" alt="img" />
@@ -304,26 +278,23 @@ end
 
 
 
-            <img src="/home/images/circle_brush.png" alt="img"  style="position:absolute;padding-left:20px;margin-left:-100px;margin-top:-5px;"/>   
-            <span style="font-family:LatoBold;font-size:1.6em;color:#000000;margin-left:10px;">2. Build Your First Habit</span>
+
+            <span style="font-family:LatoBold;font-size:1.6em;color:#000000;margin-left:10px;">We'll inspire and encourage you every day.</span>
 
   
             <div style="font-family:Lato;color:#000000;padding-top:10px;padding-bottom:5px;margin-left:10px;max-width:300px;min-width:300px;">
-            In under a minute you can be set up with your first habit.
-            We'll check in on you as often as you want,
-            and we'll keep track of how you're doing.
+            We will ping the HF community... we'll set you up with a team, or build your own. We even have friendly wagers you can make with a friend or with another HF member.
             </div>
             <div style="padding-bottom:5px;margin-left:0px;max-width:350px;min-width:350px;">
             <img src="/home/images/hr_steps.png" alt="img" />
             </div>
 
 
-            <img src="/home/images/circle_plane.png" alt="img"  style="position:absolute;padding-left:20px;margin-left:-100px;margin-top:-5px;"/>   
-            <span style="font-family:LatoBold;font-size:1.6em;color:#000000;margin-left:10px;">3. Track Your Progress</span>
+            <span style="font-family:LatoBold;font-size:1.6em;color:#000000;margin-left:10px;">We'll check in Daily to see how you did.</span>
             <div style="font-family:Lato;color:#000000;padding-top:10px;padding-bottom:5px;margin-left:10px;max-width:300px;min-width:300px;">
             We'll check in via email to ask if you were successful.
             Just click "yes" or "no" from that email and we'll keep track of how you're doing.
-            Succeed for 21 days straight, and the new action will be easier than ever to maintain.
+            Succeed for 21, 30, 60 days or more, and the new action will be easier than ever to maintain.
             </div>
 
             <div style="padding-bottom:20px;">
@@ -331,167 +302,261 @@ end
             </div>
 
 
-        </div><!-- testing extra div container to add left padding to -->
-        </div>
-      </div><!-- float:left:width:50% -->
-
-      <div style="float:left;width:50%;min-width:200px;">
-        <div style="padding-left:60px;">
-
-<!--           <div style="width:200px;min-width:200px;max-width:200px;height:350px;"> -->
-          <div style="width:445px;">
-
-            <div style="padding:20px;">
-            <ul class="bxslider" style="padding-left:50px;" >
-            <%= render :partial => "layouts/testimonials3" %>
-            </ul>
-            </div>
-
-
-          </div>
-        </div><!-- end of float-right -->
-      </div>
+          </center>
     </div><!--end of container div-->
 
 
-<!-- </div> --> <!-- end of "but really we just want the footer to be dark... make a large div for the rest" -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      <a name="signup" id="signup"></a>
+        <form id="form_signup1" name="form_signup1" action="/quicksignup_v2">
+
+
+          <%
+
+          if params[:goal_added_through_template_from_program_id]
+            %>
+            <input type="hidden" name="goal_added_through_template_from_program_id" value="<%= params[:goal_added_through_template_from_program_id] %>">
+            <%
+          end
+
+          if params[:invitation_id]
+            %>
+            <input type="hidden" name="invitation_id" value="<%= params[:invitation_id] %>">
+            <%
+          end
+          if params[:category]
+            %>
+            <input type="hidden" name="category" value="<%= params[:category] %>">
+            <%
+          end
+          if params[:template_user_parent_goal_id]
+            %>
+            <input type="hidden" name="template_user_parent_goal_id" value="<%= params[:template_user_parent_goal_id] %>">
+            <%
+          end
+          if params[:goal_template_text]
+            %>
+            <input type="hidden" name="goal_template_text" value="<%= params[:goal_template_text] %>">
+            <%
+          end
+          %>
+
+          <% if params[:signup_intent_paid] %>
+            <input type="hidden" name="signup_intent_paid" value=1>
+          <% end %>
+
+          <input type="hidden" name="subscribe_etr" value=1> 
+          <input type="hidden" name="form_submitted" value=1>
+
+
+<!--
+           ONLY USE FOR DEBUGGING, SINCE WE SHOULD NOT EXPOSE THIS
+           < if session[:google_access_token] >
+            <input type="hidden" name="session_google_access_token" value="< session[:google_access_token] >">
+          < end >
+ -->
+
+
+
+
+
+        <br>
+
+<!--                     <a id='test_tipsy_1'  title="tipsy test" >test the tipsy</a>
+                    <script type='text/javascript'>
+                        $('#test_tipsy_1').tipsy();
+                    </script>
+ -->
+
+
+
+
+
+            <center>
+
+
+<div style="padding-top:25px;padding-bottom:5px;">
+<img src="/home/images/hr_fancy.png" />
+</div>
+
+    <a name="jump_to_sign_up" ></a>
+
+
+            <span style="font-family:LatoBold;font-size:1.6em;color:#000000;margin-left:10px;">Sign Up With...</span>
+            <table><tr><td>
+
+            <div style="margin-top:-28px;padding-right:5px;">
+            <%= render :partial => "layouts/fb_signup.erb" %>
+            </div>
+
+            </td><td>
+
+
+              <div style="margin-top:0px;padding-right:0px;">
+              <%= render :partial => "layouts/google_signup.erb" %>
+              </div>
+
+            </td></tr></table>  
+                        <span style="font-family:LatoBold;font-size:1.2em;color:#000000;margin-left:10px;">Or via email:</span>
+
+        <br>
+
+
+          <% email_value = "" %>
+          <% if params[:fb_email] %>
+            <% email_value = params[:fb_email] %>
+          <% end %>
+
+          <!-- this can mess w/ login, so disabling for now -->
+<!--           < if params[:email] >
+            < session[:google_email] = nil >
+          < end >
+ -->          
+
+
+          <% if !params[:email] and session[:google_email] %>
+            <% email_value = session[:google_email] %>
+          <% end %>
+
+
+          <% if params[:signup_intent_paid] %>
+
+
+            <table>
+              <tr>
+                <td>
+                  <input type="text" name="email" value="<%= email_value %>" placeholder="Enter your email to get started..." style="width:280px;"/>
+                </td>
+                <td>
+                  <a href="#" class="button" rel="signup_email_paid" onclick="toggle_show('spinner_page_load');formSubmit('form_signup1')">
+                    Try HabitForge for Free
+                  </a>
+                </td>
+              </tr>
+            </table>
+
+          <% else %>
+
+            <table>
+                <tr>
+                    <td>
+                      <input type="text" name="email" value="<%= email_value %>" placeholder="Enter your email for a free account..." style="width:280px;"/>
+                    </td>
+                    <td>
+
+                      <a style="margin-left:20px;" href="#" rel="signup_email" onmouseover="this.getElementById('image_button_signup_email').src='/home/images/Button-SignUp-Hover.png'" onmouseout="this.getElementById('image_button_signup_email').src='/home/images/Button-SignUp.png'" onclick="toggle_show('spinner_page_load');formSubmit('form_signup1')">
+                      </a>
+
+                    </td>
+                  </tr>
+                </table>
+          <% end %>
+
+            </center>
+
+
+          <% if !current_user and (params[:fb_id] and params[:fb_email]) %>
+            <script>
+            formSubmit('form_signup1');
+            </script>
+          <% end %>
+
+          <% if !current_user and session[:google_email] %>
+            <script>
+            formSubmit('form_signup1');
+            </script>
+          <% end %>
+
+
+
+          <% if current_user %>
+            <script>
+            window.location.assign('http://habitforge.com/goals');     
+            </script>
+          <% end %>
+
+
+          <input name="terms" id="terms" type="hidden" />
+
+
+        </form>
+
+
+
+
+
+
+
+    <!--div class="signup_header" style="margin-top:20px;background-repeat:no-repeat;"-->
+      <!-- this gives you the desk background image -->
+    <!--/div-->
+
+
+          <% if retry_email_address %>
+              <center>
+              <div class="pane error" style="width:50%;color:red;padding:10px;">
+                  <% if @email_blank == true or (@email_valid != nil and @email_valid == false) %>
+                  Please enter a valid email address.
+                  <% end %>
+
+                  <% if @email_duplicate %>
+                  That account already exists in our system. 
+                  <br>
+                  If it is yours, you may <a href="/users/login">log in here</a> or you may sign up with a different account.
+                  <% end %>
+              </div>
+              </center>
+          <% end %>
+
+          <% if params[:template_user_parent_goal_id] %>
+            <%
+            goal = Goal.find(:first, :conditions => "id = '#{params[:template_user_parent_goal_id].to_i}'")
+            if goal
+              %>
+              <center>
+              <div class="pane warning" style="width:50%;padding:10px;margin-top:30px;">
+                <h3><span style="font-size:1.5em;line-height:1.5em;">To get started with the habit of "<%= goal.title %>", simply sign up above!</span></h3>
+              </div>
+              </center>
+              <%
+            end
+            %>
+          <% end %>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 <div class="clear"></div>
 
-<!--     <div id="triangle-up"></div> -->
-
-<% if mobile_device? %>
-  <div style="color:#333333;height:150px;margin-top:25px;background-color:#ff9966;">
-<% else %>
-<!--   <div style="color:#000000;height:125px;margin-top:45px;"> -->
-  <div style="color:#000000;height:125px;margin-top:45px;background-image:url(/home/images/orange-bar.png);">
-
-<% end %>
 
 
 
-  <center>
-    <br>
-  <div class="h1_font_oswald" style="margin-top:0px;padding-top:0px;padding-bottom:10px;color:#ffffff;position:relative;z-index:11;min-width:450px;">
-    Try out HabitForge for NO COST today!
-  </div>
-
-  <div style="font-family:'LatoBold';margin-top:15px;">
-
-    <form id="form_signup2" name="form_signup2" action="/quicksignup_v2">
-
-
-    <%
-    if params[:invitation_id]
-      %>
-      <input type="hidden" name="invitation_id" value="<%= params[:invitation_id] %>">
-      <%
-    end
-    if params[:category]
-      %>
-      <input type="hidden" name="category" value="<%= params[:category] %>">
-      <%
-    end
-    if params[:template_user_parent_goal_id]
-      %>
-      <input type="hidden" name="template_user_parent_goal_id" value="<%= params[:template_user_parent_goal_id] %>">
-      <%
-    end
-    if params[:goal_template_text]
-      %>
-      <input type="hidden" name="goal_template_text" value="<%= params[:goal_template_text] %>">
-      <%
-    end
-    %>
-
-      <div style="padding-left:15%;"><!-- row of signup items -->
-<!--     <table>
-      <tr>
-        <td> -->
-        <div style="float:left;min-width:120px;max-width:120px;">
-        <span style="font-size:1.5em;padding-right:5px;position:relative;z-index:11;">Sign up with </span>
-        </div>
-<!--         </td>
-        <td> -->
-
-        <div style="float:left;min-width:250px;max-width:250px;">
-<!--         <div style="float:left;min-width:105px;max-width:105px;"> -->
-  <!--       <img src="/home/images/Button-Facebook.png" />  -->
-
-          <table><tr><td>
-
-            <div style="margin-top:-28px;">
-            <%= render :partial => "layouts/fb_signup.erb" %>
-            </div>
-
-
-<!--         </div> -->
-      </td>
-      <td>
-<!--         <div style="float:left;min-width:105px;max-width:105px;"> -->
-  <!--       <img src="/home/images/Button-Google.png" />  -->
-
-      <%= render :partial => "layouts/google_signup.erb" %>
-<!--         </div>       -->
-      </td>
-      <td>
-<!--         <div style="float:left;min-width:65px;max-width:65px;"> -->
-        <span style="font-size:1.5em;padding-right:10px;padding-left:10px;position:relative;z-index:11;">OR </span>
-      </td></tr></table>
-
-        </div>
-
-        <div style="float:left;">
-          <table><tr><td>
-        <input type="text" name="email" placeholder="Enter your email for a free account..." style="width:220px;position:relative;z-index:11;"/>
-
-        <input type="hidden" name="subscribe_etr" value=1> 
-        <input type="hidden" name="form_submitted" value=1>
-<!--         </div> -->
-<!-- 
-      </td>
-      <td>  -->      
-<!--         <div style="float:left;min-width:105px;max-width:105px;"> -->
-          </td><td>
-        <a style="margin-left:20px;z-index:100;position:relative;" href="#" rel="signup_email2" onmouseover="this.getElementById('image_button_signup_email2').src='/home/images/Button-SignUp-Hover.png'" onmouseout="this.getElementById('image_button_signup_email2').src='/home/images/Button-SignUp.png'" onclick="toggle_show('spinner_page_load');formSubmit('form_signup2')">
-        </a>
-          </td></tr></table>
-        </div>
-<!--       </td>
-    </tr>
-  </table>
- -->  
-  </div><!-- end of row of signup items -->
-</form>
-  </div>
-
-</div>
-
-
-
-
-<div>
-  <center>
-    <div class="h1_font_oswald" style="padding-top:15px;padding-bottom:10px;">EXTRA ACCOUNTABILITY</div>
-    <div style="padding-left:20px;padding-right:20px;max-width:800px;min-width:200px;font-family:Lato;color:#000000;font-size:1.4em;line-height:1.5em;">
-    If you want to create more than one new habit, or if you just need an extra push to keep you motivated,
-    consider our <span style="font-family:LatoBold;">HabitForge Premium</span> accountability options.
-    </div>
-
-
-    <div style="padding-top:20px;">
-      <a href="/#signup_box_1">
-      <img src="/home/images/pricing_table_free.png" />
-      </a>
-      <a href="/?signup_intent_paid=1#signup_box_1" >
-      <img src="/home/images/pricing_table_yearly_featured.png" />
-      </a>
-
-    </div>
-
-  </center>
-</div>
 
 
 <center>
@@ -503,8 +568,6 @@ end
 
 
 
-<br>
-<div class="h1_font_oswald" style="padding-top:15px;padding-bottom:10px;">WHAT PEOPLE ARE SAYING</div>
 <br>
 
 <div style="color:#505050;font-size:em1.2;">
@@ -536,7 +599,7 @@ end
       "I've had a very hard time with eating fast food over the course of 20 years.  I just love the taste and no matter what I've tried to do I couldn't stop.  Then one day I ran across this website and it made a tremendous difference in fighting my fast food eating behavior.  The website helped reinforce what I needed to do over and over again on a daily basis and with the proper motivational quotes I was able to build momentum each and every day to be successful.  I haven't looked back since.  I went from 10% bodyfat to 4% bodyfat.  My physique transformation is truly amazing.  If I can do it so can anyone else. Thanks habitforge."
 
       <div style="padding-top:10px;">
-      <span style="font-family:Patrick Hand;color:#ff3300;font-size:1.9em;">
+      <span style="font-family:Patrick Hand;color:#CC3300;font-size:1.9em;">
           Jim
           </span>
           Missouri City, TX
@@ -560,7 +623,7 @@ end
       "Habitforge is a phenomenal change tool. As a public health professional and trained social worker, I find their service perfect for scheduling the right time to plant an email trigger and and their "extra accountability" program is exceptional. I would recommend this to anyone, especially busy professionals, who check their email frequently and want a friendly automated reminder. Habitforge has literally helped me implement a core habit, Meditation, after years of failing and I'm more mindful and relaxed due to this great service. Thanks Habitforge!"
 
       <div style="padding-top:10px;">
-      <span style="font-family:Patrick Hand;color:#ff3300;font-size:1.9em;">
+      <span style="font-family:Patrick Hand;color:#CC3300;font-size:1.9em;">
           Mozart Guerrier
           </span>
           Master Social Worker, Syracuse, NY
@@ -584,7 +647,9 @@ end
 
   <% else %>
     <div class="h1_font_oswald" style="padding-top:15px;padding-bottom:10px;padding-bottom:40px;color:#000000;">
-      <a href="/?more_testimonials=1#more_testimonials" style="color:#000000;">Read more testimonials...</a>
+      <a href="/?more_testimonials=1#more_testimonials" style="color:#000000;">
+            <span style="font-family:LatoBold;font-size:1.6em;color:#000000;margin-left:10px;">Read More Testimonials...</span>
+      </a>
     </div>  
   <% end %>
 
@@ -594,6 +659,9 @@ end
 
 
 </div> <!-- end of main body div with light background -->
+
+<br>
+<br>
 
 
 
@@ -605,133 +673,6 @@ end
 
 
 <!-- START FOOTER -->
-
-
-
-<% if mobile_device? %>
-  <div style="color:#333333;height:180px;padding-top:10px;margin-top:25px;background-color:#ff9966;">
-    <center>
-    <div class="h1_font_oswald" style="margin-top:-0px;padding-top:0px;padding-bottom:30px;color:#ffffff;line-height:1em;">
-      Get started and form the best habits for a healthy lifestyle!
-    </div>
-<% else %>
-<!--   <div style="color:#000000;height:145px;margin-top:50px;"> -->
-  <div style="color:#000000;height:145px;margin-top:50px;background-image:url(/home/images/orange-bar.png);">
-
-    <center>
-    <div class="h1_font_oswald" style="margin-top:0px;padding-top:10px;padding-bottom:30px;color:#ffffff;line-height:1em;">
-      Get started and form the best habits for a healthy lifestyle!
-    </div>
-<% end %>
-
-
-
-
-<!-- <div style="background-color:#ffffff;height:20px;margin-top:-80px;">
-
-</div> -->
-
-
-
-  <div style="font-family:'LatoBold';margin-top:-5px;">
-
-    <form id="form_signup3" name="form_signup3" action="/quicksignup_v2">
-
-
-      <%
-      if params[:invitation_id]
-        %>
-        <input type="hidden" name="invitation_id" value="<%= params[:invitation_id] %>">
-        <%
-      end
-      if params[:category]
-        %>
-        <input type="hidden" name="category" value="<%= params[:category] %>">
-        <%
-      end
-      if params[:template_user_parent_goal_id]
-        %>
-        <input type="hidden" name="template_user_parent_goal_id" value="<%= params[:template_user_parent_goal_id] %>">
-        <%
-      end
-      if params[:goal_template_text]
-        %>
-        <input type="hidden" name="goal_template_text" value="<%= params[:goal_template_text] %>">
-        <%
-      end
-      %>
-
-      
-      <div style="padding-left:15%;"><!-- row of signup items -->
-<!--     <table>>
-      <tr>
-        <td> -->
-        <div style="float:left;min-width:120px;max-width:120px;">
-        <span style="font-size:1.5em;padding-right:5px;">Sign up with </span>
-        </div>
-<!--         </td>
-        <td> -->  
-        <div style="float:left;min-width:250px;max-width:250px;">
-<!--         <div style="float:left;min-width:105px;max-width:105px;"> -->
-  <!--       <img src="/home/images/Button-Facebook.png" />  -->
-
-          <table><tr><td>
-  <!--       <img src="/home/images/Button-Facebook.png" />  -->
-
-
-            <div style="margin-top:-28px;">
-            <%= render :partial => "layouts/fb_signup.erb" %>
-            </div>
-
-
-<!--         </div> -->
-
-      </td>
-      <td>
-  
-<!--         <div style="float:left;min-width:105px;max-width:105px;"> -->
- <!--       <img src="/home/images/Button-Google.png" />  -->
-
-
-            <%= render :partial => "layouts/google_signup.erb" %>
-
-<!--         </div> -->
-      </td>
-      <td>
-
-<!--         <div style="float:left;min-width:65px;max-width:65px;"> -->
-        <span style="font-size:1.5em;padding-right:10px;padding-left:10px;">OR </span>
-
-        </td></tr></table>
-        </div>
-
-        <div style="float:left;">
-          <table><tr><td>
-        <input type="text" name="email" placeholder="Enter your email for a free account..." style="width:220px;"/>
-
-        <input type="hidden" name="subscribe_etr" value=1> 
-        <input type="hidden" name="form_submitted" value=1>
-          </td><td>
-<!--         </div> -->
-<!--       </td>
-      <td>        -->
-
-<!--         <div style="float:left;min-width:105px;max-width:105px;"> -->
-        <a style="margin-left:20px;z-index:100;position:relative;" href="#" rel="signup_email2" onmouseover="this.getElementById('image_button_signup_email2').src='/home/images/Button-SignUp-Hover.png'" onmouseout="this.getElementById('image_button_signup_email2').src='/home/images/Button-SignUp.png'" onclick="toggle_show('spinner_page_load');formSubmit('form_signup3')">
-        </a>
-          </td></tr></table>
-        </div>
-<!--       </td>
-    </tr>
-  </table> -->
-
-      </div><!-- end row of signup items -->
-  </form>
-
-  </div>
-  </center>
-</div>
-
 
 
 
@@ -789,41 +730,10 @@ so that we can see the shadow on the orange bar -->
             <br>
             <br>
 
-            <img src="/home/images/ETR-Logo-Footer_smaller.png" />
-
-            <br>
-            <br>
-            <span style="font-size:1.1em;color:#ffffff;font-family:Lato;">
-            HabitForge is supported by <b>Early To Rise</b>, whose aim is to help you become 
-            more effective in work and life, enjoy more choices and freedom and reach a better
-            lifestyle overall. To learn more about Early To Rise, visit <a href="http://www.earlytorise.com" target="_blank">our website</a>.
-            </span>
-            <br>
-            <br>
-
-            <br>
-            <br>
-
-            <img src="/home/images/johnrowley-logo.png" />
-
-            <br>
-            <br>
-            <span style="font-size:1.1em;color:#ffffff;font-family:Lato;">
-            HabitForge is also supported by <a href="http://johnrowley.net/" target="_blank"><b>John Rowley</b></a>. International Best-Selling author, founder of The 52 Million Pound Challenge, speaker and contributor to much of the media including Fox News, SmartMoney and Martha Stewart – John Rowley has earned the title “America’s Lifestyle Strategist,” for his ability to inspire millions to become physically, mentally and spiritually fit, using simple, common sense solutions.
-            </span>
-            <br>
-            <br>
-
-            <br>
-            <br>
-
 
             <br>
             <br>
             
-            <% if mobile_device? %>
-               <%= render :partial => "layouts/facebook.erb" %>
-            <% end %>
 
     </div>
 
@@ -835,9 +745,7 @@ so that we can see the shadow on the orange bar -->
 <!--     <div style="margin-left:20px;position:relative;float:left;width-min:300px;background-color:#333333;"> -->
 
 
-  <% if !mobile_device? %>
      <%= render :partial => "layouts/facebook.erb" %>
-  <% end %>
 
 <!--       <div style="background-color:#333333;height:300px;">
         &nbsp
@@ -858,7 +766,7 @@ so that we can see the shadow on the orange bar -->
 <!-- END COVER UP WHITE-SPACE BOXES -->
 
 <div class="" style="background-color:#000000;margin-top:-0px;padding-top:0px;padding-top:20px;padding-left:40px;padding-right:40px;">
-    <div class="h1_font_oswald" style="padding-top:15px;padding-bottom:10px;color:#ffffff;font-size:1.0em;">COPYRIGHT &copy; 2013 EARLY TO RISE PUBLISHING LLC</div>
+    <div class="h1_font_oswald" style="padding-top:15px;padding-bottom:10px;color:#ffffff;font-size:1.0em;">COPYRIGHT &copy; 2014 HabitForge</div>
 </div>
 
 

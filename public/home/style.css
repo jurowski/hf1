@@ -17,7 +17,9 @@ body {
 	padding: 0;
 	/*border-top:4px solid #ff4000; */
 	
-	background-color:#fbfbfb;
+	/*background-color:#fbfbfb;*/
+
+	background-color:#ffffff;
 	overflow:hidden;
 	position:relative;
 	overflow-y:auto;
@@ -172,7 +174,7 @@ span.divider {
 }
 .button {
 	background-color:#000000;
-	float:left;
+	/*float:left;*/
 }
 a.button {
 	background-color:#303030;
@@ -657,7 +659,7 @@ a[rel=signup_email2]:hover {
 }
 
 .h1_font_oswald {
-	color:#ff3300;
+	color:#CC3300;
 	font-size:2em;
 	font-family: 'Oswald';
 }
@@ -665,7 +667,7 @@ a[rel=signup_email2]:hover {
 .circle_orange:before {
     content: ' \25CF';
     font-size: 150px;
-	color:#ff3300;
+	color:#CC3300;
 }
 
 #navlist li

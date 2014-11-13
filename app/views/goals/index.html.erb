@@ -333,22 +333,27 @@ end
 <div />
     
     <br>
-    <center>
-    <% if current_user.sponsor == "habitforge" and !current_user.is_habitforge_supporting_member and current_user.number_of_active_habits > 0 %>
-          <!-- render :partial => "goals/upgrade_advertisement"  -->
+ 
+<!--     
+   <center>
+        < if current_user.sponsor == "habitforge" and !current_user.is_habitforge_supporting_member and current_user.number_of_active_habits > 0 >
 
             <img src="/home/images/arrow_pointing_left_up.png" style="margin:-20px;">
             Preview a Program, or  
 
         <a href="/upgrade.html" class="btn blue "></i>  Start some other New Habit</a>
 
-    <% else %>
+    < else >
 
         <img src="/home/images/arrow_pointing_left_up.png" style="margin:-20px;">
         Preview a Program, or 
         <a href="/goals/new" class="btn blue"></i>  Start some other New Habit</a>
 
-    <% end %>
+    < end >
+ -->
+
+        <a href="/goals/new" class="btn blue"></i>+ Start a New Habit</a>
+
 
       <% if current_user and current_user.sponsor == "habitforge" %>  
 <!--         <a href="/cheers" class="btn red"><i class="icon-heart-empty"></i> Encourage Others</a>
