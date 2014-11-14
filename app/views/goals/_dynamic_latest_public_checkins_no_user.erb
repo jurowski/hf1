@@ -397,12 +397,12 @@
 				<% if e.encourage_type_new_goal_bool %>
 
 
-					    <a href="#" class="btn disabled"><i class="icon-thumbs-up"></i></a>
+						<a href="/tomessages/new?gid=<%=e.goal_id.to_s%>&goal_id=<%=e.goal_id.to_s%>&from_type=member&tomessage_subject=<%= e.goal_name %>&to_id=<%= e.user_id %>" id='encourage_<%= e.goal_id.to_s %>' class="btn " style="font-size:1.5em;" title="Encourage <%= e.user_name %>! <%= habit_info %>"> <i class="icon-thumbs-up"></i></a> <span style="font-weight:bold;font-size:1.2em;"> 
 
 				<% else %>
 
 
-					    <a href="#" class="btn disabled"><i class="icon-thumbs-up"></i></a>
+						<a href="/tomessages/new?gid=<%=e.goal_id.to_s%>&goal_id=<%=e.goal_id.to_s%>&from_type=member&message_type=congrats&tomessage_subject=<%= e.goal_name %>&to_id=<%= e.user_id %>" id='encourage_<%= e.goal_id.to_s %>' class="btn " style="font-size:1.5em;" title="Congratulate <%= e.user_name %>!  <%= habit_info %>"> <i class="icon-thumbs-up"></i></a> <span style="font-weight:bold;font-size:1.2em;"> 
 
 				<% end %>
 
