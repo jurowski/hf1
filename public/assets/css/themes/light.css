@@ -70,13 +70,13 @@ Page sidebar
   top:1px;
   width: 7px;
   height: 39px;
-  background-image: url("../../img/sidebar-menu-arrow-green.png");
+  background-image: url("../../img/sidebar-menu-arrow-rtl.png");
 }  
 
 .page-sidebar > ul > li.active > a{
-  background: #28b779 !important;
+  background: #efefef !important;
   border-top-color: transparent !important;
-  color:#fff !important;
+  color:#000 !important;
 }  
 .page-sidebar > ul > li.active > a i {
   color:#fff !important;
@@ -107,7 +107,7 @@ Page sidebar
 
 .page-sidebar > ul > li > ul.sub-menu > li.active > a, 
 .page-sidebar > ul > li > ul.sub-menu > li > a:hover {
-  color: #818181 !important;
+  color: #000000 !important;
   background: #efefef !important;  
 }
 
