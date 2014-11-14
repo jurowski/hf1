@@ -223,7 +223,7 @@ end
         <%= render :partial => 'goals/dynamic_latest_public_checkins_no_user' %>
     </div>
     <div id="spinner_dynamic_latest_public_checkins" style="display:none;">
-        <center><img src="/images/spinner.gif"/></center>
+        <img src="/images/spinner.gif"/>
     </div>
 <% end %>
 
@@ -232,31 +232,12 @@ end
 
 
  
-     <!-- Press Logos Start -->
-      <img src="/home/images/hr_fancy.png" />
-
-        <img src="/home/images/logos/press_logos_v1_transparent.png" width="700" alt="press logos" />
-
-      <img src="/home/images/hr_fancy.png" />
-
     <!-- Press Logos End -->
 
       <img src="/home/images/faces_for_homepage.jpg" />
 
 
 
-      <img src="/home/images/hr_fancy.png" />
-      <br>
-        <ul style="text-align:center;display:inline-table;">
-            <li style="display:inline;"><a href="/?more_testimonials=1#more_testimonials" style="color:#CC3300;">Testimonials</a> | </li>
-            <li style="display:inline;"><a href="/user_session/new?skip_intro=1" class="button-red" style="color:#CC3300;">Log In</a> | </li>
-            <li style="display:inline;"><a href="#jump_to_sign_up" style="color:#CC3300;">Sign Up</a></li>
-          </ul>
-          <br>
-        <img src="/home/images/hr_fancy.png" />
-
-      </center>
-      <!-- LOGO END -->
 
 
 
@@ -300,7 +281,8 @@ end
 
     <div style="">
       <center>
-            <span style="font-family:LatoBold;font-size:1.6em;color:#000000;margin-left:10px;">Tell us what habit you want to make or break</span>
+          <h1><span style="color:#cc3300;">How Does it Work? 3 Easy Steps:</span></h1>
+            <span style="font-family:LatoBold;font-size:1.6em;color:#000000;margin-left:10px;">STEP 1: Tell us what habit you want to make or break</span>
             <div style="font-family:Lato;color:#000000;padding-top:10px;padding-bottom:5px;margin-left:10px;max-width:300px;min-width:300px;">
             What could you do daily to improve your life? 
             <br>In under 60 seconds you can be set up with your first habit.
@@ -313,7 +295,7 @@ end
 
 
 
-            <span style="font-family:LatoBold;font-size:1.6em;color:#000000;margin-left:10px;">We'll inspire and encourage you every day.</span>
+            <span style="font-family:LatoBold;font-size:1.6em;color:#000000;margin-left:10px;">STEP 2: We'll inspire and encourage you every day.</span>
 
   
             <div style="font-family:Lato;color:#000000;padding-top:10px;padding-bottom:5px;margin-left:10px;max-width:300px;min-width:300px;">
@@ -324,7 +306,7 @@ end
             </div>
 
 
-            <span style="font-family:LatoBold;font-size:1.6em;color:#000000;margin-left:10px;">We'll check in Daily to see how you did.</span>
+            <span style="font-family:LatoBold;font-size:1.6em;color:#000000;margin-left:10px;">STEP 3: We'll check in Daily to see how you did.</span>
             <div style="font-family:Lato;color:#000000;padding-top:10px;padding-bottom:5px;margin-left:10px;max-width:300px;min-width:300px;">
             We'll check in via email to ask if you were successful.
             Just click "yes" or "no" from that email and we'll keep track of how you're doing.
@@ -416,37 +398,53 @@ end
  -->
 
 
-
+    <a name="jump_to_sign_up" ></a>
+    <br>
 
 
             <center>
 
 
-<div style="padding-top:25px;padding-bottom:5px;">
-<img src="/home/images/hr_fancy.png" />
-</div>
 
-    <a name="jump_to_sign_up" ></a>
+<div style="background-color:#eeeeee;padding-top:5px;padding-bottom:5px;">
 
-
-            <span style="font-family:LatoBold;font-size:1.6em;color:#000000;margin-left:10px;">Sign Up With...</span>
-            <table><tr><td>
+            <span style="font-family:LatoBold;font-size:1.6em;color:#cc3300;margin-left:10px;">
+              Start Your First Habit Free Below:</span>
+            <br>
+            <br>
+            <table><tr>
+              <td>
+                        <span style="font-family:LatoBold;font-size:1.2em;color:#000000;margin-left:10px;">With: &nbsp</span>
+              </td>
+              <td>
 
             <div style="margin-top:-28px;padding-right:5px;">
             <%= render :partial => "layouts/fb_signup.erb" %>
             </div>
 
-            </td><td>
+            </td>
+
+              <td>
+               &nbsp or &nbsp
+              </td>
+
+
+            <td>
 
 
               <div style="margin-top:0px;padding-right:0px;">
               <%= render :partial => "layouts/google_signup.erb" %>
               </div>
 
-            </td></tr></table>  
+
+            </td>
+            <td> &nbsp
+         (for log-in only... we will never post anything)
+          </td>
+          </tr></table>  
                         <span style="font-family:LatoBold;font-size:1.2em;color:#000000;margin-left:10px;">Or via email:</span>
 
-        <br>
+        
 
 
           <% email_value = "" %>
@@ -565,7 +563,7 @@ end
 
 
 
-
+</div>
 
 
 
@@ -586,14 +584,16 @@ end
 
 <center>
 
-<div style="padding-top:25px;padding-bottom:5px;">
-<img src="/home/images/hr_fancy.png" />
-</div>
-
-
-
+<br>
+<br>
+<br>
+<h1><span style="color:#cc3300;">Press Mentions and Testimonials</span></h1>
 
 <br>
+
+
+        <img src="/home/images/logos/press_logos_v1_transparent.png" width="700" alt="press logos" />
+
 
 <div style="color:#505050;font-size:em1.2;">
   <div style="float:left;width:30%;">
@@ -673,7 +673,7 @@ end
   <% else %>
     <div class="h1_font_oswald" style="padding-top:15px;padding-bottom:10px;padding-bottom:40px;color:#000000;">
       <a href="/?more_testimonials=1#more_testimonials" style="color:#000000;">
-            <span style="font-family:LatoBold;font-size:1.6em;color:#000000;margin-left:10px;">Read More Testimonials...</span>
+            <span style="font-family:LatoBold;font-size:1.2em;color:#cc3300;margin-left:10px;">Read More Testimonials...</span>
       </a>
     </div>  
           <br>
