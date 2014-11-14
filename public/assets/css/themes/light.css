@@ -6,7 +6,8 @@ blue theme
 Reset and overrides  
 ***/
 body { 
-  background-color:#fafafa !important;
+  background-color:#ffffff !important;
+  background-image: url("../../../home/images/backgrounds/clouds_gradient.jpg");
 }
 
 /***
