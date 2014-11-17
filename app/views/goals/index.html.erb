@@ -435,7 +435,7 @@ end
 
     <!-- ####################################### -->
     <!-- START GOOGLE ADS BOTTOM -->
-    <% if show_ads == 1 and 7 == 9 %>
+    <% if show_ads == 1 and (7 == 9)%>
       <% if @production and !secure_page? %>
           <br>
 
@@ -466,7 +466,6 @@ end
             <script type="text/javascript"
             src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
             </script>
-            <% end %>
           <% end %>
 
           <br>
@@ -1496,7 +1495,7 @@ http://localhost:3000/goals?update_checkpoint_status=yes&date=2012-02-12&e0=106&
 
             <!-- ####################################### -->
             <!-- START GOOGLE ADS  -->
-            <% if show_ads == 1 and 7 == 9 %>
+            <% if show_ads == 1 and (7 == 9)%>
               <% logger.debug("sgj:show_ads == 1") %>
               <% if @production and !secure_page? %>
                   <% logger.info("sgj:ads:show_ads == 1 + @production + !secure_page") %>
