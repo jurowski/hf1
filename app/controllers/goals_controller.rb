@@ -220,6 +220,13 @@ class GoalsController < ApplicationController
       end
     end #end if current_user
 
+    # if current_user
+    #   if current_user.id > '106110'
+    #     redirect_url = "/upgrade.html"
+    #   end
+    # end
+
+
     if redirect_url != ""
       redirect_to(redirect_url)
     else
