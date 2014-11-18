@@ -850,6 +850,15 @@ class UsersController < ApplicationController
       end
     end
 
+
+    ### as of 20141117 we are forcing all new users to upgrade
+    ### but giving them a 10-day trial
+    ### so we're going to flag those people by giving them
+    ### a premium start date of TODAY
+    ### but a plan name of "NOT YET SUBSCRIBED"
+    @user.premium_start_date = @user.dtoday
+    @user.plan = "NOT YET SUBSCRIBED"
+
     
     ### Setting this to something other than 0 so that this person
     ### is included in the next morning's cron job to send emails

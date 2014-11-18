@@ -33,6 +33,7 @@ class Notifier < ActionMailer::Base
     random_number = rand(arr_subject.size) + 0 #between 0 and arr_subject.size
     random_subject = arr_subject[random_number]
 
+
     return random_subject.to_s
   end
 
