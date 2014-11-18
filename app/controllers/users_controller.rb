@@ -434,6 +434,15 @@ class UsersController < ApplicationController
       user.date_of_signup = user.dtoday
 
 
+      ### as of 20141117 we are forcing all new users to upgrade
+      ### but giving them a 10-day trial
+      ### so we're going to flag those people by giving them
+      ### a premium start date of TODAY
+      ### but a plan name of "NOT YET SUBSCRIBED"
+      user.premium_start_date = user.dtoday
+      user.plan = "NOT YET SUBSCRIBED"
+
+
       ### IF THEY ARE A NEWLY PAID USER
       if params[:ga_goal]
         session[:sfm_virgin] = false ### they are a newly paid user          
