@@ -123,7 +123,7 @@ class ApplicationController < ActionController::Base
         else
           ### landed on http
 
-          if (request.url.include? '/user_session/new' or request.url.include? '/account')          
+          if (request.url.include? '/user_session/new' or request.url.include? '/account' or request.url.include? '/upgrade.html' )          
             ### hey, we should be on https
             stay_here = false
             old_url = request.url
