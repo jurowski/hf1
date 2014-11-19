@@ -222,7 +222,7 @@ class GoalsController < ApplicationController
 
     # if current_user
     #   if current_user.id > '106110'
-    #     redirect_url = "/upgrade.html"
+    #     redirect_url = "https://habitforge.com/upgrade.html"
     #   end
     # end
 
@@ -446,7 +446,7 @@ class GoalsController < ApplicationController
     end
 
     if restrict == true
-        redirect_to("/upgrade.html")
+        redirect_to("https://habitforge.com/upgrade.html")
         # if params[:goal_template_text]
         #   redirect_to("/goals?too_many_active_habits=1&goal_template_text=#{params[:goal_template_text]}")
         # else
@@ -1375,7 +1375,7 @@ class GoalsController < ApplicationController
               # end
           
               if !current_user.is_habitforge_supporting_member
-                format.html { redirect_to("/upgrade.html")}
+                format.html { redirect_to("https://habitforge.com/upgrade.html")}
               else
                 format.html { redirect_to("/goals/#{@goal.id}/edit?just_created_new_habit=1")}
               end

@@ -108,7 +108,7 @@ class ApplicationController < ActionController::Base
           ### note that a user self-deletion attempt will 
           ### be hitting this type of URL: https://habitforge.com/users/100773
 
-          if (request.url.include? '/user_session' or request.url.include? '/account' or request.url.include? '/users/' or request.url.include? '/upgrade.html' )          
+          if (request.url.include? '/user_session' or request.url.include? '/account' or request.url.include? '/users/')          
 
             ### yes we should stay on https
             stay_here = true
@@ -123,7 +123,7 @@ class ApplicationController < ActionController::Base
         else
           ### landed on http
 
-          if (request.url.include? '/user_session/new' or request.url.include? '/account' or request.url.include? '/upgrade.html' )          
+          if (request.url.include? '/user_session/new' or request.url.include? '/account')          
             ### hey, we should be on https
             stay_here = false
             old_url = request.url

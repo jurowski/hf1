@@ -716,7 +716,7 @@ class UsersController < ApplicationController
             ### if their intent on initial signup was to pay
             if params[:signup_intent_paid]
               #redirect_url_string = "https://www.securepublications.com/habit-gse3.php?ref=" + user.id.to_s + "&email=" + user.email
-              redirect_url_string = "/upgrade.html"
+              redirect_url_string = "https://habitforge.com/upgrade.html"
 
 
             else
@@ -909,7 +909,7 @@ class UsersController < ApplicationController
       if params[:account_type] and params[:account_type] == "supporting"
           #redirect_to("http://habitforge.myshopify.com/collections/frontpage/products/habitforge-supporting-membership-1-year?ref=#{@user.id.to_s}")
 
-          redirect_to("/upgrade.html")
+          redirect_to("https://habitforge.com/upgrade.html")
           # if Rails.env.production?
           #   redirect_to("https://www.securepublications.com/habit-1-year.php?ref=#{@user.id.to_s}&email=#{@user.email}")
           # else
