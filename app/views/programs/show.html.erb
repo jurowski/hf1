@@ -68,6 +68,15 @@
  <br>
 
 
+<% if @program.include_on_home_page %>
+  <input type=checkbox checked disabled>
+<% else %>
+  <input type=checkbox disabled>
+<% end %>
+ Include on homepage
+
+<br>
+<br>
 <% if @program.actions_list_dropdown %>
   <input type=checkbox checked disabled>
 <% else %>

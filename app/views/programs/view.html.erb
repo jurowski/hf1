@@ -172,7 +172,7 @@ ONLY SHOW ACTION ITEMS IF ALREADY MEMBER OR IF NO EXTERNAL MEMBERSHIP SITE REQUI
             <% if current_user and @program.user_has_active_habit_in_this_track(current_user, arr_tracks[1]) %>
                 <a href="" class="btn disabled"> Track Activated</a>
             <% else %>
-                <a href="<%= url_prefix %>?goal_template_text=<%= program_template.template.response_question%>&category=<%= program_template.template.category%>&template_user_parent_goal_id=<%=program_template.template.id.to_s%>&goal_added_through_template_from_program_id=<%= @program.id.to_s %>&just_confirm=1&track_name=<%= arr_tracks[0] %>&starter_habit_tagline=<%= program_template.template.template_tagline %>" class="btn green">+ Start This Track</a>
+                <a href="<%= url_prefix %>?goal_template_text=<%= program_template.template.response_question%>&category=<%= program_template.template.category%>&template_user_parent_goal_id=<%=program_template.template.id.to_s%>&goal_added_through_template_from_program_id=<%= @program.id.to_s %>&just_confirm=1&track_name=<%= arr_tracks[0] %>&starter_habit_tagline=<%= program_template.template.template_tagline %>#jump_to_sign_up" class="btn green">+ Start This Track</a>
 
             <% end %>
 
@@ -309,7 +309,7 @@ ONLY SHOW ACTION ITEMS IF ALREADY MEMBER OR IF NO EXTERNAL MEMBERSHIP SITE REQUI
           <br>
           <br>
 
-          <a href="<%= url_prefix %>?goal_template_text=<%= program_template.template.response_question%>&category=<%= program_template.template.category%>&template_user_parent_goal_id=<%=program_template.template.id.to_s%>&goal_added_through_template_from_program_id=<%= @program.id.to_s %>" class="btn green">+ Start Doing This One</a><!-- or <a href="#" class="btn start">Start the Full Challenge</a>-->
+          <a href="<%= url_prefix %>?goal_template_text=<%= program_template.template.response_question%>&category=<%= program_template.template.category%>&template_user_parent_goal_id=<%=program_template.template.id.to_s%>&goal_added_through_template_from_program_id=<%= @program.id.to_s %>#jump_to_sign_up" class="btn green">+ Start Doing This One</a><!-- or <a href="#" class="btn start">Start the Full Challenge</a>-->
           <hr>
 
 

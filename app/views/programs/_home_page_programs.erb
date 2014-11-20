@@ -1,0 +1,44 @@
+<center>
+
+<% 
+@programs = Program.find(:all, :conditions => "include_on_home_page = '1'")
+#:conditions => "include_on_home_page <> 'true'")
+%>
+
+<% @programs.each do |program| %>
+
+
+
+	<div style="background-color:#ffffff;padding:20px;padding-top:5px;margin:10px;margin-left:0px;border-color:#cc3300;border:1px;border-style:dotted;">
+
+	  <% if program.organization %>
+	    <p>
+	      <b>Organization:</b>
+	      <%=h program.organization_id %>
+	    </p>
+	  <% end %>
+
+		<p>
+		  <% if program.link_image_to_external_site and program.external_membership_url %>
+		  <a href="<%= program.external_membership_url %>" target="_parent"><img src="/home/images/programs/<%= program.image_logo %>" /></a>
+		  <% else %>
+		  <img src="/home/images/programs/<%= program.image_logo %>" />
+		  <% end %>
+		</p>
+
+
+		<h4><strong><%= program.name %></strong></h4>
+
+		<% if program.about %>
+			<div class="alert">
+			  <i><%= program.about %></i>
+			</div>
+		<% end %>
+
+
+	    <br><%= link_to 'View the Habits', '/programs/' + program.id.to_s + '/view', :class => "button" %>
+
+	</div>
+
+<% end %>
+</center>
