@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140406165543) do
+ActiveRecord::Schema.define(:version => 20141120045223) do
 
   create_table "achievemints", :force => true do |t|
     t.string   "name"
@@ -826,6 +826,7 @@ ActiveRecord::Schema.define(:version => 20140406165543) do
     t.string   "track_8_name"
     t.string   "track_9_name"
     t.string   "track_10_name"
+    t.boolean  "include_on_home_page"
   end
 
   create_table "promotion1s", :force => true do |t|
