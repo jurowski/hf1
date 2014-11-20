@@ -160,21 +160,40 @@ class UsersController < ApplicationController
 		              days = params[:days].to_i
                 end
 
-                if user.supportpoints and user.supportpoints >= 100
-                  user.supportpoints = user.supportpoints - 100
+                plan = "NOT YET SUBSCRIBED"
+                if params[:plan]
+                  plan = params[:plan]
                 end
+
                 user.combine_daily_emails = 0
                 user.hide_donation_plea = 1
                 user.unlimited_goals = 1
-                user.kill_ads_until = dnow + days
                 user.sent_expire_warning_on = '1900-01-01'
-            
-                # if user.payments == nil
-                #     user.payments = 0.0
-                # end
-                # user.payments = user.payments + 10.00
-                # user.last_donation_date = dnow
-                user.got_free_membership = dnow
+
+                if days == 3000
+                  user.kill_ads_until = '3000-01-01'
+                  user.premium_start_date = user.dtoday
+
+                  if plan == "yearly-9-00"
+                    plan = "HabitForge Yearly $9"
+                  end
+
+                  if plan == "monthly-1-29"
+                    plan = "HabitForge Monthly $1.29"
+                  end
+
+                  user.plan = plan
+
+
+                else
+                  if user.supportpoints and user.supportpoints >= 100
+                    user.supportpoints = user.supportpoints - 100
+                  end
+
+                  user.got_free_membership = dnow
+                  user.kill_ads_until = dnow + days
+                end
+
                 if user.save
                     logger.info 'HF SUCCESS upgrading user account for ' + user.email
 
