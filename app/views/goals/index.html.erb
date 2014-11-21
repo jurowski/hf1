@@ -730,13 +730,13 @@ for goal in current_user.active_goals_sorted_by_next_action_day
                         </a>
                     <% end %>
                 <% else %>
-                    <% if goal.category and  goal.category != "None" and goal.category != "" and goal.category != "Other" %><%= goal.category %>: <% end %>"
+                    <% if goal.category and  goal.category != "None" and goal.category != "" and goal.category != "Other" %><strong><%= goal.category %>:</strong><br> <% end %>
                     
               <a href="/goals/<%= goal.id %>/edit" style="color:#ffffff;padding-bottom:0px;">
               <%= goal.title %>
               </a>
 
-                    "
+                
                 <% end %>
 
             </div>
