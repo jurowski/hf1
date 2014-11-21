@@ -145,17 +145,26 @@ Give it a shot! You have absolutely <span style="color:#CC3300;">nothing to lose
       <iframe frameBorder="0" style='width:100%; height:auto; border:0; overflow:hidden;' id='paywhirl_frame' scrolling='no' src="https://www.paywhirl.com/widget?api_key=PW960FAF875953CD95DBA6E69CDB36C36F&widget=334"></iframe>
 
       <!-- **** END PAYWHIRL -->
-      
-      <div style="padding:.8em;margin-bottom:1em;border:2px solid #ddd;background:#FFFFCC;color:#514721;border-color:#eeeeee;-moz-border-radius: 15px;border-radius: 15px;">        
+
+      <div style="padding:.8em;margin-bottom:1em;border:2px solid #ddd;background:#FFFFCC;color:#514721;border-color:#eeeeee;-moz-border-radius: 15px;border-radius: 15px;">     
+        <% if current_user %>   
         "HabitForge Email Address": <span style="color:red;"><%= current_user.email %></span>
         <br>
         "HabitForge User Number": <span style="color:red;"><%= current_user.id %></span> 
+        <% else %>
+          You are not logged into HabitForge. You should first either:
+            <ul style="text-align:center;display:inline-table;">
+            <li style="display:inline;"><a href="/user_session/new?skip_intro=1" class="button-red" style="color:#CC3300;">Log In</a> or </li>
+            <li style="display:inline;"><a href="#jump_to_sign_up" style="color:#CC3300;">Create an Account</a></li>
+          </ul>
+        <% end %>
       </div>
       <img src="/home/images/hr_fancy.png" />
 
+      <% if current_user %>
       <h2>After you've successfully subscribed above you can: </h2>
             <p><span style="font-size:1.5em;"> <a href="/goals?return_from_upgrade_page_user_id=<%= current_user.id %>">Enter HabitForge!</a></span></p>
-
+      <% end %>
 
 </center>
     </div>
