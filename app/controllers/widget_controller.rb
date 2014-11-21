@@ -29,4 +29,10 @@ class WidgetController < ApplicationController
     end
   end
 
+  def upgrade
+    respond_to do |format|
+      format.html
+    end
+  end
+
 end

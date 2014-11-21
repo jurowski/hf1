@@ -341,7 +341,7 @@ end
             <img src="/home/images/arrow_pointing_left_up.png" style="margin:-20px;">
             Preview a Program, or  
 
-        <a href="/upgrade.html" class="btn blue "></i>  Start some other New Habit</a>
+        <a href="/widget/upgrade" class="btn blue "></i>  Start some other New Habit</a>
 
     < else >
 
@@ -352,7 +352,18 @@ end
     < end >
  -->
 
+    <% if current_user.sponsor == "habitforge" and !current_user.is_habitforge_supporting_member and current_user.number_of_active_habits > 0 %>
+
+
+        <a href="/widget/upgrade" class="btn blue "></i>+ Start a New Habit</a>
+
+    <% else %>
+
         <a href="/goals/new" class="btn blue"></i>+ Start a New Habit</a>
+
+    <% end %>
+
+
 
 
       <% if current_user and current_user.sponsor == "habitforge" %>  
