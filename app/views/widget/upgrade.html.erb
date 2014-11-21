@@ -145,11 +145,15 @@ Give it a shot! You have absolutely <span style="color:#CC3300;">nothing to lose
       <iframe frameBorder="0" style='width:100%; height:auto; border:0; overflow:hidden;' id='paywhirl_frame' scrolling='no' src="https://www.paywhirl.com/widget?api_key=PW960FAF875953CD95DBA6E69CDB36C36F&widget=334"></iframe>
 
       <!-- **** END PAYWHIRL -->
-
+      <div style="padding:.8em;margin-bottom:1em;border:2px solid #ddd;background:#FFFFCC;color:#514721;border-color:#ffffff;">        
+        "HabitForge Email Address": <span style="color:red;"><%= current_user.email %></span>
+        <br>
+        "HabitForge User Number": <span style="color:red;"><%= current_user.id %></span> 
+      </div>
       <img src="/home/images/hr_fancy.png" />
 
       <h2>After you've successfully subscribed above you can: </h2>
-            <p><span style="font-size:1.5em;"> <a href="/goals">Enter HabitForge!</a></span></p>
+            <p><span style="font-size:1.5em;"> <a href="/goals?return_from_upgrade_page_user_id=<%= current_user.id %>">Enter HabitForge!</a></span></p>
 
 
 </center>

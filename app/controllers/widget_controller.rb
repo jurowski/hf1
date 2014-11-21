@@ -30,6 +30,8 @@ class WidgetController < ApplicationController
   end
 
   def upgrade
+    logger.info "sgj:widget_controller:just displaying paywhirl upgrade page user_id=#{current_user.id}"
+
     respond_to do |format|
       format.html
     end

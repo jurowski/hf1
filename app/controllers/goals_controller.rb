@@ -151,6 +151,9 @@ class GoalsController < ApplicationController
   def index
 
 
+    if params[:return_from_upgrade_page_user_id]
+      logger.info "sgj:goals_controller:just returned from paywhirl upgrade page user_id=#{params[:return_from_upgrade_page_user_id]}"
+    end
 
     @show_autoupdatemultiple_personal_motivation = false
     @show_stats_lightbox = false
