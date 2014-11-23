@@ -152,11 +152,18 @@ Give it a shot! You have absolutely <span style="color:#CC3300;">nothing to lose
         <br>
         "HabitForge User Number": <span style="color:red;"><%= current_user.id %></span> 
         <% else %>
-          You are not logged into HabitForge. You should first either:
-            <ul style="text-align:center;display:inline-table;">
-            <li style="display:inline;"><a href="/user_session/new?skip_intro=1" class="button-red" style="color:#CC3300;">Log In</a> or </li>
-            <li style="display:inline;"><a href="#jump_to_sign_up" style="color:#CC3300;">Create an Account</a></li>
-          </ul>
+
+          <% if params[:current_user_email] and params[:current_user_id] %>
+            "HabitForge Email Address": <span style="color:red;"><%= params[:current_user_email] %></span>
+            <br>
+            "HabitForge User Number": <span style="color:red;"><%= params[:current_user_id] %></span> 
+          <% else %>
+            You are not logged into HabitForge. You should first either:
+              <ul style="text-align:center;display:inline-table;">
+              <li style="display:inline;"><a href="/user_session/new?skip_intro=1" class="button-red" style="color:#CC3300;">Log In</a> or </li>
+              <li style="display:inline;"><a href="#jump_to_sign_up" style="color:#CC3300;">Create an Account</a></li>
+            </ul>
+          <% end %>
         <% end %>
       </div>
       <img src="/home/images/hr_fancy.png" />
