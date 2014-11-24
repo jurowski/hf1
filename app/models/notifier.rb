@@ -752,6 +752,16 @@ class Notifier < ActionMailer::Base
     content_type "text/html"
   end
 
+
+
+  def promotion_new_payment_monthly(user, the_subject)  
+    recipients  user.email
+    from        "habitforge <support@habitforge.com>"
+    subject     the_subject
+    body        :user => user
+    content_type "text/html"
+  end
+
   def user_confirm(user, the_subject)
     recipients  user.email
     from        "habitforge <support@habitforge.com>"
