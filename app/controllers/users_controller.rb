@@ -182,6 +182,14 @@ class UsersController < ApplicationController
                     plan = "HabitForge Monthly $1.29"
                   end
 
+                 if plan == "monthly-295"
+                    plan = "HabitForge Monthly $2.95"
+                  end
+
+                  if plan == "yearly-2395"
+                    plan = "HabitForge Yearly $23.95"
+                  end
+
                   user.plan = plan
 
 
