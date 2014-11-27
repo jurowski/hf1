@@ -242,19 +242,24 @@ Lisa
 <td>
 <div style="padding:.8em;margin-bottom:1em;border:2px solid #ddd;background:#FFFFCC;color:#514721;border-color:#eeeeee;-  moz-border-radius:15px;border-radius:15px;">
 
-I'm Lisa, one of the coaches at HabitForge. It's my job to inspire and encourage you.
-<br>
-I'll also be checking in on your progress each day.
-<br>
-<span style="font-size:1.2em;font-weight:normal;">
-  <% if @program %>
-    The check-in emails for this action will read...
-  <% else %>
-    <% if !params[:just_confirm] %>
-    When it's time for me to check in on you, what should I ask?
+
+<% if @ca == "new" %>
+  I'm Lisa, one of the coaches at HabitForge. It's my job to inspire and encourage you.
+  <br>
+  I'll also be checking in on your progress each day.
+  <br>
+  <span style="font-size:1.2em;font-weight:normal;">
+    <% if @program %>
+      The check-in emails for this action will read...
+    <% else %>
+      <% if !params[:just_confirm] %>
+      When it's time for me to check in on you, what should I ask?
+      <% end %>
     <% end %>
-  <% end %>
-</span>
+  </span>
+<% else %>
+  Check out the Customization Toolbox below to tweak the settings of your habit goal!
+<% end %>
 </div>
 </td>
 </tr>
@@ -280,7 +285,7 @@ if part_of_a_team_category
 end
 %>
   <% if !params[:just_confirm] %>
-  Ask me this: 
+  Ask me this at each daily check-in to see if I came through: 
   <br>
   <span style="font-weight:bold;font-size:1.5em;">"Were you successful at
   <% end %>
@@ -541,6 +546,7 @@ end
 <!-- START REMINDER OPTIONS -->
 <h2><i class="icon-bell"></i> Reminders <a href="#undefined" onclick="toggle_show_hide('div_reminders')" style="font-size:0.5em;">Details</a></h2>
 <div id="div_reminders" name="div_reminders" class="well" style="display:none;">
+  Your timezone is set to <a href="/account/edit"><%= current_user.time_zone %></a>.
 <table>
   <tr>
     <td>

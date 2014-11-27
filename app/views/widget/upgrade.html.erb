@@ -170,7 +170,19 @@ Give it a shot! You have absolutely <span style="color:#CC3300;">nothing to lose
 
       <% if current_user %>
       <h2>After you've successfully subscribed above you can: </h2>
-            <p><span style="font-size:1.5em;"> <a href="/goals?return_from_upgrade_page_user_id=<%= current_user.id %>">Enter HabitForge!</a></span></p>
+            <p><span style="font-size:1.5em;"> 
+
+              <% if current_user.number_of_active_habits > 0 %>
+              <a href="/goals/<%= current_user.active_goals[0].id.to_s %>/edit">
+              Customize and SuperCharge Your Habit!
+              </a>
+              <% else %>  
+              <a href="/goals?return_from_upgrade_page_user_id=<%= current_user.id %>">
+                Enter HabitForge!
+              </a>
+              <% end %>
+
+            </span></p>
       <% end %>
 
 </center>
