@@ -139,12 +139,27 @@ Give it a shot! You have absolutely <span style="color:#CC3300;">nothing to lose
 
 
 
+
       <!-- START PAYWHIRL -->
 
-      <script type='text/javascript' src="https://www.paywhirl.com/js/widget.js"></script>
-      <iframe frameBorder="0" style='width:100%; height:auto; border:0; overflow:hidden;' id='paywhirl_frame' scrolling='no' src="https://www.paywhirl.com/widget?api_key=PW960FAF875953CD95DBA6E69CDB36C36F&widget=334"></iframe>
+      <!-- if there is a current_user_email param it means they are a $3.95/month infusionsoft person we've asked to flip to $1.29/month paywhirl -->
+      <% if params[:current_user_email] or (current_user and current_user.plan == "Monthly @ $3.95") %>
+
+        <!-- $1.29 monthly only -->
+        <script type='text/javascript' src="https://www.paywhirl.com/js/widget.js"></script>
+        <iframe frameBorder="0" style='width:100%; height:auto; border:0; overflow:hidden;' id='paywhirl_frame' scrolling='no' src="https://www.paywhirl.com/widget?api_key=PW960FAF875953CD95DBA6E69CDB36C36F&widget=479"></iframe>
+
+
+      <% else %>
+              <!-- normal charge options -->
+              <script type='text/javascript' src="https://www.paywhirl.com/js/widget.js"></script>
+              <iframe frameBorder="0" style='width:100%; height:auto; border:0; overflow:hidden;' id='paywhirl_frame' scrolling='no' src="https://www.paywhirl.com/widget?api_key=PW960FAF875953CD95DBA6E69CDB36C36F&widget=334"></iframe>
+
+      <% end %>
 
       <!-- **** END PAYWHIRL -->
+
+
 
       <div style="padding:.8em;margin-bottom:1em;border:2px solid #ddd;background:#FFFFCC;color:#514721;border-color:#eeeeee;-moz-border-radius: 15px;border-radius: 15px;">     
         <% if current_user %>   
