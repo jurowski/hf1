@@ -17,8 +17,8 @@ class UpdatePromotionBlackFriday2014 < ActiveRecord::Base
 
   if `uname -n`.strip == 'adv.adventurino.com'
     #### HABITFORGE SETTINGS ON VPS
-    #testing = 0 #send emails to everyone as needed
-    testing = 1 #only send emails to "jurowski@gmail.com/jurowski@pediatrics.wisc.edu" as needed
+    testing = 0 #send emails to everyone as needed
+    #testing = 1 #only send emails to "jurowski@gmail.com/jurowski@pediatrics.wisc.edu" as needed
 
 
     adjust_server_hour = 0 ### this server is listing its time as GMT -0600
@@ -56,7 +56,7 @@ class UpdatePromotionBlackFriday2014 < ActiveRecord::Base
   attempt_to_resend_failures = 0
   #attempt_to_resend_failures = 1  
 
-  maxemails = 300
+  maxemails = 800
   puts "Max emails to send per hour = #{maxemails}"
 
   count_emailed = 0
@@ -117,7 +117,7 @@ class UpdatePromotionBlackFriday2014 < ActiveRecord::Base
      			      #puts "user.unsubscribed_from_promo_emails is nil or 0"
                 puts "#{user.email} is going to get an email"
                 
-                the_subject = "HabitForge Black Friday 50% off Premium (First 1000 People Only!!!!)"
+                the_subject = "HabitForge 50% off Premium (First 1000 People Only!!!!)"
                 Notifier.deliver_promotion_black_friday_2014(user, the_subject) # sends the email  
 
                 puts "#{user.email} was sent the promotion_black_friday_2014 email"
