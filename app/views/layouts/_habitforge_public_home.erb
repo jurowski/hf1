@@ -1,6 +1,6 @@
 <% 
 if params[:mobile_device]
-  is_mobile_device = true
+  mobile_device = true
 end
 
 @production = true
@@ -102,9 +102,9 @@ end
 
 
 <!-- <body style="background-color:#333333;"> -->
-<!-- <body style="background-image: url('/home/images/backgrounds/clouds_gradient.jpg');background-repeat: no-repeat;">
- -->  
-<body>
+<body style="background-image: url('/home/images/backgrounds/clouds_gradient.jpg');background-repeat: no-repeat;">
+  
+
 
       <div style="width:100%;padding-top:5px;padding-right:10px;">
         <div style="">
@@ -119,6 +119,7 @@ end
         </center>
         </div>
       </div>
+<br>
     
 
 
@@ -200,20 +201,22 @@ end
     -->
 
 
-<% if mobile_device? %>
-  <img src="/home/images/homepage_forest_mobile.png">
-<% else %>
-  <img src="/home/images/homepage_forest_desktop.png">
-<% end %>
+
 
     <div style="min-width:360px;padding-right:40px;">
       <!-- Logo Start -->
       <center>
-<!--         <div style="width:15%;">
+        <div style="width:15%;">
         <a href="/"><img src="/home/images/logos/hf_logo_shield_rocket_transparency.png" alt="HabitForge logo" /></a>
         </div>
- -->
-<br>
+
+   <h2><span style="line-height:1.05em;">It takes <i>at least 3 weeks</i> to create a new habit.</span></h2>
+
+
+   <h1><span style="line-height:1.05em;color:#cc3300;">What could you do Daily to Improve Your Life?</span></h1>
+
+
+
           <a class="button" href="#jump_to_sign_up">
           Sign Up Free!
  </a>
