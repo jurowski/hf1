@@ -183,11 +183,22 @@ class UsersController < ApplicationController
                   end
 
                  if plan == "monthly-295"
-                    plan = "HabitForge Monthly $2.95"
+                    if params[:coupon] and params[:coupon] == "50"
+                      plan = "HabitForge Monthly $1.47 (Coupon 50% off $2.95)"
+                    else
+                      plan = "HabitForge Monthly $2.95"
+                    end
+
                   end
 
                   if plan == "yearly-2395"
-                    plan = "HabitForge Yearly $23.95"
+
+                    if params[:coupon] and params[:coupon] == "50"
+                      plan = "HabitForge Yearly $11.97 (Coupon 50% off $23.95)"
+                    else
+                      plan = "HabitForge Yearly $23.95"
+                    end
+
                   end
 
                   user.plan = plan
