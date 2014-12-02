@@ -56,7 +56,7 @@ class UpdatePromotionBlackFriday2014 < ActiveRecord::Base
   attempt_to_resend_failures = 0
   #attempt_to_resend_failures = 1  
 
-  maxemails = 800
+  maxemails = 300
   puts "Max emails to send per hour = #{maxemails}"
 
   count_emailed = 0
