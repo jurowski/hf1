@@ -971,6 +971,105 @@ class HooksController < ApplicationController
 
   def upgrade_from_paywhirl
     logger.info 'SGJ-paywhirl start'
+
+
+        # ######################################################################
+        # ############# MANUALLY UPGRADE AN ACCOUNT ############################
+        # if current_user_is_admin and params[:upgrade_id]
+        #     ### GET DATE NOW ###
+        #     jump_forward_days = 0
+        #     tnow = Time.now
+        #     tnow_Y = tnow.strftime("%Y").to_i #year, 4 digits
+        #     tnow_m = tnow.strftime("%m").to_i #month of the year
+        #     tnow_d = tnow.strftime("%d").to_i #day of the month
+        #     tnow_H = tnow.strftime("%H").to_i #hour (24-hour format)
+        #     tnow_M = tnow.strftime("%M").to_i #minute of the hour
+        #     #puts tnow_Y + tnow_m + tnow_d  
+        #     #puts "Current timestamp is #{tnow.to_s}"
+        #     dnow = Date.new(tnow_Y, tnow_m, tnow_d) + jump_forward_days
+        #     ######
+
+        #     ### Upgrade their account
+        #     logger.info 'HF Attempting to upgrade their account'
+
+        #     user = User.find(:first, :conditions => "id = #{params[:upgrade_id].to_i}") 
+        #     if user != nil
+        #         days = 365
+        #         if params[:days]
+        #           days = params[:days].to_i
+        #         end
+
+        #         plan = "NOT YET SUBSCRIBED"
+        #         if params[:plan]
+        #           plan = params[:plan]
+        #         end
+
+        #         user.combine_daily_emails = 0
+        #         user.hide_donation_plea = 1
+        #         user.unlimited_goals = 1
+        #         user.sent_expire_warning_on = '1900-01-01'
+
+        #         if days == 3000
+        #           user.kill_ads_until = '3000-01-01'
+        #           user.premium_start_date = user.dtoday
+
+        #           if plan == "yearly-9-00"
+        #             plan = "HabitForge Yearly $9"
+        #           end
+
+        #           if plan == "monthly-1-29"
+        #             plan = "HabitForge Monthly $1.29"
+        #           end
+
+        #          if plan == "monthly-295"
+        #             if params[:coupon] and params[:coupon] == "50"
+        #               plan = "HabitForge Monthly $1.47 (Coupon 50% off $2.95)"
+        #             else
+        #               plan = "HabitForge Monthly $2.95"
+        #             end
+
+        #           end
+
+        #           if plan == "yearly-2395"
+
+        #             if params[:coupon] and params[:coupon] == "50"
+        #               plan = "HabitForge Yearly $11.97 (Coupon 50% off $23.95)"
+        #             else
+        #               plan = "HabitForge Yearly $23.95"
+        #             end
+
+        #           end
+
+        #           user.plan = plan
+
+
+        #         else
+        #           if user.supportpoints and user.supportpoints >= 100
+        #             user.supportpoints = user.supportpoints - 100
+        #           end
+
+        #           user.got_free_membership = dnow
+        #           user.kill_ads_until = dnow + days
+        #         end
+
+        #         if user.save
+        #             logger.info 'HF SUCCESS upgrading user account for ' + user.email
+
+        #             ### Send email to user and CC support w/ thank you and upgrade info
+        #             logger.info 'HF ATTEMPTING TO Send email to user and CC support w/ thank you and upgrade info'
+        #             Notifier.deliver_user_upgrade_notification(user) # sends the email
+        #         else 
+        #             logger.info 'HF ERROR upgrading user account for ' + user.email
+        #         end
+
+
+        #     end
+        # end
+        # ############# END MANUALLY UPGRADE AN ACCOUNT ########################
+        # ######################################################################
+
+
+
     logger.info 'SGJ-paywhirl end'
     render :nothing => true
   end

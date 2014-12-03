@@ -134,7 +134,7 @@ class UsersController < ApplicationController
         end        
 
 
-
+        ######################################################################
         ############# MANUALLY UPGRADE AN ACCOUNT ############################
         if current_user_is_admin and params[:upgrade_id]
             ### GET DATE NOW ###
@@ -226,6 +226,8 @@ class UsersController < ApplicationController
 
             end
         end
+        ############# END MANUALLY UPGRADE AN ACCOUNT ########################
+        ######################################################################
 
 
 
