@@ -865,17 +865,20 @@ for goal in current_user.active_goals_sorted_by_next_action_day
         else
 
             %>
+
+<!--
                 <center>
-                  <div style="">
+                   <div style="">
                     <span style="font-size:1.3em;">Triple your chances for success: <a href="/goals?show_fire_goal_id=<%= goal.id %>#jump_to_goal_id_<%= goal.id %>">Bet a Friend or a Cause!</a>
                     </span>
                   </div>
                 </center>
-                <div class="progress progress-striped progress-danger active" style="margin-top:-20px;">
+-->
+<!--                 <div class="progress progress-striped progress-danger active" style="margin-top:-0px;">
                    <div style="width: <%= percent_complete %>%;" class="bar">
                   </div>
                 </div>            
-            <%
+ -->            <%
         end
         ##################################################################
         ### END SHOW PROGRESS BAR FOR BETS
