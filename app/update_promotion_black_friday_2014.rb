@@ -122,12 +122,14 @@ class UpdatePromotionBlackFriday2014 < ActiveRecord::Base
                   Notifier.deliver_promotion_black_friday_2014(user, the_subject) # sends the email  
 
                   puts "#{user.email} was sent the promotion_black_friday_2014 email"
-
-                  user.promotion_black_friday_2014_sent = dnow
-                  user.save 
                   
                   count_emailed = count_emailed + 1       
                 end
+
+                ### do this even if it is a xxx_ user
+                user.promotion_black_friday_2014_sent = dnow
+                user.save 
+
               end 
             end
         end
