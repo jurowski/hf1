@@ -17,8 +17,8 @@ class UpdatePromotionBlackFriday2014 < ActiveRecord::Base
 
   if `uname -n`.strip == 'adv.adventurino.com'
     #### HABITFORGE SETTINGS ON VPS
-    testing = 0 #send emails to everyone as needed
-    #testing = 1 #only send emails to "jurowski@gmail.com/jurowski@pediatrics.wisc.edu" as needed
+    #testing = 0 #send emails to everyone as needed
+    testing = 1 #only send emails to "jurowski@gmail.com/jurowski@pediatrics.wisc.edu" as needed
 
 
     adjust_server_hour = 0 ### this server is listing its time as GMT -0600
@@ -105,9 +105,9 @@ class UpdatePromotionBlackFriday2014 < ActiveRecord::Base
     if testing == 1 ### assuming adminuseremail of "jurowski@gmail.com" or "jurowski@pediatrics.wisc.edu"
       user_conditions = "email = 'jurowski@gmail.com'"
     else
-      user_conditions = "kill_ads_until is null"
+      user_conditions = "kill_ads_until is null and promotion_black_friday_2014_sent is null and unsubscribed_from_promo_emails != '1'"
     end
-    @users = User.find(:all, :conditions => user_conditions)
+    @users = User.find(:all, :conditions => user_conditions, :limit => maxemails)
 
     for user in @users
         if count_emailed < maxemails
