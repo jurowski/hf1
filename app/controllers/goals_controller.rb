@@ -1374,19 +1374,14 @@ class GoalsController < ApplicationController
               # if !current_user.is_habitforge_supporting_member
               #   format.html {redirect_to("/goals?too_many_active_habits=1&just_created_new_habit=1")}              
               # else
-              #   format.html { render fdef:action => "index" } # index.html.erb
+              #   format.html { render :action => "index" } # index.html.erb
               # end
-
-
-              
-              #### TAKE EVERYONE TO THE CUSTOMIZATION SCREEN NEXT (DEAL w/ UPGRADE REDIRECTION AFTER THAT)
-              format.html { redirect_to("/goals/#{@goal.id}/edit?just_created_new_habit=1")}
           
-              # if !current_user.is_habitforge_supporting_member
-              #   format.html { redirect_to("https://habitforge.com/widget/upgrade")}
-              # else
-              #   format.html { redirect_to("/goals/#{@goal.id}/edit?just_created_new_habit=1")}
-              # end
+              if !current_user.is_habitforge_supporting_member
+                format.html { redirect_to("https://habitforge.com/widget/upgrade")}
+              else
+                format.html { redirect_to("/goals/#{@goal.id}/edit?just_created_new_habit=1")}
+              end
 
 
 
@@ -1742,14 +1737,7 @@ class GoalsController < ApplicationController
             if @goal.template_owner_is_a_template and params[:program_id]
               format.html {redirect_to("/programs/#{params[:program_id]}#action_items")}
             else
-
-
-              if !@goal.user.is_habitforge_supporting_member
-                format.html { redirect_to("https://habitforge.com/widget/upgrade")}
-              else
-                format.html { render :action => "index" } # index.html.erb
-              end
-
+              format.html { render :action => "index" } # index.html.erb
               format.xml  { render :xml => @goal.errors, :status => :unprocessable_entity }            
             end
 

@@ -51,18 +51,7 @@
 
     or
 
-
-    <%
-    if !current_user.is_habitforge_supporting_member
-      %>
-        <%= link_to 'Go to the Dashboard', 'https://habitforge.com/widget/upgrade' %></p>
-      <%
-    else
-      %>
-        <%= link_to 'Go to the Dashboard', goals_path %></p>
-      <%
-    end
-    %>
+    <%= link_to 'Go to the Dashboard', goals_path %></p>
 
 <%
 #rescue
