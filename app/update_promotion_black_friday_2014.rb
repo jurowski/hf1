@@ -113,18 +113,21 @@ class UpdatePromotionBlackFriday2014 < ActiveRecord::Base
             run_once = 0
         		if user.promotion_black_friday_2014_sent == nil or testing == 1
         			if user.unsubscribed_from_promo_emails == nil or user.unsubscribed_from_promo_emails == 0 or testing == 1
-     			      #puts "user.unsubscribed_from_promo_emails is nil or 0"
-                puts "#{user.email} is going to get an email"
-                
-                the_subject = "HabitForge 50% off Premium (First 1000 People Only!!!!)"
-                Notifier.deliver_promotion_black_friday_2014(user, the_subject) # sends the email  
 
-                puts "#{user.email} was sent the promotion_black_friday_2014 email"
+                if !user.email.include? "xxx_"
+       			      #puts "user.unsubscribed_from_promo_emails is nil or 0"
+                  puts "#{user.email} is going to get an email"
+                  
+                  the_subject = "HabitForge 50% off Premium (First 1000 People Only!!!!)"
+                  Notifier.deliver_promotion_black_friday_2014(user, the_subject) # sends the email  
 
-                user.promotion_black_friday_2014_sent = dnow
-                user.save 
-                
-                count_emailed = count_emailed + 1       
+                  puts "#{user.email} was sent the promotion_black_friday_2014 email"
+
+                  user.promotion_black_friday_2014_sent = dnow
+                  user.save 
+                  
+                  count_emailed = count_emailed + 1       
+                end
               end 
             end
         end
