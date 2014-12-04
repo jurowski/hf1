@@ -105,8 +105,7 @@ class UpdatePromotionBlackFriday2014 < ActiveRecord::Base
     if testing == 1 ### assuming adminuseremail of "jurowski@gmail.com" or "jurowski@pediatrics.wisc.edu"
       user_conditions = "email = 'jurowski@gmail.com'"
     else
-      user_conditions = "kill_ads_until is null and promotion_black_friday_2014_sent is null and unsubscribed_from_promo_emails != '1'"
-    end
+      user_conditions = "kill_ads_until is null and promotion_black_friday_2014_sent is null and (unsubscribed_from_promo_emails = 0 or unsubscribed_from_promo_emails is null)"    end
     @users = User.find(:all, :conditions => user_conditions, :limit => maxemails)
 
     for user in @users
