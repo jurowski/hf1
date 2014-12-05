@@ -1618,11 +1618,93 @@ http://localhost:3000/goals?update_checkpoint_status=yes&date=2012-02-12&e0=106&
         <!-- 
         ###########
         ###########
-        STATUS
+        LIGHTBOX COMING FROM EMAIL, STATUS CHECK-IN
+        GET HERE BY:
+        http://localhost:3000/goals?update_checkpoint_status=no&date=2014-12-04&goal_id=127584&coming_from=email
+        or
+        localhost:3000/goals?update_checkpoint_status=no&date=2014-12-04&e0=106&f0=83&u=83589&goal_id=127584&coming_from=email
         ###########
         -->
         <center>
-              <h3><%= @lightbox_goal.status_phrase(params[:date]) %></h3>
+
+
+
+            <div style="width:80%;">
+              <table border=0 cellpadding=5 cellspacing=5>
+                <tr>
+                  <td>
+                    <div style="margin:10px;">
+                      <center>
+                      <img src="/home/images/coaches/man1/coach_man1_talking.png" alt="Nick Davidson"/>
+                      <br>
+                      Nick D.
+                      <br>
+                      <i>HabitCoach (Pixelized)</i>
+                      </center>
+                    </div>
+                  </td>
+                  <td>
+                    <div style="padding:.8em;margin-bottom:1em;border:2px solid #ddd;background:#ffffcc;color:#514721;border-color:#eeeeee;-moz-border-radius: 15px;border-radius: 15px;">
+
+                      <p style="font-size:1.1em;line-height:1.3em;color:#000000;">
+                        <img src="/home/images/blockquote_img.png" width=20px/>
+                
+                        <%= @lightbox_goal.status_phrase(params[:date]) %>
+                            <br>
+                            <br>
+                            <%
+                            # 0 = joining a team of those working on the same thing as you
+                            # 1 = inviting a friend to follow and get reports on your progress
+                            # 2 = placing a friendly wager with a friend
+                            # 3 = placing a friendly wager with a random habitforge user
+                            # 4 = enabling more frequent Reminders
+                            # 5 = clarifying your motivation and purpose
+ 
+                            # random_index = rand(slacker_goals.size) #between 0 and (size - 1)
+                            random_index = rand(7) #between 0 and (size - 1)
+
+                            case random_index
+                            when 0
+                                %>Have you already enabled 
+                                <a href="/goals/edit/<%= @lightbox_goal.id %>"><strong>more frequent reminders</strong></a>?
+                                <%
+                            when 1
+                                %>I wonder if you've already 
+                                <a href="/goals"><strong>invited a friend to follow and get reports on your progress</strong></a>?
+                                <%
+
+                            when 2
+                                %>Have you already upped your level of accountability and 
+                                <a href="/goals"><strong>placed a friendly wager with a friend?</strong></a>?
+                                <%
+                            when 3
+                                %>Have you tried    
+                                <a href="/goals"><strong>placing a friendly wager with a random habitforge user</strong></a>?
+                                <%
+                            when 4
+                                %>A lot of people have great success by    
+                                <a href="/goals/edit/<%= @lightbox_goal.id %>"><strong>clarifying the motivation and purpose for following through!</strong></a>
+                                <%
+                            when 5
+                            else
+                                %>Have you already 
+                                <a href="/goals"><strong>joined a team of those working on the same thing as you</strong></a>?
+                                <%
+                            end 
+                            %>
+                      </p>
+
+                    </div>
+
+                  </td>
+                </tr>
+              </table>
+
+            </div>
+
+
+
+
                 <br>
                 <div class="stats_badge">
                     <!-- tried but kept getting stale results: 
@@ -1795,7 +1877,7 @@ http://localhost:3000/goals?update_checkpoint_status=yes&date=2012-02-12&e0=106&
     ############# BASIC BOOSTING AND FOLLOWING BUTTON PROMPTS of Free Users
     #### Ask them to message a "free user" who's slacking
 
-    @bug_me_to_bug_free_slacking_users = false
+    @bug_me_to_bug_free_slacking_users = true
 
     if @bug_me_to_bug_free_slacking_users
 

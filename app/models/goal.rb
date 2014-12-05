@@ -1233,7 +1233,7 @@ class Goal < ActiveRecord::Base
           arr_sorry.push(["Ok. Hey, every day is a brand new day, right #{self.user.first_name}?"])
           arr_sorry.push(["Well, it happens, #{self.user.first_name}. One day is all you need to start a new streak!"])
           arr_sorry.push(["Ok #{self.user.first_name}. One thing that works well for a lot of people: before you go to bed at night, write down in a journal your plan to succeed the next day. It works surprisingly well!"])
-          arr_sorry.push(["Alright #{self.user.first_name}. Have you thought about what kept you from succeeding, and how you might be able to change that?"])
+          # arr_sorry.push(["Alright #{self.user.first_name}. Have you thought about what kept you from succeeding, and how you might be able to change that?"])
         else
           #if self.days_since_first_checkpoint >= 7
             last_7_days_count = self.success_count_during_past_n_days(7)
