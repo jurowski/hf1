@@ -642,15 +642,67 @@ for goal in current_user.active_goals_sorted_by_next_action_day
     <!-- BEGIN CUSTOM BUTTONS WITH ICONS PORTLET-->
 
     <% if goal.publish %>
-    <div class="portlet box" style="background-color:#666666;padding-top:15px;padding:10px;" >
+
+              <a href="/goals/<%= goal.id %>/edit" style="color:#666666;padding-bottom:0px;"><i class="icon-unlock" style="font-size:2.5em;" id="visibility_<%= goal.id.to_s %>" title="Public - Currently, Anyone Can See Your Stats and Comment on your Progress"></i></a>
+                <script type='text/javascript'>
+                $('#visibility_<%= goal.id.to_s %>').tipsy();
+                </script>
+
     <% else %>
-    <div class="portlet box" style="background-color:#666666;padding-top:15px;padding:10px;" >
+
+
+              <a href="/goals/<%= goal.id %>/edit" style="color:#666666;padding-bottom:0px;"><i class="icon-lock" style="font-size:2.5em;" id="visibility_<%= goal.id.to_s %>" title="Private - No One Can See Your Habit Unless You Invite Them To"></i></a>
+                <script type='text/javascript'>
+                $('#visibility_<%= goal.id.to_s %>').tipsy();
+                </script>
+
     <% end %>
+
+
+    <% if goal.more_reminders_enabled %>
+
+              <a href="/goals/<%= goal.id %>/edit" style="color:#666666;padding-bottom:0px;"><i class="icon-bell" style="font-size:2.5em;" id="frequent_reminders_<%= goal.id.to_s %>" title="Frequent Reminders Enabled"></i></a>
+                <script type='text/javascript'>
+                $('#frequent_reminders_<%= goal.id.to_s %>').tipsy();
+                </script>
+    <% else %>
+              <a href="/goals/<%= goal.id %>/edit" style="color:#dddddd;padding-bottom:0px;"><i class="icon-bell" style="font-size:2.5em;" id="frequent_reminders_<%= goal.id.to_s %>" title="Frequent Reminders Disabled"></i></a>
+                <script type='text/javascript'>
+                $('#frequent_reminders_<%= goal.id.to_s %>').tipsy();
+                </script>
+
+    <% end %>
+
+
+    <% if goal.allow_push %>
+
+              <a href="/goals/<%= goal.id %>/edit" style="color:#666666;padding-bottom:0px;"><i class="icon-bullhorn" style="font-size:2.5em;" id="allow_push_<%= goal.id.to_s %>" title="Extra Encouragement Enabled"></i></a>
+                <script type='text/javascript'>
+                $('#allow_push_<%= goal.id.to_s %>').tipsy();
+                </script>
+    <% else %>
+              <a href="/goals/<%= goal.id %>/edit" style="color:#dddddd;padding-bottom:0px;"><i class="icon-bullhorn" style="font-size:2.5em;" id="allow_push_<%= goal.id.to_s %>" title="Extra Encouragement Disabled"></i></a>
+                <script type='text/javascript'>
+                $('#allow_push_<%= goal.id.to_s %>').tipsy();
+                </script>
+
+    <% end %>
+
+
+    <div class="portlet box" style="background-color:#666666;padding-top:15px;padding:10px;" >
+
+
         <div class="portlet-title">
+
+
 
            <div class="caption">
 
                 <a name="jump_to_goal_id_<%= goal.id.to_s %>"></a>
+
+
+
+
 
                 <% 
                 if goal.number_my_active_bets > 0 
@@ -731,7 +783,9 @@ for goal in current_user.active_goals_sorted_by_next_action_day
                     <% end %>
                 <% else %>
                     <% if goal.category and  goal.category != "None" and goal.category != "" and goal.category != "Other" %><strong><%= goal.category %>:</strong><br> <% end %>
-                    
+            
+
+
               <a href="/goals/<%= goal.id %>/edit" style="color:#ffffff;padding-bottom:0px;">
               <%= goal.title %>
               </a>
