@@ -352,14 +352,56 @@ end
     < end >
  -->
 
+<div>
+&nbsp
+<br>
+&nbsp
+<br>
+</div>
     <% if current_user.sponsor == "habitforge" and !current_user.is_habitforge_supporting_member and current_user.number_of_active_habits > 0 %>
 
 
+
+
+        <table border=0>
+            <tr>
+                <td>
         <a href="/widget/upgrade" class="btn blue "></i>+ Start a New Habit</a>
+
+                </td>
+                <td>
+        <div style="margin-top:-75px;margin-left:-15px;">
+
+          <a href="/widget/upgrade" id="move_up">
+            <img src="/home/images/nick_what_could_you_do.png" />
+          </a>
+
+        </div>
+            </td>
+        </tr>
+    </table>
 
     <% else %>
 
+        <table border=0>
+            <tr>
+                <td>
         <a href="/goals/new" class="btn blue"></i>+ Start a New Habit</a>
+
+                </td>
+                <td>
+        <div style="margin-top:-110px;margin-left:-15px;">
+
+          <a href="/goals/new" id="move_up">
+            <img src="/home/images/nick_what_could_you_do.png" />
+          </a>
+
+
+        </div>
+            </td>
+        </tr>
+    </table>
+
 
     <% end %>
 
@@ -391,12 +433,23 @@ end
 
 <% if !current_user.hide_feed %>
     <!-- SHOW LATEST PUBLIC CHECKINS -->
+
+    <br>
+      <img src="/home/images/recent_success_stories_top_small.png" width=300px; />
+
     <div class="dynamic_latest_public_checkins">
         <%= render :partial => 'goals/dynamic_latest_public_checkins' %>
     </div>
     <div id="spinner_dynamic_latest_public_checkins" style="display:none;">
         <center><img src="/images/spinner.gif"/></center>
     </div>
+
+    <div style="padding-top:15px;padding-bottom:5px;width=100%;">
+
+                <img src="/home/images/recent_success_stories_bottom.png" width=300px; />
+
+    </div>
+
 <% end %>
 
 
@@ -557,16 +610,16 @@ for goal in current_user.active_goals_sorted_by_next_action_day
                 <div class=" " style="padding:10px;"> 
 
 
-          <h1><span style="color:#cc3300;line-height:1.05em;">
+          <h1><span style="color:#666666;line-height:1.05em;">
 
 
                 <h2>
                     <i class='icon-chevron-right'></i>
                     &nbsp
                 <% if number_goals_today == 1 %>
-                    Today I need to work on...
+                    Today I'm committed to working on...
                 <% else %>
-                    Today I'm working on these <%= number_goals_today %> habits...
+                    Today I'm committed to working on these <%= number_goals_today %> habits...
                 <% end %>
           </span></h1>
             </div>
@@ -641,9 +694,20 @@ for goal in current_user.active_goals_sorted_by_next_action_day
     <!-- *********** -->
     <!-- BEGIN CUSTOM BUTTONS WITH ICONS PORTLET-->
 
+
+    <div>
+        &nbsp
+        <br>
+        &nbsp
+        <br>
+    </div>
+    <table border=0>
+        <tr>
+            <td>
+
     <% if goal.publish %>
 
-              <a href="/goals/<%= goal.id %>/edit" style="color:#666666;padding-bottom:0px;"><i class="icon-unlock" style="font-size:2.5em;" id="visibility_<%= goal.id.to_s %>" title="Public - Currently, Anyone Can See Your Stats and Comment on your Progress"></i></a>
+              <a href="/goals/<%= goal.id %>/edit" style="color:#666666;padding-bottom:0px;"><i class="icon-unlock" style="font-size:1.5em;" id="visibility_<%= goal.id.to_s %>" title="Public - Currently, Anyone Can See Your Stats and Comment on your Progress"></i></a>
                 <script type='text/javascript'>
                 $('#visibility_<%= goal.id.to_s %>').tipsy();
                 </script>
@@ -651,7 +715,7 @@ for goal in current_user.active_goals_sorted_by_next_action_day
     <% else %>
 
 
-              <a href="/goals/<%= goal.id %>/edit" style="color:#666666;padding-bottom:0px;"><i class="icon-lock" style="font-size:2.5em;" id="visibility_<%= goal.id.to_s %>" title="Private - No One Can See Your Habit Unless You Invite Them To"></i></a>
+              <a href="/goals/<%= goal.id %>/edit" style="color:#666666;padding-bottom:0px;"><i class="icon-lock" style="font-size:1.5em;" id="visibility_<%= goal.id.to_s %>" title="Private - No One Can See Your Habit Unless You Invite Them To"></i></a>
                 <script type='text/javascript'>
                 $('#visibility_<%= goal.id.to_s %>').tipsy();
                 </script>
@@ -661,12 +725,12 @@ for goal in current_user.active_goals_sorted_by_next_action_day
 
     <% if goal.more_reminders_enabled %>
 
-              <a href="/goals/<%= goal.id %>/edit" style="color:#666666;padding-bottom:0px;"><i class="icon-bell" style="font-size:2.5em;" id="frequent_reminders_<%= goal.id.to_s %>" title="Frequent Reminders Enabled"></i></a>
+              <a href="/goals/<%= goal.id %>/edit" style="color:#666666;padding-bottom:0px;"><i class="icon-bell" style="font-size:1.5em;" id="frequent_reminders_<%= goal.id.to_s %>" title="Frequent Reminders Enabled"></i></a>
                 <script type='text/javascript'>
                 $('#frequent_reminders_<%= goal.id.to_s %>').tipsy();
                 </script>
     <% else %>
-              <a href="/goals/<%= goal.id %>/edit" style="color:#dddddd;padding-bottom:0px;"><i class="icon-bell" style="font-size:2.5em;" id="frequent_reminders_<%= goal.id.to_s %>" title="Frequent Reminders Disabled"></i></a>
+              <a href="/goals/<%= goal.id %>/edit" style="color:#dddddd;padding-bottom:0px;"><i class="icon-bell" style="font-size:1.5em;" id="frequent_reminders_<%= goal.id.to_s %>" title="Frequent Reminders Disabled"></i></a>
                 <script type='text/javascript'>
                 $('#frequent_reminders_<%= goal.id.to_s %>').tipsy();
                 </script>
@@ -676,19 +740,37 @@ for goal in current_user.active_goals_sorted_by_next_action_day
 
     <% if goal.allow_push %>
 
-              <a href="/goals/<%= goal.id %>/edit" style="color:#666666;padding-bottom:0px;"><i class="icon-bullhorn" style="font-size:2.5em;" id="allow_push_<%= goal.id.to_s %>" title="Extra Encouragement Enabled"></i></a>
+              <a href="/goals/<%= goal.id %>/edit" style="color:#666666;padding-bottom:0px;"><i class="icon-bullhorn" style="font-size:1.5em;" id="allow_push_<%= goal.id.to_s %>" title="Extra Encouragement Enabled!"></i></a>
                 <script type='text/javascript'>
                 $('#allow_push_<%= goal.id.to_s %>').tipsy();
                 </script>
     <% else %>
-              <a href="/goals/<%= goal.id %>/edit" style="color:#dddddd;padding-bottom:0px;"><i class="icon-bullhorn" style="font-size:2.5em;" id="allow_push_<%= goal.id.to_s %>" title="Extra Encouragement Disabled"></i></a>
+              <a href="/goals/<%= goal.id %>/edit" style="color:#dddddd;padding-bottom:0px;"><i class="icon-bullhorn" style="font-size:1.5em;" id="allow_push_<%= goal.id.to_s %>" title="Extra Encouragement (Enable Me!)"></i></a>
                 <script type='text/javascript'>
                 $('#allow_push_<%= goal.id.to_s %>').tipsy();
                 </script>
 
     <% end %>
+</td>
+<td>
 
+    <% if !goal.allow_push %>
 
+        <div style="margin-top:-30px;margin-left:-20px;">
+
+          <a href="/goals/<%= goal.id %>/edit" id="allow_push_2_<%= goal.id.to_s %>" title="Extra Encouragement (Enable Me!)">
+            <img src="/home/images/arrow_drawn_strongest_habit_booster.png" />
+          </a>
+        <script type='text/javascript'>
+        $('#allow_push_2__<%= goal.id.to_s %>').tipsy();
+        </script>
+
+        </div>
+    <% end %>
+
+</td>
+</tr>
+</table>
     <div class="portlet box" style="background-color:#666666;padding-top:15px;padding:10px;" >
 
 
