@@ -711,7 +711,7 @@ for goal in current_user.active_goals_sorted_by_next_action_day
 
     <% if goal.publish %>
 
-              <a href="/goals/<%= goal.id %>/edit" style="color:#666666;padding-bottom:0px;"><i class="icon-unlock" style="font-size:1.5em;" id="visibility_<%= goal.id.to_s %>" title="Public - Currently, Anyone Can See Your Stats and Comment on your Progress"></i></a>
+              <a href="/goals/<%= goal.id %>/edit?show_visibility=1#visibility" style="color:#666666;padding-bottom:0px;"><i class="icon-unlock" style="font-size:1.5em;" id="visibility_<%= goal.id.to_s %>" title="Public - Currently, Anyone Can See Your Stats and Comment on your Progress"></i></a>
                 <script type='text/javascript'>
                 $('#visibility_<%= goal.id.to_s %>').tipsy();
                 </script>
@@ -719,7 +719,7 @@ for goal in current_user.active_goals_sorted_by_next_action_day
     <% else %>
 
 
-              <a href="/goals/<%= goal.id %>/edit" style="color:#666666;padding-bottom:0px;"><i class="icon-lock" style="font-size:1.5em;" id="visibility_<%= goal.id.to_s %>" title="Private - No One Can See Your Habit Unless You Invite Them To"></i></a>
+              <a href="/goals/<%= goal.id %>/edit?show_visibility=1#visibility" style="color:#666666;padding-bottom:0px;"><i class="icon-lock" style="font-size:1.5em;" id="visibility_<%= goal.id.to_s %>" title="Private - No One Can See Your Habit Unless You Invite Them To"></i></a>
                 <script type='text/javascript'>
                 $('#visibility_<%= goal.id.to_s %>').tipsy();
                 </script>
@@ -729,12 +729,12 @@ for goal in current_user.active_goals_sorted_by_next_action_day
 
     <% if goal.more_reminders_enabled %>
 
-              <a href="/goals/<%= goal.id %>/edit" style="color:#666666;padding-bottom:0px;"><i class="icon-bell" style="font-size:1.5em;" id="frequent_reminders_<%= goal.id.to_s %>" title="Frequent Reminders Enabled"></i></a>
+              <a href="/goals/<%= goal.id %>/edit?show_reminders=1#reminders" style="color:#666666;padding-bottom:0px;"><i class="icon-bell" style="font-size:1.5em;" id="frequent_reminders_<%= goal.id.to_s %>" title="Frequent Reminders Enabled"></i></a>
                 <script type='text/javascript'>
                 $('#frequent_reminders_<%= goal.id.to_s %>').tipsy();
                 </script>
     <% else %>
-              <a href="/goals/<%= goal.id %>/edit" style="color:#dddddd;padding-bottom:0px;"><i class="icon-bell" style="font-size:1.5em;" id="frequent_reminders_<%= goal.id.to_s %>" title="Frequent Reminders Disabled"></i></a>
+              <a href="/goals/<%= goal.id %>/edit?show_reminders=1#reminders" style="color:#dddddd;padding-bottom:0px;"><i class="icon-bell" style="font-size:1.5em;" id="frequent_reminders_<%= goal.id.to_s %>" title="Frequent Reminders Disabled"></i></a>
                 <script type='text/javascript'>
                 $('#frequent_reminders_<%= goal.id.to_s %>').tipsy();
                 </script>
@@ -744,12 +744,12 @@ for goal in current_user.active_goals_sorted_by_next_action_day
 
     <% if goal.allow_push %>
 
-              <a href="/goals/<%= goal.id %>/edit" style="color:#666666;padding-bottom:0px;"><i class="icon-bullhorn" style="font-size:1.5em;" id="allow_push_<%= goal.id.to_s %>" title="Extra Encouragement Enabled!"></i></a>
+              <a href="/goals/<%= goal.id %>/edit?show_extra_encouragement=1#extra_encouragement" style="color:#666666;padding-bottom:0px;"><i class="icon-bullhorn" style="font-size:1.5em;" id="allow_push_<%= goal.id.to_s %>" title="Extra Encouragement Enabled!"></i></a>
                 <script type='text/javascript'>
                 $('#allow_push_<%= goal.id.to_s %>').tipsy();
                 </script>
     <% else %>
-              <a href="/goals/<%= goal.id %>/edit" style="color:#dddddd;padding-bottom:0px;"><i class="icon-bullhorn" style="font-size:1.5em;" id="allow_push_<%= goal.id.to_s %>" title="Extra Encouragement (Enable Me!)"></i></a>
+              <a href="/goals/<%= goal.id %>/edit?show_extra_encouragement=1#extra_encouragement" style="color:#dddddd;padding-bottom:0px;"><i class="icon-bullhorn" style="font-size:1.5em;" id="allow_push_<%= goal.id.to_s %>" title="Extra Encouragement (Enable Me!)"></i></a>
                 <script type='text/javascript'>
                 $('#allow_push_<%= goal.id.to_s %>').tipsy();
                 </script>
@@ -762,7 +762,7 @@ for goal in current_user.active_goals_sorted_by_next_action_day
 
         <div style="margin-top:-30px;margin-left:-20px;">
 
-          <a href="/goals/<%= goal.id %>/edit" id="allow_push_2_<%= goal.id.to_s %>" title="Extra Encouragement (Enable Me!)">
+          <a href="/goals/<%= goal.id %>/edit?show_extra_encouragement=1#extra_encouragement" id="allow_push_2_<%= goal.id.to_s %>" title="Extra Encouragement (Enable Me!)">
             <img src="/home/images/arrow_drawn_strongest_habit_booster.png" />
             <% strongest_habit_booster_displayed = true %>
           </a>
@@ -1807,7 +1807,7 @@ http://localhost:3000/goals?update_checkpoint_status=yes&date=2012-02-12&e0=106&
                             case random_index
                             when 0
                                 %>Have you already enabled 
-                                <a href="/goals/edit/<%= @lightbox_goal.id %>"><strong>more frequent reminders</strong></a>?
+                                <a href="/goals/edit/<%= @lightbox_goal.id %>?show_reminders=1#reminders"><strong>more frequent reminders</strong></a>?
                                 <%
                             when 1
                                 %>I wonder if you've already 
@@ -1815,12 +1815,12 @@ http://localhost:3000/goals?update_checkpoint_status=yes&date=2012-02-12&e0=106&
                                 <%
 
                             when 2
-                                %>Have you already upped your level of accountability and 
-                                <a href="/goals"><strong>placed a friendly wager with a friend?</strong></a>?
+                                %>Have you tried our strongest habit booster called
+                                <a href="/goals/edit/<%= @lightbox_goal.id %>?show_extra_encouragement=1#extra_encouragement"><strong>Extra Encouragement?</strong></a>?
                                 <%
                             when 3
                                 %>Have you tried    
-                                <a href="/goals"><strong>placing a friendly wager with a random habitforge user</strong></a>?
+                                <a href="/goals"><strong>placing a friendly wager with either a friend or a random habitforge user</strong></a>?
                                 <%
                             when 4
                                 %>A lot of people have great success by    

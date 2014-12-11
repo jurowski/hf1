@@ -543,9 +543,17 @@ end
 
 
 
+  <a name="reminders" />
+
 <!-- START REMINDER OPTIONS -->
 <h2><i class="icon-bell"></i> Reminders <a href="#undefined" onclick="toggle_show_hide('div_reminders')" style="font-size:0.5em;">Details</a></h2>
-<div id="div_reminders" name="div_reminders" class="well" style="display:none;">
+
+    <% if params[:show_reminders] %>
+      <div id="div_reminders" name="div_reminders" class="well" style="display:block;">
+    <% else %>
+      <div id="div_reminders" name="div_reminders" class="well" style="display:none;">
+    <% end %>
+
   Your timezone is set to <a href="/account/edit"><%= current_user.time_zone %></a>.
 <table>
   <tr>
@@ -778,6 +786,7 @@ end
   </p>
   </p>
 
+  <a name="visibility" />
   <h2>
     <% if @goal.publish == nil or @goal.publish == true %>
       <i class="icon-unlock"></i> 
@@ -785,7 +794,12 @@ end
       <i class="icon-lock"></i> 
     <% end %>
     Visibility <a href="#undefined" onclick="toggle_show_hide('div_visibility')" style="font-size:0.5em;">Details</a></h2>
-  <div id="div_visibility" name="div_visibility" class="well" style="display:none;">
+
+    <% if params[:show_visibility] %>
+      <div id="div_visibility" name="div_visibility" class="well" style="display:block;">
+    <% else %>
+      <div id="div_visibility" name="div_visibility" class="well" style="display:none;">
+    <% end %>
   <p>
   <% if current_user.sponsor == "habitforge" and !current_user.is_habitforge_supporting_member %>
     <input disabled="disabled" id="publish_disabled" name="publish_disabled" type="checkbox" value="true" checked />
@@ -810,9 +824,23 @@ end
 
   <!-- START FRIENDLY PUSHES -->
   <% if session[:site_name] == "habitforge" %>
+
+  <a name="extra_encouragement" />
     <!-- BEGIN WELL -->
-    <h2><i class="icon-bullhorn"></i> Encouragement <a href="#undefined" onclick="toggle_show_hide('div_priority_encouragement')" style="font-size:0.5em;">Details</a></h2>
-    <div id="div_priority_encouragement" name="div_priority_encouragement" style="display:none;">
+    <h2><i class="icon-bullhorn"></i> Extra Encouragement <a href="#undefined" onclick="toggle_show_hide('div_priority_encouragement')" style="font-size:0.5em;">Details</a>
+
+
+        <div style="margin-top:-70px;margin-left:350px;">
+            <img src="/home/images/arrow_drawn_strongest_habit_booster.png" />
+        </div>
+
+
+    </h2>
+    <% if params[:show_extra_encouragement] %>
+      <div id="div_priority_encouragement" name="div_priority_encouragement" style="display:block;">
+    <% else %>
+      <div id="div_priority_encouragement" name="div_priority_encouragement" style="display:none;">
+    <% end %>
     <div class="well">
             <h4>What happens if you start to slack?</h4> Be one of the first in line to get a "Friendly Push" when you need it. If you don't succeed for a few days, other HabitForge members can earn points by sending you a "push". They can only use <strong>motivating phrases that you create</strong>. If you were slacking and then you succeed within 48 hours after their "push", they earn additional points redeemable toward a Premium Membership.
 
