@@ -11,6 +11,12 @@
         <!-- #### START CUSTOM LIST MENU ITEMS SGJ #### -->
 
 
+        <!-- BLOG -->
+        <li>
+          <a href="http://lyphted.com" target="_blank">
+            <i class='icon-book'></i>Lyphted Blog</a>
+        </li> 
+
 
 
         <% if !current_user %>
@@ -228,13 +234,6 @@
         end 
         %>
         
-        <% if !secure_page? %>
-        <!-- BLOG -->
-        <li>
-          <a href="http://www.earlytorise.com" target="_blank">
-            <i class='icon-book'></i>Blog</a>
-        </li> 
-        <% end %>
 
         <li>
           <a href="#jump_to_support" onclick="toggle_show('support');"><i class='icon-bullhorn'></i>Help and Feedback</a>
