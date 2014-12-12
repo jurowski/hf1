@@ -21,6 +21,7 @@ class ApplicationController < ActionController::Base
   filter_parameter_logging :password, :password_confirmation
 
   before_filter :save_referer
+  before_filter :process_unsubscribe
 
   ### Force SSL ... keep in mind that in Google Chrome, people may get "insecure content" messages
   ### if you enable this without ensuring that any external javascript aren't also called w/ https
@@ -75,6 +76,24 @@ class ApplicationController < ActionController::Base
       end
 
       #return true
+    end
+
+    def process_unsubscribe
+      ### ex: http://habitforge.com/?unsubscribe=83421&first_name=Tahni
+      begin
+        if params[:unsubscribe] and params[:first_name]
+          user = User.find(params[:unsubscribe].to_i)
+          if user
+            if user.first_name == params[:first_name]
+              user.unsubscribed_from_promo_emails = true
+              user.save
+              session[:unsubscribed] = true
+            end
+          end
+        end
+      rescue
+        logger.info("error while trying to unsubscribe")
+      end
     end
 
     def save_referer

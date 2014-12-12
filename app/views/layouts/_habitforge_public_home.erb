@@ -143,10 +143,21 @@ end
 <!--   <div style="background-color:#ffffff;z-index:-9;"> -->
 
 
+
   <% if params[:account_removed] %>
     <div class="pane error">
       <h3>Your account has been removed.</h3>
     </div>
+  <% end %>
+
+
+<!--   http://habitforge.com/?unsubscribe=83421&first_name=Tahni
+ -->
+  <% if session[:unsubscribed] %>
+    <div class="pane error">
+      <h3>You will no longer receive promotional emails from HabitForge.</h3>
+    </div>
+    <% session[:unsubscribed] = nil %>
   <% end %>
 
   <!-- direct to fb

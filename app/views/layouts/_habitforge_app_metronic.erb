@@ -450,6 +450,15 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
 
 
 
+<!--   http://habitforge.com/?unsubscribe=83421&first_name=Tahni
+ -->
+  <% if session[:unsubscribed] %>
+    <div class="pane error">
+      <h3>You will no longer receive promotional emails from HabitForge.</h3>
+    </div>
+    <% session[:unsubscribed] = nil %>
+  <% end %>
+
 
           <% if current_user %>
 
