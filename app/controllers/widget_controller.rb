@@ -41,4 +41,16 @@ class WidgetController < ApplicationController
     end
   end
 
+  def newsletter
+    if current_user
+      logger.info "sgj:widget_controller:just displaying newsletter page user_id=#{current_user.id}"
+    else
+      logger.info "sgj:widget_controller:just displaying newsletter page BUT USER NOT LOGGED IN"
+    end
+
+    respond_to do |format|
+      format.html
+    end
+  end
+
 end
