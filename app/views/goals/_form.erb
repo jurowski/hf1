@@ -815,7 +815,7 @@ end
                             
       <a href="/widget/upgrade" target="_blank"> (requires a Premium Membership)</a>
   <% end %>
-  </div> <!-- div_visibility>
+  </div> <!-- div_visibility-->
 
 
 
@@ -844,12 +844,9 @@ end
     <div class="well">
             <h4>What happens if you start to slack?</h4> Be one of the first in line to get a "Friendly Push" when you need it. If you don't succeed for a few days, other HabitForge members can earn points by sending you a "push". They can only use <strong>motivating phrases that you create</strong>. If you were slacking and then you succeed within 48 hours after their "push", they earn additional points redeemable toward a Premium Membership.
 
-          <a href="#undefined" onclick="toggle_show_hide('push_form')" class="btn-add">Show More</a>
     
-          <div id="push_form" style="display:none;">
+          <div id="push_form" style="display:block;">
 
-            <br>
-            <br>
             <h2>
             <% if !current_user.is_habitforge_supporting_member %>
               <a href="/widget/upgrade" target="_blank">(Enable this feature with a Premium Membership)</a>
@@ -857,15 +854,22 @@ end
 
             <% end %>
 
-            <br>
-            <br>
 
-           <div class="alert">
-              <p>
+              <div style="margin-top:0px;">
+                <img src="/home/images/arrow_drawn_small.png" />
+              </div>
+
+           <div style="margin-top:-45px;">
+
+
               <% if !current_user.is_habitforge_supporting_member %>
                 <input disabled="disabled" id="allow_push" name="allow_push" type="checkbox" value="true" unchecked />
               <% else %>
+
+
                       <%= check_box(:goal, :allow_push, options = {}, checked_value = "true", unchecked_value = "false") %>
+
+
               <% end %>
               <%
               @arr_max_pushes = Array.new
@@ -876,7 +880,7 @@ end
               @arr_max_pushes.push(["5", 5])
               %>
 
-              Provide incentives for other members to "Push" <%= them_or_me %> if I start to fail for a few days straight.
+              &nbsp &nbsp &nbsp &nbspYES! Provide incentives for other members to "Push" <%= them_or_me %> if I start to fail for a few days straight.
 
               <br>If I do start slacking, get up to 
               <% if !current_user.is_habitforge_supporting_member %>
@@ -885,27 +889,27 @@ end
                   <%= select(:goal, :pushes_allowed_per_day, @arr_max_pushes) %> 
               <% end %> 
               member(s) to send <%= them_or_me %> a push each day. <br>
+
             </div> <!-- END ALERT -->
 
-              <h3>My Push Messages</h3>
-              </p>
+              <h3><strong>They can use these push Messages to move me:</strong></h3>
 
                <p>
    
 
-              <%= form.text_field :phrase1, :style=>"width:400px;", :size => 80, :placeholder=>"ex: What's going on? Have you forgotten how bad you want to have...", :readonly=>!current_user.is_habitforge_supporting_member %>
+              1) <%= form.text_field :phrase1, :style=>"width:400px;", :size => 80, :placeholder=>"ex: What's going on? Have you forgotten how bad you want to have...", :readonly=>!current_user.is_habitforge_supporting_member %>
 
               <br><br>
-              <%= form.text_field :phrase2, :style=>"width:400px;", :size => 80, :placeholder=>"ex: Remember how painful it will be if you don't...", :readonly=>!current_user.is_habitforge_supporting_member %>
+              2) <%= form.text_field :phrase2, :style=>"width:400px;", :size => 80, :placeholder=>"ex: Remember how painful it will be if you don't...", :readonly=>!current_user.is_habitforge_supporting_member %>
 
               <br><br>
-               <%= form.text_field :phrase3, :style=>"width:400px;", :size => 80, :placeholder=>"ex: What happened? I thought you were committed to...", :readonly=>!current_user.is_habitforge_supporting_member %>
+               3) <%= form.text_field :phrase3, :style=>"width:400px;", :size => 80, :placeholder=>"ex: What happened? I thought you were committed to...", :readonly=>!current_user.is_habitforge_supporting_member %>
 
               <br><br>
-                 <%= form.text_field :phrase4, :placeholder=>"ex: You can do it!!! It only takes a few minutes to...", :style=>"width:400px;", :size => 80, :readonly=>!current_user.is_habitforge_supporting_member %>
+                 4) <%= form.text_field :phrase4, :placeholder=>"ex: You can do it!!! It only takes a few minutes to...", :style=>"width:400px;", :size => 80, :readonly=>!current_user.is_habitforge_supporting_member %>
 
               <br><br>
-               <%= form.text_field :phrase5, :placeholder=>"ex: Think of how awesome it's going to feel to...", :style=>"width:400px;", :size => 80, :readonly=>!current_user.is_habitforge_supporting_member %>
+               5) <%= form.text_field :phrase5, :placeholder=>"ex: Think of how awesome it's going to feel to...", :style=>"width:400px;", :size => 80, :readonly=>!current_user.is_habitforge_supporting_member %>
 
               <br>
              </p>

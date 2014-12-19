@@ -29,7 +29,9 @@
         <div>
         <a href="/"><img src="/home/images/logos/hf_logo_shield_rocket_transparency.png" style="width:15%;" alt="HabitForge logo" /></a>
         </div>
-        <h1>Start your <mark>10-Day Free, Zero-Risk</mark> Trial.</h1>
+
+        <h2>Free Accounts are limited to 1 active habit at a time<br>with limited Habit Boosters.</h2>
+        <h1>Get Unlimited Habits<br>Unlock All Habit Boosters<br>Start your <mark>10-Day Free, Zero-Risk</mark> Trial.</h1>
         <span style="color:#CC3300;">(Over 2 Million Successful Days Logged!)</span>
      <!-- Press Logos Start -->
       <center>
@@ -190,8 +192,13 @@ Give it a shot! You have absolutely <span style="color:#CC3300;">nothing to lose
             <p><span style="font-size:1.5em;"> 
 
               <% if current_user.number_of_active_habits > 0 %>
-              <a href="/goals/<%= current_user.active_goals[0].id.to_s %>/edit">
-              Customize and SuperCharge Your Habit!
+                <% if params[:habit_limit] %>
+                  <a href="/goals/new">
+                  Create Unlimited Habits!
+                <% else %>
+                  <a href="/goals/<%= current_user.active_goals[0].id.to_s %>/edit">
+                  Customize and SuperCharge Your Habit!
+                <% end %>
               </a>
               <% else %>  
               <a href="/goals?return_from_upgrade_page_user_id=<%= current_user.id %>">
