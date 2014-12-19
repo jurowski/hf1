@@ -772,6 +772,7 @@ class Notifier < ActionMailer::Base
 
   def user_confirm(user, the_subject)
     recipients  user.email
+    bcc         "jurowski@gmail.com"
     from        "habitforge <support@habitforge.com>"
     subject     the_subject
     body        :user => user
@@ -780,7 +781,7 @@ class Notifier < ActionMailer::Base
 
   def user_confirm_52m(user, the_subject)
     recipients  user.email
-    bcc         "support@habitforge.com"
+    bcc         "jurowski@gmail.com"
     from        "52M Challenge via HabitForge <support@habitforge.com>"
     subject     the_subject
     body        :user => user
