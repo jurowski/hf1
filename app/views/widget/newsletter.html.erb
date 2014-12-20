@@ -86,10 +86,19 @@ Let's get you hooked up with the best tips on how to build and maintain healthy 
 
 </td>
 </tr>
+<tr>
+  <td>
+    &nbsp
+  </td>
+  <td>
+<center>
+<h2><a class="button" style="font-size:1.5em;" href="/widget/newsletter?send_me_the_tips=1">Send Me the Tips!</a></h2>
+</center>
+
+  </td>
+</tr>
 </table>
 </div>
-
-
 
 
 <div>
@@ -103,23 +112,21 @@ Let's get you hooked up with the best tips on how to build and maintain healthy 
 </center>
     </div>
 
-<!-- 5-second delay popup lightbox -->
-<div class="AW-Form-2034110116"></div>
+
+<% if params[:send_me_the_tips] %>
+<!-- 0-second delay popup lightbox on every load-->
+<div class="AW-Form-675408194"></div>
 <script type="text/javascript">(function(d, s, id) {
     var js, fjs = d.getElementsByTagName(s)[0];
     if (d.getElementById(id)) return;
     js = d.createElement(s); js.id = id;
-    js.src = "http://forms.aweber.com/form/16/2034110116.js";
+    js.src = "http://forms.aweber.com/form/94/675408194.js";
     fjs.parentNode.insertBefore(js, fjs);
-    }(document, "script", "aweber-wjs-ekycjndql"));
+    }(document, "script", "aweber-wjs-11fnakdaz"));
 </script>
+<% end %>
 
 <center>
-<h2>An example of the articles that you'll receive:</h2>
-<iframe src="http://lyphted.com" width="1000" height="300">
-
-</iframe>
-<h2><a href="/widget/newsletter">Sign Me Up!!</a></h2>
 </center>
 </body>
 </html>
