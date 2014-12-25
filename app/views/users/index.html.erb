@@ -18,32 +18,32 @@ counter_have_goals = 0
     if session[:current_user_is_admin] == true
     %>
         <%= link_to user.id.to_s, edit_user_path(user) %>
-        |
+        <br>
         <a href="users?impersonate=<%=user.id%>">Impersonate</a>
-         |
+         <br>
         <% if !user.confirmed_address %>
 
               <a href="users?confirm_id=<%=user.id%>">Confirm Account</a>
 
         <% end %>
 
-         |
+         <br>
         <% if session[:sponsor] == "habitforge" %>
 
                 <% if user.plan %>
                     <%= user.plan %>
                 <% end %>
                 <% if user.kill_ads_until %>
-                | 
+                <br> 
                     <%= user.kill_ads_until %>
                 <% end %>
                 <% if user.supportpoints %>
-                | 
+                <br>
                     <%= user.supportpoints %> pts ... 
                 <% end %>
 
                 <% if user.got_free_membership %>
-                | 
+                <br> 
                     (free membership given on <%= user.got_free_membership.to_s %>)
                 <% else %>
                     <% if user.id > 85758 %>
@@ -52,21 +52,25 @@ counter_have_goals = 0
                       <a href="users?days=365&upgrade_id=<%=user.id%>">trade 100pts for 1 yr</a>
                     <% end %>
                 <% end %>
-                | 
-                  <a href="users?days=3000&plan=monthly-1-29&upgrade_id=<%=user.id%>">$1.29 monthly, Send Email</a>
-                | 
-                  <a href="users?days=3000&plan=monthly-295&upgrade_id=<%=user.id%>">$2.95 monthly, Send Email</a>
-                | 
-                  <a href="users?days=3000&plan=yearly-2395&upgrade_id=<%=user.id%>">$23.95 yearly, Send Email</a>
-                | 
-                  <a href="users?days=3000&plan=monthly-295&upgrade_id=<%=user.id%>&coupon=50">$2.95 monthly 50% OFF, Send Email</a>
-                | 
-                  <a href="users?days=3000&plan=yearly-2395&upgrade_id=<%=user.id%>&coupon=50">$23.95 yearly 50% OFF, Send Email</a>
+                <br> 
+                  <a href="users?days=3000&plan=monthly-1-29&upgrade_id=<%=user.id%>">$1.29 monthly</a>
+                <br>
+                  <a href="users?days=3000&plan=monthly-295&upgrade_id=<%=user.id%>">$2.95 monthly</a>
+                <br>
+                  <a href="users?days=3000&plan=yearly-2395&upgrade_id=<%=user.id%>">$23.95 yearly</a>
+                <br>
+                  <a href="users?days=3000&plan=monthly-295&upgrade_id=<%=user.id%>&coupon=50">$2.95 monthly 50% OFF</a>
+                <br>
+                  <a href="users?days=3000&plan=yearly-2395&upgrade_id=<%=user.id%>&coupon=50">$23.95 yearly 50% OFF</a>
+                <br>
+                  <a href="users?days=3000&plan=monthly-295&upgrade_id=<%=user.id%>&coupon=60">$2.95 monthly 60% OFF</a>
+                <br>
+                  <a href="users?days=3000&plan=yearly-2395&upgrade_id=<%=user.id%>&coupon=60">$23.95 yearly 60% OFF</a>
 
 
 
         <% end %>
-         |
+         <br>
         <%= link_to 'Delete', user, :confirm => 'Delete '+user.email+', goals and stats?', :method => :delete %>
     <%
     end
