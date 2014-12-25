@@ -118,7 +118,7 @@ class UpdatePromotionBlackFriday2014 < ActiveRecord::Base
        			      #puts "user.unsubscribed_from_promo_emails is nil or 0"
                   puts "#{user.email} is going to get an email"
                   
-                  the_subject = "New Years Resolutions: Get 50% Off Premium + the New Lyphted (HabitForge) Newsletter"
+                  the_subject = "Flash Deal for the first 49 People: 60% Off HabitForge Premium"
                   Notifier.deliver_promotion_black_friday_2014(user, the_subject) # sends the email  
 
                   puts "#{user.email} was sent the promotion_black_friday_2014 NEWYEAR email"

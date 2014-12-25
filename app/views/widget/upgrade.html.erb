@@ -30,8 +30,22 @@
         <a href="/"><img src="/home/images/logos/hf_logo_shield_rocket_transparency.png" style="width:15%;" alt="HabitForge logo" /></a>
         </div>
 
-        <h2>Free Accounts are limited to 1 active habit at a time<br>with limited Habit Boosters.</h2>
-        <h1>Get Unlimited Habits<br>Unlock All Habit Boosters<br>Start your <mark>10-Day Free, Zero-Risk</mark> Trial.</h1>
+        <% if params[:habit_limit] or params[:too_many_active_habits] %>
+          <div>
+          <h1><mark>Help Us Help You!</mark></h1>
+          <h3>We're glad you want to improve in more than one area of your life,
+            <br>but the "Free Accounts" are restricted to 1 active habit at a time<br>with limited Habit Boosters.<br><br>Your support helps us keep the lights on and helps us keep improving our services!</h3>
+          </div>
+
+          <h1>Get Unlimited Habits<br>Unlock All Habit Boosters<br>
+        <% else %>
+          <% if params[:goal_id] %>
+            <h1>Unlock All Habit Boosters<br>Get Unlimited Habits<br>
+          <% else %>
+            <h1>
+          <% end %>
+        <% end %>
+          Start your <mark>10-Day Free, Zero-Risk</mark> Trial.</h1>
         <span style="color:#CC3300;">(Over 2 Million Successful Days Logged!)</span>
      <!-- Press Logos Start -->
       <center>
@@ -196,7 +210,11 @@ Give it a shot! You have absolutely <span style="color:#CC3300;">nothing to lose
                   <a href="/goals/new">
                   Create Unlimited Habits!
                 <% else %>
-                  <a href="/goals/<%= current_user.active_goals[0].id.to_s %>/edit">
+                  <% if params[:goal_id] %>
+                    <a href="/goals/<%= params[:goal_id] %>/edit">
+                  <% else %>
+                    <a href="/goals/<%= current_user.active_goals[0].id.to_s %>/edit">
+                  <% end %>
                   Customize and SuperCharge Your Habit!
                 <% end %>
               </a>
