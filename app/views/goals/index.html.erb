@@ -375,7 +375,7 @@ when 0
     <center>
       <br>
     <div style="padding-top:0px;padding-right:10px;">
-    <img src="/home/images/coaches/woman1/coach_woman1_talking.png" />
+    <img src="/home/images/coaches/woman1/coach_woman1_talking_small.jpg" />
     <br>
     Lisa
     </div>
@@ -384,7 +384,11 @@ when 0
     <td valign=top>
      <div style="margin-top:50px;padding:.8em;margin-bottom:1em;border:2px solid #ddd;background:#FFFFCC;color:#514721;border-color:#eeeeee;-moz-border-radius: 15px;border-radius: 15px;">
     <p>
-    Ladies: ready for a 2015 body transformation? Check out the <a href="http://7629768ervyfv-0nif7gs8hx8g.hop.clickbank.net/" target="_blank">Venus Factor</a> fitness program from Univ. of Florida's professor John Barban. After 90 days, email me your success story: lisa@habitforge.com ... we're narrowing down the "best programs out there" and would love to hear from you!
+    <% if current_user and current_user.first_name != "unknown" %> 
+      <%= current_user.first_name %>, are you 
+    <% else %>
+      Are you 
+    <% end %>ready to take your Accountability to the Next Level? <a href="/widget/upgrade_held_to_it" >"Held To It"</a> is a weekly check-in program with the HabitForge Creator!
     <%
 when 1
     %>
@@ -400,7 +404,11 @@ when 1
     <td valign=top>
      <div style="margin-top:50px;padding:.8em;margin-bottom:1em;border:2px solid #ddd;background:#FFFFCC;color:#514721;border-color:#eeeeee;-moz-border-radius: 15px;border-radius: 15px;">
     <p>
-    Ready for a 2015 body transformation? Check out John Rowley's fitness plan called "<a href="http://12250i-g2r-amxan67i0ikbka7.hop.clickbank.net/" target="_blank">Old School New Body</a>" ... After 90 days, email me your success story: nick@habitforge.com
+    <% if current_user and current_user.first_name != "unknown" %> 
+      <%= current_user.first_name %>, would you 
+    <% else %>
+      Would you 
+    <% end %>push yourself more if you knew you had a weekly status check-in with the HabitForge Creator? Check out <a href="/widget/upgrade_held_to_it">"Held To It"</a>, a weekly check-in program with Sandon Jurowski!
     <%
 end 
 %>

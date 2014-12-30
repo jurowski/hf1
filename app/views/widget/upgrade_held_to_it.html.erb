@@ -45,8 +45,9 @@
             <h1>
           <% end %>
         <% end %>
-          Start your <mark>10-Day Free, Zero-Risk</mark> Trial.</h1>
-        <span style="color:#CC3300;">(Over 2 Million Successful Days Logged!)</span>
+          Get "Held To It" by the HabitForge Creator.
+          <br>The <mark>Ultimate</mark> In Accountability.</h1>
+        <span style="color:#CC3300;">(As always, 10-day free trial, 30-day Money-Back Guarantee, No Questions Asked, Ever!)</span>
      <!-- Press Logos Start -->
       <center>
         <img src="/home/images/logos/press_logos_v1_transparent.png" width="700" alt="press logos" />
@@ -71,11 +72,12 @@
 
 <br>
     <center>
-            <img src="/home/images/correct.png" /> <span style="text-decoration:underline;">Unlimited</span> Active Habits
-            <br><img src="/home/images/correct.png" /> Private Habit Option
-            <br><img src="/home/images/correct.png" /> Priority Pushes if you Slack
-            <br><img src="/home/images/correct.png" /> No Advertisements
-            <br><img src="/home/images/correct.png" /> Frequent Daily Reminders Option
+            <img src="/home/images/correct.png" /> <span style="text-decoration:underline;">HabitForge Premium</span> Upgrade Included
+            <br><img src="/home/images/correct.png" /> Weekly Goal Review
+            <br><img src="/home/images/correct.png" /> Monday Morning Personal Email Pump-Up
+            <br><img src="/home/images/correct.png" /> Mid-Week Email Check-Up
+            <br><img src="/home/images/correct.png" /> End-Of-Week Check-In (Email or Skype)
+            <br><img src="/home/images/correct.png" /> Positive Pressure Knowing You Need to Succeed
             <br><img src="/home/images/correct.png" /> Zero Risk - 100% Money-Back Guarantee
             <br>
               <a href="/account?from_menu=1&show_pricing=1#portlet_tab2" class="btn_red_gradient" style="color:#ffffff;text-decoration:none;">Get Unlimited Habits!</a>
@@ -88,9 +90,9 @@
 <center>
   <br>
 <div style="padding-top:0px;padding-right:10px;">
-<img src="/home/images/coaches/woman1/coach_woman1_talking_small.jpg" />
+<img src="/home/images/coaches/sandon1/sgjurowski-thumb.jpg" />
 <br>
-Lisa
+Sandon J.
 </div>
 </center>
 </td>
@@ -99,23 +101,31 @@ Lisa
  --><div style="padding:.8em;margin-bottom:1em;border:2px solid #ddd;background:#FFFFCC;color:#514721;border-color:#eeeeee;-moz-border-radius: 15px;border-radius: 15px;">
 "Hi 
 <% if current_user and current_user.first_name != "unknown" %> 
-  <%= current_user.first_name %>. 
+  <%= current_user.first_name %>.
 <% else %>
-  ... 
+  there. 
 <% end %>
-This is Lisa again, one of the coaches at HabitForge. 
+This is Sandon Jurowski, the creator of HabitForge.
 <br>
 <br>
-Let's start your free 10-day trial, during which time you can work on <span style="color:#CC3300;">"Unlimited Active Habits"</span> (public or private, your choice).
+When I started HabitForge in 2009, I knew how simple and powerful it was to know that someone was waiting for you to do a particular thing by a particular day.
 <br>
 <br>
-Another cool feature that you'll get: <span style="color:#CC3300;">"Priority Pushes if you Slack"</span> ... with this option (if you choose to enable it) we will find people to "bug you" if you stop succeeding at your goal.
+There was a time in my life when the only way that I could get myself to exercise was remembering that "I had to", because I'd signed up for a racquetball league, and I knew that there was one person waiting for me at a court. If I didn't show up, sure, it wouldn't be the end of the world, but it was going to make them miss their own workout. It was enough to get me off the couch and to the gym.
 <br>
 <br>
-There are <span style="color:#CC3300;">no annoying advertisements</span> on HabitForge. I don't like watching commercials anymore than the next person :)
+<mark>Accountability works. Knowing that someone is expecting you to succeed can make all of the difference in the world. That is why I created HabitForge.</mark>
 <br>
 <br>
-Also, you can get <span style="color:#CC3300;">frequent, flexible daily reminders</span> (it's all in the Options area).
+Would it make a difference in your own life if someone was relying on you to succeed? That is the opportunity that you have, right now: give me the chance to inspire you and hold you accountable at a personal level, through one-on-one emails and skype calls <mark>by me, personally</mark>.
+<br>
+<br><img src="/home/images/correct.png" /> Get your goals reviewed. 
+<br><img src="/home/images/correct.png" /> Get motivated at the start of your week. 
+<br><img src="/home/images/correct.png" /> Get a mid-week check-in to make sure you're on track. <br><img src="/home/images/correct.png" /> Get an end-of week status call or email to review your progress.
+<br>
+<br>
+Knowing that someone cares that you're always moving toward being the best YOU that you can be. That is powerful. Let's unleash it together!
+
 <br>
 <br>
 Best of all, it's all 
@@ -166,20 +176,8 @@ Give it a shot! You have absolutely <span style="color:#CC3300;">nothing to lose
 
       <!-- START PAYWHIRL -->
 
-      <!-- if there is a current_user_email param it means they are a $3.95/month infusionsoft person we've asked to flip to $1.29/month paywhirl -->
-      <% if 1 == 2 and params[:current_user_email] or (current_user and current_user.plan == "Monthly @ $3.95") %>
-
-        <!-- $1.29 monthly only -->
-        <script type='text/javascript' src="https://www.paywhirl.com/js/widget.js"></script>
-        <iframe frameBorder="0" style='width:100%; height:auto; border:0; overflow:hidden;' id='paywhirl_frame' scrolling='no' src="https://www.paywhirl.com/widget?api_key=PW960FAF875953CD95DBA6E69CDB36C36F&widget=479"></iframe>
-
-
-      <% else %>
-              <!-- normal charge options -->
-              <script type='text/javascript' src="https://www.paywhirl.com/js/widget.js"></script>
-              <iframe frameBorder="0" style='width:100%; height:auto; border:0; overflow:hidden;' id='paywhirl_frame' scrolling='no' src="https://www.paywhirl.com/widget?api_key=PW960FAF875953CD95DBA6E69CDB36C36F&widget=334"></iframe>
-
-      <% end %>
+      <script type='text/javascript' src="https://www.paywhirl.com/js/widget.js"></script>
+      <iframe frameBorder="0" style='width:100%; height:auto; border:0; overflow:hidden;' id='paywhirl_frame' scrolling='no' src="https://www.paywhirl.com/widget?api_key=PW960FAF875953CD95DBA6E69CDB36C36F&widget=813"></iframe>
 
       <!-- **** END PAYWHIRL -->
 
