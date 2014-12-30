@@ -205,32 +205,6 @@ Give it a shot! You have absolutely <span style="color:#CC3300;">nothing to lose
       </div>
       <img src="/home/images/hr_fancy.png" />
 
-      <% if current_user %>
-      <h2>After you've successfully subscribed above you can: </h2>
-            <p><span style="font-size:1.5em;"> 
-
-              <% if current_user.number_of_active_habits > 0 %>
-                <% if params[:habit_limit] %>
-                  <a href="/goals/new">
-                  Create Unlimited Habits!
-                <% else %>
-                  <% if params[:goal_id] %>
-                    <a href="/goals/<%= params[:goal_id] %>/edit">
-                  <% else %>
-                    <a href="/goals/<%= current_user.active_goals[0].id.to_s %>/edit">
-                  <% end %>
-                  Customize and SuperCharge Your Habit!
-                <% end %>
-              </a>
-              <% else %>  
-              <a href="/goals?return_from_upgrade_page_user_id=<%= current_user.id %>">
-                Enter HabitForge!
-              </a>
-              <% end %>
-
-            </span></p>
-      <% end %>
-
 </center>
     </div>
 </body>
