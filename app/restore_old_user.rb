@@ -172,7 +172,7 @@ class RestoreOldUser < ActiveRecord::Base
         random_pw_number = rand(1000) + 1 #between 1 and 1000
         u_copy.password = "xty" + random_pw_number.to_s
         u_copy.password_confirmation = u_copy.password
-        u_copy.password_temp = u_copy.password
+        u_copy.password_temp = "xty" + random_pw_number.to_s
 
       # u_copy.persistence_token = user[7]
       # u_copy.single_access_token = user[8]
@@ -189,7 +189,7 @@ class RestoreOldUser < ActiveRecord::Base
       u_copy.time_zone = user[19]
       u_copy.update_number_active_goals = user[20].to_i
       u_copy.gender = user[21]
-      u_copy.yob = user[22].to_i
+      # u_copy.yob = user[22].to_i
       u_copy.sponsor = user[23]
       u_copy.last_donation_date = user[27]
       u_copy.donated_so_far = user[29]
