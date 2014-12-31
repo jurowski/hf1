@@ -45,6 +45,85 @@ class User < ActiveRecord::Base
 
 
 
+  ### use for upgrades, both paid and support points, trial upgrades
+  def upgrade_plan(
+    upgrade_user_id, 
+    plan="NOT YET SUBSCRIBED", 
+    coupon_discount=0, 
+    use_support_points=false, 
+    ongoing=true, 
+    days=3000
+    )
+
+    ### Upgrade their account
+    logger.info 'HF Attempting to auto-upgrade their account'
+
+    if !plan or plan == ""
+      plan="NOT YET SUBSCRIBED"
+    end
+
+    if !coupon_discount or coupon_discount == 0
+      coupon_discount = 0
+    end
+
+
+    user = User.find(:first, :conditions => "id = #{upgrade_user_id.to_i}") 
+    if user != nil
+
+      if ongoing
+        case plan
+        when "yearly-9-00"
+          plan = "HabitForge Yearly $9"
+        when "monthly-1-29"
+          plan = "HabitForge Monthly $1.29"
+        when "monthly-295"
+          plan = "HabitForge Monthly $2.95"
+        when "yearly-2395"
+          plan = "HabitForge Monthly $23.95"
+        end
+        user.kill_ads_until = '3000-01-01'
+
+      else
+        plan = "HabitForge Premium Limited Term"
+
+        if use_support_points
+          if user.supportpoints and user.supportpoints >= 100
+            user.supportpoints = user.supportpoints - 100
+          end
+          user.got_free_membership = user.dtoday
+          user.kill_ads_until = user.dtoday + days
+        end
+
+      end
+
+      if coupon_discount > 0
+        plan = coupon_discount.to_s + "% off of the " + plan + " plan"
+      end
+
+      ### Set default premium values
+      user.combine_daily_emails = 0
+      user.unlimited_goals = 1
+      user.sent_expire_warning_on = '1900-01-01'
+      user.premium_start_date = user.dtoday
+      user.plan = plan
+
+      if user.save
+          logger.info 'HF SUCCESS upgrading user account for ' + user.email
+
+          ### Send email to user and CC support w/ thank you and upgrade info
+          logger.info 'HF ATTEMPTING TO Send email to user and CC support w/ thank you and upgrade info'
+          Notifier.deliver_user_upgrade_notification(user) # sends the email
+      else 
+          logger.info 'HF ERROR upgrading user account for ' + user.email
+      end
+
+    end
+
+  end ### end upgrade_plan
+
+
+
+
   ### should use this anytime we're displaying someone's handle
   ### to avoid nil errors for any place that creates users
   ### without the handle already having been assigned

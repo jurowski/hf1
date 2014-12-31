@@ -137,106 +137,154 @@ class UsersController < ApplicationController
         ######################################################################
         ############# MANUALLY UPGRADE AN ACCOUNT ############################
         if current_user_is_admin and params[:upgrade_id]
-            ### GET DATE NOW ###
-            jump_forward_days = 0
-            tnow = Time.now
-            tnow_Y = tnow.strftime("%Y").to_i #year, 4 digits
-            tnow_m = tnow.strftime("%m").to_i #month of the year
-            tnow_d = tnow.strftime("%d").to_i #day of the month
-            tnow_H = tnow.strftime("%H").to_i #hour (24-hour format)
-            tnow_M = tnow.strftime("%M").to_i #minute of the hour
-            #puts tnow_Y + tnow_m + tnow_d  
-            #puts "Current timestamp is #{tnow.to_s}"
-            dnow = Date.new(tnow_Y, tnow_m, tnow_d) + jump_forward_days
-            ######
 
-            ### Upgrade their account
-            logger.info 'HF Attempting to upgrade their account'
+            ### EXAMPLES OF HOW THE URLS COME IN FROM ADMIN MANUAL PAGE
 
-            user = User.find(:first, :conditions => "id = #{params[:upgrade_id].to_i}") 
-            if user != nil
-                days = 365
-                if params[:days]
-		              days = params[:days].to_i
-                end
+            ######### FULL PRICE EXAMPLES
+            ### Monthly Full Price
+            #users?days=3000&plan=monthly-295&upgrade_id=<%=user.id%>
+            ### Yearly Full Price
+            #users?days=3000&plan=yearly-2395&upgrade_id=<%=user.id%>
 
-                plan = "NOT YET SUBSCRIBED"
-                if params[:plan]
-                  plan = params[:plan]
-                end
+            ######### DISCOUNTED PRICE EXAMPLES
+            ### Monthly 30% Off
+            #users?days=3000&plan=monthly-295&upgrade_id=<%=user.id%>&coupon=30"
+            ### Yearly 60% Off
+            #users?days=3000&plan=yearly-2395&upgrade_id=<%=user.id%>&coupon=60"
 
-                user.combine_daily_emails = 0
-                user.hide_donation_plea = 1
-                user.unlimited_goals = 1
-                user.sent_expire_warning_on = '1900-01-01'
+            ###### SUPPORT POINTS EXAMPLES
+            ### trade 100pts for 3 mos
+            #users?days=90&upgrade_id=<%=user.id%>
+            ### trade 100pts for 1 yr
+            #users?days=365&upgrade_id=<%=user.id%>
 
-                if days == 3000
-                  user.kill_ads_until = '3000-01-01'
-                  user.premium_start_date = user.dtoday
+          upgrade_user_id = params[:upgrade_id].to_i
 
-                  if plan == "yearly-9-00"
-                    plan = "HabitForge Yearly $9"
-                  end
+          user = User.find(:first, :conditions => "id = #{upgrade_user_id}") 
+          if user != nil
 
-                  if plan == "monthly-1-29"
-                    plan = "HabitForge Monthly $1.29"
-                  end
+            ### default values
+            ongoing = true
+            plan = ""
+            coupon_discount = 0
+            use_support_points = false
+            days = 3000
 
-                 if plan == "monthly-295"
-                    if params[:coupon] and params[:coupon] == "50"
-                      plan = "HabitForge Monthly $1.47 (Coupon 50% off $2.95)"
-                    else
-
-                      if params[:coupon] and params[:coupon] == "60"
-                        plan = "HabitForge Monthly $1.18 (Coupon 60% off $2.95)"
-                      else
-                        plan = "HabitForge Monthly $2.95"
-                      end
-
-                    end
-
-                  end
-
-                  if plan == "yearly-2395"
-
-                    if params[:coupon] and params[:coupon] == "50"
-                      plan = "HabitForge Yearly $11.97 (Coupon 50% off $23.95)"
-                    else
-
-                      if params[:coupon] and params[:coupon] == "60"
-                        plan = "HabitForge Yearly $9.58 (Coupon 60% off $23.95)"
-                      else
-                        plan = "HabitForge Yearly $23.95"
-                      end
-
-                    end
-
-                  end
-
-                  user.plan = plan
-
-
-                else
-                  if user.supportpoints and user.supportpoints >= 100
-                    user.supportpoints = user.supportpoints - 100
-                  end
-
-                  user.got_free_membership = dnow
-                  user.kill_ads_until = dnow + days
-                end
-
-                if user.save
-                    logger.info 'HF SUCCESS upgrading user account for ' + user.email
-
-                    ### Send email to user and CC support w/ thank you and upgrade info
-                    logger.info 'HF ATTEMPTING TO Send email to user and CC support w/ thank you and upgrade info'
-                    Notifier.deliver_user_upgrade_notification(user) # sends the email
-                else 
-                    logger.info 'HF ERROR upgrading user account for ' + user.email
-                end
-
-
+            ### PAID USERS HAVE A PLAN, OTHERS DO NOT
+            if params[:plan]
+              plan = params[:plan]
             end
+
+            if params[:coupon]
+              coupon_discount = params[:coupon].to_i
+            end
+
+            if params[:use_support_points] and params[:days]
+              use_support_points = true
+              ongoing = false
+              days = params[:days].to_i
+            end
+
+
+            # ### use for upgrades, both paid and support points, trial upgrades
+            # def upgrade_plan(
+            #   upgrade_user_id, 
+            #   plan="NOT YET SUBSCRIBED", 
+            #   coupon_discount=0, 
+            #   use_support_points=false, 
+            #   ongoing=true, 
+            #   days=3000
+            #   )
+
+            user.upgrade_plan(
+              user.id,
+              plan,
+              coupon_discount,
+              use_support_points,
+              ongoing,
+              days
+              )
+          end
+
+            # ### GET DATE NOW ###
+            # jump_forward_days = 0
+            # tnow = Time.now
+            # tnow_Y = tnow.strftime("%Y").to_i #year, 4 digits
+            # tnow_m = tnow.strftime("%m").to_i #month of the year
+            # tnow_d = tnow.strftime("%d").to_i #day of the month
+            # tnow_H = tnow.strftime("%H").to_i #hour (24-hour format)
+            # tnow_M = tnow.strftime("%M").to_i #minute of the hour
+            # #puts tnow_Y + tnow_m + tnow_d  
+            # #puts "Current timestamp is #{tnow.to_s}"
+            # dnow = Date.new(tnow_Y, tnow_m, tnow_d) + jump_forward_days
+            # ######
+
+            # ### Upgrade their account
+            # logger.info 'HF Attempting to upgrade their account'
+
+            # user = User.find(:first, :conditions => "id = #{params[:upgrade_id].to_i}") 
+            # if user != nil
+            #     days = 365
+            #     if params[:days]
+		          #     days = params[:days].to_i
+            #     end
+
+            #     coupon_discount = 0
+            #     if params[:coupon]
+            #       coupon_discount = params[:coupon].to_i
+            #     end
+
+            #     plan = "NOT YET SUBSCRIBED"
+            #     if params[:plan]
+            #       plan = params[:plan]
+
+            #       case plan
+            #       when "yearly-9-00"
+            #         plan = "HabitForge Yearly $9"
+            #       when "monthly-1-29"
+            #         plan = "HabitForge Monthly $1.29"
+            #       when "monthly-295"
+            #         plan = "HabitForge Monthly $2.95"
+            #       when "yearly-2395"
+            #         plan = "HabitForge Monthly $23.95"
+            #       end
+
+            #       if coupon_discount > 0
+            #         plan = coupon_discount.to_s + "% off of the " + plan + " plan"
+            #       end
+
+            #     end
+
+            #     user.combine_daily_emails = 0
+            #     user.hide_donation_plea = 1
+            #     user.unlimited_goals = 1
+            #     user.sent_expire_warning_on = '1900-01-01'
+
+            #     if days == 3000
+            #       user.kill_ads_until = '3000-01-01'
+            #       user.premium_start_date = user.dtoday
+            #       user.plan = plan
+            #     else
+            #       if user.supportpoints and user.supportpoints >= 100
+            #         user.supportpoints = user.supportpoints - 100
+            #       end
+            #       user.got_free_membership = dnow
+            #       user.kill_ads_until = dnow + days
+            #     end
+
+            #     if user.save
+            #         logger.info 'HF SUCCESS upgrading user account for ' + user.email
+
+            #         ### Send email to user and CC support w/ thank you and upgrade info
+            #         logger.info 'HF ATTEMPTING TO Send email to user and CC support w/ thank you and upgrade info'
+            #         Notifier.deliver_user_upgrade_notification(user) # sends the email
+            #     else 
+            #         logger.info 'HF ERROR upgrading user account for ' + user.email
+            #     end
+
+
+            # end
+
         end
         ############# END MANUALLY UPGRADE AN ACCOUNT ########################
         ######################################################################

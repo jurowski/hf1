@@ -13,10 +13,17 @@ counter_no_goals = 0
 counter_have_goals = 0
 %>
 <% @users.each do |user| %>
-    <%=h user.created_at.strftime("%y-%m-%d") %>
+    <hr>
+    <h2><%= user.name %></h2>
+    Member Since <%=h user.created_at.strftime("%Y-%m-%d") %>
+    <HR>
     <%
     if session[:current_user_is_admin] == true
     %>
+        <a href="mailto:<%=user.email%>"><%=user.email%></a> 
+
+        <%= link_to 'Delete', user, :confirm => 'Delete '+user.email+', goals and stats?', :method => :delete %>
+
         <%= link_to user.id.to_s, edit_user_path(user) %>
         <br>
         <a href="users?impersonate=<%=user.id%>" class="btn">Impersonate</a>
@@ -38,25 +45,36 @@ counter_have_goals = 0
         <% if session[:sponsor] == "habitforge" %>
 
                 <% if user.plan %>
-                    <%= user.plan %>
+                    <strong>Current Plan: </strong><mark><%= user.plan %></mark>
                 <% end %>
                 <% if user.kill_ads_until %>
-                <br> 
-                    <%= user.kill_ads_until %>
+                    <% if user.kill_ads_until.to_s == "3000-01-01" %>
+                        <mark>ONGOING</mark>
+                    <% else %>
+                        <% if user.kill_ads_until.to_s == "1900-01-01"%>
+                            <mark>NEVER UPGRADED</mark>
+                        <% else %>
+                            <mark>THROUGH <%= user.kill_ads_until %></mark>
+                        <% end %>
+                    <% end %>
                 <% end %>
-                <% if user.supportpoints %>
                 <br>
-                    <%= user.supportpoints %> pts ... 
+                <strong>
+                <% if user.supportpoints %>
+                    SUPPORT POINTS:</strong> <mark><%= user.supportpoints %></mark>
+                <% else %>
+                    SUPPORT POINTS:</strong> <mark>NONE</mark>
                 <% end %>
 
+                <br>
                 <% if user.got_free_membership %>
                 <br> 
                     (free membership given on <%= user.got_free_membership.to_s %>)
                 <% else %>
                     <% if user.id > 85758 %>
-                      <a href="users?days=90&upgrade_id=<%=user.id%>" class="btn">trade 100pts for 3 mos</a>
+                      <a href="users?use_support_points=1&days=90&upgrade_id=<%=user.id%>" class="btn">trade 100pts for 3 mos</a>
                     <% else %>
-                      <a href="users?days=365&upgrade_id=<%=user.id%>" class="btn">trade 100pts for 1 yr</a>
+                      <a href="users?use_support_points=1&days=365&upgrade_id=<%=user.id%>" class="btn">trade 100pts for 1 yr</a>
                     <% end %>
                 <% end %>
 
@@ -110,13 +128,10 @@ counter_have_goals = 0
 
         <% end %>
          <br>
-        <%= link_to 'Delete', user, :confirm => 'Delete '+user.email+', goals and stats?', :method => :delete %>
+
     <%
     end
     %>
-    <%=h user.first_name %>
-    <%=h user.last_name %>
-    <a href="mailto:<%=user.email%>"><%=user.email%></a> 
     <%
     dnow = get_dnow
     latest_date = ""
@@ -173,6 +188,8 @@ counter_have_goals = 0
     end
     %>    
     <br>
+    <hr>
+    <HR>
 <% end %>
 <hr>
 <strong>TOTALS</strong>
