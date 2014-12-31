@@ -38,7 +38,7 @@ counter_have_goals = 0
         <% if user.unsubscribed_from_promo_emails == 1 %>
             UNSUBSCRIBED FROM PROMO EMAILS
         <% else %>
-            <a href="/?unsubscribe=<%= user.id.to_s %>&first_name=<%= user.first_name%>" class="btn">Unsubscribe from Promo Emails</a>
+            <a href="/users?unsubscribe=<%= user.id.to_s %>&first_name=<%= user.first_name%>" class="btn">Unsubscribe from Promo Emails</a>
         <% end %>
 
          <br>
