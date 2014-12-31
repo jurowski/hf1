@@ -24,27 +24,6 @@ default_public_layout = "layouts/habitforge_public_home.erb"
 
 
 
-### ex: http://habitforge.com/?unsubscribe=83421&first_name=Tahni
-begin
-  if params[:unsubscribe] and params[:first_name]
-    user = User.find(params[:unsubscribe].to_i)
-    if user
-      if user.first_name == params[:first_name]
-        user.unsubscribed_from_promo_emails = true
-        user.save
-        session[:unsubscribed] = true
-        %>
-        UNSUBSCRIBE SUCCESSFUL
-        <%
-      end
-    end
-  end
-rescue
-  %>
-  ERROR UNSUBSCRIBING
-  <%
-  logger.info("error while trying to unsubscribe")
-end
 
 if params[:test_layout] and params[:test_layout] == "0"
   session[:test_layout] = false

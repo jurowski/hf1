@@ -337,7 +337,29 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
    });
   </script>
 
-
+<%
+### ex: http://habitforge.com/?unsubscribe=83421&first_name=Tahni
+begin
+  if params[:unsubscribe] and params[:first_name]
+    unsub_user = User.find(params[:unsubscribe].to_i)
+    if unsub_user
+      if unsub_user.first_name == params[:first_name]
+        unsub_user.unsubscribed_from_promo_emails = true
+        unsub_user.save
+        session[:unsubscribed] = true
+        %>
+        UNSUBSCRIBE SUCCESSFUL
+        <%
+      end
+    end
+  end
+rescue
+  %>
+  ERROR UNSUBSCRIBING
+  <%
+  logger.info("error while trying to unsubscribe")
+end
+%>
 
   <% if @new_goal_view %>
     <div style="position:relative;">
