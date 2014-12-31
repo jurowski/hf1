@@ -16,7 +16,7 @@ class ApplicationController < ActionController::Base
   #protect_from_forgery # See ActionController::RequestForgeryProtection for details
   
   ### Any private variables that you create must be listed here to be accessed elsewhere (unless they're in the helper file, in which they're public):
-  helper_method :current_user_session, :current_user, :current_user_is_admin, :server_root_url, :fully_logged_in, :mobile_device?, :arr_random_slacker_goals, :secure_page?, :test_layout?, :production, :process_unsubscribe
+  helper_method :current_user_session, :current_user, :current_user_is_admin, :server_root_url, :fully_logged_in, :mobile_device?, :arr_random_slacker_goals, :secure_page?, :test_layout?, :production
 
   filter_parameter_logging :password, :password_confirmation
 
@@ -28,9 +28,6 @@ class ApplicationController < ActionController::Base
   #before_filter :redirect_to_ssl
   before_filter :redirect_to_ssl_login
 
-
-  ### keep this after the redirect_to_ssl_login
-  before_filter :process_unsubscribe
 
 
   private
@@ -80,23 +77,6 @@ class ApplicationController < ActionController::Base
       #return true
     end
 
-    def process_unsubscribe
-      ### ex: http://habitforge.com/?unsubscribe=83421&first_name=Tahni
-      begin
-        if params[:unsubscribe] and params[:first_name]
-          user = User.find(params[:unsubscribe].to_i)
-          if user
-            if user.first_name == params[:first_name]
-              user.unsubscribed_from_promo_emails = true
-              user.save
-              session[:unsubscribed] = true
-            end
-          end
-        end
-      rescue
-        logger.info("error while trying to unsubscribe")
-      end
-    end
 
     def save_referer
       begin
