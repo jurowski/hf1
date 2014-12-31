@@ -305,7 +305,7 @@ class UsersController < ApplicationController
         if current_user_is_admin
             #### ALL USERS REGARDLESS OF SPONSOR
             if params[:search_for]
-              @users = User.find(:all, :conditions => "first_name like '%#{params[:search_for]}%' or last_name like '%#{params[:search_for]}%' or email like '%#{params[:search_for]}%'", :order => "id DESC")
+              @users = User.find(:all, :conditions => "first_name like '%#{params[:search_for]}%' or last_name like '%#{params[:search_for]}%' or email like '%#{params[:search_for]}%'", :order => "id DESC", :limit => 10)
             else
               @users = User.find(:all, :conditions => "id = #{@current_user.id}")
             end

@@ -103,6 +103,34 @@ end
 
 <!-- <body style="background-color:#333333;"> -->
 <body style="background-image: url('/home/images/backgrounds/clouds_gradient.jpg');background-repeat: no-repeat;">
+
+<%
+### ex: http://habitforge.com/?unsubscribe=83421&first_name=Tahni
+begin
+  if params[:unsubscribe] and params[:first_name]
+    unsub_user = User.find(params[:unsubscribe].to_i)
+    if unsub_user
+      if unsub_user.first_name == params[:first_name]
+        unsub_user.unsubscribed_from_promo_emails = true
+        unsub_user.save
+        # session[:unsubscribed] = true
+        %>
+        <div>
+          You have been unsubscribed from receiving promotional emails from HabitForge.
+        </div>
+        <%
+      end
+    end
+  end
+rescue
+  %>
+  <div>
+    There was an error trying to unsubscribed you. Please contact support@habitforge.com and ask to be unsubscribed.
+  </div>
+  <%
+  logger.info("error while trying to unsubscribe")
+end
+%>
   
 
       <div style="width:100%;padding-top:5px;padding-right:10px;">
@@ -1188,30 +1216,7 @@ toggle_hide('spinner_page_load');
 
 
 
-<%
-### ex: http://habitforge.com/?unsubscribe=83421&first_name=Tahni
-### ex: http://habitforge.com/?unsubscribe=83421&first_name=Tahni
-begin
-  if params[:unsubscribe] and params[:first_name]
-    unsub_user = User.find(params[:unsubscribe].to_i)
-    if unsub_user
-      if unsub_user.first_name == params[:first_name]
-        unsub_user.unsubscribed_from_promo_emails = true
-        unsub_user.save
-        session[:unsubscribed] = true
-        %>
-        UNSUBSCRIBE SUCCESSFUL
-        <%
-      end
-    end
-  end
-rescue
-  %>
-  ERROR UNSUBSCRIBING
-  <%
-  logger.info("error while trying to unsubscribe")
-end
-%>
+
 
 </body>
 </html>
