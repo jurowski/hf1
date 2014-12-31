@@ -13,18 +13,25 @@ counter_no_goals = 0
 counter_have_goals = 0
 %>
 <% @users.each do |user| %>
-    <%=h user.created_at.strftime("%m/%d") %>
+    <%=h user.created_at.strftime("%y-%m-%d") %>
     <%
     if session[:current_user_is_admin] == true
     %>
         <%= link_to user.id.to_s, edit_user_path(user) %>
         <br>
-        <a href="users?impersonate=<%=user.id%>">Impersonate</a>
-         <br>
-        <% if !user.confirmed_address %>
+        <a href="users?impersonate=<%=user.id%>" class="btn">Impersonate</a>
 
-              <a href="users?confirm_id=<%=user.id%>">Confirm Account</a>
+         <% if !user.confirmed_address %>
 
+              <a href="users?confirm_id=<%=user.id%>" class="btn">Confirm Account</a>
+
+        <% end %>
+        <br>
+
+        <% if user.unsubscribed_from_promo_emails == 1 %>
+            UNSUBSCRIBED FROM PROMO EMAILS
+        <% else %>
+            <a href="/?unsubscribe=<%= user.id.to_s %>&first_name=<%= user.first_name%>" class="btn">Unsubscribe from Promo Emails</a>
         <% end %>
 
          <br>
@@ -47,26 +54,58 @@ counter_have_goals = 0
                     (free membership given on <%= user.got_free_membership.to_s %>)
                 <% else %>
                     <% if user.id > 85758 %>
-                      <a href="users?days=90&upgrade_id=<%=user.id%>">trade 100pts for 3 mos</a>
+                      <a href="users?days=90&upgrade_id=<%=user.id%>" class="btn">trade 100pts for 3 mos</a>
                     <% else %>
-                      <a href="users?days=365&upgrade_id=<%=user.id%>">trade 100pts for 1 yr</a>
+                      <a href="users?days=365&upgrade_id=<%=user.id%>" class="btn">trade 100pts for 1 yr</a>
                     <% end %>
                 <% end %>
-                <br> 
-                  <a href="users?days=3000&plan=monthly-1-29&upgrade_id=<%=user.id%>">$1.29 monthly</a>
-                <br>
-                  <a href="users?days=3000&plan=monthly-295&upgrade_id=<%=user.id%>">$2.95 monthly</a>
-                <br>
-                  <a href="users?days=3000&plan=yearly-2395&upgrade_id=<%=user.id%>">$23.95 yearly</a>
-                <br>
-                  <a href="users?days=3000&plan=monthly-295&upgrade_id=<%=user.id%>&coupon=50">$2.95 monthly 50% OFF</a>
-                <br>
-                  <a href="users?days=3000&plan=yearly-2395&upgrade_id=<%=user.id%>&coupon=50">$23.95 yearly 50% OFF</a>
-                <br>
-                  <a href="users?days=3000&plan=monthly-295&upgrade_id=<%=user.id%>&coupon=60">$2.95 monthly 60% OFF</a>
-                <br>
-                  <a href="users?days=3000&plan=yearly-2395&upgrade_id=<%=user.id%>&coupon=60">$23.95 yearly 60% OFF</a>
 
+                <div>
+                    <h3>Full Price</h3>
+                    <a href="users?days=3000&plan=monthly-295&upgrade_id=<%=user.id%>" class="btn">$2.95 monthly</a>
+ 
+                   <a href="users?days=3000&plan=yearly-2395&upgrade_id=<%=user.id%>" class="btn">$23.95 yearly</a>
+              </div>
+
+                <div>
+                    <h3>Discounted 30%</h3>
+                <br>
+                  <a href="users?days=3000&plan=monthly-295&upgrade_id=<%=user.id%>&coupon=30" class="btn">$2.95 monthly 30% OFF</a>
+
+                   <a href="users?days=3000&plan=yearly-2395&upgrade_id=<%=user.id%>&coupon=30" class="btn">$23.95 yearly 30% OFF</a>
+
+                </div>
+
+                <div>
+                    <h3>Discounted 40%</h3>
+                <br>
+                  <a href="users?days=3000&plan=monthly-295&upgrade_id=<%=user.id%>&coupon=40" class="btn">$2.95 monthly 40% OFF</a>
+
+                   <a href="users?days=3000&plan=yearly-2395&upgrade_id=<%=user.id%>&coupon=40" class="btn">$23.95 yearly 40% OFF</a>
+
+                </div>
+
+
+                <div>
+                    <h3>Discounted 50%</h3>
+                <br>
+                  <a href="users?days=3000&plan=monthly-295&upgrade_id=<%=user.id%>&coupon=50" class="btn">$2.95 monthly 50% OFF</a>
+ 
+                   <a href="users?days=3000&plan=yearly-2395&upgrade_id=<%=user.id%>&coupon=50" class="btn">$23.95 yearly 50% OFF</a>
+              </div>
+
+                <div>
+                    <h3>Discounted 60%</h3>
+
+                  <a href="users?days=3000&plan=monthly-295&upgrade_id=<%=user.id%>&coupon=60" class="btn">$2.95 monthly 60% OFF</a>
+
+                  <a href="users?days=3000&plan=yearly-2395&upgrade_id=<%=user.id%>&coupon=60" class="btn">$23.95 yearly 60% OFF</a>
+              </div>
+
+                <div>
+                    <h3>Old Deals</h3>
+                  <a href="users?days=3000&plan=monthly-1-29&upgrade_id=<%=user.id%>" class="btn">$1.29 monthly</a>
+                </div>
 
 
         <% end %>
