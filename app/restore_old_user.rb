@@ -32,7 +32,7 @@ class RestoreOldUser < ActiveRecord::Base
 #### !!!! use the now-indexed "copied_back" to record whether they have been copied over
 
 
-    sql = "SELECT * FROM users_pre_purge_201306 where copied_back = '0' LIMIT 25"
+    sql = "SELECT * FROM users_pre_purge_201306 where copied_back = '0' LIMIT 250"
     old_users_array = ActiveRecord::Base.connection.execute(sql)
 
     old_users_array.each do |user|

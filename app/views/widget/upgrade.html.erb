@@ -81,7 +81,6 @@
               <a href="/account?from_menu=1&show_pricing=1#portlet_tab2" class="btn_red_gradient" style="color:#ffffff;text-decoration:none;">Get Unlimited Habits!</a>
   </center>
 
-
 <div style="padding-top:10px;width:80%;padding:50px;padding-left:100px;margin-top:-50px;">
 
 <table border=0 cellpadding=5 cellspacing=5><tr><td>
@@ -137,6 +136,27 @@ Give it a shot! You have absolutely <span style="color:#CC3300;">nothing to lose
 
 </td>
 </tr>
+
+<% if current_user %>
+  <%
+  created_date_string = current_user.created_at.strftime("%Y-%m-%d")
+  current_date_string = current_user.dtoday.to_s
+  %>
+
+  <% if created_date_string == current_date_string %>
+  <tr>
+    <td colspan=2>
+    <center>
+    <h1><mark>Flash Deal for New Signups (Valid First Day Only): Save 40% off forever</mark></h1>
+    <h2>Use Promo Code <mark>NEWDAY9Q7</mark> below to take 40% off
+    <br>(Valid Only on the Same Day that you Signed Up)</h2>
+    </center>
+    </td>
+  </tr>
+  <% end %>
+
+<% end %>
+
 </table>
 </div>
 
