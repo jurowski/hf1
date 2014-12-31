@@ -21,7 +21,6 @@ class ApplicationController < ActionController::Base
   filter_parameter_logging :password, :password_confirmation
 
   before_filter :save_referer
-  before_filter :process_unsubscribe
 
   ### Force SSL ... keep in mind that in Google Chrome, people may get "insecure content" messages
   ### if you enable this without ensuring that any external javascript aren't also called w/ https
@@ -29,6 +28,9 @@ class ApplicationController < ActionController::Base
   #before_filter :redirect_to_ssl
   before_filter :redirect_to_ssl_login
 
+
+  ### keep this after the redirect_to_ssl_login
+  before_filter :process_unsubscribe
 
 
   private
