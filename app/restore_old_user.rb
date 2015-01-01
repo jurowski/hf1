@@ -232,18 +232,28 @@ class RestoreOldUser < ActiveRecord::Base
       u_copy.hide_feed = 0
 
 
-      u_copy.save!
-      puts "new user ID:" + u_copy.id.to_s
+      begin
 
-      if !u_copy.handle
-        u_copy.assign_unique_handle
-        u_copy.save
-        puts "handle: " + u_copy.handle
+        u_copy.save!
+        puts "new user ID:" + u_copy.id.to_s
+
+        if !u_copy.handle
+          u_copy.assign_unique_handle
+          u_copy.save
+          puts "handle: " + u_copy.handle
+        end
+
+        u = "copy made, user being updated: " + user[3]
+        puts u
+        logger.info("sgj:restore_old_user.rb:" + u )
+
+      rescue
+        u = "copy NOT made (likely already existed in user), but old user updated: " + user[3]
+        puts u
+        logger.info("sgj:restore_old_user.rb:" + u )
+
       end
 
-      u = "copy made, user being updated: " + user[3]
-      puts u
-      logger.info("sgj:restore_old_user.rb:" + u )
 
       sql_update = "UPDATE users_pre_purge_201306 set copied_back = '1' where email = '" + user[3] + "'"
       update_old_user = ActiveRecord::Base.connection.execute(sql_update)
