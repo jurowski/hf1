@@ -3,7 +3,10 @@ class UpdateUserNumberActiveGoals < ActiveRecord::Base
 
   # This script:
   # 1. changes goal statuses to "hold" for those out of date range (unless it's an established habit)
+
+  #### NOTE THAT THIS SHOULD REALLY BE RUN PRETTY OFTEN LIKE EVERY HOUR SINCE IT ONLY DOES 1K PER HOUR
   # 2. updates the number of active goals that each user has
+
   # 3. moves any checkpoints for "held" goals that were never established that are XXX days old to expiredcheckpoints
   # 4. updates whether the user follows any active goals
   # 5. creates a program_enrollment record if an active goal was created via a program
