@@ -354,17 +354,7 @@ strongest_habit_booster_displayed = false
     < end >
  -->
 
-<div>
-&nbsp
-<br>
-&nbsp
-<br>
-&nbsp
-<br>
-</div>
-
-
-<div style="padding-top:10px;width:80%;padding:50px;padding-left:10px;margin-top:-50px;">
+<div style="padding-top:0px;width:80%;padding:50px;padding-left:10px;margin-top:0px;">
 
 <table border=0 cellpadding=5 cellspacing=5><tr><td>
 <%
@@ -373,7 +363,6 @@ case random_index
 when 0
     %>
     <center>
-      <br>
     <div style="padding-top:0px;padding-right:10px;">
     <img src="/home/images/coaches/woman1/coach_woman1_talking_small.jpg" />
     <br>
@@ -383,17 +372,16 @@ when 0
     </td>
     <td valign=top>
      <div style="margin-top:50px;padding:.8em;margin-bottom:1em;border:2px solid #ddd;background:#FFFFCC;color:#514721;border-color:#eeeeee;-moz-border-radius: 15px;border-radius: 15px;">
-    <p>
+    <p style="font-size:1.3em;">
     <% if current_user and current_user.first_name != "unknown" %> 
-      <%= current_user.first_name %>, are you 
+      <%= current_user.first_name %>, did you know you can now get  
     <% else %>
-      Are you 
-    <% end %>ready to take your Accountability to the Next Level? <a href="/widget/upgrade_held_to_it" >"Held To It"</a> is a weekly check-in program with the HabitForge Creator!
+      You can now get 
+    <% end %><mark>30% off</mark> of <a href="/widget/upgrade_held_to_it" >"Held To It"</a>, the weekly personal check-in program with the HabitForge Creator? <a href="/widget/upgrade_held_to_it" >Click Here to Learn More!</a>
     <%
 when 1
     %>
     <center>
-      <br>
     <div style="padding-top:0px;padding-right:10px;">
     <img src="/home/images/coaches/man1/coach_man1_talking.png" />
     <br>
@@ -403,12 +391,12 @@ when 1
     </td>
     <td valign=top>
      <div style="margin-top:50px;padding:.8em;margin-bottom:1em;border:2px solid #ddd;background:#FFFFCC;color:#514721;border-color:#eeeeee;-moz-border-radius: 15px;border-radius: 15px;">
-    <p>
+    <p style="font-size:1.3em;">
     <% if current_user and current_user.first_name != "unknown" %> 
-      <%= current_user.first_name %>, would you 
+      <%= current_user.first_name %>, 
     <% else %>
-      Would you 
-    <% end %>push yourself more if you knew you had a weekly status check-in with the HabitForge Creator? Check out <a href="/widget/upgrade_held_to_it">"Held To It"</a>, a weekly check-in program with Sandon Jurowski!
+      Now you can 
+    <% end %>get <mark>30% off of weekly personal status check-ins</mark> via Skype or Email with the HabitForge Creator! Check out <a href="/widget/upgrade_held_to_it">"Held To It"</a>!
     <%
 end 
 %>
