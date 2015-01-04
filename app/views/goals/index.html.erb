@@ -334,7 +334,6 @@ strongest_habit_booster_displayed = false
 
 <div />
     
-    <br>
  
 <!--     
    <center>
@@ -354,13 +353,13 @@ strongest_habit_booster_displayed = false
     < end >
  -->
 
-<div style="padding-top:0px;width:80%;padding:50px;padding-left:10px;margin-top:0px;">
+<div style="padding-top:0px;width:80%;padding:0px;padding-left:10px;margin-top:0px;">
 
 <table border=0 cellpadding=5 cellspacing=5><tr><td>
 <%
 random_index = rand(2) #between 0 and (size - 1)
 case random_index
-when 0
+when 99
     %>
     <center>
     <div style="padding-top:0px;padding-right:10px;">
@@ -379,7 +378,7 @@ when 0
       You can now get 
     <% end %><mark>30% off</mark> of <a href="/widget/upgrade_held_to_it" >"Held To It"</a>, the weekly personal check-in program with the HabitForge Creator? <a href="/widget/upgrade_held_to_it" >Click Here to Learn More!</a>
     <%
-when 1
+when 111
     %>
     <center>
     <div style="padding-top:0px;padding-right:10px;">
@@ -405,11 +404,6 @@ end
 </td>
 </tr>
 
-<tr>
-<td>
-
-</td>
-</tr>
 </table>
 </div>
 
