@@ -105,7 +105,7 @@ class UpdatePromotionBlackFriday2014 < ActiveRecord::Base
     if testing == 1 ### assuming adminuseremail of "jurowski@gmail.com" or "jurowski@pediatrics.wisc.edu"
       user_conditions = "email = 'jurowski@gmail.com'"
     else
-      user_conditions = "kill_ads_until is null and promotion_black_friday_2014_sent is null and (unsubscribed_from_promo_emails = 0 or unsubscribed_from_promo_emails is null)"    end
+      user_conditions = "kill_ads_until is null and promotion_black_friday_2014_sent is null and (unsubscribed_from_promo_emails = 0 or unsubscribed_from_promo_emails is null) and (created_at < 14.days.ago)"    end
     @users = User.find(:all, :conditions => user_conditions, :limit => maxemails)
 
     for user in @users
@@ -118,10 +118,10 @@ class UpdatePromotionBlackFriday2014 < ActiveRecord::Base
        			      #puts "user.unsubscribed_from_promo_emails is nil or 0"
                   puts "#{user.email} is going to get an email"
                   
-                  the_subject = "Flash Deal for the first 49 People: 60% Off HabitForge Premium"
+                  the_subject = "40-person Flash Deal: 40% Off HabitForge Premium for the first 40 People"
                   Notifier.deliver_promotion_black_friday_2014(user, the_subject) # sends the email  
 
-                  puts "#{user.email} was sent the promotion_black_friday_2014 NEWYEAR email"
+                  puts "#{user.email} was sent the flash 40% for the first 40 promotion_black_friday_2014 email"
                   
                   count_emailed = count_emailed + 1       
                 end
