@@ -159,6 +159,20 @@ class User < ActiveRecord::Base
     end
   end
 
+  def creation_date
+
+    ucreated_Y = self.created_at.strftime("%Y").to_i #year, 4 digits
+    ucreated_m = self.created_at.strftime("%m").to_i #month of the year
+    ucreated_d = self.created_at.strftime("%d").to_i #day of the month
+    ucreated_H = self.created_at.strftime("%H").to_i #hour (24-hour format)
+    ucreated_k = self.created_at.strftime("%k").to_i #hour (24-hour format, w/ no leading zeroes)
+    ucreated_M = self.created_at.strftime("%M").to_i #minute of the hour
+    #puts tnow_Y + tnow_m + tnow_d  
+    #puts "User created_at is #{user.created_at.to_s}"
+    user_creation_date = Date.new(ucreated_Y, ucreated_m, ucreated_d)
+
+  end
+
   def profile_info
 
     my_info = self.name + " (" + self.show_handle + ")"

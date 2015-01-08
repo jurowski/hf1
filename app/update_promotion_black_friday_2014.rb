@@ -114,21 +114,34 @@ class UpdatePromotionBlackFriday2014 < ActiveRecord::Base
         		if user.promotion_black_friday_2014_sent == nil or testing == 1
         			if user.unsubscribed_from_promo_emails == nil or user.unsubscribed_from_promo_emails == 0 or testing == 1
 
-                if !user.email.include? "xxx_"
-       			      #puts "user.unsubscribed_from_promo_emails is nil or 0"
-                  puts "#{user.email} is going to get an email"
-                  
-                  the_subject = "40-person Flash Deal: 40% Off HabitForge Premium for the first 40 People"
-                  Notifier.deliver_promotion_black_friday_2014(user, the_subject) # sends the email  
 
-                  puts "#{user.email} was sent the flash 40% for the first 40 promotion_black_friday_2014 email"
-                  
-                  count_emailed = count_emailed + 1       
+                puts "user creation date: " + user.creation_date.to_s
+
+                ### Wait until the user has been around for 2 weeks before sending this
+                if user.creation_date < (dnow - 14)
+
+                  puts "user has been around for at least 2 weeks"
+
+                  if !user.email.include? "xxx_"
+                    #puts "user.unsubscribed_from_promo_emails is nil or 0"
+                    puts "#{user.email} is going to get an email"
+                    
+                    the_subject = "50-person Flash Deal: 50% Off HabitForge Premium for the first 50 People"
+                    Notifier.deliver_promotion_black_friday_2014(user, the_subject) # sends the email  
+
+                    puts "#{user.email} was sent the flash 40% for the first 40 promotion_black_friday_2014 email"
+                    
+                    count_emailed = count_emailed + 1       
+                  end
+
+                  ### do this even if it is a xxx_ user
+                  user.promotion_black_friday_2014_sent = dnow
+                  user.save 
+
+                else
+                  puts "user is too new ( has not yet been around for at least 2 weeks)"                  
                 end
 
-                ### do this even if it is a xxx_ user
-                user.promotion_black_friday_2014_sent = dnow
-                user.save 
 
               end 
             end
