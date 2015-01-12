@@ -137,6 +137,30 @@ Give it a shot! You have absolutely <span style="color:#CC3300;">nothing to lose
 </tr>
 
 <% if current_user %>
+
+  
+  <%
+  ### 7-Day Deal of 30% off
+  ### Wait until the user has been around for 1 week before sending this
+  if current_user.creation_date < (current_user.dtoday - 7) and current_user.creation_date >  (current_user.dtoday - 14)
+      %>
+      <hr>
+      <br>
+      <div class="alert">
+          <center>
+      <h2><mark><strong>This Week Only:</strong><br> Get 30% off of HabitForge Premium!</mark></h2> <h3><strong>Use coupon code "<mark>WEEK230</mark>"</strong></h3>
+          </center>
+     </div>
+     <hr>
+      <%
+  end
+  %>
+
+
+
+
+
+  <!-- IF THEY SIGNED UP JUST TODAY --> 
   <%
   created_date_string = current_user.created_at.strftime("%Y-%m-%d")
   current_date_string = current_user.dtoday.to_s

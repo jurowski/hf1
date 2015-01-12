@@ -79,7 +79,7 @@ class User < ActiveRecord::Base
         when "monthly-295"
           plan = "HabitForge Monthly $2.95"
         when "yearly-2395"
-          plan = "HabitForge Monthly $23.95"
+          plan = "HabitForge Yearly $23.95"
         end
         user.kill_ads_until = '3000-01-01'
 

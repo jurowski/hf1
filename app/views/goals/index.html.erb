@@ -437,7 +437,25 @@ end
             <tr>
                 <td>
         <a href="/goals/new" class="btn blue"></i>+ Start a New Habit</a>
- <a href="/widget/upgrade_held_to_it">Skype Check-Ins with the HabitForge Creator?</a>
+
+                <%
+                ### 7-Day Deal of 30% off
+                ### Wait until the user has been around for 1 week before sending this
+                if current_user.creation_date < (current_user.dtoday - 7) and current_user.creation_date >  (current_user.dtoday - 14)
+                    %>
+                    <br>
+                    <div class="alert">
+                        <center>
+                    <h2><strong>This Week Only:</strong><br> <a href="/widget/upgrade" >Get 30% off of HabitForge Premium!</a></h2> <h3><strong>Use coupon code "WEEK230"</strong></h3>
+                        </center>
+                   </div>
+                    <%
+                else
+                    %>
+                    <br> <a href="/widget/upgrade_held_to_it">==> Stay Accountable with the HabitForge Creator!</a>
+                    <%
+                end
+                %>
                 </td>
                 <td>
         <div style="margin-top:-110px;margin-left:-15px;">
