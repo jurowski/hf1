@@ -133,6 +133,29 @@ class UsersController < ApplicationController
             end
         end        
 
+        ######################################################################
+        ############# MANUALLY DOWNGRADE AN ACCOUNT ############################
+        if current_user_is_admin and params[:downgrade_id]
+
+            ### EXAMPLES OF HOW THE URLS COME IN FROM ADMIN MANUAL PAGE
+            #users?downgrade_id=<%=user.id%>&when=today
+
+
+          downgrade_user_id = params[:downgrade_id].to_i
+
+          user = User.find(:first, :conditions => "id = #{downgrade_user_id}") 
+          if user != nil
+
+            ### default values
+            downgrade_date = user.dtoday
+            user.kill_ads_until = downgrade_date
+            user.save
+          end
+
+        end
+        ############# END MANUALLY DOWNGRADE AN ACCOUNT ########################
+        ######################################################################
+
 
         ######################################################################
         ############# MANUALLY UPGRADE AN ACCOUNT ############################

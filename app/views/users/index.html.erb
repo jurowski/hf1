@@ -57,6 +57,13 @@ counter_have_goals = 0
                             <mark>THROUGH <%= user.kill_ads_until %></mark>
                         <% end %>
                     <% end %>
+
+                    <div>
+                    <h3>DOWNGRADE OPTIONS</h3>
+                    <a href="users?downgrade_id=<%=user.id%>&when=today" class="btn">Set Downgrade to Today</a> 
+                    </div>
+
+
                 <% end %>
                 <br>
                 <strong>
