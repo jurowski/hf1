@@ -70,6 +70,9 @@ class User < ActiveRecord::Base
     user = User.find(:first, :conditions => "id = #{upgrade_user_id.to_i}") 
     if user != nil
 
+      ### if they've gone through this trouble, might as well consider them confimred
+      user.confirmed_address = true
+
       if ongoing
         case plan
         when "yearly-9-00"

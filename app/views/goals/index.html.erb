@@ -441,7 +441,7 @@ end
                 <%
                 ### 7-Day Deal of 30% off
                 ### Wait until the user has been around for 1 week before sending this
-                if current_user.creation_date < (current_user.dtoday - 7) and current_user.creation_date >  (current_user.dtoday - 14)
+                if !current_user.is_premium and current_user.creation_date < (current_user.dtoday - 7) and current_user.creation_date >  (current_user.dtoday - 14)
                     %>
                     <br>
                     <div class="alert">
@@ -2043,7 +2043,7 @@ http://localhost:3000/goals?update_checkpoint_status=yes&date=2012-02-12&e0=106&
     					Hey <%= current_user.first_name %>, <%= slacker_goal.user.first_name %> hasn't been "<%= slacker_goal.title %>" for more than a few days now, and could use a little "push".
     					Push one of their buttons below to send them some motivation, and you'll earn 5 "SupportPoints". 
     					If they succeed either today or tomorrow, you'll earn an additional 10 "SupportPoints"!
-    					<h4>Every 100 SupportPoints earns you a free Premium Membership for you or a friend!</h4>
+    					<h4>Every 100 SupportPoints earns you a free month of a Premium Membership for you or a friend!</h4>
     					Push one of their buttons to send them a message!
     					<% if phrase1_good  %>
     					  <br><a href="/goals?goal_id=<%= params[:goal_id]%>&u=<%= params[:u] %>&e0=<%= params[:e0] %>&f0=<%= params[:f0] %>&push_message_id=<%=1%>&push_message_goal_id=<%=slacker_goal.id%>" class="start_now"><%= slacker_goal.phrase1 %></a>

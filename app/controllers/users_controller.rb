@@ -148,6 +148,10 @@ class UsersController < ApplicationController
 
             ### default values
             downgrade_date = user.dtoday
+            if params[:date]
+              downgrade_date = params[:date]
+            end
+
             user.kill_ads_until = downgrade_date
             user.save
           end
@@ -328,9 +332,25 @@ class UsersController < ApplicationController
         if current_user_is_admin
             #### ALL USERS REGARDLESS OF SPONSOR
             if params[:search_for]
-              @users = User.find(:all, :conditions => "first_name like '%#{params[:search_for]}%' or last_name like '%#{params[:search_for]}%' or email like '%#{params[:search_for]}%'", :order => "id DESC", :limit => 10)
+              @users = User.find(:all, :conditions => "
+                first_name like '%#{params[:search_for]}%' or 
+                last_name like '%#{params[:search_for]}%' or 
+                email like '%#{params[:search_for]}%' or
+                id = '#{params[:search_for]}'
+                ", :order => "id DESC", :limit => 10)
             else
-              @users = User.find(:all, :conditions => "id = #{@current_user.id}")
+
+              find_id = @current_user.id
+              if params[:upgrade_id]
+                find_id = params[:upgrade_id].to_i
+              end
+              if params[:downgrade_id]
+                find_id = params[:downgrade_id].to_i
+              end
+              if params[:confirm_id]
+                find_id = params[:confirm_id].to_i
+              end
+              @users = User.find(:all, :conditions => "id = #{find_id}")
             end
         else
             if current_user.email == "sanjeev@ontrackrealty.com" or current_user.email == "jurowski@gmail.com"
