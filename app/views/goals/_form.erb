@@ -537,10 +537,10 @@ end
 
 
 
-  <a name="reminders" />
+  <a name="reminders" ></a>
 
 <!-- START REMINDER OPTIONS -->
-<h2><i class="icon-bell"></i> Reminders <a href="#undefined" onclick="toggle_show_hide('div_reminders')" style="font-size:0.5em;">Details</a></h2>
+<span style="font-size:2em;"><i class="icon-bell"></i> Reminders <a href="#undefined" onclick="toggle_show_hide('div_reminders')" style="font-size:0.7em;">Details</a></span>
 
     <% if params[:show_reminders] %>
       <div id="div_reminders" name="div_reminders" class="well" style="display:block;">
@@ -548,8 +548,8 @@ end
       <div id="div_reminders" name="div_reminders" class="well" style="display:none;">
     <% end %>
 
-  Your timezone is set to <a href="/account/edit"><%= current_user.time_zone %></a>.
-<table>
+<!--   Your timezone is set to <a href="/account/edit"><= current_user.time_zone ></a>.
+ --><table>
   <tr>
     <td>
     Check in with <%= them_or_me %> for a yes/no answer at: &nbsp  
@@ -748,15 +748,17 @@ end
 <!-- HIDE THE FOLLOWING IF FIRST NEW GOAL VIRGIN SETUP SCREEN -->
 <% if !session[:sfm_virgin] and !@goal.template_owner_is_a_template  %>
 
-  <h2><i class="icon-fire"></i> Motivation
+  <br>
+  <br>
+  <span style="font-size:2em;"><i class="icon-fire"></i> Motivation
   
 
 
 
-          <a href="#undefined" onclick="toggle_show_hide('personal_motivation')" style="font-size:0.5em;">Details</a>
+          <a href="#undefined" onclick="toggle_show_hide('personal_motivation')" style="font-size:0.7em;">Details</a>
 
 
-  </h2>
+  </span>
   <div id="personal_motivation" class="well" style="display:none;">
   <div class="notice">
 
@@ -779,15 +781,14 @@ end
 
   </p>
   </p>
-
-  <a name="visibility" />
-  <h2>
+  <a name="visibility" ></a>
+  <span style="font-size:2em;">
     <% if @goal.publish == nil or @goal.publish == true %>
       <i class="icon-unlock"></i> 
     <% else %>
       <i class="icon-lock"></i> 
     <% end %>
-    Visibility <a href="#undefined" onclick="toggle_show_hide('div_visibility')" style="font-size:0.5em;">Details</a></h2>
+    Visibility <a href="#undefined" onclick="toggle_show_hide('div_visibility')" style="font-size:0.7em;">Details</a></span>
 
     <% if params[:show_visibility] %>
       <div id="div_visibility" name="div_visibility" class="well" style="display:block;">
@@ -819,17 +820,20 @@ end
   <!-- START FRIENDLY PUSHES -->
   <% if session[:site_name] == "habitforge" %>
 
-  <a name="extra_encouragement" />
+  <br>
+  <br>
+  <a name="extra_encouragement" ></a>
     <!-- BEGIN WELL -->
-    <h2><i class="icon-bullhorn"></i> Extra Encouragement <a href="#undefined" onclick="toggle_show_hide('div_priority_encouragement')" style="font-size:0.5em;">Details</a>
+    <span style="font-size:2em;">
+    <i class="icon-bullhorn"></i> Extra Encouragement <a href="#undefined" onclick="toggle_show_hide('div_priority_encouragement')" style="font-size:0.7em;">Details</a>
 
 
-        <div style="margin-top:-70px;margin-left:350px;">
+        <div style="margin-top:-55px;margin-left:350px;">
             <img src="/home/images/arrow_drawn_strongest_habit_booster.png" />
         </div>
 
 
-    </h2>
+    </span>
     <% if params[:show_extra_encouragement] %>
       <div id="div_priority_encouragement" name="div_priority_encouragement" style="display:block;">
     <% else %>
@@ -1112,8 +1116,8 @@ Should we auto-answer your daily checkpoint with a "Yes" whenever your same-day 
 
 
 
-
-<h2><i class="icon-calendar"></i> Frequency <a href="#undefined" onclick="toggle_show_hide('div_frequency')" style="font-size:0.5em;">Details</a></h2>
+<br>
+<span style="font-size:2em;"><i class="icon-calendar"></i> Habit Frequency (How Often?) <a href="#undefined" onclick="toggle_show_hide('div_frequency')" style="font-size:0.7em;">Details</a></span>
 <div id="div_frequency" name="div_frequency" style="display:none;">
 
 
@@ -1317,7 +1321,9 @@ end
     <% if  @ca == "edit" %>
 
       <% if params[:just_created_new_habit] %>
-        <input type="submit" value="Save and Continue"  class="start_now" style="height:30px;">
+        <br>
+        <br>
+        <input type="submit" value="I've Customized It, Save It, Because I'm Ready to Roll!"  class="start_now" style="height:30px;">
       <% else %>
         <input type="submit" value="Save Customizations"  class="start_now" style="height:30px;">
       <% end %>
