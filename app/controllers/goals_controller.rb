@@ -795,6 +795,7 @@ class GoalsController < ApplicationController
   def create
       @show_sales_overlay = false
 
+
       if current_user and params[:first_name]
 	        current_user.first_name = params[:first_name]
  
@@ -808,6 +809,7 @@ class GoalsController < ApplicationController
       if @goal.template_owner_is_a_template
         @goal.status = "hold"
       end
+
 
 
       ### remove question marks because:
@@ -959,6 +961,9 @@ class GoalsController < ApplicationController
               @goal.user.feed_filter_hide_pmo = false
             end
 
+            if params[:sign_up_for_lyphted] and params[:sign_up_for_lyphted] == "1"
+              @goal.user.lyphted_subscribe = @goal.user.dtoday
+            end
 
             ### update last activity date
             @goal.user.last_activity_date = @goal.user.dtoday
@@ -1377,11 +1382,11 @@ class GoalsController < ApplicationController
               #   format.html { render :action => "index" } # index.html.erb
               # end
           
-              if !current_user.is_habitforge_supporting_member
-                format.html { redirect_to("https://habitforge.com/widget/upgrade")}
-              else
+              # if !current_user.is_habitforge_supporting_member
+              #   format.html { redirect_to("https://habitforge.com/widget/upgrade")}
+              # else
                 format.html { redirect_to("/goals/#{@goal.id}/edit?just_created_new_habit=1")}
-              end
+              # end
 
 
 
@@ -1737,8 +1742,13 @@ class GoalsController < ApplicationController
             if @goal.template_owner_is_a_template and params[:program_id]
               format.html {redirect_to("/programs/#{params[:program_id]}#action_items")}
             else
-              format.html { render :action => "index" } # index.html.erb
-              format.xml  { render :xml => @goal.errors, :status => :unprocessable_entity }            
+
+              if @goal.user.is_premium
+                format.html { render :action => "index" } # index.html.erb
+                format.xml  { render :xml => @goal.errors, :status => :unprocessable_entity }            
+              else
+                format.html {redirect_to("/widget/upgrade")}
+              end
             end
 
 

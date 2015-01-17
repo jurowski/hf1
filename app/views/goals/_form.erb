@@ -181,7 +181,6 @@ show_monitor_option_details = 0
   <% else %>
 
     <% if !params[:just_confirm] and !params[:goal_added_through_template_from_program_id] %>
-    We'll encourage, inspire and push you toward your goal.
     <% else %>
 
 
@@ -212,16 +211,9 @@ show_monitor_option_details = 0
 
 <% if params[:just_created_new_habit] %>
 
-  <% if params[:just_created_first_habit] %>
     <div style="padding-top:0px;">
-    <span style="color:#000000;font-size:2em;font-weight:bold;">Nice work, you've set up your first habit!</span>
+    <span style="color:#000000;font-size:2em;font-weight:bold;">Now Let's Customize Your Habit!</span>
     </div>
-  <% else %>
-    <div style="padding-top:0px;">
-    <span style="color:#000000;font-size:2em;font-weight:bold;">Your new habit is saved.</span>
-    </div>
-  <% end %>
-
 
 <% end %>
 
@@ -285,7 +277,9 @@ if part_of_a_team_category
 end
 %>
   <% if !params[:just_confirm] %>
-  Ask me this at each daily check-in to see if I came through: 
+  <h1>
+  OK, Lisa... Ask me this daily to see if I came through: 
+</h1>
   <br>
   <span style="font-weight:bold;font-size:1.5em;">"Were you successful at
   <% end %>
@@ -855,11 +849,16 @@ end
             <% end %>
 
 
-              <div style="margin-top:0px;">
+<!--               <div style="margin-top:0px;">
                 <img src="/home/images/arrow_drawn_small.png" />
               </div>
 
-           <div style="margin-top:-45px;">
+ -->          
+
+ <br>
+ <br>
+ <br>
+  <div style="margin-top:-45px;">
 
 
               <% if !current_user.is_habitforge_supporting_member %>
@@ -1316,7 +1315,13 @@ end
 </div> <!-- end div_frequency -->
 
     <% if  @ca == "edit" %>
-    <input type="submit" value="Save Customizations"  class="start_now" style="height:30px;">
+
+      <% if params[:just_created_new_habit] %>
+        <input type="submit" value="Save and Continue"  class="start_now" style="height:30px;">
+      <% else %>
+        <input type="submit" value="Save Customizations"  class="start_now" style="height:30px;">
+      <% end %>
+
     <% end %>
 </div> <!-- end whether this is hidden (but there in hiding to grab values) -->
 

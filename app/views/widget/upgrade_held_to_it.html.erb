@@ -29,24 +29,15 @@
         <div>
         <a href="/"><img src="/home/images/logos/hf_logo_shield_rocket_transparency.png" style="width:15%;" alt="HabitForge logo" /></a>
         </div>
-
-        <% if params[:habit_limit] or params[:too_many_active_habits] %>
-          <div>
-          <h1><mark>Help Us Help You!</mark></h1>
-          <h3>We're glad you want to improve in more than one area of your life,
-            <br>but the "Free Accounts" are restricted to 1 active habit at a time<br>with limited Habit Boosters.<br><br>Your support helps us keep the lights on and helps us keep improving our services!</h3>
+          <h1>
+          Stay On Track, Every Week!!
+          </h1>
+          <div style="width:60%;background-color:#efefef;">
+          <h2>Get Weekly 10-minute Personal Goal Reviews <br>
+          and Check-ins via Phone or Skype<br>with the HabitForge Creator!
+          </h2>
           </div>
-
-          <h1>Get Unlimited Habits<br>Unlock All Habit Boosters<br>
-        <% else %>
-          <% if params[:goal_id] %>
-            <h1>Unlock All Habit Boosters<br>Get Unlimited Habits<br>
-          <% else %>
-            <h1>
-          <% end %>
-        <% end %>
-          Get 10-minute Skype Check-ins Every 2 Weeks with the HabitForge Creator.
-          <br>The <mark>Ultimate</mark> In Accountability.</h1>
+          <h1>Remember: Accountability is What Makes You Take Action!</h1>
         <span style="color:#CC3300;">(As always, 10-day free trial, 30-day Money-Back Guarantee, No Questions Asked, Ever!)</span>
      <!-- Press Logos Start -->
       <center>
@@ -74,7 +65,7 @@
     <center>
             <img src="/home/images/correct.png" /> <span style="text-decoration:underline;">HabitForge Premium</span> Upgrade Included
             <br><img src="/home/images/correct.png" /> Ongoing Personal Goal Review
-            <br><img src="/home/images/correct.png" /> Skype Check-Ins Every 2 Weeks
+            <br><img src="/home/images/correct.png" /> Skype Check-Ins Every Week with the HabitForge Creator
             <br><img src="/home/images/correct.png" /> Positive Pressure Knowing You Need to Succeed
             <br><img src="/home/images/correct.png" /> Zero Risk - 100% Money-Back Guarantee
             <br>
@@ -83,56 +74,6 @@
 
 <div style="padding-top:10px;width:80%;padding:50px;padding-left:100px;margin-top:-50px;">
 
-<table border=0 cellpadding=5 cellspacing=5><tr><td>
-<center>
-  <br>
-<div style="padding-top:0px;padding-right:10px;">
-<img src="/home/images/coaches/sandon1/sgjurowski-thumb.jpg" />
-<br>
-Sandon J.
-</div>
-</center>
-</td>
-<td valign=top>
-<!-- <div style="padding:10px;padding-left:30px;margin-top:-10px;width:80%;background-color:#eeeeee;color:#002447;">
- --><div style="padding:.8em;margin-bottom:1em;border:2px solid #ddd;background:#FFFFCC;color:#514721;border-color:#eeeeee;-moz-border-radius: 15px;border-radius: 15px;">
-"Hi 
-<% if current_user and current_user.first_name != "unknown" %> 
-  <%= current_user.first_name %>.
-<% else %>
-  there. 
-<% end %>
-This is Sandon Jurowski, the creator of HabitForge.
-<br>
-<br>
-When I started HabitForge in 2009, I knew how simple and powerful it was to know that someone was waiting for you to do a particular thing by a particular day.
-<br>
-<br>
-There was a time in my life when the only way that I could get myself to exercise was remembering that "I had to", because I'd signed up for a racquetball league, and I knew that there was one person waiting for me at a court. If I didn't show up, sure, it wouldn't be the end of the world, but it was going to make them miss their own workout. It was enough to get me off the couch and to the gym.
-<br>
-<br>
-<mark>Accountability works. Knowing that someone is expecting you to succeed can make all of the difference in the world. That is why I created HabitForge.</mark>
-<br>
-<br>
-Would it make a difference in your own life if someone was relying on you to succeed? That is the opportunity that you have, right now: give me the chance to inspire you and hold you accountable at a personal level, through one-on-one emails and skype calls <mark>by me, personally</mark>.
-<br>
-<br>
-<br>
-Knowing that someone cares that you're always moving toward being the best YOU that you can be. That is powerful. Let's unleash it together!
-
-<br>
-<br>
-Best of all, it's all 
-<span style="font-size:1.2em;font-weight:normal;">
-100% GUARANTEED! 
-</span>
-
-During your 10-day free trial, you can cancel and won't be charged a cent. And if within the first 30 days you're not completely satisfied, you will get a <span style="color:#CC3300;">FULL REFUND</span>, with <span style="color:#CC3300;">ABSOLUTELY NO QUESTIONS ASKED!</span>
-<br>
-</td>
-</tr>
-
-</table>
 </div>
 
 
@@ -189,6 +130,13 @@ During your 10-day free trial, you can cancel and won't be charged a cent. And i
         <% end %>
       </div>
       <img src="/home/images/hr_fancy.png" />
+
+      <% if current_user %>
+      <h2>Get Accountable to Succeed!!!</h2>
+        <a href="/goals?return_from_upgrade_page_user_id=<%= current_user.id %>">
+          Umm, no thanks, I don't need to be that accountable. I'll just see how things turn out on my own.
+        </a>
+      <% end %>
 
 </center>
     </div>
