@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20141128152753) do
+ActiveRecord::Schema.define(:version => 20150117060717) do
 
   create_table "achievemints", :force => true do |t|
     t.string   "name"
@@ -1237,12 +1237,123 @@ ActiveRecord::Schema.define(:version => 20141128152753) do
     t.date     "asked_for_job_lead_on_failure"
     t.date     "promotion_new_payment_monthly_sent"
     t.date     "promotion_black_friday_2014_sent"
+    t.date     "lyphted_subscribe"
+    t.date     "lyphted_unsubscribe"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email"
   add_index "users", ["perishable_token"], :name => "index_users_on_perishable_token"
   add_index "users", ["supportpoints", "date_i_last_pushed_a_slacker", "slacker_id_that_i_last_pushed"], :name => "supportpoints"
   add_index "users", ["update_number_active_goals"], :name => "update_number_active_goals"
+
+  create_table "users_pre_purge_201306", :force => true do |t|
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "email",                                                              :default => "",    :null => false
+    t.string   "string",                                                             :default => "",    :null => false
+    t.string   "crypted_password",                                                                      :null => false
+    t.string   "password_salt",                                                                         :null => false
+    t.string   "persistence_token",                                                                     :null => false
+    t.string   "single_access_token",                                                                   :null => false
+    t.string   "perishable_token",                                                   :default => "",    :null => false
+    t.integer  "login_count",                                                        :default => 0,     :null => false
+    t.integer  "failed_login_count",                                                 :default => 0,     :null => false
+    t.datetime "last_request_at"
+    t.datetime "current_login_at"
+    t.datetime "last_login_at"
+    t.string   "current_login_ip"
+    t.string   "last_login_ip"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "time_zone"
+    t.integer  "update_number_active_goals"
+    t.string   "gender"
+    t.integer  "yob"
+    t.string   "sponsor"
+    t.integer  "unsubscribed_from_promo_emails"
+    t.string   "promo_1_token"
+    t.integer  "promo_1_sent"
+    t.date     "last_donation_date"
+    t.date     "last_donation_plea_date"
+    t.integer  "donated_so_far"
+    t.integer  "promo_1_responded"
+    t.date     "kill_ads_until"
+    t.integer  "unlimited_goals"
+    t.integer  "hide_donation_plea"
+    t.integer  "combine_daily_emails"
+    t.decimal  "payments",                             :precision => 8, :scale => 2
+    t.date     "coach_follow_next"
+    t.date     "coach_follow_last"
+    t.integer  "coach_follow_yn"
+    t.integer  "is_admin"
+    t.string   "cc_first_name"
+    t.string   "cc_last_name"
+    t.string   "street1"
+    t.string   "street2"
+    t.string   "city"
+    t.string   "state"
+    t.string   "zip"
+    t.string   "phone"
+    t.string   "cc_number"
+    t.string   "cc_code"
+    t.string   "cc_expire_month"
+    t.string   "cc_expire_year"
+    t.date     "cc_expire_date"
+    t.string   "cost_per_period"
+    t.string   "period"
+    t.string   "subscriptionid"
+    t.text     "subscriptionmessage"
+    t.string   "plan"
+    t.date     "premium_start_date"
+    t.date     "premium_stop_date"
+    t.integer  "is_a_coach"
+    t.integer  "coach_id"
+    t.date     "sent_expire_warning_on"
+    t.date     "sent_expire_notice_on"
+    t.integer  "opt_in_random_fire"
+    t.integer  "affiliate_id"
+    t.integer  "is_affiliate"
+    t.integer  "active_goals_tallied_hour"
+    t.string   "password_temp"
+    t.string   "goal_temp"
+    t.string   "referer"
+    t.integer  "supportpoints"
+    t.text     "supportpoints_log"
+    t.date     "date_last_prompted_to_push_a_slacker"
+    t.date     "date_i_last_pushed_a_slacker"
+    t.integer  "slacker_id_that_i_last_pushed"
+    t.date     "promo_comeback_last_sent"
+    t.string   "promo_comeback_token"
+    t.boolean  "undeliverable",                                                      :default => false
+    t.date     "undeliverable_date_checked"
+    t.boolean  "confirmed_address",                                                  :default => false
+    t.string   "confirmed_address_token"
+    t.boolean  "asked_for_testimonial",                                              :default => false
+    t.integer  "update_number_active_goals_i_follow",                                :default => 0
+    t.integer  "active_goals_i_follow_tallied_hour",                                 :default => 0
+    t.date     "last_activity_date"
+    t.date     "active_goals_i_follow_tallied_date"
+    t.integer  "coach_organization_id"
+    t.string   "coach_first_name"
+    t.string   "coach_last_name"
+    t.string   "coach_gender"
+    t.string   "coach_tagline"
+    t.text     "coach_description"
+    t.string   "coach_image_standard"
+    t.string   "coach_contact_email"
+    t.string   "coach_contact_phone"
+    t.boolean  "show_gravatar",                                                      :default => true
+    t.integer  "copied_back"
+  end
+
+  add_index "users_pre_purge_201306", ["email"], :name => "index_users_on_email"
+  add_index "users_pre_purge_201306", ["kill_ads_until"], :name => "kill_ads_until"
+  add_index "users_pre_purge_201306", ["last_activity_date"], :name => "last_activity_date"
+  add_index "users_pre_purge_201306", ["perishable_token"], :name => "index_users_on_perishable_token"
+  add_index "users_pre_purge_201306", ["sponsor"], :name => "sponsor"
+  add_index "users_pre_purge_201306", ["supportpoints", "date_i_last_pushed_a_slacker", "slacker_id_that_i_last_pushed"], :name => "supportpoints"
+  add_index "users_pre_purge_201306", ["time_zone"], :name => "time_zone"
+  add_index "users_pre_purge_201306", ["update_number_active_goals"], :name => "update_number_active_goals"
 
   create_table "weight_loss_by_states", :force => true do |t|
     t.string   "state"
