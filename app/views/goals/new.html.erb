@@ -181,8 +181,16 @@ end
     <!-- render :partial => "form", :object => f -->
     <%= render :partial => "form", :locals => {:form => f, :program => program} %>
 
-      <input type="checkbox" checked name="sign_up_for_lyphted" value="1"> Also Send me Habit Tips via the Lyphted Newsletter
-      <br>&nbsp
+      <%
+      ### only show if not already subscribed
+      if current_user and current_user.lyphted_subscribe == nil 
+        %>
+        <input type="checkbox" checked name="sign_up_for_lyphted" value="1"> Also Send me Habit Tips via the Lyphted Newsletter
+        <br>&nbsp
+        <%
+      end
+      %>
+    
     <% cancel_destination = "/goals" %>
     <p>
 

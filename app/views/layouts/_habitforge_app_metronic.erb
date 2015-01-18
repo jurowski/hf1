@@ -1803,18 +1803,23 @@ $('.confirmation').on('click',function(){return confirm('Are you sure?');});
 <%
 ### only show if not creating a new goal
 if !((@cn and @cn == "goals") and (@ca and @ca == "new"))
-  %>
-  <!-- every 3 days pop up (3-second delay) the newsletter black box -->
-  <div class="AW-Form-1951857634"></div>
-  <script type="text/javascript">(function(d, s, id) {
-      var js, fjs = d.getElementsByTagName(s)[0];
-      if (d.getElementById(id)) return;
-      js = d.createElement(s); js.id = id;
-      js.src = "http://forms.aweber.com/form/34/1951857634.js";
-      fjs.parentNode.insertBefore(js, fjs);
-      }(document, "script", "aweber-wjs-lyatk9nzv"));
-  </script>
-  <%
+
+  ### only show if not already subscribed
+  if current_user and current_user.lyphted_subscribe == nil
+    %>
+    <!-- every 7 days pop up (3-second delay) the newsletter black box -->
+    <div class="AW-Form-1951857634"></div>
+    <script type="text/javascript">(function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = "http://forms.aweber.com/form/34/1951857634.js";
+        fjs.parentNode.insertBefore(js, fjs);
+        }(document, "script", "aweber-wjs-lyatk9nzv"));
+    </script>
+    <%
+  end
+
 end
 %>
 

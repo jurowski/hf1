@@ -11,12 +11,17 @@
         <!-- #### START CUSTOM LIST MENU ITEMS SGJ #### -->
 
 
+        <%
+        if current_user and current_user.lyphted_subscribe == nil 
+        %>
         <!-- BLOG -->
         <li>
           <a href="/widget/newsletter">
             <i class='icon-book'></i><span style="color:#cc3300;"><strong>Success Tips Blog</strong></span></a>
         </li> 
-
+        <%
+        end
+        %>
 
 
         <% if !current_user %>
