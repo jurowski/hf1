@@ -118,6 +118,23 @@ class UsersController < ApplicationController
     else
 
 
+
+        ############# SOMEONE JOINED LYPHED ############################
+        if current_user_is_admin and params[:joined_lyphted_id]
+            user = User.find(:first, :conditions => "id = #{params[:joined_lyphted_id].to_i}") 
+            if user != nil
+              user.lyphted_subscribe = '3000-01-01'
+
+              if user.save
+                  logger.info 'HF SUCCESS updating joined_lyphted ' + user.email
+              else 
+                  logger.info 'HF ERROR updating joined_lyphted ' + user.email
+              end
+
+            end
+        end        
+
+
         ############# MANUALLY CONFIRM AN ACCOUNT ############################
         if current_user_is_admin and params[:confirm_id]
             user = User.find(:first, :conditions => "id = #{params[:confirm_id].to_i}") 

@@ -41,6 +41,13 @@ counter_have_goals = 0
             <a href="/users?unsubscribe=<%= user.id.to_s %>&first_name=<%= user.first_name%>" class="btn">Unsubscribe from Promo Emails</a>
         <% end %>
 
+        <br>
+        <% if user.lyphted_subscribe == nil %>
+            <a href="/users?joined_lyphted_id=<%= user.id.to_s %>&first_name=<%= user.first_name%>" class="btn">JOINED LYPHTED (so don't ask anymore)</a>            
+        <% else %>
+            LYPHTED SUBSCRIBER
+        <% end %>
+
          <br>
         <% if session[:sponsor] == "habitforge" %>
 
