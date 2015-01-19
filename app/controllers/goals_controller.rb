@@ -6,6 +6,11 @@ class GoalsController < ApplicationController
   ### http://stackoverflow.com/questions/5822912/how-do-i-display-an-avatar-in-rails
   require 'digest/md5'
 
+  ### for Lyphted subscription integration
+  ### https://labs.aweber.com/snippets/subscribers
+  require 'aweber'
+
+
   #include GoalsHelper
   include CoachgoalsHelper
 
@@ -961,10 +966,6 @@ class GoalsController < ApplicationController
               @goal.user.feed_filter_hide_pmo = false
             end
 
-            if params[:sign_up_for_lyphted] and params[:sign_up_for_lyphted] == "1"
-              @goal.user.lyphted_subscribe = @goal.user.dtoday
-            end
-
             ### if this is my first ever goal, record it in user for marketing
             if !@goal.user.category_first
               @goal.user.category_first = @goal.category
@@ -974,6 +975,62 @@ class GoalsController < ApplicationController
               @goal.user.categories_goals = ""
             end
             @goal.user.categories_goals += @goal.category + "_:_" + @goal.title + "::"
+
+
+            if params[:sign_up_for_lyphted] and params[:sign_up_for_lyphted] == "1"
+              @goal.user.lyphted_subscribe = @goal.user.dtoday
+
+
+              # ####https://labs.aweber.com/snippets/subscribers
+              # oauth = AWeber::OAuth.new('Ak1WLosRSScHQL6Z3X3WfV3F', 'utsxWW2PuCrWWGdUpGy1nLlFkXr1Hr2pRL7TomdR')
+
+              # auth_url = oauth.request_token.authorize_url
+              # logger.info("sgj:aweber: " + auth_url)
+
+              ### got all of the accesstoken info by following the account verifications instructions
+              ### while using irb (require 'rubygems' and require 'aweber')
+              ### based on: https://github.com/aweber/AWeber-API-Ruby-Library
+
+              #<OAuth::AccessToken:0xb76fea70 @params={}, @consumer=#<OAuth::Consumer:0xb72e00d8 @http_method=:post, @secret="utsxWW2PuCrWWGdUpGy1nLlFkXr1Hr2pRL7TomdR", @options={:access_token_path=>"/1.0/oauth/access_token", :oauth_version=>"1.0", :scheme=>:query_string, :signature_method=>"HMAC-SHA1", :proxy=>nil, :http_method=>:post, :request_token_path=>"/1.0/oauth/request_token", :authorize_path=>"/1.0/oauth/authorize", :site=>"https://auth.aweber.com"}, @key="Ak1WLosRSScHQL6Z3X3WfV3F", @http=#<Net::HTTP auth.aweber.com:443 open=false>>, @secret="DmCMwlQWL4a2NHCrCTGaAu5u5EwaH06P5e4MLcYp", @token="AgeEEz2LxKSd8zNpr602Bfyd"> 
+              
+                        # App Name; HabitForge
+                        # App ID: 8765b416 
+                        # Consumer Key: Ak1WLosRSScHQL6Z3X3WfV3F
+                        # Consumer Secret: utsxWW2PuCrWWGdUpGy1nLlFkXr1Hr2pRL7TomdR
+
+                        ####https://labs.aweber.com/snippets/subscribers
+                        oauth = AWeber::OAuth.new('Ak1WLosRSScHQL6Z3X3WfV3F', 'utsxWW2PuCrWWGdUpGy1nLlFkXr1Hr2pRL7TomdR')
+                        oauth.authorize_with_access('AgeEEz2LxKSd8zNpr602Bfyd', 'DmCMwlQWL4a2NHCrCTGaAu5u5EwaH06P5e4MLcYp')
+                        aweber = AWeber::Base.new(oauth)
+                        new_subscriber = {}
+                        new_subscriber["email"] = @goal.user.email
+                        new_subscriber["name"] = @goal.user.name
+
+                        #### again, this one is custom and was not able to figure out how to update it
+                        # new_subscriber["YOB"] = "1976"
+
+
+                        ##### was not able to get the updating of these custom fields to work after several different method tries
+                        ##### but that's OK we're now just using the built-in "misc_notes" 
+                        # new_subscriber["custom_fields"]["first_category"] = "exercise"
+                        # new_subscriber["custom_fields"]["first_goal"] = "run for 20 minutes"
+                        # new_subscriber["custom_fields"]["categories_goals"] = "exercise:.:run for 20 minutes;"
+                        new_subscriber["misc_notes"] = "first_category=" + @goal.user.category_first + ";first_goal='" + @goal.user.goal_first + "'"
+
+                        ## The Lyphted list_id is = 3702705
+                        ## The Lyphted list_name is = awlist3702705
+                        list = aweber.account.lists.find_by_id(3702705)
+                        list.subscribers.create(new_subscriber)
+                        # aweber.account.lists.each do |list|
+                        #   logger.info("sgj:aweber:" + list.name)
+                        # end
+                        # logger.info("sgj:aweber:" + aweber.account.lists.to_s)
+                        # logger.info("sgj:aweber:" + aweber.account.lists[0].name.to_s)
+                        #aweber.account.lists.find_by_id(3702705).subscribers.create(new_subscriber)
+
+
+            end
+
 
 
             ### update last activity date

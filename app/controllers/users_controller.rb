@@ -8,6 +8,8 @@ require 'uri'
 ### http://stackoverflow.com/questions/5822912/how-do-i-display-an-avatar-in-rails
 require 'digest/md5'
 
+require 'aweber'
+
 class UsersController < ApplicationController
   layout "application"
 
@@ -112,6 +114,7 @@ class UsersController < ApplicationController
   end
 
   def index
+
 
     if params[:impersonate]
       redirect_to("/goals")
