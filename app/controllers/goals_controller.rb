@@ -965,15 +965,15 @@ class GoalsController < ApplicationController
               @goal.user.lyphted_subscribe = @goal.user.dtoday
             end
 
-            # ### if this is my first ever goal, record it in user for marketing
-            # if !@goal.user.category_first
-            #   @goal.user.category_first = @goal.category
-            #   @goal.user.goal_first = @goal.title
-            # end
-            # if !@goal.user.categories_goals
-            #   @goal.user.categories_goals = ""
-            # end
-            # @goal.user.categories_goals += @goal.category + "_:_" + @goal.title + "::"
+            ### if this is my first ever goal, record it in user for marketing
+            if !@goal.user.category_first
+              @goal.user.category_first = @goal.category
+              @goal.user.goal_first = @goal.title
+            end
+            if !@goal.user.categories_goals
+              @goal.user.categories_goals = ""
+            end
+            @goal.user.categories_goals += @goal.category + "_:_" + @goal.title + "::"
 
 
             ### update last activity date
