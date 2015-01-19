@@ -983,10 +983,15 @@ class HooksController < ApplicationController
     #p parsed["desc"]["someKey"]
     #p parsed["main_item"]["stats"]["a"]
 
+    Notifier.deliver_stripe_upgrade # sends the email 
+
     stripe_hash = request.body()
 
     logger.info "sgj-paywhirl: ********************** BEGIN STRIPE_HASH *******************"
     logger.info "sgj-paywhirl: STRIPE_HASH = " + stripe_hash
+
+
+
     logger.info "sgj-paywhirl: ********************** END STRIPE_HASH *******************"
 
     logger.info 'SGJ-paywhirl end'
