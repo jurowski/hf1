@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20150117060717) do
+ActiveRecord::Schema.define(:version => 20150119065627) do
 
   create_table "achievemints", :force => true do |t|
     t.string   "name"
@@ -1239,6 +1239,9 @@ ActiveRecord::Schema.define(:version => 20150117060717) do
     t.date     "promotion_black_friday_2014_sent"
     t.date     "lyphted_subscribe"
     t.date     "lyphted_unsubscribe"
+    t.string   "category_first"
+    t.string   "goal_first"
+    t.text     "categories_goals"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email"

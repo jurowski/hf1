@@ -202,6 +202,14 @@ counter_have_goals = 0
     end
     %>    
     <br>
+    <div class="alert" >
+        <h4>Categories and Goals</h4>
+        <strong>First Category:</strong> <% if user.category_first %> <%= user.category_first %> <% end %>
+        <br>
+        <strong>First Goal:</strong> <% if user.goal_first %> <%= user.goal_first %> <% end %>
+        <br>
+        <strong>All Categories/Goals:</strong> <% if user.categories_goals %> <%= user.categories_goals %><% end %>
+    </div>
     <hr>
     <HR>
 <% end %>
