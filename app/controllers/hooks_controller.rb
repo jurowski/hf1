@@ -993,30 +993,39 @@ class HooksController < ApplicationController
     #p parsed["desc"]["someKey"]
     #p parsed["main_item"]["stats"]["a"]
 
-    stripe_hash = request.body()
 
-    ### WORKING WITH HASHES: https://www.ruby-forum.com/topic/180196
+    paywhirl_clump = request.body().to_s
+    if paywhirl_clump.include? '"source":"paywhirl"'
+      if paywhirl_clump.include? '"type":"customer.subscription.created"'
 
-    the_hash_string = ""
-    stripe_hash.each do |key, value|
-      the_hash_string += key.to_s + ":" + value.to_s
+  # \"Look_below_(red_text)_and_copy_in_your_HabitForge_Email_Address_here:\":\"sjurowski@ucsd.edu\"
+  # \"Look_below_(red_text)_and_copy_in_your_HabitForge_User_Number_here:\":\"170619\"
 
-      logger.info("sgj-stripe: " + key.to_s + "=" + value.to_s)
 
-      if key.to_s.include? "customer.subscription.created"
-        logger.info("sgj-stripe: SENDING AN EMAIL TO SANDON B/C OF KEY")
-        Notifier.deliver_stripe_upgrade(key.to_s) # sends the email 
-      end
-
-      if value.to_s.include? "customer.subscription.created"
-        logger.info("sgj-stripe: SENDING AN EMAIL TO SANDON B/C OF VALUE")
-        Notifier.deliver_stripe_upgrade(value.to_s) # sends the email 
       end
     end
 
-    logger.info "sgj-paywhirl: ********************** BEGIN STRIPE_HASH *******************"
-    logger.info "sgj-paywhirl: STRIPE_HASH = " + the_hash_string
-    logger.info "sgj-paywhirl: ********************** END STRIPE_HASH *******************"
+    stripe_lines = request.body()
+    stripe_lines.each do |line|
+
+      logger.info("sgj-stripe-line: " + line.to_s)
+
+      ### it's not really key/value
+
+      ### The STRIPE hook call sends it through line-by-line
+      ###     i think you need STRIPE to confirm the coupon code
+      ### The PAYWHIRL hook call sends it all at once
+      ###      you need paywhirl to confirm the hf_id and email
+      if line.to_s.include? "customer.subscription.created"
+        logger.info("sgj-stripe: NEW CUSTOMER SUBSCRIPTION")
+        Notifier.deliver_stripe_upgrade(line.to_s) # sends the email 
+      end
+
+    end
+
+    logger.info "sgj-paywhirl: ********************** BEGIN PAYWHIRL_CLUMP *******************"
+    logger.info "sgj-paywhirl: PAYWHIRL_CLUMP = " + paywhirl_clump
+    logger.info "sgj-paywhirl: ********************** END PAYWHIRL_CLUMP *******************"
 
     logger.info 'SGJ-paywhirl end'
     render :nothing => true
