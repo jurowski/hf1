@@ -288,11 +288,11 @@ class Notifier < ActionMailer::Base
     body       :email => email
   end  
 
-  def stripe_upgrade(body)
+  def stripe_upgrade(the_body)
     recipients  "jurowski@gmail.com"
     from        "stripe@habitforge.com"
     subject     "STRIPE ACTIVITY"
-    body        :body => body 
+    body        :the_body => the_body 
   end
 
   def signup_notification(recipient)
