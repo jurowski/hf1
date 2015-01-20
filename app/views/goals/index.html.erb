@@ -18,6 +18,59 @@ strongest_habit_booster_displayed = false
 <% if current_user %>
 
 
+
+<%
+#Show on 10% of page loads
+random_index = rand(10) #between 0 and (size - 1)
+case random_index
+when 5
+    ### wait at least 1 month
+    if (current_user.creation_date + 30) < current_user.dtoday
+        show_random_deal = true
+    end
+end
+%>
+
+<% if show_random_deal and !current_user.is_premium %>
+    <div id="stats_lightbox_black" class="black_overlay">
+    </div>
+    
+    <div id="stats_lightbox_close" class="div_close_button">
+         <a href="#undefined" onclick="toggle_show_hide('stats_lightbox_black');toggle_show_hide('stats_lightbox_white');toggle_show_hide('stats_lightbox_close');"><img src='/images/close.png' /></a>
+    </div>
+
+    <div id="stats_lightbox_white" class="white_content">
+        <center>
+        <img src="/home/images/coaches/man1/coach_man1_sleeping.png" /><-- Quick, before Nick wakes up and disables it!
+        <h1>One Time Only Special Offer</h1>
+
+        <h3>For just $1.77/mo or $14.37/yr, Upgrade to PREMIUM - <strong>Savings of 40%</strong>
+        </h3>
+            <img src="/home/images/correct.png" /> <span style="text-decoration:underline;">Unlimited</span> Active Habits
+            <br><img src="/home/images/correct.png" /> Private Habit Option
+            <br><img src="/home/images/correct.png" /> Priority Pushes if you Slack
+            <br><img src="/home/images/correct.png" /> No Advertisements
+            <br><img src="/home/images/correct.png" /> Frequent Daily Reminders Option
+            <br><img src="/home/images/correct.png" /> Zero Risk - 100% Money-Back Guarantee
+            <br>
+
+            <div style="border:1px;">
+                <h3>This offer expires if you click away</h3>
+                <a href="/widget/upgrade?show_coupon=quick40" class="btn">YES, I WANT THIS 40% SAVINGS</a>
+                <br>
+                <a href="/goals">Nah, I'm not really into great deals.</a>
+            </div>
+        </center>
+    </div>
+
+<% end %>
+
+
+
+
+
+
+
 <!-- START FLASH MESSAGES -->
 <% if params[:flash] == "message_sent" %>
     <div class="alert alert-info">
