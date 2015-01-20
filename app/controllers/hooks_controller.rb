@@ -1023,7 +1023,7 @@ class HooksController < ApplicationController
     #     Notifier.deliver_stripe_upgrade(line.to_s) # sends the email 
     #   end
 
-    end
+    #end
 
     logger.info "sgj-paywhirl: ********************** BEGIN PAYWHIRL_CLUMP *******************"
     logger.info "sgj-paywhirl: PAYWHIRL_CLUMP = " + paywhirl_clump
