@@ -994,46 +994,46 @@ class HooksController < ApplicationController
     #p parsed["main_item"]["stats"]["a"]
 
 
-    paywhirl_clump = request.body().to_s
+    ### you do still need to key/value it out... converting to string isn't enough
+    paywhirl_clump = request.body()
+    stripe_lines = request.body()
+    stripe_lines.each do |line|
 
-    logger.info "sgj-paywhirl: ********************** BEGIN PAYWHIRL_CLUMP *******************"
-    logger.info "sgj-paywhirl: PAYWHIRL_CLUMP = " + paywhirl_clump
-    logger.info "sgj-paywhirl: ********************** END PAYWHIRL_CLUMP *******************"
+      logger.info("sgj-stripe-line: " + line.to_s)
 
-    if paywhirl_clump.include? '"source":"paywhirl"'
-      logger.info "sgj-paywhirl: YES IT IS PAYWHIRL"
+      ### it's not really key/value
 
-      if paywhirl_clump.include? '"type":"customer.subscription.created"'
-
-        logger.info "sgj-paywhirl: YES IT IS A CUSTOMER SUBSCRIPTION"
+      ### The STRIPE hook call sends it through line-by-line
+      ###     i think you need STRIPE to confirm the coupon code
+      ### The PAYWHIRL hook call sends it all at once
+      ###      you need paywhirl to confirm the hf_id and email
 
 
-        Notifier.deliver_stripe_upgrade(paywhirl_clump) # sends the email 
+      if line.to_s.include? '"source":"paywhirl"'
+        logger.info "sgj-paywhirl: YES IT IS PAYWHIRL"
 
-        # \"Look_below_(red_text)_and_copy_in_your_HabitForge_Email_Address_here:\":\"sjurowski@ucsd.edu\"
-        # \"Look_below_(red_text)_and_copy_in_your_HabitForge_User_Number_here:\":\"170619\"
-        # "currency":"usd","id":"habitforge-monthly-295"
+        if line.to_s.include? '"type":"customer.subscription.created"'
 
+          logger.info "sgj-paywhirl: YES IT IS A CUSTOMER SUBSCRIPTION"
+
+
+          Notifier.deliver_stripe_upgrade(line.to_s) # sends the email 
+
+          # \"Look_below_(red_text)_and_copy_in_your_HabitForge_Email_Address_here:\":\"sjurowski@ucsd.edu\"
+          # \"Look_below_(red_text)_and_copy_in_your_HabitForge_User_Number_here:\":\"170619\"
+          # "currency":"usd","id":"habitforge-monthly-295"
+
+        end
       end
+
     end
 
-    # stripe_lines = request.body()
-    # stripe_lines.each do |line|
 
-    #   logger.info("sgj-stripe-line: " + line.to_s)
+    # logger.info "sgj-paywhirl: ********************** BEGIN PAYWHIRL_CLUMP *******************"
+    # logger.info "sgj-paywhirl: PAYWHIRL_CLUMP = " + paywhirl_clump
+    # logger.info "sgj-paywhirl: ********************** END PAYWHIRL_CLUMP *******************"
 
-    #   ### it's not really key/value
 
-    #   ### The STRIPE hook call sends it through line-by-line
-    #   ###     i think you need STRIPE to confirm the coupon code
-    #   ### The PAYWHIRL hook call sends it all at once
-    #   ###      you need paywhirl to confirm the hf_id and email
-    #   if line.to_s.include? "customer.subscription.created"
-    #     logger.info("sgj-stripe: NEW CUSTOMER SUBSCRIPTION")
-    #     Notifier.deliver_stripe_upgrade(line.to_s) # sends the email 
-    #   end
-
-    #end
 
 
     logger.info 'SGJ-paywhirl end'
