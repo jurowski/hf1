@@ -85,31 +85,6 @@ end
   <div style="padding-bottom:10px;">
   <span style="font-size:2.0em;">
   <% if current_user.first_name == "unknown"%>
-  <hr>
-  Ok, we've gotta tell you one thing first:
-  <mark>You are Awesome!</mark>
-</span>
-  <span style="font-size:1.5em;">
-
-<br><br><i>How do we know this??</i>
-  <br><br>Well, you've already done what 95% of the world doesn't do...
-  <br><br><i>Which is to have the confidence to take one small step toward improving your life!</i>
-<br>
-<br>
-</span>
-<span style="color:#CC3300;font-size:2.0em;font-weight:bold;">
-    Our Passion is Encouraging, Inspiring (and pushing you a little) toward your goals!
-</span>
-
-  <span style="font-size:1.5em;">
-
-  <br>
-  <br>
-  So before you hear it from someone else, let us be the first to say: <br><br>
-  </span>
-  <span style="font-size:2.0em;">
-
-  <mark>Welcome to the HabitForge Community!</mark>
   <% else %>
   Welcome to HabitForge, <%= current_user.first_name %>. 
   <% end %>

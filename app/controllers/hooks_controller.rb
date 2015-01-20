@@ -995,10 +995,18 @@ class HooksController < ApplicationController
 
     stripe_hash = request.body()
 
-    Notifier.deliver_stripe_upgrade(stripe_hash.to_s) # sends the email 
+    ### WORKING WITH HASHES: https://www.ruby-forum.com/topic/180196
+
+    the_hash_string = ""
+    stripe_hash.each do |key, value|
+      the_hash_string += key.to_s + ":" + value.to_s
+    end
+
+
+    Notifier.deliver_stripe_upgrade(the_hash_string) # sends the email 
 
     logger.info "sgj-paywhirl: ********************** BEGIN STRIPE_HASH *******************"
-    logger.info "sgj-paywhirl: STRIPE_HASH = " + stripe_hash.to_s
+    logger.info "sgj-paywhirl: STRIPE_HASH = " + the_hash_string
     logger.info "sgj-paywhirl: ********************** END STRIPE_HASH *******************"
 
     logger.info 'SGJ-paywhirl end'
