@@ -1,8 +1,8 @@
 require 'rexml/document'
 require 'date'
 require 'geocoder'
-# require 'rubygems'
-# require 'json'
+require 'rubygems'
+require 'json'
 
 
 class HooksController < ApplicationController
@@ -979,19 +979,26 @@ class HooksController < ApplicationController
 
     #parsed = JSON.parse(request.body()) # returns a hash
 
+    event_json = JSON.parse(request.body.read)
+
+    tempHash = {
+        "key_a" => "val_a",
+        "key_b" => "val_b"
+    }
+    timestamp =  Time.now.to_i
+    File.open("public/stripe/#{timestamp}.json","w") do |f|
+      f.write(tempHash.to_json)
+    end
 
     #p parsed["desc"]["someKey"]
     #p parsed["main_item"]["stats"]["a"]
 
-    Notifier.deliver_stripe_upgrade # sends the email 
-
     stripe_hash = request.body()
 
+    Notifier.deliver_stripe_upgrade(stripe_hash.to_s) # sends the email 
+
     logger.info "sgj-paywhirl: ********************** BEGIN STRIPE_HASH *******************"
-    logger.info "sgj-paywhirl: STRIPE_HASH = " + stripe_hash
-
-
-
+    logger.info "sgj-paywhirl: STRIPE_HASH = " + stripe_hash.to_s
     logger.info "sgj-paywhirl: ********************** END STRIPE_HASH *******************"
 
     logger.info 'SGJ-paywhirl end'
