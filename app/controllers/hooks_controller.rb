@@ -1016,6 +1016,7 @@ class HooksController < ApplicationController
 
           logger.info "sgj-paywhirl: YES IT IS A CUSTOMER SUBSCRIPTION"
 
+          logger.info "sgj-paywhirl: " + line.to_s
 
           ### RETURN A STRING BETWEEN 2 STRINGS
           ### http://stackoverflow.com/questions/9661478/return-the-substring-of-a-string-between-two-strings-in-ruby
@@ -1034,7 +1035,10 @@ class HooksController < ApplicationController
           str2_markerstring = '\",\"Look_below_(red_text)_and_copy_in_your_HabitForge_User_Number_here'
           user_email = input_string[/#{str1_markerstring}(.*?)#{str2_markerstring}/m, 1]
 
-          user = User.find(:first, :conditions => "email = '#{user_email}' and id = '#{user_id}'") 
+          user_search_string = "email = '" + user_email + "' and id = '" + user_id + "'"
+          logger.info "sgj-paywhirl: USER SEARCH STRING: " + user_search_string
+
+          user = User.find(:first, :conditions => user_search_string) 
           if user != nil
             Notifier.deliver_stripe_upgrade("GOING TO UPGRADE USER FOUND WITH EMAIL:" + user_email + " AND ID:" + user_id + " FULL REQUEST:" +line.to_s) # sends the email 
           else
