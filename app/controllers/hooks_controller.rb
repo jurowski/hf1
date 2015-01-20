@@ -1017,7 +1017,29 @@ class HooksController < ApplicationController
           logger.info "sgj-paywhirl: YES IT IS A CUSTOMER SUBSCRIPTION"
 
 
-          Notifier.deliver_stripe_upgrade(line.to_s) # sends the email 
+          ### RETURN A STRING BETWEEN 2 STRINGS
+          ### http://stackoverflow.com/questions/9661478/return-the-substring-of-a-string-between-two-strings-in-ruby
+          # input_string = "blahblahblahSTARTfoofoofooENDwowowowowo"
+          # str1_markerstring = "START"
+          # str2_markerstring = "END"
+          # input_string[/#{str1_markerstring}(.*?)#{str2_markerstring}/m, 1]
+          # #=> "foofoofoo"
+
+          input_string = line.to_s
+          str1_markerstring = 'Look_below_(red_text)_and_copy_in_your_HabitForge_User_Number_here:\":\"'
+          str2_markerstring = '\"}","user_agent"'
+          user_id = input_string[/#{str1_markerstring}(.*?)#{str2_markerstring}/m, 1]
+
+          str1_markerstring = 'Look_below_(red_text)_and_copy_in_your_HabitForge_Email_Address_here:\":\"'
+          str2_markerstring = '\",\"Look_below_(red_text)_and_copy_in_your_HabitForge_User_Number_here'
+          user_email = input_string[/#{str1_markerstring}(.*?)#{str2_markerstring}/m, 1]
+
+          user = User.find(:first, :conditions => "email = '#{user_email}' and id = '#{user_id}'") 
+          if user != nil
+            Notifier.deliver_stripe_upgrade("GOING TO UPGRADE USER FOUND WITH EMAIL:" + user_email + " AND ID:" + user_id + " FULL REQUEST:" +line.to_s) # sends the email 
+          else
+            Notifier.deliver_stripe_upgrade("USER NOT FOUND WITH EMAIL:" + user_email + " AND ID:" + user_id + " FULL REQUEST:" +line.to_s) # sends the email 
+          end
 
           # \"Look_below_(red_text)_and_copy_in_your_HabitForge_Email_Address_here:\":\"sjurowski@ucsd.edu\"
           # \"Look_below_(red_text)_and_copy_in_your_HabitForge_User_Number_here:\":\"170619\"
