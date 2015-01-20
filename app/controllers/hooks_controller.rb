@@ -1044,12 +1044,54 @@ class HooksController < ApplicationController
           user_email = input_string[i+35..j-1]
 
 
+          # "currency":"usd","id":"habitforge-monthly-295","object":"plan"
+          str1_markerstring = '"currency":"usd","id":"'
+          str2_markerstring = '","object":"plan"'
+          i = input_string.index(str1_markerstring)
+          j = input_string.index(str2_markerstring)
+          user_plan = input_string[i+23..j-1]
+
+          #### STILL NEED TO GRAB COUPONS TO UPDATE THEIR ACCOUNT PLAN NAME ACCURATELY
+          #### BUT THIS WILL AT LEAST GET THEM AUTO-UPGRADED
+
           user_search_string = "email = '" + user_email + "' and id = '" + user_id + "'"
           logger.info "sgj-paywhirl: USER SEARCH STRING: " + user_search_string
 
           user = User.find(:first, :conditions => user_search_string) 
           if user != nil
-            Notifier.deliver_stripe_upgrade("GOING TO UPGRADE USER FOUND WITH EMAIL:" + user_email + " AND ID:" + user_id + " FULL REQUEST:" +line.to_s) # sends the email 
+
+            Notifier.deliver_stripe_upgrade("GOING TO UPGRADE TO PLAN " + user_plan + " USER FOUND WITH EMAIL:" + user_email + " AND ID:" + user_id + " FULL REQUEST:" +line.to_s) # sends the email 
+
+            ### default values
+            ongoing = true
+            plan = user_plan
+            coupon_discount = 0
+            use_support_points = false
+            days = 3000
+
+            # ### use for upgrades, both paid and support points, trial upgrades
+            # def upgrade_plan(
+            #   upgrade_user_id, 
+            #   plan="NOT YET SUBSCRIBED", 
+            #   coupon_discount=0, 
+            #   use_support_points=false, 
+            #   ongoing=true, 
+            #   days=3000
+            #   )
+
+            user.upgrade_plan(
+              user_id.to_i,
+              plan,
+              coupon_discount,
+              use_support_points,
+              ongoing,
+              days
+              )
+
+            Notifier.deliver_stripe_upgrade("JUST UPGRADED TO PLAN " + user_plan + " USER FOUND WITH EMAIL:" + user_email + " AND ID:" + user_id + " FULL REQUEST:" +line.to_s) # sends the email 
+
+
+
           else
             Notifier.deliver_stripe_upgrade("USER NOT FOUND WITH EMAIL:" + user_email + " AND ID:" + user_id + " FULL REQUEST:" +line.to_s) # sends the email 
           end
