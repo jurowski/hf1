@@ -1015,7 +1015,14 @@ class GoalsController < ApplicationController
                         # new_subscriber["custom_fields"]["first_category"] = "exercise"
                         # new_subscriber["custom_fields"]["first_goal"] = "run for 20 minutes"
                         # new_subscriber["custom_fields"]["categories_goals"] = "exercise:.:run for 20 minutes;"
-                        new_subscriber["misc_notes"] = "first_category=" + @goal.user.category_first + ";first_goal='" + @goal.user.goal_first + "'"
+
+                        begin
+                          new_subscriber["misc_notes"] = "first_category=" + @goal.user.category_first
+                        rescue
+                          logger.error("sgj:could not add subscriber misc_note to aweber")
+                        end
+
+                        # new_subscriber["misc_notes"] = "first_category=" + @goal.user.category_first + ";first_goal='" + @goal.user.goal_first + "'"
 
                         ## The Lyphted list_id is = 3702705
                         ## The Lyphted list_name is = awlist3702705
