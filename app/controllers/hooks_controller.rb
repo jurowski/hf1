@@ -1000,10 +1000,11 @@ class HooksController < ApplicationController
     the_hash_string = ""
     stripe_hash.each do |key, value|
       the_hash_string += key.to_s + ":" + value.to_s
+
+      if key.to_s == "type" and value.to_s == "customer.subscription.created"
+        Notifier.deliver_stripe_upgrade(the_hash_string) # sends the email 
+      end
     end
-
-
-    Notifier.deliver_stripe_upgrade(the_hash_string) # sends the email 
 
     logger.info "sgj-paywhirl: ********************** BEGIN STRIPE_HASH *******************"
     logger.info "sgj-paywhirl: STRIPE_HASH = " + the_hash_string
