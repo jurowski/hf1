@@ -1,8 +1,8 @@
 require 'rexml/document'
 require 'date'
 require 'geocoder'
-require 'rubygems'
-require 'json'
+# require 'rubygems'
+# require 'json'
 
 
 class HooksController < ApplicationController
@@ -979,16 +979,16 @@ class HooksController < ApplicationController
 
     #parsed = JSON.parse(request.body()) # returns a hash
 
-    event_json = JSON.parse(request.body.read)
+    # event_json = JSON.parse(request.body.read)
 
-    tempHash = {
-        "key_a" => "val_a",
-        "key_b" => "val_b"
-    }
-    timestamp =  Time.now.to_i
-    File.open("public/stripe/#{timestamp}.json","w") do |f|
-      f.write(tempHash.to_json)
-    end
+    # tempHash = {
+    #     "key_a" => "val_a",
+    #     "key_b" => "val_b"
+    # }
+    # timestamp =  Time.now.to_i
+    # File.open("public/stripe/#{timestamp}.json","w") do |f|
+    #   f.write(tempHash.to_json)
+    # end
 
     #p parsed["desc"]["someKey"]
     #p parsed["main_item"]["stats"]["a"]
