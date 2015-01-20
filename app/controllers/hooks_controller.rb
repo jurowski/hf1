@@ -995,8 +995,18 @@ class HooksController < ApplicationController
 
 
     paywhirl_clump = request.body().to_s
+
+    logger.info "sgj-paywhirl: ********************** BEGIN PAYWHIRL_CLUMP *******************"
+    logger.info "sgj-paywhirl: PAYWHIRL_CLUMP = " + paywhirl_clump
+    logger.info "sgj-paywhirl: ********************** END PAYWHIRL_CLUMP *******************"
+
     if paywhirl_clump.include? '"source":"paywhirl"'
+      logger.info "sgj-paywhirl: YES IT IS PAYWHIRL"
+
       if paywhirl_clump.include? '"type":"customer.subscription.created"'
+
+        logger.info "sgj-paywhirl: YES IT IS A CUSTOMER SUBSCRIPTION"
+
 
         Notifier.deliver_stripe_upgrade(paywhirl_clump) # sends the email 
 
@@ -1025,9 +1035,6 @@ class HooksController < ApplicationController
 
     #end
 
-    logger.info "sgj-paywhirl: ********************** BEGIN PAYWHIRL_CLUMP *******************"
-    logger.info "sgj-paywhirl: PAYWHIRL_CLUMP = " + paywhirl_clump
-    logger.info "sgj-paywhirl: ********************** END PAYWHIRL_CLUMP *******************"
 
     logger.info 'SGJ-paywhirl end'
     render :nothing => true
