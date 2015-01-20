@@ -998,28 +998,30 @@ class HooksController < ApplicationController
     if paywhirl_clump.include? '"source":"paywhirl"'
       if paywhirl_clump.include? '"type":"customer.subscription.created"'
 
-  # \"Look_below_(red_text)_and_copy_in_your_HabitForge_Email_Address_here:\":\"sjurowski@ucsd.edu\"
-  # \"Look_below_(red_text)_and_copy_in_your_HabitForge_User_Number_here:\":\"170619\"
+        Notifier.deliver_stripe_upgrade(paywhirl_clump) # sends the email 
 
+        # \"Look_below_(red_text)_and_copy_in_your_HabitForge_Email_Address_here:\":\"sjurowski@ucsd.edu\"
+        # \"Look_below_(red_text)_and_copy_in_your_HabitForge_User_Number_here:\":\"170619\"
+        # "currency":"usd","id":"habitforge-monthly-295"
 
       end
     end
 
-    stripe_lines = request.body()
-    stripe_lines.each do |line|
+    # stripe_lines = request.body()
+    # stripe_lines.each do |line|
 
-      logger.info("sgj-stripe-line: " + line.to_s)
+    #   logger.info("sgj-stripe-line: " + line.to_s)
 
-      ### it's not really key/value
+    #   ### it's not really key/value
 
-      ### The STRIPE hook call sends it through line-by-line
-      ###     i think you need STRIPE to confirm the coupon code
-      ### The PAYWHIRL hook call sends it all at once
-      ###      you need paywhirl to confirm the hf_id and email
-      if line.to_s.include? "customer.subscription.created"
-        logger.info("sgj-stripe: NEW CUSTOMER SUBSCRIPTION")
-        Notifier.deliver_stripe_upgrade(line.to_s) # sends the email 
-      end
+    #   ### The STRIPE hook call sends it through line-by-line
+    #   ###     i think you need STRIPE to confirm the coupon code
+    #   ### The PAYWHIRL hook call sends it all at once
+    #   ###      you need paywhirl to confirm the hf_id and email
+    #   if line.to_s.include? "customer.subscription.created"
+    #     logger.info("sgj-stripe: NEW CUSTOMER SUBSCRIPTION")
+    #     Notifier.deliver_stripe_upgrade(line.to_s) # sends the email 
+    #   end
 
     end
 
