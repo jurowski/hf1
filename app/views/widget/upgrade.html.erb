@@ -163,6 +163,8 @@ Give it a shot! You have absolutely <span style="color:#CC3300;">nothing to lose
 
 
   <% if params[:show_coupon] and params[:show_coupon] == "quick40" %>
+
+    <% logger.info("sgj:upgrade:show_coupon:quick40:" + current_user.email) %>
     <tr>
       <td colspan=2>
       <center>
@@ -176,6 +178,7 @@ Give it a shot! You have absolutely <span style="color:#CC3300;">nothing to lose
 
   <!-- IF THEY SIGNED UP JUST TODAY --> 
   <% if (current_user.creation_date == current_user.dtoday) %>
+    <% logger.info("sgj:upgrade:show_coupon:NEWDAY9Q7:" + current_user.email) %>
   <tr>
     <td colspan=2>
     <center>

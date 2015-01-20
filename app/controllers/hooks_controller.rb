@@ -1003,8 +1003,14 @@ class HooksController < ApplicationController
 
       logger.info("sgj-stripe: " + key.to_s + "=" + value.to_s)
 
-      if key.to_s.include? "type" and value.to_s.include? "created"
-        Notifier.deliver_stripe_upgrade(the_hash_string) # sends the email 
+      if key.to_s.include? "customer.subscription.created"
+        logger.info("sgj-stripe: SENDING AN EMAIL TO SANDON B/C OF KEY")
+        Notifier.deliver_stripe_upgrade(key.to_s) # sends the email 
+      end
+
+      if value.to_s.include? "customer.subscription.created"
+        logger.info("sgj-stripe: SENDING AN EMAIL TO SANDON B/C OF VALUE")
+        Notifier.deliver_stripe_upgrade(value.to_s) # sends the email 
       end
     end
 
