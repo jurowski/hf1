@@ -1028,20 +1028,20 @@ class HooksController < ApplicationController
 
           input_string = line.to_s
 
-          str1_markerstring = 'Look_below_(red_text)_and_copy_in_your_HabitForge_User_Number_here:\":\"'
+          str1_markerstring = 'HabitForge_User_Number_here:\":\"'
           str2_markerstring = '\"}","user_agent"'
           # user_id = input_string[/#{str1_markerstring}(.*?)#{str2_markerstring}/m, 1]
           i = input_string.index(str1_markerstring)
           j = input_string.index(str2_markerstring)
-          user_id = input_string[i+1..j-1]
+          user_id = input_string[i+33..j-1]
 
 
-          str1_markerstring = 'Look_below_(red_text)_and_copy_in_your_HabitForge_Email_Address_here:\":\"'
+          str1_markerstring = 'HabitForge_Email_Address_here:\":\"'
           str2_markerstring = '\",\"Look_below_(red_text)_and_copy_in_your_HabitForge_User_Number_here'
           # user_email = input_string[/#{str1_markerstring}(.*?)#{str2_markerstring}/m, 1]
           i = input_string.index(str1_markerstring)
           j = input_string.index(str2_markerstring)
-          user_email = input_string[i+1..j-1]
+          user_email = input_string[i+35..j-1]
 
 
           user_search_string = "email = '" + user_email + "' and id = '" + user_id + "'"
