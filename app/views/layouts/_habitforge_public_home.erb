@@ -701,8 +701,10 @@ end
 <!--                         <span style="font-family:LatoBold;font-size:1.2em;color:#000000;margin-left:10px;">Sign up free with: &nbsp</span>
  -->              </td>
               <td>
-             <div style="margin-top:-28px;padding-right:5px;">
-             <!-- render :partial => "layouts/fb_signup.erb" -->
+
+                <!-- HIDING THIS DIV TO ALLOW EXISTING LOGINS TO WORK BUT SIGNUP ISN'T WORKING -->
+             <div style="margin-top:-28px;padding-right:5px;display:none;">
+             <%= render :partial => "layouts/fb_signup.erb" %>
              </div>
 
             </td>
@@ -714,9 +716,9 @@ end
 
             <td>
 
-
-              <div style="margin-top:0px;padding-right:0px;">
-              <!-- render :partial => "layouts/google_signup.erb" -->
+                <!-- HIDING THIS DIV TO ALLOW EXISTING LOGINS TO WORK BUT SIGNUP ISN'T WORKING -->
+              <div style="margin-top:0px;padding-right:0px;display:none;">
+              <%= render :partial => "layouts/google_signup.erb" %>
               </div>
 
 
