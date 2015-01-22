@@ -175,13 +175,12 @@ end
       <div style="width:100%;padding-top:5px;padding-right:10px;">
         <div style="">
         <center>
+
+
         <ul style="text-align:center;display:inline-table;">
             <li style="display:inline;"><a href="/user_session/new?skip_intro=1" class="button-red" style="color:#CC3300;">Log In</a> | </li>
-            <li style="display:inline;"><a href="#jump_to_sign_up" style="color:#CC3300;">Sign Up</a> | </li>
-            <li style="display:inline;"><a target="_blank" href="/widget/newsletter" style="color:#CC3300;">Success Tips Blog</a></li> | </li>
-            <li style="display:inline;"><a href="#jump_to_testimonials" style="color:#CC3300;">Testimonials</a> | </li>
-            <li style="display:inline;"><a href="#jump_to_essentials" style="color:#CC3300;">Essentials Accountability Programs</a></li>
-          </ul>
+            <li style="display:inline;"><a href="#jump_to_sign_up" style="color:#CC3300;">Sign Up</a>           
+        </ul>
           <br>
         </center>
         </div>
@@ -295,8 +294,6 @@ end
 
 <div style="margin-top:540px;">
 <center>
-   <h1><span style="line-height:1.05em;color:#cc3300;">What could you do Daily to Improve Your Life?</span></h1>
-
 <br>
 
           <a class="btn" href="#jump_to_sign_up">
@@ -312,8 +309,16 @@ end
 <br>
 <br>
 
-      <img src="/home/images/habit_timeline.png" alt="Habit Timeline" />
+<% if mobile_device? or mobile_device %>
 
+      <img src="/home/images/habit_timeline_mobile_1.png" alt="Habit Timeline" />
+      <br>
+      <br>
+      <img src="/home/images/habit_timeline_mobile_2.png" alt="Habit Timeline" />
+
+<% else %>
+      <img src="/home/images/habit_timeline.png" alt="Habit Timeline" />
+<% end %>
 
 
 
@@ -426,8 +431,17 @@ end
 
 <br>
 <br>
-            <img src="/home/images/hf_infographic.png" />
 
+
+<% if mobile_device? or mobile_device %>
+
+            <img src="/home/images/hf_infographic_1.png" />
+            <br>
+            <img src="/home/images/hf_infographic_2.png" />
+
+<% else %>
+            <img src="/home/images/hf_infographic.png" />
+<% end %>
 
 
 
@@ -1069,13 +1083,15 @@ end
       <br>
 
         <ul style="text-align:center;display:inline-table;">
-            <li style="display:inline;"><a href="mailto:support@habitforge.com" style="color:#CC3300;">Contact Support</a> | </li>
             <li style="display:inline;"><a href="/user_session/new?skip_intro=1" class="button-red" style="color:#CC3300;">Log In</a> | </li>
             <li style="display:inline;"><a href="#jump_to_sign_up" style="color:#CC3300;">Sign Up</a> | </li>
-            <li style="display:inline;"><a href="#jump_to_testimonials" style="color:#CC3300;">Testimonials</a></li> | </li>
             <li style="display:inline;"><a target="_blank" href="/widget/newsletter" style="color:#CC3300;">Success Tips Blog</a></li> | </li>
+            <li style="display:inline;"><a href="#jump_to_testimonials" style="color:#CC3300;">Testimonials</a> | </li>
             <li style="display:inline;"><a href="#jump_to_essentials" style="color:#CC3300;">Essentials Accountability Programs</a></li>
           </ul>
+
+
+
           <br>
         <img src="/home/images/hr_fancy.png" />
 
