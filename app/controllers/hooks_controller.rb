@@ -1051,6 +1051,22 @@ class HooksController < ApplicationController
           j = input_string.index(str2_markerstring)
           user_plan = input_string[i+23..j-1]
 
+          percent_off = 0
+          if line.to_s.include? 'percent_off'
+            begin
+              # "percent_off":40,"amount_off":null,
+              str1_markerstring = '"percent_off":'
+              str2_markerstring = '","amount_off"'
+              i = input_string.index(str1_markerstring)
+              j = input_string.index(str2_markerstring)
+              percent_off = input_string[i+23..j-1].to_i
+            rescue
+              logger.error("sgj-paywhirl: ERROR PROCESSING COUPON")
+            end
+          end
+
+
+
           #### STILL NEED TO GRAB COUPONS TO UPDATE THEIR ACCOUNT PLAN NAME ACCURATELY
           #### BUT THIS WILL AT LEAST GET THEM AUTO-UPGRADED
 
@@ -1065,7 +1081,7 @@ class HooksController < ApplicationController
             ### default values
             ongoing = true
             plan = user_plan
-            coupon_discount = 0
+            coupon_discount = percent_off
             use_support_points = false
             days = 3000
 
