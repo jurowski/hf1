@@ -1059,7 +1059,7 @@ class HooksController < ApplicationController
               str2_markerstring = '","amount_off"'
               i = input_string.index(str1_markerstring)
               j = input_string.index(str2_markerstring)
-              percent_off = input_string[i+23..j-1].to_i
+              percent_off = input_string[i+14..j-1].to_i
             rescue
               logger.error("sgj-paywhirl: ERROR PROCESSING COUPON")
             end
