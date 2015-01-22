@@ -136,8 +136,12 @@ end
 <!-- <body style="background-color:#333333;"> -->
 <!-- <body style="background-image: url('/home/images/backgrounds/clouds_gradient.jpg');background-repeat: no-repeat;">
  -->
-<body style="background-image: url('/home/images/runners_half.jpg');background-repeat: no-repeat;">
 
+<% if mobile_device? or mobile_device %>
+  <body style="background-image: url('/home/images/runners_half_mobile.jpg');background-repeat: no-repeat;"> 
+<% else %>
+  <body style="background-image: url('/home/images/runners_half.jpg');background-repeat: no-repeat;">
+<% end %>
 
 <%
 ### ex: http://habitforge.com/?unsubscribe=83421&first_name=Tahni
