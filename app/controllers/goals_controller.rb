@@ -444,14 +444,15 @@ class GoalsController < ApplicationController
     end ### end if current_user
 
 
-    if (session[:site_name] == nil or session[:site_name] == "" or session[:sponsor] == "") or (session[:site_name] == "habitforge" or session[:sponsor] == "habitforge") and !current_user.is_habitforge_supporting_member
-      logger.info("sgj:fumfin:got in 1")
+    #### We are now allowing unlimited habits
+    # if (session[:site_name] == nil or session[:site_name] == "" or session[:sponsor] == "") or (session[:site_name] == "habitforge" or session[:sponsor] == "habitforge") and !current_user.is_habitforge_supporting_member
+    #   logger.info("sgj:fumfin:got in 1")
 
-      if current_user.number_of_active_habits > 0
-          restrict = true
-      end
-      
-    end
+    #   if current_user.number_of_active_habits > 0
+    #       # restrict = true
+    #   end
+    
+    # end
 
     if restrict == true
         redirect_to("https://habitforge.com/widget/upgrade")
@@ -936,6 +937,14 @@ class GoalsController < ApplicationController
           if @goal.title.include? "touching yourself"
             pmo = true
           end
+          if @goal.title.include? "XXX"
+            pmo = true
+          end
+          if @goal.title.include? "xxx"
+            pmo = true
+          end
+
+
           if pmo
             @goal.category = "PMO"
           end
