@@ -44,7 +44,7 @@ end
         <img src="/home/images/coaches/man1/coach_man1_sleeping.png" /><-- Quick, before Nick wakes up and disables it!
         <h1>One Time Only Special Offer</h1>
 
-        <h3>For just $1.77/mo or $14.37/yr, Upgrade to PREMIUM - <strong>Savings of 40%</strong>
+        <h3>For just $1.77/mo or $14.37/yr, Upgrade to HabitPro - <strong>Savings of 40%</strong>
         </h3>
             <img src="/home/images/correct.png" /> <span style="text-decoration:underline;">Unlimited</span> Active Habits
             <br><img src="/home/images/correct.png" /> Private Habit Option
@@ -1503,7 +1503,25 @@ tracker_name = "<i class='icon-bar-chart'></i> Tracker"
 <br>
 <br>
 
-      <img src="/home/images/habit_timeline.png" alt="Habit Timeline" />
+<%
+random_index = rand(2) #between 0 and (size - 1)
+
+case random_index
+when 0
+    %>
+    <a href="/widget/upgrade">
+      <img src="/home/images/pitfalls_teaser.png" />
+    </a>
+    <%
+when 1
+    %>
+    <a href="/widget/upgrade">
+      <img src="/home/images/pitfalls_teaser_2.png" />
+    </a>
+    <%
+end 
+%>
+
 
 <br>
 <br>
@@ -2110,7 +2128,7 @@ http://localhost:3000/goals?update_checkpoint_status=yes&date=2012-02-12&e0=106&
     					Hey <%= current_user.first_name %>, <%= slacker_goal.user.first_name %> hasn't been "<%= slacker_goal.title %>" for more than a few days now, and could use a little "push".
     					Push one of their buttons below to send them some motivation, and you'll earn 5 "SupportPoints". 
     					If they succeed either today or tomorrow, you'll earn an additional 10 "SupportPoints"!
-    					<h4>Every 100 SupportPoints earns you a free month of a Premium Membership for you or a friend!</h4>
+    					<h4>Every 100 SupportPoints earns you a free month of a HabitPro Membership for you or a friend!</h4>
     					Push one of their buttons to send them a message!
     					<% if phrase1_good  %>
     					  <br><a href="/goals?goal_id=<%= params[:goal_id]%>&u=<%= params[:u] %>&e0=<%= params[:e0] %>&f0=<%= params[:f0] %>&push_message_id=<%=1%>&push_message_goal_id=<%=slacker_goal.id%>" class="start_now"><%= slacker_goal.phrase1 %></a>

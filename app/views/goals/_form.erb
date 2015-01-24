@@ -724,7 +724,7 @@ end
         %>
           <div class="notice">
 
-            <a href="/widget/upgrade?goal_id=<%=@goal.id%>" target="_blank">Enable "Frequent Reminders" with a Premium Membership</a>
+            <a href="/widget/upgrade?goal_id=<%=@goal.id%>" target="_blank">Enable "Frequent Reminders" with a HabitPro Membership</a>
             <br>
             <input type=checkbox disabled>
             Send <%= them_or_me %> frequent reminders every  
@@ -808,7 +808,7 @@ end
       <input disabled="disabled" id="private" name="private" type="checkbox" />
       Keep it Private 
                             
-      <a href="/widget/upgrade?goal_id=<%=@goal.id%>" target="_blank"> (requires a Premium Membership)</a>
+      <a href="/widget/upgrade?goal_id=<%=@goal.id%>" target="_blank"> (requires a HabitPro Membership)</a>
   <% end %>
   </div> <!-- div_visibility-->
 
@@ -840,14 +840,14 @@ end
       <div id="div_priority_encouragement" name="div_priority_encouragement" style="display:none;">
     <% end %>
     <div class="well">
-            <h4>What happens if you start to slack?</h4> Be one of the first in line to get a "Friendly Push" when you need it. If you don't succeed for a few days, other HabitForge members can earn points by sending you a "push". They can only use <strong>motivating phrases that you create</strong>. If you were slacking and then you succeed within 48 hours after their "push", they earn additional points redeemable toward a Premium Membership.
+            <h4>What happens if you start to slack?</h4> Be one of the first in line to get a "Friendly Push" when you need it. If you don't succeed for a few days, other HabitForge members can earn points by sending you a "push". They can only use <strong>motivating phrases that you create</strong>. If you were slacking and then you succeed within 48 hours after their "push", they earn additional points redeemable toward a HabitPro Membership.
 
     
           <div id="push_form" style="display:block;">
 
             <h2>
             <% if !current_user.is_habitforge_supporting_member %>
-              <a href="/widget/upgrade?goal_id=<%=@goal.id%>" target="_blank">(Enable this feature with a Premium Membership)</a>
+              <a href="/widget/upgrade?goal_id=<%=@goal.id%>" target="_blank">(Enable this feature with a HabitPro Membership)</a>
             </h2>
 
             <% end %>
