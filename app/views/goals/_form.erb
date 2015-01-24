@@ -771,8 +771,16 @@ end
       <h4>Talk about the upside:</h4><i>...how you'll feel once the habit is formed, and in what ways your life will be improved</i><br><%= form.text_area :pleasure, :rows => 2, :style=>"width:auto;" %>
       <br>
       <br>
-    <%= check_box(:goal, :pp_remind, options = {}, checked_value = "true", unchecked_value = "false") %>
-    Every 3 days, insert this info in my daily email reminder (for single-goal users), or display it if I've clicked "no" (for multi-goal users).
+
+      <% if !current_user.is_habitforge_supporting_member %>
+        <input disabled="disabled" id="pp_remind" name="pp_remind" type="checkbox" value="true" unchecked /> <a href="/widget/upgrade">(Enabled with a HabitPro Membership)</a>
+      <% else %>
+          <%= check_box(:goal, :pp_remind, options = {}, checked_value = "true", unchecked_value = "false") %>
+      <% end %>
+
+
+
+    <mark>Every 3 days, insert this "motivation: upside & negative consequences" that I wrote above</mark> into my daily email reminder (for single-goal users), or display it if I've clicked "no" (for multi-goal users).
     </p>
 
   </div>
@@ -806,7 +814,7 @@ end
   <% if current_user.sponsor == "habitforge" and !current_user.is_habitforge_supporting_member %>
     <br>
       <input disabled="disabled" id="private" name="private" type="checkbox" />
-      Keep it Private 
+      <mark>Keep it Private</mark> 
                             
       <a href="/widget/upgrade?goal_id=<%=@goal.id%>" target="_blank"> (requires a HabitPro Membership)</a>
   <% end %>

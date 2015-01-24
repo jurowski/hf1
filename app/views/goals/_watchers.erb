@@ -49,7 +49,21 @@ if @goal.number_invites_sent_to_followers > 0
 <%
 else
 %>
-    <p><h3><img src="/images/add_32.png" height="30px" border="0" /><%= link_to "Invite a friend to follow your progress", :controller => "goals", :action => "invite_a_friend_to_track", :id => @goal.id%></h3></p>
+
+
+
+    <p><h3><img src="/images/add_32.png" height="30px" border="0" />
+
+
+      <% if !current_user.is_habitforge_supporting_member %>
+        Invite a friend to follow your progress and get optional weekly status reports <a href="/widget/upgrade">(Enabled with a HabitPro Membership)</a>
+      <% else %>
+        <%= link_to "Invite a friend to follow your progress", :controller => "goals", :action => "invite_a_friend_to_track", :id => @goal.id%>
+      <% end %>
+
+
+
+    </h3></p>
 <%
 end
 %>

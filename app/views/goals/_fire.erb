@@ -295,7 +295,13 @@ aka "Fire"
                                 <h6>
                                     By clicking the button below, you and the potential recipient will be sent an email laying out the terms of the challenge. See the "Details" below for those terms.
                                 </h6>
-                                <input type="submit" value="Start this challenge!" class="btn green">
+
+                                  <% if !current_user.is_habitforge_supporting_member %>
+                                    <a class="btn" >Start this challenge!</a> <a href="/widget/upgrade">(Enabled with a HabitPro Membership)</a>
+                                  <% else %>
+                                        <input type="submit" value="Start this challenge!" class="btn green">
+                                  <% end %>
+
                             <% else %>
                                 <h6>
                                 <a href="http://habitforge.myshopify.com/collections/frontpage/products/habitforge-supporting-membership-1-year?ref=<%= @goal.user.id.to_s %>" class="button">

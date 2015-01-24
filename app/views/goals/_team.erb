@@ -179,12 +179,21 @@ end
         <p>
 
           <h3>
+
+
+          <% if !current_user.is_habitforge_supporting_member %>
+            <a class="btn" >Build My Own Team</a> <a href="/widget/upgrade">(Enabled with a HabitPro Membership)</a>
+          <% else %>
+
             <a id="build_my_own_team" onclick="toggle_show_hide('goal_creation_options_<%= @goal.id %>')" title='Invite others to work on the same or a similar goal with you.' >
             <!-- <a id="build_my_own_team" title='Invite others to work on the same or a similar goal with you.' > -->
              Build My Own Team</a></h3>
-          <script type='text/javascript'>
-              $('#build_my_own_team').tipsy();
-          </script>
+            <script type='text/javascript'>
+                $('#build_my_own_team').tipsy();
+            </script>
+
+          <% end %>
+
 
           <div id="goal_creation_options_<%= @goal.id %>" style="display:none">
             Invite others to join me in <a href="/teams/new?team_type=category&goal_id=<%= @goal.id %>">any goal related to <%= @goal.category %></a>
@@ -196,10 +205,18 @@ end
 
         <p>
 
-          <h3><a href="/goals?join_a_team=1&goal_id=<%=@goal.id%>#jump_to_goal_id_<%= @goal.id %>" id="find_and_join_an_open_team" title='Put me on a team with 3 Others Committed to a "<%=@goal.category%>" Goal'> Find and Join an Open Team</a></h3>
-          <script type='text/javascript'>
-              $('#find_and_join_an_open_team').tipsy();
-          </script>
+
+          <% if !current_user.is_habitforge_supporting_member %>
+            <a class="btn" >Find and Join an Open Team</a> <a href="/widget/upgrade">(Enabled with a HabitPro Membership)</a>
+          <% else %>
+
+            <h3><a href="/goals?join_a_team=1&goal_id=<%=@goal.id%>#jump_to_goal_id_<%= @goal.id %>" id="find_and_join_an_open_team" title='Put me on a team with 3 Others Committed to a "<%=@goal.category%>" Goal'> Find and Join an Open Team</a></h3>
+            <script type='text/javascript'>
+                $('#find_and_join_an_open_team').tipsy();
+            </script>
+
+          <% end %>
+
         </p>
 
 
