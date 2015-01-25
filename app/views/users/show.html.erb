@@ -145,7 +145,7 @@
           <%
           if !current_user.is_habitforge_supporting_member
           %>
-            <h3>Current Membership</h3> Free (Ad-supported, limited to 1 active habit)
+            <h3><mark>WARNING:</mark> You're Running HabitForge on <strong>Limited Power!</strong></h3>
 
                 <%
                 if current_user.kill_ads_until == nil
@@ -154,11 +154,22 @@
 
                         <p>
                         <h2>
-                        Become a HabitPro Member!  
-                        <br>
-                        <span style="font-size:60%;">
-                        (Work on unlimited habits at once, and hide the ads!)
-                        </span
+                        Become a <strong>HabitPro</strong> Member! 
+                        </h2>
+  
+      <center>
+            <img src="/home/images/correct.png" /> <span style="text-decoration:underline;">Unlimited</span> Active Habits
+            <br><img src="/home/images/correct.png" /> Private Habit Option
+            <br><img src="/home/images/correct.png" /> HabitPro Tips in your Reminder Emails
+            <br><img src="/home/images/correct.png" /> Invite Others to Follow Your Progress with Weekly Reports
+            <br><img src="/home/images/correct.png" /> Join a Team or Build Your Own
+            <br><img src="/home/images/correct.png" /> "Your Own Motivation" Inserted Every 3 Days into Reminder Emails
+            <br><img src="/home/images/correct.png" /> Priority Pushes if you Slack
+            <br><img src="/home/images/correct.png" /> No Advertisements
+            <br><img src="/home/images/correct.png" /> Frequent Daily Reminders Option
+            <br><img src="/home/images/correct.png" /> Zero Risk - 100% Money-Back Guarantee
+            <br>
+  </center>
 
                         </h2>
 
@@ -168,21 +179,33 @@
                 %>
 
                         <p>
-                        <h2>
+                        <h3>
                         Your HabitPro Membership Expired on <%= current_user.kill_ads_until.strftime("%b %d, %Y") %>  
+                        </h3>
                         <br>
-                        <span style="font-size:60%;">
-                        (Renew now to work on unlimited active habits, ad-free!)
-                        </span
+                        <h1>
+                        Renew now and <mark>Power Up</mark> with these features:</h1>
 
-                        </h2>
+            <img src="/home/images/correct.png" /> <span style="text-decoration:underline;">Unlimited</span> Active Habits
+            <br><img src="/home/images/correct.png" /> Private Habit Option
+            <br><img src="/home/images/correct.png" /> HabitPro Tips in your Reminder Emails
+            <br><img src="/home/images/correct.png" /> Invite Others to Follow Your Progress with Weekly Reports
+            <br><img src="/home/images/correct.png" /> Join a Team or Build Your Own
+            <br><img src="/home/images/correct.png" /> "Your Own Motivation" Inserted Every 3 Days into Reminder Emails
+            <br><img src="/home/images/correct.png" /> Priority Pushes if you Slack
+            <br><img src="/home/images/correct.png" /> No Advertisements
+            <br><img src="/home/images/correct.png" /> Frequent Daily Reminders Option
+            <br><img src="/home/images/correct.png" /> Zero Risk - 100% Money-Back Guarantee
+            <br>
+
 
                 <%
                 end
                 %> 
+                <hr>
                     <h5><span style="font-size:150%;">Who's recommending HabitForge to their readers?</span>
 
-
+                <hr>
 
                     <br>
                     
@@ -193,14 +216,28 @@
                     <br>
 
                         <br>
+
+                        <center>
                         <img src="/home/images/logos/press_logos_v1_transparent.png" width="600" alt="press logos" />
                         <br>
 
 
+      <br>
+            <img src="/home/images/money_back_guarantee.jpeg" />
+      <br>
 
+      <h1><strong>Manage Your Subscription Below</strong></h1>
+    </center>
+<!-- 
                         <a href="/widget/upgrade" class="start_now">Learn More</a>
-
+ -->
                     &nbsp &nbsp
+
+
+<!-- Paywhirl info -->
+<script type='text/javascript' src="https://www.paywhirl.com/js/widget.js"></script>
+<iframe frameBorder="0" style='width:100%; height:auto; border:0; overflow:hidden;' id='paywhirl_frame' scrolling='no' src="https://www.paywhirl.com/widget?api_key=PW960FAF875953CD95DBA6E69CDB36C36F"></iframe>
+
 
           <%
           else
@@ -259,8 +296,9 @@
                 <%
                 end
                 %> 
+                  <hr>
                     <h5><span style="font-size:150%;">Who's recommending HabitForge to their readers?</span>
-
+                    </hr>
 
                     <br>
                     
@@ -271,16 +309,28 @@
                     <br>
 
                         <br>
+
+                        <center>
                         <img src="/home/images/logos/press_logos_v1_transparent.png" width="600" alt="press logos" />
                         <br>
 
 
+      <br>
+            <img src="/home/images/money_back_guarantee.jpeg" />
+      <br>
 
+      <h1><strong>Manage Your Subscription Below</strong></h1>
 
-                    <a href="/widget/upgrade" class="start_now">Learn More</a>
-
+    </center>
+<!--                     <a href="/widget/upgrade" class="start_now">Learn More</a>
+ -->
 
                     </h4>        
+
+<!-- Paywhirl info -->
+<script type='text/javascript' src="https://www.paywhirl.com/js/widget.js"></script>
+<iframe frameBorder="0" style='width:100%; height:auto; border:0; overflow:hidden;' id='paywhirl_frame' scrolling='no' src="https://www.paywhirl.com/widget?api_key=PW960FAF875953CD95DBA6E69CDB36C36F"></iframe>
+
 
           <%
           end
@@ -298,18 +348,42 @@
 <!-- END TAB PORTLET-->
 
 
- <a href="/account/edit" class="btn blue">Edit My Account Info</a>
+ <a href="/account/edit" class="btn blue">Edit HabitForge Account Info</a>
  &nbsp &nbsp
 
  <% if recurring_payment %>
 
-    <input type="button" class="btn" value="Remove My Account" onclick="alert('You must first Downgrade your account to cancel recurring payments. To Downgrade your account to a Free account, simply send an email to support@habitforge.com with the subject DOWNGRADE, and someone will be in touch to assist within 24 hours.');" />
+    <input type="button" class="btn" value="Remove My HabitForge Account" onclick="alert('You must first Downgrade your account to cancel recurring payments. To Downgrade your account to a Free account, simply send an email to support@habitforge.com with the subject DOWNGRADE, and someone will be in touch to assist within 24 hours.');" />
 
  <% else %>
-   <%= link_to 'Remove My Account', @user, :confirm => 'This will remove your account '+@user.email+', along with all of your goals, checkpoints and stats. Are you sure you want to do this? (This can not be undone.)', :method => :delete %>
+   <%= link_to 'Remove My HabitForge Account', @user, :confirm => 'This will remove your account '+@user.email+', along with all of your goals, checkpoints and stats. Are you sure you want to do this? (This can not be undone.)', :method => :delete %>
  <% end %>
 
  </p>
+
+
+      <div style="padding:.8em;margin-bottom:1em;border:2px solid #ddd;background:#FFFFCC;color:#514721;border-color:#eeeeee;-moz-border-radius: 15px;border-radius: 15px;">     
+        <% if current_user %>   
+        "HabitForge Email Address": <span style="color:red;"><%= current_user.email %></span>
+        <br>
+        "HabitForge User Number": <span style="color:red;"><%= current_user.id %></span> 
+        <% else %>
+
+          <% if params[:current_user_email] and params[:current_user_id] %>
+            "HabitForge Email Address": <span style="color:red;"><%= params[:current_user_email] %></span>
+            <br>
+            "HabitForge User Number": <span style="color:red;"><%= params[:current_user_id] %></span> 
+          <% else %>
+            You are not logged into HabitForge. You should first either:
+              <ul style="text-align:center;display:inline-table;">
+              <li style="display:inline;"><a href="/user_session/new?skip_intro=1" class="button-red" style="color:#CC3300;">Log In</a> or </li>
+              <li style="display:inline;"><a href="#jump_to_sign_up" style="color:#CC3300;">Create an Account</a></li>
+            </ul>
+          <% end %>
+        <% end %>
+      </div>
+      <img src="/home/images/hr_fancy.png" />
+
 <br>
 <h3>Privacy</h3>
 <p>We will never sell your email address or share it with anyone.
