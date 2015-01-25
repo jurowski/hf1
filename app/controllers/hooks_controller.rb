@@ -1053,16 +1053,23 @@ class HooksController < ApplicationController
 
           percent_off = 0
           if line.to_s.include? 'percent_off'
+            logger.error("sgj-paywhirl: FOUND percent_off")
+
             begin
               # "percent_off":40,"amount_off":null,
               str1_markerstring = '"percent_off":'
               str2_markerstring = '","amount_off"'
               i = input_string.index(str1_markerstring)
               j = input_string.index(str2_markerstring)
+
+              logger.error("sgj-paywhirl: coupon percent_off string:" + input_string[i+14..j-1])
+
               percent_off = input_string[i+14..j-1].to_i
             rescue
               logger.error("sgj-paywhirl: ERROR PROCESSING COUPON")
             end
+          else
+            logger.error("sgj-paywhirl: DID NOT FIND percent_off")            
           end
 
 
