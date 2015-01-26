@@ -1058,7 +1058,7 @@ class HooksController < ApplicationController
             begin
               # "percent_off":40,"amount_off":null,
               str1_markerstring = '"percent_off":'
-              str2_markerstring = '","amount_off"'
+              str2_markerstring = ',"amount_off"'
               i = input_string.index(str1_markerstring)
               j = input_string.index(str2_markerstring)
 
