@@ -1304,6 +1304,7 @@ class Goal < ActiveRecord::Base
         ###self.create_checkpoint_if_needed(reporting_date)
         checkpoint = self.create_checkpoint_if_needed(reporting_date)
         success = checkpoint.update_status(status, comment)
+        self.user.impact_leader_update()
     rescue
         success = false
         logger.error "SGJ:error in update_checkpoint"

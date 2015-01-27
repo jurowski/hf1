@@ -60,21 +60,64 @@ class User < ActiveRecord::Base
     # premium:boolean 
     # latest_boost_text:text
 
+    logger.info("sgj:user:impact_leader_update: JUST STARTING")
+
+
     begin
-        impact_record = ImpactLeader.find(:conditions => "user_id = '#{self.id}'")
+
+    # logger.info("sgj:user:impact_leader_update: 0")
+
+        impact_record = ImpactLeader.find(:first, :conditions => "user_id = '#{self.id}'")
+
+    # logger.info("sgj:user:impact_leader_update: 1")
+
         if !impact_record
-          impact_record = ImpactLeader.new
+
+    # logger.info("sgj:user:impact_leader_update: 2")
+
+          impact_record = ImpactLeader.new()
+
+    # logger.info("sgj:user:impact_leader_update: 3")
+
           impact_record.user_id = self.id
+
+    # logger.info("sgj:user:impact_leader_update: 3.5")
+
+          impact_record.handle = self.show_handle
+
+    # logger.info("sgj:user:impact_leader_update: 3.6")
+
+          impact_record.display_name = self.name
+    # logger.info("sgj:user:impact_leader_update: 3.7")
+
+          impact_record.email = self.email
+    # logger.info("sgj:user:impact_leader_update: 3.8")
+
+          impact_record.impact_points = self.impact_points
+    # logger.info("sgj:user:impact_leader_update: 3.9")
+
+          impact_record.last_activity_date = self.dtoday
+    # logger.info("sgj:user:impact_leader_update: 4")
+
+          impact_record.save
+    # logger.info("sgj:user:impact_leader_update: 5")
+
+        else
+
+    # logger.info("sgj:user:impact_leader_update: 6")
+
+          impact_record.handle = self.show_handle
+          impact_record.display_name = self.name
+          impact_record.email = self.email
+          impact_record.impact_points = self.impact_points
+          impact_record.last_activity_date = self.dtoday
+
+    # logger.info("sgj:user:impact_leader_update: 7")
+
+          impact_record.save
+    # logger.info("sgj:user:impact_leader_update: 8")
+
         end
-
-        impact_record.handle = self.show_handle
-        impact_record.display_name = self.display_name
-        impact_record.email = self.email
-        impact_record.impact_points = self.impact_points
-
-        impact_record.last_activity_date = self.dtoday
-
-        impact_record.save
 
     rescue
       logger.error("sgj:user:impact_leader_update: PROBLEM UPDATING OR CREATING IMPACT_LEADER RECORD")

@@ -1528,13 +1528,15 @@ end
 <br>
 <br>
 
-(beta feature)
-<h1>Impact Leaders</h1>
+
+<h1>Impact Leaders (top 50)</h1>
 <%
-leaders = ImpactLeader.find(:all, :conditions => "impact_points > 0", :limit => 10)
+leaders = ImpactLeader.find(:all, :conditions => "impact_points > 0", :order => "impact_points DESC", :limit => 50)
+counter = 0
 leaders.each do |leader|
+    counter += 1
     %>
-    <%= leader.handle %>
+    <%= counter %>) <%= leader.display_name %> (<%= leader.impact_points%>)
     <%
 end
 %>
