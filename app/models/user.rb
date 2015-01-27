@@ -72,6 +72,8 @@ class User < ActiveRecord::Base
         impact_record.email = self.email
         impact_record.impact_points = self.impact_points
 
+        impact_record.last_activity_date = self.dtoday
+
         impact_record.save
 
     rescue

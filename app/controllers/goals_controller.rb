@@ -84,6 +84,8 @@ class GoalsController < ApplicationController
     comment = ""
     if @goal.update_checkpoint(params[:date], params[:update_checkpoint_status], comment)
       flash[:notice] = 'Checkpoint Updated.'
+      @goal.user.impact_leader_update
+
     else
       logger.debug"SGJ error updating checkpoint"
       flash[:notice] = 'Error updating checkpoint.'
@@ -196,6 +198,8 @@ class GoalsController < ApplicationController
         comment = ""
 
         if goal.update_checkpoint(params[:date], params[:update_checkpoint_status], comment)
+
+          goal.user.impact_leader_update
 
           flash[:notice] = 'Checkpoint Updated.'
           if params[:coming_from] == "email"
@@ -762,6 +766,8 @@ class GoalsController < ApplicationController
         comment = ""
         if @goal.update_checkpoint(params[:date], params[:update_checkpoint_status], comment)
           flash[:notice] = 'Checkpoint Updated.'
+          @goal.user.impact_leader_update
+
         else
           logger.debug"SGJ error updating checkpoint"
           flash[:notice] = 'Error updating checkpoint.'

@@ -237,6 +237,8 @@ class CheckpointsController < ApplicationController
           end
           ##### Saving and goal/stats updates is all done by the "goal.update_checkpoint" function 
           @checkpoint.goal.update_checkpoint(@checkpoint.checkin_date, status, comment)
+          @checkpoint.goal.user.impact_leader_update
+
         end            
       end  
     end

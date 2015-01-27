@@ -1528,6 +1528,18 @@ end
 <br>
 <br>
 
+(beta feature)
+<h1>Impact Leaders</h1>
+<%
+leaders = ImpactLeader.find(:all, :conditions => "impact_points > 0", :limit => 10)
+leaders.each do |leader|
+    %>
+    <%= leader.handle %>
+    <%
+end
+%>
+<br>
+<br>
 
 <!-- *********** -->
 <!-- *********** -->

@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20150127145854) do
+ActiveRecord::Schema.define(:version => 20150127212349) do
 
   create_table "achievemints", :force => true do |t|
     t.string   "name"
@@ -571,6 +571,7 @@ ActiveRecord::Schema.define(:version => 20150127145854) do
     t.text     "latest_boost_text"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.date     "last_activity_date"
   end
 
   create_table "invites", :force => true do |t|
