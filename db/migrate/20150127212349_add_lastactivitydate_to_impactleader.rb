@@ -5,6 +5,7 @@ class AddLastactivitydateToImpactleader < ActiveRecord::Migration
 
   def self.down
   	remove_column :impact_leaders, :last_activity_date
+
   end
 
 end
