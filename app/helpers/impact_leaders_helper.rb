@@ -1,0 +1,2 @@
+module ImpactLeadersHelper
+end

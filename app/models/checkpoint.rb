@@ -37,6 +37,7 @@ class Checkpoint < ActiveRecord::Base
               self.goal.user.impact_points += 5
             end
 
+            self.goal.user.impact_leader_update
 
             #logger.info("sgj:checkpoint.rb:create_checkpoints_where_missing")        
             self.goal.create_checkpoints_where_missing

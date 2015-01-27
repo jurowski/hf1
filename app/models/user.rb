@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
   belongs_to :coach
   belongs_to :affiliate
   
+
   has_many :goals    
   has_many :trackers
 
@@ -43,6 +44,41 @@ class User < ActiveRecord::Base
   # validates_uniqueness_of :fb_username
   # validates_uniqueness_of :fb_id
 
+
+
+  ### find this user's impact_leader record and give it the latest info
+  def impact_leader_update
+
+    # user_id:integer 
+    # handle:string 
+    # display_name:string 
+    # email:string 
+    # country:string 
+    # state:string 
+    # impact_points:integer 
+    # position:integer 
+    # premium:boolean 
+    # latest_boost_text:text
+
+    begin
+        impact_record = ImpactLeader.find(:conditions => "user_id = '#{self.id}'")
+        if !impact_record
+          impact_record = ImpactLeader.new
+          impact_record.user_id = self.id
+        end
+
+        impact_record.handle = self.show_handle
+        impact_record.display_name = self.display_name
+        impact_record.email = self.email
+        impact_record.impact_points = self.impact_points
+
+        impact_record.save
+
+    rescue
+      logger.error("sgj:user:impact_leader_update: PROBLEM UPDATING OR CREATING IMPACT_LEADER RECORD")
+    end
+
+  end
 
 
   ### use for upgrades, both paid and support points, trial upgrades

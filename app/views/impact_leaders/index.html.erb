@@ -1,0 +1,38 @@
+<h1>Listing impact_leaders</h1>
+
+<table>
+  <tr>
+    <th>User</th>
+    <th>Handle</th>
+    <th>Display name</th>
+    <th>Email</th>
+    <th>Country</th>
+    <th>State</th>
+    <th>Impact points</th>
+    <th>Position</th>
+    <th>Premium</th>
+    <th>Latest boost text</th>
+  </tr>
+
+<% @impact_leaders.each do |impact_leader| %>
+  <tr>
+    <td><%=h impact_leader.user_id %></td>
+    <td><%=h impact_leader.handle %></td>
+    <td><%=h impact_leader.display_name %></td>
+    <td><%=h impact_leader.email %></td>
+    <td><%=h impact_leader.country %></td>
+    <td><%=h impact_leader.state %></td>
+    <td><%=h impact_leader.impact_points %></td>
+    <td><%=h impact_leader.position %></td>
+    <td><%=h impact_leader.premium %></td>
+    <td><%=h impact_leader.latest_boost_text %></td>
+    <td><%= link_to 'Show', impact_leader %></td>
+    <td><%= link_to 'Edit', edit_impact_leader_path(impact_leader) %></td>
+    <td><%= link_to 'Destroy', impact_leader, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New impact_leader', new_impact_leader_path %>

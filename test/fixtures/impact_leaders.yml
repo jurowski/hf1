@@ -1,0 +1,25 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  user_id: 1
+  handle: MyString
+  display_name: MyString
+  email: MyString
+  country: MyString
+  state: MyString
+  impact_points: 1
+  position: 1
+  premium: false
+  latest_boost_text: MyText
+
+two:
+  user_id: 1
+  handle: MyString
+  display_name: MyString
+  email: MyString
+  country: MyString
+  state: MyString
+  impact_points: 1
+  position: 1
+  premium: false
+  latest_boost_text: MyText

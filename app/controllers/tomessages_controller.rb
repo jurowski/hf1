@@ -85,6 +85,10 @@ class TomessagesController < ApplicationController
               end
               @to_user.impact_points += @rating
               @to_user.save
+
+              @to_user.impact_leader_update
+
+
             end
 
 
@@ -222,6 +226,8 @@ class TomessagesController < ApplicationController
             end
             current_user.impact_points += 5
             current_user.save
+
+            current_user.impact_leader_update
 
           
           flash[:notice] = 'Message Sent.'
