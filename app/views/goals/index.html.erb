@@ -1610,11 +1610,14 @@ if !found_you and current_user.impact_points
 
     leader_middle = ImpactLeader.find(:first, :conditions => "user_id = #{current_user.id}")
         %>
-        <%= leader.display_name %> (<%= leader.impact_points%>)</span>
+        <strong><%= leader_middle.display_name %> (<%= leader_middle.impact_points%>)</strong>
         <%
 
     counter = 4
     leaders_below = ImpactLeader.find(:all, :conditions => "impact_points < #{current_user.impact_points}", :order => "impact_points DESC", :limit => 5)
+
+    counter = 10
+    leaders_below.each do |leader|
 
         case counter
         when 4
@@ -1643,8 +1646,8 @@ if !found_you and current_user.impact_points
 
         <%= leader.display_name %> (<%= leader.impact_points%>)
         </span>
-
-
+    <%
+    end
     %>
     ...
     <%    
