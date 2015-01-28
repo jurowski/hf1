@@ -1528,7 +1528,6 @@ end
 <br>
 <br>
 
-
 <h1>Impact Leaders (top 50)</h1>
 <%
 leaders = ImpactLeader.find(:all, :conditions => "impact_points > 0", :order => "impact_points DESC", :limit => 50)
@@ -1551,8 +1550,7 @@ leaders.each do |leader|
     end
 end
 
-
-    leader_middle = ImpactLeader.find(:first, :conditions => "user_id = #{current_user.id}")
+leader_middle = ImpactLeader.find(:first, :conditions => "user_id = #{current_user.id}")
 
 if !found_you and leader_middle and current_user.impact_points
     %>
@@ -1564,19 +1562,19 @@ if !found_you and leader_middle and current_user.impact_points
     leaders_above = ImpactLeader.find(:all, :conditions => "impact_points > #{current_user.impact_points}", :order => "impact_points ASC", :limit => 5)
 
     ### Color Scale: http://paletton.com/#uid=13K0u0kllllaFw0g0qFqFg0w0aF
-    color_10 = "7788AA"
-    color_9 = "4E638E"
-    color_8 = "2E4372"
-    color_7 = "152A55"
-    color_6 = "061639"
+    color_10 = "#7788AA;"
+    color_9 = "#4E638E;"
+    color_8 = "#2E4372;"
+    color_7 = "#152A55;"
+    color_6 = "#061639;"
 
-    color_mid = "000000"
+    color_mid = "#000000;"
 
-    color_4 = "061639"
-    color_3 = "152A55"
-    color_2 = "2E4372"
-    color_1 = "4E638E"
-    color_0 = "7788AA"
+    color_4 = "#061639;"
+    color_3 = "#152A55;"
+    color_2 = "#2E4372;"
+    color_1 = "#4E638E;"
+    color_0 = "#7788AA;"
 
     counter = 10
     leaders_above.each do |leader|
@@ -1585,24 +1583,24 @@ if !found_you and leader_middle and current_user.impact_points
         case counter
         when 10
             %>
-            <span style="color:<%= color_10 %>"
+            <span style="color:<%= color_10 %>">
             <%
         when 9
             %>
-            <span style="color:<%= color_9 %>"
+            <span style="color:<%= color_9 %>">
             <%
         when 8
             %>
-            <span style="color:<%= color_8 %>"
+            <span style="color:<%= color_8 %>">
             <%
         when 7
             %>
-            <span style="color:<%= color_7 %>"
+            <span style="color:<%= color_7 %>">
             <%
 
         when 6
             %>
-            <span style="color:<%= color_6 %>"
+            <span style="color:<%= color_6 %>">
             <%
         end
         counter -= 1
@@ -1623,23 +1621,23 @@ if !found_you and leader_middle and current_user.impact_points
         case counter
         when 4
             %>
-            <span style="color:<%= color_10 %>"
+            <span style="color:<%= color_10 %>">
             <%
         when 3
             %>
-            <span style="color:<%= color_9 %>"
+            <span style="color:<%= color_9 %>">
             <%
         when 2
             %>
-            <span style="color:<%= color_2 %>"
+            <span style="color:<%= color_2 %>">
             <%
         when 1
             %>
-            <span style="color:<%= color_1 %>"
+            <span style="color:<%= color_1 %>">
             <%
         when 0
             %>
-            <span style="color:<%= color_0 %>"
+            <span style="color:<%= color_0 %>">
             <%
         end
         counter -= 1
