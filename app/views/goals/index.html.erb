@@ -475,7 +475,7 @@ end
  -->        <a href="/goals/new" class="btn blue "></i>+ Start a New Habit</a>
 
                     <span style="margin:5px;">
-                    <a href="/widget/upgrade_held_to_it" class="btn blue"></i>+ Weekly Personal Coaching</a>
+                    <a href="/widget/upgrade" class="btn blue"></i>+ HabitPro Options</a>
                 </span>
 
                 </td>
@@ -512,7 +512,7 @@ end
                     <%
                 else
                     %>
-                    <span style="margin:5px;"><a href="/widget/upgrade_held_to_it" class="btn blue"></i>+ Weekly Personal Coaching</a></span>
+                    <span style="margin:5px;"><a href="/widget/upgrade" class="btn blue"></i>+ HabitPro Options</a></span>
                     <%
                 end
                 %>
@@ -705,6 +705,17 @@ end
 <!-- *********** -->
 <!-- START SHOW ACTIVE HABITS -->    
 <!-- *********** -->
+
+<%
+if current_user.number_of_active_habits > 0
+%>
+<center>
+    <img src="/home/images/my_active_habits.png" />
+</center>
+<% 
+end
+%>
+
 <% 
 number_goals_today = current_user.number_next_goals_working_on_for_date(current_user.dtoday) 
 number_goals_tomorrow = current_user.number_next_goals_working_on_for_date(current_user.dtomorrow)
@@ -1502,33 +1513,14 @@ tracker_name = "<i class='icon-bar-chart'></i> Tracker"
 
 
 
-<br>
-<br>
-
-<%
-random_index = rand(2) #between 0 and (size - 1)
-
-case random_index
-when 0
-    %>
-    <a href="/widget/upgrade">
-      <img src="/home/images/pitfalls_teaser.png" />
-    </a>
-    <%
-when 1
-    %>
-    <a href="/widget/upgrade">
-      <img src="/home/images/pitfalls_teaser_2.png" />
-    </a>
-    <%
-end 
-%>
 
 
 <br>
 <br>
+<center>
+    <img src="/home/images/impact_leaders.png" />
+</center>
 
-<h1>Impact Leaders (top 50)</h1>
 <%
 leaders = ImpactLeader.find(:all, :conditions => "impact_points > 0", :order => "impact_points DESC", :limit => 50)
 
@@ -1650,6 +1642,31 @@ if !found_you and leader_middle and current_user.impact_points
     <%    
 end
 %>
+
+
+
+<br>
+<br>
+
+<%
+random_index = rand(2) #between 0 and (size - 1)
+
+case random_index
+when 0
+    %>
+    <a href="/widget/upgrade">
+      <img src="/home/images/pitfalls_teaser.png" />
+    </a>
+    <%
+when 1
+    %>
+    <a href="/widget/upgrade">
+      <img src="/home/images/pitfalls_teaser_2.png" />
+    </a>
+    <%
+end 
+%>
+
 <br>
 <br>
 
