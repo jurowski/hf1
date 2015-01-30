@@ -52,7 +52,7 @@
     <!-- or -->
 
 
-<% if @goal.first_start_date >'2015-01-28'.to_date %>
+<% if !current_user.is_premium and @goal.first_start_date >'2015-01-28'.to_date %>
 
 <br>
 <br>
