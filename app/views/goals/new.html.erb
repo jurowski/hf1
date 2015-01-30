@@ -218,3 +218,16 @@ end
 <% end %>
 
 </div>
+
+
+
+<% if !current_user.is_premium and !@goal.first_start_date or (@goal.first_start_date and @goal.first_start_date >'2015-01-28'.to_date) %>
+
+
+<br>
+<br>
+<br>
+<a name="duration"></a>
+<a href="/widget/upgrade"><img src="/home/images/sand_clock.png" /></a>
+
+<% end %>
