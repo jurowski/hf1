@@ -909,6 +909,20 @@ for goal in current_user.active_goals_sorted_by_next_action_day
     <% end %>
 
 </td>
+<td>
+    <% if @goal.first_start_date >'2015-01-28'.to_date %>
+      <% if @goal.days_since_first_checkpoint > 0 %>
+        <% 
+          days_left = (30 - @goal.days_since_first_checkpoint)
+        %>
+        <mark><%= days_left %> days</mark> of tracking left on this one.
+      <% else %>
+        <mark>30 days</mark> of tracking remaining on this one.
+      <% end %>
+        <a href="#duration">or, <strong>Track it longer, until it's really solid</strong></a>
+    <% end %>
+
+</td>
 </tr>
 </table>
     <div class="portlet box" style="background-color:#666666;padding-top:15px;padding:10px;" >
@@ -1768,6 +1782,14 @@ end
 <input type="hidden" name="coming_from" value="multiple">
 
 
+
+<% if @goal.first_start_date >'2015-01-28'.to_date %>
+<br>
+<br>
+<br>
+<a name="duration"></a>
+<a href="/widget/upgrade"><img src="/home/images/sand_clock.png" /></a>
+<% end %>
 
 
 

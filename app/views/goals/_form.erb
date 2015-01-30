@@ -276,10 +276,70 @@ if part_of_a_team_category
   question_placeholder = ""
 end
 %>
+
+
   <% if !params[:just_confirm] %>
-  <h2>
-  Ask me this daily to see if I came through: 
-</h2>
+
+<% if @goal.first_start_date >'2015-01-28'.to_date %>
+
+      <% if @goal.days_since_first_checkpoint > 0 %>
+
+        <% 
+          days_left = (30 - @goal.days_since_first_checkpoint)
+        %>
+
+        <% if days_left > 0 %>
+          <h2>
+          For 
+          <%= days_left %>
+           more days, ask me this daily to see if I came through: 
+          </h2>
+          <div style="margin-top:-30px;">
+          <span style="font-size:1.0em;">
+            <br>
+            <a href="#duration">or, <strong>Track it longer, until it's really solid</strong></a>
+          </span>
+          </div>
+
+        <% else %>
+
+          <h2>
+          Sorry, your 30 days of tracking is up for this habit.
+          </h2>
+          <div style="margin-top:-30px;">
+          <span style="font-size:1.0em;">
+            <br>
+            <a href="#duration"><strong>Let's track it longer, until it's really solid</strong></a>
+          </span>
+          </div>
+          <h2>What we were asking you was:</h2>
+
+        <% end %>
+
+      <% else %>
+
+        <h2>
+        For 30 days, ask me this daily to see if I came through: 
+        </h2>
+        <div style="margin-top:-30px;">
+        <span style="font-size:1.0em;">
+          <br>
+          <a href="#duration">or, <strong>Track it longer, until it's really solid</strong></a>
+        </span>
+        </div>
+
+      <% end %>
+
+
+<% else %>
+
+        <h2>
+        Ask me this daily to see if I came through: 
+        </h2>
+
+<% end %>
+
+
   <br>
   <span style="font-weight:bold;font-size:1.5em;">"Were you successful at
   <% end %>
