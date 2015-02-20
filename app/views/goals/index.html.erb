@@ -463,33 +463,26 @@ end
 </div>
 
 
-    <% if current_user.sponsor == "habitforge" and !current_user.is_habitforge_supporting_member and current_user.number_of_active_habits > 0 %>
 
-
-
+    <% if current_user.is_premium %>
 
         <table border=0>
             <tr>
                 <td nowrap>
 <!--         <a href="/widget/upgrade?habit_limit=1" class="btn blue "></i>+ Start a New Habit</a>
  -->        <a href="/goals/new" class="btn blue "></i>+ Start a New Habit</a>
-
-                    <span style="margin:5px;">
-                    <a href="/widget/upgrade" class="btn blue"></i>+ HabitPro Options</a>
-                </span>
-
                 </td>
                 <td>
-        <div style="margin-top:-75px;margin-left:-15px;">
+            <div style="margin-top:-75px;margin-left:-15px;">
 
-<!--           <a href="/widget/upgrade" id="move_up">
-            <img src="/home/images/nick_what_could_you_do.png" />
-          </a>
- -->
-        </div>
-            </td>
-        </tr>
-    </table>
+    <!--           <a href="/widget/upgrade" id="move_up">
+                <img src="/home/images/nick_what_could_you_do.png" />
+              </a>
+     -->
+            </div>
+                </td>
+            </tr>
+        </table>
 
     <% else %>
 
@@ -501,7 +494,7 @@ end
                 <%
                 ### 7-Day Deal of 30% off
                 ### Wait until the user has been around for 1 week before sending this
-                if !current_user.is_premium and current_user.creation_date < (current_user.dtoday - 7) and current_user.creation_date >  (current_user.dtoday - 14)
+                if current_user.creation_date < (current_user.dtoday - 7) and current_user.creation_date >  (current_user.dtoday - 14)
                     %>
                     <br>
                     <div class="alert">
@@ -1663,22 +1656,26 @@ end
 <br>
 
 <%
-random_index = rand(2) #between 0 and (size - 1)
+if !current_user.is_premium
 
-case random_index
-when 0
-    %>
-    <a href="/widget/upgrade">
-      <img src="/home/images/pitfalls_teaser.png" />
-    </a>
-    <%
-when 1
-    %>
-    <a href="/widget/upgrade">
-      <img src="/home/images/pitfalls_teaser_2.png" />
-    </a>
-    <%
-end 
+    random_index = rand(2) #between 0 and (size - 1)
+
+    case random_index
+    when 0
+        %>
+        <a href="/widget/upgrade">
+          <img src="/home/images/pitfalls_teaser.png" />
+        </a>
+        <%
+    when 1
+        %>
+        <a href="/widget/upgrade">
+          <img src="/home/images/pitfalls_teaser_2.png" />
+        </a>
+        <%
+    end 
+
+end
 %>
 
 <br>
@@ -1782,15 +1779,16 @@ end
 <input type="hidden" name="coming_from" value="multiple">
 
 
+<% if !current_user.is_premium %>
+    <% if @goal.first_start_date >'2015-01-28'.to_date %>
+        <br>
+        <br>
+        <br>
+        <a name="duration"></a>
+        <a href="/widget/upgrade"><img src="/home/images/sand_clock.png" /></a>
+    <% end %>
 
-<% if !current_user.is_premium and @goal.first_start_date >'2015-01-28'.to_date %>
-<br>
-<br>
-<br>
-<a name="duration"></a>
-<a href="/widget/upgrade"><img src="/home/images/sand_clock.png" /></a>
 <% end %>
-
 
 
 <!-- *********** -->
