@@ -989,6 +989,14 @@ class GoalsController < ApplicationController
             if !@goal.user.categories_goals
               @goal.user.categories_goals = ""
             end
+
+            if !@goal.category
+              @goal.category = "Other"
+            end
+
+            if !@goal.title
+              @goal.title = "none"
+            end
             @goal.user.categories_goals += @goal.category + "_:_" + @goal.title + "::"
 
 
