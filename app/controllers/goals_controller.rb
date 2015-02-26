@@ -1050,7 +1050,14 @@ class GoalsController < ApplicationController
                         ## The Lyphted list_id is = 3702705
                         ## The Lyphted list_name is = awlist3702705
                         list = aweber.account.lists.find_by_id(3702705)
-                        list.subscribers.create(new_subscriber)
+
+                        begin
+                          list.subscribers.create(new_subscriber)
+                        rescue
+                          logger.error("sgj:could not add subscriber to aweber (perhaps they have a role-based email address like admin@something")
+                            ###https://help.aweber.com/entries/97662366
+                        end
+
                         # aweber.account.lists.each do |list|
                         #   logger.info("sgj:aweber:" + list.name)
                         # end

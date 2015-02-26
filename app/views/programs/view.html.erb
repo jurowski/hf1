@@ -127,7 +127,7 @@ end
 START
 ONLY SHOW ACTION ITEMS IF ALREADY MEMBER OR IF NO EXTERNAL MEMBERSHIP SITE REQUIRED 
 -->
-<% if !@program.requires_external_membership or (@program.requires_external_membership and current_user.programs.include? @program) %>
+<% if !@program.requires_external_membership or (current_user and @program.requires_external_membership and current_user.programs.include? @program) %>
 
 <br>
 
