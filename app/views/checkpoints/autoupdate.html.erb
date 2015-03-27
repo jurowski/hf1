@@ -175,14 +175,39 @@ if legit_url == 1
 
     <% end %>
 
+    <br>
+    <br>
+    <% if !current_user.is_premium and (@checkpoint.goal.first_start_date and @checkpoint.goal.first_start_date >'2015-01-28'.to_date) %>
+      <% if @checkpoint.goal.days_since_first_checkpoint > 0 %>
+        <% 
+          days_left = (30 - @checkpoint.goal.days_since_first_checkpoint)
+        %>
+        <mark><%= days_left %> days</mark> of tracking left on this one.
+      <% else %>
+        <mark>30 days</mark> of tracking remaining on this one.
+      <% end %>
+        <a href="#duration">or, <strong>Track it longer, until it's really solid</strong></a>
+    <% end %>
 
 
 
 
 
+<br>
+<br>
 
 
 
+<% if !current_user.is_premium %>
+    <% if @goal.first_start_date and @goal.first_start_date >'2015-01-28'.to_date %>
+        <br>
+        <br>
+        <br>
+        <a name="duration"></a>
+        <a href="/widget/upgrade"><img src="/home/images/sand_clock.png" /></a>
+    <% end %>
+
+<% end %>
 
 
 

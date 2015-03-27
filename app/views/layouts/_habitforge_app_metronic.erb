@@ -295,10 +295,11 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
   <!-- ################################################## -->
 
 
+<% if mobile_device? %>
 
   <!-- sharing widget by app sumo -->
   <script src="//load.sumome.com/" data-sumo-site-id="81592f2f900b7251aed14ba4c39d54d4ceebd6e1969826a5bcc4a52aa1230c57" async></script>
-
+<% end %>
 
 </head>
 <!-- END HEAD -->
@@ -1695,7 +1696,6 @@ $('.confirmation').on('click',function(){return confirm('Are you sure?');});
 
 
         <!-- SHOW FACEBOOK BOX AT THE BOTTOM -->
-        <% if @cn == "user_friends" %>
           <% if @production %>
 
             <% if !secure_page? %>
@@ -1726,7 +1726,6 @@ $('.confirmation').on('click',function(){return confirm('Are you sure?');});
             <br>
           <% else %>
             In production we'd have some facebook, twitter and pinterest links here.
-          <% end %>
           <% end %>
         </div>
       </div>
