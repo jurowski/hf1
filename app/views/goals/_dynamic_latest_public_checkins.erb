@@ -504,7 +504,7 @@
 
 
 					<%= e.user_name %></span> <%= subject_value %> <span style="background-color:#FFFF99;">
-				<% end %><a href="/goals/new?goal_template_text=<%= e.goal_name %>&category=<%= e.goal_category %>" id='start_<%= e.goal_id.to_s %>' title="Do this! Start <%= e.goal_name %>!"><%= e.goal_name %></a><script type='text/javascript'>$('#start_<%= e.goal_id.to_s %>').tipsy();</script></span> <% if e.encourage_type_new_checkpoint_bool %><% if current_user.dtoday >= e.checkpoint_date %> today! <% elsif current_user.dyesterday == e.checkpoint_date %> yesterday! <% else %> on <%= e.checkpoint_date %><% end %><% end %>
+				<% end %><a href="/goals/new?goal_template_text=<%= e.goal_name %>&category=<%= e.goal_category %>" id='start_<%= e.goal_id.to_s %>' title="Do this! Start <%= e.goal_name %>!"><%= e.goal_name %></a><script type='text/javascript'>$('#start_<%= e.goal_id.to_s %>').tipsy();</script></span> <% if e.encourage_type_new_checkpoint_bool %><% if current_user.dtoday >= e.checkpoint_date %> today! <% elsif current_user.dyesterday == e.checkpoint_date %> yesterday! <% end %><% end %>
 				<script type='text/javascript'>
 				$('#encourage_<%= e.goal_id.to_s %>').tipsy();
 				</script>   
