@@ -2,7 +2,7 @@ class Notifier < ActionMailer::Base
   default_url_options[:host] = "habitforge.com"
 
 
-  def get_random_subject()
+  def get_random_subject(goal)
 
     ### People complained about these being random
     ### cause it messed up their email groupings
@@ -15,14 +15,21 @@ class Notifier < ActionMailer::Base
     #arr_subject.push(["HF: Your daily Check-In question... yes or no?"])
 
     random_number = 0
-    random_number = rand(arr_subject.size) + 0 #between 0 and arr_subject.size
+    #random_number = rand(arr_subject.size) + 0 #between 0 and arr_subject.size
     random_subject = arr_subject[random_number]
+
+    if !goal.user.is_premium and (goal.first_start_date and goal.first_start_date >'2015-01-28'.to_date)
+      if goal.days_since_first_checkpoint > 0
+          days_left = (30 - goal.days_since_first_checkpoint)
+          random_subject = random_subject + " (" + days_left.to_s + " of tracking left...upgrade to track forever)"
+      end
+    end
 
     return random_subject.to_s
   end
 
 
-  def get_random_subject_reminder(response_question = "your goal")
+  def get_random_subject_reminder(response_question = "your goal", goal)
     #random_subject = "HF: Daily Check-In ... How did you do yesterday?"
     arr_subject = Array.new
     arr_subject.push(["[HF] Don't forget about \"#{response_question}\"!"])
@@ -32,6 +39,14 @@ class Notifier < ActionMailer::Base
     random_number = 0
     random_number = rand(arr_subject.size) + 0 #between 0 and arr_subject.size
     random_subject = arr_subject[random_number]
+
+
+    if !goal.user.is_premium and (goal.first_start_date and goal.first_start_date >'2015-01-28'.to_date)
+      if goal.days_since_first_checkpoint > 0
+          days_left = (30 - goal.days_since_first_checkpoint)
+          random_subject = random_subject + " (" + days_left.to_s + " of tracking left...upgrade to track forever)"
+      end
+    end
 
 
     return random_subject.to_s
@@ -540,7 +555,7 @@ class Notifier < ActionMailer::Base
     #recipients checkpoint.goal.user.first_name + "<" + checkpoint.goal.user.email + ">"
     #bcc        ["jurowski@gmail.com"]
     from       "HabitForge Reminder <noreplygoalcheckpoint@habitforge.com>"
-    subject    get_random_subject_reminder(goal.response_question)
+    subject    get_random_subject_reminder(goal.response_question, goal)
     body       :goal => goal
     content_type "text/html"
   end
@@ -555,7 +570,7 @@ class Notifier < ActionMailer::Base
     
     ### THIS WILL BREAK IF YOU USE MYLEARNINGHABIT.COM
     from       "My Learning Habit Reminder <noreplygoalcheckpoint@habitforge.com>"
-    subject    get_random_subject_reminder(goal.response_question)
+    subject    get_random_subject_reminder(goal.response_question, goal)
     body       :goal => goal
     content_type "text/html"
   end  
@@ -565,7 +580,7 @@ class Notifier < ActionMailer::Base
     #recipients checkpoint.goal.user.first_name + "<" + checkpoint.goal.user.email + ">"
     #bcc        ["jurowski@gmail.com"]
     from       "For It To Be Reminder <noreplygoalcheckpoint@habitforge.com>"
-    subject    get_random_subject_reminder(goal.response_question)
+    subject    get_random_subject_reminder(goal.response_question, goal)
     body       :goal => goal
     content_type "text/html"
   end
@@ -577,8 +592,8 @@ class Notifier < ActionMailer::Base
     #recipients checkpoint.goal.user.first_name + "<" + checkpoint.goal.user.email + ">"
     #bcc        ["jurowski@gmail.com"]
     from       "HabitForge Daily Check-In <noreplygoalcheckpoint@habitforge.com>"
-    #subject    get_random_subject
-    subject    "HF: Time to check in!"
+    subject    get_random_subject(checkpoint.goal)
+    #subject    "HF: Time to check in!"
     body       :checkpoint => checkpoint
     content_type "text/html"
   end
@@ -589,8 +604,8 @@ class Notifier < ActionMailer::Base
     #recipients checkpoint.goal.user.first_name + "<" + checkpoint.goal.user.email + ">"
     #bcc        ["jurowski@gmail.com"]
     from       "HabitForge Daily Check-In <noreplygoalcheckpoint@habitforge.com>"
-    #subject    get_random_subject
-    subject    "HF: Time to check in!"
+    subject    get_random_subject(checkpoint.goal)
+    #subject    "HF: Time to check in!"
     body       :checkpoint => checkpoint
     content_type "text/html"
   end
@@ -642,7 +657,7 @@ class Notifier < ActionMailer::Base
 
     recipients checkpoint.goal.user.email
     from       "HabitForge Daily Check-In <noreplygoalcheckpoint@habitforge.com>"
-    subject    get_random_subject
+    subject    get_random_subject(checkpoint.goal)
     body       :checkpoint => checkpoint
     content_type "text/html"
   end
@@ -651,7 +666,7 @@ class Notifier < ActionMailer::Base
 
     recipients checkpoint.goal.user.email
     from       "HabitForge Daily Check-In <noreplygoalcheckpoint@habitforge.com>"
-    subject    get_random_subject
+    subject    get_random_subject(checkpoint.goal)
     body       :checkpoint => checkpoint
     content_type "text/html"
   end
