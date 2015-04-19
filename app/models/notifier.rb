@@ -18,11 +18,16 @@ class Notifier < ActionMailer::Base
     #random_number = rand(arr_subject.size) + 0 #between 0 and arr_subject.size
     random_subject = arr_subject[random_number]
 
-    if !goal.user.is_premium and (goal.first_start_date and goal.first_start_date >'2015-01-28'.to_date)
-      if goal.days_since_first_checkpoint > 0
-          days_left = (30 - goal.days_since_first_checkpoint)
-          random_subject = random_subject + " (" + days_left.to_s + " of tracking left...upgrade to track forever)"
+    begin
+      if !goal.user.is_premium and (goal.first_start_date and goal.first_start_date >'2015-01-28'.to_date)
+        if goal.days_since_first_checkpoint > 0
+            days_left = (30 - goal.days_since_first_checkpoint)
+            random_subject = random_subject + " (" + days_left.to_s + " of tracking left...upgrade to track forever)"
+        end
       end
+    rescue
+      ### junk
+      random_number = 0
     end
 
     return random_subject.to_s
@@ -41,13 +46,17 @@ class Notifier < ActionMailer::Base
     random_subject = arr_subject[random_number]
 
 
-    if !goal.user.is_premium and (goal.first_start_date and goal.first_start_date >'2015-01-28'.to_date)
-      if goal.days_since_first_checkpoint > 0
-          days_left = (30 - goal.days_since_first_checkpoint)
-          random_subject = random_subject + " (" + days_left.to_s + " of tracking left...upgrade to track forever)"
+    begin
+      if !goal.user.is_premium and (goal.first_start_date and goal.first_start_date >'2015-01-28'.to_date)
+        if goal.days_since_first_checkpoint > 0
+            days_left = (30 - goal.days_since_first_checkpoint)
+            random_subject = random_subject + " (" + days_left.to_s + " of tracking left...upgrade to track forever)"
+        end
       end
+    rescue
+      ### junk
+      random_number = 0
     end
-
 
     return random_subject.to_s
   end
