@@ -29,7 +29,7 @@ class Notifier < ActionMailer::Base
   end
 
 
-  def get_random_subject_reminder(response_question = "your goal", goal)
+  def get_random_subject_reminder(goal, response_question = "your goal")
     #random_subject = "HF: Daily Check-In ... How did you do yesterday?"
     arr_subject = Array.new
     arr_subject.push(["[HF] Don't forget about \"#{response_question}\"!"])
@@ -555,7 +555,7 @@ class Notifier < ActionMailer::Base
     #recipients checkpoint.goal.user.first_name + "<" + checkpoint.goal.user.email + ">"
     #bcc        ["jurowski@gmail.com"]
     from       "HabitForge Reminder <noreplygoalcheckpoint@habitforge.com>"
-    subject    get_random_subject_reminder(goal.response_question, goal)
+    subject    get_random_subject_reminder(goal, goal.response_question)
     body       :goal => goal
     content_type "text/html"
   end
@@ -570,7 +570,7 @@ class Notifier < ActionMailer::Base
     
     ### THIS WILL BREAK IF YOU USE MYLEARNINGHABIT.COM
     from       "My Learning Habit Reminder <noreplygoalcheckpoint@habitforge.com>"
-    subject    get_random_subject_reminder(goal.response_question, goal)
+    subject    get_random_subject_reminder(goal, goal.response_question)
     body       :goal => goal
     content_type "text/html"
   end  
@@ -580,7 +580,7 @@ class Notifier < ActionMailer::Base
     #recipients checkpoint.goal.user.first_name + "<" + checkpoint.goal.user.email + ">"
     #bcc        ["jurowski@gmail.com"]
     from       "For It To Be Reminder <noreplygoalcheckpoint@habitforge.com>"
-    subject    get_random_subject_reminder(goal.response_question, goal)
+    subject    get_random_subject_reminder(goal, goal.response_question)
     body       :goal => goal
     content_type "text/html"
   end
