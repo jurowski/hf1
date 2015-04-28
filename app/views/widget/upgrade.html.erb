@@ -399,13 +399,13 @@ Author: RedPencilMedia
   <%
   ### 7-Day Deal of 30% off
   ### Wait until the user has been around for 1 week before sending this
-  if (3 == 4) and current_user.creation_date < (current_user.dtoday - 7) and current_user.creation_date >  (current_user.dtoday - 14)
+  if current_user.creation_date < (current_user.dtoday - 7) and current_user.creation_date >  (current_user.dtoday - 14)
       %>
       <hr>
       <br>
       <div class="alert">
           <center>
-      <h2><mark><strong>This Week Only:</strong><br> Get 30% off of HabitForge HabitPro Membership!</mark></h2> <h3><strong>Use coupon code "<mark>WEEK230</mark>"</strong></h3>
+      <h2><mark><strong>This Week Only:</strong><br> Get 30% off of HabitForge HabitPro Membership for 6 months!</mark></h2> <h3><strong>Use coupon code "<mark>WEEK230</mark>"</strong></h3>
           </center>
      </div>
      <hr>
@@ -418,13 +418,13 @@ Author: RedPencilMedia
 
 
 
-  <% if (3 == 4) and params[:show_coupon] and params[:show_coupon] == "quick40" %>
+  <% if params[:show_coupon] and params[:show_coupon] == "quick40" %>
 
     <% logger.info("sgj:upgrade:show_coupon:quick40:" + current_user.email) %>
     <tr>
       <td colspan=2>
       <center>
-      <h1><mark>Save 40% off forever</mark></h1>
+      <h1><mark>Save 40% off for the first 6 months</mark></h1>
       <h2>Use Promo Code <mark>QUICK40</mark> below <br>to take and additional 40% off of the prices listed below
       </h2>
       </center>
@@ -438,9 +438,9 @@ Author: RedPencilMedia
   <tr>
     <td colspan=2>
     <center>
-    <h1><mark>Flash Deal for New Signups <br><i>(Valid First Day Only)</i><br>Save 40% off forever</mark></h1>
+    <h1><mark>Flash Deal for New Signups <br><i>(Valid First Day Only)</i><br>Save 40% off the first 6 months</mark></h1>
     <h2>Use Promo Code <mark>NEWDAY9Q7</mark> below <br>to take and additional 40% off of the prices listed below
-    <br>(Valid Only on the Same Day that you Signed Up)</h2>
+    <br>(Valid Only on the Same Day that you Signed Up ... good for the first 6 months)</h2>
     </center>
     </td>
   </tr>
