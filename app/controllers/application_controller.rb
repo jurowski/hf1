@@ -261,43 +261,43 @@ class ApplicationController < ActionController::Base
       return @current_user if defined?(@current_user)      
 
       ###### TEST REMOVE ME AFTER TEST
-      if params[:google_email]
-        session[:google_email] = params[:google_email]
-      end     
+      # if params[:google_email]
+      #   session[:google_email] = params[:google_email]
+      # end     
 
 
-      begin 
-        if session[:fb_username]
-          user = User.find(:first, :conditions => "fb_username = '#{session[:fb_username]}'")
-          if user
-            @current_user = user
-            return @current_user
-          end
-        end
-      rescue
-        logger.error("sgj:application_controller.rb:error while working w/ facebook current_user code")
-      end
+      # begin 
+      #   if session[:fb_username]
+      #     user = User.find(:first, :conditions => "fb_username = '#{session[:fb_username]}'")
+      #     if user
+      #       @current_user = user
+      #       return @current_user
+      #     end
+      #   end
+      # rescue
+      #   logger.error("sgj:application_controller.rb:error while working w/ facebook current_user code")
+      # end
 
-      if session[:google_email] != nil
-        user = User.find(:first, :conditions => "google_email = '#{session[:google_email]}'")
-        if user
-          session[:email] = user.email
-          session[:single_login] = true
+      # if session[:google_email] != nil
+      #   user = User.find(:first, :conditions => "google_email = '#{session[:google_email]}'")
+      #   if user
+      #     session[:email] = user.email
+      #     session[:single_login] = true
 
-          @current_user = user
-          return @current_user
-        end
+      #     @current_user = user
+      #     return @current_user
+      #   end
 
-        user = User.find(:first, :conditions => "email = '#{session[:google_email]}'")
-        if user
-          session[:email] = user.email
-          session[:single_login] = true
+      #   user = User.find(:first, :conditions => "email = '#{session[:google_email]}'")
+      #   if user
+      #     session[:email] = user.email
+      #     session[:single_login] = true
 
-          @current_user = user
-          return @current_user
-        end
+      #     @current_user = user
+      #     return @current_user
+      #   end
 
-      end
+      # end
 
 
 
