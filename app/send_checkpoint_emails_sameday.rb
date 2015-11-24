@@ -32,18 +32,6 @@ class SendCheckpointEmails < ActiveRecord::Base
     
     test_user_id1 = "29103"
     test_user_id2 = "13383"
-  elsif `uname -n`.strip == 'gns499aa.joyent.us'
-    #### DEV SETTINGS ON HABITFORGE VPS
-    #testing = 0 #send emails to everyone as needed
-    testing = 1 #only send emails to "jurowski@gmail.com/jurowski@pediatrics.wisc.edu" as needed
-
-    adjust_server_hour = -6 ### this server is listing its time as GMT -0000
-
-    #send_emails = 0
-    send_emails = 1
-
-    test_user_id1 = "3"
-    test_user_id2 = "3"
   else
     #### SETTINGS FOR DEV LAPTOP
     #testing = 0 #send emails to everyone as needed
@@ -66,7 +54,7 @@ class SendCheckpointEmails < ActiveRecord::Base
   jump_forward_days = 0
   
   ## add 3600 seconds for each hour, so 14400 = 4 hours.... won't affect the day/date... just the hour, for time zone re-sending if failures occurred, you could move the hour forward or backward
-  hours_to_jump = 0
+  hours_to_jump = 1
  # hours_to_jump = -5
 
   jump_forward_seconds = (hours_to_jump + adjust_server_hour) * 3600  
