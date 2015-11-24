@@ -443,13 +443,15 @@ class SendCheckpointEmails < ActiveRecord::Base
     first_name_letter_array = [['a','d'],['e','i'],['j','p'],['q','v'],['w','z']]
     first_name_letter_array.each do |first_name_letter|
 
-    @users = User.find(:all, :conditions => user_conditions)
-
-    for user in @users
 
       logtext = "Processing emails for #{first_name_letter[0]} through #{first_name_letter[1]}"
       puts logtext
       logger.info logtext 
+
+    @users = User.find(:all, :conditions => user_conditions)
+
+    for user in @users
+
 
       first_name_downcase = user.first_name.downcase[0].to_i
       if (first_name_downcase >= first_name_letter[0].to_i) and (first_name_downcase <= first_name_letter[1].to_i)
