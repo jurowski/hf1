@@ -1045,12 +1045,11 @@ class HooksController < ApplicationController
 
 
           # "currency":"usd","id":"habitforge-monthly-295","object":"plan"
-          #str1_markerstring = '"currency":"usd","id":"'
-          #str2_markerstring = '","object":"plan"'
-          #i = input_string.index(str1_markerstring)
-          #j = input_string.index(str2_markerstring)
-          #user_plan = input_string[i+23..j-1]
-          user_plan = "HabitForge Monthly @ $2.95"
+          str1_markerstring = '"currency":"usd","id":"'
+          str2_markerstring = '","object":"plan"'
+          i = input_string.index(str1_markerstring)
+          j = input_string.index(str2_markerstring)
+          user_plan = input_string[i+23..j-1]
 
           percent_off = 0
           if line.to_s.include? 'percent_off'

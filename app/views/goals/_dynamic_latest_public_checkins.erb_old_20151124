@@ -1,0 +1,556 @@
+<script>
+	 // Need to kick this off manually because if it only re-loads the partial,
+	 // it won't get re-called from the main layout file
+     Index.initMiniCharts();
+</script>
+
+
+<% 
+### whether to display in the feed those who haven't checked in for a while 
+@hide_slackers = true 
+%>
+
+<!-- Time.now() -->
+<div style="padding:5px;"> 
+<!-- <div style="background-color:#F7F8E0;padding:5px;">  -->
+	<p>
+	<% 
+	##### controls how many to show at once
+	if session[:dynamic_latest_public_checkins_max] == nil
+		session[:dynamic_latest_public_checkins_max] = 3
+	end
+
+
+	if params[:mod_qty]
+		session[:dynamic_latest_public_checkins_max] += params[:mod_qty].to_i
+	end
+	%>
+
+	<% max = session[:dynamic_latest_public_checkins_max] %>
+	<% headroom = 10 %>
+	<% counter = 0 %>
+
+	<!--Latest <= max - 1 > Successes...<br> -->
+
+	<% 
+	# if current_user.feed_filter_hide_pmo
+
+	# 	encourage_items = EncourageItem.find(:all, :conditions => "goal_category != 'PMO' and goal_category != 'Drugs' and goal_category != 'Drinking' and checkpoint_date >= '#{current_user.dyesterday }' or encourage_type_new_goal_bool = '1'", :order => "id DESC", :limit => (max + 10))
+
+	# else
+
+	# 	encourage_items = EncourageItem.find(:all, :conditions => "checkpoint_date >= '#{current_user.dyesterday }' or encourage_type_new_goal_bool = '1'", :order => "id DESC", :limit => (max + 10))
+
+	# end
+
+	encourage_conditions = ""
+
+	if current_user and current_user.feed_filter_show_my_categories_only
+
+		need_first = true
+		current_user.my_goal_categories.each do |category|
+
+			if category != ""
+				if need_first
+					need_first = false
+					encourage_conditions += "(goal_category = '" + category + "'"
+				else
+					encourage_conditions += " or goal_category = '" + category + "'"
+				end
+			end
+
+		end
+		if !need_first
+			encourage_conditions += ") and "
+		end
+
+
+	else
+		### show all categories
+		### should we hide PMO, drinking and drugs?
+		if current_user.feed_filter_hide_pmo
+			encourage_conditions += "goal_category != 'PMO' and goal_category != 'Drugs' and goal_category != 'Drinking' and "
+		end
+
+	end
+
+
+	encourage_conditions += "checkpoint_date >= '#{current_user.dyesterday }' or encourage_type_new_goal_bool = '1'"
+
+
+	encourage_items = EncourageItem.find(:all, :conditions => encourage_conditions, :order => "id DESC", :limit => (max + headroom))
+	%>
+
+
+
+	<% arr_spin_speed = Array.new() %>
+	<% encourage_items.each do |e| %>
+
+		<% 
+		habit_info = ""
+		begin
+			e_user = User.find(e.user_id) 
+		rescue
+			e_user = false
+		end
+		%>
+
+		<% if counter <= max and e_user %>
+
+			<% counter += 1 %>
+
+			
+			<div style="padding-top:5px;">
+
+			<% if !e.encourage_type_new_goal_bool and !e.encourage_type_new_checkpoint_bool %>
+				<!-- IT IS A SLACKER -->
+
+				<% if !@hide_slackers %>
+
+					<span style="font-size:.7em;"><%= time_ago_in_words(e.updated_at) %> ago...</span>
+					<br>
+
+					<image src="/images/icons/nothing_50px.png" id="sprout_<%= e.goal_id.to_s %>" />
+						<% habit_info += " This Habit Needs a Boost!" %>
+					<script type='text/javascript'>
+					$('#sprout_<%= e.goal_id.to_s %>').tipsy();
+					</script>
+
+					<% if current_user.goal_ids_that_i_follow.include?(e.goal_id) or (current_user.id == e.user_id) %>
+					    <a href="#" class="btn disabled"><i class="icon-rss"></i></a>
+					<% else %>
+				        <a href="/cheers?start_following_goal_id=<%= e.goal_id.to_s %>&email=<%= current_user.email %>" onclick="return confirm('Are you sure?')" id='follow_<%= e.goal_id.to_s %>'  class="btn" style="font-size:1.5em;" title="Follow <%= e.user_name %>'s Progress" ><i class="icon-rss"></i></a>
+				        <script type='text/javascript'>
+				            $('#follow_<%= e.goal_id.to_s %>').tipsy();
+				        </script>
+					<% end %>
+
+
+					<% if (current_user.id == e.user_id) %>
+					    <a href="#" class="btn disabled"><i class="icon-heart-empty"></i></a>
+					<% else %>
+						<a href="/tomessages/new?gid=<%=e.goal_id.to_s%>&goal_id=<%=e.goal_id.to_s%>&from_type=member&tomessage_subject=<%= e.goal_name %>&to_id=<%= e.user_id %>" id='encourage_<%= e.goal_id.to_s %>' class="btn red" style="font-size:1.5em;" title='Encourage <%= e.user_name %>! <%= habit_info %>'> <i class="icon-heart-empty"></i></a> <span style="font-weight:bold;font-size:1.2em;"> 
+					<% end %>
+
+					<!-- if member_goal.user.show_gravatar -->
+					<% gravatar = "http://www.gravatar.com/avatar/#{Digest::MD5.hexdigest(e.user_email.downcase)}?d=mm" %>
+					<a href="/users/<%= e.user_id.to_s %>/profile"><img id="grav1_<%= e.goal_id.to_s %>" title="<%= e_user.profile_info %>" src="<%= gravatar %>&s=34" style="padding-top:2px;" /></a>            
+					<script type='text/javascript'>
+					$('#grav1_<%= e.goal_id.to_s %>').tipsy();
+					</script>
+
+					<% 
+					show_impact_image = false
+					impact_image = "100"
+					if e_user.impact_points
+						if e_user.impact_points >= 100 and e_user.impact_points < 250
+							show_impact_image = true
+							impact_image = "100"
+						end
+						if e_user.impact_points >= 250 and e_user.impact_points < 500
+							show_impact_image = true
+							impact_image = "250"
+						end
+						if e_user.impact_points >= 500 and e_user.impact_points < 750
+							show_impact_image = true
+							impact_image = "500"
+						end
+						if e_user.impact_points >= 750 and e_user.impact_points < 1000
+							show_impact_image = true
+							impact_image = "750"
+						end
+						if e_user.impact_points >= 1000
+							show_impact_image = true
+							impact_image = "1000"
+						end
+					end
+					%>
+					<% if show_impact_image %>
+						<img id="impact1_<%= e.goal_id.to_s %>" title="<%= e_user.impact_points.to_s %> impact points" src="/home/images/badges/badge_impact_points_<%= impact_image %>.png" />
+						<script type='text/javascript'>
+						$('#impact1_<%= e.goal_id.to_s %>').tipsy();
+						</script>
+					<% end %>
+					<!-- else -->
+					<!--img src="/home/images/default_gravatar.png" height="20px"/-->
+					<!-- end -->
+
+					<%
+					arr_subject = Array.new
+					arr_subject.push(["could use some encouragement with"])
+					arr_subject.push(["has not checked in for a while with"])
+					arr_subject.push(["needs a boost to keep"])
+
+					random_number = 0
+					random_number = rand(arr_subject.size) + 0 #between 0 and arr_subject.size
+					random_subject = arr_subject[random_number]
+
+					subject_value = random_subject.to_s
+					%>
+
+					<%= e.user_name %></span> <%= subject_value %> <span style="background-color:#FFFF99;">
+
+
+					<a href="/goals/new?goal_template_text=<%= e.goal_name %>&category=<%= e.goal_category %>" id='start_<%= e.goal_id.to_s %>' title="Do this! Start <%= e.goal_name %>!"><%= e.goal_name %></a><script type='text/javascript'>$('#start_<%= e.goal_id.to_s %>').tipsy();</script></span>
+					<script type='text/javascript'>
+					$('#encourage_<%= e.goal_id.to_s %>').tipsy();
+					</script>   
+
+				<% end #if !@hide_slackers %>
+
+			<% else %>
+				<!-- IT IS EITHER A CONGRATS CHECKPOINT OR A NEW GOAL -->
+
+				<span style="font-size:.7em;"><%= time_ago_in_words(e.updated_at) %> ago...</span>
+				<br>
+
+
+				<% if e.encourage_type_new_goal_bool %>
+					<image src="/images/icons/sprout_50px.png" id="sprout_<%= e.goal_id.to_s %>" />
+					<% habit_info += " Just starting this Habit!" %>
+				<% else %>
+
+
+
+
+					<% if e.goal_momentum and e.goal_momentum < 75 %>
+
+	                   <% momentum = e.goal_momentum %>
+
+	                   <%
+	                   image_number = 1
+	                   if momentum >= 25
+	                    image_number = 2
+	                   end
+	                   if momentum >= 50
+	                    image_number = 3
+	                   end
+	                   if momentum >= 75
+	                    images = 4
+	                   end
+
+	                   arr_spin_speed[e.goal_id] = 0 
+	                   if momentum > 0
+	                    arr_spin_speed[e.goal_id] = (100/momentum)*3
+	                   end
+	                   %>
+
+                        <img id="gear_<%= e.goal_id.to_s %>" src="/home/images/gears/gear_thick_small_orange_<%= image_number.to_s %>.png" />
+                        <% habit_info += " Habit Strength: " + momentum.to_s + "% Momentum" %>
+                        <style>
+ 
+/*                        #gear_<%= e.goal_id.to_s %> {
+                            -webkit-animation: rotation <%= arr_spin_speed[e.goal_id]%>s infinite linear;
+                        }
+
+                        @-webkit-keyframes rotation {
+                            from {-webkit-transform: rotate(0deg);}
+                            to   {-webkit-transform: rotate(359deg);}
+                        }
+*/
+
+                        #gear_<%= e.goal_id.to_s %> {
+                            -webkit-animation: rotation <%= arr_spin_speed[e.goal_id]%>s infinite linear;
+
+                            -webkit-animation-name: spin;
+                            -webkit-animation-duration: <%= arr_spin_speed[e.goal_id]%>s;
+                            -webkit-animation-iteration-count: infinite;
+                            -webkit-animation-timing-function: linear;
+                            -moz-animation-name: spin;
+                            -moz-animation-duration: <%= arr_spin_speed[e.goal_id]%>s;
+                            -moz-animation-iteration-count: infinite;
+                            -moz-animation-timing-function: linear;
+                            -ms-animation-name: spin;
+                            -ms-animation-duration: <%= arr_spin_speed[e.goal_id]%>s;
+                            -ms-animation-iteration-count: infinite;
+                            -ms-animation-timing-function: linear;
+                            
+                            animation-name: spin;
+                            animation-duration: <%= arr_spin_speed[e.goal_id]%>s;
+                            animation-iteration-count: infinite;
+                            animation-timing-function: linear;
+
+                        }
+
+                        @-ms-keyframes spin {
+                            from { -ms-transform: rotate(0deg); }
+                            to { -ms-transform: rotate(360deg); }
+                        }
+                        @-moz-keyframes spin {
+                            from { -moz-transform: rotate(0deg); }
+                            to { -moz-transform: rotate(360deg); }
+                        }
+                        @-webkit-keyframes spin {
+                            from { -webkit-transform: rotate(0deg); }
+                            to { -webkit-transform: rotate(360deg); }
+                        }
+                        @keyframes spin {
+                            from {
+                                transform:rotate(0deg);
+                            }
+                            to {
+                                transform:rotate(360deg);
+                            }
+                        }
+
+                        </style>
+                        
+
+					<% end %> <!-- end whether to show gear -->
+
+
+					<!-- show category image... whether established or not 
+					(that part is handled in the model) -->
+					<% if e.goal_momentum %>
+
+						<% if e.goal_category and e.category_image_name %>
+							<% if e.goal_momentum > 74 %>
+
+
+
+
+                                 <span class="easy-pie-chart" name="chart_<%= e.goal_id.to_s %>" id="chart_<%= e.goal_id.to_s %>">
+                                    <span class="number visits" name="chart_num_<%= e.goal_id.to_s %>" id="chart_num_<%= e.goal_id.to_s %>" style="margin-top:-20px;padding:20px;padding-left:15px;"  data-percent="<%= e.goal_momentum %>">
+                                    	<span>
+
+											<image src="/images/icons/<%= e.category_image_name %>" id="sprout_<%= e.goal_id.to_s %>" />	
+											<% habit_info += " Forged " + e.goal_category + " Habit with " + e.goal_momentum.to_s + "% Momentum." %>
+                                    	</span>
+                                    </span>
+                                 </span>
+
+
+
+							<% else %>
+
+								<image src="/images/subnav-arrow.png" />
+                                 <span class="easy-pie-chart" name="chart_<%= e.goal_id.to_s %>" id="chart_<%= e.goal_id.to_s %>">
+                                    <span class="number transactions" name="chart_num_<%= e.goal_id.to_s %>" id="chart_num_<%= e.goal_id.to_s %>" style="margin-top:-20px;padding:20px;padding-left:15px;"  data-percent="<%= e.goal_momentum %>">
+                                    	<span>
+											<image src="/images/icons/<%= e.category_image_name %>" id="sprout_<%= e.goal_id.to_s %>" />	
+											<% habit_info += " Forging this " + e.goal_category + " Habit." %>
+
+                                    	</span>
+                                    </span>
+                                 </span>
+
+							<% end %>
+						<% else %>
+							<!-- delete this part after 20140104
+							because by then all "e" records will have
+							image info recorded in the db record
+							instead of dynamically assigned -->
+
+							<% found_category = false %>
+
+							<% if !found_category and e.goal_category and e.goal_category == "Exercise" %>
+								<% found_category = true %>
+								<image src="/images/icons/sprout_grown_exercise_50px.png" id="sprout_<%= e.goal_id.to_s %>" />	
+								<% habit_info += " Exercise Habit " + e.goal_days_into_it.to_s + " Days in with " + e.goal_success_rate_percentage.to_s + "% Success during the past 30 days." %>
+							<% end %>
+
+							<% if !found_category and e.goal_category and e.goal_category == "Diet, Healthy Foods and Water" %>
+								<% found_category = true %>
+								<image src="/images/icons/sprout_grown_food1_50px.png" id="sprout_<%= e.goal_id.to_s %>" />	
+								<% habit_info += " Diet, Healthy Foods and Water Habit " + e.goal_days_into_it.to_s + " Days in with " + e.goal_success_rate_percentage.to_s + "% Success during the past 30 days." %>
+
+							<% end %>
+
+							<% if !found_category and e.goal_category and e.goal_category == "Relationships" %>
+								<% found_category = true %>
+								<image src="/images/icons/sprout_grown_relationships_50px.png" id="sprout_<%= e.goal_id.to_s %>" />	
+
+								<% habit_info += " Relationships Habit " + e.goal_days_into_it.to_s + " Days in with " + e.goal_success_rate_percentage.to_s + "% Success during the past 30 days." %>
+							<% end %>
+
+							<% if !found_category %>
+								<% found_category = true %>
+								<image src="/images/icons/sprout_grown_50px.png" id="sprout_<%= e.goal_id.to_s %>" />	
+
+								<% habit_info += " Habit " + e.goal_days_into_it.to_s + " Days in with " + e.goal_success_rate_percentage.to_s + "% Success during the past 30 days." %>
+							<% end %>
+
+
+						<% end %> <!-- end whether "e" record has image info in it -->
+
+
+					<% end %> <!-- end whether goal_momentum exists-->
+
+
+
+				<% end %>
+				<script type='text/javascript'>
+				$('#sprout_<%= e.goal_id.to_s %>').tipsy();
+				</script>
+				<script type='text/javascript'>
+				$('#chart_<%= e.goal_id.to_s %>').tipsy();
+				</script>
+
+
+
+
+
+
+				<% if e.encourage_type_new_goal_bool %>
+
+
+					<% if (current_user.id == e.user_id) %>
+					    <a href="#" class="btn disabled"><i class="icon-thumbs-up"></i></a>
+					<% else %>
+						<a href="/tomessages/new?gid=<%=e.goal_id.to_s%>&goal_id=<%=e.goal_id.to_s%>&from_type=member&tomessage_subject=<%= e.goal_name %>&to_id=<%= e.user_id %>" id='encourage_<%= e.goal_id.to_s %>' class="btn " style="font-size:1.5em;" title="Encourage <%= e.user_name %>! <%= habit_info %>"> <i class="icon-thumbs-up"></i></a> <span style="font-weight:bold;font-size:1.2em;"> 
+					<% end %>
+
+				<% else %>
+
+
+					<% if (current_user.id == e.user_id) %>
+					    <a href="#" class="btn disabled"><i class="icon-thumbs-up"></i></a>
+					<% else %>
+						<a href="/tomessages/new?gid=<%=e.goal_id.to_s%>&goal_id=<%=e.goal_id.to_s%>&from_type=member&message_type=congrats&tomessage_subject=<%= e.goal_name %>&to_id=<%= e.user_id %>" id='encourage_<%= e.goal_id.to_s %>' class="btn " style="font-size:1.5em;" title="Congratulate <%= e.user_name %>!  <%= habit_info %>"> <i class="icon-thumbs-up"></i></a> <span style="font-weight:bold;font-size:1.2em;"> 
+					<% end %>
+
+				<% end %>
+
+
+				<!-- if member_goal.user.show_gravatar -->
+				<% gravatar = "http://www.gravatar.com/avatar/#{Digest::MD5.hexdigest(e.user_email.downcase)}?d=mm" %>
+				<a href="/users/<%= e.user_id.to_s %>/profile"><img id="grav2_<%= e.goal_id.to_s %>" title="<%= e_user.profile_info %>" src="<%= gravatar %>&s=34" style="padding-top:2px;" /></a>            
+				<script type='text/javascript'>
+				$('#grav2_<%= e.goal_id.to_s %>').tipsy();
+				</script>
+
+
+				<% 
+				show_impact_image = false
+				impact_image = "100"
+				if e_user.impact_points
+					if e_user.impact_points >= 100 and e_user.impact_points < 250
+						show_impact_image = true
+						impact_image = "100"
+					end
+					if e_user.impact_points >= 250 and e_user.impact_points < 500
+						show_impact_image = true
+						impact_image = "250"
+					end
+					if e_user.impact_points >= 500 and e_user.impact_points < 750
+						show_impact_image = true
+						impact_image = "500"
+					end
+					if e_user.impact_points >= 750 and e_user.impact_points < 1000
+						show_impact_image = true
+						impact_image = "750"
+					end
+					if e_user.impact_points >= 1000
+						show_impact_image = true
+						impact_image = "1000"
+					end
+				end
+				%>
+				<% if show_impact_image %>
+					<img id="impact2_<%= e.goal_id.to_s %>" title="<%= e_user.impact_points.to_s %> impact points" src="/home/images/badges/badge_impact_points_<%= impact_image %>.png" />
+					<script type='text/javascript'>
+					$('#impact2_<%= e.goal_id.to_s %>').tipsy();
+					</script>
+				<% end %>
+
+
+				<!-- else -->
+				<!--img src="/home/images/default_gravatar.png" height="20px"/-->
+				<!-- end -->
+
+				<% if e.encourage_type_new_goal_bool %>
+
+					<%
+					arr_subject = Array.new
+					arr_subject.push(["is determined to start a new habit of"])
+					arr_subject.push(["has decided to start"])
+					arr_subject.push(["is going to be"])
+					arr_subject.push(["will start"])
+					arr_subject.push(["is committing to"])
+					arr_subject.push(["is ready to start"])
+					arr_subject.push(["will be forging a habit of"])
+					arr_subject.push(["is embarking on a journey of"])
+
+					random_number = 0
+					random_number = rand(arr_subject.size) + 0 #between 0 and arr_subject.size
+					random_subject = arr_subject[random_number]
+
+					subject_value = random_subject.to_s
+					%>
+
+					<%= e.user_name %></span> <%= subject_value %> <span style="background-color:#FFFF99;">
+				<% else %>
+
+					<%
+					arr_subject = Array.new
+					arr_subject.push(["succeeded at"])
+					arr_subject.push(["rocked it by"])
+					arr_subject.push(["took action by"])
+					arr_subject.push(["showed resolve by"])
+					arr_subject.push(["deserves props for"])
+					arr_subject.push(["gets a congrats for"])
+					arr_subject.push(["stuck with it by"])
+					arr_subject.push(["strengthened the habit of"])
+					arr_subject.push(["fought inertia by"])
+					arr_subject.push(["said 'I can do this, no problem' by"])
+
+
+					random_number = 0
+					random_number = rand(arr_subject.size) + 0 #between 0 and arr_subject.size
+					random_subject = arr_subject[random_number]
+
+					subject_value = random_subject.to_s
+					%>
+
+
+					<%= e.user_name %></span> <%= subject_value %> <span style="background-color:#FFFF99;">
+				<% end %><a href="/goals/new?goal_template_text=<%= e.goal_name %>&category=<%= e.goal_category %>" id='start_<%= e.goal_id.to_s %>' title="Do this! Start <%= e.goal_name %>!"><%= e.goal_name %></a><script type='text/javascript'>$('#start_<%= e.goal_id.to_s %>').tipsy();</script></span> <% if e.encourage_type_new_checkpoint_bool %><% if current_user.dtoday >= e.checkpoint_date %> today! <% elsif current_user.dyesterday == e.checkpoint_date %> yesterday! <% end %><% end %>
+				<script type='text/javascript'>
+				$('#encourage_<%= e.goal_id.to_s %>').tipsy();
+				</script>   
+
+			<% end %>
+
+ 
+
+			</div>
+
+
+
+		<% else %>
+			<% break %>
+		<% end %> <!-- end if counter <= max -->
+
+
+	<% end %> <!-- end for each encourgement item-->
+
+	<!-- -----------------
+
+	#slacker_goals = arr_random_slacker_goal(5)
+	#slacker_goals.each do |goal|
+
+		<br><= goal.title >
+
+	#end
+	-->
+
+
+	 &nbsp &nbsp &nbsp &nbsp
+	 <a onclick="toggle_show('spinner_dynamic_latest_public_checkins');reload_show_latest_mod_qty('5');" class="glyphicons more"><i clas="icon-more"></i></a>
+
+
+	 <!--
+	 < if max > 3 >
+	 	 
+		 <a onclick="toggle_show('spinner_dynamic_latest_public_checkins');reload_show_latest_mod_qty('-3');">show less</a> 
+	 < end >
+	-->
+
+	</p>
+</div>
+<br>
+
+<!-- HIDE THE SPINNER NOW THAT THE PAGE IS DONE LOADING -->
+<script>
+toggle_hide('spinner_dynamic_latest_public_checkins');
+</script>

@@ -526,7 +526,7 @@ class SendCheckpointEmails < ActiveRecord::Base
           ### Iterate through existing checkpoints for this goal
           @checkpoints = Checkpoint.find(:all, :conditions => "goal_id = '#{goal.id}' and checkin_date = '#{checkin_date}' and status = 'email not yet sent'")
           if @checkpoints.size > 0
-            puts "checkpoint awaiting an email for #{goal.id} on #{checkin_date}"
+            #puts "checkpoint awaiting an email for #{goal.id} on #{checkin_date}"
             ######################################################################################################################################
             ### Now see if that same user has additional goals
   ######################################################################################################################################

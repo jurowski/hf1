@@ -168,9 +168,7 @@ class User < ActiveRecord::Base
           plan = "HabitForge Monthly $2.95"
         when "habitforge-yearly-2395"
           plan = "HabitForge Yearly $23.95"
-        else
-	  plan = "HabitForge Monthly $2.95"
-	end
+        end
         user.kill_ads_until = '3000-01-01'
 
       else
@@ -186,9 +184,9 @@ class User < ActiveRecord::Base
 
       end
 
-      #if coupon_discount > 0
-      #  plan = coupon_discount.to_s + "% off of the " + plan + " plan"
-      #end
+      if coupon_discount > 0
+        plan = coupon_discount.to_s + "% off of the " + plan + " plan"
+      end
 
       ### Set default premium values
       user.combine_daily_emails = 0
