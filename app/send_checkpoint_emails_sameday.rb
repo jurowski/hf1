@@ -451,8 +451,8 @@ class SendCheckpointEmails < ActiveRecord::Base
       puts logtext
       logger.info logtext 
 
-      first_name_downcase = user.first_name.downcase[0]
-      if (first_name_downcase >= first_name_letter[0]) and (first_name_downcase <= first_name_letter[1])
+      first_name_downcase = user.first_name.downcase[0].to_i
+      if (first_name_downcase >= first_name_letter[0].to_i) and (first_name_downcase <= first_name_letter[1].to_i)
       ###################
       #### DATE FUNCTIONS 
       ###################
