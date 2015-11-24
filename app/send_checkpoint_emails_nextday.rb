@@ -2,8 +2,19 @@ require 'active_record'
 require 'date'
 require 'logger'
 class SendCheckpointEmails < ActiveRecord::Base
-  # This script emails people who have checkins due on their goals
+  # This NEXTDAY script emails people who have checkins due on their goals from the previous day
 
+
+
+  ### RUN IN DEV:
+  ### rvm use 1.8.7;cd /home/sgj700/rails_apps/hf1/;ruby script/runner app/send_checkpoint_emails_nextday.rb
+
+  ### RUN IN PRODUCTION:
+  ### cd /habitforge/current;RAILS_ENV=production /usr/bin/ruby /home/jurowsk1/etc/rails_apps/habitforge/current/script/runner /home/jurowsk1/etc/rails_apps/habitforge/current/app/send_checkpoint_emails_nextday.rb
+  #RAILS_ENV=production 
+  #/usr/bin/ruby 
+  #/home/jurowsk1/etc/rails_apps/habitforge/current/script/runner 
+  #/home/jurowsk1/etc/rails_apps/habitforge/current/app/send_checkpoint_emails_nextday.rb
 
 
   ### RUN IN DEV:
@@ -480,11 +491,22 @@ class SendCheckpointEmails < ActiveRecord::Base
 
 
 
+    first_name_letter_array = [['a','d'],['e','i'],['j','p'],['q','v'],['w','z']]
+    first_name_letter_array.each do |first_name_letter|
+
+
+      logtext = "Processing emails for #{first_name_letter[0]} through #{first_name_letter[1]}"
+      puts logtext
+      logger.info logtext 
+
 
     ###################
     ### Send email to users with goals that have a checkpoint of 'email not yet sent'
     ###################
     for user in @users
+
+      first_name_downcase = user.first_name.downcase[0].to_i
+      if (first_name_downcase >= first_name_letter[0].to_i) and (first_name_downcase <= first_name_letter[1].to_i)
     
       ###################
       #### DATE FUNCTIONS 
@@ -857,8 +879,10 @@ class SendCheckpointEmails < ActiveRecord::Base
           end
         end
       end
-    end
-    
+    end # for user in @users
+    end # first_name_letter_array.each do |first_name_letter|
+    end #  if (first_name_downcase >= first_name_letter[0].to_i) and (first_name_downcase <= first_name_letter[1].to_i)
+
 
 
 
