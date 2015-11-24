@@ -206,7 +206,7 @@ class SendCheckpointEmails < ActiveRecord::Base
       puts "zero users"
     end
 
-    first_name_letter_array = [['a','d'],['e','i'],['j','p'],['q','v'],['w','z']]
+    first_name_letter_array = [['a','b','c','d'],['e','f','g','h','i'],['j','k','l','m','n','o','p'],['q','r','s','t','u','v'],['w','x','y','z']]
     first_name_letter_array.each do |first_name_letter|
 
 
@@ -219,9 +219,15 @@ class SendCheckpointEmails < ActiveRecord::Base
     for user in @users
 
 
-      first_name_downcase = user.first_name.downcase[0].each_byte.first
-      if (first_name_downcase >= first_name_letter[0].each_byte.first) and (first_name_downcase <= first_name_letter[1].each_byte.first)
-        put user.first_name + " "
+      found_match = false
+      first_name_downcase = user.first_name.downcase[0]
+      first_name_letter.each do |letter_check|
+        if first_name_downcase == letter_check
+          put user.first_name + " "
+          found_match = true
+        end
+      end
+      if found_match
 
       ###################
       #### DATE FUNCTIONS 
@@ -461,7 +467,7 @@ class SendCheckpointEmails < ActiveRecord::Base
       puts "zero users"
     end
 
-    first_name_letter_array = [['a','d'],['e','i'],['j','p'],['q','v'],['w','z']]
+    first_name_letter_array = [['a','b','c','d'],['e','f','g','h','i'],['j','k','l','m','n','o','p'],['q','r','s','t','u','v'],['w','x','y','z']]
     first_name_letter_array.each do |first_name_letter|
 
 
@@ -475,9 +481,15 @@ class SendCheckpointEmails < ActiveRecord::Base
 
 
 
-      first_name_downcase = user.first_name.downcase[0].each_byte.first
-      if (first_name_downcase >= first_name_letter[0].each_byte.first) and (first_name_downcase <= first_name_letter[1].each_byte.first)
-        put user.first_name + " "
+      found_match = false
+      first_name_downcase = user.first_name.downcase[0]
+      first_name_letter.each do |letter_check|
+        if first_name_downcase == letter_check
+          put user.first_name + " "
+          found_match = true
+        end
+      end
+      if found_match
 
       ###################
       #### DATE FUNCTIONS 
