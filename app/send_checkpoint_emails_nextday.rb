@@ -238,6 +238,15 @@ class SendCheckpointEmails < ActiveRecord::Base
 
 
 
+    first_name_letter_array = [['a','d'],['e','i'],['j','p'],['q','v'],['w','z']]
+    first_name_letter_array.each do |first_name_letter|
+
+
+      logtext = "Creating checkpoints for #{first_name_letter[0]} through #{first_name_letter[1]}"
+      puts logtext
+      logger.info logtext 
+
+
 
     user_conditions = ""
     if testing == 1 ### assuming adminuseremail of "jurowski@gmail.com" or "jurowski@pediatrics.wisc.edu"
@@ -252,6 +261,9 @@ class SendCheckpointEmails < ActiveRecord::Base
       #### DATE FUNCTIONS 
       ###################
       ### GET USER DATE and TIMENOW ###
+
+      first_name_downcase = user.first_name.downcase[0].to_i
+      if (first_name_downcase >= first_name_letter[0].to_i) and (first_name_downcase <= first_name_letter[1].to_i)
 
 
       Time.zone = user.time_zone
@@ -429,7 +441,9 @@ class SendCheckpointEmails < ActiveRecord::Base
         ### DONE CREATING ALL CHECKPOINTS FOR THIS USER
         ###################
       end
-    end
+    end ### if user is in the range of letters
+    end ### for user in users
+    end ### for each grouping of letters
     
 
 
