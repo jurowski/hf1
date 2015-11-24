@@ -784,7 +784,7 @@ class SendCheckpointEmails < ActiveRecord::Base
           end
         end
       end
-    end ###       if first_name_downcase >= first_name_letter[0] and first_name_downcase <= first_name_letter[1]
+    #end ###       if first_name_downcase >= first_name_letter[0] and first_name_downcase <= first_name_letter[1]
     end #### for user in @users
     end ### first_name_letter_array.do each |first_name_letter|
 
