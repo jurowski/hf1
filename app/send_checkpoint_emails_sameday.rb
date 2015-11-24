@@ -227,7 +227,7 @@ class SendCheckpointEmails < ActiveRecord::Base
 
       first_name_downcase = user.first_name.downcase[0].to_i
       if (first_name_downcase >= first_name_letter[0].to_i) and (first_name_downcase <= first_name_letter[1].to_i)
-
+        put user.first_name + " "
 
       ###################
       #### DATE FUNCTIONS 
@@ -475,6 +475,8 @@ class SendCheckpointEmails < ActiveRecord::Base
 
       first_name_downcase = user.first_name.downcase[0].to_i
       if (first_name_downcase >= first_name_letter[0].to_i) and (first_name_downcase <= first_name_letter[1].to_i)
+          put user.first_name + " "
+
       ###################
       #### DATE FUNCTIONS 
       ###################
