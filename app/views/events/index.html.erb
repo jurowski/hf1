@@ -1,0 +1,38 @@
+<h1>Listing events</h1>
+
+<table>
+  <tr>
+    <th>Event type</th>
+    <th>User</th>
+    <th>Goal</th>
+    <th>Checkpoint</th>
+    <th>Expire at datetime</th>
+    <th>Valid at datetime</th>
+    <th>Valid at date</th>
+    <th>Expire at date</th>
+    <th>Valid at hour</th>
+    <th>Expire at hour</th>
+  </tr>
+
+<% @events.each do |event| %>
+  <tr>
+    <td><%=h event.event_type_id %></td>
+    <td><%=h event.user_id %></td>
+    <td><%=h event.goal_id %></td>
+    <td><%=h event.checkpoint_id %></td>
+    <td><%=h event.expire_at_datetime %></td>
+    <td><%=h event.valid_at_datetime %></td>
+    <td><%=h event.valid_at_date %></td>
+    <td><%=h event.expire_at_date %></td>
+    <td><%=h event.valid_at_hour %></td>
+    <td><%=h event.expire_at_hour %></td>
+    <td><%= link_to 'Show', event %></td>
+    <td><%= link_to 'Edit', edit_event_path(event) %></td>
+    <td><%= link_to 'Destroy', event, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New event', new_event_path %>

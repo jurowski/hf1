@@ -1,0 +1,18 @@
+<p>
+  <b>Name:</b>
+  <%=h @event_type.name %>
+</p>
+
+<p>
+  <b>Category:</b>
+  <%=h @event_type.category %>
+</p>
+
+<p>
+  <b>Disabled:</b>
+  <%=h @event_type.disabled %>
+</p>
+
+
+<%= link_to 'Edit', edit_event_type_path(@event_type) %> |
+<%= link_to 'Back', event_types_path %>

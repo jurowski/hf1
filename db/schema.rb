@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20150127212349) do
+ActiveRecord::Schema.define(:version => 20151124182954) do
 
   create_table "achievemints", :force => true do |t|
     t.string   "name"
@@ -247,6 +247,29 @@ ActiveRecord::Schema.define(:version => 20150127212349) do
     t.datetime "updated_at"
     t.integer  "goal_momentum",                      :default => 0
     t.string   "category_image_name"
+  end
+
+  create_table "event_types", :force => true do |t|
+    t.string   "name"
+    t.string   "category"
+    t.boolean  "disabled"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "events", :force => true do |t|
+    t.integer  "event_type_id"
+    t.integer  "user_id"
+    t.integer  "goal_id"
+    t.integer  "checkpoint_id"
+    t.datetime "expire_at_datetime"
+    t.datetime "valid_at_datetime"
+    t.date     "valid_at_date"
+    t.date     "expire_at_date"
+    t.integer  "valid_at_hour"
+    t.integer  "expire_at_hour"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "expiredcheckpoints", :force => true do |t|

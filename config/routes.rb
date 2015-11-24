@@ -1,4 +1,8 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :events
+
+  map.resources :event_types
+
   map.resources :impact_leaders
 
   map.resources :checkpoint_removeds

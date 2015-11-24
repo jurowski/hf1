@@ -1,0 +1,53 @@
+<p>
+  <b>Event type:</b>
+  <%=h @event.event_type_id %>
+</p>
+
+<p>
+  <b>User:</b>
+  <%=h @event.user_id %>
+</p>
+
+<p>
+  <b>Goal:</b>
+  <%=h @event.goal_id %>
+</p>
+
+<p>
+  <b>Checkpoint:</b>
+  <%=h @event.checkpoint_id %>
+</p>
+
+<p>
+  <b>Expire at datetime:</b>
+  <%=h @event.expire_at_datetime %>
+</p>
+
+<p>
+  <b>Valid at datetime:</b>
+  <%=h @event.valid_at_datetime %>
+</p>
+
+<p>
+  <b>Valid at date:</b>
+  <%=h @event.valid_at_date %>
+</p>
+
+<p>
+  <b>Expire at date:</b>
+  <%=h @event.expire_at_date %>
+</p>
+
+<p>
+  <b>Valid at hour:</b>
+  <%=h @event.valid_at_hour %>
+</p>
+
+<p>
+  <b>Expire at hour:</b>
+  <%=h @event.expire_at_hour %>
+</p>
+
+
+<%= link_to 'Edit', edit_event_path(@event) %> |
+<%= link_to 'Back', events_path %>
