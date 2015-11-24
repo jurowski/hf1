@@ -209,7 +209,7 @@ class SendCheckpointEmails < ActiveRecord::Base
       user_conditions = "update_number_active_goals > 0 and confirmed_address = '1'"
     end
 
-    @users = User.find(:all, :conditions => user_conditions)
+    @users = User.find(:all, :conditions => user_conditions, :limit => 100)
     for user in @users
       ###################
       #### DATE FUNCTIONS 
@@ -614,57 +614,25 @@ class SendCheckpointEmails < ActiveRecord::Base
                     #puts "start notifier deliver"
                     if send_emails == 1
                       sent_successfully = true
-                      if checkpoint.goal.user.sponsor == "clearworth"
-                        begin
-                  			    ### risky to put this before the actual send, but can't figure out why it fails every few weeks when it used to be "after" the actual send
-                  			    checkpoint.status = 'email sent'
-                  			    checkpoint.save
-
-                            Notifier.deliver_checkpoint_notification_sameday_clearworth(checkpoint) # sends the email                                
-                            sent_successfully = true
-                        rescue
-                            checkpoint.status = 'email failure'
-                            checkpoint.save
-                            the_message = "SGJerror failed to send single sameday CLEARWORTH checkpoint email to " + checkpoint.goal.user.email 
-                            puts the_message
-                            logger.error the_message
-                        end
-                      elsif checkpoint.goal.user.sponsor == "forittobe"
-                        begin
-                            ### risky to put this before the actual send, but can't figure out why it fails every few weeks when it used to be "after" the actual send
-                            checkpoint.status = 'email sent'
-                            checkpoint.save
-
-                            Notifier.deliver_checkpoint_notification_sameday_forittobe(checkpoint) # sends the email                                
-                            sent_successfully = true
-                        rescue
-                            checkpoint.status = 'email failure'
-                            checkpoint.save
-                            the_message = "SGJerror failed to send single sameday FORITTOBE checkpoint email to " + checkpoint.goal.user.email 
-                            puts the_message
-                            logger.error the_message
-                        end
-                      else
-                        begin
-                            ### risky to put this before the actual send, but can't figure out why it fails every few weeks when it used to be "after" the actual send
-	                    # logger.info("sgj:about to set checkpoint status to 'email sent' and then save")
-                            checkpoint.status = 'email sent'
-                            checkpoint.save
-	                    # logger.info("sgj:successfully set checkpoint status to 'email sent' and saved")
+                      begin
+                          ### risky to put this before the actual send, but can't figure out why it fails every few weeks when it used to be "after" the actual send
+                    # logger.info("sgj:about to set checkpoint status to 'email sent' and then save")
+                          checkpoint.status = 'email sent'
+                          checkpoint.save
+                    # logger.info("sgj:successfully set checkpoint status to 'email sent' and saved")
 
 
-	                    # logger.info("sgj:about to email checkppoint email to " + checkpoint.goal.user.email)
-                            Notifier.deliver_checkpoint_notification_sameday(checkpoint) # sends the email                                
-	                    # logger.info("sgj:back from sending email checkppoint email to " + checkpoint.goal.user.email)
+                    # logger.info("sgj:about to email checkppoint email to " + checkpoint.goal.user.email)
+                          Notifier.deliver_checkpoint_notification_sameday(checkpoint) # sends the email                                
+                    # logger.info("sgj:back from sending email checkppoint email to " + checkpoint.goal.user.email)
 
-                            sent_successfully = true
-                        rescue
-                            checkpoint.status = 'email failure'
-                            checkpoint.save
-                            the_message = "SGJerror failed to send single sameday HF checkpoint email to " + checkpoint.goal.user.email 
-                            puts the_message
-                            logger.error the_message
-                        end
+                          sent_successfully = true
+                      rescue
+                          checkpoint.status = 'email failure'
+                          checkpoint.save
+                          the_message = "SGJerror failed to send single sameday HF checkpoint email to " + checkpoint.goal.user.email 
+                          puts the_message
+                          logger.error the_message
                       end
                       #puts "sent email cause I was told to"
                     else
