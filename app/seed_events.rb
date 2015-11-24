@@ -15,13 +15,23 @@ class SeedEvents < ActiveRecord::Base
   #/home/jurowsk1/etc/rails_apps/habitforge/current/app/seed_events.rb
 
 
-    # event_type = Event_type.find(:all, :conditions => "name = 'email checkpoint same day'")
-    # if !event_type
-    #   event_type = Event_type.new()
-    #   event_type.name = "email checkpoint same day"
-    #   event_type.category = "email"
-    #   event_type.disabled = false
-    #   event_type.save
-    # end
+
+    check_for = ["email checkpoint same day", "email checkpoint next day"]
+
+    check_for.each do |check|
+
+      event_type = EventType.find(:all, :conditions => "name = '#{check}'")
+      if !event_type
+        event_type = EventType.new()
+        event_type.name = check
+        event_type.category = "email"
+        event_type.disabled = false
+        event_type.save
+        puts "created " + check
+      else
+        puts "already  had " + check
+      end
+
+    end
 
 end
