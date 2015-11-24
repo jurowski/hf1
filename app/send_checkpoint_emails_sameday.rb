@@ -382,7 +382,7 @@ class SendCheckpointEmails < ActiveRecord::Base
               event_type_string = "email checkpoint"
               event_type = EventType.find(:first, :conditions => "name = '#{event_type_string}'")
               if event_type
-                event_queue.event_type = event_type 
+                event_queue.event_type_id = event_type.id 
               else
                 puts "ERROR event type not found for " + event_type_string + " so not added to event_queue"
               end
