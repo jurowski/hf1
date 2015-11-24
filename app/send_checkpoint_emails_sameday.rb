@@ -200,7 +200,11 @@ class SendCheckpointEmails < ActiveRecord::Base
     end
 
 
+    if @users
       puts "going through " + @users.size.to_int + " users"
+    else
+      puts "zero users"
+    end
 
     first_name_letter_array = [['a','d'],['e','i'],['j','p'],['q','v'],['w','z']]
     first_name_letter_array.each do |first_name_letter|
@@ -451,7 +455,11 @@ class SendCheckpointEmails < ActiveRecord::Base
     ###################
 
 
+    if @users
       puts "going through " + @users.size.to_int + " users"
+    else
+      puts "zero users"
+    end
 
     first_name_letter_array = [['a','d'],['e','i'],['j','p'],['q','v'],['w','z']]
     first_name_letter_array.each do |first_name_letter|
