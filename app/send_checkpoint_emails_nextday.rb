@@ -277,7 +277,7 @@ class SendCheckpointEmails < ActiveRecord::Base
           put "!" + user.first_name + " "
           found_match = true
         else
-          puts first_name_downcase + "<>" + letter_check
+          puts first_name_downcase.to_s + "<>" + letter_check.to_s
         end
       end
       if found_match
@@ -551,7 +551,7 @@ class SendCheckpointEmails < ActiveRecord::Base
           put "!" + user.first_name + " "
           found_match = true
         else
-          puts first_name_downcase + "<>" + letter_check
+          puts first_name_downcase.to_s + "<>" + letter_check.to_s
         end
       end
       if found_match
