@@ -246,7 +246,7 @@ class SendCheckpointEmails < ActiveRecord::Base
 
 
     if @users
-      puts "going through " + @users.size.to_int + " users"
+      puts "going through " + @users.size.to_s + " users"
     else
       puts "zero users"
     end
@@ -513,7 +513,7 @@ class SendCheckpointEmails < ActiveRecord::Base
 
 
     if @users
-      puts "going through " + @users.size.to_int + " users"
+      puts "going through " + @users.size.to_s + " users"
     else
       puts "zero users"
     end
