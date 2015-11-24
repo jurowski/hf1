@@ -54,7 +54,7 @@ class SendCheckpointEmails < ActiveRecord::Base
   jump_forward_days = 0
   
   ## add 3600 seconds for each hour, so 14400 = 4 hours.... won't affect the day/date... just the hour, for time zone re-sending if failures occurred, you could move the hour forward or backward
-  hours_to_jump = 1
+  hours_to_jump = 0
  # hours_to_jump = -5
 
   jump_forward_seconds = (hours_to_jump + adjust_server_hour) * 3600  
@@ -199,6 +199,8 @@ class SendCheckpointEmails < ActiveRecord::Base
       user_conditions = "update_number_active_goals > 0 and confirmed_address = '1'"
     end
 
+
+      puts "going through " + @users.size.to_int + " users"
 
     first_name_letter_array = [['a','d'],['e','i'],['j','p'],['q','v'],['w','z']]
     first_name_letter_array.each do |first_name_letter|
@@ -448,6 +450,9 @@ class SendCheckpointEmails < ActiveRecord::Base
     ### Send email to users with goals that have a checkpoint of 'email not yet sent'
     ###################
 
+
+      puts "going through " + @users.size.to_int + " users"
+
     first_name_letter_array = [['a','d'],['e','i'],['j','p'],['q','v'],['w','z']]
     first_name_letter_array.each do |first_name_letter|
 
@@ -459,6 +464,7 @@ class SendCheckpointEmails < ActiveRecord::Base
     @users = User.find(:all, :conditions => user_conditions)
 
     for user in @users
+
 
 
       first_name_downcase = user.first_name.downcase[0].to_i

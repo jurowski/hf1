@@ -245,6 +245,9 @@ class SendCheckpointEmails < ActiveRecord::Base
     end
 
 
+    puts "going through " + @users.size.to_int + " users"
+
+
     first_name_letter_array = [['a','d'],['e','i'],['j','p'],['q','v'],['w','z']]
     first_name_letter_array.each do |first_name_letter|
 
@@ -505,6 +508,8 @@ class SendCheckpointEmails < ActiveRecord::Base
     ##### _______________________________________________________________________________________________________________________________________________________________________________
 
 
+    puts "going through " + @users.size.to_int + " users"
+
 
     first_name_letter_array = [['a','d'],['e','i'],['j','p'],['q','v'],['w','z']]
     first_name_letter_array.each do |first_name_letter|
@@ -519,6 +524,8 @@ class SendCheckpointEmails < ActiveRecord::Base
     ### Send email to users with goals that have a checkpoint of 'email not yet sent'
     ###################
     for user in @users
+
+
 
       first_name_downcase = user.first_name.downcase[0].to_i
       if (first_name_downcase >= first_name_letter[0].to_i) and (first_name_downcase <= first_name_letter[1].to_i)
