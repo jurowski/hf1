@@ -209,7 +209,7 @@ class SendCheckpointEmails < ActiveRecord::Base
       user_conditions = "update_number_active_goals > 0 and confirmed_address = '1'"
     end
 
-    @users = User.find(:all, :conditions => user_conditions, :limit => 100)
+    @users = User.find(:all, :conditions => user_conditions)
     for user in @users
       ###################
       #### DATE FUNCTIONS 
@@ -439,8 +439,20 @@ class SendCheckpointEmails < ActiveRecord::Base
     ###################
     ### Send email to users with goals that have a checkpoint of 'email not yet sent'
     ###################
+
+    first_name_letter_array = [['a','d']['e','i']['j','p']['q','v']['w','z']]
+    first_name_letter_array.do each |first_name_letter|
+
+    @users = User.find(:all, :conditions => user_conditions)
+
     for user in @users
-    
+
+      logtext = "Processing emails for #{first_name_letter[0]} through #{first_name_letter[1]}"
+      puts logtext
+      logger.info logtext 
+
+      first_name_downcase = user.first_name.downcase[0]
+      if first_name_downcase >= first_name_letter[0] and first_name_downcase <= first_name_letter[1]
       ###################
       #### DATE FUNCTIONS 
       ###################
@@ -772,7 +784,10 @@ class SendCheckpointEmails < ActiveRecord::Base
           end
         end
       end
-    end
+    end ###       if first_name_downcase >= first_name_letter[0] and first_name_downcase <= first_name_letter[1]
+    end #### for user in @users
+    end ### first_name_letter_array.do each |first_name_letter|
+
     ######################################################################################
     ######################################################################################
     #####     END SEND EMAILS
