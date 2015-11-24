@@ -8,7 +8,7 @@ class SeedEvents < ActiveRecord::Base
   ### rvm use 1.8.7;cd /home/sgj700/rails_apps/hf1/;ruby script/runner app/seed_events.rb
 
   ### RUN IN PRODUCTION:
-  ### cd /habitforge/current;RAILS_ENV=production /usr/bin/ruby /home/jurowsk1/etc/rails_apps/habitforge/current/script/runner /home/jurowsk1/etc/rails_apps/habitforge/current/app/update_promotion_black_friday_2014.rb
+  ### cd /habitforge/current;RAILS_ENV=production /usr/bin/ruby /home/jurowsk1/etc/rails_apps/habitforge/current/script/runner /home/jurowsk1/etc/rails_apps/habitforge/current/app/seed_events.rb
   #RAILS_ENV=production 
   #/usr/bin/ruby 
   #/home/jurowsk1/etc/rails_apps/habitforge/current/script/runner 
@@ -20,7 +20,7 @@ class SeedEvents < ActiveRecord::Base
 
     check_for.each do |check|
 
-      event_type = EventType.find(:all, :conditions => "name = '#{check}'")
+      event_type = EventType.find(:first, :conditions => "name = '#{check}'")
       if !event_type
         event_type = EventType.new()
         event_type.name = check
