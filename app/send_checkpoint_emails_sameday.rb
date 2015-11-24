@@ -5,7 +5,18 @@ class SendCheckpointEmails < ActiveRecord::Base
 
 
 
-  # This script emails people who have checkins due on their goals
+  # This SAMEDAY script emails people who have checkins due on their goals for the SAME DAY
+
+
+  ### RUN IN DEV:
+  ### rvm use 1.8.7;cd /home/sgj700/rails_apps/hf1/;ruby script/runner app/send_checkpoint_emails_sameday.rb
+
+  ### RUN IN PRODUCTION:
+  ### cd /habitforge/current;RAILS_ENV=production /usr/bin/ruby /home/jurowsk1/etc/rails_apps/habitforge/current/script/runner /home/jurowsk1/etc/rails_apps/habitforge/current/app/send_checkpoint_emails_sameday.rb
+  #RAILS_ENV=production 
+  #/usr/bin/ruby 
+  #/home/jurowsk1/etc/rails_apps/habitforge/current/script/runner 
+  #/home/jurowsk1/etc/rails_apps/habitforge/current/app/send_checkpoint_emails_sameday.rb
 
 
   if `uname -n`.strip == 'adv.adventurino.com'
@@ -135,6 +146,8 @@ class SendCheckpointEmails < ActiveRecord::Base
     dtomorrow_plus1 = dtomorrow + 1
 
     tservernow = tnow
+    tservertomorrow = tnow + (24 * 3600)
+
     ######
     ###################
     ###################
@@ -351,6 +364,45 @@ class SendCheckpointEmails < ActiveRecord::Base
               logtext = "#{checkpoint.goal.user.email} gets a checkpoint for #{today_dayname}, #{checkin_date}. Their time is #{tnow.to_s}. Server time is #{tservernow.to_s}."              
               puts logtext
               logger.info logtext 
+
+
+              # t.integer  "event_type_id"
+              # t.integer  "user_id"
+              # t.integer  "goal_id"
+              # t.integer  "checkpoint_id"
+              # t.datetime "expire_at_datetime"
+              # t.datetime "valid_at_datetime"
+              # t.date     "valid_at_date"
+              # t.date     "expire_at_date"
+              # t.integer  "valid_at_hour"
+              # t.integer  "expire_at_hour"
+              # t.string   "status"
+
+              event_queue = EventQueue.new()
+              event_type_string = "email checkpoint"
+              event_type = EventType.find(:first, :conditions => "name = '#{event_type_string}'")
+              if event_type
+                event_queue.event_type = event_type 
+              else
+                puts "ERROR event type not found for " + event_type_string + " so not added to event_queue"
+              end
+
+              event_queue.user_id = checkpoint.goal.user.id
+              event_queue.goal_id = checkpoint.goal.id
+              event_queue.checkpoint_id = checkpoint.id
+              event_queue.valid_at_datetime = tservernow
+              event_queue.expire_at_datetime = tservertomorrow
+              event_queue.status = "pending"
+
+              if event_queue.save
+                logtext = "#{checkpoint.goal.user.email} is added to event_queue with checkpoint #{checkpoint.id} for #{today_dayname}, #{checkin_date}."              
+                puts logtext
+                logger.info logtext 
+
+              else
+                puts "ERROR creating event_queue for #{checkpoint.id} on #{goal.id} on #{checkin_date}"        
+              end
+
             else
               puts "ERROR creating checkpoint for #{goal.id} on #{checkin_date}"        
             end
