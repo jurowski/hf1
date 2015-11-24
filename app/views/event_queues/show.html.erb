@@ -1,0 +1,58 @@
+<p>
+  <b>Event type:</b>
+  <%=h @event_queue.event_type_id %>
+</p>
+
+<p>
+  <b>User:</b>
+  <%=h @event_queue.user_id %>
+</p>
+
+<p>
+  <b>Goal:</b>
+  <%=h @event_queue.goal_id %>
+</p>
+
+<p>
+  <b>Checkpoint:</b>
+  <%=h @event_queue.checkpoint_id %>
+</p>
+
+<p>
+  <b>Expire at datetime:</b>
+  <%=h @event_queue.expire_at_datetime %>
+</p>
+
+<p>
+  <b>Valid at datetime:</b>
+  <%=h @event_queue.valid_at_datetime %>
+</p>
+
+<p>
+  <b>Valid at date:</b>
+  <%=h @event_queue.valid_at_date %>
+</p>
+
+<p>
+  <b>Expire at date:</b>
+  <%=h @event_queue.expire_at_date %>
+</p>
+
+<p>
+  <b>Valid at hour:</b>
+  <%=h @event_queue.valid_at_hour %>
+</p>
+
+<p>
+  <b>Expire at hour:</b>
+  <%=h @event_queue.expire_at_hour %>
+</p>
+
+<p>
+  <b>Status:</b>
+  <%=h @event_queue.status %>
+</p>
+
+
+<%= link_to 'Edit', edit_event_queue_path(@event_queue) %> |
+<%= link_to 'Back', event_queues_path %>

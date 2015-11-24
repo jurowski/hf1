@@ -1,4 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :event_queues
+
   map.resources :events
 
   map.resources :event_types

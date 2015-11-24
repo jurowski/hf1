@@ -1,0 +1,27 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  event_type_id: 1
+  user_id: 1
+  goal_id: 1
+  checkpoint_id: 1
+  expire_at_datetime: 2015-11-24 11:25:51
+  valid_at_datetime: 2015-11-24 11:25:51
+  valid_at_date: 2015-11-24
+  expire_at_date: 2015-11-24
+  valid_at_hour: 1
+  expire_at_hour: 1
+  status: MyString
+
+two:
+  event_type_id: 1
+  user_id: 1
+  goal_id: 1
+  checkpoint_id: 1
+  expire_at_datetime: 2015-11-24 11:25:51
+  valid_at_datetime: 2015-11-24 11:25:51
+  valid_at_date: 2015-11-24
+  expire_at_date: 2015-11-24
+  valid_at_hour: 1
+  expire_at_hour: 1
+  status: MyString

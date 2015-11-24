@@ -1,0 +1,40 @@
+<h1>Listing event_queues</h1>
+
+<table>
+  <tr>
+    <th>Event type</th>
+    <th>User</th>
+    <th>Goal</th>
+    <th>Checkpoint</th>
+    <th>Expire at datetime</th>
+    <th>Valid at datetime</th>
+    <th>Valid at date</th>
+    <th>Expire at date</th>
+    <th>Valid at hour</th>
+    <th>Expire at hour</th>
+    <th>Status</th>
+  </tr>
+
+<% @event_queues.each do |event_queue| %>
+  <tr>
+    <td><%=h event_queue.event_type_id %></td>
+    <td><%=h event_queue.user_id %></td>
+    <td><%=h event_queue.goal_id %></td>
+    <td><%=h event_queue.checkpoint_id %></td>
+    <td><%=h event_queue.expire_at_datetime %></td>
+    <td><%=h event_queue.valid_at_datetime %></td>
+    <td><%=h event_queue.valid_at_date %></td>
+    <td><%=h event_queue.expire_at_date %></td>
+    <td><%=h event_queue.valid_at_hour %></td>
+    <td><%=h event_queue.expire_at_hour %></td>
+    <td><%=h event_queue.status %></td>
+    <td><%= link_to 'Show', event_queue %></td>
+    <td><%= link_to 'Edit', edit_event_queue_path(event_queue) %></td>
+    <td><%= link_to 'Destroy', event_queue, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New event_queue', new_event_queue_path %>
