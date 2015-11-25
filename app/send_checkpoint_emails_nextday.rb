@@ -739,45 +739,43 @@ class SendCheckpointEmails < ActiveRecord::Base
                     #puts "start notifier deliver"
                     if send_emails == 1
                       sent_successfully = true
-                      if checkpoint.goal.user.sponsor == "clearworth"
-                        begin
-                  			    ### risky to put this before the actual send, but can't figure out why it fails every few weeks when it used to be "after" the actual send
-                  			    checkpoint.status = 'email sent'
-                  			    checkpoint.save
-
-                            Notifier.deliver_checkpoint_notification_clearworth(checkpoint) # sends the email                                
-                            sent_successfully = true
-                        rescue
-                            checkpoint.status = 'email failure'
-                            the_message = "SGJerror failed to send single CLEARWORTH checkpoint email to " + checkpoint.goal.user.email 
-                            puts the_message
-                            logger.error the_message
-                        end
-                      elsif checkpoint.goal.user.sponsor == "forittobe"
                         begin
                             ### risky to put this before the actual send, but can't figure out why it fails every few weeks when it used to be "after" the actual send
                             checkpoint.status = 'email sent'
                             checkpoint.save
 
-                            Notifier.deliver_checkpoint_notification_forittobe(checkpoint) # sends the email                                
-                            sent_successfully = true
-                        rescue
-                            checkpoint.status = 'email failure'
-                            the_message = "SGJerror failed to send single FORITTOBE checkpoint email to " + checkpoint.goal.user.email 
-                            puts the_message
-                            logger.error the_message
-                        end
-                      else
-                        begin
-                            ### risky to put this before the actual send, but can't figure out why it fails every few weeks when it used to be "after" the actual send
-                            checkpoint.status = 'email sent'
-                            checkpoint.save
+                            # Notifier.deliver_checkpoint_notification(checkpoint) # sends the email                                
+                            # sent_successfully = true
 
-                            Notifier.deliver_checkpoint_notification(checkpoint) # sends the email                                
-                            sent_successfully = true
+
+                            event_queue = EventQueue.new()
+                            event_type_string = "email checkpoint"
+                            event_type = EventType.find(:first, :conditions => "name = '#{event_type_string}'")
+                            if event_type
+                              event_queue.event_type_id = event_type.id 
+                            else
+                              puts "ERROR event type not found for " + event_type_string + " so not added to event_queue"
+                            end
+
+                            event_queue.user_id = checkpoint.goal.user.id
+                            event_queue.goal_id = checkpoint.goal.id
+                            event_queue.checkpoint_id = checkpoint.id
+                            event_queue.valid_at_datetime = tservernow
+                            event_queue.expire_at_datetime = tservertomorrow
+                            event_queue.status = "pending"
+
+                            if event_queue.save
+                              logtext = "#{checkpoint.goal.user.email} is added to event_queue with checkpoint #{checkpoint.id} for #{today_dayname}, #{checkin_date}."              
+                              puts logtext
+                              logger.info logtext 
+
+                            else
+                              puts "ERROR creating event_queue for #{checkpoint.id} on #{goal.id} on #{checkin_date}"        
+                            end
+
                         rescue
                             checkpoint.status = 'email failure'
-                            the_message = "SGJerror failed to send single HF checkpoint email to " + checkpoint.goal.user.email 
+                            the_message = "SGJerror failed to queue single HF checkpoint email to " + checkpoint.goal.user.email 
                             puts the_message
                             logger.error the_message
 
@@ -785,7 +783,6 @@ class SendCheckpointEmails < ActiveRecord::Base
 
 
                         end
-                      end
                       #puts "sent email cause I was told to"
                     else
                       #puts "would have sent email, but was told not to"
@@ -849,46 +846,44 @@ class SendCheckpointEmails < ActiveRecord::Base
 
                     if send_emails == 1
                       for checkpoint in @checkpoints
-                        if checkpoint.goal.user.sponsor == "clearworth"
                             ### risky to put this before the actual send, but can't figure out why it fails every few weeks when it used to be "after" the actual send
                             checkpoint.status = 'email sent'
                             checkpoint.save
 
-                                if Notifier.deliver_checkpoint_notification_multiple_clearworth(checkpoint) # sends the email                                
-                                    email_sent_successfully = true
-                                else
-                                    the_message = "SGJerror failed to send multiple HF checkpoint email to " + checkpoint.goal.user.email 
-                                    puts the_message
-                                    logger.error the_message
-                                    cronjob.notes += "<br>" + the_message
-                                end
-                        elsif checkpoint.goal.user.sponsor == "forittobe"
-                            ### risky to put this before the actual send, but can't figure out why it fails every few weeks when it used to be "after" the actual send
-                            checkpoint.status = 'email sent'
-                            checkpoint.save
+                            # if Notifier.deliver_checkpoint_notification_multiple(checkpoint) # sends the email              
+                            #     email_sent_successfully = true
+                            # else
+                            #     the_message = "SGJerror failed to send multiple HF checkpoint email to " + checkpoint.goal.user.email 
+                            #     puts the_message
+                            #     logger.error the_message
+                            #     cronjob.notes += "<br>" + the_message
+                            # end
 
-                                if Notifier.deliver_checkpoint_notification_multiple_forittobe(checkpoint) # sends the email              
-                                    email_sent_successfully = true
-                                else
-                                    the_message = "SGJerror failed to send multiple FORITTOBE checkpoint email to " + checkpoint.goal.user.email 
-                                    puts the_message
-                                    logger.error the_message
-                                end
+                            event_queue = EventQueue.new()
+                            event_type_string = "email checkpoint multiple"
+                            event_type = EventType.find(:first, :conditions => "name = '#{event_type_string}'")
+                            if event_type
+                              event_queue.event_type_id = event_type.id 
+                            else
+                              puts "ERROR event type not found for " + event_type_string + " so not added to event_queue"
+                            end
 
-                        else
-                            ### risky to put this before the actual send, but can't figure out why it fails every few weeks when it used to be "after" the actual send
-                            checkpoint.status = 'email sent'
-                            checkpoint.save
+                            event_queue.user_id = checkpoint.goal.user.id
+                            event_queue.goal_id = checkpoint.goal.id
+                            event_queue.checkpoint_id = checkpoint.id
+                            event_queue.valid_at_datetime = tservernow
+                            event_queue.expire_at_datetime = tservertomorrow
+                            event_queue.status = "pending"
 
-                                if Notifier.deliver_checkpoint_notification_multiple(checkpoint) # sends the email              
-                                    email_sent_successfully = true
-                                else
-                                    the_message = "SGJerror failed to send multiple HF checkpoint email to " + checkpoint.goal.user.email 
-                                    puts the_message
-                                    logger.error the_message
-                                    cronjob.notes += "<br>" + the_message
-                                end
-                        end
+                            if event_queue.save
+                              logtext = "#{checkpoint.goal.user.email} is added to event_queue with checkpoint #{checkpoint.id} for #{today_dayname}, #{checkin_date}."              
+                              puts logtext
+                              logger.info logtext 
+
+                            else
+                              puts "ERROR creating event_queue for #{checkpoint.id} on #{goal.id} on #{checkin_date}"        
+                            end
+
                         #puts "sent email cause I was told to"
                       end
                     else

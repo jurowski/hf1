@@ -384,45 +384,6 @@ class SendCheckpointEmails < ActiveRecord::Base
               logtext = "#{checkpoint.goal.user.email} gets a checkpoint for #{today_dayname}, #{checkin_date}. Their time is #{tnow.to_s}. Server time is #{tservernow.to_s}."              
               puts logtext
               logger.info logtext 
-
-
-              # t.integer  "event_type_id"
-              # t.integer  "user_id"
-              # t.integer  "goal_id"
-              # t.integer  "checkpoint_id"
-              # t.datetime "expire_at_datetime"
-              # t.datetime "valid_at_datetime"
-              # t.date     "valid_at_date"
-              # t.date     "expire_at_date"
-              # t.integer  "valid_at_hour"
-              # t.integer  "expire_at_hour"
-              # t.string   "status"
-
-              event_queue = EventQueue.new()
-              event_type_string = "email checkpoint"
-              event_type = EventType.find(:first, :conditions => "name = '#{event_type_string}'")
-              if event_type
-                event_queue.event_type_id = event_type.id 
-              else
-                puts "ERROR event type not found for " + event_type_string + " so not added to event_queue"
-              end
-
-              event_queue.user_id = checkpoint.goal.user.id
-              event_queue.goal_id = checkpoint.goal.id
-              event_queue.checkpoint_id = checkpoint.id
-              event_queue.valid_at_datetime = tservernow
-              event_queue.expire_at_datetime = tservertomorrow
-              event_queue.status = "pending"
-
-              if event_queue.save
-                logtext = "#{checkpoint.goal.user.email} is added to event_queue with checkpoint #{checkpoint.id} for #{today_dayname}, #{checkin_date}."              
-                puts logtext
-                logger.info logtext 
-
-              else
-                puts "ERROR creating event_queue for #{checkpoint.id} on #{goal.id} on #{checkin_date}"        
-              end
-
             else
               puts "ERROR creating checkpoint for #{goal.id} on #{checkin_date}"        
             end
@@ -677,7 +638,48 @@ class SendCheckpointEmails < ActiveRecord::Base
 
 
                     # logger.info("sgj:about to email checkppoint email to " + checkpoint.goal.user.email)
-                          Notifier.deliver_checkpoint_notification_sameday(checkpoint) # sends the email                                
+                          #Notifier.deliver_checkpoint_notification_sameday(checkpoint) # sends the email                                
+
+                          # t.integer  "event_type_id"
+                          # t.integer  "user_id"
+                          # t.integer  "goal_id"
+                          # t.integer  "checkpoint_id"
+                          # t.datetime "expire_at_datetime"
+                          # t.datetime "valid_at_datetime"
+                          # t.date     "valid_at_date"
+                          # t.date     "expire_at_date"
+                          # t.integer  "valid_at_hour"
+                          # t.integer  "expire_at_hour"
+                          # t.string   "status"
+
+                          event_queue = EventQueue.new()
+                          event_type_string = "email checkpoint"
+                          event_type = EventType.find(:first, :conditions => "name = '#{event_type_string}'")
+                          if event_type
+                            event_queue.event_type_id = event_type.id 
+                          else
+                            puts "ERROR event type not found for " + event_type_string + " so not added to event_queue"
+                          end
+
+                          event_queue.user_id = checkpoint.goal.user.id
+                          event_queue.goal_id = checkpoint.goal.id
+                          event_queue.checkpoint_id = checkpoint.id
+                          event_queue.valid_at_datetime = tservernow
+                          event_queue.expire_at_datetime = tservertomorrow
+                          event_queue.status = "pending"
+
+                          if event_queue.save
+                            logtext = "#{checkpoint.goal.user.email} is added to event_queue with checkpoint #{checkpoint.id} for #{today_dayname}, #{checkin_date}."              
+                            puts logtext
+                            logger.info logtext 
+
+                          else
+                            puts "ERROR creating event_queue for #{checkpoint.id} on #{goal.id} on #{checkin_date}"        
+                          end
+
+
+
+
                     # logger.info("sgj:back from sending email checkppoint email to " + checkpoint.goal.user.email)
 
                           sent_successfully = true
@@ -750,44 +752,57 @@ class SendCheckpointEmails < ActiveRecord::Base
 
                     if send_emails == 1
                       for checkpoint in @checkpoints
-                        if checkpoint.goal.user.sponsor == "clearworth"
                             ### risky to put this before the actual send, but can't figure out why it fails every few weeks when it used to be "after" the actual send
                             checkpoint.status = 'email sent'
                             checkpoint.save
 
-                                if Notifier.deliver_checkpoint_notification_multiple_sameday_clearworth(checkpoint) # sends the email                                
-                                    email_sent_successfully = true
-                                else
-                                    the_message = "SGJerror failed to send multiple sameday clearworth checkpoint email to " + checkpoint.goal.user.email 
-                                    puts the_message
-                                    logger.error the_message
-                                end
-                        elsif checkpoint.goal.user.sponsor == "forittobe"
-                            ### risky to put this before the actual send, but can't figure out why it fails every few weeks when it used to be "after" the actual send
-                            checkpoint.status = 'email sent'
-                            checkpoint.save
+                            # if Notifier.deliver_checkpoint_notification_multiple_sameday(checkpoint) # sends the email              
+                            #     email_sent_successfully = true
+                            # else
+                            #     the_message = "SGJerror failed to send multiple sameday HF checkpoint email to " + checkpoint.goal.user.email 
+                            #     puts the_message
+                            #     logger.error the_message
+                            # end
 
-                                if Notifier.deliver_checkpoint_notification_multiple_sameday_forittobe(checkpoint) # sends the email              
-                                    email_sent_successfully = true
-                                else
-                                    the_message = "SGJerror failed to send multiple sameday FORITTOBE checkpoint email to " + checkpoint.goal.user.email 
-                                    puts the_message
-                                    logger.error the_message
-                                end
 
-                        else
-                            ### risky to put this before the actual send, but can't figure out why it fails every few weeks when it used to be "after" the actual send
-                            checkpoint.status = 'email sent'
-                            checkpoint.save
+                            # t.integer  "event_type_id"
+                            # t.integer  "user_id"
+                            # t.integer  "goal_id"
+                            # t.integer  "checkpoint_id"
+                            # t.datetime "expire_at_datetime"
+                            # t.datetime "valid_at_datetime"
+                            # t.date     "valid_at_date"
+                            # t.date     "expire_at_date"
+                            # t.integer  "valid_at_hour"
+                            # t.integer  "expire_at_hour"
+                            # t.string   "status"
 
-                                if Notifier.deliver_checkpoint_notification_multiple_sameday(checkpoint) # sends the email              
-                                    email_sent_successfully = true
-                                else
-                                    the_message = "SGJerror failed to send multiple sameday HF checkpoint email to " + checkpoint.goal.user.email 
-                                    puts the_message
-                                    logger.error the_message
-                                end
-                        end
+                            event_queue = EventQueue.new()
+                            event_type_string = "email checkpoint multiple"
+                            event_type = EventType.find(:first, :conditions => "name = '#{event_type_string}'")
+                            if event_type
+                              event_queue.event_type_id = event_type.id 
+                            else
+                              puts "ERROR event type not found for " + event_type_string + " so not added to event_queue"
+                            end
+
+                            event_queue.user_id = checkpoint.goal.user.id
+                            event_queue.goal_id = checkpoint.goal.id
+                            event_queue.checkpoint_id = checkpoint.id
+                            event_queue.valid_at_datetime = tservernow
+                            event_queue.expire_at_datetime = tservertomorrow
+                            event_queue.status = "pending"
+
+                            if event_queue.save
+                              logtext = "#{checkpoint.goal.user.email} is added to event_queue with checkpoint #{checkpoint.id} for #{today_dayname}, #{checkin_date}."              
+                              puts logtext
+                              logger.info logtext 
+
+                            else
+                              puts "ERROR creating event_queue for #{checkpoint.id} on #{goal.id} on #{checkin_date}"        
+                            end
+
+
                         #puts "sent email cause I was told to"
                       end
                     else

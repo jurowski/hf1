@@ -16,7 +16,7 @@ class SeedEvents < ActiveRecord::Base
 
 
 
-    check_for = ["email checkpoint", "email reminder"]
+    check_for = ["email checkpoint", "email checkpoint multiple" "email reminder"]
 
     check_for.each do |check|
 
