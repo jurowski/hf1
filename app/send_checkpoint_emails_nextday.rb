@@ -739,7 +739,7 @@ class SendCheckpointEmails < ActiveRecord::Base
                     #puts "start notifier deliver"
                     if send_emails == 1
                       sent_successfully = true
-                        begin
+                        #begin
                             ### risky to put this before the actual send, but can't figure out why it fails every few weeks when it used to be "after" the actual send
                             checkpoint.status = 'email sent'
                             checkpoint.save
@@ -773,16 +773,16 @@ class SendCheckpointEmails < ActiveRecord::Base
                               puts "ERROR creating event_queue for #{checkpoint.id} on #{goal.id} on #{checkin_date}"        
                             end
 
-                        rescue
-                            checkpoint.status = 'email failure'
-                            the_message = "SGJerror failed to queue single HF checkpoint email to " + checkpoint.goal.user.email 
-                            puts the_message
-                            logger.error the_message
+                        # rescue
+                        #     checkpoint.status = 'email failure'
+                        #     the_message = "SGJerror failed to queue single HF checkpoint email to " + checkpoint.goal.user.email 
+                        #     puts the_message
+                        #     logger.error the_message
 
-                            cronjob.notes += "<br>" + the_message
+                        #     cronjob.notes += "<br>" + the_message
 
 
-                        end
+                        # end
                       #puts "sent email cause I was told to"
                     else
                       #puts "would have sent email, but was told not to"
