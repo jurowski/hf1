@@ -18,59 +18,103 @@ class SendEmailCheckpointsFromQueue < ActiveRecord::Base
 
     tnow = Time.now
 
-    event_type_string = "email checkpoint"
+    event_type_strings = ["email checkpoint", "email checkpoint multiple"]
     event_type_id = 0
-    event_type = EventType.find(:first, :conditions => "name = '#{event_type_string}'")
-    if event_type
-      event_type_id = event_type.id 
-    else
-      puts "ERROR event type not found for " + event_type_string
-    end
 
-    conditions = "event_type_id = '#{event_type_id}' and status = 'pending'" # and valid_at_datetime < '#{tnow}' and expire_at_datetime > '#{tnow}'"
-    puts "conditions: " + conditions
+    event_type_strings.each do |event_type_string|
 
-    checkpoint_email_queue_items = EventQueue.find(:all, :conditions => conditions)
+      event_type = EventType.find(:first, :conditions => "name = '#{event_type_string}'")
+      if event_type
+        event_type_id = event_type.id 
+      else
+        puts "ERROR event type not found for " + event_type_string
+      end
 
-    checkpoint_email_queue_items.each do |checkpoint_email_queue_item|
-      checkpoint = Checkpoint.find(checkpoint_email_queue_item.checkpoint_id)
-      if checkpoint
+      conditions = "event_type_id = '#{event_type_id}' and status = 'pending'" # and valid_at_datetime < '#{tnow}' and expire_at_datetime > '#{tnow}'"
+      puts "conditions: " + conditions
 
-        logtext = "sgj:about to email checkpoint email to " + checkpoint.goal.user.email
+      checkpoint_email_queue_items = EventQueue.find(:all, :conditions => conditions)
+
+      checkpoint_email_queue_items.each do |checkpoint_email_queue_item|
+        checkpoint = Checkpoint.find(checkpoint_email_queue_item.checkpoint_id)
+        if checkpoint
+
+          logtext = "sgj:about to " + event_type_string + " email to " + checkpoint.goal.user.email
+          puts logtext
+          logger.info logtext 
+
+
+          success = false
+          if event_type_string == "email checkpoint sameday"
+            if Notifier.deliver_checkpoint_notification_sameday(checkpoint) # sends the email                                
+              checkpoint_email_queue_item.status = "sent"
+
+              logtext = "sent"
+              puts logtext
+              logger.info logtext 
+
+              success = true
+            end
+          end
+
+          if event_type_string == "email checkpoint multiple sameday"
+            if Notifier.deliver_checkpoint_notification_multiple_sameday(checkpoint) # sends the email                                
+              checkpoint_email_queue_item.status = "sent"
+
+              logtext = "sent"
+              puts logtext
+              logger.info logtext 
+            end
+          end
+
+          if event_type_string == "email checkpoint nextday"
+            if Notifier.deliver_checkpoint_notification(checkpoint) # sends the email                                
+              checkpoint_email_queue_item.status = "sent"
+
+              logtext = "sent"
+              puts logtext
+              logger.info logtext 
+
+              success = true
+            end
+          end
+
+          if event_type_string == "email checkpoint multiple nextday"
+            if Notifier.deliver_checkpoint_notification_multiple(checkpoint) # sends the email                                
+              checkpoint_email_queue_item.status = "sent"
+
+              logtext = "sent"
+              puts logtext
+              logger.info logtext 
+            end
+          end
+
+
+          if success == false
+            checkpoint_email_queue_item.status = "failed to send"
+
+            logtext = "failed to send"
+            puts logtext
+            logger.info logtext 
+          end
+
+
+        else
+            checkpoint_email_queue_item.status = "failed to find checkpoint"
+
+            logtext = "failed to find checkpoint"
+            puts logtext
+            logger.info logtext 
+
+        end
+        checkpoint_email_queue_item.save
+      
+        logtext = "moving to next queue item"
         puts logtext
         logger.info logtext 
 
-        if Notifier.deliver_checkpoint_notification_sameday(checkpoint) # sends the email                                
-          checkpoint_email_queue_item.status = "sent"
-
-          logtext = "sent"
-          puts logtext
-          logger.info logtext 
-
-        else
-          checkpoint_email_queue_item.status = "failed to send"
-
-          logtext = "failed to send"
-          puts logtext
-          logger.info logtext 
-
-        end
-      else
-          checkpoint_email_queue_item.status = "failed to find checkpoint"
-
-          logtext = "failed to find checkpoint"
-          puts logtext
-          logger.info logtext 
-
       end
-      checkpoint_email_queue_item.save
-    
-      logtext = "moving to next queue item"
-      puts logtext
-      logger.info logtext 
 
     end
-
-
 
 end

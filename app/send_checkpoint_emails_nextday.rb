@@ -749,7 +749,7 @@ class SendCheckpointEmails < ActiveRecord::Base
 
 
                             event_queue = EventQueue.new()
-                            event_type_string = "email checkpoint"
+                            event_type_string = "email checkpoint nextday"
                             event_type = EventType.find(:first, :conditions => "name = '#{event_type_string}'")
                             if event_type
                               event_queue.event_type_id = event_type.id 
@@ -860,7 +860,7 @@ class SendCheckpointEmails < ActiveRecord::Base
                             # end
 
                             event_queue = EventQueue.new()
-                            event_type_string = "email checkpoint multiple"
+                            event_type_string = "email checkpoint multiple nextday"
                             event_type = EventType.find(:first, :conditions => "name = '#{event_type_string}'")
                             if event_type
                               event_queue.event_type_id = event_type.id 
