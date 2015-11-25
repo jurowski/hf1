@@ -27,7 +27,7 @@ class SendEmailCheckpointsFromQueue < ActiveRecord::Base
       puts "ERROR event type not found for " + event_type_string
     end
 
-    conditions = "event_type_id = '#{event_type_id}' and status = 'pending' and valid_at_datetime < '#{tnow}' and expire_at_datetime > '#{tnow}'"
+    conditions = "event_type_id = '#{event_type_id}' and status = 'pending'" # and valid_at_datetime < '#{tnow}' and expire_at_datetime > '#{tnow}'"
     puts "conditions: " + conditions
 
     checkpoint_email_queue_items = EventQueue.find(:all, :conditions => conditions)
