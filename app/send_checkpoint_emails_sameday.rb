@@ -594,7 +594,7 @@ class SendCheckpointEmails < ActiveRecord::Base
         ### can't send more than XXXX emails per hour... leave a buffer for new goal creation emails of XXXX per hour
         if @stat.checkpointemailssent < maxemails
           ### Iterate through existing checkpoints for this goal
-          @checkpoints = Checkpoint.find(:all, :conditions => "goal_id = '#{goal.id}' and checkin_date = '#{checkin_date}' and status = 'email not yet sent'")
+          @checkpoints = Checkpoint.find(:all, :conditions => "goal_id = '#{goal.id}' and checkin_date = '#{checkin_date}' and ((status = 'email not yet sent') or (status = 'email queued (sameday:660)') or (status = 'email queued (sameday:557)'))")
           if @checkpoints.size > 0
             puts "checkpoint awaiting an email for #{goal.id} on #{checkin_date}"
             ######################################################################################################################################
@@ -734,7 +734,7 @@ class SendCheckpointEmails < ActiveRecord::Base
               for goal_additional in @goals_additional
                 #begin
                   email_sent_successfully = false
-                  @checkpoints = Checkpoint.find(:all, :conditions => "goal_id = '#{goal_additional.id}' and checkin_date = '#{checkin_date}' and status = 'email not yet sent'")
+                  @checkpoints = Checkpoint.find(:all, :conditions => "goal_id = '#{goal_additional.id}' and checkin_date = '#{checkin_date}' and ((status = 'email not yet sent') or (status = 'email queued (sameday:660)') or (status = 'email queued (sameday:557)'))")
                   if @checkpoints.size == 1
                     #puts "Updating #{goal_additional.user.email}'s goal #{goal_additional.id}, checkpoint of #{checkin_date}."
                     for checkpoint in @checkpoints
