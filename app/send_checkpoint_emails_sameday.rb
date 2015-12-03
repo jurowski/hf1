@@ -632,7 +632,7 @@ class SendCheckpointEmails < ActiveRecord::Base
                     #puts "start notifier deliver"
                     if send_emails == 1
                       sent_successfully = true
-                      begin
+                      #begin
                           ### risky to put this before the actual send, but can't figure out why it fails every few weeks when it used to be "after" the actual send
                     # logger.info("sgj:about to set checkpoint status to 'email sent' and then save")
                           checkpoint.status = 'email sent'
@@ -688,13 +688,13 @@ class SendCheckpointEmails < ActiveRecord::Base
                     # logger.info("sgj:back from sending email checkppoint email to " + checkpoint.goal.user.email)
 
                           sent_successfully = true
-                      rescue
-                          checkpoint.status = 'email failure'
-                          checkpoint.save
-                          the_message = "SGJerror failed to send single sameday HF checkpoint email to " + checkpoint.goal.user.email 
-                          puts the_message
-                          logger.error the_message
-                      end
+                      #rescue
+                      #    checkpoint.status = 'email failure'
+                      #    checkpoint.save
+                      #    the_message = "SGJerror failed to send single sameday HF checkpoint email to " + checkpoint.goal.user.email 
+                      #    puts the_message
+                      #    logger.error the_message
+                      #end
                       #puts "sent email cause I was told to"
                     else
                       #puts "would have sent email, but was told not to"
