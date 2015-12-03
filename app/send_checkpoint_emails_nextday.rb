@@ -773,7 +773,7 @@ class SendCheckpointEmails < ActiveRecord::Base
                             event_queue.status = "pending"
 
                             if event_queue.save
-                              logtext = "#{checkpoint.goal.user.email} is added to event_queue with checkpoint #{checkpoint.id} for #{today_dayname}, #{checkin_date}."              
+                              logtext = "#{checkpoint.goal.user.email} is added to event_queue with checkpoint #{checkpoint.id} for #{yesterday_dayname}, #{checkin_date}."              
                               puts logtext
                               logger.info logtext 
 
@@ -887,7 +887,7 @@ class SendCheckpointEmails < ActiveRecord::Base
                             event_queue.status = "pending"
 
                             if event_queue.save
-                              logtext = "#{checkpoint.goal.user.email} is added to event_queue with checkpoint #{checkpoint.id} for #{today_dayname}, #{checkin_date}."              
+                              logtext = "#{checkpoint.goal.user.email} is added to event_queue with checkpoint #{checkpoint.id} for #{yesterday_dayname}, #{checkin_date}."              
                               puts logtext
                               logger.info logtext 
 
