@@ -8,10 +8,6 @@ if `uname -n`.strip == 'adv.adventurino.com'
   #if @checkpoint.goal.user.sponsor == "clearworth"
   #  @sitename = "www.mylearninghabit.com"
   #end
-  
-elsif `uname -n`.strip == 'gns499aa.joyent.us'
-  #### DEV SETTINGS ON HABITFORGE VPS
-  @sitename = "dev.habitforge.com"
 else
   #### SETTINGS FOR DEV LAPTOP
   @sitename = "localhost:3000"
@@ -21,7 +17,7 @@ end
 <head>
   <base href="http://<%= @sitename %>/"/>
    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-   <title>Template 9 - Single Column</title>
+   <title>HabitForge Check-In</title>
    <style type="text/css" media="screen">
       body {
          margin: 0;
