@@ -89,6 +89,8 @@ class SendEmailCheckpointsFromQueue < ActiveRecord::Base
               logtext = "sent"
               puts logtext
               logger.info logtext 
+
+              success = true
             end
           end
 
@@ -111,6 +113,8 @@ class SendEmailCheckpointsFromQueue < ActiveRecord::Base
               logtext = "sent"
               puts logtext
               logger.info logtext 
+
+              success = true
             end
           end
 
