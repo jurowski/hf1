@@ -198,6 +198,8 @@ class SendCheckpointEmails < ActiveRecord::Base
     serverdtomorrow = dnow + 1
 
     tservernow = tnow
+    tservertomorrow = tnow + (24 * 3600)
+
     ######
     ###################
     ###################
