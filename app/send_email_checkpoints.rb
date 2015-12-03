@@ -43,7 +43,7 @@ class SendEmailCheckpointsFromQueue < ActiveRecord::Base
     ###################
 
 
-    event_type_strings = ["email checkpoint", "email checkpoint multiple"]
+    event_type_strings = ["email checkpoint multiple sameday", "email checkpoint sameday", "email checkpoint nextday", "email checkpoint multiple nextday"]
     event_type_id = 0
 
     event_type_strings.each do |event_type_string|
