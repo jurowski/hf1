@@ -16,7 +16,7 @@ class SendEmailCheckpointsFromQueue < ActiveRecord::Base
 
 
 
-    tnow = Time.now + jump_forward_seconds
+    tnow = Time.now
     
     tnow_Y = tnow.strftime("%Y").to_i #year, 4 digits
     tnow_m = tnow.strftime("%m").to_i #month of the year
