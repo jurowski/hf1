@@ -16,7 +16,32 @@ class SendEmailCheckpointsFromQueue < ActiveRecord::Base
 
 
 
-    tnow = Time.now
+    tnow = Time.now + jump_forward_seconds
+    
+    tnow_Y = tnow.strftime("%Y").to_i #year, 4 digits
+    tnow_m = tnow.strftime("%m").to_i #month of the year
+    tnow_d = tnow.strftime("%d").to_i #day of the month
+    tnow_H = tnow.strftime("%H").to_i #hour (24-hour format)
+    tnow_k = tnow.strftime("%k").to_i #hour (24-hour format, w/ no leading zeroes)
+    tnow_M = tnow.strftime("%M").to_i #minute of the hour
+    #puts tnow_Y + tnow_m + tnow_d  
+    #puts "Current timestamp is #{tnow.to_s}"
+    dnow = Date.new(tnow_Y, tnow_m, tnow_d)
+    dyesterday = dnow - 1
+    d2daysago = dnow - 2
+    dtomorrow = dnow + 1
+    dtomorrow_plus1 = dtomorrow + 1
+
+    tservernow = tnow
+    tservertomorrow = tnow + (24 * 3600)
+
+    serverdnow = dnow
+    serverdtomorrow = dnow + 1
+
+    ######
+    ###################
+    ###################
+
 
     event_type_strings = ["email checkpoint", "email checkpoint multiple"]
     event_type_id = 0
@@ -30,7 +55,7 @@ class SendEmailCheckpointsFromQueue < ActiveRecord::Base
         puts "ERROR event type not found for " + event_type_string
       end
 
-      conditions = "event_type_id = '#{event_type_id}' and status = 'pending'" # and valid_at_datetime < '#{tnow}' and expire_at_datetime > '#{tnow}'"
+      conditions = "event_type_id = '#{event_type_id}' and status = 'pending' and valid_at_date = '#{serverdnow}'"
       puts "conditions: " + conditions
 
       checkpoint_email_queue_items = EventQueue.find(:all, :conditions => conditions)

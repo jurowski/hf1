@@ -136,6 +136,9 @@ class SendCheckpointEmails < ActiveRecord::Base
     tservernow = tnow
     tservertomorrow = tnow + (24 * 3600)
 
+    serverdnow = dnow
+    serverdtomorrow = dnow + 1
+
     ######
     ###################
     ###################
@@ -613,7 +616,7 @@ class SendCheckpointEmails < ActiveRecord::Base
               logtext = "Emailing #{goal.user.email} single goal email for #{goal.id} for #{checkin_date}."
               puts logtext
               logger.info logtext 
-              begin
+              #begin
                 limit_one = 0
                 for checkpoint in @checkpoints
                   if limit_one == 0
@@ -666,6 +669,8 @@ class SendCheckpointEmails < ActiveRecord::Base
                           event_queue.checkpoint_id = checkpoint.id
                           event_queue.valid_at_datetime = tservernow
                           event_queue.expire_at_datetime = tservertomorrow
+                          event_queue.valid_at_date = serverdnow
+                          event_queue.expire_at_date = serverdtomorrow
                           event_queue.status = "pending"
 
                           if event_queue.save
@@ -708,26 +713,26 @@ class SendCheckpointEmails < ActiveRecord::Base
                     #end                
                   end
                 end
-              rescue
-                puts "Sorry, something went wrong"
+              # rescue
+              #   puts "Sorry, something went wrong"
 
-                ### notify support@habitforge.com that the script died and the goal id
-                Notifier.deliver_notify_support(goal) # sends the email  
-                limit_one = 0
-                for checkpoint in @checkpoints
-                  if limit_one == 0
-                    limit_one = limit_one + 1
-                    checkpoint.status = 'email failure'
-                    checkpoint.save
-                  end
-                end
-              end      
+              #   ### notify support@habitforge.com that the script died and the goal id
+              #   #Notifier.deliver_notify_support(goal) # sends the email  
+              #   limit_one = 0
+              #   for checkpoint in @checkpoints
+              #     if limit_one == 0
+              #       limit_one = limit_one + 1
+              #       checkpoint.status = 'email failure'
+              #       checkpoint.save
+              #     end
+              #   end
+              # end      
             else
               #### This user has more goals that just this one, so concatonate them into one email
               #puts "This user has more goals that just this one (#{@goals_additional.size}), so concatonate them into one email"
               limit_one = 0
               for goal_additional in @goals_additional
-                begin
+                #begin
                   email_sent_successfully = false
                   @checkpoints = Checkpoint.find(:all, :conditions => "goal_id = '#{goal_additional.id}' and checkin_date = '#{checkin_date}' and status = 'email not yet sent'")
                   if @checkpoints.size == 1
@@ -791,6 +796,9 @@ class SendCheckpointEmails < ActiveRecord::Base
                             event_queue.checkpoint_id = checkpoint.id
                             event_queue.valid_at_datetime = tservernow
                             event_queue.expire_at_datetime = tservertomorrow
+                            event_queue.valid_at_date = serverdnow
+                            event_queue.expire_at_date = serverdtomorrow
+
                             event_queue.status = "pending"
 
                             if event_queue.save
@@ -826,16 +834,16 @@ class SendCheckpointEmails < ActiveRecord::Base
                   #    end                
                   #  end            
                   #end              
-                rescue
-                  #puts "Sorry, something went wrong"
-                  ### notify support@habitforge.com that the script died and the goal id
-                  Notifier.deliver_notify_support(goal) # sends the email  
-                  @checkpoints = Checkpoint.find(:all, :conditions => "goal_id = '#{goal_additional.id}' and checkin_date = '#{checkin_date}' and status = 'email not yet sent'")
-                  for checkpoint in @checkpoints
-                    checkpoint.status = 'email failure'
-                    checkpoint.save
-                  end
-                end
+                # rescue
+                #   #puts "Sorry, something went wrong"
+                #   ### notify support@habitforge.com that the script died and the goal id
+                #   #Notifier.deliver_notify_support(goal) # sends the email  
+                #   @checkpoints = Checkpoint.find(:all, :conditions => "goal_id = '#{goal_additional.id}' and checkin_date = '#{checkin_date}' and status = 'email not yet sent'")
+                #   for checkpoint in @checkpoints
+                #     checkpoint.status = 'email failure'
+                #     checkpoint.save
+                #   end
+                # end
               end
             end        
           end
